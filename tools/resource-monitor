@@ -1,0 +1,118 @@
+#!/usr/bin/env python3
+"""Run a command and sample aggregate process-group resource usage."""
+
+import argparse
+import os
+import signal
+import subprocess
+import sys
+import time
+
+
+def parse_args():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--output", required=True)
+    parser.add_argument("command", nargs=argparse.REMAINDER)
+    args = parser.parse_args()
+    if args.command[:1] == ["--"]:
+        args.command = args.command[1:]
+    if not args.command:
+        parser.error("missing command")
+    return args
+
+
+def read_proc_usage(target_pgid, page_kb):
+    user_ticks = 0
+    system_ticks = 0
+    rss_kb = 0
+
+    for name in os.listdir("/proc"):
+        if not name.isdigit():
+            continue
+        pid = int(name)
+        try:
+            if os.getpgid(pid) != target_pgid:
+                continue
+            with open(f"/proc/{pid}/stat", "r", encoding="utf-8") as fh:
+                stat = fh.read()
+            right = stat.rsplit(") ", 1)[1].split()
+            user_ticks += int(right[11])
+            system_ticks += int(right[12])
+            with open(f"/proc/{pid}/statm", "r", encoding="utf-8") as fh:
+                statm = fh.read().split()
+            if len(statm) >= 2:
+                rss_kb += int(statm[1]) * page_kb
+        except (FileNotFoundError, ProcessLookupError, PermissionError, ValueError):
+            continue
+
+    return user_ticks, system_ticks, rss_kb
+
+
+def write_metrics(path, elapsed, user_seconds, system_seconds, max_rss_kb):
+    cpu_seconds = user_seconds + system_seconds
+    cpu_percent = 0.0 if elapsed <= 0 else (cpu_seconds / elapsed) * 100.0
+    tmp_path = f"{path}.{os.getpid()}"
+    with open(tmp_path, "w", encoding="utf-8") as fh:
+        fh.write(
+            "resource_scope=process_group_sampled "
+            f"elapsed_sec={elapsed:.2f} "
+            f"user_sec={user_seconds:.2f} "
+            f"system_sec={system_seconds:.2f} "
+            f"cpu_percent={cpu_percent:.0f}% "
+            f"max_rss_kb={max_rss_kb}\n"
+        )
+    os.replace(tmp_path, path)
+
+
+def main():
+    args = parse_args()
+    ticks_per_second = os.sysconf(os.sysconf_names["SC_CLK_TCK"])
+    page_kb = os.sysconf(os.sysconf_names["SC_PAGE_SIZE"]) // 1024
+
+    proc = subprocess.Popen(args.command, preexec_fn=os.setsid)
+    target_pgid = os.getpgid(proc.pid)
+    start = time.monotonic()
+    max_user_ticks = 0
+    max_system_ticks = 0
+    max_rss_kb = 0
+
+    def forward(signum, _frame):
+        try:
+            os.killpg(target_pgid, signum)
+        except ProcessLookupError:
+            pass
+
+    signal.signal(signal.SIGTERM, forward)
+    signal.signal(signal.SIGINT, forward)
+
+    while proc.poll() is None:
+        user_ticks, system_ticks, rss_kb = read_proc_usage(target_pgid, page_kb)
+        max_user_ticks = max(max_user_ticks, user_ticks)
+        max_system_ticks = max(max_system_ticks, system_ticks)
+        max_rss_kb = max(max_rss_kb, rss_kb)
+        time.sleep(0.2)
+
+    user_ticks, system_ticks, rss_kb = read_proc_usage(target_pgid, page_kb)
+    max_user_ticks = max(max_user_ticks, user_ticks)
+    max_system_ticks = max(max_system_ticks, system_ticks)
+    max_rss_kb = max(max_rss_kb, rss_kb)
+
+    elapsed = time.monotonic() - start
+    write_metrics(
+        args.output,
+        elapsed,
+        max_user_ticks / ticks_per_second,
+        max_system_ticks / ticks_per_second,
+        max_rss_kb,
+    )
+
+    returncode = proc.returncode
+    if returncode is None:
+        returncode = proc.wait()
+    if returncode < 0:
+        return 128 + abs(returncode)
+    return returncode
+
+
+if __name__ == "__main__":
+    sys.exit(main())

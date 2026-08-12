@@ -1,0 +1,157 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://grampy.local/schemas/mfsk-decode-manifest-v1.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema", "run_id", "status", "input", "decoder", "signal_regions",
+    "mode_hypotheses", "frequency_tracks", "mode_segments", "text_epochs",
+    "text_events", "text_summary", "pictures", "transitions", "warnings",
+    "recoverable_errors", "terminal_failure", "artifacts", "diagnostics", "timing"
+  ],
+  "properties": {
+    "schema": {"const": "grampy-decode-manifest.v1"},
+    "run_id": {"type": "string", "pattern": "^[0-9a-f]{24}$"},
+    "status": {"enum": ["complete", "partial", "failed"]},
+    "input": {
+      "type": "object",
+      "required": [
+        "metadata_path", "data_path", "metadata_sha256", "data_sha256",
+        "datatype", "sample_rate_hz", "sample_count", "interval",
+        "requested_interval", "sample_map", "ancestry", "sample_summary"
+      ],
+      "properties": {
+        "metadata_path": {"type": "string"},
+        "data_path": {"type": "string"},
+        "metadata_sha256": {"$ref": "#/$defs/sha256"},
+        "data_sha256": {"$ref": "#/$defs/sha256"},
+        "datatype": {"enum": ["ci16_le", "cf32_le"]},
+        "sample_rate_hz": {"type": "number", "exclusiveMinimum": 0},
+        "sample_count": {"type": "integer", "minimum": 0},
+        "interval": {"$ref": "#/$defs/interval"},
+        "requested_interval": {"$ref": "#/$defs/interval"},
+        "sample_map": {"type": "object"},
+        "ancestry": {"type": "array", "items": {"type": "object"}},
+        "sample_summary": {
+          "type": "object",
+          "required": ["clipping_sample_count", "nonfinite_sample_count", "peak_magnitude"],
+          "properties": {
+            "clipping_sample_count": {"type": "integer", "minimum": 0},
+            "nonfinite_sample_count": {"type": "integer", "minimum": 0},
+            "peak_magnitude": {"type": "number", "minimum": 0}
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "decoder": {"type": "object"},
+    "signal_regions": {"type": "array", "items": {"type": "object"}},
+    "mode_hypotheses": {"type": "array", "items": {"type": "object"}},
+    "frequency_tracks": {"type": "array", "items": {"type": "object"}},
+    "mode_segments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id", "mode", "orientation", "interval", "source", "confidence",
+          "acquisition_state", "symbol_phase_uncertainty_input_samples",
+          "center_hz"
+        ]
+      }
+    },
+    "text_epochs": {"type": "array", "items": {"type": "object"}},
+    "text_events": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id", "octet", "display", "control_role", "codeword",
+          "wire_interval", "recognized_at_input_sample", "confidence",
+          "damage_flags", "mode_segment", "provenance"
+        ],
+        "properties": {
+          "id": {"type": "string"},
+          "octet": {"oneOf": [{"type": "null"}, {"type": "integer", "minimum": 0, "maximum": 255}]},
+          "display": {"type": ["string", "null"]},
+          "control_role": {"enum": ["STX", "EOT", "CR", "NUL", null]},
+          "codeword": {"type": "string", "pattern": "^[01]*$"},
+          "wire_interval": {"$ref": "#/$defs/interval"},
+          "recognized_at_input_sample": {"type": "integer", "minimum": 0},
+          "confidence": {"type": "object"},
+          "damage_flags": {"type": "array", "items": {"type": "string"}},
+          "mode_segment": {"type": "string"},
+          "provenance": {"type": "object"}
+        }
+      }
+    },
+    "text_summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["octets", "text", "framing"],
+      "properties": {
+        "octets": {
+          "type": "array",
+          "items": {"type": "integer", "minimum": 0, "maximum": 255}
+        },
+        "text": {"type": "string"},
+        "framing": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["stx_found", "eot_found"],
+          "properties": {
+            "stx_found": {"type": "boolean"},
+            "eot_found": {"type": "boolean"}
+          }
+        }
+      }
+    },
+    "pictures": {"type": "array", "items": {"type": "object"}},
+    "transitions": {"type": "array", "items": {"type": "object"}},
+    "warnings": {"type": "array", "items": {"$ref": "#/$defs/message"}},
+    "recoverable_errors": {"type": "array", "items": {"$ref": "#/$defs/message"}},
+    "terminal_failure": {"oneOf": [{"type": "null"}, {"$ref": "#/$defs/message"}]},
+    "artifacts": {"type": "array", "items": {"type": "object"}},
+    "diagnostics": {
+      "type": "object",
+      "required": [
+        "trace_level", "persistent_intermediate_files", "bytes_read",
+        "bytes_written", "peak_temporary_storage_bytes",
+        "repeated_input_sample_reads", "duplicated_expensive_transforms", "counts"
+      ]
+    },
+    "timing": {
+      "type": "object",
+      "required": ["started_at", "wall_seconds", "cpu_seconds", "peak_rss_bytes"],
+      "properties": {
+        "started_at": {"type": "string", "format": "date-time"},
+        "wall_seconds": {"type": "number", "minimum": 0},
+        "cpu_seconds": {"type": "number", "minimum": 0},
+        "peak_rss_bytes": {"type": "integer", "minimum": 0}
+      },
+      "additionalProperties": false
+    }
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "interval": {
+      "type": "object",
+      "required": ["start", "stop"],
+      "properties": {
+        "start": {"type": "integer", "minimum": 0},
+        "stop": {"type": "integer", "minimum": 0}
+      },
+      "additionalProperties": false
+    },
+    "message": {
+      "type": "object",
+      "required": ["code", "message"],
+      "properties": {
+        "code": {"type": "string"},
+        "message": {"type": "string"}
+      },
+      "additionalProperties": true
+    }
+  }
+}

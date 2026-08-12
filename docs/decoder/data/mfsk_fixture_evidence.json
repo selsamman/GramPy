@@ -1,0 +1,102 @@
+{
+  "schema": "grampy-fixture-evidence.v1",
+  "purpose": "Durable provenance and outcomes for controlled wire-spec evidence. Large WAV and SigMF artifacts remain under .local.",
+  "generator": {
+    "fldigi_tag": "v4.2.12",
+    "fldigi_commit": "b0032cabb70dc670064ed7561b9a626010a5e4ae",
+    "binary_sha256": "de63a235e959e01e31ab05045fd703d59d3ee74017b64d9b254e8f48cb0d6e9c"
+  },
+  "independent_receiver": {
+    "fldigi_version": "4.2.06",
+    "role": "Decode each generated artifact independently before accepting it as evidence"
+  },
+  "fixtures": [
+    {
+      "id": "mfsk32-text-printable",
+      "mode": "MFSK32",
+      "kind": "text",
+      "capability": "controlled MFSK32 text IQ-to-octet vertical slice",
+      "artifact_directory": "wire-matrix-4.2.12/mfsk32-text-printable",
+      "artifacts": {
+        "wav": "transmission.wav",
+        "sigmf_data": "transmission.sigmf-data",
+        "sigmf_meta": "transmission.sigmf-meta"
+      },
+      "input_text": "RG-MFSK32 AaZz 09 .,!?/+-=: END",
+      "decoded_text": "RG-MFSK32 AaZz 09 .,!?/+-=: END",
+      "wav_sha256": "9621633a1c6ba4297fbb2db24611f297f49d56520b45eb2334d843ba8553482d",
+      "sigmf_data_sha256": "82bbac22ae4e4fb015873aa72ca507b761099e601f8de16992c5c94ad39ab6cf",
+      "sigmf_meta_sha256": "e1b5243e6d26b6be4e1446fec6aacafa8eac415040b7578082e94064b4cb7ade",
+      "maximum_tone_center_deviation_hz": 4.11
+    },
+    {
+      "id": "mfsk64-text-printable",
+      "mode": "MFSK64",
+      "kind": "text",
+      "capability": "controlled MFSK64 text IQ-to-octet vertical slice",
+      "artifact_directory": "wire-matrix-4.2.12/mfsk64-text-printable",
+      "artifacts": {
+        "wav": "transmission.wav",
+        "sigmf_data": "transmission.sigmf-data",
+        "sigmf_meta": "transmission.sigmf-meta"
+      },
+      "input_text": "RG-MFSK64 AaZz 09 .,!?/+-=: END",
+      "decoded_text": "RG-MFSK64 AaZz 09 .,!?/+-=: END",
+      "wav_sha256": "4fe82965d4abaaff9bc9cc6d9a54d38f048ae049825de750bd99cb55cd755653",
+      "sigmf_data_sha256": "b4d848a49d6ad176f3ee8350dd7c9738be222ea1f8adb75d860a0c527dc76a97",
+      "sigmf_meta_sha256": "26f14e44bb010553ff86f28f422d0042928375be583ecd0f3cb4fefc5d7d1f33",
+      "maximum_tone_center_deviation_hz": 11.75
+    },
+    {
+      "id": "mfsk64-gray-8x4-p8",
+      "mode": "MFSK64",
+      "kind": "grayscale_picture",
+      "capability": "MFSK64 grayscale picture transition, p8 raster, and completion",
+      "artifact_directory": "wire-matrix-4.2.12/mfsk64-gray-8x4-p8",
+      "artifacts": {
+        "wav": "transmission.wav",
+        "sigmf_data": "transmission.sigmf-data",
+        "sigmf_meta": "transmission.sigmf-meta"
+      },
+      "decoded_text": "RG-MFSK64-GRAY-8X4-P8\nSending Pic:8x4;",
+      "receiver_produced_image": true,
+      "wav_sha256": "8f0c4707296e1d0f7718f43abad865081ec7204e08263836733784e07d8101d5",
+      "sigmf_data_sha256": "ca0675d99c7aa39128fcfffb0783dace9946fa9e88f499b4a26c231a5cedb536",
+      "sigmf_meta_sha256": "13488a95af4ca681816c96d440898e1f1dfef4c31b0f0a2c42aa152c4108c836",
+      "raster_start_wav_sample": 784285,
+      "raster_samples": 1536,
+      "raster_duration_seconds": 0.032,
+      "frequency_rmse_hz": 7.268076231543623,
+      "frequency_maximum_absolute_error_hz": 18.82367107586265
+    },
+    {
+      "id": "mfsk64-primary-color-8x4-p8",
+      "mode": "MFSK64",
+      "kind": "color_picture",
+      "capability": "MFSK64 color picture transition, RGB row-plane order, p8 raster, and completion",
+      "artifact_directory": "mfsk64-primary-color-8x4-4.2.12",
+      "artifacts": {
+        "wav": "transmission.wav",
+        "sigmf_data": "transmission.sigmf-data",
+        "sigmf_meta": "transmission.sigmf-meta"
+      },
+      "source_ppm_sha256": "21d5e19be8566a266d8c01f214e4049b59b9fdbba96ab1069178e88a548dc104",
+      "decoded_text": "RG-PRIMARY-MFSK64-COLOR-8X4\nSending Pic:8x4C;",
+      "receiver_produced_image": true,
+      "wav_sha256": "1105fb392d59a55ed315c9552118391e489b0210828a3197489e68fffadd4721",
+      "sigmf_data_sha256": "6e00322628618b74d58828f4ebfbe599d4853f79c1e5bac48935142fa46ecd26",
+      "sigmf_meta_sha256": "65617638447c1b776cee0190e47048ed144f8df52d8124c7f517287d025066e0",
+      "raster_start_wav_sample": 822712,
+      "raster_samples": 4608,
+      "raster_duration_seconds": 0.096,
+      "prologue_start_wav_sample": 820600,
+      "prologue_samples": 2112,
+      "prologue_duration_seconds": 0.044,
+      "prologue_expected_frequency_hz": 1031.25,
+      "prologue_measured_median_frequency_hz": 1028.7049596329593,
+      "row_plane_rgb_rmse_hz": 11.32704591980715,
+      "pixel_interleaved_rgb_rmse_hz": 463.076,
+      "whole_image_planes_rmse_hz": 468.992
+    }
+  ]
+}

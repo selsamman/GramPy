@@ -1,0 +1,161 @@
+#!/usr/bin/env python3
+from __future__ import annotations
+
+import argparse
+import hashlib
+import json
+from pathlib import Path
+import sys
+from typing import Any
+
+import numpy as np
+from scipy import signal
+from scipy.io import wavfile
+
+
+class UserError(Exception):
+    pass
+
+
+def build_parser() -> argparse.ArgumentParser:
+    parser = argparse.ArgumentParser(
+        prog="wav-to-sigmf",
+        description=(
+            "Convert a mono WAV waveform to cf32_le analytic-signal SigMF."
+        ),
+    )
+    parser.add_argument("--input", required=True, type=Path)
+    parser.add_argument("--out-meta", required=True, type=Path)
+    parser.add_argument("--out-data", required=True, type=Path)
+    parser.add_argument(
+        "--trim-guard-sec",
+        type=float,
+        default=0.0,
+        help="discard this many seconds from both ends after conversion",
+    )
+    parser.add_argument(
+        "--description",
+        default="Analytic IQ derived from a real-valued WAV waveform",
+    )
+    return parser
+
+
+def main(argv: list[str] | None = None) -> int:
+    args = build_parser().parse_args(argv)
+    try:
+        convert(args)
+    except UserError as error:
+        print(f"wav-to-sigmf: {error}", file=sys.stderr)
+        return 64
+    except OSError as error:
+        print(f"wav-to-sigmf: {error}", file=sys.stderr)
+        return 74
+    return 0
+
+
+def convert(args: argparse.Namespace) -> None:
+    if args.trim_guard_sec < 0:
+        raise UserError("--trim-guard-sec must not be negative")
+    if args.out_meta == args.out_data:
+        raise UserError("--out-meta and --out-data must be different paths")
+
+    source_hash = sha256_file(args.input)
+    sample_rate, raw = wavfile.read(args.input, mmap=False)
+    if sample_rate <= 0:
+        raise UserError("WAV sample rate must be positive")
+    if raw.ndim != 1:
+        raise UserError("input WAV must be mono")
+    if raw.size < 2:
+        raise UserError("input WAV must contain at least two samples")
+
+    real = normalize_wav(raw)
+    guard_samples = int(round(args.trim_guard_sec * sample_rate))
+    if 2 * guard_samples >= real.size:
+        raise UserError("--trim-guard-sec removes the entire input")
+
+    # scipy.signal.hilbert constructs the FFT-domain analytic signal: positive
+    # frequencies are doubled and negative frequencies are suppressed. It is
+    # deliberately applied before guard trimming so controlled fixtures can
+    # provide sacrificial edge samples for the FFT-periodicity discontinuity.
+    analytic = signal.hilbert(real).astype("<c8", copy=False)
+    if guard_samples:
+        analytic = analytic[guard_samples:-guard_samples]
+
+    args.out_data.parent.mkdir(parents=True, exist_ok=True)
+    args.out_meta.parent.mkdir(parents=True, exist_ok=True)
+    analytic.tofile(args.out_data)
+
+    metadata: dict[str, Any] = {
+        "global": {
+            "core:datatype": "cf32_le",
+            "core:sample_rate": float(sample_rate),
+            "core:version": "1.0.0",
+            "core:description": args.description,
+            "radiogram:operation": "wav-to-analytic-sigmf",
+            "radiogram:source_path": str(args.input),
+            "radiogram:source_sha256": source_hash,
+            "radiogram:source_wav_dtype": str(raw.dtype),
+            "radiogram:source_wav_frames": int(raw.size),
+            "radiogram:source_wav_channels": 1,
+            "radiogram:analytic_method": "scipy.signal.hilbert",
+            "radiogram:normalization": normalization_name(raw.dtype),
+            "radiogram:trim_guard_samples_each_end": guard_samples,
+            "radiogram:output_sample_count": int(analytic.size),
+        },
+        "captures": [
+            {
+                "core:sample_start": 0,
+                "core:frequency": 0.0,
+            }
+        ],
+        "annotations": [
+            {
+                "core:sample_start": 0,
+                "core:sample_count": int(analytic.size),
+                "radiogram:operation": "analytic-signal-conversion",
+                "radiogram:source_sample_start": guard_samples,
+            }
+        ],
+    }
+    temporary = args.out_meta.with_name(f".{args.out_meta.name}.tmp")
+    temporary.write_text(
+        json.dumps(metadata, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    temporary.replace(args.out_meta)
+
+
+def normalize_wav(raw: np.ndarray[Any, Any]) -> np.ndarray[Any, Any]:
+    dtype = raw.dtype
+    if np.issubdtype(dtype, np.signedinteger):
+        scale = float(1 << (dtype.itemsize * 8 - 1))
+        return raw.astype(np.float32) / scale
+    if np.issubdtype(dtype, np.unsignedinteger):
+        midpoint = float(1 << (dtype.itemsize * 8 - 1))
+        return (raw.astype(np.float32) - midpoint) / midpoint
+    if np.issubdtype(dtype, np.floating):
+        real = raw.astype(np.float32)
+        if not np.all(np.isfinite(real)):
+            raise UserError("input WAV contains non-finite floating-point samples")
+        return real
+    raise UserError(f"unsupported WAV sample dtype: {dtype}")
+
+
+def normalization_name(dtype: np.dtype[Any]) -> str:
+    if np.issubdtype(dtype, np.signedinteger):
+        return f"signed-pcm-divide-by-2^{dtype.itemsize * 8 - 1}"
+    if np.issubdtype(dtype, np.unsignedinteger):
+        return f"unsigned-pcm-center-and-divide-by-2^{dtype.itemsize * 8 - 1}"
+    return "float32-preserve"
+
+
+def sha256_file(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as source:
+        for block in iter(lambda: source.read(1024 * 1024), b""):
+            digest.update(block)
+    return digest.hexdigest()
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

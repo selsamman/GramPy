@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://grampy.local/schemas/mfsk-decode-config-v1.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "block_samples", "orientation", "trace_level", "mode", "center_hz",
+    "picture_component_estimator", "picture_component_window",
+    "picture_filter_profile", "picture_boundary_estimator",
+    "persistent_tone_policy",
+    "pipeline_organization", "picture_range_workers",
+    "picture_range_components", "picture_max_in_flight_ranges",
+    "persistent_intermediates"
+  ],
+  "properties": {
+    "block_samples": {"type": "integer", "minimum": 1},
+    "orientation": {"enum": ["normal", "reverse", "unknown"]},
+    "trace_level": {"enum": ["none", "summary", "events", "full"]},
+    "mode": {"enum": ["auto", "MFSK32", "MFSK64"]},
+    "center_hz": {
+      "oneOf": [
+        {"type": "null"},
+        {"type": "number", "exclusiveMinimum": 0}
+      ]
+    },
+    "picture_component_estimator": {
+      "enum": ["fft_peak", "phase_difference", "bounded_correlation"]
+    },
+    "picture_component_window": {
+      "enum": ["center_crop", "full", "full_hann"]
+    },
+    "picture_filter_profile": {
+      "enum": ["current_wide", "response_matched"]
+    },
+    "picture_boundary_estimator": {
+      "const": "unified_grid"
+    },
+    "persistent_tone_policy": {"enum": ["measure", "suppress"]},
+    "pipeline_organization": {
+      "enum": ["supported_hybrid", "p11d", "independent_window_oracle"]
+    },
+    "picture_range_workers": {"type": "integer", "minimum": 1},
+    "picture_range_components": {"type": "integer", "minimum": 1},
+    "picture_max_in_flight_ranges": {"type": "integer", "minimum": 1},
+    "persistent_intermediates": {"const": false}
+  }
+}

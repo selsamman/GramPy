@@ -1,0 +1,303 @@
+#!/usr/bin/env python3
+from __future__ import annotations
+
+import argparse
+import hashlib
+import json
+from pathlib import Path
+import struct
+import sys
+from typing import Any
+
+import numpy as np
+from scipy.io import wavfile
+from scipy.signal import correlate, hilbert
+
+
+class UserError(Exception):
+    pass
+
+
+def parser() -> argparse.ArgumentParser:
+    result = argparse.ArgumentParser(
+        description="Locate and measure a known p8 MFSK color raster in WAV audio"
+    )
+    result.add_argument("--wav", required=True, type=Path)
+    result.add_argument("--ppm", required=True, type=Path)
+    result.add_argument("--output", required=True, type=Path)
+    result.add_argument("--carrier-hz", type=float, default=1500.0)
+    result.add_argument("--bandwidth-hz", type=float, default=937.5)
+    result.add_argument("--samples-per-component", type=int, default=8)
+    result.add_argument("--modem-rate-hz", type=int, default=8000)
+    result.add_argument("--prologue-modem-samples", type=int, default=352)
+    result.add_argument("--reverse", action="store_true")
+    result.add_argument("--grayscale", action="store_true")
+    return result
+
+
+def main() -> int:
+    args = parser().parse_args()
+    try:
+        analyze(args)
+    except (UserError, OSError, ValueError) as error:
+        print(f"analyze-mfsk-color-fixture: {error}", file=sys.stderr)
+        return 64
+    return 0
+
+
+def analyze(args: argparse.Namespace) -> None:
+    width, height, pixels = read_ppm(args.ppm)
+    sample_rate, raw = wavfile.read(args.wav)
+    if raw.ndim != 1:
+        raise UserError("WAV must be mono")
+    output_spp_float = (
+        args.samples_per_component * sample_rate / args.modem_rate_hz
+    )
+    output_spp = round(output_spp_float)
+    if abs(output_spp - output_spp_float) > 1e-9:
+        raise UserError("WAV rate is not integral relative to modem component rate")
+    if output_spp < 8:
+        raise UserError("too few WAV samples per component for measurement")
+
+    values = (
+        grayscale_values(pixels)
+        if args.grayscale
+        else row_plane_values(width, height, pixels)
+    )
+    expected = pixel_frequencies(
+        values, args.carrier_hz, args.bandwidth_hz, args.reverse
+    )
+    analytic = hilbert(normalize(raw))
+    instantaneous = (
+        np.angle(analytic[1:] * np.conj(analytic[:-1]))
+        * sample_rate
+        / (2 * np.pi)
+    )
+    start, measured = locate_sequence(instantaneous, expected, output_spp)
+    errors = measured - expected
+    prologue_samples_float = (
+        args.prologue_modem_samples * sample_rate / args.modem_rate_hz
+    )
+    prologue_samples = round(prologue_samples_float)
+    if abs(prologue_samples - prologue_samples_float) > 1e-9:
+        raise UserError("WAV rate is not integral relative to modem prologue")
+    prologue_start = start - prologue_samples
+    if prologue_start < 0:
+        raise UserError("located raster has no room for the expected prologue")
+    prologue_margin = min(output_spp, prologue_samples // 4)
+    prologue_frequency = float(
+        np.median(
+            instantaneous[
+                prologue_start + prologue_margin : start - prologue_margin
+            ]
+        )
+    )
+    expected_prologue_frequency = args.carrier_hz + (
+        args.bandwidth_hz / 2 if args.reverse else -args.bandwidth_hz / 2
+    )
+
+    alternatives = {"grayscale_row_major" if args.grayscale else "row_rgb_planes": expected}
+    if not args.grayscale:
+        alternatives.update({
+            "pixel_rgb_interleaved": pixel_frequencies(
+                np.asarray(pixels, dtype=np.uint8).reshape(-1),
+                args.carrier_hz,
+                args.bandwidth_hz,
+                args.reverse,
+            ),
+            "image_rgb_planes": pixel_frequencies(
+                np.asarray(pixels, dtype=np.uint8).T.reshape(-1),
+                args.carrier_hz,
+                args.bandwidth_hz,
+                args.reverse,
+            ),
+        })
+    ordering_rmse = {
+        name: float(np.sqrt(np.mean(np.square(measured - candidate))))
+        for name, candidate in alternatives.items()
+    }
+    endpoint_measurements: dict[str, Any] = {}
+    for value in (0, 128, 255):
+        matches = measured[values == value]
+        if matches.size:
+            endpoint_measurements[str(value)] = {
+                "expected_hz": float(
+                    pixel_frequencies(
+                        np.asarray([value]),
+                        args.carrier_hz,
+                        args.bandwidth_hz,
+                        args.reverse,
+                    )[0]
+                ),
+                "observations": int(matches.size),
+                "measured_median_hz": float(np.median(matches)),
+                "measured_min_hz": float(np.min(matches)),
+                "measured_max_hz": float(np.max(matches)),
+            }
+
+    component_count = len(expected)
+    evidence = {
+        "schema": "grampy-image-fixture-analysis.v1",
+        "wav": {
+            "path": str(args.wav),
+            "sha256": sha256(args.wav),
+            "sample_rate_hz": int(sample_rate),
+        },
+        "source_image": {
+            "path": str(args.ppm),
+            "sha256": sha256(args.ppm),
+            "width": width,
+            "height": height,
+        },
+        "parameters": {
+            "grayscale": args.grayscale,
+            "reverse": args.reverse,
+            "carrier_hz": args.carrier_hz,
+            "bandwidth_hz": args.bandwidth_hz,
+            "modem_rate_hz": args.modem_rate_hz,
+            "samples_per_component": args.samples_per_component,
+            "wav_samples_per_component": output_spp,
+            "prologue_modem_samples": args.prologue_modem_samples,
+        },
+        "picture_prologue": {
+            "sample_start": prologue_start,
+            "sample_end_exclusive": start,
+            "sample_count": prologue_samples,
+            "duration_sec": prologue_samples / sample_rate,
+            "expected_frequency_hz": expected_prologue_frequency,
+            "measured_median_frequency_hz": prologue_frequency,
+            "frequency_error_hz": (
+                prologue_frequency - expected_prologue_frequency
+            ),
+        },
+        "raster": {
+            "component_count": component_count,
+            "sample_start": start,
+            "sample_count": component_count * output_spp,
+            "sample_end_exclusive": start + component_count * output_spp,
+            "start_sec": start / sample_rate,
+            "duration_sec": component_count * output_spp / sample_rate,
+            "frequency_rmse_hz": float(np.sqrt(np.mean(np.square(errors)))),
+            "frequency_max_absolute_error_hz": float(np.max(np.abs(errors))),
+        },
+        "ordering_rmse_hz": ordering_rmse,
+        "endpoint_measurements": endpoint_measurements,
+    }
+    args.output.parent.mkdir(parents=True, exist_ok=True)
+    args.output.write_text(
+        json.dumps(evidence, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+
+
+def normalize(raw: np.ndarray[Any, Any]) -> np.ndarray[Any, Any]:
+    if np.issubdtype(raw.dtype, np.signedinteger):
+        return raw.astype(np.float64) / (1 << (raw.dtype.itemsize * 8 - 1))
+    if np.issubdtype(raw.dtype, np.unsignedinteger):
+        middle = 1 << (raw.dtype.itemsize * 8 - 1)
+        return (raw.astype(np.float64) - middle) / middle
+    return raw.astype(np.float64)
+
+
+def read_ppm(path: Path) -> tuple[int, int, list[tuple[int, int, int]]]:
+    data = path.read_bytes()
+    parts = data.split(maxsplit=4)
+    if len(parts) != 5 or parts[0] != b"P6" or parts[3] != b"255":
+        raise UserError("source must be a simple maxval-255 binary P6 PPM")
+    width, height = int(parts[1]), int(parts[2])
+    rgb = parts[4]
+    if len(rgb) != width * height * 3:
+        raise UserError("PPM raster length does not match dimensions")
+    pixels = [
+        struct.unpack_from("BBB", rgb, offset)
+        for offset in range(0, len(rgb), 3)
+    ]
+    return width, height, pixels
+
+
+def row_plane_values(
+    width: int,
+    height: int,
+    pixels: list[tuple[int, int, int]],
+) -> np.ndarray[Any, Any]:
+    result = []
+    for row in range(height):
+        row_pixels = pixels[row * width : (row + 1) * width]
+        for component in range(3):
+            result.extend(pixel[component] for pixel in row_pixels)
+    return np.asarray(result, dtype=np.uint8)
+
+
+def grayscale_values(
+    pixels: list[tuple[int, int, int]],
+) -> np.ndarray[Any, Any]:
+    return np.asarray(
+        [
+            (31 * red + 61 * green + 8 * blue) // 100
+            for red, green, blue in pixels
+        ],
+        dtype=np.uint8,
+    )
+
+
+def pixel_frequencies(
+    values: np.ndarray[Any, Any],
+    carrier_hz: float,
+    bandwidth_hz: float,
+    reverse: bool = False,
+) -> np.ndarray[Any, Any]:
+    offsets = bandwidth_hz * (values.astype(np.float64) - 128.0) / 256.0
+    return carrier_hz - offsets if reverse else carrier_hz + offsets
+
+
+def locate_sequence(
+    instantaneous: np.ndarray[Any, Any],
+    expected: np.ndarray[Any, Any],
+    samples_per_component: int,
+) -> tuple[int, np.ndarray[Any, Any]]:
+    margin = max(2, samples_per_component // 6)
+    best: tuple[float, int, np.ndarray[Any, Any]] | None = None
+    count = len(expected)
+    for phase in range(samples_per_component):
+        usable = (
+            (len(instantaneous) - phase) // samples_per_component
+        ) * samples_per_component
+        blocks = instantaneous[phase : phase + usable].reshape(
+            -1, samples_per_component
+        )
+        estimates = np.median(blocks[:, margin:-margin], axis=1)
+        if len(estimates) < count:
+            continue
+        # Expanding every candidate into a ``count``-wide sliding view makes a
+        # later elementwise square proportional to candidates * components.
+        # A substantial image can therefore require tens of gigabytes.  The
+        # same squared-error sequence is a rolling energy minus twice the
+        # cross-correlation, computed here in linear memory.
+        estimate_energy = np.concatenate(
+            ([0.0], np.cumsum(np.square(estimates), dtype=np.float64))
+        )
+        rolling_energy = estimate_energy[count:] - estimate_energy[:-count]
+        cross = correlate(estimates, expected, mode="valid", method="fft")
+        expected_energy = float(np.vdot(expected, expected))
+        squared_errors = (
+            rolling_energy - 2.0 * cross + expected_energy
+        ) / count
+        block = int(np.argmin(squared_errors))
+        candidate = (
+            float(squared_errors[block]),
+            phase + block * samples_per_component,
+            estimates[block : block + count],
+        )
+        if best is None or candidate[0] < best[0]:
+            best = candidate
+    if best is None:
+        raise UserError("WAV is too short for the expected raster")
+    return best[1], best[2]
+
+
+def sha256(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

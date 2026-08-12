@@ -1,0 +1,146 @@
+#!/usr/bin/env python3
+"""Stage a verified immutable fldigi corpus reference without installing it."""
+
+from __future__ import annotations
+
+import argparse
+import hashlib
+import json
+from pathlib import Path
+import shutil
+import tarfile
+import tempfile
+
+
+def sha256(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as stream:
+        for block in iter(lambda: stream.read(1024 * 1024), b""):
+            digest.update(block)
+    return digest.hexdigest()
+
+
+def read_json(path: Path) -> dict:
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--pi-archive", required=True, type=Path)
+    parser.add_argument("--build-id", required=True)
+    parser.add_argument("--qualification-id", required=True)
+    parser.add_argument("--corpus-id", required=True)
+    parser.add_argument("--output-root", required=True, type=Path)
+    args = parser.parse_args()
+
+    build_path = args.pi_archive / "builds" / args.build_id / "result.json"
+    qualification_path = (
+        args.pi_archive / "qualification" / args.qualification_id / "result.json"
+    )
+    corpus_root = args.pi_archive / "corpus" / args.corpus_id
+    corpus_path = corpus_root / "result.json"
+    build = read_json(build_path)
+    qualification = read_json(qualification_path)
+    corpus = read_json(corpus_path)
+    if build.get("status") != "complete":
+        raise SystemExit("build checkpoint is not complete")
+    if qualification.get("status") != "qualified":
+        raise SystemExit("qualification checkpoint is not qualified")
+    if corpus.get("status") != "complete":
+        raise SystemExit("corpus checkpoint is not complete")
+    if corpus.get("qualification_id") != args.qualification_id:
+        raise SystemExit("corpus qualification ID mismatch")
+    if qualification.get("binary_sha256") != build.get("binary_sha256"):
+        raise SystemExit("qualified binary hash does not match build")
+
+    identity = {
+        "binary_sha256": build["binary_sha256"],
+        "commit": build["commit"],
+        "configuration": corpus["configuration"],
+        "corpus_id": args.corpus_id,
+        "qualification_id": args.qualification_id,
+        "version": build["reported_version"],
+    }
+    identity_bytes = json.dumps(
+        identity, sort_keys=True, separators=(",", ":")
+    ).encode()
+    config_hash = hashlib.sha256(identity_bytes).hexdigest()
+    reference_id = f"fldigi-4.2.13-pi3-aarch64-{config_hash[:12]}"
+    output = args.output_root / reference_id
+    if output.exists():
+        raise SystemExit(f"refusing to overwrite staged reference: {output}")
+
+    expected = {item["transmission_id"]: item for item in corpus["transmissions"]}
+    with tempfile.TemporaryDirectory(
+        prefix=f".{reference_id}.", dir=args.output_root.parent
+    ) as tmp_name:
+        staged = Path(tmp_name) / reference_id
+        staged.mkdir()
+        manifest = {
+            "schema": "radiogram.fldigi-reference-stage.v1",
+            "reference_id": reference_id,
+            "config_sha256": config_hash,
+            "identity": identity,
+            "build_checkpoint_sha256": sha256(build_path),
+            "qualification_checkpoint_sha256": sha256(qualification_path),
+            "corpus_checkpoint_sha256": sha256(corpus_path),
+            "transmissions": [],
+        }
+        for transmission_id in sorted(expected):
+            item = expected[transmission_id]
+            source = corpus_root / "transmissions" / transmission_id / "decode.tar"
+            actual_hash = sha256(source)
+            if actual_hash != item["decode_tar_sha256"]:
+                raise SystemExit(f"decode archive hash mismatch: {transmission_id}")
+            with tempfile.TemporaryDirectory(prefix="mfsk-fldigi-extract.") as extract_name:
+                extract = Path(extract_name)
+                with tarfile.open(source) as archive:
+                    archive.extractall(extract, filter="data")
+                metadata = read_json(extract / "metadata.json")
+                images = sorted((extract / "images").glob("*.png"))
+                if metadata.get("image_count") != len(images):
+                    raise SystemExit(f"image count mismatch: {transmission_id}")
+                destination = staged / transmission_id
+                (destination / "images").mkdir(parents=True)
+                shutil.copy2(extract / "decoded.txt", destination / "decoded.txt")
+                shutil.copy2(extract / "metadata.json", destination / "metadata.json")
+                decoded = (extract / "decoded.txt").read_text(
+                    encoding="utf-8", errors="replace"
+                )
+                first = decoded.find("\x02")
+                last = decoded.rfind("\x04")
+                content = decoded[first + 1:last] if first >= 0 and last > first else decoded
+                (destination / "content.txt").write_text(content, encoding="utf-8")
+                names = []
+                for order, image in enumerate(images, 1):
+                    name = f"{order:03d}-{image.name}"
+                    shutil.copy2(image, destination / "images" / name)
+                    names.append(name)
+                record = {
+                    "transmission_id": transmission_id,
+                    "decode_tar_sha256": actual_hash,
+                    "source_hashes": item["source_hashes"],
+                    "image_count": len(images),
+                    "images": names,
+                }
+                (destination / "reference-provenance.json").write_text(
+                    json.dumps(record, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+                )
+                manifest["transmissions"].append(record)
+        (staged / "reference-manifest.json").write_text(
+            json.dumps(manifest, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+        )
+        hashes = []
+        for path in sorted(staged.rglob("*")):
+            if path.is_file() and path.name != "files.sha256":
+                hashes.append(f"{sha256(path)}  {path.relative_to(staged)}")
+        (staged / "files.sha256").write_text("\n".join(hashes) + "\n", encoding="utf-8")
+        args.output_root.mkdir(parents=True, exist_ok=True)
+        staged.rename(output)
+    print(reference_id)
+    print(output)
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

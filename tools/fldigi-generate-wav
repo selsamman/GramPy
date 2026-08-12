@@ -1,0 +1,421 @@
+#!/bin/sh
+set -eu
+
+output=
+metadata=
+fldigi_command=fldigi
+mode=MFSK64
+carrier_hz=1500
+text=
+image=
+grayscale=off
+timeout_sec=300
+guard_sec=1
+wav_rate_hz=48000
+config_dir=
+work_dir=
+xmlrpc_port="${FLDIGI_XMLRPC_PORT:-7364}"
+
+usage() {
+    cat >&2 <<'EOF'
+usage: fldigi-generate-wav --output PATH [options]
+
+Generate a controlled fldigi transmission as a mono 48 kHz WAV.
+
+Options:
+  --output PATH             required WAV output
+  --metadata PATH           JSON provenance output; defaults beside WAV
+  --fldigi PATH             fldigi executable; default searches PATH
+  --mode MODE               MFSK32 or MFSK64; default MFSK64
+  --carrier-hz HZ           audio carrier; default 1500
+  --text TEXT               text sent before an optional image
+  --image PATH              PNG image sent through fldigi's MFSK image path
+  --grayscale on|off        send image as grayscale; default off
+  --timeout-sec SEC         transmission timeout; default 300
+  --guard-sec SEC           retained silence after RX; default 1
+  --wav-rate-hz HZ          ALSA playback/recording rate; default 48000
+  --config-dir PATH         fldigi config directory; temporary if omitted
+  --work-dir PATH           diagnostic work directory; temporary if omitted
+  --xmlrpc-port PORT        fldigi XML-RPC port; default 7364
+EOF
+}
+
+while [ "$#" -gt 0 ]; do
+    case "$1" in
+        --output) output="${2:-}"; shift 2 ;;
+        --metadata) metadata="${2:-}"; shift 2 ;;
+        --fldigi) fldigi_command="${2:-}"; shift 2 ;;
+        --mode) mode="${2:-}"; shift 2 ;;
+        --carrier-hz) carrier_hz="${2:-}"; shift 2 ;;
+        --text) text="${2:-}"; shift 2 ;;
+        --image) image="${2:-}"; shift 2 ;;
+        --grayscale) grayscale="${2:-}"; shift 2 ;;
+        --timeout-sec) timeout_sec="${2:-}"; shift 2 ;;
+        --guard-sec) guard_sec="${2:-}"; shift 2 ;;
+        --wav-rate-hz) wav_rate_hz="${2:-}"; shift 2 ;;
+        --config-dir) config_dir="${2:-}"; shift 2 ;;
+        --work-dir) work_dir="${2:-}"; shift 2 ;;
+        --xmlrpc-port) xmlrpc_port="${2:-}"; shift 2 ;;
+        -h|--help) usage; exit 0 ;;
+        *) printf 'fldigi-generate-wav: unknown argument: %s\n' "$1" >&2; usage; exit 64 ;;
+    esac
+done
+
+if [ -z "$output" ]; then
+    printf '%s\n' 'fldigi-generate-wav: --output is required' >&2
+    usage
+    exit 64
+fi
+if [ -z "$text" ] && [ -z "$image" ]; then
+    printf '%s\n' 'fldigi-generate-wav: --text or --image is required' >&2
+    exit 64
+fi
+case "$mode" in
+    MFSK32|MFSK64) ;;
+    *) printf '%s\n' 'fldigi-generate-wav: --mode must be MFSK32 or MFSK64' >&2; exit 64 ;;
+esac
+case "$grayscale" in
+    on|off) ;;
+    *) printf '%s\n' 'fldigi-generate-wav: --grayscale must be on or off' >&2; exit 64 ;;
+esac
+case "$carrier_hz:$xmlrpc_port:$wav_rate_hz" in
+    *[!0-9:]*|:*|*:) printf '%s\n' 'fldigi-generate-wav: carrier, port, and WAV rate must be positive integers' >&2; exit 64 ;;
+esac
+case "$timeout_sec:$guard_sec" in
+    *[!0-9.:]*|:*|*:) printf '%s\n' 'fldigi-generate-wav: timeout and guard must be nonnegative numbers' >&2; exit 64 ;;
+esac
+if [ -n "$image" ] && [ ! -f "$image" ]; then
+    printf 'fldigi-generate-wav: image does not exist: %s\n' "$image" >&2
+    exit 66
+fi
+
+for command in xvfb-run arecord python3 sha256sum; do
+    if ! command -v "$command" >/dev/null 2>&1; then
+        printf 'fldigi-generate-wav: required command not found: %s\n' "$command" >&2
+        exit 69
+    fi
+done
+case "$fldigi_command" in
+    */*)
+        if [ ! -x "$fldigi_command" ]; then
+            printf 'fldigi-generate-wav: fldigi executable is unavailable: %s\n' "$fldigi_command" >&2
+            exit 69
+        fi
+        fldigi_path=$fldigi_command
+        ;;
+    *)
+        fldigi_path=$(command -v "$fldigi_command" 2>/dev/null || true)
+        if [ -z "$fldigi_path" ]; then
+            printf 'fldigi-generate-wav: required command not found: %s\n' "$fldigi_command" >&2
+            exit 69
+        fi
+        ;;
+esac
+
+if [ -z "$metadata" ]; then
+    metadata="${output%.*}.json"
+fi
+
+created_work_dir=0
+created_config_dir=0
+if [ -z "$work_dir" ]; then
+    work_dir=$(mktemp -d "${TMPDIR:-/tmp}/radiogram-fldigi-tx.XXXXXX")
+    created_work_dir=1
+else
+    mkdir -p "$work_dir"
+fi
+if [ -z "$config_dir" ]; then
+    config_dir="$work_dir/config"
+    created_config_dir=1
+fi
+mkdir -p "$config_dir/macros" "$(dirname "$output")" "$(dirname "$metadata")"
+
+fldigi_pid=
+record_pid=
+cleanup() {
+    if [ -n "$config_dir" ] && [ -n "${fldigi_path:-}" ]; then
+        pkill -f "^$fldigi_path --config-dir $config_dir" 2>/dev/null || true
+    fi
+    if [ -n "$fldigi_pid" ] && kill -0 "$fldigi_pid" 2>/dev/null; then
+        kill "$fldigi_pid" 2>/dev/null || true
+    fi
+    if [ -n "$record_pid" ] && kill -0 "$record_pid" 2>/dev/null; then
+        kill -INT "$record_pid" 2>/dev/null || true
+    fi
+    [ -n "$fldigi_pid" ] && wait "$fldigi_pid" 2>/dev/null || true
+    [ -n "$record_pid" ] && wait "$record_pid" 2>/dev/null || true
+    if [ -n "${work_dir:-}" ]; then
+        pkill -f "^Xvfb .* -auth $work_dir/Xauthority" 2>/dev/null || true
+    fi
+    if [ "$created_work_dir" = 1 ]; then
+        rm -rf "$work_dir"
+    fi
+}
+trap cleanup EXIT HUP INT TERM
+
+if ! awk '/Loopback/ { found = 1 } END { exit found ? 0 : 1 }' /proc/asound/cards 2>/dev/null; then
+    if command -v sudo >/dev/null 2>&1; then
+        sudo -n modprobe snd-aloop 2>/dev/null || true
+    else
+        modprobe snd-aloop 2>/dev/null || true
+    fi
+fi
+loopback_card=$(awk '/Loopback/ { print $1; exit }' /proc/asound/cards 2>/dev/null || true)
+if [ -z "$loopback_card" ]; then
+    printf '%s\n' 'fldigi-generate-wav: snd-aloop Loopback card is unavailable' >&2
+    exit 69
+fi
+
+cat >"$work_dir/asound.conf" <<EOF
+pcm.rg_tx_hw {
+  type hw
+  card $loopback_card
+  device 0
+  subdevice 0
+}
+pcm.rg_tx {
+  type plug
+  slave {
+    pcm "rg_tx_hw"
+    format S16_LE
+    channels 1
+    rate $wav_rate_hz
+  }
+}
+pcm.rg_record_hw {
+  type hw
+  card $loopback_card
+  device 1
+  subdevice 0
+}
+pcm.rg_record {
+  type plug
+  slave {
+    pcm "rg_record_hw"
+    format S16_LE
+    channels 1
+    rate $wav_rate_hz
+  }
+}
+pcm.rg_null {
+  type null
+}
+pcm.!default {
+  type asym
+  playback.pcm "rg_tx"
+  capture.pcm "rg_null"
+}
+ctl.!default {
+  type hw
+  card $loopback_card
+}
+EOF
+
+if [ ! -f "$config_dir/fldigi_def.xml" ]; then
+    cat >"$config_dir/fldigi_def.xml" <<EOF
+<FLDIGI_DEFS>
+<AUDIOIO>1</AUDIOIO>
+<PORTINDEVICE>default</PORTINDEVICE>
+<PORTININDEX>-1</PORTININDEX>
+<PORTOUTDEVICE>default</PORTOUTDEVICE>
+<PORTOUTINDEX>-1</PORTOUTINDEX>
+<XMLRPC_ADDRESS>127.0.0.1</XMLRPC_ADDRESS>
+<XMLRPC_PORT>$xmlrpc_port</XMLRPC_PORT>
+<CHECK_FOR_UPDATES>0</CHECK_FOR_UPDATES>
+<STARTATSWEETSPOT>0</STARTATSWEETSPOT>
+<RETAINFREQLOCK>0</RETAINFREQLOCK>
+</FLDIGI_DEFS>
+EOF
+fi
+
+image_path=
+if [ -n "$image" ]; then
+    image_path=$(CDPATH= cd -- "$(dirname "$image")" && pwd)/$(basename "$image")
+    image_argument="$image_path"
+    if [ "$grayscale" = on ]; then
+        image_argument="G,$image_argument"
+    fi
+    cat >"$config_dir/macros/macros.mdf" <<EOF
+//fldigi macro definition file extended
+/\$ 0 TXFIXTURE
+<TX>${text}\\n
+<IMAGE:$image_argument>
+<RX>
+EOF
+fi
+
+fldigi_version=$("$fldigi_path" --version 2>/dev/null | sed -n '1p' || printf unknown)
+start_utc=$(date -u '+%Y-%m-%dT%H:%M:%SZ')
+export ALSA_CONFIG_PATH="$work_dir/asound.conf"
+
+nice -n -5 arecord -q -D rg_record -f S16_LE -c 1 -r "$wav_rate_hz" \
+    --buffer-time=1000000 "$work_dir/transmission.wav" \
+    2>"$work_dir/arecord.stderr" &
+record_pid=$!
+
+xvfb-run -a -f "$work_dir/Xauthority" "$fldigi_path" \
+    --config-dir "$config_dir" \
+    --xmlrpc-server-address 127.0.0.1 \
+    --xmlrpc-server-port "$xmlrpc_port" \
+    >"$work_dir/fldigi.stdout" 2>"$work_dir/fldigi.stderr" &
+fldigi_pid=$!
+
+python3 - "$xmlrpc_port" "$mode" "$carrier_hz" "$text" "$image_path" \
+    "$timeout_sec" "$guard_sec" "$work_dir/control.json" <<'PY'
+import json
+import sys
+import time
+import xmlrpc.client
+
+port, mode, carrier, text, image, timeout, guard, output = sys.argv[1:]
+carrier = int(carrier)
+timeout = float(timeout)
+guard = float(guard)
+server = xmlrpc.client.ServerProxy(f"http://127.0.0.1:{port}/", allow_none=True)
+deadline = time.monotonic() + min(timeout, 30)
+while True:
+    try:
+        listed = server.fldigi.list()
+        break
+    except Exception as exc:
+        if time.monotonic() >= deadline:
+            raise SystemExit(f"XML-RPC did not start: {exc}")
+        time.sleep(0.25)
+
+methods = {
+    item["name"] if isinstance(item, dict) else str(item).split()[0]
+    for item in listed
+}
+required = {
+    "main.get_trx_state", "main.rx", "modem.get_carrier",
+    "modem.get_name", "modem.set_by_name", "modem.set_carrier",
+}
+required.add("main.run_macro" if image else "main.get_tx_timing")
+required.add("main.tx" if not image else "main.run_macro")
+required.add("text.add_tx" if not image else "main.run_macro")
+missing = sorted(required - methods)
+if missing:
+    raise SystemExit(f"missing XML-RPC methods: {missing}")
+
+events = []
+events.append({"event": "set_mode", "returned_previous": server.modem.set_by_name(mode)})
+events.append({"event": "set_carrier", "returned_previous": server.modem.set_carrier(carrier)})
+time.sleep(1)
+confirmed_mode = server.modem.get_name()
+confirmed_carrier = server.modem.get_carrier()
+events.append({"event": "readback", "mode": confirmed_mode, "carrier_hz": confirmed_carrier})
+if confirmed_mode != mode or confirmed_carrier != carrier:
+    raise SystemExit(
+        f"setting readback failed: mode={confirmed_mode!r} carrier={confirmed_carrier!r}"
+    )
+
+if image:
+    events.append({"event": "run_macro", "result": server.main.run_macro(0)})
+    expected_duration = None
+else:
+    timing = server.main.get_tx_timing(xmlrpc.client.Binary(text.encode()))
+    expected_duration = float(timing.rsplit(":", 1)[1].strip())
+    events.append({"event": "tx_timing", "value": timing})
+    server.text.add_tx(text)
+    server.main.tx()
+
+deadline = time.monotonic() + timeout
+saw_tx = False
+while time.monotonic() < deadline:
+    state = server.main.get_trx_state()
+    if state == "TX":
+        saw_tx = True
+        break
+    time.sleep(0.25)
+if not saw_tx:
+    raise SystemExit("fldigi did not enter TX")
+
+if image:
+    while time.monotonic() < deadline:
+        if server.main.get_trx_state() == "RX":
+            break
+        time.sleep(0.25)
+    else:
+        raise SystemExit("image transmission did not return to RX")
+else:
+    time.sleep(expected_duration + 2)
+    server.main.rx()
+    while time.monotonic() < deadline:
+        if server.main.get_trx_state() == "RX":
+            break
+        time.sleep(0.25)
+    else:
+        raise SystemExit("text transmission did not return to RX")
+
+time.sleep(guard)
+events.append({"event": "completed", "state": "RX"})
+with open(output, "w", encoding="utf-8") as sink:
+    json.dump({"events": events}, sink, indent=2)
+    sink.write("\n")
+PY
+
+kill "$fldigi_pid" 2>/dev/null || true
+pkill -f "^$fldigi_path --config-dir $config_dir" 2>/dev/null || true
+kill -INT "$record_pid" 2>/dev/null || true
+wait "$fldigi_pid" 2>/dev/null || true
+wait "$record_pid" 2>/dev/null || true
+fldigi_pid=
+record_pid=
+
+if grep -qi overrun "$work_dir/arecord.stderr"; then
+    cat "$work_dir/arecord.stderr" >&2
+    printf '%s\n' 'fldigi-generate-wav: recording contained an ALSA overrun' >&2
+    exit 74
+fi
+
+cp "$work_dir/transmission.wav" "$output"
+source_sha256=$(sha256sum "$output" | awk '{print $1}')
+image_sha256=
+if [ -n "$image_path" ]; then
+    image_sha256=$(sha256sum "$image_path" | awk '{print $1}')
+fi
+end_utc=$(date -u '+%Y-%m-%dT%H:%M:%SZ')
+
+python3 - "$metadata" "$output" "$source_sha256" "$fldigi_path" \
+    "$fldigi_version" "$mode" "$carrier_hz" "$text" "$image_path" \
+    "$image_sha256" "$grayscale" "$start_utc" "$end_utc" \
+    "$work_dir/control.json" <<'PY'
+import json
+import sys
+import wave
+
+(path, wav_path, wav_sha, fldigi_path, fldigi_version, mode, carrier,
+ text, image, image_sha, grayscale, started, ended, control_path) = sys.argv[1:]
+with wave.open(wav_path, "rb") as source:
+    wav = {
+        "channels": source.getnchannels(),
+        "sample_rate_hz": source.getframerate(),
+        "sample_width_bytes": source.getsampwidth(),
+        "frames": source.getnframes(),
+        "duration_sec": source.getnframes() / source.getframerate(),
+    }
+with open(control_path, encoding="utf-8") as source:
+    control = json.load(source)
+metadata = {
+    "schema": "radiogram.fldigi-generated-wav.v1",
+    "classification": "fldigi-derived controlled audio fixture",
+    "fldigi": {"path": fldigi_path, "version": fldigi_version},
+    "transmission": {
+        "mode": mode,
+        "carrier_hz": int(carrier),
+        "text": text,
+        "image_path": image or None,
+        "image_sha256": image_sha or None,
+        "grayscale": grayscale == "on",
+    },
+    "wav": {**wav, "path": wav_path, "sha256": wav_sha},
+    "started_utc": started,
+    "ended_utc": ended,
+    **control,
+}
+with open(path, "w", encoding="utf-8") as sink:
+    json.dump(metadata, sink, indent=2, sort_keys=True)
+    sink.write("\n")
+PY
+
+printf '%s\n' "$output"
