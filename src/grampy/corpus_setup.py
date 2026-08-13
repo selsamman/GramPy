@@ -12,7 +12,6 @@ import subprocess
 import sys
 import tarfile
 import tempfile
-from urllib.request import urlopen
 
 
 class CorpusSetupError(RuntimeError):
@@ -43,10 +42,27 @@ def sha256_file(path: Path) -> str:
 
 def download(url: str, destination: Path) -> None:
     try:
-        with urlopen(url) as response, destination.open("wb") as output:
-            shutil.copyfileobj(response, output)
-    except OSError as error:
-        raise CorpusSetupError(f"download failed for {url}: {error}") from error
+        result = subprocess.run(
+            [
+                "curl",
+                "--fail",
+                "--location",
+                "--show-error",
+                "--silent",
+                "--output",
+                str(destination),
+                url,
+            ],
+            check=False,
+            capture_output=True,
+            text=True,
+        )
+    except FileNotFoundError as error:
+        raise CorpusSetupError("curl is required to fetch a corpus archive") from error
+    if result.returncode != 0:
+        destination.unlink(missing_ok=True)
+        detail = result.stderr.strip() or f"curl exited with status {result.returncode}"
+        raise CorpusSetupError(f"download failed for {url}: {detail}")
 
 
 def decrypt_archive(source: Path, destination: Path, password: str) -> None:

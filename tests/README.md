@@ -44,5 +44,5 @@ atomically replaces an existing corpus only after validation succeeds. It
 does not retain the URL, SHA-256, or password and does not compare corpus
 versions.
 
-Packaging and fetching `.tar.zst` archives require `zstd`. Optional encryption
-also requires `openssl`.
+Fetching requires `curl`, and packaging or fetching `.tar.zst` archives
+requires `zstd`. Optional encryption also requires `openssl`.

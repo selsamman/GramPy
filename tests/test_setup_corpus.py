@@ -8,6 +8,7 @@ import subprocess
 import tarfile
 import tempfile
 import unittest
+from unittest.mock import patch
 
 from grampy.corpus_package import CorpusPackageError, package_corpus
 from grampy.corpus_setup import CorpusSetupError, fetch_corpus
@@ -148,6 +149,19 @@ class CorpusTransferTests(unittest.TestCase):
             root = Path(name) / "samples" / "received-corpus"
             with self.assertRaisesRegex(CorpusSetupError, "64 hexadecimal"):
                 fetch_corpus("file:///does-not-exist", "invalid", root)
+            self.assertFalse(root.exists())
+
+    def test_curl_failure_is_reported_without_leaving_a_corpus(self) -> None:
+        with tempfile.TemporaryDirectory() as name:
+            root = Path(name) / "samples" / "received-corpus"
+            with patch(
+                "grampy.corpus_setup.subprocess.run",
+                return_value=subprocess.CompletedProcess(
+                    args=["curl"], returncode=22, stdout="", stderr="HTTP 404"
+                ),
+            ):
+                with self.assertRaisesRegex(CorpusSetupError, "HTTP 404"):
+                    fetch_corpus("https://example.invalid/missing", "0" * 64, root)
             self.assertFalse(root.exists())
 
     def test_unsafe_archive_path_preserves_existing_corpus(self) -> None:
