@@ -4,7 +4,7 @@ GramPy is an importable Python library and command-line tooling for decoding
 MFSK32 and MFSK64 transmissions from SigMF IQ recordings. It is maintained as
 a standalone project after its extraction from Radiogram.
 
-The PyPI distribution name will be `radiogrampy`; its Python import name is
+The PyPI distribution name is `radiogrampy`; its Python import name is
 `grampy`.
 
 Python 3.11 or newer is required.
