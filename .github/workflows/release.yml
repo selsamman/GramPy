@@ -1,0 +1,70 @@
+name: Release to PyPI
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-test:
+    name: Test and build release distributions
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out the release tag
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ github.event.release.tag_name }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install test and build dependencies
+        run: python -m pip install --upgrade pip build pillow .
+
+      - name: Verify the release tag matches the package version
+        env:
+          RELEASE_TAG: ${{ github.event.release.tag_name }}
+        run: |
+          package_version="$(python -c 'from importlib.metadata import version; print(version("grampy"))')"
+          test "$RELEASE_TAG" = "v$package_version"
+
+      - name: Run corpus-independent regression suite
+        run: python -m unittest discover -s tests
+
+      - name: Build source and wheel distributions
+        run: python -m build
+
+      - name: Verify built distributions
+        run: python -m tarfile -l dist/*.tar.gz
+
+      - name: Upload release distributions
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-dists
+          path: dist/
+          if-no-files-found: error
+
+  publish-to-pypi:
+    name: Publish release distributions to PyPI
+    needs: build-and-test
+    runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://pypi.org/project/grampy/
+    permissions:
+      id-token: write
+
+    steps:
+      - name: Download release distributions
+        uses: actions/download-artifact@v5
+        with:
+          name: release-dists
+          path: dist/
+
+      - name: Publish package distributions to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
