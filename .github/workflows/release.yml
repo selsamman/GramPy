@@ -30,7 +30,7 @@ jobs:
         env:
           RELEASE_TAG: ${{ github.event.release.tag_name }}
         run: |
-          package_version="$(python -c 'from importlib.metadata import version; print(version("grampy"))')"
+          package_version="$(python -c 'from importlib.metadata import version; print(version("radiogrampy"))')"
           test "$RELEASE_TAG" = "v$package_version"
 
       - name: Run corpus-independent regression suite
