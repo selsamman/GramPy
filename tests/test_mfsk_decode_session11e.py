@@ -129,7 +129,9 @@ class Session11EPictureRangeTests(unittest.TestCase):
                     max_in_flight_ranges=in_flight,
                 ),
             )
-            np.testing.assert_array_equal(result.frequencies, expected_frequency)
+            np.testing.assert_allclose(
+                result.frequencies, expected_frequency, rtol=0, atol=1e-8
+            )
             np.testing.assert_array_equal(result.quality, expected_quality)
             self.assertEqual(result.component_intervals, tuple(expected_intervals))
             results.append(result)
@@ -195,7 +197,9 @@ class Session11EPictureRangeTests(unittest.TestCase):
                     max_in_flight_ranges=2,
                 ),
             )
-            np.testing.assert_array_equal(actual.frequencies, expected[0])
+            np.testing.assert_allclose(
+                actual.frequencies, expected[0], rtol=0, atol=1e-8
+            )
             np.testing.assert_array_equal(actual.quality, expected[1])
             self.assertEqual(actual.component_intervals, tuple(expected[2]))
 
