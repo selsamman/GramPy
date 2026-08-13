@@ -3,4 +3,4 @@ set -eu
 
 root=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
 export PYTHONPATH="$root/src${PYTHONPATH:+:$PYTHONPATH}"
-exec python3 -m grampy.corpus_setup "$@"
+exec "$root/.venv/bin/python" -m grampy.corpus_setup "$@"

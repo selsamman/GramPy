@@ -152,47 +152,24 @@ the real `../GramPy` checkout; GramPy's 140-test suite passed with 6 skips; and
 Radiogram's 90-test suite passed with 2 skips. No source, test, or tool under
 `radiogram.mfsk` remains in Radiogram.
 
-## Phase 5 — Add corpus installation (run in GramPy)
+## Phase 5 — Add manual corpus transfer tools (run in GramPy)
 
-The corpus tests/samples/received-corpus is downloaded from S3 as it is
-too large to reside on git.  It contains version.json with a version
-number assigned when the corpus is modified
-`{
-    "version": "1.0",
-    "created": "2026-08-11"
- }`.
-In tests (which is versioned) there is a corpus.json which
-says which version of the corpus is required for this version of the repo
-and the url of that corpus on s3.
-`{
-    "sha256": "320734a64cd672b3dc5a3db591ba346e529735428c2a47eef50ec66aa5562939",
-    "version": "1.0",
-    "url": "https://radiogram-appliance-public.s3.us-east-1.amazonaws.com/received-corpus-2026-08-11.tar.zst"
-}`
-The corpus with the above URL already exists on that URL and when downloaded
-will contain the version.json.  So what remains to be done is:
+The corpus is too large for Git, but it is not a versioned dependency selected
+by the repository. Corpus-dependent tests use an existing local corpus and
+skip when it is absent. No test or evaluation command automatically downloads
+one.
 
-- create `tools/setup-corpus` which checks for a version match and extracts
-  the corpus from s3 if needed (wrong version or non-existent)
-- regression-test integration by calling setup-corpus.  Include setup-corpus in
-  any scripts that refer to the corpus
-- Any needed README setup instructions
+`tools/package-corpus` updates the corpus `version.json`, creates a `.tar.zst`
+archive, and prints its SHA-256. Optional encryption prompts for a password
+without retaining it. `tools/fetch-corpus` requires an explicit URL and
+SHA-256 on every invocation, optionally prompts for the archive password,
+validates the archive and version file, and atomically installs it. There is no
+repository manifest, stored credential, or local/repository version
+synchronization.
 
-The setup process should check whether the local corpus matches the version in
-`corpus.json`, download only when needed, and fail clearly when installation or
-verification fails. Before extraction it must verify the downloaded archive's
-SHA-256 against `corpus.json`. Extract into a staging directory with archive
-path validation, verify the extracted `version.json` and expected corpus root,
-then replace the installed corpus atomically. This deliberately does not
-require individual checksums for every corpus artifact.
-
-At the end of this phase:
-
-1. Test a clean GramPy checkout.
-2. Confirm corpus-dependent tests work without Dropbox.
-3. Review Radiogram `history/` and selectively copy or rewrite only necessary
-   public GramPy evidence; do not introduce a history symlink or dependency.
-4. Commit the completed corpus-installation system.
+The operating instructions live in `tests/README.md`, not the project README.
+A clean checkout can run the test suite without a corpus; installing one is a
+separate manual action.
 
 ## Phase 6 — Private GitHub validation (user, in GramPy)
 
@@ -267,8 +244,8 @@ Python library and updates Radiogram to consume the published package.
   production PyPI release
 - [ ] Create and push the release tag from the reviewed source revision
 - [ ] GitHub Actions test supported Python versions
-- [ ] CI invokes `tools/setup-corpus`
-- [ ] Corpus download is checksum-verified
+- [ ] CI runs corpus-independent tests without fetching a corpus
+- [ ] Explicit corpus fetching remains checksum-verified
 - [ ] Build validation runs in CI
 - [ ] Package installation validation runs in CI
 - [ ] Release and tagging procedure documented
@@ -303,7 +280,8 @@ The breakout is complete when:
 
 1. GramPy is public on GitHub.
 2. GramPy is installable from PyPI with `pip install`.
-3. A clean GramPy checkout installs its corpus through `tools/setup-corpus`.
+3. A clean GramPy checkout runs without a corpus, while an explicitly selected
+   corpus can be installed through `tools/fetch-corpus`.
 4. Radiogram installs GramPy as a normal Python dependency.
 5. Radiogram passes its tests without a symlink, Dropbox, or local GramPy
    checkout.

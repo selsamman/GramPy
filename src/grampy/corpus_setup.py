@@ -1,8 +1,9 @@
-"""Install the versioned received-IQ test corpus safely."""
+"""Fetch and install a received-IQ test corpus safely."""
 
 from __future__ import annotations
 
 import argparse
+import getpass
 import hashlib
 import json
 from pathlib import Path, PurePosixPath
@@ -11,7 +12,6 @@ import subprocess
 import sys
 import tarfile
 import tempfile
-from typing import Any
 from urllib.request import urlopen
 
 
@@ -19,27 +19,14 @@ class CorpusSetupError(RuntimeError):
     """A corpus archive could not be installed safely."""
 
 
-def read_manifest(path: Path) -> dict[str, str]:
-    try:
-        value: Any = json.loads(path.read_text(encoding="utf-8"))
-    except (OSError, json.JSONDecodeError) as error:
-        raise CorpusSetupError(f"cannot read corpus manifest {path}: {error}") from error
-    if not isinstance(value, dict):
-        raise CorpusSetupError(f"corpus manifest {path} must be a JSON object")
-    required = ("version", "url", "sha256")
-    if any(not isinstance(value.get(key), str) or not value[key] for key in required):
-        raise CorpusSetupError(f"corpus manifest {path} must contain version, url, and sha256 strings")
-    digest = value["sha256"].lower()
-    if len(digest) != 64 or any(character not in "0123456789abcdef" for character in digest):
-        raise CorpusSetupError(f"corpus manifest {path} has an invalid sha256")
-    return {"version": value["version"], "url": value["url"], "sha256": digest}
+ENCRYPTION_DIGEST = "sha256"
+ENCRYPTION_ITERATIONS = 200_000
 
 
 def corpus_version(corpus_root: Path) -> str | None:
-    """Return the installed corpus version, or None when it is absent/invalid."""
-    version_path = corpus_root / "version.json"
+    """Return a non-empty corpus version, or None when it is absent or invalid."""
     try:
-        value: Any = json.loads(version_path.read_text(encoding="utf-8"))
+        value = json.loads((corpus_root / "version.json").read_text(encoding="utf-8"))
     except (OSError, json.JSONDecodeError):
         return None
     version = value.get("version") if isinstance(value, dict) else None
@@ -60,6 +47,30 @@ def download(url: str, destination: Path) -> None:
             shutil.copyfileobj(response, output)
     except OSError as error:
         raise CorpusSetupError(f"download failed for {url}: {error}") from error
+
+
+def decrypt_archive(source: Path, destination: Path, password: str) -> None:
+    """Decrypt an OpenSSL-encrypted archive without exposing its password in argv."""
+    if not password:
+        raise CorpusSetupError("encrypted corpus requires a non-empty password")
+    try:
+        result = subprocess.run(
+            [
+                "openssl", "enc", "-d", "-aes-256-cbc", "-pbkdf2",
+                "-iter", str(ENCRYPTION_ITERATIONS), "-md", ENCRYPTION_DIGEST,
+                "-pass", "stdin", "-in", str(source), "-out", str(destination),
+            ],
+            input=password + "\n",
+            check=False,
+            capture_output=True,
+            text=True,
+        )
+    except FileNotFoundError as error:
+        raise CorpusSetupError("openssl is required to install the encrypted corpus") from error
+    if result.returncode != 0:
+        destination.unlink(missing_ok=True)
+        detail = result.stderr.strip() or "decryption failed"
+        raise CorpusSetupError(f"cannot decrypt corpus archive (wrong password?): {detail}")
 
 
 def _safe_archive_member(member: tarfile.TarInfo) -> PurePosixPath:
@@ -170,47 +181,59 @@ def replace_corpus(staging: Path, corpus_root: Path) -> None:
         shutil.rmtree(backup)
 
 
-def setup_corpus(manifest_path: Path, corpus_root: Path) -> bool:
-    """Install the requested corpus.  Return True only when it was downloaded."""
-    manifest = read_manifest(manifest_path)
+def fetch_corpus(
+    url: str, expected_sha256: str, corpus_root: Path, password: str | None = None
+) -> None:
+    """Fetch, verify, and install the explicitly requested corpus archive."""
+    expected_sha256 = expected_sha256.lower()
+    if len(expected_sha256) != 64 or any(
+        character not in "0123456789abcdef" for character in expected_sha256
+    ):
+        raise CorpusSetupError("expected SHA-256 must be 64 hexadecimal characters")
     if corpus_root.is_symlink():
         raise CorpusSetupError(f"refusing to use symlinked corpus root: {corpus_root}")
-    if corpus_version(corpus_root) == manifest["version"]:
-        return False
     corpus_root.parent.mkdir(parents=True, exist_ok=True)
     with tempfile.TemporaryDirectory(dir=corpus_root.parent, prefix=".corpus-download-") as name:
         archive = Path(name) / "received-corpus.archive"
-        download(manifest["url"], archive)
+        download(url, archive)
         actual = sha256_file(archive)
-        if actual != manifest["sha256"]:
+        if actual != expected_sha256:
             raise CorpusSetupError(
-                f"downloaded corpus SHA-256 mismatch: expected {manifest['sha256']}, got {actual}"
+                f"downloaded corpus SHA-256 mismatch: expected {expected_sha256}, got {actual}"
             )
-        staging = extract_archive(archive, corpus_root, corpus_root.name)
-        if corpus_version(staging) != manifest["version"]:
+        install_archive = archive
+        if password is not None:
+            install_archive = Path(name) / "received-corpus.tar.zst"
+            decrypt_archive(archive, install_archive, password)
+        staging = extract_archive(install_archive, corpus_root, corpus_root.name)
+        if corpus_version(staging) is None:
             shutil.rmtree(staging)
-            raise CorpusSetupError(
-                f"extracted corpus version does not match required version {manifest['version']!r}"
-            )
+            raise CorpusSetupError("extracted corpus has no valid version.json")
         replace_corpus(staging, corpus_root)
-    return True
 
 
 def main(argv: list[str] | None = None) -> int:
     root = Path(__file__).resolve().parents[2]
-    parser = argparse.ArgumentParser(description="install the received-IQ test corpus")
-    parser.add_argument("--manifest", type=Path, default=root / "tests" / "corpus.json")
+    parser = argparse.ArgumentParser(
+        prog="tools/fetch-corpus", description="fetch and install a received-IQ test corpus"
+    )
+    parser.add_argument("--url", required=True)
+    parser.add_argument("--sha256", required=True)
+    parser.add_argument(
+        "--encrypted", action="store_true", help="prompt for the archive password"
+    )
     parser.add_argument(
         "--corpus-root", type=Path, default=root / "tests" / "samples" / "received-corpus"
     )
     args = parser.parse_args(argv)
     try:
+        password = getpass.getpass("Corpus password: ") if args.encrypted else None
         # Do not resolve corpus_root: resolving a symlink would hide precisely
         # the Dropbox-style installation this tool must reject.
-        changed = setup_corpus(args.manifest.resolve(), args.corpus_root.absolute())
-    except CorpusSetupError as error:
-        parser.exit(1, f"setup-corpus: {error}\n")
-    print("installed corpus" if changed else "corpus is already current")
+        fetch_corpus(args.url, args.sha256, args.corpus_root.absolute(), password)
+    except (CorpusSetupError, EOFError) as error:
+        parser.exit(1, f"fetch-corpus: {error}\n")
+    print("installed corpus")
     return 0
 
 

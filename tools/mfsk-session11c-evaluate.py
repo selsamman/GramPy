@@ -8,7 +8,6 @@ import json
 from pathlib import Path
 import pstats
 import resource
-import subprocess
 import sys
 import tempfile
 import time
@@ -34,9 +33,6 @@ CASES = (
         "stop": 150 * 48_000,
     },
 )
-ROOT = Path(__file__).resolve().parents[1]
-
-
 def main() -> int:
     parser = argparse.ArgumentParser(
         description="Run the bounded Session 11C received-IQ equivalence spikes."
@@ -48,11 +44,6 @@ def main() -> int:
     )
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
-
-    # The default input is the versioned installed corpus. A caller supplying a
-    # different sample root is responsible for preparing that explicit input.
-    if args.samples_root == Path("tests/samples"):
-        subprocess.run([ROOT / "tools" / "setup-corpus"], check=True)
 
     results = []
     for case in CASES:
