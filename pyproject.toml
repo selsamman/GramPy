@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "radiogrampy"
-version = "0.1.0"
+version = "0.1.1"
 description = "Direct decoder for MFSK32 and MFSK64 transmissions from SigMF IQ recordings"
 readme = "README.md"
 requires-python = ">=3.11"
