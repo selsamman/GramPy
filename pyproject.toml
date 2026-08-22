@@ -17,6 +17,10 @@ dependencies = [
     "scipy",
 ]
 
+[project.urls]
+Documentation = "https://github.com/selsamman/GramPy/tree/master/docs"
+Source = "https://github.com/selsamman/GramPy/tree/master"
+
 [project.scripts]
 mfsk-iq-decode = "grampy.cli:main"
 mfsk-accuracy = "grampy.accuracy_cli:main"

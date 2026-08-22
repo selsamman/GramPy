@@ -8,7 +8,8 @@ from pathlib import Path
 import sys
 import tempfile
 
-from .pipeline import DecodeConfig, run_reference_pipeline, write_manifest_atomic
+from .api import DecodeConfig, decode_iq
+from .pipeline import write_manifest_atomic
 from .sigmf import InputError
 
 
@@ -90,7 +91,7 @@ def main(argv: list[str] | None = None) -> int:
             picture_range_components=args.picture_range_components,
             picture_max_in_flight_ranges=args.picture_max_in_flight_ranges,
         )
-        manifest = run_reference_pipeline(
+        manifest = decode_iq(
             meta_path=args.in_meta,
             data_path=args.in_data,
             start_sample=args.start_sample,

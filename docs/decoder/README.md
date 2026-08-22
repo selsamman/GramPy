@@ -16,6 +16,8 @@ Read the documents in this order:
 Normative protocol behavior is in [`mfsk_wire_spec.md`](mfsk_wire_spec.md).
 The SigMF command-line adapter, including its input and output contract, is
 documented in [`cli.md`](cli.md).
+The supported importable interface, including its configuration and returned
+manifest, is documented in [`api.md`](api.md).
 Corpus policy is in [`mfsk_received_corpus.md`](mfsk_received_corpus.md), with
 the selection seed in [`corpus/received_corpus_seed.json`](corpus/received_corpus_seed.json).
 Machine-readable vectors, Varicode, and fixture evidence are under
