@@ -44,7 +44,7 @@ class ReceivedMFSK32AcquisitionTests(unittest.TestCase):
             data_path=data,
             start_sample=START_SAMPLE,
             stop_sample=STOP_SAMPLE,
-            config=DecodeConfig(trace_level="summary"),
+            config=DecodeConfig(mode="MFSK32", trace_level="summary"),
         )
 
         expected = expected_path.read_text(encoding="utf-8")

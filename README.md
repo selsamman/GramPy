@@ -80,12 +80,13 @@ SigMF metadata/data pair:
 tools/mfsk-iq-decode \
   --in-meta recording.sigmf-meta \
   --in-data recording.sigmf-data \
-  --out-manifest results/decode.json \
-  --mode MFSK64
+  --out-manifest results/decode.json
 ```
 
-The command writes a manifest containing the decoded text, diagnostics, and
-artifact inventory. Large decoded pictures are written beside it in
+The default automatic mode decodes every resolved MFSK32 and MFSK64 segment
+and the pictures carried by MFSK64 segments in one run. The command writes a
+manifest containing the decoded text, diagnostics, and artifact inventory.
+Large decoded pictures are written beside it in
 `results/decode.artifacts/`; small rasters are embedded in the manifest. See
 [the SigMF decode guide](https://github.com/selsamman/GramPy/blob/master/docs/decoder/cli.md) for the accepted metadata, input
 formats, interval options, and complete output layout.

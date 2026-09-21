@@ -47,10 +47,10 @@ Use `--start-sample` and `--stop-sample` to decode a half-open interval. Omit
 them to decode the whole input. `--block-samples` controls bounded input
 inspection and conversion work.
 
-Select the expected modulation with `--mode MFSK32` or `--mode MFSK64`.
-`MFSK32` is the current default. `--mode auto` records acquisition evidence,
-but segmented payload decoding is not yet implemented, so it is not the choice
-when decoded text or pictures are required.
+The default, `--mode auto`, detects RSID-governed MFSK32 and MFSK64 segments,
+dispatches each segment to its matching text decoder, and decodes pictures from
+the MFSK64 segments. Use `--mode MFSK32` or `--mode MFSK64` only to constrain a
+diagnostic or compatibility run to one modulation.
 
 Run `tools/mfsk-iq-decode --help` for the documented picture-estimation and
 resource-bound controls. Those controls are decoder evaluation settings, not

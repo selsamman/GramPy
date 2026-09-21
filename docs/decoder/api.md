@@ -52,7 +52,7 @@ configuration.
 
 | Option | Default | Meaning |
 | --- | --- | --- |
-| `mode` | `"MFSK32"` | Expected modulation: `"MFSK32"`, `"MFSK64"`, or `"auto"`. Automatic mode records acquisition evidence but does not yet decode segmented payloads. |
+| `mode` | `"auto"` | Modulation selection: `"auto"` decodes every resolved RSID-governed MFSK32/MFSK64 segment and MFSK64 pictures; a fixed mode constrains decoding to matching segments. |
 | `orientation` | `"unknown"` | Transmitted orientation hint: `"normal"`, `"reverse"`, or `"unknown"`. |
 | `center_hz` | `None` | Optional positive center-frequency hint in Hz. |
 | `block_samples` | `262_144` | Positive input-inspection block size. |

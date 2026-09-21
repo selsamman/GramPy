@@ -46,7 +46,7 @@ class RemediationR1Test(unittest.TestCase):
             result.frequency_tracks[0].anchors[0].center_hz, 1582.0, delta=3.0
         )
 
-    def test_auto_manifest_serializes_r1_evidence_without_full_iq_decode(self) -> None:
+    def test_auto_manifest_attempts_segmented_payload_after_r1_evidence(self) -> None:
         with synthetic_rsid_sigmf() as fixture:
             manifest = run_reference_pipeline(
                 meta_path=fixture.meta,
@@ -62,8 +62,7 @@ class RemediationR1Test(unittest.TestCase):
         self.assertEqual(
             manifest["frequency_tracks"][0]["anchors"][0]["source"], "rsid:147"
         )
-        self.assertEqual(manifest["text_events"], [])
-        self.assertIn(
+        self.assertNotIn(
             "segmented-payload-decode-deferred",
             {warning["code"] for warning in manifest["warnings"]},
         )
@@ -110,16 +109,14 @@ class RemediationR1Test(unittest.TestCase):
                     for event in truth["events"]
                     if isinstance(event["strict_detector"], dict)
                 ]
-                manifest = run_reference_pipeline(
-                    meta_path=source / "capture.sigmf-meta",
-                    data_path=source / "capture.sigmf-data",
-                    start_sample=None,
-                    stop_sample=None,
-                    config=DecodeConfig(mode="auto"),
+                recording = SigmfRecording.open(
+                    source / "capture.sigmf-meta",
+                    source / "capture.sigmf-data",
                 )
-                hypotheses = manifest["mode_hypotheses"]
+                result = acquire_modes(recording)
+                hypotheses = result.mode_hypotheses
 
-                self.assertEqual(manifest["input"]["data_sha256"], expected_hash)
+                self.assertEqual(recording.hashes()["data_sha256"], expected_hash)
                 self.assertEqual(len(hypotheses), len(expected))
                 self.assertEqual(
                     [item["mode"] for item in hypotheses],
@@ -145,7 +142,7 @@ class RemediationR1Test(unittest.TestCase):
                     self.assertLess(abs(center - established_center), 6.0)
                     self.assertNotAlmostEqual(center, 1582.0, delta=1.0)
                 self.assertEqual(
-                    [item["mode"] for item in manifest["mode_segments"]],
+                    [item["mode"] for item in result.mode_segments],
                     ["MFSK32", "MFSK64", "MFSK32"],
                 )
 

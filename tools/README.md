@@ -29,6 +29,10 @@ tools/mfsk-iq-decode \
   --out-manifest decode-manifest.json
 ```
 
+This defaults to automatic mixed-mode decoding: RSID-derived MFSK32 and
+MFSK64 segments are decoded in one run, including pictures in MFSK64 segments.
+Pass `--mode MFSK32` or `--mode MFSK64` only for a mode-constrained run.
+
 Use `--start-sample` and `--stop-sample` for a half-open interval,
 `--block-samples` to bound conversion memory, and
 `--orientation normal|reverse|unknown` to state an orientation constraint.

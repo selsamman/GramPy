@@ -67,7 +67,7 @@ class ControlledMFSK32VerticalSliceTests(unittest.TestCase):
             data_path=data,
             start_sample=None,
             stop_sample=None,
-            config=DecodeConfig(trace_level="events"),
+            config=DecodeConfig(mode="MFSK32", trace_level="events"),
         )
 
         self.assertEqual(manifest["status"], "complete")

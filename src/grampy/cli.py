@@ -25,7 +25,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--stop-sample", type=int)
     parser.add_argument("--block-samples", type=int, default=262_144)
     parser.add_argument(
-        "--mode", choices=("auto", "MFSK32", "MFSK64"), default="MFSK32"
+        "--mode", choices=("auto", "MFSK32", "MFSK64"), default="auto"
     )
     parser.add_argument("--center-hz", type=float)
     parser.add_argument(

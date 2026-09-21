@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import copy
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from datetime import datetime, timezone
 import hashlib
 import importlib.metadata
@@ -44,7 +44,7 @@ class DecodeConfig:
     block_samples: int = 262_144
     orientation: str = "unknown"
     trace_level: str = "none"
-    mode: str = "MFSK32"
+    mode: str = "auto"
     center_hz: float | None = None
     picture_component_estimator: str = "bounded_correlation"
     picture_component_window: str = "full_hann"
@@ -150,8 +150,7 @@ def run_reference_pipeline(
     finish_stage("acquisition_segmentation", stage_start)
     stage_start = time.perf_counter()
     bounded_organization = (
-        config.mode != "auto"
-        and recording.requested_stop - recording.requested_start
+        recording.requested_stop - recording.requested_start
         > recording.sample_rate * BOUNDED_PIPELINE_THRESHOLD_SECONDS
     )
     samples = (
@@ -163,15 +162,19 @@ def run_reference_pipeline(
     )
     finish_stage("sample_materialization", stage_start)
     stage_start = time.perf_counter()
+    mode_text_decodes: list[MFSKTextDecode] = []
+    decode_warnings: list[dict[str, str]] = []
     if config.mode == "auto":
-        text_decode = None
-        decode_warning = {
-            "code": "segmented-payload-decode-deferred",
-            "message": (
-                "automatic acquisition produced mode segments; segmented payload "
-                "decoding is deferred to remediation R2/R3"
-            ),
-        }
+        mode_text_decodes, decode_warnings = _decode_automatic_text(
+            recording,
+            acquisition,
+            config,
+            run_wall_start=wall_start,
+        )
+        text_decode = (
+            _merge_automatic_text(mode_text_decodes, acquisition.mode_segments)
+            if mode_text_decodes else None
+        )
     else:
         try:
             text_decode = (
@@ -191,18 +194,51 @@ def run_reference_pipeline(
                     fit_transition_clock=True,
                 )
             )
-            decode_warning = None
+            mode_text_decodes = [text_decode]
         except ValueError as error:
             text_decode = None
-            decode_warning = {
+            decode_warnings.append({
                 "code": "mfsk-text-acquisition-failed",
                 "message": str(error),
-            }
+            })
     finish_stage("text_acquisition_evidence_fec_framing", stage_start)
     stage_start = time.perf_counter()
     if text_decode is not None:
         try:
-            if bounded_organization:
+            if config.mode == "auto":
+                mfsk64_decode = next(
+                    (
+                        item for item in mode_text_decodes
+                        if item.mode_segment["mode"] == "MFSK64"
+                    ),
+                    None,
+                )
+                picture_decode = (
+                    _decode_bounded_pictures(
+                        recording,
+                        mfsk64_decode,
+                        mode="MFSK64",
+                        artifact_dir=artifact_dir,
+                        artifact_path_prefix=artifact_path_prefix,
+                        run_wall_start=wall_start,
+                        component_estimator=config.picture_component_estimator,
+                        component_window=config.picture_component_window,
+                        filter_profile=config.picture_filter_profile,
+                        boundary_estimator=config.picture_boundary_estimator,
+                        range_config=PictureRangeConfig(
+                            workers=config.picture_range_workers,
+                            components_per_range=config.picture_range_components,
+                            max_in_flight_ranges=config.picture_max_in_flight_ranges,
+                        ),
+                    )
+                    if mfsk64_decode is not None else None
+                )
+                if picture_decode is not None:
+                    _suppress_accepted_picture_text(mfsk64_decode, picture_decode)
+                    text_decode = _merge_automatic_text(
+                        mode_text_decodes, acquisition.mode_segments
+                    )
+            elif bounded_organization:
                 picture_decode = _decode_bounded_pictures(
                     recording,
                     text_decode,
@@ -254,7 +290,8 @@ def run_reference_pipeline(
                     picture_decode=picture_decode,
                     text_decode=text_decode,
                 )
-            _suppress_accepted_picture_text(text_decode, picture_decode)
+            if picture_decode is not None and config.mode != "auto":
+                _suppress_accepted_picture_text(text_decode, picture_decode)
             picture_warning = None
         except ValueError as error:
             picture_decode = None
@@ -288,9 +325,8 @@ def run_reference_pipeline(
         else {"stx_found": False, "eot_found": False}
     )
     complete = framing["stx_found"] and framing["eot_found"]
-    if decode_warning is not None:
-        warnings.append(decode_warning)
-    elif not complete:
+    warnings.extend(decode_warnings)
+    if not decode_warnings and not complete:
         warnings.append(
             {
                 "code": "incomplete-text-framing",
@@ -492,6 +528,177 @@ def run_reference_pipeline(
     manifest["timing"]["cpu_seconds"] = time.process_time() - cpu_start
     manifest["timing"]["peak_rss_bytes"] = _peak_rss_bytes()
     return manifest
+
+
+def _decode_automatic_text(
+    recording: SigmfRecording,
+    acquisition: Any,
+    config: DecodeConfig,
+    *,
+    run_wall_start: float,
+) -> tuple[list[MFSKTextDecode], list[dict[str, str]]]:
+    """Decode every acquired mode without repeating whole-record acquisition."""
+    modes = list(dict.fromkeys(
+        segment["mode"] for segment in acquisition.mode_segments
+        if segment["mode"] in {"MFSK32", "MFSK64"}
+    ))
+    if not modes:
+        return [], [{
+            "code": "automatic-payload-acquisition-failed",
+            "message": "automatic acquisition produced no resolved MFSK mode segments",
+        }]
+
+    decoded_modes: list[MFSKTextDecode] = []
+    warnings: list[dict[str, str]] = []
+    for mode in modes:
+        mode_config = replace(config, mode=mode, center_hz=None)
+        try:
+            decoded = _decode_bounded_text(
+                recording,
+                acquisition,
+                mode_config,
+                run_wall_start=run_wall_start,
+            )
+        except ValueError as error:
+            warnings.append({
+                "code": "automatic-mode-payload-decode-failed",
+                "message": f"{mode} segmented payload decode failed: {error}",
+            })
+            continue
+        _namespace_text_decode(decoded, f"auto-{mode.lower()}")
+        decoded_modes.append(decoded)
+    return decoded_modes, warnings
+
+
+def _namespace_text_decode(decoded: MFSKTextDecode, namespace: str) -> None:
+    """Make mode-local event and epoch identifiers unique before merging."""
+    epoch_ids: dict[str, str] = {}
+    for index, epoch in enumerate(decoded.text_epochs, 1):
+        old_id = str(epoch.get("id", f"epoch-{index:06d}"))
+        new_id = f"text-epoch-{namespace}-{index:06d}"
+        epoch_ids[old_id] = new_id
+        epoch["id"] = new_id
+    for index, event in enumerate(decoded.text_events, 1):
+        event["id"] = f"text-{namespace}-{index:06d}"
+        provenance = event.get("provenance", {})
+        old_epoch = provenance.get("text_epoch")
+        if old_epoch in epoch_ids:
+            provenance["text_epoch"] = epoch_ids[old_epoch]
+
+
+def _merge_automatic_text(
+    decoded_modes: list[MFSKTextDecode],
+    mode_segments: tuple[dict[str, Any], ...],
+) -> MFSKTextDecode:
+    """Merge independently decoded mode segments into one ordered result."""
+    events = sorted(
+        (event for decoded in decoded_modes for event in decoded.text_events),
+        key=lambda item: item["recognized_at_input_sample"],
+    )
+    epochs = sorted(
+        (epoch for decoded in decoded_modes for epoch in decoded.text_epochs),
+        key=lambda item: item["interval"]["start"],
+    )
+    octets = [
+        event["octet"] for event in events
+        if event["octet"] is not None and event["control_role"] is None
+    ]
+    per_mode = {
+        str(decoded.mode_segment["mode"]): decoded.diagnostics
+        for decoded in decoded_modes
+    }
+    bounded = [
+        decoded.diagnostics.get("bounded_organization", {})
+        for decoded in decoded_modes
+    ]
+    first_stable = [
+        item.get("first_stable_text_wall_seconds") for item in bounded
+        if item.get("first_stable_text_wall_seconds") is not None
+    ]
+    acquisition_candidates = [
+        candidate
+        for decoded in decoded_modes
+        for candidate in decoded.diagnostics.get("tone_evidence", {}).get(
+            "acquisition_candidates", []
+        )
+    ]
+    diagnostics = {
+        "organization": "automatic_segment_dispatch",
+        "mode_pipelines": per_mode,
+        "tone_evidence": {
+            "acquisition_candidates": acquisition_candidates,
+            "frequency_track": {
+                "lock_loss_count": sum(
+                    decoded.diagnostics.get("tone_evidence", {})
+                    .get("frequency_track", {}).get("lock_loss_count", 0)
+                    for decoded in decoded_modes
+                ),
+                "reacquisition_count": sum(
+                    decoded.diagnostics.get("tone_evidence", {})
+                    .get("frequency_track", {}).get("reacquisition_count", 0)
+                    for decoded in decoded_modes
+                ),
+            },
+        },
+        "bit_evidence": {
+            "erasure_count": sum(
+                decoded.diagnostics.get("bit_evidence", {}).get(
+                    "erasure_count", 0
+                )
+                for decoded in decoded_modes
+            ),
+        },
+        "varicode_evidence": {
+            "event_count": len(events),
+            "invalid_count": sum(event["octet"] is None for event in events),
+        },
+        "bounded_organization": {
+            "kind": "automatic_mode_segment_dispatch",
+            "mode_count": len(decoded_modes),
+            "segment_count": len(mode_segments),
+            "maximum_materialized_iq_samples": max(
+                (
+                    int(item.get("maximum_materialized_iq_samples", 0))
+                    for item in bounded
+                ),
+                default=0,
+            ),
+            "first_stable_text_wall_seconds": (
+                min(first_stable) if first_stable else None
+            ),
+        },
+    }
+    centers = [float(decoded.mode_segment["center_hz"]) for decoded in decoded_modes]
+    return MFSKTextDecode(
+        mode_segment={
+            "id": "mode-auto-summary",
+            "mode": "auto",
+            "orientation": "unknown",
+            "interval": {
+                "start": min(segment["interval"]["start"] for segment in mode_segments),
+                "stop": max(segment["interval"]["stop"] for segment in mode_segments),
+            },
+            "source": "automatic_segment_dispatch",
+            "confidence": {"kind": "accepted_acquisition_segments", "value": 1.0},
+            "acquisition_state": "locked",
+            "symbol_phase_uncertainty_input_samples": max(
+                int(segment["symbol_phase_uncertainty_input_samples"])
+                for segment in mode_segments
+            ),
+            "center_hz": float(np.median(centers)),
+        },
+        text_events=events,
+        text_summary={
+            "octets": octets,
+            "text": bytes(octets).decode("latin-1"),
+            "framing": {
+                "stx_found": any(event["control_role"] == "STX" for event in events),
+                "eot_found": any(event["control_role"] == "EOT" for event in events),
+            },
+        },
+        diagnostics=diagnostics,
+        text_epochs=epochs,
+    )
 
 
 def _decode_bounded_text(
@@ -748,6 +955,8 @@ def _p11d_picture_ranges_enabled(config: DecodeConfig) -> bool:
 
 
 def _bounded_working_set_organization(config: DecodeConfig) -> str:
+    if config.mode == "auto":
+        return "automatic_mode_segment_dispatch"
     if _p11d_compact_text_enabled(config):
         return "p11d_bounded_text_and_picture_ranges"
     return "bounded_overlapping_text_windows_and_complete_picture_windows"
