@@ -1,0 +1,105 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://grampy.local/schemas/grampy-quality-manifest-v1.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "run_id", "status", "decoder", "input", "grid", "columns", "points", "methods", "exceptions", "warnings"],
+  "properties": {
+    "schema": {"const": "grampy-quality-manifest.v1"},
+    "run_id": {"type": "string", "pattern": "^[0-9a-f]{24}$"},
+    "status": {"enum": ["complete", "partial", "failed"]},
+    "decoder": {
+      "type": "object", "additionalProperties": false,
+      "required": ["version", "configuration"],
+      "properties": {"version": {"type": "string"}, "configuration": {"type": "object"}}
+    },
+    "input": {
+      "type": "object", "additionalProperties": false,
+      "required": ["metadata_sha256", "data_sha256", "sample_rate_hz", "requested_interval"],
+      "properties": {
+        "metadata_sha256": {"$ref": "#/$defs/sha256"},
+        "data_sha256": {"$ref": "#/$defs/sha256"},
+        "sample_rate_hz": {"type": "number", "exclusiveMinimum": 0},
+        "requested_interval": {"$ref": "#/$defs/interval"}
+      }
+    },
+    "grid": {
+      "type": "object", "additionalProperties": false,
+      "required": ["origin_sample", "interval_seconds", "point_count"],
+      "properties": {
+        "origin_sample": {"type": "integer", "minimum": 0},
+        "interval_seconds": {"const": 1},
+        "point_count": {"type": "integer", "minimum": 1}
+      }
+    },
+    "columns": {"const": ["signal_dbfs", "noise_dbfs", "decode_confidence"]},
+    "points": {
+      "type": "array", "items": {
+        "type": "array", "prefixItems": [
+          {"type": ["number", "null"]},
+          {"type": ["number", "null"]},
+          {"type": ["number", "null"], "minimum": 0, "maximum": 1}
+        ],
+        "items": false, "minItems": 3, "maxItems": 3
+      }
+    },
+    "methods": {
+      "type": "object", "additionalProperties": false,
+      "required": ["signal_noise", "decode_confidence"],
+      "properties": {
+        "signal_noise": {
+          "type": "object", "additionalProperties": false,
+          "required": ["id", "calibrated_rf_power", "fft_size", "window", "snapshots_per_second", "aggregation", "center_search_hz", "guard_hz", "noise_shoulder_hz", "signal_band_hz", "noise_estimator", "logical_iq_bytes_read"],
+          "properties": {
+            "id": {"type": "string"},
+            "calibrated_rf_power": {"const": false},
+            "fft_size": {"type": "integer", "minimum": 256},
+            "window": {"type": "string"},
+            "snapshots_per_second": {"enum": [1, 2, 4]},
+            "aggregation": {"type": "string"},
+            "center_search_hz": {"type": "number", "minimum": 0},
+            "guard_hz": {"type": "number", "minimum": 0},
+            "noise_shoulder_hz": {"type": "number", "exclusiveMinimum": 0},
+            "signal_band_hz": {
+              "type": "object", "additionalProperties": false,
+              "required": ["MFSK32", "MFSK64"],
+              "properties": {
+                "MFSK32": {"type": "number", "exclusiveMinimum": 0},
+                "MFSK64": {"type": "number", "exclusiveMinimum": 0}
+              }
+            },
+            "noise_estimator": {"type": "string"},
+            "logical_iq_bytes_read": {"type": "integer", "minimum": 0}
+          }
+        },
+        "decode_confidence": {
+          "type": "object", "required": ["id", "calibrated_error_probability"],
+          "properties": {
+            "id": {"type": "string"},
+            "calibrated_error_probability": {"const": false}
+          }
+        }
+      }
+    },
+    "exceptions": {"type": "array", "items": {
+      "type": "object", "additionalProperties": false,
+      "required": ["index", "reason"],
+      "properties": {
+        "index": {"type": "integer", "minimum": 0},
+        "reason": {"enum": ["no_mode_reference", "no_center_reference", "noise_band_unavailable", "insufficient_samples", "invalid_spectrum"]}
+      }
+    }},
+    "warnings": {"type": "array", "items": {"type": "object"}}
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "interval": {
+      "type": "object", "additionalProperties": false,
+      "required": ["start", "stop"],
+      "properties": {
+        "start": {"type": "integer", "minimum": 0},
+        "stop": {"type": "integer", "minimum": 0}
+      }
+    }
+  }
+}

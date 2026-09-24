@@ -152,7 +152,7 @@ Schema identifier: `grampy-quality-manifest.v1`.
     "signal_noise": {"id": "<versioned-method>", "calibrated_rf_power": false},
     "decode_confidence": {"id": "<versioned-method>", "calibrated_error_probability": false}
   },
-  "exceptions": [{"index": 1, "reason": "signal_unresolved"}],
+  "exceptions": [],
   "warnings": []
 }
 ```
@@ -207,6 +207,42 @@ The initial quality pass reads the stored IQ but must not alter IQ samples,
 acquisition decisions, symbol tracking, FEC, picture assembly, or decoder
 state. Sharing the existing FFT stream is a later optimization candidate with
 a wider regression scope, not a prerequisite for the first product release.
+
+Stage 3 implements `sparse-iq-band-power.v1` as a separate read-only pass. A
+4,096-sample Hann FFT (or the largest power of two within half a second for
+lower sample rates) samples each one-second interval. The MFSK32/MFSK64
+signal bands are 531.25/1,062.5 Hz wide, based on the 16-tone ranges plus
+one tone-spacing margin at each edge. The estimator searches centers within
+125 Hz of the mode center supplied by acquisition. Its noise reference uses
+available 500 Hz shoulders outside the entire search range, with a 100 Hz
+guard. A median periodogram estimate, corrected for the exponential-bin
+median, sets the matched-band noise power. Subtracting that power from the
+signal band gives `signal_dbfs`; an excess less than four noise standard
+deviations is `null`. This routine unresolved result needs no exception entry;
+`exceptions` records measurement failures such as invalid IQ or unavailable
+reference bands. Snapshot powers are aggregated
+by median in linear units, then converted to dB. The measured levels are
+relative to the stored IQ scale. The 125 Hz search covers moderate drift; a
+larger shift, an in-band interferer, or a strong adjacent signal can bias the
+estimate. `decode_confidence` remains `null` and the quality status `partial`
+until stage 4.
+
+On the supplied 30-minute Mac capture, one, two, and four snapshots per second
+each produced 1,800 output points in 0.64, 0.66, and 1.33 seconds of analysis
+wall time respectively. CPU times were 0.36, 0.54, and 1.03 seconds; logical
+IQ reads were 59, 118, and 236 MB. Peak process RSS was approximately 187,
+276, and 283 MB, including the loaded diagnostic reference and mapped input.
+The one-snapshot result resolved signal in 1,690 seconds and noise in all
+1,800; four snapshots resolved signal in 1,691 seconds. Among seconds where
+both produced a signal value, the median absolute difference was 0.335 dB;
+the noise median difference was 0.595 dB, with larger differences near
+transitions. Four snapshots per second is the v1 default: its windows cover
+nearly the whole second, while the measured incremental CPU cost remains about
+one second for the full capture. Fewer snapshots remain available if Pi cost
+measurements later justify trading within-second coverage for lower I/O.
+The Pi cost comparison remains open because this workspace has no configured
+Pi target. These figures measure the additional analysis pass, not a full
+decoder rerun.
 
 ## Compatible API and CLI evolution
 
