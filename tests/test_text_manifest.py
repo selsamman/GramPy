@@ -89,6 +89,20 @@ class TextManifestTests(unittest.TestCase):
         self.assertEqual(result["omitted_unframed"], [])
         self.assertEqual(result["status"], "partial")
 
+    def test_utf8_quotes_and_accent_with_invalid_octet_preserved(self) -> None:
+        payload = b'\xe2\x80\x9cSilver Age\xe2\x80\x9d caf\xc3\xa9 \xe9'
+        events = [_event("stx", 2, 50)]
+        events.extend(
+            _event(f"byte-{index}", octet, 100 + index * 5)
+            for index, octet in enumerate(payload)
+        )
+        events.append(_event("eot", 4, 100 + len(payload) * 5))
+
+        result = build_text_manifest(_source(events))
+        item = result["mode_segments"][0]["items"][0]
+        self.assertEqual(item["text"], '“Silver Age” café é')
+        self.assertEqual(item["framing"], "complete_stx_eot")
+
     def test_full_broadcast_reference_has_ordered_modes_and_nine_images(self) -> None:
         root = Path(__file__).parent / "samples/received-corpus/references"
         reference = (
@@ -110,6 +124,12 @@ class TextManifestTests(unittest.TestCase):
         self.assertTrue(all(item["associated_text_item_id"] for item in pictures))
         self.assertTrue(all((reference.parent / item["artifact"]["path"]).is_file() for item in pictures))
         self.assertLess(len(json.dumps(result).encode()), 250_000)
+        all_text = "".join(
+            item["text"] for segment in result["mode_segments"]
+            for item in segment["items"] if item["kind"] == "text"
+        )
+        self.assertIn("“Silver Age”", all_text)
+        self.assertNotIn("â\x80\x9cSilver Age", all_text)
 
 
 if __name__ == "__main__":

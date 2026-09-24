@@ -120,10 +120,14 @@ Complete STX/EOT payloads are display text. Material confidently outside a
 complete frame is summarized in `omitted_unframed`; uncertain or incomplete
 material is retained as a text item with `framing: "uncertain"` or
 `"incomplete"`, so possible broadcast content is not silently discarded.
-Invalid Varicode events have no invented replacement character. Preserve the
-current Latin-1 octet-to-character mapping for compatibility, serialized as
-UTF-8 JSON; normalization for display belongs in the UI. Stable IDs and
-relative artifact paths must survive moving the output package together.
+Invalid Varicode events have no invented replacement character. Interpret
+valid UTF-8 octet sequences as Unicode text, including curly quotes and
+accented letters. Preserve undecodable individual octets with the Latin-1
+mapping so damaged or legacy text is not silently replaced or discarded.
+Serialize the resulting text as UTF-8 JSON; optional presentation normalization
+belongs in the UI. The diagnostic manifest retains its existing Latin-1
+mapping. Stable IDs and relative artifact paths must survive moving the output
+package together.
 
 ## `quality.manifest.json` shape
 

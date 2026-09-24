@@ -122,7 +122,7 @@ def build_text_manifest(source: Mapping[str, Any]) -> dict[str, Any]:
                     },
                     "framing": span["framing"],
                     "frame_id": span["frame_id"],
-                    "text": bytes(octets).decode("latin-1"),
+                    "text": _decode_broadcast_octets(bytes(octets)),
                     "unmapped_event_count": sum(event["octet"] is None for event in chunk),
                     "_sort_sample": first["recognized_at_input_sample"],
                     "_event_ids": {event["id"] for event in chunk},
@@ -339,6 +339,15 @@ def _picture_artifact(artifact: Mapping[str, Any] | None) -> dict[str, Any] | No
             "values": artifact["values"],
         }
     return None
+
+
+def _decode_broadcast_octets(octets: bytes) -> str:
+    """Read valid UTF-8 while retaining undecodable octets as Latin-1 characters."""
+    decoded = octets.decode("utf-8", errors="surrogateescape")
+    return "".join(
+        chr(ord(char) - 0xDC00) if 0xDC80 <= ord(char) <= 0xDCFF else char
+        for char in decoded
+    )
 
 
 def _stable_id(*parts: object) -> str:
