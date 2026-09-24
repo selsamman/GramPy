@@ -18,6 +18,18 @@ tests/samples/received-corpus/
 Corpus-dependent tests use the corpus when it is present and skip when it is
 absent. The repository does not select or automatically fetch a corpus.
 
+The optional 2026-09-23 full-broadcast case is
+`wrmi-20260923-15770000-full-broadcast`. Its canonical CF32 IQ and appliance
+capture records live under `received-corpus/sources/wrmi-20260923T133007Z-15770000/`.
+The saved GramPy decode manifest, text, nine PNGs, and component evidence are
+under the corresponding `received-corpus/references/` directory. These are
+decoder reference outputs, not independent truth. The original intake folder,
+including diagnostic WAV files, is under
+`tests/samples/reference-captures/sampleFullRun-20260923/`; tests must refer
+to the canonical source and must not depend on that intake copy. The planned
+compact outputs and quality measurements are defined in
+[`docs/decoder/output-manifests-plan.md`](../docs/decoder/output-manifests-plan.md).
+
 To create an archive, supply a version and output path:
 
 ```sh

@@ -23,6 +23,10 @@ the selection seed in [`corpus/received_corpus_seed.json`](corpus/received_corpu
 Machine-readable vectors, Varicode, and fixture evidence are under
 [`data/`](data/).
 
+The active proposal for compact text and one-second quality output is
+[`output-manifests-plan.md`](output-manifests-plan.md). It is a plan, not a
+current API or CLI contract.
+
 The versioned documents and data in this directory are the durable decoder
 record. Historical development notes are intentionally not a GramPy
 dependency.
