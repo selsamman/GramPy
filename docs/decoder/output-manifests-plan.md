@@ -171,16 +171,70 @@ that ratio optimistic; method metadata and exceptions must disclose such
 limits. Automatic gain control can change both levels and is intentionally
 not removed.
 
-`decode_confidence` is a unitless value from 0 to 1, with higher meaning
-stronger evidence of correct decoding. It is **not** measured accuracy or a
-probability until calibrated against independent truth. Its calculation must
-be versioned, mode-aware, and documented. Text evidence may use valid/invalid
-Varicode events, erasures, and soft-decision margins; picture evidence may use
-component stability and damage measures. Evidence is assigned by wire or
-component sample intervals, not delayed recognition time. For intervals with
-insufficient or incomparable evidence, emit `null` and a reason instead of
-fabricating a continuous score. No decoded text or image contents are used to
-calculate signal or noise levels.
+`decode_confidence` is a unitless 0-to-1 **estimate of output fidelity for
+the active task**. It is not measured accuracy for this particular broadcast
+or a probability that every character or pixel is correct. Equal signal/noise
+levels can yield different confidence in MFSK32 and MFSK64 because the modes
+and decoder decisions differ. Signal and noise are measured independently of
+decoded content. Evidence is assigned by wire or component sample intervals,
+not delayed recognition time. Insufficient evidence yields `null`, and a
+required missing artifact generates a warning.
+
+Stage 4 implements `reference-fidelity-proxy.v1`, a small formula anchored to
+independent program 456 truth in the received corpus. In a text second,
+`V` is the overlap-weighted number of valid emitted characters, `A` is the
+overlap-weighted number of all non-control character events, and `M` is the
+sum of valid-character decision margins. The margin is
+`1-exp(-minimum_absolute_input_llr)` or the clamped normalized Viterbi metric
+gap, according to the event's recorded kind. The score is
+`clamp((0.79*V + 0.257*M)/A, 0, 1)`. Invalid Varicode events increase `A`
+without increasing `V`. At least two effective events are required. The
+0.79 base reflects that the decoder can emit a correct character despite
+weak soft-decision margins; invalid characters still lower the score.
+
+For picture seconds, `C` is the fraction of components decoded outside the
+representable range and `R` is the fraction differing from their channel's
+3×3 spatial median by more than 40 on the 0–255 pixel scale. The score is
+`clamp(1 - 0.4*C - 0.4*R, 0, 1)` when at least 20 components are available.
+The spatial check catches some in-range speckle missed by clipping. A picture
+being incomplete does not penalize earlier components; completeness is
+separately represented in the text manifest. Component evidence may be inline
+or read from the existing NPZ artifact; integration can discard that artifact
+after the compact score is computed. The spatial calculation uses the decoded
+component values and picture dimensions; it does not reread the IQ or require
+an additional image dependency.
+
+The preliminary fit used two 60–67 second MFSK32/MFSK64 text slices and
+three complete images from program 456. Five-second text windows were scored
+by alignment to approved source text; holding out one mode at a time gave
+mean absolute error 0.046 and 0.069 for separately fitted formulas. The fixed
+pooled formula's errors on those same slices were 0.080 and 0.049, compared
+with 0.255 and 0.453 for the original raw-margin scores. For images, five-second
+windows were compared with source pixels using `1 - mean_absolute_error/255`.
+Holding out each complete image in turn gave mean absolute error
+0.011–0.016 with clipping and spatial outliers, compared with 0.025–0.047
+for clipping alone. The two fitted coefficients were close to 0.4 and are
+rounded to that value. The fixed score's error on the three saved image slices
+was 0.010–0.013, with positive per-image correlations of 0.976–0.990.
+These are small, related samples, not a guarantee across stations or programs.
+The reference images are strong source references but their status as exact
+transmitter input remains pending verification. The output still has one point
+per second and can be noisier than the five-second calibration windows.
+
+The saved picture `quality_hz` array is saturated at 93,750 Hz and every
+component has `unstable_frequency=true`; neither field distinguishes good
+and bad regions in the full-broadcast reference. This method excludes them.
+Missing component evidence leaves picture confidence `null` and makes the
+product partial. Ordinary seconds without decoder evidence also remain
+`null`; they do not generate per-second exceptions. The method can still miss
+a plausible but wrong character, a silent omission with no emitted event, or
+an in-range wrong pixel. Consumer color
+thresholds should be checked against additional programs before deployment.
+Structured image displacement or color errors can score too highly when they
+do not produce clipping or isolated spatial outliers. The full saved run has
+1,621 scored seconds and 179 `null` seconds in a 44.3 KB compact file; its
+nine picture median scores range from 0.857 to 0.980. A high value is not a
+literal percentage of correct pixels.
 
 ## Measurement strategy and performance gate
 
