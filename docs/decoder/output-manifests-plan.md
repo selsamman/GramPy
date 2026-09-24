@@ -77,16 +77,20 @@ Schema identifier: `grampy-text-manifest.v1`.
           "kind": "text",
           "interval": {"start": 100, "stop": 900},
           "framing": "complete_stx_eot",
-          "text": "Readable broadcast text"
+          "frame_id": "<stable-frame-id>",
+          "text": "Readable broadcast text",
+          "unmapped_event_count": 0
         },
         {
           "id": "<stable-id>",
           "kind": "picture",
           "interval": {"start": 900, "stop": 1000},
           "associated_text_item_id": "<stable-id>",
-          "artifact": {"path": "pictures/raster-0001.png", "sha256": "<sha256>"},
+          "artifact": {"kind": "png_uint8_raster", "path": "pictures/raster-0001.png", "sha256": "<sha256>"},
+          "header_text": "Pic:165x210C;",
           "width": 165,
           "height": 210,
+          "color": true,
           "complete": true
         }
       ]
@@ -107,6 +111,10 @@ decoded characters, not an octet list. Picture items link to portable PNG
 artifacts and to the nearest preceding text item in the same mode segment when
 that association is supported by the decoded transition. A picture without
 supporting text has `associated_text_item_id: null`.
+Text chunks on both sides of a picture may share `frame_id` and the completed
+frame status; an item need not contain an entire STX/EOT frame by itself.
+Small existing inline rasters remain supported as `inline_uint8_raster` items
+until artifact publication is consolidated in the integration stage.
 
 Complete STX/EOT payloads are display text. Material confidently outside a
 complete frame is summarized in `omitted_unframed`; uncertain or incomplete

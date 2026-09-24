@@ -1,0 +1,157 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://grampy.local/schemas/grampy-text-manifest-v1.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema", "run_id", "status", "decoder", "input", "mode_segments",
+    "omitted_unframed", "warnings"
+  ],
+  "properties": {
+    "schema": {"const": "grampy-text-manifest.v1"},
+    "run_id": {"type": "string", "pattern": "^[0-9a-f]{24}$"},
+    "status": {"enum": ["complete", "partial", "failed"]},
+    "decoder": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["version", "configuration"],
+      "properties": {
+        "version": {"type": "string"},
+        "configuration": {"type": "object"}
+      }
+    },
+    "input": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "metadata_sha256", "data_sha256", "sample_rate_hz", "requested_interval"
+      ],
+      "properties": {
+        "metadata_sha256": {"$ref": "#/$defs/sha256"},
+        "data_sha256": {"$ref": "#/$defs/sha256"},
+        "sample_rate_hz": {"type": "number", "exclusiveMinimum": 0},
+        "requested_interval": {"$ref": "#/$defs/interval"}
+      }
+    },
+    "mode_segments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "mode", "interval", "items"],
+        "properties": {
+          "id": {"type": "string"},
+          "mode": {"enum": ["MFSK32", "MFSK64", "unknown"]},
+          "interval": {"$ref": "#/$defs/interval"},
+          "items": {
+            "type": "array",
+            "items": {"oneOf": [
+              {"$ref": "#/$defs/text_item"},
+              {"$ref": "#/$defs/picture_item"}
+            ]}
+          }
+        }
+      }
+    },
+    "omitted_unframed": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["interval", "reason", "character_count"],
+        "properties": {
+          "interval": {"$ref": "#/$defs/interval"},
+          "reason": {"enum": ["before_stx", "inside_picture"]},
+          "character_count": {"type": "integer", "minimum": 1}
+        }
+      }
+    },
+    "warnings": {"type": "array", "items": {"$ref": "#/$defs/warning"}}
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "interval": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["start", "stop"],
+      "properties": {
+        "start": {"type": "integer", "minimum": 0},
+        "stop": {"type": "integer", "minimum": 0}
+      }
+    },
+    "warning": {
+      "type": "object",
+      "required": ["code", "message"],
+      "properties": {
+        "code": {"type": "string"},
+        "message": {"type": "string"}
+      }
+    },
+    "text_item": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id", "kind", "interval", "framing", "frame_id", "text",
+        "unmapped_event_count"
+      ],
+      "properties": {
+        "id": {"type": "string"},
+        "kind": {"const": "text"},
+        "interval": {"$ref": "#/$defs/interval"},
+        "framing": {"enum": ["complete_stx_eot", "incomplete", "uncertain"]},
+        "frame_id": {"type": ["string", "null"]},
+        "text": {"type": "string", "minLength": 1},
+        "unmapped_event_count": {"type": "integer", "minimum": 0}
+      }
+    },
+    "picture_item": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id", "kind", "interval", "associated_text_item_id", "artifact",
+        "header_text", "width", "height", "color", "complete"
+      ],
+      "properties": {
+        "id": {"type": "string"},
+        "kind": {"const": "picture"},
+        "interval": {"$ref": "#/$defs/interval"},
+        "associated_text_item_id": {"type": ["string", "null"]},
+        "artifact": {
+          "oneOf": [
+            {"type": "null"},
+            {"$ref": "#/$defs/png_artifact"},
+            {"$ref": "#/$defs/inline_artifact"}
+          ]
+        },
+        "header_text": {"type": ["string", "null"]},
+        "width": {"type": "integer", "minimum": 1},
+        "height": {"type": "integer", "minimum": 1},
+        "color": {"type": "boolean"},
+        "complete": {"type": "boolean"}
+      }
+    },
+    "png_artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "path", "sha256"],
+      "properties": {
+        "kind": {"const": "png_uint8_raster"},
+        "path": {"type": "string", "minLength": 1},
+        "sha256": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "inline_artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "shape", "values"],
+      "properties": {
+        "kind": {"const": "inline_uint8_raster"},
+        "shape": {"type": "array", "items": {"type": "integer", "minimum": 1}},
+        "values": {
+          "type": "array",
+          "items": {"type": "integer", "minimum": 0, "maximum": 255}
+        }
+      }
+    }
+  }
+}
