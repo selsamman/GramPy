@@ -100,6 +100,10 @@ evaluation need appear in the final review.
 
 ## Target-Pi qualification
 
+These checks govern acceptance for deployment on the target Pi. Publishing a
+generic library package to PyPI is a separate release decision; a consumer
+deployment can qualify the package on its own schedule.
+
 Pi evidence is required when a change affects device integration, deployment,
 runtime/dependency behavior, memory allocation, buffering, I/O, concurrency,
 or target-platform performance; when Mac evidence approaches known Pi limits;

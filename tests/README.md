@@ -26,9 +26,10 @@ under the corresponding `received-corpus/references/` directory. These are
 decoder reference outputs, not independent truth. The original intake folder,
 including diagnostic WAV files, is under
 `tests/samples/reference-captures/sampleFullRun-20260923/`; tests must refer
-to the canonical source and must not depend on that intake copy. The planned
-compact outputs and quality measurements are defined in
-[`docs/decoder/output-manifests-plan.md`](../docs/decoder/output-manifests-plan.md).
+to the canonical source and must not depend on that intake copy. The accepted
+compact outputs and quality measurements are documented in the
+[`API guide`](../docs/decoder/api.md); the implementation plan and acceptance
+record are [archived](../docs/provenance/archive/output-manifests-plan.md).
 
 To create an archive, supply a version and output path:
 

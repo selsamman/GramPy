@@ -1,13 +1,14 @@
 """Supported callable interface for direct MFSK IQ decoding.
 
-Import :class:`DecodeConfig` and :func:`decode_iq` from this module. The
-returned dictionary conforms to ``grampy-decode-manifest.v1``; see
-``docs/decoder/api.md`` for the consumer contract.
+``decode_iq_products`` returns compact broadcast and quality documents;
+``decode_iq`` retains the original diagnostic-manifest contract.
 """
 
 from __future__ import annotations
 
+from dataclasses import dataclass
 from pathlib import Path
+from typing import Any
 
 from .pipeline import DecodeConfig, run_reference_pipeline
 
@@ -45,4 +46,55 @@ def decode_iq(
     )
 
 
-__all__ = ["DecodeConfig", "decode_iq"]
+@dataclass(frozen=True)
+class DecodeProducts:
+    text_manifest: dict[str, Any]
+    quality_manifest: dict[str, Any]
+    diagnostic_manifest: dict[str, Any] | None = None
+
+
+def decode_iq_products(
+    *,
+    meta_path: Path,
+    data_path: Path,
+    config: DecodeConfig | None = None,
+    start_sample: int | None = None,
+    stop_sample: int | None = None,
+    artifact_dir: Path | None = None,
+    artifact_path_prefix: str | None = None,
+    artifact_root: Path | None = None,
+    include_diagnostic_manifest: bool = False,
+) -> DecodeProducts:
+    """Decode once and return aligned text and quality products.
+
+    ``artifact_root`` resolves paths recorded in picture artifacts for the
+    confidence estimator. Supply it when artifact paths use a custom prefix.
+    """
+    if artifact_root is None:
+        if artifact_dir is None:
+            artifact_root = meta_path.parent
+        elif artifact_path_prefix is None:
+            artifact_root = artifact_dir
+        else:
+            prefix = Path(artifact_path_prefix)
+            if prefix.is_absolute() or ".." in prefix.parts or prefix.parts == ():
+                raise ValueError("artifact_path_prefix must be a relative path")
+            if tuple(artifact_dir.parts[-len(prefix.parts):]) != prefix.parts:
+                raise ValueError("supply artifact_root for a custom artifact path prefix")
+            artifact_root = artifact_dir.parents[len(prefix.parts) - 1]
+    result = run_reference_pipeline(
+        meta_path=meta_path,
+        data_path=data_path,
+        start_sample=start_sample,
+        stop_sample=stop_sample,
+        config=config or DecodeConfig(),
+        artifact_dir=artifact_dir,
+        artifact_path_prefix=artifact_path_prefix,
+        _products=True,
+        _include_diagnostic_manifest=include_diagnostic_manifest,
+        _artifact_root=artifact_root,
+    )
+    return DecodeProducts(**result)
+
+
+__all__ = ["DecodeConfig", "DecodeProducts", "decode_iq", "decode_iq_products"]

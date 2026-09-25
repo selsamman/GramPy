@@ -29,6 +29,13 @@ framing, picture assembly, and artifact publication. Implementations may fuse
 or share work internally, but those observable responsibilities and contracts
 remain distinct.
 
+The public product path reuses the decoded event and picture results directly.
+It assembles ordered text, then makes a sparse read-only spectral pass over
+stored post-AGC IQ for signal and noise, and aligns decoder evidence to that
+same one-second grid for a quality proxy. The optional large diagnostic
+manifest is assembled only when requested. This second IQ pass is separate
+from MFSK demodulation and does not change decode decisions.
+
 ## Design rationale
 
 This document and the accompanying contracts and validation records preserve

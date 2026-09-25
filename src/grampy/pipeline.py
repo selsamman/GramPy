@@ -30,6 +30,9 @@ from .picture_decode import (
 from .text_decode import MFSKTextDecode, decode_mfsk_text
 from .stateful_pipeline import decode_p11d_text_region
 from .resources import load_json
+from .text_manifest import build_text_manifest
+from .reception_quality import build_reception_quality_manifest
+from .decode_quality import add_decode_confidence
 
 
 SCHEMA_NAME = "mfsk-decode-manifest-v1.json"
@@ -122,6 +125,9 @@ def run_reference_pipeline(
     config: DecodeConfig,
     artifact_dir: Path | None = None,
     artifact_path_prefix: str | None = None,
+    _products: bool = False,
+    _include_diagnostic_manifest: bool = True,
+    _artifact_root: Path | None = None,
 ) -> dict[str, Any]:
     wall_start = time.perf_counter()
     cpu_start = time.process_time()
@@ -338,6 +344,52 @@ def run_reference_pipeline(
     if text_decode is not None:
         for event in text_decode.text_events:
             event.get("provenance", {}).pop("picture_flush_tones", None)
+    mode_segments = (
+        list(acquisition.mode_segments)
+        if config.mode == "auto"
+        else [item for item in acquisition.mode_segments if item["mode"] == config.mode]
+        if bounded_organization and any(
+            item["mode"] == config.mode for item in acquisition.mode_segments
+        )
+        else [text_decode.mode_segment] if text_decode else []
+    )
+    products = None
+    if _products:
+        source = {
+            "schema": "grampy-decode-manifest.v1",
+            "run_id": stable_run_id,
+            "status": "complete" if complete else "partial",
+            "input": {
+                "metadata_sha256": hashes["metadata_sha256"],
+                "data_sha256": hashes["data_sha256"],
+                "sample_rate_hz": recording.sample_rate,
+                "requested_interval": {
+                    "start": recording.requested_start,
+                    "stop": recording.requested_stop,
+                },
+            },
+            "decoder": {"version": DECODER_VERSION, "configuration": config_document},
+            "mode_segments": mode_segments,
+            "text_events": text_decode.text_events if text_decode else [],
+            "pictures": picture_decode.pictures if picture_decode else [],
+            "artifacts": picture_decode.artifacts if picture_decode else [],
+            "warnings": warnings,
+        }
+        text_product = build_text_manifest(source)
+        reception = build_reception_quality_manifest(recording, source)
+        quality_product = add_decode_confidence(
+            reception, source, text_product,
+            artifact_root=_artifact_root or artifact_dir or meta_path.parent,
+        )
+        products = {
+            "text_manifest": text_product,
+            "quality_manifest": quality_product,
+            "diagnostic_manifest": None,
+        }
+        finish_stage("product_assembly_validation", stage_start)
+        if not _include_diagnostic_manifest:
+            return products
+        stage_start = time.perf_counter()
     manifest: dict[str, Any] = {
         "schema": "grampy-decode-manifest.v1",
         "run_id": stable_run_id,
@@ -371,19 +423,7 @@ def run_reference_pipeline(
         "signal_regions": [item.to_dict() for item in acquisition.regions],
         "mode_hypotheses": list(acquisition.mode_hypotheses),
         "frequency_tracks": [item.to_dict() for item in acquisition.frequency_tracks],
-        "mode_segments": (
-            list(acquisition.mode_segments)
-            if config.mode == "auto"
-            else [
-                item for item in acquisition.mode_segments
-                if item["mode"] == config.mode
-            ]
-            if bounded_organization and any(
-                item["mode"] == config.mode
-                for item in acquisition.mode_segments
-            )
-            else [text_decode.mode_segment] if text_decode else []
-        ),
+        "mode_segments": mode_segments,
         "text_epochs": text_decode.text_epochs if text_decode else [],
         "text_events": text_decode.text_events if text_decode else [],
         "text_summary": (
@@ -527,6 +567,9 @@ def run_reference_pipeline(
     manifest["timing"]["wall_seconds"] = time.perf_counter() - wall_start
     manifest["timing"]["cpu_seconds"] = time.process_time() - cpu_start
     manifest["timing"]["peak_rss_bytes"] = _peak_rss_bytes()
+    if products is not None:
+        products["diagnostic_manifest"] = manifest
+        return products
     return manifest
 
 
@@ -1807,19 +1850,26 @@ def _validate_schema(document: dict[str, Any], schema_name: str) -> None:
 
 def write_manifest_atomic(path: Path, manifest: dict[str, Any]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    # Make bytes_written describe the final manifest itself. Iteration reaches
-    # a fixed point once the decimal digit count stops changing.
-    for _ in range(8):
-        payload = _manifest_bytes(manifest)
-        previous = manifest["diagnostics"]["bytes_written"]
-        artifact_bytes = sum(
-            artifact.get("bytes", 0) for artifact in manifest["artifacts"]
-        )
-        manifest["diagnostics"]["bytes_written"] = len(payload) + artifact_bytes
-        if previous == len(payload) + artifact_bytes:
-            break
+    schema = manifest.get("schema")
+    if schema == "grampy-decode-manifest.v1":
+        # Preserve the diagnostic document's historical byte accounting.
+        for _ in range(8):
+            payload = _manifest_bytes(manifest)
+            previous = manifest["diagnostics"]["bytes_written"]
+            artifact_bytes = sum(
+                artifact.get("bytes", 0) for artifact in manifest["artifacts"]
+            )
+            manifest["diagnostics"]["bytes_written"] = len(payload) + artifact_bytes
+            if previous == len(payload) + artifact_bytes:
+                break
+        validate_manifest(manifest)
+    elif schema == "grampy-text-manifest.v1":
+        _validate_schema(manifest, "grampy-text-manifest-v1.json")
+    elif schema == "grampy-quality-manifest.v1":
+        _validate_schema(manifest, "grampy-quality-manifest-v1.json")
+    else:
+        raise ValueError(f"unsupported manifest schema: {schema}")
     payload = _manifest_bytes(manifest)
-    validate_manifest(manifest)
     descriptor, temporary_name = tempfile.mkstemp(
         prefix=f".{path.name}.", suffix=".tmp", dir=path.parent
     )

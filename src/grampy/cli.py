@@ -8,7 +8,7 @@ from pathlib import Path
 import sys
 import tempfile
 
-from .api import DecodeConfig, decode_iq
+from .api import DecodeConfig, decode_iq, decode_iq_products
 from .pipeline import write_manifest_atomic
 from .sigmf import InputError
 
@@ -20,7 +20,9 @@ def build_parser() -> argparse.ArgumentParser:
     )
     parser.add_argument("--in-meta", required=True, type=Path)
     parser.add_argument("--in-data", required=True, type=Path)
-    parser.add_argument("--out-manifest", required=True, type=Path)
+    parser.add_argument("--out-manifest", type=Path)
+    parser.add_argument("--out-text-manifest", type=Path)
+    parser.add_argument("--out-quality-manifest", type=Path)
     parser.add_argument("--start-sample", type=int)
     parser.add_argument("--stop-sample", type=int)
     parser.add_argument("--block-samples", type=int, default=262_144)
@@ -73,7 +75,18 @@ def build_parser() -> argparse.ArgumentParser:
 
 
 def main(argv: list[str] | None = None) -> int:
-    args = build_parser().parse_args(argv)
+    parser = build_parser()
+    args = parser.parse_args(argv)
+    product_paths = (args.out_text_manifest, args.out_quality_manifest)
+    if any(product_paths) and not all(product_paths):
+        parser.error("--out-text-manifest and --out-quality-manifest must be supplied together")
+    if not args.out_manifest and not all(product_paths):
+        parser.error("supply --out-manifest or both compact manifest paths")
+    output_paths = [path for path in (args.out_manifest, *product_paths) if path]
+    if len({path.resolve() for path in output_paths}) != len(output_paths):
+        parser.error("manifest output paths must be distinct")
+    if all(product_paths) and args.out_text_manifest.parent.resolve() != args.out_quality_manifest.parent.resolve():
+        parser.error("compact manifests must share an output directory")
     try:
         config = DecodeConfig(
             block_samples=args.block_samples,
@@ -91,23 +104,46 @@ def main(argv: list[str] | None = None) -> int:
             picture_range_components=args.picture_range_components,
             picture_max_in_flight_ranges=args.picture_max_in_flight_ranges,
         )
-        manifest = decode_iq(
-            meta_path=args.in_meta,
-            data_path=args.in_data,
-            start_sample=args.start_sample,
-            stop_sample=args.stop_sample,
-            config=config,
-            artifact_dir=args.out_manifest.parent
-            / f"{args.out_manifest.stem}.artifacts",
-            artifact_path_prefix=f"{args.out_manifest.stem}.artifacts",
-        )
-        write_manifest_atomic(args.out_manifest, manifest)
+        if all(product_paths):
+            root = args.out_text_manifest.parent
+            artifact_name = f"{args.out_text_manifest.stem}.artifacts"
+            products = decode_iq_products(
+                meta_path=args.in_meta,
+                data_path=args.in_data,
+                start_sample=args.start_sample,
+                stop_sample=args.stop_sample,
+                config=config,
+                artifact_dir=root / artifact_name,
+                artifact_path_prefix=artifact_name,
+                artifact_root=root,
+                include_diagnostic_manifest=args.out_manifest is not None,
+            )
+            write_manifest_atomic(args.out_text_manifest, products.text_manifest)
+            write_manifest_atomic(args.out_quality_manifest, products.quality_manifest)
+            if args.out_manifest is not None:
+                if products.diagnostic_manifest is None:
+                    raise ValueError("diagnostic manifest was requested but not produced")
+                write_manifest_atomic(args.out_manifest, products.diagnostic_manifest)
+        else:
+            manifest = decode_iq(
+                meta_path=args.in_meta,
+                data_path=args.in_data,
+                start_sample=args.start_sample,
+                stop_sample=args.stop_sample,
+                config=config,
+                artifact_dir=args.out_manifest.parent
+                / f"{args.out_manifest.stem}.artifacts",
+                artifact_path_prefix=f"{args.out_manifest.stem}.artifacts",
+            )
+            write_manifest_atomic(args.out_manifest, manifest)
     except (InputError, ValueError) as error:
-        _write_terminal_failure(args.out_manifest, args, error, 64)
+        for path in output_paths:
+            _write_terminal_failure(path, args, error, 64)
         print(f"mfsk-iq-decode: {error}", file=sys.stderr)
         return 64
     except OSError as error:
-        _write_terminal_failure(args.out_manifest, args, error, 74)
+        for path in output_paths:
+            _write_terminal_failure(path, args, error, 74)
         print(f"mfsk-iq-decode: {error}", file=sys.stderr)
         return 74
     return 0

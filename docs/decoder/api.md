@@ -7,6 +7,39 @@ operation.
 
 ## Decode a recording
 
+Use `decode_iq_products` for the ordered broadcast and aligned quality series:
+
+```python
+from pathlib import Path
+from grampy.api import decode_iq_products
+
+products = decode_iq_products(
+    meta_path=Path("recording.sigmf-meta"),
+    data_path=Path("recording.sigmf-data"),
+    artifact_dir=Path("results/text.manifest.artifacts"),
+    artifact_path_prefix="text.manifest.artifacts",
+)
+text = products.text_manifest
+quality = products.quality_manifest
+```
+
+`DecodeProducts` has `text_manifest`, `quality_manifest`, and
+`diagnostic_manifest` fields. The last is `None` by default. Pass
+`include_diagnostic_manifest=True` to assemble the validated legacy document
+from the same decode. The default never assembles that large document. Both
+compact files share `run_id`, input hashes, sample rate, and requested interval;
+check those fields before joining them. Quality `points` has one row per second
+with `[signal_dbfs, noise_dbfs, decode_confidence]`, where unavailable values
+are `None`. The first two are post-AGC IQ measurements; the third is a
+truth-anchored output-quality proxy, not a probability of correctness.
+
+When a custom artifact path prefix does not directly mirror `artifact_dir`,
+pass `artifact_root` as the directory from which recorded artifact paths
+resolve. This lets the confidence estimator read picture component evidence.
+The caller serializes returned documents if needed.
+
+The original `decode_iq` interface remains supported for diagnostic use:
+
 ```python
 from pathlib import Path
 

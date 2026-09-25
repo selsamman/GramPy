@@ -12,27 +12,30 @@ Python 3.11 or newer is required.
 ## Use as a library
 
 The supported Python interface is `grampy.api`. Decode a SigMF metadata/data
-pair by passing `pathlib.Path` objects to `decode_iq`:
+pair into compact text and quality products:
 
 ```python
 from pathlib import Path
 
-from grampy.api import DecodeConfig, decode_iq
+from grampy.api import DecodeConfig, decode_iq_products
 
-manifest = decode_iq(
+products = decode_iq_products(
     meta_path=Path("recording.sigmf-meta"),
     data_path=Path("recording.sigmf-data"),
     config=DecodeConfig(mode="MFSK64"),
-    artifact_dir=Path("results/decode.artifacts"),
-    artifact_path_prefix="decode.artifacts",
+    artifact_dir=Path("results/text.manifest.artifacts"),
+    artifact_path_prefix="text.manifest.artifacts",
 )
 
-print(manifest["status"])
-print(manifest["text_summary"]["text"])
+for segment in products.text_manifest["mode_segments"]:
+    for item in segment["items"]:
+        if item["kind"] == "text":
+            print(item["text"])
 ```
 
-`decode_iq` returns a validated, JSON-compatible decode manifest; it does not
-write that manifest to disk. The optional artifact arguments control where
+`decode_iq_products` returns validated, JSON-compatible text and quality
+manifests; it does not write them to disk. `decode_iq` remains available for
+the detailed diagnostic manifest. The optional artifact arguments control where
 large decoded-picture artifacts are written. See [the Python API guide](https://github.com/selsamman/GramPy/blob/master/docs/decoder/api.md)
 for the supported arguments, configuration, result contract, errors, and
 artifact behavior. The [manifest schema](https://github.com/selsamman/GramPy/blob/master/src/grampy/schemas/mfsk-decode-manifest-v1.json)
@@ -80,14 +83,17 @@ SigMF metadata/data pair:
 tools/mfsk-iq-decode \
   --in-meta recording.sigmf-meta \
   --in-data recording.sigmf-data \
-  --out-manifest results/decode.json
+  --out-text-manifest results/text.manifest.json \
+  --out-quality-manifest results/quality.manifest.json
 ```
 
 The default automatic mode decodes every resolved MFSK32 and MFSK64 segment
-and the pictures carried by MFSK64 segments in one run. The command writes a
-manifest containing the decoded text, diagnostics, and artifact inventory.
-Large decoded pictures are written beside it in
-`results/decode.artifacts/`; small rasters are embedded in the manifest. See
+and the pictures carried by MFSK64 segments in one run. The command writes
+ordered readable text and one-second reception and decode quality data.
+Add `--out-manifest results/decode.json` to request the large diagnostic
+manifest as well, or use that option alone for the legacy invocation.
+Large decoded pictures are written beside the compact manifests in
+`results/text.manifest.artifacts/`; small rasters are embedded. See
 [the SigMF decode guide](https://github.com/selsamman/GramPy/blob/master/docs/decoder/cli.md) for the accepted metadata, input
 formats, interval options, and complete output layout.
 

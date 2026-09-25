@@ -16,10 +16,20 @@ Validation has three complementary layers:
    and real-world regression evidence.
 
 Development-machine tests establish IQ and algorithm behavior. Raspberry Pi
-acceptance establishes fldigi/audio/runtime behavior, resource cost, and
-unattended operation. Neither environment substitutes for the other.
+acceptance establishes appliance-specific fldigi/audio/runtime behavior,
+resource cost, and unattended operation when qualifying a Pi deployment. It
+is not a gate for publishing the generic library package to PyPI. Neither
+environment substitutes for the other within its respective decision.
 
 An improvement should identify its affected contract, establish a baseline,
 measure quality and resource effects, and retain a regression test or durable
 evidence record before adoption. Historical scorecards and session gates are
 intentionally not a repository dependency or current acceptance threshold.
+
+For compact-output changes, use short deterministic tests for text framing,
+picture links, one-second grid boundaries, missing values, and API/CLI
+compatibility. A single full received-broadcast acceptance should verify
+mode order, text and image preservation, 1,800 aligned points for a 30-minute
+capture, artifact references, and cross-file identity. Compare diagnostic and
+product paths on the same machine and input for runtime and memory claims;
+the historical appliance timing is not a direct comparator.

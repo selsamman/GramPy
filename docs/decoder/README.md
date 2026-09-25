@@ -23,9 +23,9 @@ the selection seed in [`corpus/received_corpus_seed.json`](corpus/received_corpu
 Machine-readable vectors, Varicode, and fixture evidence are under
 [`data/`](data/).
 
-The active proposal for compact text and one-second quality output is
-[`output-manifests-plan.md`](output-manifests-plan.md). It is a plan, not a
-current API or CLI contract.
+The completed compact-output plan and its acceptance record are archived in
+[`output-manifests-plan.md`](../provenance/archive/output-manifests-plan.md).
+Current usage is in the API and CLI guides above.
 
 The versioned documents and data in this directory are the durable decoder
 record. Historical development notes are intentionally not a GramPy

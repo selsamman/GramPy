@@ -1,9 +1,8 @@
 # SigMF decode command
 
 `tools/mfsk-iq-decode` is GramPy’s command-line adapter for reproducibly
-decoding a SigMF IQ recording. It is primarily a development, validation, and
-benchmark tool. The future public Python-library consumption guide will be
-added with the PyPI release.
+decoding a SigMF IQ recording. The same decoder supplies compact application
+products and optional diagnostic evidence.
 
 ## Input
 
@@ -13,7 +12,8 @@ Supply the SigMF metadata JSON and its matching binary IQ data explicitly:
 tools/mfsk-iq-decode \
   --in-meta recording.sigmf-meta \
   --in-data recording.sigmf-data \
-  --out-manifest results/decode.json \
+  --out-text-manifest results/text.manifest.json \
+  --out-quality-manifest results/quality.manifest.json \
   --mode MFSK64
 ```
 
@@ -58,29 +58,36 @@ general user preferences.
 
 ## Outputs
 
-The command atomically writes the requested manifest path. A successful
-manifest contains the input hashes and interval, configuration, diagnostics,
-decoded text summaries and events, picture descriptions, timing/resource
-measurements, warnings, and artifact inventory. It is validated against
-[`mfsk-decode-manifest-v1.json`](../../src/grampy/schemas/mfsk-decode-manifest-v1.json).
+The two compact paths must be supplied together in one directory. The command
+atomically writes each file. The text file contains readable ordered text and
+picture items grouped by MFSK mode interval. The quality file contains
+one-second rows of post-AGC signal, noise, and decode-confidence proxy values.
+They share a run ID and input identity and are validated against their
+[text](../../src/grampy/schemas/grampy-text-manifest-v1.json) and
+[quality](../../src/grampy/schemas/grampy-quality-manifest-v1.json) schemas.
 
-Decoded text is represented in the manifest; no separate text file is created.
+`--out-manifest results/decode.json` requests the large
+[`grampy-decode-manifest.v1`](../../src/grampy/schemas/mfsk-decode-manifest-v1.json)
+diagnostic file. It can be used alone for the prior CLI behavior, or with the
+two compact paths; all three then come from one decode. The diagnostic file
+is not assembled for a compact-only invocation.
 
 Pictures have two storage forms:
 
 - Small rasters are embedded as `inline_uint8_raster` values in the manifest.
-- Large rasters are written beside the manifest under
-  `<manifest-stem>.artifacts/`, for example:
+- Large rasters are written beside the compact files under
+  `<text-manifest-stem>.artifacts/`, for example:
 
   ```text
   results/
-    decode.json
-    decode.artifacts/
+    text.manifest.json
+    quality.manifest.json
+    text.manifest.artifacts/
       raster-0001.png
       component-evidence-0001.npz
   ```
 
-  The manifest’s `artifacts` list records each PNG or NumPy `.npz` evidence
+  The diagnostic manifest’s `artifacts` list records each PNG or NumPy `.npz` evidence
   file by stable ID, relative path, SHA-256, size, and relevant shape/type
   information. The `.npz` file is diagnostic component evidence; the PNG is
   the rendered decoded raster.
@@ -88,7 +95,7 @@ Pictures have two storage forms:
 If no large picture is decoded, the artifact directory may not be created. No
 persistent IQ intermediates are written.
 
-If input validation or decode startup fails, the requested manifest path still
+If input validation or decode startup fails, each requested manifest path still
 receives an atomic terminal-failure document. The process exits with a nonzero
 status and the document records the input request, configuration, error kind,
 message, and exit status.

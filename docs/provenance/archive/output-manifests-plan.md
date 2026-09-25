@@ -1,8 +1,8 @@
 # Compact broadcast and quality outputs: implementation plan
 
-**Status:** active definition, 2026-09-24. This document specifies proposed
-behavior. The existing `grampy-decode-manifest.v1` and `decode_iq` API remain
-the current contracts until the stages below are implemented and accepted.
+**Status:** completed, 2026-09-24. This archived document records the staged
+definition and acceptance of the compact output contract. Current usage is
+documented in `docs/decoder/api.md` and `docs/decoder/cli.md`.
 
 ## Goal and baseline
 
@@ -19,8 +19,10 @@ The current CLI writes a single development manifest with all text events.
 The 2026-09-23 full-broadcast reference in the ignored corpus has 28,800,000
 CF32 samples at 16 kHz (1,800 seconds), three detected MFSK mode intervals,
 and nine decoded pictures. Its 11 MB development manifest reports 2,771.26
-seconds of decode wall time; that timer excludes separately timed manifest
-file publication. It is a baseline, not independent program truth. The
+seconds of decode wall time on Linux ARM64; that timer excludes separately
+timed manifest file publication. It is a compatibility reference and an
+on-device historical timing, not a same-machine Mac performance baseline or
+independent program truth. The
 complete capture was supplied as `.local/regression/sampleFullRun`; canonical
 files are now under `tests/samples/received-corpus/`, while the original
 intake folder, including diagnostic WAV files, is under
@@ -251,11 +253,11 @@ Benchmark one, two, and four spectral snapshots per second on the same full
 capture. They mean 1,800, 3,600, and 7,200 transforms respectively for a
 30-minute run, all yielding 1,800 published points. Select the lowest cadence
 that still reveals known fades/interference without unstable one-snapshot
-outliers. Compare incremental wall time, CPU, peak RSS, and input bytes on Mac
-and target Pi. A separate sparse pass is the initial implementation because it
-keeps acquisition and decode logic simple; share an existing FFT pass only if
-measured savings justify the added coupling. Do not assert an SNR or runtime
-target from transform counts alone.
+outliers. Compare incremental wall time, CPU, peak RSS, and input bytes on the
+development machine. A separate sparse pass is the initial implementation
+because it keeps acquisition and decode logic simple; share an existing FFT
+pass only if measured savings justify the added coupling. Do not assert an SNR
+or runtime target from transform counts alone.
 
 The initial quality pass reads the stored IQ but must not alter IQ samples,
 acquisition decisions, symbol tracking, FEC, picture assembly, or decoder
@@ -278,25 +280,29 @@ reference bands. Snapshot powers are aggregated
 by median in linear units, then converted to dB. The measured levels are
 relative to the stored IQ scale. The 125 Hz search covers moderate drift; a
 larger shift, an in-band interferer, or a strong adjacent signal can bias the
-estimate. `decode_confidence` remains `null` and the quality status `partial`
-until stage 4.
+estimate. The stage 3 output left `decode_confidence` as `null` and the
+quality status `partial`; stage 4 now fills supported intervals.
 
 On the supplied 30-minute Mac capture, one, two, and four snapshots per second
 each produced 1,800 output points in 0.64, 0.66, and 1.33 seconds of analysis
 wall time respectively. CPU times were 0.36, 0.54, and 1.03 seconds; logical
 IQ reads were 59, 118, and 236 MB. Peak process RSS was approximately 187,
 276, and 283 MB, including the loaded diagnostic reference and mapped input.
+At the four-snapshot default, 7,200 windows of 4,096 CF32 samples request
+235,929,600 logical IQ bytes, roughly one additional read of the 230.4 MB
+capture by volume. Adjacent windows overlap slightly. This is a separate
+read-only analysis pass, not another MFSK decode.
 The one-snapshot result resolved signal in 1,690 seconds and noise in all
 1,800; four snapshots resolved signal in 1,691 seconds. Among seconds where
 both produced a signal value, the median absolute difference was 0.335 dB;
 the noise median difference was 0.595 dB, with larger differences near
 transitions. Four snapshots per second is the v1 default: its windows cover
 nearly the whole second, while the measured incremental CPU cost remains about
-one second for the full capture. Fewer snapshots remain available if Pi cost
-measurements later justify trading within-second coverage for lower I/O.
-The Pi cost comparison remains open because this workspace has no configured
-Pi target. These figures measure the additional analysis pass, not a full
-decoder rerun.
+one second for the full capture. Fewer snapshots remain available if a
+resource-constrained consumer later justifies trading within-second coverage
+for lower I/O. These figures measure the additional analysis pass, not a full
+decoder rerun. A target Pi check is useful for the first appliance integration,
+but is not a library release gate.
 
 ## Compatible API and CLI evolution
 
@@ -358,10 +364,18 @@ to reproduce a byte-identical development manifest.
    High reception with low decode confidence must remain representable.
 5. **Integrate and close.** Add the new API and CLI paths without duplicate
    decoding; validate both JSON schemas, failure publication, artifact links,
-   and cross-file identity. Run one full-broadcast acceptance on the supplied
-   matched capture. Measure total runtime, memory, and I/O against the saved
-   baseline, with a representative Pi subset for target cost; expand Pi testing
-   if margins are narrow or the quality pass is fused into the decoder stream.
+   and cross-file identity. Run the legacy `decode_iq` output path once and
+   the new product path once on the supplied full capture, sequentially on
+   the same development machine with the same decoder version, configuration,
+   and artifact settings. The product run is the full-broadcast acceptance;
+   the legacy run is its performance baseline. Compare total and per-stage
+   wall/CPU time, peak RSS, bytes read/written, and output sizes, reporting
+   both absolute and percentage changes. The saved
+   ARM64 timing remains historical context only. An optional representative Pi
+   check can inform the first appliance deployment when a target is available;
+   it is not required for the generic library or PyPI release. If that check
+   reveals a resource problem, investigate the affected path before appliance
+   deployment.
    After acceptance, update `README.md`,
    `docs/decoder/{api,cli,design,contracts,validation,production-baseline}.md`
    as applicable, add a concise closeout, and move this active plan to
@@ -378,25 +392,53 @@ change, at least one image and return to text, the closing mode change, and a
 weak or drifting interval. Reuse the canonical full IQ through case intervals;
 do not materialize or preserve cut recordings.
 
-At integrated acceptance, decode the newly supplied complete 30-minute
-broadcast **once per candidate release**, rather than after each stage. Check
+At integrated acceptance, decode the supplied complete 30-minute broadcast
+**once per candidate release** with the product path, after one same-machine
+legacy baseline run. Check
 that its text and nine picture outputs, mode order, status, and warnings do
 not regress against the pinned decoder reference; check that both new files
 share identity, contain 1,800 aligned quality points, omit the legacy file
 by default, and represent picture and no-lock intervals honestly. Compare the
-new run's decode, quality-pass,
-serialization, and total wall time, CPU, peak RSS, and I/O with the baseline
-on the same machine. This full run is a compatibility and integration gate;
+new run's decode, quality pass, serialization, and total wall time, CPU, peak
+RSS, and I/O with that legacy baseline. This product run is a compatibility
+and integration gate;
 the saved appliance decode is not independent truth and cannot by itself
 validate SNR calibration or true character accuracy.
 
-Run the existing relevant test suite before acceptance. The target Pi needs
-representative text, image, and weak-signal intervals plus measured overhead,
-because the new IQ pass changes I/O and resource use. A full Pi broadcast or
-broader corpus rerun is required only if those measurements leave target
-feasibility uncertain, if decoder-internal spectral processing is changed, or
-if a correctness concern appears. Any later refactor that shares spectra with
-acquisition must requalify the affected decoder path instead of relying solely
-on these output-focused tests.
+Run the existing relevant test suite before acceptance. The new IQ pass makes
+bounded, read-only accesses and does not change decoder decisions. Existing
+Pi 3 evidence establishes that the decoder runs on the target architecture;
+stage 5 needs no Pi-specific correctness gate. A short Pi cost check is
+optional for the first appliance consumer because its storage and memory are
+more constrained than the development machine. Any later refactor that shares
+spectra with acquisition must requalify the affected decoder path instead of
+relying solely on these output-focused tests.
 
-No commit is part of this planning and fixture-promotion session.
+## Closeout
+
+Stages 1–4 were committed separately. Stage 5 added `decode_iq_products`,
+two compact CLI output paths, opt-in diagnostic assembly, and schema-aware
+atomic publication without changing the MFSK decode algorithms. The paired
+Mac runs on the canonical 1,800-second capture took 133.19 seconds for the
+legacy diagnostic path and 134.05 seconds for compact products. Compact JSON
+was 131,215 bytes against 16,073,902 bytes for the diagnostic JSON. All
+18 artifact hashes matched; three mode intervals, nine linked pictures, 35
+text items, shared identity, and 1,800 aligned quality rows were verified.
+Signal, noise, and confidence were available for 1,691, 1,800, and 1,621
+seconds respectively. The full suite passed 169 tests with six skips.
+A short real-capture invocation requesting all three files published matching
+partial documents with a shared run ID and 20 quality rows from one decode.
+
+The compact path adds 235,929,600 logical IQ bytes read for sparse spectral
+measurement. The paired wall-time difference was +0.86 seconds (+0.6%),
+while published bytes including artifacts fell by 69.2%. Maximum RSS rose
+from 398.2 MB to 556.2 MB on macOS; its separate peak memory-footprint
+figure fell from 274.6 MB to 253.7 MB. This is a resource observation for
+appliance qualification, not a change in decode correctness. The shared
+decode stages have the same implementation in both paths; the compact-only
+contract omits development timing diagnostics, so independent per-stage
+candidate timings were not recorded in the product file. The stage 3 isolated
+spectral-pass benchmark measured 1.33 seconds wall and 1.03 seconds CPU at
+the selected four snapshots per second. The paired whole-command timing is
+the relevant production-path cost. No Pi test was required for generic
+library acceptance; appliance-specific cost can be checked before deployment.
