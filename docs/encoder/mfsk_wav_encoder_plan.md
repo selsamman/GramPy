@@ -391,6 +391,7 @@ silently become public behavior.
 | D-011 | Each independently framed MFSK segment starts its oscillator at phase zero, emits the first sample at that phase, preserves phase across every sample and symbol boundary in the segment, and discards oscillator state after the final sample. Each symbol occupies exactly `samples_per_symbol * sample_rate_hz / 8000` frames. Phase and sample-boundary rules for audio and silence remain assigned to Session 6. | MFSK portion confirmed; composition remainder open | 3 and 6 |
 | D-012 | Pillow is a core runtime dependency because PNG transmission is mandatory in the version-one API. | Confirmed | 0 |
 | D-013 | Exact conventional whitespace surrounding the automatically generated picture announcement. | Open | 5 |
+| D-021 | PNG normalization retains exactly one decoded 8-bit `L` or `RGB` source raster. Grayscale and color component sequences are derived lazily from it, and isolated raster events are streamed one component at a time. | Confirmed | 4 |
 | D-014 | Version one uses the exact PNG, audio, sample-rate, classic-RIFF, and memory bounds in the Session 0 resource profile. | Confirmed | 0 |
 | D-015 | Validation precedes output replacement; output/input aliases are rejected; after writing begins, a reported failure removes the new output and does not restore replaced content. | Confirmed | 0 |
 | D-016 | Returned timestamp floats are derived from integer output-frame coordinates using the logical and audible boundaries defined in the Session 0 clarification. | Confirmed | 0 |

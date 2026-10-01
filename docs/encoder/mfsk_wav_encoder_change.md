@@ -1,10 +1,12 @@
 # Native MFSK WAV encoder active change record
 
 **Change ID:** `mfsk-wav-encoder-v1`  
-**Status:** active — Session 2 complete; closure checkpoint pending
+**Status:** active — Session 4 complete; closure checkpoint pending
 **Session 0 completed:** 2026-10-01  
 **Session 1 completed:** 2026-10-01
 **Session 2 completed:** 2026-10-01
+**Session 3 completed:** 2026-10-01
+**Session 4 completed:** 2026-10-01
 **Accepted production behavior changed:** no
 
 ## Request and boundary
@@ -390,3 +392,60 @@ Session 3 adds these candidate and evidence identities:
    composition decisions. This request stops at the Session 3 boundary; its
    closure checkpoint commit awaits explicit authorization under the
    repository contract.
+
+## Session 4 decision review
+
+Commit `0d71e82` (`Encoding session 3 complete`) satisfies the Session 4 entry
+condition. D-005 and D-012 already fix the input profile and required Pillow
+dependency, and D-010/D-011 fix the carrier span and output-rate arithmetic.
+No new public, wire-transition, or acceptance decision is needed for this
+isolated raster slice.
+
+| Decision | Session 4 outcome | Rationale |
+| --- | --- | --- |
+| D-005 / D-012 | Confirmed without amendment | Pillow decoded the exact mandatory 8-bit `L`/`RGB` PNG profile. `RGBA`, palette, non-PNG, transparency, and implicit conversion remain out of scope. |
+| D-021 | Confirmed | Retaining one decoded source raster while lazily deriving grayscale or per-row RGB planes keeps raster event generation bounded by one image and one event. |
+
+Session 4 adds these candidate and evidence identities:
+
+| Artifact | SHA-256 | Role |
+| --- | --- | --- |
+| `src/grampy/picture_encode.py` | `a5312c8cfd2b216b68e80ca7c3382f8310288b7e078c9397b965e3ce1a639bd8` | Exact PNG normalization and a streaming isolated analog-raster plan. |
+| `tests/test_mfsk_encode_session4.py` | `1ff97a266b551438d530e1d883969e46ffc7d0a4d75535caf98c4aca7d4b14d9` | Component-order, endpoint frequency, p8/p4/p2 timing, geometry, input-size, carrier-span, and RIFF-bound evidence. |
+
+## Session 4 closeout
+
+1. **Learned or changed:** a private picture component now admits only PNG
+   `L` and `RGB` rasters within the exact v1 disk-size and geometry limits. It
+   preserves an `L` source for grayscale or equal-RGB expansion, applies the
+   specified integer RGB-to-gray formula, and serializes RGB as red, green,
+   blue planes for each row. The plan emits one component event at a time with
+   the exact normal-sideband frequency and output-frame duration.
+2. **Evidence produced:** four focused Session 4 tests passed through the
+   managed Mac runner. They cover `L`/`RGB` normalization, row order, the
+   0/128/255 endpoint frequencies for both modes, p8/p4/p2 frame timings,
+   4095/4096 geometry, alpha rejection, 64-MiB input rejection, invalid
+   forms, carrier bounds, and an over-RIFF-limit raster plan. The managed full
+   suite passed **209 tests** in 98.583 seconds with **6 expected skips**.
+3. **Decisions:** D-021 was added and confirmed. D-005 and D-012 remain
+   unchanged. D-013 remains open and is deliberately not inferred from this
+   slice.
+4. **Unresolved risks and discarded approaches:** this module intentionally
+   does not generate the announcement, text flushes, 44-ms prologue, PCM, or
+   post-picture flush; all remain Session 5 work. Building a pixel-interleaved
+   color sequence, retaining three whole-image color planes, broad PNG
+   conversion, or emitting a full event list were rejected because they would
+   violate the wire order, v1 profile, or bounded-streaming aim. Pillow
+   packaging metadata remains assigned to Session 7.
+5. **Candidate state:** the isolated raster slice is locally vector-correct
+   and retained; the overall encoder remains investigative and is not yet a
+   public API candidate.
+6. **Session 5 entry condition:** create the authorized Session 4
+   candidate/evidence closure checkpoint. Then resolve D-013 before combining
+   the confirmed text state with the picture announcement, header flush,
+   44-ms low-endpoint prologue, raster, post-picture flush, and resumed text;
+   prove ordered content boundaries and phase continuity without expanding the
+   public composition API.
+7. **Fold recommendation:** keep Session 5 separate. Its announcement
+   whitespace and text-state reset/retention behavior are still important open
+   integration decisions, rather than mechanical use of the isolated raster.
