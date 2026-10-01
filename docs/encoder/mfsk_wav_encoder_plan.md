@@ -394,6 +394,8 @@ silently become public behavior.
 | D-014 | Version one uses the exact PNG, audio, sample-rate, classic-RIFF, and memory bounds in the Session 0 resource profile. | Confirmed | 0 |
 | D-015 | Validation precedes output replacement; output/input aliases are rejected; after writing begins, a reported failure removes the new output and does not restore replaced content. | Confirmed | 0 |
 | D-016 | Returned timestamp floats are derived from integer output-frame coordinates using the logical and audible boundaries defined in the Session 0 clarification. | Confirmed | 0 |
+| D-017 | The offline encoder oracle remains test-only and independent of production encoder modules. It binds the frozen vector, Varicode, fixture-evidence, and RGB-source hashes; exact candidate events outrank coupled GramPy round trips; and tone, timing, and RGB-order mutation rejection is mandatory. | Confirmed | 1 |
+| D-018 | Final interoperability uses the versioned 48-kHz Pi matrix and qualification-manifest schema under `docs/encoder/data/`, with explicit receiver-mode windows, complete artifact hashes, and discrepancy classification. The receiver remains `fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178`; no Pi run occurs in Session 1. | Confirmed | 1 and 8 |
 
 New important decisions are appended to this table. Rejected alternatives and
 their decisive evidence remain in the active change record so later sessions

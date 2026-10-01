@@ -1,0 +1,190 @@
+{
+  "schema": "grampy-mfsk-encoder-pi-matrix.v1",
+  "purpose": "Final independent fldigi receive qualification for the native MFSK WAV encoder",
+  "sample_rate_hz": 48000,
+  "receiver": {
+    "reference_id": "fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178",
+    "rsid_enabled": false,
+    "reverse_sideband": false,
+    "carrier_hz": 1500.0,
+    "note": "Each receive run selects its declared mode explicitly. Mixed-mode windows are replayed or selected independently because the encoder emits no RSID."
+  },
+  "source_inputs": {
+    "primary_rgb_png": {
+      "path": "tests/fixtures/mfsk/primary-color-8x4.png",
+      "sha256": "33e1986427384be02803fe5e8785f3068d17bbacaf6fb6f5b7f880cfea188ea2",
+      "width": 8,
+      "height": 4,
+      "rgb_pixel_sha256": "52334109d177d2ed03802ab1c206d4a717d1fe26bbd89d5a6ecde6116a5d3007",
+      "grayscale_pixel_sha256": "ca203f78b5a70b5307ce97d9761b98771b853182119ae6dab1c00cb795135554"
+    },
+    "binary_text_file": {
+      "recipe": "bytes: 52 47 2d 46 49 4c 45 0d 0a 4e 55 4c 3a 00 20 45 4e 44"
+    },
+    "audio_marker": {
+      "recipe": "mono PCM16 WAV at 48000 Hz containing frames [0, 8192, -8192, 16384, -16384, 0] repeated 8000 times"
+    }
+  },
+  "cases": [
+    {
+      "id": "mfsk32-text",
+      "purpose": "MFSK32 framing, printable byte text, raw text-file bytes, and return to EOT",
+      "composition": [
+        {
+          "kind": "mfsk",
+          "mode": "MFSK32",
+          "carrier_hz": 1500.0,
+          "contents": [
+            {"kind": "text", "id": "opening", "utf8": "S1 MFSK32 TEXT AaZz 09 .,!?/+-=: "},
+            {"kind": "text_file", "id": "raw-file", "source": "binary_text_file"},
+            {"kind": "text", "id": "closing", "utf8": " MFSK32 END"}
+          ]
+        }
+      ],
+      "receiver_runs": [{"mode": "MFSK32", "window": "full-output"}],
+      "required_checks": [
+        "wav-container-and-hash",
+        "encoder-result-coordinates",
+        "receiver-exit-success",
+        "decoded-printable-text-exact",
+        "decoded-control-byte-evidence-recorded",
+        "receiver-log-hash"
+      ]
+    },
+    {
+      "id": "mfsk64-text",
+      "purpose": "Independent MFSK64 framing and representative text recovery",
+      "composition": [
+        {
+          "kind": "mfsk",
+          "mode": "MFSK64",
+          "carrier_hz": 1500.0,
+          "contents": [
+            {"kind": "text", "id": "payload", "utf8": "S1 MFSK64 TEXT AaZz 09 .,!?/+-=: END"}
+          ]
+        }
+      ],
+      "receiver_runs": [{"mode": "MFSK64", "window": "full-output"}],
+      "required_checks": [
+        "wav-container-and-hash",
+        "encoder-result-coordinates",
+        "receiver-exit-success",
+        "decoded-printable-text-exact",
+        "receiver-log-hash"
+      ]
+    },
+    {
+      "id": "mfsk32-grayscale-speeds",
+      "purpose": "Grayscale picture reception at p8, p4, and p2 with text reacquisition after every raster",
+      "composition": [
+        {
+          "kind": "mfsk",
+          "mode": "MFSK32",
+          "carrier_hz": 1500.0,
+          "contents": [
+            {"kind": "text", "id": "before-p8", "utf8": "GRAY P8 BEGIN\n"},
+            {"kind": "image", "id": "gray-p8", "source": "primary_rgb_png", "color": "grayscale", "samples_per_pixel": 8},
+            {"kind": "text", "id": "after-p8", "role": "post-picture", "utf8": "\nGRAY P8 END P4 BEGIN\n"},
+            {"kind": "image", "id": "gray-p4", "source": "primary_rgb_png", "color": "grayscale", "samples_per_pixel": 4},
+            {"kind": "text", "id": "after-p4", "role": "post-picture", "utf8": "\nGRAY P4 END P2 BEGIN\n"},
+            {"kind": "image", "id": "gray-p2", "source": "primary_rgb_png", "color": "grayscale", "samples_per_pixel": 2},
+            {"kind": "text", "id": "after-p2", "role": "post-picture", "utf8": "\nGRAY P2 END"}
+          ]
+        }
+      ],
+      "receiver_runs": [{"mode": "MFSK32", "window": "full-output"}],
+      "required_checks": [
+        "all-picture-announcements-exact",
+        "three-images-produced",
+        "image-dimensions-exact",
+        "grayscale-pixels-exact-or-reviewed",
+        "post-picture-text-exact",
+        "receiver-log-and-image-hashes"
+      ]
+    },
+    {
+      "id": "mfsk64-color-speeds",
+      "purpose": "RGB picture reception at p8, p4, and p2 with text reacquisition after every raster",
+      "composition": [
+        {
+          "kind": "mfsk",
+          "mode": "MFSK64",
+          "carrier_hz": 1500.0,
+          "contents": [
+            {"kind": "text", "id": "before-p8", "utf8": "COLOR P8 BEGIN\n"},
+            {"kind": "image", "id": "color-p8", "source": "primary_rgb_png", "color": "color", "samples_per_pixel": 8},
+            {"kind": "text", "id": "after-p8", "role": "post-picture", "utf8": "\nCOLOR P8 END P4 BEGIN\n"},
+            {"kind": "image", "id": "color-p4", "source": "primary_rgb_png", "color": "color", "samples_per_pixel": 4},
+            {"kind": "text", "id": "after-p4", "role": "post-picture", "utf8": "\nCOLOR P4 END P2 BEGIN\n"},
+            {"kind": "image", "id": "color-p2", "source": "primary_rgb_png", "color": "color", "samples_per_pixel": 2},
+            {"kind": "text", "id": "after-p2", "role": "post-picture", "utf8": "\nCOLOR P2 END"}
+          ]
+        }
+      ],
+      "receiver_runs": [{"mode": "MFSK64", "window": "full-output"}],
+      "required_checks": [
+        "all-picture-announcements-exact",
+        "three-images-produced",
+        "image-dimensions-exact",
+        "rgb-pixels-exact-or-reviewed",
+        "post-picture-text-exact",
+        "receiver-log-and-image-hashes"
+      ]
+    },
+    {
+      "id": "mixed-composition-boundaries",
+      "purpose": "Top-level MFSK32, silence, copied audio, silence, and MFSK64 ordering with independent receiver-mode windows",
+      "composition": [
+        {
+          "kind": "mfsk",
+          "mode": "MFSK32",
+          "carrier_hz": 1400.0,
+          "contents": [{"kind": "text", "id": "mode32", "utf8": "MIXED MFSK32 END"}]
+        },
+        {"kind": "silence", "duration_seconds": 0.25},
+        {"kind": "audio", "source": "audio_marker"},
+        {"kind": "silence", "duration_seconds": 0.25},
+        {
+          "kind": "mfsk",
+          "mode": "MFSK64",
+          "carrier_hz": 1600.0,
+          "contents": [
+            {"kind": "text", "id": "before-image", "utf8": "MIXED MFSK64 IMAGE BEGIN\n"},
+            {"kind": "image", "id": "mixed-color-p8", "source": "primary_rgb_png", "color": "color", "samples_per_pixel": 8},
+            {"kind": "text", "id": "after-image", "role": "post-picture", "utf8": "\nMIXED MFSK64 END"}
+          ]
+        }
+      ],
+      "receiver_runs": [
+        {"mode": "MFSK32", "window": "segment:0"},
+        {"mode": "MFSK64", "window": "segment:4"}
+      ],
+      "required_checks": [
+        "wav-container-and-hash",
+        "all-top-level-and-content-coordinates-exact",
+        "silence-frames-zero",
+        "audio-marker-pcm-byte-exact",
+        "mfsk32-window-text-exact",
+        "mfsk64-window-text-and-image-recovered",
+        "receiver-log-and-image-hashes"
+      ]
+    }
+  ],
+  "artifact_policy": {
+    "manifest_schema": "docs/encoder/data/mfsk_encoder_pi_qualification_manifest_v1.schema.json",
+    "required_hash_algorithm": "sha256",
+    "retain": [
+      "matrix",
+      "encoder-distribution",
+      "source-inputs",
+      "generated-wavs",
+      "encoder-results",
+      "receiver-configuration",
+      "receiver-logs",
+      "recovered-text",
+      "recovered-images",
+      "qualification-manifest"
+    ],
+    "visual_review_rule": "Use candidate-set N-up review when exact pixels are unavailable or a plausible visual defect can escape exact checks."
+  }
+}

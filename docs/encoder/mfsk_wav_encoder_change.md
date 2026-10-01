@@ -1,8 +1,9 @@
 # Native MFSK WAV encoder active change record
 
 **Change ID:** `mfsk-wav-encoder-v1`  
-**Status:** active — definition complete; restore-point commit pending  
+**Status:** active — Session 1 evidence complete; closure checkpoint pending
 **Session 0 completed:** 2026-10-01  
+**Session 1 completed:** 2026-10-01
 **Accepted production behavior changed:** no
 
 ## Request and boundary
@@ -19,9 +20,10 @@ Session 0 only defines the contract and acceptance cases. It deliberately
 changes no production source, package metadata, tests, fixtures, or generated
 artifacts.
 
-Change Management v1 calls for a definition restore-point commit. Repository
-instructions prohibit creating a commit without an explicit request, so that
-checkpoint remains pending and is an entry condition for implementation work.
+Change Management v1 calls for a definition restore-point commit. Commit
+`f1901e225ffd158bdecba32435aa1c356d02db9d` (`Encoding session 0 complete`)
+satisfies that entry condition. Session 1 adds evidence infrastructure and no
+production encoder behavior.
 
 In scope and exclusions are the product requirements and explicit exclusions
 in the plan. In particular, v1 excludes RSID, reverse-sideband transmission,
@@ -62,16 +64,26 @@ The following checked-in evidence is available before implementation:
 | Pi execution entry point | `tools/pi-remote.sh`, SHA-256 `d1a4486667b846081854b60e4391bb05c2e66e804035001d2b57bef63c5ab07b`; it runs a checked-in reusable workflow or a one-off `.local/pi-command.sh` through managed execution |
 
 Large controlled WAV/SigMF artifacts are optional local evidence and are not
-part of Git. Session 1 must inventory them with the existing fixture tooling;
-missing artifacts are an evidence gap to fill, not a reason to regenerate and
+part of Git. Session 1 inventoried the default `.local/fldigi-fixtures` root:
+all four fixture sets were missing and none had a hash mismatch. Missing
+artifacts remain an evidence gap to fill, not a reason to regenerate and
 silently repin expected hashes.
 
 The current Pi scripts generate transmitter fixtures or exercise historical
 decoder paths. They do not constitute the encoder's final receive-
-qualification matrix. Session 1 must specify that matrix and its artifact
-manifest; before Session 8, a reusable checked-in `tools/pi-*.sh` workflow must
-run it through `tools/pi-remote.sh` and record the pinned receiver identity,
-configuration, input/output hashes, logs, recovered text, and images.
+qualification matrix. Session 1 specifies the matrix and artifact manifest in
+`docs/encoder/data/`; before Session 8, a reusable checked-in `tools/pi-*.sh`
+workflow must run it through `tools/pi-remote.sh` and record the pinned receiver
+identity, configuration, input/output hashes, logs, recovered text, and images.
+
+Session 1 adds these immutable evidence entry points for later encoder work:
+
+| Evidence | SHA-256 | Role |
+| --- | --- | --- |
+| `tests/mfsk_encoder_evidence.py` | `37608e70aea3f22686b2c2bc91169cc58eda764894fb6fb807bb288d03d3404d` | Encoder-independent oracle helpers |
+| `tests/test_mfsk_encoder_evidence.py` | `5b9a5015dc5a446ba937f2fb761505782164d1e8815ec1ad608df31b7f068d00` | Exact-vector, mutation, matrix, and schema tests |
+| `docs/encoder/data/mfsk_encoder_pi_matrix_v1.json` | `456e810bf93bbade1f0af055689366ff8aa1d2f8b31463af2a6786e396d3dfbb` | Final pinned-receiver case matrix |
+| `docs/encoder/data/mfsk_encoder_pi_qualification_manifest_v1.schema.json` | `0972037aa31c9e5caaa5137f4bffb634a820e1966bc45b3bc6225b80246dc66c` | Final run artifact and outcome contract |
 
 ## Session 0 decision review
 
@@ -187,3 +199,57 @@ requirement. Mac-only evidence is not sufficient for this change.
 7. **Fold recommendation:** keep Session 1 separate. Evidence availability is
    not yet established and the mutation-sensitive oracle requires independent
    reasoning; it is not plainly mechanical.
+
+## Session 1 decision review
+
+Session 1 required no change to the public API or wire profile. Its important
+decisions concern only evidence independence and final qualification:
+
+| Decision | Session 1 outcome | Rationale |
+| --- | --- | --- |
+| D-008 / D-017 | Confirmed as an encoder-independent, hash-bound test oracle with mandatory mutation rejection | A locally successful encoder or encoder-to-GramPy round trip could share a tone, timing, or raster-order error. The oracle therefore imports no encoder code and proves that representative defects fail. |
+| D-009 / D-018 | Confirmed as a versioned 48-kHz matrix and manifest schema for the pinned Pi receiver | A fixed case list, explicit mode windows, artifact hashes, receiver configuration, and discrepancy classes make Session 8 reproducible without running fldigi during Session 1. |
+
+The exact evidence convention and external procedure are documented in
+`mfsk_wav_encoder_evidence.md`. The matrix is
+`data/mfsk_encoder_pi_matrix_v1.json`, and its result contract is
+`data/mfsk_encoder_pi_qualification_manifest_v1.schema.json`.
+
+## Session 1 closeout
+
+1. **Learned or changed:** the frozen local evidence is sufficient to make
+   Varicode, FEC, interleaving, tone mapping, framing counts, picture tokens,
+   prologue timing, raster order, and pixel frequencies executable without an
+   encoder or live Pi. The correct transmitter Gray operation is the inverse
+   direction of the published tone-to-label table; the all-16 oracle now locks
+   that orientation. All four optional large controlled fixture sets are
+   absent locally, with no hash mismatch.
+2. **Evidence produced:** `tests/mfsk_encoder_evidence.py` and
+   `tests/test_mfsk_encoder_evidence.py`; the evidence guide above; the Pi
+   matrix and manifest schema under `docs/encoder/data/`; and a managed focused
+   run of 10 tests, all passing. The suite proves rejection of deliberate tone,
+   prologue/pixel timing, and pixel-interleaved RGB defects. Frozen reference-
+   WAV measurements remain checked against the existing evidence document.
+3. **Decisions:** D-017 and D-018 were added and confirmed. D-008 and D-009
+   retain their Session 0 meaning. No production or API decision changed.
+4. **Unresolved risks and discarded approaches:** the wire specification
+   remains a review draft; optional large WAV/SigMF artifacts are unavailable
+   on this Mac; and the reusable Pi qualification workflow must still be
+   implemented before Session 8. The Session 1 closure commit awaits explicit
+   authorization under the repository contract. Treating GramPy self-decode
+   as an acceptance oracle and allowing an encoder candidate to generate
+   expected values were rejected as coupled evidence. Pixel-interleaved RGB
+   was retained only as a negative mutation.
+5. **Candidate state:** still investigative. Session 1 changes evidence and
+   documentation only; there is no production encoder candidate to accept.
+6. **Session 2 entry condition:** first create the authorized Session 1
+   evidence/closure checkpoint commit. Then use the hash-bound Session 1 oracle
+   without importing it from production code; implement stateful byte-to-tone
+   behavior for MFSK32 and MFSK64; pass every applicable frozen vector,
+   all-16 Gray-map, chunk-equivalence, partial-group, and state-checkpoint test;
+   and leave WAV synthesis, public API construction, and Pi execution out of
+   scope.
+7. **Fold recommendation:** no separate evidence investigation blocks Session
+   2, so it may be folded into a subsequent authorized implementation session
+   after the closure checkpoint. This Session 1 request stops at the offline
+   harness boundary.

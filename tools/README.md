@@ -68,9 +68,12 @@ controlled fldigi-derived fixtures. Its default fixture root is
 `--fixture-root` to use another location. Missing optional artifacts are
 reported but fail only with `--require-all`; hash mismatches always fail.
 
-The `pi-*` scripts are retained fixture-generation helpers for maintainers who
-already have a compatible environment. They are not part of GramPy’s supported
-test or release process, and GramPy has no Pi acceptance-test requirement.
+The existing fixture-generation `pi-*` scripts are retained helpers for
+maintainers who already have a compatible environment. They are not the native
+encoder's final receive-qualification workflow. That workflow is defined by
+`docs/encoder/data/mfsk_encoder_pi_matrix_v1.json`, must be implemented as a
+reusable checked-in `tools/pi-*.sh` script before encoder Session 8, and must be
+invoked through `tools/pi-remote.sh`.
 
 ## Received-IQ corpus
 
