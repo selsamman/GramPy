@@ -315,3 +315,78 @@ Session 2 adds these candidate and evidence identities:
    purely mechanical mapping because signal level/envelope and phase-reset
    rules are open important decisions requiring the higher-reasoning Session
    3 checkpoint.
+
+## Session 3 decision review
+
+Commit `4836bec079226735256232e78eeee3eadedfa47f` (`Encoding session 2
+complete`) satisfies the Session 3 entry condition. The checked-in wire
+specification and independent vectors agree on the complete stable framing
+contract, so no early Pi exception is needed.
+
+| Decision | Session 3 outcome | Rationale |
+| --- | --- | --- |
+| D-010 | Confirmed with the fldigi 4.2.12 visible start profile, a 16,384 PCM peak, and a frame-neutral 10 ms raised-cosine attack/release | The 4.2.12 leading zeros are the current pinned transmitter behavior and the receiver must already tolerate their absence in older senders. Half-scale PCM leaves deterministic headroom. A short in-symbol envelope suppresses segment-boundary clicks without changing framing duration or shaping any internal symbol transition. |
+| D-011 | MFSK portion confirmed; audio/silence boundaries remain Session 6 work | A fresh zero-phase oscillator for each independently framed segment makes isolated output deterministic. Phase remains continuous across every tone transition within that segment, while the exact output-rate multiple makes every symbol boundary integral at all supported rates. |
+
+The non-transmitted all-zero state priming described by fldigi is wire-
+equivalent to the Session 2 encoder's zero-initialized convolutional and
+interleaver state. In particular, it must not leave a half-filled symbol
+accumulator before the visible leading zeros. The stable end contract is
+`CR`/`EOT`/`CR` followed by one input bit of value one and the mode-specific
+preamble count of zero bits; any final incomplete four-coded-bit group has no
+wire representation and is discarded when the independently framed segment
+ends.
+
+Session 3 adds these candidate and evidence identities:
+
+| Artifact | SHA-256 | Role |
+| --- | --- | --- |
+| `src/grampy/mfsk_encode.py` | `7378b93804fcb5e9e2ee3178f7e67c30273cf37bdaf005426a4deb93dbd1830a` | Framing planner/iterator, continuous-phase PCM synthesis, and canonical streaming WAV candidate |
+| `tests/test_mfsk_encode_session3.py` | `3ee570d50bf8f80c67ab881ca1243de63ac1e0630ea800f142c40f80f78d12ec` | Independent framing, timing, phase, PCM, envelope, streaming, cleanup, and coupled round-trip evidence |
+
+## Session 3 closeout
+
+1. **Learned or changed:** the stable fldigi-compatible text frame can be
+   synthesized without retaining a segment waveform or tone list. The
+   Session 2 stateful encoder now feeds a one-symbol-lookahead synthesizer;
+   that lookahead permits a release envelope on the final symbol while every
+   PCM write remains at most one symbol. The WAV header is written and patched
+   in place at the caller's exact path, with no temporary file.
+2. **Evidence produced:** 13 new tests cover both modes against an independent
+   complete-frame tone oracle, text-item and internal chunk invariance, exact
+   logical content coordinates, all 24 supported sample rates in both modes,
+   frequency span, integrated phase and a symbol-boundary PCM sample, exact
+   initial PCM quantization, fixed peak/envelope behavior, one-symbol-bounded
+   writes, canonical header and duration, validation-before-replacement,
+   post-open write-failure cleanup, and coupled GramPy recovery of both text
+   modes. The focused encoder/oracle/wire/decoder set passed 47 tests with one
+   optional-fixture skip. The managed complete suite passed 205 tests with six
+   skips for unavailable optional evidence. At the maximum supported rate the
+   largest synthesizer write is exactly 12,288 PCM bytes (one MFSK32 symbol),
+   independent of segment duration.
+3. **Decisions:** D-010 is confirmed. The MFSK portion of D-011 is confirmed;
+   phase behavior at audio and silence boundaries remains assigned to Session
+   6. No public API or image-transition decision changed.
+4. **Unresolved risks and discarded approaches:** pinned fldigi reception is
+   intentionally deferred to the versioned Session 8 matrix, and the optional
+   controlled WAV/SigMF fixtures remain absent on this Mac. Long-duration
+   throughput and peak-memory qualification remain Session 7 work. The public
+   composition API, image raster, picture transitions, copied audio, and
+   silence are not implemented by this private slice. Adding envelope-only
+   frames and resetting phase at internal symbols were rejected because both
+   would change confirmed timing or continuous-phase wire behavior.
+5. **Candidate state:** the Session 3 text-WAV slice is locally vector-correct
+   and retained. The overall encoder change remains investigative and the
+   private slice is not yet exported from `grampy.api`.
+6. **Session 4 entry condition:** first create the authorized Session 3
+   candidate/evidence closure commit. Then use the confirmed tone-span and
+   sample-rate rules to implement exact `L`/`RGB` PNG normalization and
+   isolated `p8`/`p4`/`p2` raster events, prove component order, frequencies,
+   geometry, duration, and rejection/resource boundaries, and leave picture
+   announcement whitespace and text-picture transitions for Session 5.
+7. **Fold recommendation:** Session 4 may fold into the next authorized
+   implementation session because image normalization and isolated raster
+   events do not depend on the still-open announcement or top-level
+   composition decisions. This request stops at the Session 3 boundary; its
+   closure checkpoint commit awaits explicit authorization under the
+   repository contract.
