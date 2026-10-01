@@ -99,6 +99,24 @@ class PictureRasterPlan:
             )
 
 
+def picture_control_token(picture: NormalizedPicture) -> bytes:
+    """Return the exact fldigi picture-control token for a normalized raster."""
+    if not isinstance(picture, NormalizedPicture):
+        raise TypeError("picture must be a NormalizedPicture")
+    color_marker = "C" if picture.color == "color" else ""
+    speed_marker = (
+        "" if picture.samples_per_pixel == 8 else f"p{picture.samples_per_pixel}"
+    )
+    return (
+        f"Pic:{picture.width}x{picture.height}{color_marker}{speed_marker};"
+    ).encode("ascii")
+
+
+def picture_announcement(picture: NormalizedPicture) -> bytes:
+    """Return fldigi's conventional line-feed-prefixed announcement."""
+    return b"\nSending " + picture_control_token(picture)
+
+
 def normalize_png(
     path: Path,
     *,
@@ -184,5 +202,7 @@ __all__ = [
     "PictureRasterPlan",
     "RasterEvent",
     "normalize_png",
+    "picture_announcement",
+    "picture_control_token",
     "plan_picture_raster",
 ]

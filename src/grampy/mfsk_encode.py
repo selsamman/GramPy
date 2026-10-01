@@ -171,7 +171,12 @@ def iter_framed_text_tones(
 
 
 class ContinuousPhaseToneWriter:
-    """Convert physical MFSK tone indices to bounded, streaming PCM16 blocks."""
+    """Convert MFSK tones and picture frequencies to streaming PCM16 blocks.
+
+    One interval is retained so only the final interval receives the segment
+    release envelope.  Picture prologues and raster components use the same
+    oscillator as text tones, preserving phase across every internal boundary.
+    """
 
     def __init__(
         self,
@@ -195,9 +200,9 @@ class ContinuousPhaseToneWriter:
         )
         self._ramp_frames = int(round(ENVELOPE_SECONDS * sample_rate_hz))
         self._phase = 0.0
-        self._pending_tone: int | None = None
-        self._emitted_tones = 0
-        self._accepted_tones = 0
+        self._pending_interval: tuple[float, int] | None = None
+        self._emitted_frames = 0
+        self._accepted_frames = 0
         self._finished = False
 
     @property
@@ -206,11 +211,11 @@ class ContinuousPhaseToneWriter:
 
     @property
     def frame_count(self) -> int:
-        return self._emitted_tones * self._frames_per_symbol
+        return self._emitted_frames
 
     @property
     def accepted_frame_count(self) -> int:
-        return self._accepted_tones * self._frames_per_symbol
+        return self._accepted_frames
 
     def push_tones(self, tones: Iterable[int]) -> None:
         if self._finished:
@@ -222,39 +227,71 @@ class ContinuousPhaseToneWriter:
                 or not 0 <= tone < 16
             ):
                 raise ValueError("tone indices must be integers from zero through 15")
-            if self._pending_tone is not None:
-                self._emit_symbol(
-                    self._pending_tone,
-                    attack=self._emitted_tones == 0,
-                    release=False,
-                )
-            self._pending_tone = tone
-            self._accepted_tones += 1
+            self.push_frequency(
+                tone_frequency_hz(self._mode, self._carrier_hz, tone),
+                self._frames_per_symbol,
+            )
+
+    def push_frequency(self, frequency_hz: float, frame_count: int) -> None:
+        """Append one constant-frequency interval without resetting phase."""
+        if self._finished:
+            raise ValueError("cannot write frequencies after the synthesizer is finished")
+        if (
+            isinstance(frequency_hz, bool)
+            or not isinstance(frequency_hz, (int, float))
+            or not math.isfinite(float(frequency_hz))
+            or not 0.0 < float(frequency_hz) < self._sample_rate_hz / 2.0
+        ):
+            raise ValueError("frequency must lie strictly within Nyquist")
+        if (
+            isinstance(frame_count, bool)
+            or not isinstance(frame_count, int)
+            or frame_count <= 0
+        ):
+            raise ValueError("frequency interval frame count must be a positive integer")
+        if self._pending_interval is not None:
+            pending_frequency, pending_frames = self._pending_interval
+            self._emit_interval(
+                pending_frequency,
+                pending_frames,
+                attack=self._emitted_frames == 0,
+                release=False,
+            )
+        self._pending_interval = (float(frequency_hz), frame_count)
+        self._accepted_frames += frame_count
 
     def finish(self) -> None:
         if self._finished:
             return
-        if self._pending_tone is None:
-            raise ValueError("a framed MFSK segment must emit at least one tone")
-        self._emit_symbol(
-            self._pending_tone,
-            attack=self._emitted_tones == 0,
+        if self._pending_interval is None:
+            raise ValueError("a framed MFSK segment must emit at least one interval")
+        pending_frequency, pending_frames = self._pending_interval
+        self._emit_interval(
+            pending_frequency,
+            pending_frames,
+            attack=self._emitted_frames == 0,
             release=True,
         )
-        self._pending_tone = None
+        self._pending_interval = None
         self._finished = True
 
-    def _emit_symbol(self, tone: int, *, attack: bool, release: bool) -> None:
-        frequency = tone_frequency_hz(self._mode, self._carrier_hz, tone)
+    def _emit_interval(
+        self,
+        frequency: float,
+        frame_count: int,
+        *,
+        attack: bool,
+        release: bool,
+    ) -> None:
         phase_step = _TWO_PI * frequency / self._sample_rate_hz
         samples = array("h")
-        for index in range(self._frames_per_symbol):
+        for index in range(frame_count):
             gain = 1.0
             if attack and index < self._ramp_frames:
                 gain *= _raised_cosine_gain(index, self._ramp_frames)
-            if release and index >= self._frames_per_symbol - self._ramp_frames:
+            if release and index >= frame_count - self._ramp_frames:
                 gain *= _raised_cosine_gain(
-                    self._frames_per_symbol - 1 - index,
+                    frame_count - 1 - index,
                     self._ramp_frames,
                 )
             samples.append(int(round(GENERATED_PCM_PEAK * gain * math.sin(self._phase))))
@@ -262,7 +299,7 @@ class ContinuousPhaseToneWriter:
         if sys.byteorder != "little":
             samples.byteswap()
         self._sink.write(samples.tobytes())
-        self._emitted_tones += 1
+        self._emitted_frames += frame_count
 
 
 def _raised_cosine_gain(index: int, frame_count: int) -> float:
