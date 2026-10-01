@@ -84,13 +84,13 @@ Pictures have two storage forms:
     quality.manifest.json
     text.manifest.artifacts/
       raster-0001.png
-      component-evidence-0001.npz
   ```
 
-  The diagnostic manifest’s `artifacts` list records each PNG or NumPy `.npz` evidence
-  file by stable ID, relative path, SHA-256, size, and relevant shape/type
-  information. The `.npz` file is diagnostic component evidence; the PNG is
-  the rendered decoded raster.
+  The PNG is the rendered decoded raster. During decoding, GramPy also writes
+  a NumPy `.npz` file of component evidence to calculate image quality.
+  Compact-only output removes that file after quality is calculated. When
+  `--out-manifest` is requested, the `.npz` files remain and the diagnostic
+  manifest lists them with stable IDs, paths, hashes, sizes, and shapes.
 
 If no large picture is decoded, the artifact directory may not be created. No
 persistent IQ intermediates are written.

@@ -69,6 +69,8 @@ def decode_iq_products(
 
     ``artifact_root`` resolves paths recorded in picture artifacts for the
     confidence estimator. Supply it when artifact paths use a custom prefix.
+    Large-picture component evidence is removed after quality calculation
+    unless ``include_diagnostic_manifest`` is true; PNGs are retained.
     """
     if artifact_root is None:
         if artifact_dir is None:

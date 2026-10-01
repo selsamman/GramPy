@@ -37,6 +37,9 @@ When a custom artifact path prefix does not directly mirror `artifact_dir`,
 pass `artifact_root` as the directory from which recorded artifact paths
 resolve. This lets the confidence estimator read picture component evidence.
 The caller serializes returned documents if needed.
+For compact-only output, large-image component evidence is used during the
+quality calculation and then removed; the display PNGs remain. Requesting the
+diagnostic manifest retains that evidence and its artifact references.
 
 The original `decode_iq` interface remains supported for diagnostic use:
 

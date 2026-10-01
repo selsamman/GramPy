@@ -79,3 +79,12 @@ decreased. These memory
 measures are platform-specific and should be checked for the appliance before
 deployment. The historical 2,771-second Linux ARM64 run is not a paired
 performance comparator.
+
+On 2026-09-25, compact-only output was further reduced by removing component
+evidence `.npz` files after the image-quality calculation. Diagnostic output
+retains them. For the accepted nine-picture capture, the prior compact run's
+artifacts comprised 6,216,123 bytes of component evidence and 760,694 bytes
+of PNGs. With the same manifests, compact-only published size would be
+891,909 bytes instead of 7,108,032 bytes. The paired runtime and memory
+figures above precede this retention change; the decoder and quality
+calculations are unchanged.

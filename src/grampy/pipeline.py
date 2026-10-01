@@ -381,6 +381,10 @@ def run_reference_pipeline(
             reception, source, text_product,
             artifact_root=_artifact_root or artifact_dir or meta_path.parent,
         )
+        if not _include_diagnostic_manifest and artifact_dir is not None:
+            _remove_transient_component_evidence(
+                artifact_dir, source["artifacts"]
+            )
         products = {
             "text_manifest": text_product,
             "quality_manifest": quality_product,
@@ -571,6 +575,15 @@ def run_reference_pipeline(
         products["diagnostic_manifest"] = manifest
         return products
     return manifest
+
+
+def _remove_transient_component_evidence(
+    artifact_dir: Path, artifacts: list[dict[str, Any]]
+) -> None:
+    """Keep display rasters after compact quality has consumed picture evidence."""
+    for artifact in artifacts:
+        if artifact["kind"] == "npz_component_evidence":
+            (artifact_dir / Path(artifact["path"]).name).unlink(missing_ok=True)
 
 
 def _decode_automatic_text(
