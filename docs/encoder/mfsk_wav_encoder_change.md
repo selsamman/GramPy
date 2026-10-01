@@ -1,9 +1,10 @@
 # Native MFSK WAV encoder active change record
 
 **Change ID:** `mfsk-wav-encoder-v1`  
-**Status:** active — Session 1 evidence complete; closure checkpoint pending
+**Status:** active — Session 2 complete; closure checkpoint pending
 **Session 0 completed:** 2026-10-01  
 **Session 1 completed:** 2026-10-01
+**Session 2 completed:** 2026-10-01
 **Accepted production behavior changed:** no
 
 ## Request and boundary
@@ -253,3 +254,64 @@ The exact evidence convention and external procedure are documented in
    2, so it may be folded into a subsequent authorized implementation session
    after the closure checkpoint. This Session 1 request stops at the offline
    harness boundary.
+
+## Session 2 decision review
+
+Commit `45b41dbd0720a18cdc78c7aec8af546795e4ddfd` (`Encoding session 1
+complete`) satisfies the Session 2 entry condition. No evidence contradiction
+requires a new investigation or early Pi work.
+
+| Decision | Session 2 outcome | Rationale |
+| --- | --- | --- |
+| D-019 | Confirmed | The wire contract is a continuous Varicode/FEC/interleaver stream. Preserving state across chunks and caller text items, retaining a half-filled coded group, and avoiding implicit flush are required for chunk invariance and later text-picture transitions. D-003 already requires a fresh state for each independently framed segment. |
+| D-020 | Confirmed | A complete immutable checkpoint makes chunk and restore equivalence testable without exposing a public persistence format. Thirty raw groups are the fixed history needed by the 0/10/20/30-group fldigi transmit delays. |
+
+Session 2 remains below WAV synthesis and the public API. It fixes the logical
+tone stream and mode parameters only; start/end framing, signal level,
+envelope, phase, and sample boundaries remain assigned to Session 3.
+
+Session 2 adds these candidate and evidence identities:
+
+| Artifact | SHA-256 | Role |
+| --- | --- | --- |
+| `src/grampy/text_encode.py` | `a815c65ea303b789a3a058caa957da6d2b2f7ae84545dfe1640777704af6bed2` | Stateful byte/bit-to-physical-tone candidate and mode parameters |
+| `tests/test_mfsk_encode_session2.py` | `bb765e64f56d353c1ab4c3328fe20f8a37b5f89903abb7b85755848a3b00df9c` | Exact vectors, chunking, partial-group, checkpoint, validation, and bounded-history evidence |
+
+## Session 2 closeout
+
+1. **Learned or changed:** a small NumPy-free component now maps authoritative
+   bytes through the packaged 256-octet Varicode, rate-1/2 K=7 convolutional
+   code, fldigi transmit-oriented 0/10/20/30-group interleaver, packed binary
+   labels, and physical-tone mapping. MFSK32 and MFSK64 correctly share the
+   logical tone sequence while exposing their distinct confirmed timing and
+   bandwidth parameters.
+2. **Evidence produced:** 13 new tests cover every Varicode octet, every frozen
+   FEC vector, the complete short text-to-tone vector, all 16 tone labels,
+   steady-state interleaving over all octets, every two-way byte split and
+   representative repeated chunk sizes, repeated checkpoint restore, exact
+   partial-group retention, malformed-state rejection, mode behavior, and a
+   long-input 30-group memory bound. The focused encoder/oracle/wire/decoder
+   set passed 42 tests. The managed full suite passed 192 tests with 6 skips
+   for unavailable optional evidence.
+3. **Decisions:** D-019 and D-020 were added and confirmed. No public API,
+   framing, waveform, phase, or filesystem decision changed.
+4. **Unresolved risks and discarded approaches:** D-010 and D-011 still block
+   waveform work. Start/end framing, signal level, envelope, phase, sample
+   rounding, and WAV output remain unimplemented. Reusing the decoder-oriented
+   `StatefulPictureFlushEncoder` was rejected for this slice because it would
+   couple the production encoder to diagnostic picture-flush semantics and
+   NumPy-bearing decoder infrastructure; exact shared vectors instead guard
+   the separate lightweight implementation. No Pi work was needed.
+5. **Candidate state:** the Session 2 vertical slice is locally vector-correct
+   and retained, while the overall encoder change remains investigative and
+   changes no accepted production API behavior.
+6. **Session 3 entry condition:** first create the authorized Session 2
+   candidate/evidence closure commit. Then resolve and record D-010 and the
+   MFSK portion of D-011 before implementing framing or PCM; use this stateful
+   encoder for start, payload, termination, and flush; prove continuous phase,
+   exact frames/frequencies/PCM, streaming WAV behavior, and a clearly labeled
+   coupled GramPy round trip.
+7. **Fold recommendation:** keep Session 3 separate. Synthesis is not yet a
+   purely mechanical mapping because signal level/envelope and phase-reset
+   rules are open important decisions requiring the higher-reasoning Session
+   3 checkpoint.

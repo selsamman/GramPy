@@ -396,6 +396,8 @@ silently become public behavior.
 | D-016 | Returned timestamp floats are derived from integer output-frame coordinates using the logical and audible boundaries defined in the Session 0 clarification. | Confirmed | 0 |
 | D-017 | The offline encoder oracle remains test-only and independent of production encoder modules. It binds the frozen vector, Varicode, fixture-evidence, and RGB-source hashes; exact candidate events outrank coupled GramPy round trips; and tone, timing, and RGB-order mutation rejection is mandatory. | Confirmed | 1 |
 | D-018 | Final interoperability uses the versioned 48-kHz Pi matrix and qualification-manifest schema under `docs/encoder/data/`, with explicit receiver-mode windows, complete artifact hashes, and discrepancy classification. The receiver remains `fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178`; no Pi run occurs in Session 1. | Confirmed | 1 and 8 |
+| D-019 | Each `MfskSegment` uses one zero-initialized stateful text-to-tone encoder. Varicode/FEC/interleaver state persists across byte chunks and caller text-item boundaries; only complete four-coded-bit groups emit tones; the remaining zero or two coded bits stay pending; and byte pushes never add framing or flush implicitly. Independently framed segments start new state. | Confirmed | 2 |
+| D-020 | The private Session 2 checkpoint is an immutable in-memory snapshot of mode, convolutional state, pending coded bits, the bounded 30-group interleaver history, and exact input/output counters. Restore must be bit-exact, but the checkpoint is neither public API nor a stable serialized format. | Confirmed | 2 |
 
 New important decisions are appended to this table. Rejected alternatives and
 their decisive evidence remain in the active change record so later sessions
