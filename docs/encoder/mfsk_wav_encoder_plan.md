@@ -17,6 +17,9 @@ bounded work packets, not acceptance boundaries. At each closeout, decide
 whether the next session still needs an independent reasoning context or has
 become mechanical enough to fold into the current session.
 
+The active definition, evidence baseline, acceptance cases, and session
+closeouts are maintained in `docs/encoder/mfsk_wav_encoder_change.md`.
+
 ## Product requirements
 
 ### Functional requirements
@@ -222,6 +225,91 @@ output. It neither selects a working directory nor relocates inputs or output.
 This leaves storage, staging, cleanup, and hosting policy entirely to the API
 consumer.
 
+### Session 0 contract clarifications
+
+Session 0 confirmed the public names, types, field order, defaults, and
+function signature above without change. The following clarifications are
+part of the version-one contract; they close ambiguities found during the
+baseline review rather than add encoder features.
+
+- The encoder snapshots the two caller-supplied `Sequence` objects at entry so
+  later mutation cannot change the active composition. The dataclasses remain
+  shallowly frozen; callers are responsible for not mutating referenced file
+  contents during a call.
+- Predictable validation is a preflight operation. An existing output is not
+  touched when preflight reports an invalid value, incompatible input,
+  unavailable input, output/input alias, or RIFF-size overflow. Once preflight
+  succeeds and output writing begins, the exact output path is truncated or
+  created. A subsequently reported failure removes that new path and does not
+  restore a replaced file. If the removal operation itself fails for an
+  external filesystem reason, its `OSError` is raised from the original
+  failure and the residual path is reported; this is the sole reported-failure
+  case in which path removal cannot be guaranteed.
+- `output_path` must not identify the same filesystem object as any
+  `TextFilePart`, `ImagePart`, or `AudioPart`, including through a symlink or
+  hard link. This is rejected during preflight so opening the output cannot
+  destroy an input.
+- Empty `TextPart.data` and empty `TextFilePart` files are valid. They add no
+  payload bytes but retain their logical content boundary. `AudioPart` must
+  contain at least one complete audio frame. `SilencePart.duration_seconds`
+  must be finite and strictly positive, and its product with the output sample
+  rate must be an integer frame count. Numeric booleans are not accepted.
+- Modes, colors, and speeds accept only the literal values in the API.
+  `carrier_hz` must be finite, and the complete sixteen-tone span must be
+  strictly above 0 Hz and strictly below Nyquist. This also bounds all picture
+  frequencies.
+- A text or text-file content timestamp is the output-frame coordinate at
+  which its first octet is offered to the stateful text encoder. It is a
+  logical boundary: adjacent empty items may share a timestamp, and encoder or
+  interleaver history means it need not identify a uniquely attributable PCM
+  sample. An image timestamp retains the already specified, audible boundary
+  at the start of its generated announcement. An MFSK top-level timestamp is
+  the first frame of that segment's start framing; audio and silence timestamps
+  are their first copied or zero frame. The output duration is the final frame
+  count divided by the sample rate. All returned seconds are computed once
+  from these integer frame coordinates.
+- `TextPart.from_text` retains normal strict `str.encode` errors, including
+  `LookupError` for an unknown codec and `UnicodeEncodeError` for an
+  unrepresentable character. Invalid encoder configuration or content is
+  otherwise reported as `ValueError`; filesystem failures remain `OSError`
+  subclasses.
+
+### Session 0 supported forms and resource limits
+
+Version one uses these exact input and container bounds:
+
+- A PNG must decode as 8-bit `L` or 8-bit `RGB`, have no alpha or `tRNS`
+  transparency, be at most 64 MiB on disk, and have width and height each in
+  the inclusive range 1 through 4095. Palette, packed-bilevel, 16-bit,
+  floating-point, and other PNG modes are rejected rather than silently
+  converted. Gamma, ICC, and other editorial metadata do not transform sample
+  values. For color output, `L` expands to equal RGB components. For grayscale
+  output, `L` is unchanged and `RGB` becomes
+  `(31 * R + 61 * G + 8 * B) // 100`.
+- Pillow is a core runtime dependency of the distribution. PNG support is a
+  required version-one capability, so an optional encoder extra would make
+  the base public API only conditionally functional.
+- An audio input must be a classic RIFF/WAVE file with format tag 1 (integer
+  PCM), one channel, 16 bits per sample, the configured sample rate, at least
+  one complete frame, and no truncated declared audio data. RF64,
+  WAVE_FORMAT_EXTENSIBLE, compressed WAV, and malformed or partial frames are
+  rejected. PCM frame bytes are copied unchanged; ancillary chunks are not.
+- `sample_rate_hz` is an integer multiple of 8000 in the inclusive range 8000
+  through 192,000. This is an explicit operational and resource ceiling, not
+  merely the much larger arithmetic limit of a RIFF header. Final
+  qualification uses 48,000 Hz.
+- Output is classic 44-byte-header RIFF/WAVE PCM, not RF64. Its data chunk is
+  limited to 4,294,967,258 bytes, or 2,147,483,629 mono frames, so the RIFF
+  chunk size remains representable. Preflight rejects any composition whose
+  exact predicted frame count exceeds that limit.
+- There is no additional fixed byte limit for text, text files, audio, or the
+  number of caller-supplied parts. Their aggregate encoded duration is bounded
+  by the output-frame ceiling. Encoder working memory must be fixed-size for
+  generated text, audio copying, and silence, plus one decoded image and the
+  returned timestamp records. It may therefore scale with the largest allowed
+  image and the number of caller-supplied items, but not with total WAV
+  duration or audio/text-file length.
+
 ## Initial component design
 
 This is the initial component boundary, not a complete design:
@@ -290,19 +378,22 @@ silently become public behavior.
 
 | ID | Decision | Status | Session responsible |
 | --- | --- | --- | --- |
-| D-001 | The version-one public API and filesystem semantics are those specified above. | Proposed for confirmation | 0 |
-| D-002 | One output may compose independent MFSK32/MFSK64 segments, compatible audio WAVs, and explicit silence. | Proposed for confirmation | 0 |
-| D-003 | Mode changes use independently framed `MfskSegment` objects; no implicit RSID or seamless modem switch is emitted. | Proposed for confirmation | 0 |
-| D-004 | Byte input is authoritative; string conversion is explicit strict encoding and file text is read as raw bytes. | Proposed for confirmation | 0 |
-| D-005 | PNG paths are the version-one image input; alpha is rejected and no resizing occurs. | Proposed for confirmation | 0 |
-| D-006 | Existing audio must already be mono signed 16-bit PCM at the output rate; GramPy performs no v1 audio conversion. | Proposed for confirmation | 0 |
-| D-007 | GramPy uses only caller-supplied local input and output paths and makes no storage or platform directory choices. | Proposed for confirmation | 0 |
-| D-008 | Routine development uses independent vectors and frozen fixture evidence; GramPy decode is a smoke test, not independent acceptance. | Proposed for confirmation | 0–1 |
-| D-009 | Pinned fldigi reception is consolidated into final Pi qualification, with an earlier targeted Pi experiment only when a contradiction threatens the design. | Proposed for confirmation | 0–1 |
+| D-001 | The version-one public API and filesystem semantics are those specified above, including the Session 0 preflight, alias, failure, and timestamp clarifications. | Confirmed with explicit clarifications | 0 |
+| D-002 | One output may compose independent MFSK32/MFSK64 segments, compatible audio WAVs, and explicit silence. | Confirmed | 0 |
+| D-003 | Mode changes use independently framed `MfskSegment` objects; no implicit RSID or seamless modem switch is emitted. | Confirmed | 0 |
+| D-004 | Byte input is authoritative; string conversion is explicit strict encoding and file text is read as raw bytes. Empty byte items are permitted and normal strict codec errors are retained. | Confirmed with explicit clarifications | 0 |
+| D-005 | PNG paths are the version-one image input; only the Session 0 `L`/`RGB` profile is accepted, alpha is rejected, and no resizing occurs. | Confirmed with narrowed input profile | 0 |
+| D-006 | Existing audio must satisfy the Session 0 classic PCM profile at the output rate; GramPy performs no v1 audio conversion. | Confirmed with exact container profile | 0 |
+| D-007 | GramPy uses only caller-supplied local input and output paths and makes no storage or platform directory choices. Output aliases of inputs are rejected. | Confirmed with safety clarification | 0 |
+| D-008 | Routine development uses the checked-in independent vectors and frozen fixture evidence; GramPy decode is a smoke test, not independent acceptance. Session 1 must prove mutation sensitivity before the harness becomes an oracle. | Confirmed; harness coverage remains Session 1 work | 0–1 |
+| D-009 | Pinned fldigi reception is consolidated into final Pi qualification, using qualified reference `fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178`; an earlier targeted Pi experiment occurs only when a contradiction threatens the design. Controlled transmitter fixtures remain pinned separately to fldigi 4.2.12. | Confirmed with exact reference identity | 0–1 |
 | D-010 | Exact fldigi start-framing profile, fixed generated-PCM signal level, and start/stop envelope. | Open | 3 |
 | D-011 | Phase reset and sample-boundary rules between top-level composition parts. | Open | 3 and 6 |
-| D-012 | Pillow is supplied as an encoder package extra or becomes a core dependency. | Open | 0 |
+| D-012 | Pillow is a core runtime dependency because PNG transmission is mandatory in the version-one API. | Confirmed | 0 |
 | D-013 | Exact conventional whitespace surrounding the automatically generated picture announcement. | Open | 5 |
+| D-014 | Version one uses the exact PNG, audio, sample-rate, classic-RIFF, and memory bounds in the Session 0 resource profile. | Confirmed | 0 |
+| D-015 | Validation precedes output replacement; output/input aliases are rejected; after writing begins, a reported failure removes the new output and does not restore replaced content. | Confirmed | 0 |
+| D-016 | Returned timestamp floats are derived from integer output-frame coordinates using the logical and audible boundaries defined in the Session 0 clarification. | Confirmed | 0 |
 
 New important decisions are appended to this table. Rejected alternatives and
 their decisive evidence remain in the active change record so later sessions
