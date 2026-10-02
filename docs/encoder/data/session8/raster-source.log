@@ -1,0 +1,162 @@
+	if (picW == 0 || picH == 0 || picW > 4095 || picH > 4095)
+		return false;
+	return true;
+}
+
+void mfsk::recvpic(cmplx z)
+{
+	int byte;
+	picf += arg( conj(prevz) * z) * samplerate / TWOPI;
+	prevz = z;
+
+	if ((counter % RXspp) == 0) {
+		picf = 256 * (picf / RXspp - basefreq) / bandwidth;
+		byte = (int)CLAMP(picf, 0.0, 255.0);
+		if (reverse)
+			byte = 255 - byte;
+
+		if (color) {
+			pixelnbr = rgb + row + 3*col;
+			REQ(updateRxPic, byte, pixelnbr);
+			if (++col == picW) {
+				col = 0;
+				if (++rgb == 3) {
+					rgb = 0;
+					row += 3 * picW;
+				}
+			}
+		} else {
+			for (int i = 0; i < 3; i++)
+				REQ(updateRxPic, byte, pixelnbr++);
+		}
+		picf = 0.0;
+
+		int n = picW * picH * 3;
+		if (pixelnbr % (picW * 3) == 0) {
+			snprintf(mfskmsg, sizeof(mfskmsg),
+					 "Rx pic: %3.1f%%",
+					 (100.0f * pixelnbr) / n);
+			put_status(mfskmsg);
+		}
+	}
+}
+
+void mfsk::recvchar(int c)
+{
+	if (c == -1 || c == 0)
+		return;
+
+	put_rx_char(c);
+
+	if (check_picture_header(c) == true) {
+		counter = tracepair.delay;
+		switch (mode) {
+			case MODE_MFSK16:
+				if (symbolbit == symbits) counter += symlen;
+				break;
+	z = conj(prevvector) * currvector;
+
+	f = arg(z) * samplerate / TWOPI;
+
+	f1 = tonespacing * (basetone + currsymbol);
+
+	if ( fabs(f1 - f) < ts) {
+		freqerr = decayavg(freqerr, (f1 - f), progdefaults.mfsk_avg);
+		set_freq(frequency - freqerr);
+	}
+
+}
+
+void mfsk::eval_s2n()
+{
+	sig = abs(pipe[pipeptr].vector[currsymbol]);
+	noise = (numtones -1) * abs(pipe[pipeptr].vector[prev2symbol]);
+	if (noise > 0)
+		s2n = decayavg ( s2n, sig / noise, 64 );
+	else
+		s2n = -20;
+
+	s2nvals[s2nptr] = s2n;
+	++s2nptr;
+	if (s2nptr == 100) s2nptr = 0;
+
+	double maxs2n = -20;
+
+	for (int n = 0; n < 100; n++) {
+		if (s2nvals[n] > maxs2n) maxs2n = s2nvals[n];
+	}
+	if (20 * log10(maxs2n) >= -12) {
+		snprintf(mfskmsg, sizeof(mfskmsg), "s/n %3.0f dB", 20.0 * log10(maxs2n));
+		put_Status1(mfskmsg, 15, STATUS_CLEAR);
+	}
+}
+
+int mfsk::rx_process(const double *buf, int len)
+{
+	cmplx z;
+	cmplx* bins = 0;
+
+	while (len-- > 0) {
+// create analytic signal...
+		z = cmplx( *buf, *buf );
+		buf++;
+		hbfilt->run ( z, z );
+// shift in frequency to the base freq
+		z = mixer(z, frequency);
+// bandpass filter around the shifted center frequency
+// with required bandwidth
+		bpfilt->run ( z, z );
+
+// copy current vector to the pipe
+		binsfft->run (z, pipe[pipeptr].vector, 1);
+		bins = pipe[pipeptr].vector;
+
+		if (rxstate == RX_STATE_PICTURE_START) {
+			if (--counter == 0) {
+				counter = picturesize;
+				rxstate = RX_STATE_PICTURE;
+				REQ( showRxViewer, picW, picH );
+			}
+		}
+		if (rxstate == RX_STATE_PICTURE) {
+			if (--counter == 0) {
+				rxstate = RX_STATE_DATA;
+				put_status("");
+
+				std::string autosave_dir = PicsDir;
+				picRx->save_png(autosave_dir.c_str());
+				rx_init();
+			} else
+				recvpic(z);
+			continue;
+		}
+
+// copy current vector to the pipe
+//		binsfft->run (z, pipe[pipeptr].vector, 1);
+//		bins = pipe[pipeptr].vector;
+
+		if (--synccounter <= 0) {
+
+			synccounter = symlen;
+
+			currsymbol = harddecode(bins);
+			currvector = bins[currsymbol];
+			softdecode(bins);
+
+// symbol sync
+			synchronize();
+
+// frequency tracking
+			afc();
+			eval_s2n();
+
+			prev2symbol = prev1symbol;
+			prev2vector = prev1vector;
+			prev1symbol = currsymbol;
+			prev1vector = currvector;
+		}
+		pipeptr = (pipeptr + 1) % (2 * symlen);
+	}
+
+	return 0;
+}

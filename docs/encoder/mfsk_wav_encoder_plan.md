@@ -818,6 +818,18 @@ prepared and only requires launching the accepted matrix.
 
 **Suggested model:** Sol, high reasoning.
 
+**Closed external evaluation (2026-10-01):** after correcting and preserving
+an initial receiver-harness failure, the unchanged candidate completes all
+eight whole-WAV RxID runs through pinned fldigi 4.2.13. Five cases pass;
+three picture cases fail pixel checks. Every expected mode acquisition,
+caller text, announcement, and post-picture text passes, and all seven
+images have correct dimensions, but their substantial pixel differences
+remain unresolved. Both schema-valid manifests, raw evidence, logs, images,
+and a candidate-set visual review are retained. The candidate is not
+qualified. Keep Session 9 separate to distinguish receiver artifact saving
+from raster timing/filter behavior before changing production code. See the
+change record and `data/session8/README.md` for exact evidence and next entry.
+
 Use the Pi once the local candidate is feature-complete. Run all Pi work through
 the repository-managed Pi wrapper and preserve authoritative result records.
 

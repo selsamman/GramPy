@@ -1,0 +1,163 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://grampy.local/schemas/mfsk-encoder-pi-qualification-manifest-v2.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "status", "source", "target", "receiver", "execution", "cases", "summary"],
+  "properties": {
+    "schema": {"const": "grampy-mfsk-encoder-pi-qualification-manifest.v2"},
+    "status": {"enum": ["complete", "partial", "failed"]},
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["repository_revision", "matrix", "rsid_oracle", "encoder_distribution", "inputs"],
+      "properties": {
+        "repository_revision": {"$ref": "#/$defs/git_revision"},
+        "matrix": {"$ref": "#/$defs/artifact"},
+        "rsid_oracle": {"$ref": "#/$defs/artifact"},
+        "encoder_distribution": {"$ref": "#/$defs/artifact"},
+        "inputs": {"type": "array", "items": {"$ref": "#/$defs/artifact"}}
+      }
+    },
+    "target": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["hostname", "platform", "architecture", "python_version"],
+      "properties": {
+        "hostname": {"type": "string", "minLength": 1},
+        "platform": {"type": "string", "minLength": 1},
+        "architecture": {"type": "string", "minLength": 1},
+        "python_version": {"type": "string", "minLength": 1}
+      }
+    },
+    "receiver": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["reference_id", "version", "binary", "configuration"],
+      "properties": {
+        "reference_id": {"const": "fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178"},
+        "version": {"type": "string", "minLength": 1},
+        "binary": {"$ref": "#/$defs/artifact"},
+        "configuration": {
+          "type": "object",
+          "required": ["rxid_enabled", "rxid_passband_search", "rxid_notify_only", "rxid_auto_disable_after_detection", "reverse_sideband", "initial_mode", "initial_carrier_hz"],
+          "properties": {
+            "rxid_enabled": {"const": true},
+            "rxid_passband_search": {"const": true},
+            "rxid_notify_only": {"const": false},
+            "rxid_auto_disable_after_detection": {"const": false},
+            "reverse_sideband": {"const": false},
+            "initial_mode": {"const": "BPSK31"},
+            "initial_carrier_hz": {"const": 1500.0}
+          }
+        }
+      }
+    },
+    "execution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["workflow", "started_utc", "completed_utc", "log"],
+      "properties": {
+        "workflow": {"type": "string", "pattern": "^tools/pi-[a-z0-9-]+\\.sh$"},
+        "started_utc": {"type": "string", "format": "date-time"},
+        "completed_utc": {"type": "string", "format": "date-time"},
+        "log": {"$ref": "#/$defs/artifact"}
+      }
+    },
+    "cases": {"type": "array", "minItems": 7, "items": {"$ref": "#/$defs/case"}},
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["total", "passed", "failed", "blocked"],
+      "properties": {
+        "total": {"type": "integer", "minimum": 0},
+        "passed": {"type": "integer", "minimum": 0},
+        "failed": {"type": "integer", "minimum": 0},
+        "blocked": {"type": "integer", "minimum": 0}
+      }
+    }
+  },
+  "$defs": {
+    "git_revision": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+    "artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256", "bytes"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "bytes": {"type": "integer", "minimum": 0}
+      }
+    },
+    "interval": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["start_frame", "end_frame"],
+      "properties": {
+        "start_frame": {"type": "integer", "minimum": 0},
+        "end_frame": {"type": "integer", "minimum": 0}
+      }
+    },
+    "rxid_event": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mode", "code", "frequency_hz", "receiver_log_evidence"],
+      "properties": {
+        "mode": {"enum": ["MFSK32", "MFSK64"]},
+        "code": {"enum": [147, 620]},
+        "frequency_hz": {"type": "number", "exclusiveMinimum": 0},
+        "receiver_log_evidence": {"type": "string", "minLength": 1}
+      }
+    },
+    "continuous_receiver_run": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["input_interval", "manual_mode_changes", "exit_code", "log", "rxid_events", "recovered_text", "recovered_images"],
+      "properties": {
+        "input_interval": {"$ref": "#/$defs/interval"},
+        "manual_mode_changes": {"const": 0},
+        "exit_code": {"const": 0},
+        "log": {"$ref": "#/$defs/artifact"},
+        "rxid_events": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/rxid_event"}},
+        "recovered_text": {"$ref": "#/$defs/artifact"},
+        "recovered_images": {"type": "array", "items": {"$ref": "#/$defs/artifact"}}
+      }
+    },
+    "check": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "status", "expected", "observed", "evidence"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "status": {"enum": ["pass", "fail", "blocked"]},
+        "expected": {},
+        "observed": {},
+        "evidence": {"type": "array", "items": {"type": "string", "minLength": 1}}
+      }
+    },
+    "discrepancy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["classification", "summary", "evidence"],
+      "properties": {
+        "classification": {"enum": ["encoder-defect", "reference-limitation", "automation-failure", "environment-failure", "unresolved"]},
+        "summary": {"type": "string", "minLength": 1},
+        "evidence": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}}
+      }
+    },
+    "case": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "status", "generated_wav", "encoder_result", "continuous_receiver_runs", "checks", "discrepancies"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "status": {"enum": ["pass", "fail", "blocked"]},
+        "generated_wav": {"$ref": "#/$defs/artifact"},
+        "encoder_result": {"$ref": "#/$defs/artifact"},
+        "continuous_receiver_runs": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/continuous_receiver_run"}},
+        "checks": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/check"}},
+        "discrepancies": {"type": "array", "items": {"$ref": "#/$defs/discrepancy"}}
+      }
+    }
+  }
+}

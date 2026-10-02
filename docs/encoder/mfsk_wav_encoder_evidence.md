@@ -322,3 +322,27 @@ and retain its artifacts. A pass cannot contain an unresolved discrepancy.
 Session 8 classifies every discrepancy as an encoder defect, reference
 limitation, automation failure, environment failure, or unresolved. It does
 not repin the matrix or relax a required check during the run.
+
+## Session 8 external evaluation (2026-10-01)
+
+The reusable workflow is now `tools/pi-qualify-mfsk-encoder.sh`, staged and
+invoked through the managed wrappers as described in
+`experiments/mfsk-wav-encoder/README.md`. The installed wheel and every generated
+WAV hash are identical across an initial harness failure and its corrected
+rerun. The frozen v2 matrix and RSID oracle were not changed.
+
+The corrected whole-WAV RxID run passes five of eight concrete cases. Every
+mode acquisition, exact ordered caller text, picture announcement, and
+post-picture text passes. All seven image artifacts exist with the expected
+8-by-4 geometry, but none is pixel-exact; component errors are substantial and
+the candidate-set review confirms meaningful defects. These three failed
+picture cases remain unresolved and cannot be accepted on coupled GramPy
+recovery. Session 9 is required to distinguish receiver artifact saving from
+raster timing/filter behavior.
+
+[The durable evidence index](data/session8/README.md) retains schema-valid
+manifests, wrapper results, hashes, receiver logs/configuration, decoded text,
+received images, measured pixel errors, source excerpts, and the visual review.
+Complete raw artifacts are deliberately preserved in `.local/session8/` and
+on the Pi. Eighteen focused scorer/oracle/evidence tests passed. No production
+encoder, decoder, fixture, or external corpus change was made.

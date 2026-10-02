@@ -1,0 +1,590 @@
+called modem.set_by_name('BPSK31',) -> 'BPSK31'
+called modem.get_name() -> 'BPSK31'
+called modem.set_carrier(1500,) -> 1000
+called main.set_afc(False,) -> True
+called main.get_afc() -> 0
+called main.set_rsid(True,) -> True
+called main.get_rsid() -> 1
+missing rx.set_rsid
+missing modem.set_squelch
+called main.set_squelch(False,) -> True
+missing modem.set_squelch_level
+called main.set_squelch_level(0.0,) -> 5.0
+called text.clear_rx() -> ''
+missing rx.clear_data
+status before playback: mode='BPSK31' carrier=1500 quality=0.923121 afc=0 squelch=0 squelch_level=0.0 rsid=1 status1='' status2='' trx='rx'
+started playback with 'aplay -v -D rg_playback /var/tmp/grampy-encoder-session8.dYAOKp/evidence/cases/rsid-32-to-64-no-editorial-gap/generated.wav'
+status during playback: mode='BPSK31' carrier=1500 quality=0.923121 afc=0 squelch=0 squelch_level=0.0 rsid=1 status1='' status2='' trx='rx'
+alsa hw_params during playback /proc/asound/card0/pcm0p/sub0/hw_params: access: RW_INTERLEAVED
+format: S16_LE
+subformat: STD
+channels: 1
+rate: 48000 (48000/1)
+period_size: 6000
+buffer_size: 24000
+alsa hw_params during playback /proc/asound/card0/pcm1c/sub0/hw_params: access: MMAP_INTERLEAVED
+format: S16_LE
+subformat: STD
+channels: 1
+rate: 48000 (48000/1)
+period_size: 384
+buffer_size: 1920
+drained decoded text with rx.get_data for periodic playback poll: 0 chars
+status during playback: mode='BPSK31' carrier=1500 quality=0.60267 afc=0 squelch=0 squelch_level=0.0 rsid=1 status1='' status2='' trx='rx'
+alsa hw_params during playback /proc/asound/card0/pcm0p/sub0/hw_params: access: RW_INTERLEAVED
+format: S16_LE
+subformat: STD
+channels: 1
+rate: 48000 (48000/1)
+period_size: 6000
+buffer_size: 24000
+alsa hw_params during playback /proc/asound/card0/pcm1c/sub0/hw_params: access: MMAP_INTERLEAVED
+format: S16_LE
+subformat: STD
+channels: 1
+rate: 48000 (48000/1)
+period_size: 384
+buffer_size: 1920
+drained decoded text with rx.get_data for periodic playback poll: 0 chars
+status during playback: mode='BPSK31' carrier=1500 quality=4.176279 afc=0 squelch=0 squelch_level=0.0 rsid=1 status1='' status2='' trx='rx'
+alsa hw_params during playback /proc/asound/card0/pcm0p/sub0/hw_params: access: RW_INTERLEAVED
+format: S16_LE
+subformat: STD
+channels: 1
+rate: 48000 (48000/1)
+period_size: 6000
+buffer_size: 24000
+alsa hw_params during playback /proc/asound/card0/pcm1c/sub0/hw_params: access: MMAP_INTERLEAVED
+format: S16_LE
+subformat: STD
+channels: 1
+rate: 48000 (48000/1)
+period_size: 384
+buffer_size: 1920
+drained decoded text with rx.get_data for periodic playback poll: 2 chars
+status during playback: mode='BPSK31' carrier=1500 quality=0.835634 afc=0 squelch=0 squelch_level=0.0 rsid=1 status1='' status2='' trx='rx'
+alsa hw_params during playback /proc/asound/card0/pcm0p/sub0/hw_params: access: RW_INTERLEAVED
+format: S16_LE
+subformat: STD
+channels: 1
+rate: 48000 (48000/1)
+period_size: 6000
+buffer_size: 24000
+alsa hw_params during playback /proc/asound/card0/pcm1c/sub0/hw_params: access: MMAP_INTERLEAVED
+format: S16_LE
+subformat: STD
+channels: 1
+rate: 48000 (48000/1)
+period_size: 384
+buffer_size: 1920
+drained decoded text with rx.get_data for periodic playback poll: 2 chars
+status during playback: mode='MFSK32' carrier=1402 quality=3.093607 afc=0 squelch=0 squelch_level=0.0 rsid=1 status1='' status2='' trx='rx'
+alsa hw_params during playback /proc/asound/card0/pcm0p/sub0/hw_params: access: RW_INTERLEAVED
+format: S16_LE
+subformat: STD
+channels: 1
+rate: 48000 (48000/1)
+period_size: 6000
+buffer_size: 24000
+alsa hw_params during playback /proc/asound/card0/pcm1c/sub0/hw_params: access: MMAP_INTERLEAVED
+format: S16_LE
+subformat: STD
+channels: 1
+rate: 48000 (48000/1)
+period_size: 384
+buffer_size: 1920
+drained decoded text with rx.get_data for periodic playback poll: 4 chars
+status during playback: mode='MFSK32' carrier=1402 quality=0.0 afc=0 squelch=0 squelch_level=0.0 rsid=1 status1='' status2='' trx='rx'
+alsa hw_params during playback /proc/asound/card0/pcm0p/sub0/hw_params: access: RW_INTERLEAVED
+format: S16_LE
+subformat: STD
+channels: 1
+rate: 48000 (48000/1)
+period_size: 6000
+buffer_size: 24000
+alsa hw_params during playback /proc/asound/card0/pcm1c/sub0/hw_params: access: MMAP_INTERLEAVED
+format: S16_LE
+subformat: STD
+channels: 1
+rate: 48000 (48000/1)
+period_size: 384
+buffer_size: 1920
+drained decoded text with rx.get_data for periodic playback poll: 0 chars
+status during playback: mode='MFSK32' carrier=1402 quality=0.0 afc=0 squelch=0 squelch_level=0.0 rsid=1 status1='' status2='' trx='rx'
+alsa hw_params during playback /proc/asound/card0/pcm0p/sub0/hw_params: access: RW_INTERLEAVED
+format: S16_LE
+subformat: STD
+channels: 1
+rate: 48000 (48000/1)
+period_size: 6000
+buffer_size: 24000
+alsa hw_params during playback /proc/asound/card0/pcm1c/sub0/hw_params: access: MMAP_INTERLEAVED
+format: S16_LE
+subformat: STD
+channels: 1
+rate: 48000 (48000/1)
+period_size: 384
+buffer_size: 1920
+drained decoded text with rx.get_data for periodic playback poll: 0 chars
+status during playback: mode='MFSK32' carrier=1402 quality=0.0 afc=0 squelch=0 squelch_level=0.0 rsid=1 status1='' status2='' trx='rx'
+alsa hw_params during playback /proc/asound/card0/pcm0p/sub0/hw_params: access: RW_INTERLEAVED
+format: S16_LE
+subformat: STD
+channels: 1
+rate: 48000 (48000/1)
+period_size: 6000
+buffer_size: 24000
+alsa hw_params during playback /proc/asound/card0/pcm1c/sub0/hw_params: access: MMAP_INTERLEAVED
+format: S16_LE
+subformat: STD
+channels: 1
+rate: 48000 (48000/1)
+period_size: 384
+buffer_size: 1920
+drained decoded text with rx.get_data for periodic playback poll: 0 chars
+status during playback: mode='MFSK32' carrier=1402 quality=28.397613 afc=0 squelch=0 squelch_level=0.0 rsid=1 status1='' status2='' trx='rx'
+alsa hw_params during playback /proc/asound/card0/pcm0p/sub0/hw_params: access: RW_INTERLEAVED
+format: S16_LE
+subformat: STD
+channels: 1
+rate: 48000 (48000/1)
+period_size: 6000
+buffer_size: 24000
+alsa hw_params during playback /proc/asound/card0/pcm1c/sub0/hw_params: access: MMAP_INTERLEAVED
+format: S16_LE
+subformat: STD
+channels: 1
+rate: 48000 (48000/1)
+period_size: 384
+buffer_size: 1920
+drained decoded text with rx.get_data for periodic playback poll: 0 chars
+status during playback: mode='MFSK32' carrier=1402 quality=61.516483 afc=0 squelch=0 squelch_level=0.0 rsid=1 status1='' status2='' trx='rx'
+alsa hw_params during playback /proc/asound/card0/pcm0p/sub0/hw_params: access: RW_INTERLEAVED
+format: S16_LE
+subformat: STD
+channels: 1
+rate: 48000 (48000/1)
+period_size: 6000
+buffer_size: 24000
+alsa hw_params during playback /proc/asound/card0/pcm1c/sub0/hw_params: access: MMAP_INTERLEAVED
+format: S16_LE
+subformat: STD
+channels: 1
+rate: 48000 (48000/1)
+period_size: 384
+buffer_size: 1920
+drained decoded text with rx.get_data for periodic playback poll: 0 chars
+status during playback: mode='MFSK32' carrier=1402 quality=78.290837 afc=0 squelch=0 squelch_level=0.0 rsid=1 status1='' status2='' trx='rx'
+alsa hw_params during playback /proc/asound/card0/pcm0p/sub0/hw_params: access: RW_INTERLEAVED
+format: S16_LE
+subformat: STD
+channels: 1
+rate: 48000 (48000/1)
+period_size: 6000
+buffer_size: 24000
+alsa hw_params during playback /proc/asound/card0/pcm1c/sub0/hw_params: access: MMAP_INTERLEAVED
+format: S16_LE
+subformat: STD
+channels: 1
+rate: 48000 (48000/1)
+period_size: 384
+buffer_size: 1920
+drained decoded text with rx.get_data for periodic playback poll: 4 chars
+status during playback: mode='MFSK32' carrier=1402 quality=88.273836 afc=0 squelch=0 squelch_level=0.0 rsid=1 status1='' status2='' trx='rx'
+alsa hw_params during playback /proc/asound/card0/pcm0p/sub0/hw_params: access: RW_INTERLEAVED
+format: S16_LE
+subformat: STD
+channels: 1
+rate: 48000 (48000/1)
+period_size: 6000
+buffer_size: 24000
+alsa hw_params during playback /proc/asound/card0/pcm1c/sub0/hw_params: access: MMAP_INTERLEAVED
+format: S16_LE
+subformat: STD
+channels: 1
+rate: 48000 (48000/1)
+period_size: 384
+buffer_size: 1920
+drained decoded text with rx.get_data for periodic playback poll: 3 chars
+status during playback: mode='MFSK32' carrier=1402 quality=92.679993 afc=0 squelch=0 squelch_level=0.0 rsid=1 status1='s/n   1 dB' status2='' trx='rx'
+alsa hw_params during playback /proc/asound/card0/pcm0p/sub0/hw_params: access: RW_INTERLEAVED
+format: S16_LE
+subformat: STD
+channels: 1
+rate: 48000 (48000/1)
+period_size: 6000
+buffer_size: 24000
+alsa hw_params during playback /proc/asound/card0/pcm1c/sub0/hw_params: access: MMAP_INTERLEAVED
+format: S16_LE
+subformat: STD
+channels: 1
+rate: 48000 (48000/1)
+period_size: 384
+buffer_size: 1920
+drained decoded text with rx.get_data for periodic playback poll: 5 chars
+status during playback: mode='MFSK32' carrier=1402 quality=94.967172 afc=0 squelch=0 squelch_level=0.0 rsid=1 status1='s/n   5 dB' status2='' trx='rx'
+alsa hw_params during playback /proc/asound/card0/pcm0p/sub0/hw_params: access: RW_INTERLEAVED
+format: S16_LE
+subformat: STD
+channels: 1
+rate: 48000 (48000/1)
+period_size: 6000
+buffer_size: 24000
+alsa hw_params during playback /proc/asound/card0/pcm1c/sub0/hw_params: access: MMAP_INTERLEAVED
+format: S16_LE
+subformat: STD
+channels: 1
+rate: 48000 (48000/1)
+period_size: 384
+buffer_size: 1920
+drained decoded text with rx.get_data for periodic playback poll: 4 chars
+status during playback: mode='MFSK32' carrier=1402 quality=96.161602 afc=0 squelch=0 squelch_level=0.0 rsid=1 status1='s/n   5 dB' status2='' trx='rx'
+alsa hw_params during playback /proc/asound/card0/pcm0p/sub0/hw_params: access: RW_INTERLEAVED
+format: S16_LE
+subformat: STD
+channels: 1
+rate: 48000 (48000/1)
+period_size: 6000
+buffer_size: 24000
+alsa hw_params during playback /proc/asound/card0/pcm1c/sub0/hw_params: access: MMAP_INTERLEAVED
+format: S16_LE
+subformat: STD
+channels: 1
+rate: 48000 (48000/1)
+period_size: 384
+buffer_size: 1920
+drained decoded text with rx.get_data for periodic playback poll: 4 chars
+status during playback: mode='MFSK32' carrier=1402 quality=96.845661 afc=0 squelch=0 squelch_level=0.0 rsid=1 status1='s/n   5 dB' status2='' trx='rx'
+alsa hw_params during playback /proc/asound/card0/pcm0p/sub0/hw_params: access: RW_INTERLEAVED
+format: S16_LE
+subformat: STD
+channels: 1
+rate: 48000 (48000/1)
+period_size: 6000
+buffer_size: 24000
+alsa hw_params during playback /proc/asound/card0/pcm1c/sub0/hw_params: access: MMAP_INTERLEAVED
+format: S16_LE
+subformat: STD
+channels: 1
+rate: 48000 (48000/1)
+period_size: 384
+buffer_size: 1920
+drained decoded text with rx.get_data for periodic playback poll: 3 chars
+status during playback: mode='MFSK32' carrier=1402 quality=97.395261 afc=0 squelch=0 squelch_level=0.0 rsid=1 status1='s/n   5 dB' status2='' trx='rx'
+alsa hw_params during playback /proc/asound/card0/pcm0p/sub0/hw_params: access: RW_INTERLEAVED
+format: S16_LE
+subformat: STD
+channels: 1
+rate: 48000 (48000/1)
+period_size: 6000
+buffer_size: 24000
+alsa hw_params during playback /proc/asound/card0/pcm1c/sub0/hw_params: access: MMAP_INTERLEAVED
+format: S16_LE
+subformat: STD
+channels: 1
+rate: 48000 (48000/1)
+period_size: 384
+buffer_size: 1920
+drained decoded text with rx.get_data for periodic playback poll: 0 chars
+status during playback: mode='MFSK32' carrier=1402 quality=85.326416 afc=0 squelch=0 squelch_level=0.0 rsid=1 status1='s/n   5 dB' status2='' trx='rx'
+alsa hw_params during playback /proc/asound/card0/pcm0p/sub0/hw_params: access: RW_INTERLEAVED
+format: S16_LE
+subformat: STD
+channels: 1
+rate: 48000 (48000/1)
+period_size: 6000
+buffer_size: 24000
+alsa hw_params during playback /proc/asound/card0/pcm1c/sub0/hw_params: access: MMAP_INTERLEAVED
+format: S16_LE
+subformat: STD
+channels: 1
+rate: 48000 (48000/1)
+period_size: 384
+buffer_size: 1920
+drained decoded text with rx.get_data for periodic playback poll: 0 chars
+status during playback: mode='MFSK32' carrier=1402 quality=68.606482 afc=0 squelch=0 squelch_level=0.0 rsid=1 status1='s/n   5 dB' status2='' trx='rx'
+alsa hw_params during playback /proc/asound/card0/pcm0p/sub0/hw_params: access: RW_INTERLEAVED
+format: S16_LE
+subformat: STD
+channels: 1
+rate: 48000 (48000/1)
+period_size: 6000
+buffer_size: 24000
+alsa hw_params during playback /proc/asound/card0/pcm1c/sub0/hw_params: access: MMAP_INTERLEAVED
+format: S16_LE
+subformat: STD
+channels: 1
+rate: 48000 (48000/1)
+period_size: 384
+buffer_size: 1920
+drained decoded text with rx.get_data for periodic playback poll: 1 chars
+status during playback: mode='MFSK32' carrier=1402 quality=62.79335 afc=0 squelch=0 squelch_level=0.0 rsid=1 status1='s/n   4 dB' status2='' trx='rx'
+alsa hw_params during playback /proc/asound/card0/pcm0p/sub0/hw_params: access: RW_INTERLEAVED
+format: S16_LE
+subformat: STD
+channels: 1
+rate: 48000 (48000/1)
+period_size: 6000
+buffer_size: 24000
+alsa hw_params during playback /proc/asound/card0/pcm1c/sub0/hw_params: access: MMAP_INTERLEAVED
+format: S16_LE
+subformat: STD
+channels: 1
+rate: 48000 (48000/1)
+period_size: 384
+buffer_size: 1920
+drained decoded text with rx.get_data for periodic playback poll: 6 chars
+status during playback: mode='MFSK32' carrier=1402 quality=60.197623 afc=0 squelch=0 squelch_level=0.0 rsid=1 status1='s/n   3 dB' status2='' trx='rx'
+alsa hw_params during playback /proc/asound/card0/pcm0p/sub0/hw_params: access: RW_INTERLEAVED
+format: S16_LE
+subformat: STD
+channels: 1
+rate: 48000 (48000/1)
+period_size: 6000
+buffer_size: 24000
+alsa hw_params during playback /proc/asound/card0/pcm1c/sub0/hw_params: access: MMAP_INTERLEAVED
+format: S16_LE
+subformat: STD
+channels: 1
+rate: 48000 (48000/1)
+period_size: 384
+buffer_size: 1920
+drained decoded text with rx.get_data for periodic playback poll: 3 chars
+status during playback: mode='MFSK32' carrier=1402 quality=53.578917 afc=0 squelch=0 squelch_level=0.0 rsid=1 status1='s/n   0 dB' status2='' trx='rx'
+alsa hw_params during playback /proc/asound/card0/pcm0p/sub0/hw_params: access: RW_INTERLEAVED
+format: S16_LE
+subformat: STD
+channels: 1
+rate: 48000 (48000/1)
+period_size: 6000
+buffer_size: 24000
+alsa hw_params during playback /proc/asound/card0/pcm1c/sub0/hw_params: access: MMAP_INTERLEAVED
+format: S16_LE
+subformat: STD
+channels: 1
+rate: 48000 (48000/1)
+period_size: 384
+buffer_size: 1920
+drained decoded text with rx.get_data for periodic playback poll: 5 chars
+status during playback: mode='MFSK32' carrier=1402 quality=33.030779 afc=0 squelch=0 squelch_level=0.0 rsid=1 status1='s/n  -2 dB' status2='' trx='rx'
+alsa hw_params during playback /proc/asound/card0/pcm0p/sub0/hw_params: access: RW_INTERLEAVED
+format: S16_LE
+subformat: STD
+channels: 1
+rate: 48000 (48000/1)
+period_size: 6000
+buffer_size: 24000
+alsa hw_params during playback /proc/asound/card0/pcm1c/sub0/hw_params: access: MMAP_INTERLEAVED
+format: S16_LE
+subformat: STD
+channels: 1
+rate: 48000 (48000/1)
+period_size: 384
+buffer_size: 1920
+drained decoded text with rx.get_data for periodic playback poll: 5 chars
+status during playback: mode='MFSK64' carrier=1601 quality=32.477728 afc=0 squelch=0 squelch_level=0.0 rsid=1 status1='' status2='' trx='rx'
+alsa hw_params during playback /proc/asound/card0/pcm0p/sub0/hw_params: access: RW_INTERLEAVED
+format: S16_LE
+subformat: STD
+channels: 1
+rate: 48000 (48000/1)
+period_size: 6000
+buffer_size: 24000
+alsa hw_params during playback /proc/asound/card0/pcm1c/sub0/hw_params: access: MMAP_INTERLEAVED
+format: S16_LE
+subformat: STD
+channels: 1
+rate: 48000 (48000/1)
+period_size: 384
+buffer_size: 1920
+drained decoded text with rx.get_data for periodic playback poll: 2 chars
+status during playback: mode='MFSK64' carrier=1601 quality=0.0 afc=0 squelch=0 squelch_level=0.0 rsid=1 status1='' status2='' trx='rx'
+alsa hw_params during playback /proc/asound/card0/pcm0p/sub0/hw_params: access: RW_INTERLEAVED
+format: S16_LE
+subformat: STD
+channels: 1
+rate: 48000 (48000/1)
+period_size: 6000
+buffer_size: 24000
+alsa hw_params during playback /proc/asound/card0/pcm1c/sub0/hw_params: access: MMAP_INTERLEAVED
+format: S16_LE
+subformat: STD
+channels: 1
+rate: 48000 (48000/1)
+period_size: 384
+buffer_size: 1920
+drained decoded text with rx.get_data for periodic playback poll: 0 chars
+status during playback: mode='MFSK64' carrier=1601 quality=3.401467 afc=0 squelch=0 squelch_level=0.0 rsid=1 status1='' status2='' trx='rx'
+alsa hw_params during playback /proc/asound/card0/pcm0p/sub0/hw_params: access: RW_INTERLEAVED
+format: S16_LE
+subformat: STD
+channels: 1
+rate: 48000 (48000/1)
+period_size: 6000
+buffer_size: 24000
+alsa hw_params during playback /proc/asound/card0/pcm1c/sub0/hw_params: access: MMAP_INTERLEAVED
+format: S16_LE
+subformat: STD
+channels: 1
+rate: 48000 (48000/1)
+period_size: 384
+buffer_size: 1920
+drained decoded text with rx.get_data for periodic playback poll: 0 chars
+status during playback: mode='MFSK64' carrier=1601 quality=73.089259 afc=0 squelch=0 squelch_level=0.0 rsid=1 status1='s/n   8 dB' status2='' trx='rx'
+alsa hw_params during playback /proc/asound/card0/pcm0p/sub0/hw_params: access: RW_INTERLEAVED
+format: S16_LE
+subformat: STD
+channels: 1
+rate: 48000 (48000/1)
+period_size: 6000
+buffer_size: 24000
+alsa hw_params during playback /proc/asound/card0/pcm1c/sub0/hw_params: access: MMAP_INTERLEAVED
+format: S16_LE
+subformat: STD
+channels: 1
+rate: 48000 (48000/1)
+period_size: 384
+buffer_size: 1920
+drained decoded text with rx.get_data for periodic playback poll: 0 chars
+status during playback: mode='MFSK64' carrier=1601 quality=90.830994 afc=0 squelch=0 squelch_level=0.0 rsid=1 status1='s/n  21 dB' status2='' trx='rx'
+alsa hw_params during playback /proc/asound/card0/pcm0p/sub0/hw_params: access: RW_INTERLEAVED
+format: S16_LE
+subformat: STD
+channels: 1
+rate: 48000 (48000/1)
+period_size: 6000
+buffer_size: 24000
+alsa hw_params during playback /proc/asound/card0/pcm1c/sub0/hw_params: access: MMAP_INTERLEAVED
+format: S16_LE
+subformat: STD
+channels: 1
+rate: 48000 (48000/1)
+period_size: 384
+buffer_size: 1920
+drained decoded text with rx.get_data for periodic playback poll: 6 chars
+status during playback: mode='MFSK64' carrier=1601 quality=95.708637 afc=0 squelch=0 squelch_level=0.0 rsid=1 status1='s/n  22 dB' status2='' trx='rx'
+alsa hw_params during playback /proc/asound/card0/pcm0p/sub0/hw_params: access: RW_INTERLEAVED
+format: S16_LE
+subformat: STD
+channels: 1
+rate: 48000 (48000/1)
+period_size: 6000
+buffer_size: 24000
+alsa hw_params during playback /proc/asound/card0/pcm1c/sub0/hw_params: access: MMAP_INTERLEAVED
+format: S16_LE
+subformat: STD
+channels: 1
+rate: 48000 (48000/1)
+period_size: 384
+buffer_size: 1920
+drained decoded text with rx.get_data for periodic playback poll: 8 chars
+status during playback: mode='MFSK64' carrier=1601 quality=96.993336 afc=0 squelch=0 squelch_level=0.0 rsid=1 status1='s/n  23 dB' status2='' trx='rx'
+alsa hw_params during playback /proc/asound/card0/pcm0p/sub0/hw_params: access: RW_INTERLEAVED
+format: S16_LE
+subformat: STD
+channels: 1
+rate: 48000 (48000/1)
+period_size: 6000
+buffer_size: 24000
+alsa hw_params during playback /proc/asound/card0/pcm1c/sub0/hw_params: access: MMAP_INTERLEAVED
+format: S16_LE
+subformat: STD
+channels: 1
+rate: 48000 (48000/1)
+period_size: 384
+buffer_size: 1920
+drained decoded text with rx.get_data for periodic playback poll: 9 chars
+status during playback: mode='MFSK64' carrier=1601 quality=97.749898 afc=0 squelch=0 squelch_level=0.0 rsid=1 status1='s/n  23 dB' status2='' trx='rx'
+alsa hw_params during playback /proc/asound/card0/pcm1c/sub0/hw_params: access: MMAP_INTERLEAVED
+format: S16_LE
+subformat: STD
+channels: 1
+rate: 48000 (48000/1)
+period_size: 384
+buffer_size: 1920
+drained decoded text with rx.get_data for periodic playback poll: 0 chars
+aplay exited with 0
+aplay stderr: Playing WAVE '/var/tmp/grampy-encoder-session8.dYAOKp/evidence/cases/rsid-32-to-64-no-editorial-gap/generated.wav' : Signed 16 bit Little Endian, Rate 48000 Hz, Mono
+Plug PCM: Hardware PCM card 0 'Loopback' device 0 subdevice 0
+Its setup is:
+  stream       : PLAYBACK
+  access       : RW_INTERLEAVED
+  format       : S16_LE
+  subformat    : STD
+  channels     : 1
+  rate         : 48000
+  exact rate   : 48000 (48000/1)
+  msbits       : 16
+  buffer_size  : 24000
+  period_size  : 6000
+  period_time  : 125000
+  tstamp_mode  : ENABLE
+  tstamp_type  : MONOTONIC
+  period_step  : 1
+  avail_min    : 6000
+  period_event : 0
+  start_threshold  : 24000
+  stop_threshold   : 24000
+  silence_threshold: 0
+  silence_size : 0
+  boundary     : 6755399441055744000
+  appl_ptr     : 0
+  hw_ptr       : 0
+status after playback wait: mode='MFSK64' carrier=1601 quality=96.448241 afc=0 squelch=0 squelch_level=0.0 rsid=1 status1='s/n  23 dB' status2='' trx='rx'
+drained decoded text with rx.get_data for post-playback poll: 0 chars
+status after playback wait: mode='MFSK64' carrier=1601 quality=58.919689 afc=0 squelch=0 squelch_level=0.0 rsid=1 status1='s/n  19 dB' status2='' trx='rx'
+drained decoded text with rx.get_data for post-playback poll: 2 chars
+status after playback wait: mode='MFSK64' carrier=1601 quality=20.19738 afc=0 squelch=0 squelch_level=0.0 rsid=1 status1='s/n  15 dB' status2='' trx='rx'
+drained decoded text with rx.get_data for post-playback poll: 4 chars
+status after playback wait: mode='MFSK64' carrier=1601 quality=4.941764 afc=0 squelch=0 squelch_level=0.0 rsid=1 status1='s/n  10 dB' status2='' trx='rx'
+drained decoded text with rx.get_data for post-playback poll: 1 chars
+status after playback wait: mode='MFSK64' carrier=1601 quality=0.0 afc=0 squelch=0 squelch_level=0.0 rsid=1 status1='s/n   6 dB' status2='' trx='rx'
+drained decoded text with rx.get_data for post-playback poll: 0 chars
+status after playback wait: mode='MFSK64' carrier=1601 quality=0.0 afc=0 squelch=0 squelch_level=0.0 rsid=1 status1='s/n   1 dB' status2='' trx='rx'
+drained decoded text with rx.get_data for post-playback poll: 0 chars
+status after playback wait: mode='MFSK64' carrier=1601 quality=0.0 afc=0 squelch=0 squelch_level=0.0 rsid=1 status1='s/n  -3 dB' status2='' trx='rx'
+drained decoded text with rx.get_data for post-playback poll: 0 chars
+status after playback wait: mode='MFSK64' carrier=1601 quality=0.0 afc=0 squelch=0 squelch_level=0.0 rsid=1 status1='s/n  -7 dB' status2='' trx='rx'
+drained decoded text with rx.get_data for post-playback poll: 0 chars
+status after playback wait: mode='MFSK64' carrier=1601 quality=0.0 afc=0 squelch=0 squelch_level=0.0 rsid=1 status1='s/n -10 dB' status2='' trx='rx'
+drained decoded text with rx.get_data for post-playback poll: 0 chars
+status after playback wait: mode='MFSK64' carrier=1601 quality=0.0 afc=0 squelch=0 squelch_level=0.0 rsid=1 status1='s/n -12 dB' status2='' trx='rx'
+drained decoded text with rx.get_data for post-playback poll: 0 chars
+status after playback wait: mode='MFSK64' carrier=1601 quality=0.0 afc=0 squelch=0 squelch_level=0.0 rsid=1 status1='s/n -12 dB' status2='' trx='rx'
+drained decoded text with rx.get_data for post-playback poll: 0 chars
+status after playback wait: mode='MFSK64' carrier=1601 quality=0.0 afc=0 squelch=0 squelch_level=0.0 rsid=1 status1='s/n -12 dB' status2='' trx='rx'
+drained decoded text with rx.get_data for post-playback poll: 0 chars
+status after playback wait: mode='MFSK64' carrier=1601 quality=0.0 afc=0 squelch=0 squelch_level=0.0 rsid=1 status1='s/n -12 dB' status2='' trx='rx'
+drained decoded text with rx.get_data for post-playback poll: 0 chars
+status after playback wait: mode='MFSK64' carrier=1601 quality=0.0 afc=0 squelch=0 squelch_level=0.0 rsid=1 status1='s/n -12 dB' status2='' trx='rx'
+drained decoded text with rx.get_data for post-playback poll: 0 chars
+status after playback wait: mode='MFSK64' carrier=1601 quality=0.0 afc=0 squelch=0 squelch_level=0.0 rsid=1 status1='s/n -12 dB' status2='' trx='rx'
+drained decoded text with rx.get_data for post-playback poll: 0 chars
+status after playback wait: mode='MFSK64' carrier=1601 quality=0.0 afc=0 squelch=0 squelch_level=0.0 rsid=1 status1='s/n -12 dB' status2='' trx='rx'
+drained decoded text with rx.get_data for post-playback poll: 0 chars
+status after playback wait: mode='MFSK64' carrier=1601 quality=0.0 afc=0 squelch=0 squelch_level=0.0 rsid=1 status1='s/n -12 dB' status2='' trx='rx'
+drained decoded text with rx.get_data for post-playback poll: 0 chars
+status after playback wait: mode='MFSK64' carrier=1601 quality=0.0 afc=0 squelch=0 squelch_level=0.0 rsid=1 status1='s/n -12 dB' status2='' trx='rx'
+drained decoded text with rx.get_data for post-playback poll: 0 chars
+status after playback wait: mode='MFSK64' carrier=1601 quality=0.0 afc=0 squelch=0 squelch_level=0.0 rsid=1 status1='s/n -12 dB' status2='' trx='rx'
+drained decoded text with rx.get_data for post-playback poll: 0 chars
+status after playback wait: mode='MFSK64' carrier=1601 quality=0.0 afc=0 squelch=0 squelch_level=0.0 rsid=1 status1='s/n -12 dB' status2='' trx='rx'
+drained decoded text with rx.get_data for post-playback poll: 0 chars
+status after playback wait: mode='MFSK64' carrier=1601 quality=0.0 afc=0 squelch=0 squelch_level=0.0 rsid=1 status1='s/n -12 dB' status2='' trx='rx'
+drained decoded text with rx.get_data for post-playback poll: 0 chars
+status after playback wait: mode='MFSK64' carrier=1601 quality=0.0 afc=0 squelch=0 squelch_level=0.0 rsid=1 status1='s/n -12 dB' status2='' trx='rx'
+drained decoded text with rx.get_data for post-playback poll: 0 chars
+status after playback wait: mode='MFSK64' carrier=1601 quality=0.0 afc=0 squelch=0 squelch_level=0.0 rsid=1 status1='s/n -12 dB' status2='' trx='rx'
+drained decoded text with rx.get_data for post-playback poll: 0 chars
+status after playback wait: mode='MFSK64' carrier=1601 quality=0.0 afc=0 squelch=0 squelch_level=0.0 rsid=1 status1='s/n -12 dB' status2='' trx='rx'
+drained decoded text with rx.get_data for post-playback poll: 0 chars
+status after playback wait: mode='MFSK64' carrier=1601 quality=0.0 afc=0 squelch=0 squelch_level=0.0 rsid=1 status1='s/n -12 dB' status2='' trx='rx'
+drained decoded text with rx.get_data for post-playback poll: 0 chars
+status after playback wait: mode='MFSK64' carrier=1601 quality=0.0 afc=0 squelch=0 squelch_level=0.0 rsid=1 status1='s/n -12 dB' status2='' trx='rx'
+drained decoded text with rx.get_data for post-playback poll: 0 chars
+status after playback wait: mode='MFSK64' carrier=1601 quality=0.0 afc=0 squelch=0 squelch_level=0.0 rsid=1 status1='s/n -12 dB' status2='' trx='rx'
+drained decoded text with rx.get_data for post-playback poll: 0 chars
+called modem.get_name() -> 'MFSK64'
+called main.get_rsid() -> 1
+status after playback: mode='MFSK64' carrier=1601 quality=0.0 afc=0 squelch=0 squelch_level=0.0 rsid=1 status1='s/n -12 dB' status2='' trx='rx'
+drained decoded text with rx.get_data for final drain: 0 chars

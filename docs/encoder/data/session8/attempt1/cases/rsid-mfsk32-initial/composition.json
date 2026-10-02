@@ -1,0 +1,13 @@
+[
+  {
+    "kind": "mfsk",
+    "mode": "MFSK32",
+    "carrier_hz": 1500.0,
+    "contents": [
+      {
+        "kind": "text",
+        "utf8": "RSID MFSK32 INITIAL END"
+      }
+    ]
+  }
+]

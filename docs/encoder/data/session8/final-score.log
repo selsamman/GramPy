@@ -1,0 +1,36 @@
+Retained Pi evidence extracted
+.....
+----------------------------------------------------------------------
+Ran 5 tests in 0.047s
+
+OK
+...
+----------------------------------------------------------------------
+Ran 3 tests in 0.016s
+
+OK
+..........
+----------------------------------------------------------------------
+Ran 10 tests in 0.041s
+
+OK
+rsid-mfsk32-initial fail ['receiver-rxid-configuration', 'rxid-acquisitions-in-order', 'carrier-acquisitions-in-order', 'caller-text-exact-and-ordered']
+rsid-mfsk64-extended-initial fail ['receiver-rxid-configuration', 'rxid-acquisitions-in-order', 'carrier-acquisitions-in-order', 'caller-text-exact-and-ordered']
+rsid-32-to-64-no-editorial-gap fail ['receiver-rxid-configuration', 'rxid-acquisitions-in-order', 'carrier-acquisitions-in-order', 'caller-text-exact-and-ordered']
+rsid-64-to-32-no-editorial-gap fail ['receiver-rxid-configuration', 'rxid-acquisitions-in-order', 'carrier-acquisitions-in-order', 'caller-text-exact-and-ordered']
+rsid-repeat-mode-new-carrier fail ['receiver-rxid-configuration', 'rxid-acquisitions-in-order', 'carrier-acquisitions-in-order', 'caller-text-exact-and-ordered']
+rsid-mixed-audio-silence-picture fail ['receiver-rxid-configuration', 'rxid-acquisitions-in-order', 'carrier-acquisitions-in-order', 'caller-text-exact-and-ordered', 'picture-count', 'picture-announcements-exact']
+mfsk32-grayscale-speeds fail ['receiver-rxid-configuration', 'rxid-acquisitions-in-order', 'carrier-acquisitions-in-order', 'caller-text-exact-and-ordered', 'picture-count', 'picture-announcements-exact']
+mfsk64-color-speeds fail ['receiver-rxid-configuration', 'rxid-acquisitions-in-order', 'carrier-acquisitions-in-order', 'caller-text-exact-and-ordered', 'picture-count', 'picture-announcements-exact']
+{"total": 8, "passed": 0, "failed": 8, "blocked": 0} schema_valid= True
+/Users/sam/vcs/GramPy/experiments/mfsk-wav-encoder/evaluate.py:197: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
+  truth = Image.frombytes("L", truth.size, bytes((31*r+61*g+8*b)//100 for r,g,b in truth.getdata()))
+rsid-mfsk32-initial pass []
+rsid-mfsk64-extended-initial pass []
+rsid-32-to-64-no-editorial-gap pass []
+rsid-64-to-32-no-editorial-gap pass []
+rsid-repeat-mode-new-carrier pass []
+rsid-mixed-audio-silence-picture fail ['picture-0-dimensions-and-pixels']
+mfsk32-grayscale-speeds fail ['picture-0-dimensions-and-pixels', 'picture-1-dimensions-and-pixels', 'picture-2-dimensions-and-pixels']
+mfsk64-color-speeds fail ['picture-0-dimensions-and-pixels', 'picture-1-dimensions-and-pixels', 'picture-2-dimensions-and-pixels']
+{"total": 8, "passed": 5, "failed": 3, "blocked": 0} schema_valid= True

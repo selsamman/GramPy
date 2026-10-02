@@ -1,0 +1,96 @@
+{
+  "output_path": "cases/rsid-mixed-audio-silence-picture/generated.wav",
+  "duration_seconds": 22.669625,
+  "segments": [
+    {
+      "input_index": 0,
+      "start_seconds": 0.0,
+      "contents": [
+        {
+          "content_index": 0,
+          "start_seconds": 3.313875
+        }
+      ]
+    },
+    {
+      "input_index": 1,
+      "start_seconds": 7.409875,
+      "contents": []
+    },
+    {
+      "input_index": 2,
+      "start_seconds": 7.659875,
+      "contents": []
+    },
+    {
+      "input_index": 3,
+      "start_seconds": 8.659875,
+      "contents": []
+    },
+    {
+      "input_index": 4,
+      "start_seconds": 8.909875,
+      "contents": [
+        {
+          "content_index": 0,
+          "start_seconds": 14.241625
+        },
+        {
+          "content_index": 1,
+          "start_seconds": 15.937625
+        },
+        {
+          "content_index": 2,
+          "start_seconds": 19.949625
+        }
+      ]
+    }
+  ],
+  "frame_count": 1088142,
+  "encode_elapsed_seconds": 2.519299478037283,
+  "segments_frames": [
+    {
+      "input_index": 0,
+      "start_frame": 0,
+      "contents": [
+        {
+          "content_index": 0,
+          "start_frame": 159066
+        }
+      ]
+    },
+    {
+      "input_index": 1,
+      "start_frame": 355674,
+      "contents": []
+    },
+    {
+      "input_index": 2,
+      "start_frame": 367674,
+      "contents": []
+    },
+    {
+      "input_index": 3,
+      "start_frame": 415674,
+      "contents": []
+    },
+    {
+      "input_index": 4,
+      "start_frame": 427674,
+      "contents": [
+        {
+          "content_index": 0,
+          "start_frame": 683598
+        },
+        {
+          "content_index": 1,
+          "start_frame": 765006
+        },
+        {
+          "content_index": 2,
+          "start_frame": 957582
+        }
+      ]
+    }
+  ]
+}

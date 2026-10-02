@@ -1,0 +1,10 @@
+tlt    sCOLOR P8 BEGIN
+
+Sending Pic:8x4C;
+COLOR P8 END P4 BEGIN
+
+Sending Pic:8x4Cp4;
+COLOR P4 END P2 BEGIN
+
+Sending Pic:8x4Cp2;
+COLOR P2 END tnettttttdrtttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,t

@@ -1,0 +1,29 @@
+qualification_root=/var/tmp/grampy-encoder-session8.ooHyDN
+Processing /var/tmp/grampy-encoder-session8.ooHyDN/bundle/distribution/radiogrampy-0.1.3-py3-none-any.whl
+Installing collected packages: radiogrampy
+Successfully installed radiogrampy-0.1.3
+START rsid-mfsk32-initial frames=394074 duration=8.210
+END rsid-mfsk32-initial exit=0
+START rsid-mfsk64-extended-initial frames=401844 duration=8.372
+END rsid-mfsk64-extended-initial exit=0
+START rsid-32-to-64-no-editorial-gap frames=749838 duration=15.622
+END rsid-32-to-64-no-editorial-gap exit=0
+START rsid-64-to-32-no-editorial-gap frames=756750 duration=15.766
+END rsid-64-to-32-no-editorial-gap exit=0
+START rsid-repeat-mode-new-carrier frames=717492 duration=14.948
+END rsid-repeat-mode-new-carrier exit=0
+START rsid-mixed-audio-silence-picture frames=1088142 duration=22.670
+END rsid-mixed-audio-silence-picture exit=0
+START mfsk32-grayscale-speeds frames=1473690 duration=30.702
+END mfsk32-grayscale-speeds exit=0
+START mfsk64-color-speeds frames=1136628 duration=23.680
+END mfsk64-color-speeds exit=0
+
+# Completed command
+
+- wrapper: `pi-remote`
+- started: `2026-10-02T02:58:55Z`
+- finished: `2026-10-02T03:07:57Z`
+- elapsed-seconds: `542`
+- exit-status: `0`
+- command: `run_remote`

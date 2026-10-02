@@ -1,0 +1,791 @@
+{
+  "schema": "grampy-mfsk-encoder-session8-summary.v1",
+  "disposition": "not-qualified-session9-required",
+  "candidate_waveforms_unchanged_between_attempts": true,
+  "attempts": [
+    {
+      "attempt": 1,
+      "complete_evidence_root": ".local/session8/attempt1",
+      "summary": {
+        "total": 8,
+        "passed": 0,
+        "failed": 8,
+        "blocked": 0
+      },
+      "manifest": {
+        "path": "attempt1/qualification-manifest.json",
+        "bytes": 68297,
+        "sha256": "217f572b9768d1bad52baac4c86897a87fb349f9bd26b8a151d85e9fed37bc88"
+      },
+      "durable_artifacts": [
+        {
+          "path": "attempt1/qualification-manifest.json",
+          "bytes": 68297,
+          "sha256": "217f572b9768d1bad52baac4c86897a87fb349f9bd26b8a151d85e9fed37bc88"
+        },
+        {
+          "path": "attempt1/schema-validation.json",
+          "bytes": 36,
+          "sha256": "655823ac7f996b259837b1279f4757264aac1ab82808d9b562c06a9f640f36af"
+        },
+        {
+          "path": "attempt1/execution.log",
+          "bytes": 1242,
+          "sha256": "7aec156e891707e0ca8b9db14ed4de29b3f7a35acab41dad2aa902ad886d598d"
+        },
+        {
+          "path": "attempt1/identity.json",
+          "bytes": 810,
+          "sha256": "735bed4a3d69a59c12c28850d0458d2902749946d13b8960fcbe8f1c8d610af2"
+        },
+        {
+          "path": "attempt1/raw-runs.json",
+          "bytes": 1828,
+          "sha256": "ccbe20a99400a43048f9afcb8a47a21d02d5ef6778cbd2ebc008aa4fb94150b8"
+        },
+        {
+          "path": "attempt1/source/candidate-source-hashes.json",
+          "bytes": 4065,
+          "sha256": "b71da0e296095cc8892d986da70620218d7d299e71c8be42f7cc60a5aba740ff"
+        },
+        {
+          "path": "attempt1/source/qualification.py",
+          "bytes": 7159,
+          "sha256": "1d5ca5fc9e08c3b416300cf86025f624c718884800dda08fc3d8cd91845fa997"
+        },
+        {
+          "path": "attempt1/source/manifest-schema.json",
+          "bytes": 6793,
+          "sha256": "12c49ca9a0d6e5f0f7efc3352d6b253064966e39604e0776615470a9045c2121"
+        },
+        {
+          "path": "attempt1/source/revision.txt",
+          "bytes": 41,
+          "sha256": "b683a03a65684b3787b9945db48f6faa3839aff9617cde01b542bf48f3af8bb0"
+        },
+        {
+          "path": "attempt1/qualification-manifest-original.json",
+          "bytes": 66291,
+          "sha256": "096f54abdf4058d8db8652e5ff304298e990704828478b781ea57fd877c8197e"
+        },
+        {
+          "path": "attempt1/schema-validation-original.json",
+          "bytes": 2903,
+          "sha256": "4b04b8768ffc20cff6f85e431791a7b6bd825b517ef4e1f4eb407d3d5774cfb9"
+        },
+        {
+          "path": "attempt1/reporting-schema.json",
+          "bytes": 7225,
+          "sha256": "a9df84925f0fa75e07586449bfcfc0dbf393f2df0676af9de7968d43c23ee8fd"
+        },
+        {
+          "path": "attempt1/cases/rsid-mfsk32-initial/encoder-result.json",
+          "bytes": 565,
+          "sha256": "647e5fa87b5837c636af14d6f3da76fad3bfa82eae52a38f08d9b7b9bcaac9f6"
+        },
+        {
+          "path": "attempt1/cases/rsid-mfsk32-initial/composition.json",
+          "bytes": 186,
+          "sha256": "2d4d865ec3bec4e04c195f7d6e87c022b1a20cd3641e51222bdbf781ba824a9a"
+        },
+        {
+          "path": "attempt1/cases/rsid-mfsk32-initial/command.json",
+          "bytes": 769,
+          "sha256": "3335a77fac755a4d552e6e8656190c878d2fff50efa21d6b0edd5f249c6dce49"
+        },
+        {
+          "path": "attempt1/cases/rsid-mfsk32-initial/received/decoded.txt",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "attempt1/cases/rsid-mfsk32-initial/received/metadata.json",
+          "bytes": 1545,
+          "sha256": "aef3831224fd0df52ec4e4b98ffa75ccc30c2229657befb1a230a34f23e7c8c8"
+        },
+        {
+          "path": "attempt1/cases/rsid-mfsk32-initial/received/fldigi/control.log",
+          "bytes": 14330,
+          "sha256": "bc068e836415a226b251df4a55704acc422f78acb4eacdf63c8d1b8f5c1ae059"
+        },
+        {
+          "path": "attempt1/cases/rsid-mfsk32-initial/received/fldigi/config-start/fldigi_def.xml",
+          "bytes": 598,
+          "sha256": "0107082ccc03192063ab7f33d1d0233bbd4ef2ba70085b54b8de876c92f2f05f"
+        },
+        {
+          "path": "attempt1/cases/rsid-mfsk64-extended-initial/encoder-result.json",
+          "bytes": 572,
+          "sha256": "83ea87c3732ac167abe213ceaa3946e7d3505ce770834eeb599b721c758f3526"
+        },
+        {
+          "path": "attempt1/cases/rsid-mfsk64-extended-initial/composition.json",
+          "bytes": 186,
+          "sha256": "ea29fbafc062856665a14778d4f810c905753b159049ba67306b5cbe3e1b175c"
+        },
+        {
+          "path": "attempt1/cases/rsid-mfsk64-extended-initial/command.json",
+          "bytes": 805,
+          "sha256": "d8cb91cc1af12983782cc682266af207f40d0cb88231565a4017fe2b2bb2c7ec"
+        },
+        {
+          "path": "attempt1/cases/rsid-mfsk64-extended-initial/received/decoded.txt",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "attempt1/cases/rsid-mfsk64-extended-initial/received/metadata.json",
+          "bytes": 1563,
+          "sha256": "875794d9b8b3c3ab4ab4fabe906d9e2209d363d5cba87703b317a425c500d752"
+        },
+        {
+          "path": "attempt1/cases/rsid-mfsk64-extended-initial/received/fldigi/control.log",
+          "bytes": 14544,
+          "sha256": "24cff0a2e6107a384eda94a6f5116d1df6b3afb70d8e1b0600c13a9e7dfe4e9e"
+        },
+        {
+          "path": "attempt1/cases/rsid-mfsk64-extended-initial/received/fldigi/config-start/fldigi_def.xml",
+          "bytes": 598,
+          "sha256": "0107082ccc03192063ab7f33d1d0233bbd4ef2ba70085b54b8de876c92f2f05f"
+        },
+        {
+          "path": "attempt1/cases/rsid-32-to-64-no-editorial-gap/encoder-result.json",
+          "bytes": 938,
+          "sha256": "94d7a91d3faa0c410c2a5e677b74d80e677336e9186f116317bafdba50aec3e0"
+        },
+        {
+          "path": "attempt1/cases/rsid-32-to-64-no-editorial-gap/composition.json",
+          "bytes": 357,
+          "sha256": "755a8b955a15ff43f564b029662d46857b89bd69ea90bf05e72d253979331ad8"
+        },
+        {
+          "path": "attempt1/cases/rsid-32-to-64-no-editorial-gap/command.json",
+          "bytes": 813,
+          "sha256": "8f33d3be163fc0e00d502646e69b4acef46579563f345a58b85b5db61e7ed622"
+        },
+        {
+          "path": "attempt1/cases/rsid-32-to-64-no-editorial-gap/received/decoded.txt",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "attempt1/cases/rsid-32-to-64-no-editorial-gap/received/metadata.json",
+          "bytes": 1567,
+          "sha256": "cd414350aec1b7a53a65de5fbccbd538ee2e862cfb8fdd3a5972a7162becfbed"
+        },
+        {
+          "path": "attempt1/cases/rsid-32-to-64-no-editorial-gap/received/fldigi/control.log",
+          "bytes": 20058,
+          "sha256": "006b518410f14331ae658bd132de6f1d5906ed128bffe464b88bf0259d4d21bf"
+        },
+        {
+          "path": "attempt1/cases/rsid-32-to-64-no-editorial-gap/received/fldigi/config-start/fldigi_def.xml",
+          "bytes": 598,
+          "sha256": "0107082ccc03192063ab7f33d1d0233bbd4ef2ba70085b54b8de876c92f2f05f"
+        },
+        {
+          "path": "attempt1/cases/rsid-64-to-32-no-editorial-gap/encoder-result.json",
+          "bytes": 936,
+          "sha256": "8a7f9e0b8debd75c2053859c6fe9592eaa4f2a2aeb52d36e7414e3b135a20b76"
+        },
+        {
+          "path": "attempt1/cases/rsid-64-to-32-no-editorial-gap/composition.json",
+          "bytes": 359,
+          "sha256": "5cea850f730e2a63b9e9df084693353caea49a6c55e9ba5b6c7708184aaaf5cf"
+        },
+        {
+          "path": "attempt1/cases/rsid-64-to-32-no-editorial-gap/command.json",
+          "bytes": 813,
+          "sha256": "ce92160304beb5be9dec605dd0ed62e448ecd0ff792a592f134d449cf331e06a"
+        },
+        {
+          "path": "attempt1/cases/rsid-64-to-32-no-editorial-gap/received/decoded.txt",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "attempt1/cases/rsid-64-to-32-no-editorial-gap/received/metadata.json",
+          "bytes": 1567,
+          "sha256": "622d7b6446d390d4a1afcf9f8d9c3f9fe7db7ffb3f298cc57a5fbe457f349d28"
+        },
+        {
+          "path": "attempt1/cases/rsid-64-to-32-no-editorial-gap/received/fldigi/control.log",
+          "bytes": 20250,
+          "sha256": "669faa4bec18a2299dcd72013c41a4428f088b19b0fa5b350c35073a2a658794"
+        },
+        {
+          "path": "attempt1/cases/rsid-64-to-32-no-editorial-gap/received/fldigi/config-start/fldigi_def.xml",
+          "bytes": 598,
+          "sha256": "0107082ccc03192063ab7f33d1d0233bbd4ef2ba70085b54b8de876c92f2f05f"
+        },
+        {
+          "path": "attempt1/cases/rsid-repeat-mode-new-carrier/encoder-result.json",
+          "bytes": 934,
+          "sha256": "8fe0a2e863b4bb31dcb2f08a6a928f57b8e62faf2ed9896a9d66970e5e5cdb0c"
+        },
+        {
+          "path": "attempt1/cases/rsid-repeat-mode-new-carrier/composition.json",
+          "bytes": 356,
+          "sha256": "9ca2b7e41f0ff16169294f593b125db8dfb2c857dce59c609958471e3b045f6d"
+        },
+        {
+          "path": "attempt1/cases/rsid-repeat-mode-new-carrier/command.json",
+          "bytes": 805,
+          "sha256": "b73ecb10e83c856d3aa9b48c2a1b24d3db6f52d475575fa6f4476838b8359f91"
+        },
+        {
+          "path": "attempt1/cases/rsid-repeat-mode-new-carrier/received/decoded.txt",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "attempt1/cases/rsid-repeat-mode-new-carrier/received/metadata.json",
+          "bytes": 1563,
+          "sha256": "25c6b9a7eef8cddd882b8b7a9df3a4cd6bfc090951d9b61a9854e1e7eb2931a9"
+        },
+        {
+          "path": "attempt1/cases/rsid-repeat-mode-new-carrier/received/fldigi/control.log",
+          "bytes": 19846,
+          "sha256": "62c251c373fa87a14c51992c3bf412b496532d993738a002adc44590cdc90b76"
+        },
+        {
+          "path": "attempt1/cases/rsid-repeat-mode-new-carrier/received/fldigi/config-start/fldigi_def.xml",
+          "bytes": 598,
+          "sha256": "0107082ccc03192063ab7f33d1d0233bbd4ef2ba70085b54b8de876c92f2f05f"
+        },
+        {
+          "path": "attempt1/cases/rsid-mixed-audio-silence-picture/encoder-result.json",
+          "bytes": 1816,
+          "sha256": "f3e8793caaa651a4ad6340e0c41e5a38ade1d75bf87893fb0615f1abeaf4b5df"
+        },
+        {
+          "path": "attempt1/cases/rsid-mixed-audio-silence-picture/composition.json",
+          "bytes": 762,
+          "sha256": "72a34b4d004fe625ebf31c4b2c8be280a0f06f98c849e8ab6d346d0bdda12b33"
+        },
+        {
+          "path": "attempt1/cases/rsid-mixed-audio-silence-picture/command.json",
+          "bytes": 821,
+          "sha256": "81a1b0c148cd9c486f767eefd008714e256ac8400b7035fe9ba92beaa4db03e3"
+        },
+        {
+          "path": "attempt1/cases/rsid-mixed-audio-silence-picture/received/decoded.txt",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "attempt1/cases/rsid-mixed-audio-silence-picture/received/metadata.json",
+          "bytes": 1571,
+          "sha256": "b86c3167da2aedabd56c7e91cf66f52c73c2ce21a374b3be8dc085477ee38caf"
+        },
+        {
+          "path": "attempt1/cases/rsid-mixed-audio-silence-picture/received/fldigi/control.log",
+          "bytes": 25572,
+          "sha256": "0ec9e5628877ef38979b787b2a27fc2ab5e1b20fe694e5d9f3d4eb77d84378aa"
+        },
+        {
+          "path": "attempt1/cases/rsid-mixed-audio-silence-picture/received/fldigi/config-start/fldigi_def.xml",
+          "bytes": 598,
+          "sha256": "0107082ccc03192063ab7f33d1d0233bbd4ef2ba70085b54b8de876c92f2f05f"
+        },
+        {
+          "path": "attempt1/cases/mfsk32-grayscale-speeds/encoder-result.json",
+          "bytes": 1598,
+          "sha256": "49feeb53c516f5a0300238905bf3d770e1ef36d3e769ad483b1923788413defe"
+        },
+        {
+          "path": "attempt1/cases/mfsk32-grayscale-speeds/composition.json",
+          "bytes": 1115,
+          "sha256": "dd42c5b2c354ef34d1c57aa38e4faa8aa7f1bcda0c21515d9d1f86bd4873a0fa"
+        },
+        {
+          "path": "attempt1/cases/mfsk32-grayscale-speeds/command.json",
+          "bytes": 785,
+          "sha256": "0f0152839289ffa5f7231402546625b13ca48b1409a2fe08935d0d1a39bcdcb7"
+        },
+        {
+          "path": "attempt1/cases/mfsk32-grayscale-speeds/received/decoded.txt",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "attempt1/cases/mfsk32-grayscale-speeds/received/metadata.json",
+          "bytes": 1553,
+          "sha256": "f682e886ea26bfe20114adb6561642769d3381927f69a7b7fd2f64625762e930"
+        },
+        {
+          "path": "attempt1/cases/mfsk32-grayscale-speeds/received/fldigi/control.log",
+          "bytes": 31688,
+          "sha256": "6522d225e4427f430d7fb28ed409c494019e7352899b86f8492d9dd54663a61b"
+        },
+        {
+          "path": "attempt1/cases/mfsk32-grayscale-speeds/received/fldigi/config-start/fldigi_def.xml",
+          "bytes": 598,
+          "sha256": "0107082ccc03192063ab7f33d1d0233bbd4ef2ba70085b54b8de876c92f2f05f"
+        },
+        {
+          "path": "attempt1/cases/mfsk64-color-speeds/encoder-result.json",
+          "bytes": 1583,
+          "sha256": "0ec491c5fd45a02bbddc76d156e3cc697969523b95f07a7169c4b27d2442c646"
+        },
+        {
+          "path": "attempt1/cases/mfsk64-color-speeds/composition.json",
+          "bytes": 1110,
+          "sha256": "d378f14e29292d5a03f29d6584aeabe7ad69db273d5b8d421c450c549fc4667c"
+        },
+        {
+          "path": "attempt1/cases/mfsk64-color-speeds/command.json",
+          "bytes": 769,
+          "sha256": "94ff4eb5d25f6f2a564f47a95d46fbf3987d20215e923979a450d3c201424b8d"
+        },
+        {
+          "path": "attempt1/cases/mfsk64-color-speeds/received/decoded.txt",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "attempt1/cases/mfsk64-color-speeds/received/metadata.json",
+          "bytes": 1545,
+          "sha256": "08c998f9bf7a03444fef66b2d8926648b1e9a6186dccfdc3c5e4c20e5cf148c3"
+        },
+        {
+          "path": "attempt1/cases/mfsk64-color-speeds/received/fldigi/control.log",
+          "bytes": 26362,
+          "sha256": "b50be5530706b34ff31b3aa63b7a745bf04f7884b12ee811a61a33ad9bc7f702"
+        },
+        {
+          "path": "attempt1/cases/mfsk64-color-speeds/received/fldigi/config-start/fldigi_def.xml",
+          "bytes": 598,
+          "sha256": "0107082ccc03192063ab7f33d1d0233bbd4ef2ba70085b54b8de876c92f2f05f"
+        }
+      ]
+    },
+    {
+      "attempt": 2,
+      "complete_evidence_root": ".local/session8/evidence",
+      "summary": {
+        "total": 8,
+        "passed": 5,
+        "failed": 3,
+        "blocked": 0
+      },
+      "manifest": {
+        "path": "attempt2/qualification-manifest.json",
+        "bytes": 76001,
+        "sha256": "568b0ab57068664e094e477d388a065130d9c663d8cffe9862c89a41e2168a86"
+      },
+      "durable_artifacts": [
+        {
+          "path": "attempt2/qualification-manifest.json",
+          "bytes": 76001,
+          "sha256": "568b0ab57068664e094e477d388a065130d9c663d8cffe9862c89a41e2168a86"
+        },
+        {
+          "path": "attempt2/schema-validation.json",
+          "bytes": 36,
+          "sha256": "655823ac7f996b259837b1279f4757264aac1ab82808d9b562c06a9f640f36af"
+        },
+        {
+          "path": "attempt2/execution.log",
+          "bytes": 1242,
+          "sha256": "f30305a5d66e7633591c2b5237737482a81d199fa66f847f92f61b130412fb06"
+        },
+        {
+          "path": "attempt2/identity.json",
+          "bytes": 810,
+          "sha256": "c9010458ee177bfb66d8f6b15a32500ee4c82cfe35754794aac0c82bcdd460d9"
+        },
+        {
+          "path": "attempt2/raw-runs.json",
+          "bytes": 1828,
+          "sha256": "ccbe20a99400a43048f9afcb8a47a21d02d5ef6778cbd2ebc008aa4fb94150b8"
+        },
+        {
+          "path": "attempt2/source/candidate-source-hashes.json",
+          "bytes": 4065,
+          "sha256": "b71da0e296095cc8892d986da70620218d7d299e71c8be42f7cc60a5aba740ff"
+        },
+        {
+          "path": "attempt2/source/qualification.py",
+          "bytes": 7301,
+          "sha256": "87992ff69bdbdd6e6cd02cebe447cc47f575030d15042b4420e46a63cbc9adb7"
+        },
+        {
+          "path": "attempt2/source/manifest-schema.json",
+          "bytes": 7225,
+          "sha256": "a9df84925f0fa75e07586449bfcfc0dbf393f2df0676af9de7968d43c23ee8fd"
+        },
+        {
+          "path": "attempt2/source/revision.txt",
+          "bytes": 41,
+          "sha256": "b683a03a65684b3787b9945db48f6faa3839aff9617cde01b542bf48f3af8bb0"
+        },
+        {
+          "path": "attempt2/visual-review/candidate-set-review.png",
+          "bytes": 36565,
+          "sha256": "49963a40e6a4da1d51fa1ee952e5ac3d15876d41d86dd0c087a5f43b435d69e9"
+        },
+        {
+          "path": "attempt2/visual-review/diagnostic-results.json",
+          "bytes": 1565,
+          "sha256": "04f71dc7a13f845208384934949e4f95e911da5ac1f65dccf3a913f2b82f84fa"
+        },
+        {
+          "path": "attempt2/cases/rsid-mfsk32-initial/encoder-result.json",
+          "bytes": 565,
+          "sha256": "8c0101c6677b7bef874ae358346005f30c6f1f3681087f2d925c5203def70720"
+        },
+        {
+          "path": "attempt2/cases/rsid-mfsk32-initial/composition.json",
+          "bytes": 186,
+          "sha256": "2d4d865ec3bec4e04c195f7d6e87c022b1a20cd3641e51222bdbf781ba824a9a"
+        },
+        {
+          "path": "attempt2/cases/rsid-mfsk32-initial/command.json",
+          "bytes": 769,
+          "sha256": "5c4384a2fcbc0214b6511984ade42737b992ff7ddb92cec411810042076c792b"
+        },
+        {
+          "path": "attempt2/cases/rsid-mfsk32-initial/received/decoded.txt",
+          "bytes": 185,
+          "sha256": "c0f7e3c26b38a33c9690d2c261d31763093723ee76409a7b6121091118075aff"
+        },
+        {
+          "path": "attempt2/cases/rsid-mfsk32-initial/received/metadata.json",
+          "bytes": 1545,
+          "sha256": "c727c2be970646b53fa35a39965ef0ef90a7d210c864722b4e9f27e51fa2a01a"
+        },
+        {
+          "path": "attempt2/cases/rsid-mfsk32-initial/received/fldigi/control.log",
+          "bytes": 17920,
+          "sha256": "2d5acd8661ef156f92e5b0b9677431240684a86fc15af609347c107dc2ee9fe0"
+        },
+        {
+          "path": "attempt2/cases/rsid-mfsk32-initial/received/fldigi/config-start/fldigi_def.xml",
+          "bytes": 736,
+          "sha256": "a0afdb90830c6f750319b480a7d9b86d77f09d0f464769c1ae7ef110e8a8e0ff"
+        },
+        {
+          "path": "attempt2/cases/rsid-mfsk64-extended-initial/encoder-result.json",
+          "bytes": 572,
+          "sha256": "abb638a1b2a78c5af410306804e87e8cbac09021989bdabbcb870ed26c41e965"
+        },
+        {
+          "path": "attempt2/cases/rsid-mfsk64-extended-initial/composition.json",
+          "bytes": 186,
+          "sha256": "ea29fbafc062856665a14778d4f810c905753b159049ba67306b5cbe3e1b175c"
+        },
+        {
+          "path": "attempt2/cases/rsid-mfsk64-extended-initial/command.json",
+          "bytes": 805,
+          "sha256": "1111935a46fef0272819747505e09ed30d65b3705a7854b913d7fff239fd4211"
+        },
+        {
+          "path": "attempt2/cases/rsid-mfsk64-extended-initial/received/decoded.txt",
+          "bytes": 153,
+          "sha256": "fa53d00aa20c21c3f1b98f60595a8864bf0465dc1b8d9e7124e61d70dd63ae6d"
+        },
+        {
+          "path": "attempt2/cases/rsid-mfsk64-extended-initial/received/metadata.json",
+          "bytes": 1563,
+          "sha256": "01fccd88292c1a32c4d2ed7cf6f97bde6e197dd3cf44cc8a816d91ed06a9ec27"
+        },
+        {
+          "path": "attempt2/cases/rsid-mfsk64-extended-initial/received/fldigi/control.log",
+          "bytes": 18630,
+          "sha256": "049ade43390ed29ac1b88b221e9c701bcb6573059ef23360852158d810fd1b18"
+        },
+        {
+          "path": "attempt2/cases/rsid-mfsk64-extended-initial/received/fldigi/config-start/fldigi_def.xml",
+          "bytes": 736,
+          "sha256": "a0afdb90830c6f750319b480a7d9b86d77f09d0f464769c1ae7ef110e8a8e0ff"
+        },
+        {
+          "path": "attempt2/cases/rsid-32-to-64-no-editorial-gap/encoder-result.json",
+          "bytes": 937,
+          "sha256": "4c20e9799b6b76af15f65395e7385f4bac0318c0b8adbb02a3838ed86e76c1e0"
+        },
+        {
+          "path": "attempt2/cases/rsid-32-to-64-no-editorial-gap/composition.json",
+          "bytes": 357,
+          "sha256": "755a8b955a15ff43f564b029662d46857b89bd69ea90bf05e72d253979331ad8"
+        },
+        {
+          "path": "attempt2/cases/rsid-32-to-64-no-editorial-gap/command.json",
+          "bytes": 813,
+          "sha256": "75f419fcbb73930dc201994c506986a134a8ca8e96b77f402a45431bc73f2ec7"
+        },
+        {
+          "path": "attempt2/cases/rsid-32-to-64-no-editorial-gap/received/decoded.txt",
+          "bytes": 84,
+          "sha256": "8d148a534279475a618c7d581ed1abaf900edbcee2fa7fe154c08053570d656f"
+        },
+        {
+          "path": "attempt2/cases/rsid-32-to-64-no-editorial-gap/received/metadata.json",
+          "bytes": 1567,
+          "sha256": "4c4e18b4c2a84470ac3fa1bd9b68efdc6fc347b50918862038ecc74146ca0f99"
+        },
+        {
+          "path": "attempt2/cases/rsid-32-to-64-no-editorial-gap/received/fldigi/control.log",
+          "bytes": 26531,
+          "sha256": "90727be403c40c04313c066d8a4ea0d65a41b6f8d989edd013711244905ae724"
+        },
+        {
+          "path": "attempt2/cases/rsid-32-to-64-no-editorial-gap/received/fldigi/config-start/fldigi_def.xml",
+          "bytes": 736,
+          "sha256": "a0afdb90830c6f750319b480a7d9b86d77f09d0f464769c1ae7ef110e8a8e0ff"
+        },
+        {
+          "path": "attempt2/cases/rsid-64-to-32-no-editorial-gap/encoder-result.json",
+          "bytes": 936,
+          "sha256": "63e96853a1883d52131eddd4ed1d53ad3742f3ba59af930f1901c71617baa350"
+        },
+        {
+          "path": "attempt2/cases/rsid-64-to-32-no-editorial-gap/composition.json",
+          "bytes": 359,
+          "sha256": "5cea850f730e2a63b9e9df084693353caea49a6c55e9ba5b6c7708184aaaf5cf"
+        },
+        {
+          "path": "attempt2/cases/rsid-64-to-32-no-editorial-gap/command.json",
+          "bytes": 813,
+          "sha256": "076a8f78292b42eb34f591742f3e15bcfacb700e88161f4c561374db9c3f1cc1"
+        },
+        {
+          "path": "attempt2/cases/rsid-64-to-32-no-editorial-gap/received/decoded.txt",
+          "bytes": 153,
+          "sha256": "48f1bc689895a1f96101258f1665d82c2ed7e99ecef803d00be81ed39cf03566"
+        },
+        {
+          "path": "attempt2/cases/rsid-64-to-32-no-editorial-gap/received/metadata.json",
+          "bytes": 1567,
+          "sha256": "728e94768834e5482ab82fb5c09d83a23a8fc6352440a9e880d8ee99382033b4"
+        },
+        {
+          "path": "attempt2/cases/rsid-64-to-32-no-editorial-gap/received/fldigi/control.log",
+          "bytes": 26686,
+          "sha256": "76560b1e7e11b9766ec22d2bc0593e24a1dc44f363ae4097b9ff50b1349b72f7"
+        },
+        {
+          "path": "attempt2/cases/rsid-64-to-32-no-editorial-gap/received/fldigi/config-start/fldigi_def.xml",
+          "bytes": 736,
+          "sha256": "a0afdb90830c6f750319b480a7d9b86d77f09d0f464769c1ae7ef110e8a8e0ff"
+        },
+        {
+          "path": "attempt2/cases/rsid-repeat-mode-new-carrier/encoder-result.json",
+          "bytes": 934,
+          "sha256": "0c0151cc552173b15bbe5d20029541c01819e9976c1ef294eba69edf0c4ff531"
+        },
+        {
+          "path": "attempt2/cases/rsid-repeat-mode-new-carrier/composition.json",
+          "bytes": 356,
+          "sha256": "9ca2b7e41f0ff16169294f593b125db8dfb2c857dce59c609958471e3b045f6d"
+        },
+        {
+          "path": "attempt2/cases/rsid-repeat-mode-new-carrier/command.json",
+          "bytes": 805,
+          "sha256": "835a0e6f5f23b07ef988156c6fb88c0e7f8882dda87cbef317f8a64e6b7a2eb2"
+        },
+        {
+          "path": "attempt2/cases/rsid-repeat-mode-new-carrier/received/decoded.txt",
+          "bytes": 75,
+          "sha256": "2b2bf129ad5006cf0ddd1c5708e22b66122607a07b8076556a64e409f1140f10"
+        },
+        {
+          "path": "attempt2/cases/rsid-repeat-mode-new-carrier/received/metadata.json",
+          "bytes": 1563,
+          "sha256": "e75327f3df63ca14babcbd462203c476b004c939f016c32149b89d3a73109d8e"
+        },
+        {
+          "path": "attempt2/cases/rsid-repeat-mode-new-carrier/received/fldigi/control.log",
+          "bytes": 26285,
+          "sha256": "8c027ada17ddd33f342dc264e92591590c4ae7aca08467c0dc0051afd45e7229"
+        },
+        {
+          "path": "attempt2/cases/rsid-repeat-mode-new-carrier/received/fldigi/config-start/fldigi_def.xml",
+          "bytes": 736,
+          "sha256": "a0afdb90830c6f750319b480a7d9b86d77f09d0f464769c1ae7ef110e8a8e0ff"
+        },
+        {
+          "path": "attempt2/cases/rsid-mixed-audio-silence-picture/encoder-result.json",
+          "bytes": 1816,
+          "sha256": "dca6dc7159a65ef16c32f4d610178300cd5c4c2ecfc2598190ca5cc6560ebf52"
+        },
+        {
+          "path": "attempt2/cases/rsid-mixed-audio-silence-picture/composition.json",
+          "bytes": 762,
+          "sha256": "72a34b4d004fe625ebf31c4b2c8be280a0f06f98c849e8ab6d346d0bdda12b33"
+        },
+        {
+          "path": "attempt2/cases/rsid-mixed-audio-silence-picture/command.json",
+          "bytes": 821,
+          "sha256": "0d952d9d7cc13e1ab3ddb0d012e81cbb41c28a58aa4a5c856dc4c2cd24b42ac8"
+        },
+        {
+          "path": "attempt2/cases/rsid-mixed-audio-silence-picture/received/decoded.txt",
+          "bytes": 121,
+          "sha256": "5292a07dc9e3ab7e0c20f5b026008fda5dc0e405f5a3a6334e71940ef21ca12c"
+        },
+        {
+          "path": "attempt2/cases/rsid-mixed-audio-silence-picture/received/metadata.json",
+          "bytes": 1571,
+          "sha256": "58d8d58dc6801452ece134ec8c3dff940ba0770c1fca82f252bd610eb27cb069"
+        },
+        {
+          "path": "attempt2/cases/rsid-mixed-audio-silence-picture/received/fldigi/control.log",
+          "bytes": 34916,
+          "sha256": "ffd2e0d1a19f4309724256204f7df8967f601c9b15ea043818fb09513265db20"
+        },
+        {
+          "path": "attempt2/cases/rsid-mixed-audio-silence-picture/received/fldigi/config-start/fldigi_def.xml",
+          "bytes": 736,
+          "sha256": "a0afdb90830c6f750319b480a7d9b86d77f09d0f464769c1ae7ef110e8a8e0ff"
+        },
+        {
+          "path": "attempt2/cases/rsid-mixed-audio-silence-picture/received/images/pic_2026-10-02_031609z.png",
+          "bytes": 278,
+          "sha256": "2c0a0241adf0c22fd239bf8b1b3543603a1a56f27e34022525b21cbff5454984"
+        },
+        {
+          "path": "attempt2/cases/mfsk32-grayscale-speeds/encoder-result.json",
+          "bytes": 1598,
+          "sha256": "d850d68627f573f567605bfdb08aaee3f4be0cb9144eccdbc18457419f3e71bc"
+        },
+        {
+          "path": "attempt2/cases/mfsk32-grayscale-speeds/composition.json",
+          "bytes": 1115,
+          "sha256": "dd42c5b2c354ef34d1c57aa38e4faa8aa7f1bcda0c21515d9d1f86bd4873a0fa"
+        },
+        {
+          "path": "attempt2/cases/mfsk32-grayscale-speeds/command.json",
+          "bytes": 785,
+          "sha256": "6b8e65c7f4d9972637505ccc1b1c8d141d0d99c9c482dbbc4910ae27b85762e7"
+        },
+        {
+          "path": "attempt2/cases/mfsk32-grayscale-speeds/received/decoded.txt",
+          "bytes": 134,
+          "sha256": "1dbfcf548346838269aa9dd66305a9b5b9f2ae5f3301ca781e26165d825ae830"
+        },
+        {
+          "path": "attempt2/cases/mfsk32-grayscale-speeds/received/metadata.json",
+          "bytes": 1553,
+          "sha256": "fefb9d775adfb54f38bcc64c2cc16c502f2b0f7b195758482de2f8d4767f8784"
+        },
+        {
+          "path": "attempt2/cases/mfsk32-grayscale-speeds/received/fldigi/control.log",
+          "bytes": 44604,
+          "sha256": "2af2bcef02eeb2994d1aa513a877435661fd145246de8802412e7d860d354a2b"
+        },
+        {
+          "path": "attempt2/cases/mfsk32-grayscale-speeds/received/fldigi/config-start/fldigi_def.xml",
+          "bytes": 736,
+          "sha256": "a0afdb90830c6f750319b480a7d9b86d77f09d0f464769c1ae7ef110e8a8e0ff"
+        },
+        {
+          "path": "attempt2/cases/mfsk32-grayscale-speeds/received/images/pic_2026-10-02_031706z.png",
+          "bytes": 179,
+          "sha256": "f2b522bc7ecac30f5fbc8709597aff10bd199cc26b71f2cb8b6121283966f6e6"
+        },
+        {
+          "path": "attempt2/cases/mfsk32-grayscale-speeds/received/images/pic_2026-10-02_031714z.png",
+          "bytes": 269,
+          "sha256": "12219eaee18d27bddd88831244948ff96949ba6ea6f23dd647c07a98fd4ca48a"
+        },
+        {
+          "path": "attempt2/cases/mfsk32-grayscale-speeds/received/images/pic_2026-10-02_031722z.png",
+          "bytes": 268,
+          "sha256": "05abffc37790e24d305d6333f8f58af22f91fa4ce2eb96d0b94a9cb5570fe26d"
+        },
+        {
+          "path": "attempt2/cases/mfsk64-color-speeds/encoder-result.json",
+          "bytes": 1583,
+          "sha256": "b144bf18d7c7c1668ce4417f12e9f10ea8ef29753582a3854d5d39f4619f3d08"
+        },
+        {
+          "path": "attempt2/cases/mfsk64-color-speeds/composition.json",
+          "bytes": 1110,
+          "sha256": "d378f14e29292d5a03f29d6584aeabe7ad69db273d5b8d421c450c549fc4667c"
+        },
+        {
+          "path": "attempt2/cases/mfsk64-color-speeds/command.json",
+          "bytes": 769,
+          "sha256": "f923b25eb6e72828b3d637fdd73e86a8d64e960bad2593485bd4287edfef3a94"
+        },
+        {
+          "path": "attempt2/cases/mfsk64-color-speeds/received/decoded.txt",
+          "bytes": 489,
+          "sha256": "382c56f57ef4a263ef7e33c611410af7ce42536c14a97bc032bb64341456d323"
+        },
+        {
+          "path": "attempt2/cases/mfsk64-color-speeds/received/metadata.json",
+          "bytes": 1545,
+          "sha256": "9e341e7172bce515a7f5c252fed61b474efe68b8ec8455b48abfe66dcd122ad3"
+        },
+        {
+          "path": "attempt2/cases/mfsk64-color-speeds/received/fldigi/control.log",
+          "bytes": 36205,
+          "sha256": "7eb5f41bfd866d739cd2507f1ac62ae4a774d94e1fe0011aa587b9a1cb9cd957"
+        },
+        {
+          "path": "attempt2/cases/mfsk64-color-speeds/received/fldigi/config-start/fldigi_def.xml",
+          "bytes": 736,
+          "sha256": "a0afdb90830c6f750319b480a7d9b86d77f09d0f464769c1ae7ef110e8a8e0ff"
+        },
+        {
+          "path": "attempt2/cases/mfsk64-color-speeds/received/images/pic_2026-10-02_031819z.png",
+          "bytes": 272,
+          "sha256": "3b918363d80405f24215c2ff7e946b01d0da5bf7da19ed8b1d9b0ae29a5d7d8f"
+        },
+        {
+          "path": "attempt2/cases/mfsk64-color-speeds/received/images/pic_2026-10-02_031825z.png",
+          "bytes": 278,
+          "sha256": "365ef88544b44203c1ce066abc6de1c5a94d5764f50d420fa014db7e0b08d7aa"
+        },
+        {
+          "path": "attempt2/cases/mfsk64-color-speeds/received/images/pic_2026-10-02_031830z.png",
+          "bytes": 227,
+          "sha256": "dc0e2be6e46ec84c2cbb4f7ab0d4540ee45664bfc84ec9c12c8a2b626ed5b125"
+        }
+      ]
+    }
+  ],
+  "receiver_binary": {
+    "path": "receiver-binary",
+    "bytes": 67143320,
+    "sha256": "dd30f86caae1edb5d2998acedb47a3a7b348b727bf6303af1e2f822f549966f3"
+  },
+  "source": {
+    "repository_revision": "f41c0f922caa27c255e5a91b630497dd09983cf7",
+    "matrix": {
+      "path": "source/matrix.json",
+      "bytes": 5691,
+      "sha256": "9c8cba257b3e20861e6978b7c4d33c96f9856d81d9bb3a55d2347282f950fe81"
+    },
+    "rsid_oracle": {
+      "path": "source/rsid-oracle.json",
+      "bytes": 3014,
+      "sha256": "be9e40eae97b1230d50b6991c2d7c853d9562029a4a38b19f19e561bdd5857ec"
+    },
+    "encoder_distribution": {
+      "path": "source/distribution/radiogrampy-0.1.3-py3-none-any.whl",
+      "bytes": 165527,
+      "sha256": "b0ff517be6daa4bc32afac0ac2b5914ca1eeedb785d3f28a5b72be24f09834a1"
+    },
+    "inputs": [
+      {
+        "path": "inputs/audio-marker.wav",
+        "bytes": 96044,
+        "sha256": "fde7892eba90d4d705b5fef99aef4c078c4f65b92af23f06cd2af9a8a4a56fca"
+      },
+      {
+        "path": "inputs/primary-color-8x4.png",
+        "bytes": 137,
+        "sha256": "33e1986427384be02803fe5e8785f3068d17bbacaf6fb6f5b7f880cfea188ea2"
+      }
+    ]
+  },
+  "visual_review": {
+    "path": "attempt2/visual-review/candidate-set-review.png",
+    "bytes": 36565,
+    "sha256": "49963a40e6a4da1d51fa1ee952e5ac3d15876d41d86dd0c087a5f43b435d69e9"
+  }
+}

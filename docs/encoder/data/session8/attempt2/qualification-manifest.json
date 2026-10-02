@@ -1,0 +1,2408 @@
+{
+  "schema": "grampy-mfsk-encoder-pi-qualification-manifest.v2",
+  "status": "failed",
+  "source": {
+    "repository_revision": "f41c0f922caa27c255e5a91b630497dd09983cf7",
+    "matrix": {
+      "path": "source/matrix.json",
+      "bytes": 5691,
+      "sha256": "9c8cba257b3e20861e6978b7c4d33c96f9856d81d9bb3a55d2347282f950fe81"
+    },
+    "rsid_oracle": {
+      "path": "source/rsid-oracle.json",
+      "bytes": 3014,
+      "sha256": "be9e40eae97b1230d50b6991c2d7c853d9562029a4a38b19f19e561bdd5857ec"
+    },
+    "encoder_distribution": {
+      "path": "source/distribution/radiogrampy-0.1.3-py3-none-any.whl",
+      "bytes": 165527,
+      "sha256": "b0ff517be6daa4bc32afac0ac2b5914ca1eeedb785d3f28a5b72be24f09834a1"
+    },
+    "inputs": [
+      {
+        "path": "inputs/audio-marker.wav",
+        "bytes": 96044,
+        "sha256": "fde7892eba90d4d705b5fef99aef4c078c4f65b92af23f06cd2af9a8a4a56fca"
+      },
+      {
+        "path": "inputs/primary-color-8x4.png",
+        "bytes": 137,
+        "sha256": "33e1986427384be02803fe5e8785f3068d17bbacaf6fb6f5b7f880cfea188ea2"
+      }
+    ]
+  },
+  "target": {
+    "hostname": "pi3BFirst",
+    "platform": "Linux-6.18.34+rpt-rpi-v8-aarch64-with-glibc2.41",
+    "architecture": "aarch64",
+    "python_version": "3.13.5"
+  },
+  "receiver": {
+    "reference_id": "fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178",
+    "version": "fldigi 4.2.13",
+    "binary": {
+      "path": "receiver-binary",
+      "bytes": 67143320,
+      "sha256": "dd30f86caae1edb5d2998acedb47a3a7b348b727bf6303af1e2f822f549966f3"
+    },
+    "configuration": {
+      "reference_id": "fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178",
+      "rxid_enabled": true,
+      "rxid_passband_search": true,
+      "rxid_notify_only": false,
+      "rxid_auto_disable_after_detection": false,
+      "rxid_mode_exclusions": [],
+      "reverse_sideband": false,
+      "initial_mode": "BPSK31",
+      "initial_carrier_hz": 1500.0,
+      "playback": "one continuous run of the complete generated WAV; no manual mode/frequency selection or window replay"
+    }
+  },
+  "execution": {
+    "workflow": "tools/pi-qualify-mfsk-encoder.sh",
+    "started_utc": "2026-10-02T03:10:36.413046+00:00",
+    "completed_utc": "2026-10-02T03:18:49.503165+00:00",
+    "log": {
+      "path": "execution.log",
+      "bytes": 1242,
+      "sha256": "f30305a5d66e7633591c2b5237737482a81d199fa66f847f92f61b130412fb06"
+    }
+  },
+  "cases": [
+    {
+      "id": "rsid-mfsk32-initial",
+      "status": "pass",
+      "generated_wav": {
+        "path": "cases/rsid-mfsk32-initial/generated.wav",
+        "bytes": 788192,
+        "sha256": "59359cc866a89a8884e00263aa6784a8af97bece507c5c81ef658298c5fdbe20"
+      },
+      "encoder_result": {
+        "path": "cases/rsid-mfsk32-initial/encoder-result.json",
+        "bytes": 565,
+        "sha256": "8c0101c6677b7bef874ae358346005f30c6f1f3681087f2d925c5203def70720"
+      },
+      "continuous_receiver_runs": [
+        {
+          "input_interval": {
+            "start_frame": 0,
+            "end_frame": 394074
+          },
+          "manual_mode_changes": 0,
+          "exit_code": 0,
+          "log": {
+            "path": "cases/rsid-mfsk32-initial/received/fldigi/control.log",
+            "bytes": 17920,
+            "sha256": "2d5acd8661ef156f92e5b0b9677431240684a86fc15af609347c107dc2ee9fe0"
+          },
+          "rxid_events": [
+            {
+              "mode": "MFSK32",
+              "code": 147,
+              "frequency_hz": 1504.0,
+              "receiver_log_evidence": "status during playback: mode='MFSK32' carrier=1504 quality=0.0 afc=0 squelch=0 squelch_level=0.0 rsid=1 status1='' status2='' trx='rx'"
+            }
+          ],
+          "recovered_text": {
+            "path": "cases/rsid-mfsk32-initial/received/decoded.txt",
+            "bytes": 185,
+            "sha256": "c0f7e3c26b38a33c9690d2c261d31763093723ee76409a7b6121091118075aff"
+          },
+          "recovered_images": []
+        }
+      ],
+      "checks": [
+        {
+          "id": "whole-wav-receiver-exit",
+          "status": "pass",
+          "expected": 0,
+          "observed": 0,
+          "evidence": [
+            "cases/rsid-mfsk32-initial/received/metadata.json"
+          ]
+        },
+        {
+          "id": "whole-wav-interval-and-no-manual-changes",
+          "status": "pass",
+          "expected": [
+            0,
+            394074,
+            0
+          ],
+          "observed": [
+            0,
+            394074,
+            0
+          ],
+          "evidence": [
+            "cases/rsid-mfsk32-initial/received/fldigi/control.log",
+            "cases/rsid-mfsk32-initial/command.json"
+          ]
+        },
+        {
+          "id": "initial-unrelated-mode",
+          "status": "pass",
+          "expected": "BPSK31",
+          "observed": "BPSK31",
+          "evidence": [
+            "cases/rsid-mfsk32-initial/received/fldigi/control.log"
+          ]
+        },
+        {
+          "id": "receiver-rxid-configuration",
+          "status": "pass",
+          "expected": {
+            "AUDIOIO": "1",
+            "PORTINDEVICE": "default",
+            "PORTOUTDEVICE": "default",
+            "RSIDWIDESEARCH": "1",
+            "RSIDNOTIFYONLY": "0",
+            "RSIDAUTODISABLE": "0",
+            "RSIDRXMODESEXCLUDE": "",
+            "DISABLERSIDFREQCHANGE": "0"
+          },
+          "observed": {
+            "AUDIOIO": "1",
+            "PORTINDEVICE": "default",
+            "PORTOUTDEVICE": "default",
+            "RSIDWIDESEARCH": "1",
+            "RSIDNOTIFYONLY": "0",
+            "RSIDAUTODISABLE": "0",
+            "RSIDRXMODESEXCLUDE": "",
+            "DISABLERSIDFREQCHANGE": "0"
+          },
+          "evidence": [
+            "cases/rsid-mfsk32-initial/received/fldigi/config-start/fldigi_def.xml",
+            "cases/rsid-mfsk32-initial/received/fldigi/control.log"
+          ]
+        },
+        {
+          "id": "rxid-acquisitions-in-order",
+          "status": "pass",
+          "expected": [
+            "MFSK32"
+          ],
+          "observed": [
+            "MFSK32"
+          ],
+          "evidence": [
+            "cases/rsid-mfsk32-initial/received/fldigi/control.log"
+          ]
+        },
+        {
+          "id": "carrier-acquisitions-in-order",
+          "status": "pass",
+          "expected": [
+            1500.0
+          ],
+          "observed": [
+            1504.0
+          ],
+          "evidence": [
+            "cases/rsid-mfsk32-initial/received/fldigi/control.log"
+          ]
+        },
+        {
+          "id": "caller-text-exact-and-ordered",
+          "status": "pass",
+          "expected": [
+            "RSID MFSK32 INITIAL END"
+          ],
+          "observed": {
+            "positions": [
+              8
+            ],
+            "decoded": "s    \n\u0002\nRSID MFSK32 INITIAL END\n\u0004\nu\u00e2\u00a57\b\u00a0rtrs\u00a1reeErs\u00a1reeErs\u00a1reeErs\u00a1reeErs\u00a1reeErs\u00a1reeErs\u00a1reeErs\u00a1reeErs\u00a1reeErs\u00a1reeErs\u00a1reeErs\u00a1reeErs\u00a1reeErs\u00a1reeErs\u00a1reeErs\u00a1reeErs\u00a1reeErs\u00a1"
+          },
+          "evidence": [
+            "cases/rsid-mfsk32-initial/received/decoded.txt"
+          ]
+        },
+        {
+          "id": "picture-count",
+          "status": "pass",
+          "expected": 0,
+          "observed": 0,
+          "evidence": [
+            "cases/rsid-mfsk32-initial/received/metadata.json"
+          ]
+        },
+        {
+          "id": "independent-rsid-oracle-pcm",
+          "status": "pass",
+          "expected": true,
+          "observed": true,
+          "evidence": [
+            "source/rsid-oracle.json",
+            "cases/rsid-mfsk32-initial/generated.wav"
+          ]
+        },
+        {
+          "id": "prefix-inclusive-frames-and-coordinates",
+          "status": "pass",
+          "expected": {
+            "frames": 394074,
+            "starts": [
+              {
+                "input_index": 0,
+                "start_frame": 0,
+                "contents": [
+                  {
+                    "content_index": 0,
+                    "start_frame": 159066
+                  }
+                ]
+              }
+            ]
+          },
+          "observed": {
+            "frames": 394074,
+            "starts": [
+              {
+                "input_index": 0,
+                "start_frame": 0,
+                "contents": [
+                  {
+                    "content_index": 0,
+                    "start_frame": 159066
+                  }
+                ]
+              }
+            ]
+          },
+          "evidence": [
+            "cases/rsid-mfsk32-initial/encoder-result.json"
+          ]
+        },
+        {
+          "id": "picture-announcements-exact",
+          "status": "pass",
+          "expected": [],
+          "observed": "s    \n\u0002\nRSID MFSK32 INITIAL END\n\u0004\nu\u00e2\u00a57\b\u00a0rtrs\u00a1reeErs\u00a1reeErs\u00a1reeErs\u00a1reeErs\u00a1reeErs\u00a1reeErs\u00a1reeErs\u00a1reeErs\u00a1reeErs\u00a1reeErs\u00a1reeErs\u00a1reeErs\u00a1reeErs\u00a1reeErs\u00a1reeErs\u00a1reeErs\u00a1reeErs\u00a1",
+          "evidence": [
+            "cases/rsid-mfsk32-initial/received/decoded.txt"
+          ]
+        }
+      ],
+      "discrepancies": []
+    },
+    {
+      "id": "rsid-mfsk64-extended-initial",
+      "status": "pass",
+      "generated_wav": {
+        "path": "cases/rsid-mfsk64-extended-initial/generated.wav",
+        "bytes": 803732,
+        "sha256": "dad0fb7a516adfadcef1a9225261d5ad2234407f0cc20843f6c896cda39894a9"
+      },
+      "encoder_result": {
+        "path": "cases/rsid-mfsk64-extended-initial/encoder-result.json",
+        "bytes": 572,
+        "sha256": "abb638a1b2a78c5af410306804e87e8cbac09021989bdabbcb870ed26c41e965"
+      },
+      "continuous_receiver_runs": [
+        {
+          "input_interval": {
+            "start_frame": 0,
+            "end_frame": 401844
+          },
+          "manual_mode_changes": 0,
+          "exit_code": 0,
+          "log": {
+            "path": "cases/rsid-mfsk64-extended-initial/received/fldigi/control.log",
+            "bytes": 18630,
+            "sha256": "049ade43390ed29ac1b88b221e9c701bcb6573059ef23360852158d810fd1b18"
+          },
+          "rxid_events": [
+            {
+              "mode": "MFSK64",
+              "code": 620,
+              "frequency_hz": 1499.0,
+              "receiver_log_evidence": "status during playback: mode='MFSK64' carrier=1499 quality=0.0 afc=0 squelch=0 squelch_level=0.0 rsid=1 status1='' status2='' trx='rx'"
+            }
+          ],
+          "recovered_text": {
+            "path": "cases/rsid-mfsk64-extended-initial/received/decoded.txt",
+            "bytes": 153,
+            "sha256": "fa53d00aa20c21c3f1b98f60595a8864bf0465dc1b8d9e7124e61d70dd63ae6d"
+          },
+          "recovered_images": []
+        }
+      ],
+      "checks": [
+        {
+          "id": "whole-wav-receiver-exit",
+          "status": "pass",
+          "expected": 0,
+          "observed": 0,
+          "evidence": [
+            "cases/rsid-mfsk64-extended-initial/received/metadata.json"
+          ]
+        },
+        {
+          "id": "whole-wav-interval-and-no-manual-changes",
+          "status": "pass",
+          "expected": [
+            0,
+            401844,
+            0
+          ],
+          "observed": [
+            0,
+            401844,
+            0
+          ],
+          "evidence": [
+            "cases/rsid-mfsk64-extended-initial/received/fldigi/control.log",
+            "cases/rsid-mfsk64-extended-initial/command.json"
+          ]
+        },
+        {
+          "id": "initial-unrelated-mode",
+          "status": "pass",
+          "expected": "BPSK31",
+          "observed": "BPSK31",
+          "evidence": [
+            "cases/rsid-mfsk64-extended-initial/received/fldigi/control.log"
+          ]
+        },
+        {
+          "id": "receiver-rxid-configuration",
+          "status": "pass",
+          "expected": {
+            "AUDIOIO": "1",
+            "PORTINDEVICE": "default",
+            "PORTOUTDEVICE": "default",
+            "RSIDWIDESEARCH": "1",
+            "RSIDNOTIFYONLY": "0",
+            "RSIDAUTODISABLE": "0",
+            "RSIDRXMODESEXCLUDE": "",
+            "DISABLERSIDFREQCHANGE": "0"
+          },
+          "observed": {
+            "AUDIOIO": "1",
+            "PORTINDEVICE": "default",
+            "PORTOUTDEVICE": "default",
+            "RSIDWIDESEARCH": "1",
+            "RSIDNOTIFYONLY": "0",
+            "RSIDAUTODISABLE": "0",
+            "RSIDRXMODESEXCLUDE": "",
+            "DISABLERSIDFREQCHANGE": "0"
+          },
+          "evidence": [
+            "cases/rsid-mfsk64-extended-initial/received/fldigi/config-start/fldigi_def.xml",
+            "cases/rsid-mfsk64-extended-initial/received/fldigi/control.log"
+          ]
+        },
+        {
+          "id": "rxid-acquisitions-in-order",
+          "status": "pass",
+          "expected": [
+            "MFSK64"
+          ],
+          "observed": [
+            "MFSK64"
+          ],
+          "evidence": [
+            "cases/rsid-mfsk64-extended-initial/received/fldigi/control.log"
+          ]
+        },
+        {
+          "id": "carrier-acquisitions-in-order",
+          "status": "pass",
+          "expected": [
+            1500.0
+          ],
+          "observed": [
+            1499.0
+          ],
+          "evidence": [
+            "cases/rsid-mfsk64-extended-initial/received/fldigi/control.log"
+          ]
+        },
+        {
+          "id": "caller-text-exact-and-ordered",
+          "status": "pass",
+          "expected": [
+            "RSID MFSK64 INITIAL END"
+          ],
+          "observed": {
+            "positions": [
+              11
+            ],
+            "decoded": "tlt    s\n\u0002\nRSID MFSK64 INITIAL END\n\u0004\nCT3r3r3r3r3r3r3r3r3r3r3r3r3r3r3r3r3r3r3r3r3r3r3r3r3r3r3r3r3r3r3r3r3r3r3r3r3r3r3r3r3r3r3r3r3r3r3r3r3r3r3r3r3r3r3r3r3r"
+          },
+          "evidence": [
+            "cases/rsid-mfsk64-extended-initial/received/decoded.txt"
+          ]
+        },
+        {
+          "id": "picture-count",
+          "status": "pass",
+          "expected": 0,
+          "observed": 0,
+          "evidence": [
+            "cases/rsid-mfsk64-extended-initial/received/metadata.json"
+          ]
+        },
+        {
+          "id": "independent-rsid-oracle-pcm",
+          "status": "pass",
+          "expected": true,
+          "observed": true,
+          "evidence": [
+            "source/rsid-oracle.json",
+            "cases/rsid-mfsk64-extended-initial/generated.wav"
+          ]
+        },
+        {
+          "id": "prefix-inclusive-frames-and-coordinates",
+          "status": "pass",
+          "expected": {
+            "frames": 401844,
+            "starts": [
+              {
+                "input_index": 0,
+                "start_frame": 0,
+                "contents": [
+                  {
+                    "content_index": 0,
+                    "start_frame": 255924
+                  }
+                ]
+              }
+            ]
+          },
+          "observed": {
+            "frames": 401844,
+            "starts": [
+              {
+                "input_index": 0,
+                "start_frame": 0,
+                "contents": [
+                  {
+                    "content_index": 0,
+                    "start_frame": 255924
+                  }
+                ]
+              }
+            ]
+          },
+          "evidence": [
+            "cases/rsid-mfsk64-extended-initial/encoder-result.json"
+          ]
+        },
+        {
+          "id": "picture-announcements-exact",
+          "status": "pass",
+          "expected": [],
+          "observed": "tlt    s\n\u0002\nRSID MFSK64 INITIAL END\n\u0004\nCT3r3r3r3r3r3r3r3r3r3r3r3r3r3r3r3r3r3r3r3r3r3r3r3r3r3r3r3r3r3r3r3r3r3r3r3r3r3r3r3r3r3r3r3r3r3r3r3r3r3r3r3r3r3r3r3r3r",
+          "evidence": [
+            "cases/rsid-mfsk64-extended-initial/received/decoded.txt"
+          ]
+        }
+      ],
+      "discrepancies": []
+    },
+    {
+      "id": "rsid-32-to-64-no-editorial-gap",
+      "status": "pass",
+      "generated_wav": {
+        "path": "cases/rsid-32-to-64-no-editorial-gap/generated.wav",
+        "bytes": 1499720,
+        "sha256": "e73ceff80bf560ee10e161926d9db7834c0b731cfc4d9c1670d4a9f3207db365"
+      },
+      "encoder_result": {
+        "path": "cases/rsid-32-to-64-no-editorial-gap/encoder-result.json",
+        "bytes": 937,
+        "sha256": "4c20e9799b6b76af15f65395e7385f4bac0318c0b8adbb02a3838ed86e76c1e0"
+      },
+      "continuous_receiver_runs": [
+        {
+          "input_interval": {
+            "start_frame": 0,
+            "end_frame": 749838
+          },
+          "manual_mode_changes": 0,
+          "exit_code": 0,
+          "log": {
+            "path": "cases/rsid-32-to-64-no-editorial-gap/received/fldigi/control.log",
+            "bytes": 26531,
+            "sha256": "90727be403c40c04313c066d8a4ea0d65a41b6f8d989edd013711244905ae724"
+          },
+          "rxid_events": [
+            {
+              "mode": "MFSK32",
+              "code": 147,
+              "frequency_hz": 1402.0,
+              "receiver_log_evidence": "status during playback: mode='MFSK32' carrier=1402 quality=3.093607 afc=0 squelch=0 squelch_level=0.0 rsid=1 status1='' status2='' trx='rx'"
+            },
+            {
+              "mode": "MFSK64",
+              "code": 620,
+              "frequency_hz": 1601.0,
+              "receiver_log_evidence": "status during playback: mode='MFSK64' carrier=1601 quality=32.477728 afc=0 squelch=0 squelch_level=0.0 rsid=1 status1='' status2='' trx='rx'"
+            }
+          ],
+          "recovered_text": {
+            "path": "cases/rsid-32-to-64-no-editorial-gap/received/decoded.txt",
+            "bytes": 84,
+            "sha256": "8d148a534279475a618c7d581ed1abaf900edbcee2fa7fe154c08053570d656f"
+          },
+          "recovered_images": []
+        }
+      ],
+      "checks": [
+        {
+          "id": "whole-wav-receiver-exit",
+          "status": "pass",
+          "expected": 0,
+          "observed": 0,
+          "evidence": [
+            "cases/rsid-32-to-64-no-editorial-gap/received/metadata.json"
+          ]
+        },
+        {
+          "id": "whole-wav-interval-and-no-manual-changes",
+          "status": "pass",
+          "expected": [
+            0,
+            749838,
+            0
+          ],
+          "observed": [
+            0,
+            749838,
+            0
+          ],
+          "evidence": [
+            "cases/rsid-32-to-64-no-editorial-gap/received/fldigi/control.log",
+            "cases/rsid-32-to-64-no-editorial-gap/command.json"
+          ]
+        },
+        {
+          "id": "initial-unrelated-mode",
+          "status": "pass",
+          "expected": "BPSK31",
+          "observed": "BPSK31",
+          "evidence": [
+            "cases/rsid-32-to-64-no-editorial-gap/received/fldigi/control.log"
+          ]
+        },
+        {
+          "id": "receiver-rxid-configuration",
+          "status": "pass",
+          "expected": {
+            "AUDIOIO": "1",
+            "PORTINDEVICE": "default",
+            "PORTOUTDEVICE": "default",
+            "RSIDWIDESEARCH": "1",
+            "RSIDNOTIFYONLY": "0",
+            "RSIDAUTODISABLE": "0",
+            "RSIDRXMODESEXCLUDE": "",
+            "DISABLERSIDFREQCHANGE": "0"
+          },
+          "observed": {
+            "AUDIOIO": "1",
+            "PORTINDEVICE": "default",
+            "PORTOUTDEVICE": "default",
+            "RSIDWIDESEARCH": "1",
+            "RSIDNOTIFYONLY": "0",
+            "RSIDAUTODISABLE": "0",
+            "RSIDRXMODESEXCLUDE": "",
+            "DISABLERSIDFREQCHANGE": "0"
+          },
+          "evidence": [
+            "cases/rsid-32-to-64-no-editorial-gap/received/fldigi/config-start/fldigi_def.xml",
+            "cases/rsid-32-to-64-no-editorial-gap/received/fldigi/control.log"
+          ]
+        },
+        {
+          "id": "rxid-acquisitions-in-order",
+          "status": "pass",
+          "expected": [
+            "MFSK32",
+            "MFSK64"
+          ],
+          "observed": [
+            "MFSK32",
+            "MFSK64"
+          ],
+          "evidence": [
+            "cases/rsid-32-to-64-no-editorial-gap/received/fldigi/control.log"
+          ]
+        },
+        {
+          "id": "carrier-acquisitions-in-order",
+          "status": "pass",
+          "expected": [
+            1400.0,
+            1600.0
+          ],
+          "observed": [
+            1402.0,
+            1601.0
+          ],
+          "evidence": [
+            "cases/rsid-32-to-64-no-editorial-gap/received/fldigi/control.log"
+          ]
+        },
+        {
+          "id": "caller-text-exact-and-ordered",
+          "status": "pass",
+          "expected": [
+            "CHANGE MFSK32 END",
+            "CHANGE MFSK64 END"
+          ],
+          "observed": {
+            "positions": [
+              11,
+              56
+            ],
+            "decoded": "  ola e \n\u0002\nCHANGE MFSK32 END\n\u0004\nueo pt 7une(TalheaTa\u00d6R\n\u0002\nCHANGE MFSK64 END\n\u0004\n *Prt$e"
+          },
+          "evidence": [
+            "cases/rsid-32-to-64-no-editorial-gap/received/decoded.txt"
+          ]
+        },
+        {
+          "id": "picture-count",
+          "status": "pass",
+          "expected": 0,
+          "observed": 0,
+          "evidence": [
+            "cases/rsid-32-to-64-no-editorial-gap/received/metadata.json"
+          ]
+        },
+        {
+          "id": "independent-rsid-oracle-pcm",
+          "status": "pass",
+          "expected": true,
+          "observed": true,
+          "evidence": [
+            "source/rsid-oracle.json",
+            "cases/rsid-32-to-64-no-editorial-gap/generated.wav"
+          ]
+        },
+        {
+          "id": "prefix-inclusive-frames-and-coordinates",
+          "status": "pass",
+          "expected": {
+            "frames": 749838,
+            "starts": [
+              {
+                "input_index": 0,
+                "start_frame": 0,
+                "contents": [
+                  {
+                    "content_index": 0,
+                    "start_frame": 159066
+                  }
+                ]
+              },
+              {
+                "input_index": 1,
+                "start_frame": 363354,
+                "contents": [
+                  {
+                    "content_index": 0,
+                    "start_frame": 619278
+                  }
+                ]
+              }
+            ]
+          },
+          "observed": {
+            "frames": 749838,
+            "starts": [
+              {
+                "input_index": 0,
+                "start_frame": 0,
+                "contents": [
+                  {
+                    "content_index": 0,
+                    "start_frame": 159066
+                  }
+                ]
+              },
+              {
+                "input_index": 1,
+                "start_frame": 363354,
+                "contents": [
+                  {
+                    "content_index": 0,
+                    "start_frame": 619278
+                  }
+                ]
+              }
+            ]
+          },
+          "evidence": [
+            "cases/rsid-32-to-64-no-editorial-gap/encoder-result.json"
+          ]
+        },
+        {
+          "id": "picture-announcements-exact",
+          "status": "pass",
+          "expected": [],
+          "observed": "  ola e \n\u0002\nCHANGE MFSK32 END\n\u0004\nueo pt 7une(TalheaTa\u00d6R\n\u0002\nCHANGE MFSK64 END\n\u0004\n *Prt$e",
+          "evidence": [
+            "cases/rsid-32-to-64-no-editorial-gap/received/decoded.txt"
+          ]
+        }
+      ],
+      "discrepancies": []
+    },
+    {
+      "id": "rsid-64-to-32-no-editorial-gap",
+      "status": "pass",
+      "generated_wav": {
+        "path": "cases/rsid-64-to-32-no-editorial-gap/generated.wav",
+        "bytes": 1513544,
+        "sha256": "9ff25df8d50942028446409793040da3ac652aff612c3fda2c8a741b32a666e8"
+      },
+      "encoder_result": {
+        "path": "cases/rsid-64-to-32-no-editorial-gap/encoder-result.json",
+        "bytes": 936,
+        "sha256": "63e96853a1883d52131eddd4ed1d53ad3742f3ba59af930f1901c71617baa350"
+      },
+      "continuous_receiver_runs": [
+        {
+          "input_interval": {
+            "start_frame": 0,
+            "end_frame": 756750
+          },
+          "manual_mode_changes": 0,
+          "exit_code": 0,
+          "log": {
+            "path": "cases/rsid-64-to-32-no-editorial-gap/received/fldigi/control.log",
+            "bytes": 26686,
+            "sha256": "76560b1e7e11b9766ec22d2bc0593e24a1dc44f363ae4097b9ff50b1349b72f7"
+          },
+          "rxid_events": [
+            {
+              "mode": "MFSK64",
+              "code": 620,
+              "frequency_hz": 1601.0,
+              "receiver_log_evidence": "status during playback: mode='MFSK64' carrier=1601 quality=0.0 afc=0 squelch=0 squelch_level=0.0 rsid=1 status1='' status2='' trx='rx'"
+            },
+            {
+              "mode": "MFSK32",
+              "code": 147,
+              "frequency_hz": 1402.0,
+              "receiver_log_evidence": "status during playback: mode='MFSK32' carrier=1402 quality=0.0 afc=0 squelch=0 squelch_level=0.0 rsid=1 status1='' status2='' trx='rx'"
+            }
+          ],
+          "recovered_text": {
+            "path": "cases/rsid-64-to-32-no-editorial-gap/received/decoded.txt",
+            "bytes": 153,
+            "sha256": "48f1bc689895a1f96101258f1665d82c2ed7e99ecef803d00be81ed39cf03566"
+          },
+          "recovered_images": []
+        }
+      ],
+      "checks": [
+        {
+          "id": "whole-wav-receiver-exit",
+          "status": "pass",
+          "expected": 0,
+          "observed": 0,
+          "evidence": [
+            "cases/rsid-64-to-32-no-editorial-gap/received/metadata.json"
+          ]
+        },
+        {
+          "id": "whole-wav-interval-and-no-manual-changes",
+          "status": "pass",
+          "expected": [
+            0,
+            756750,
+            0
+          ],
+          "observed": [
+            0,
+            756750,
+            0
+          ],
+          "evidence": [
+            "cases/rsid-64-to-32-no-editorial-gap/received/fldigi/control.log",
+            "cases/rsid-64-to-32-no-editorial-gap/command.json"
+          ]
+        },
+        {
+          "id": "initial-unrelated-mode",
+          "status": "pass",
+          "expected": "BPSK31",
+          "observed": "BPSK31",
+          "evidence": [
+            "cases/rsid-64-to-32-no-editorial-gap/received/fldigi/control.log"
+          ]
+        },
+        {
+          "id": "receiver-rxid-configuration",
+          "status": "pass",
+          "expected": {
+            "AUDIOIO": "1",
+            "PORTINDEVICE": "default",
+            "PORTOUTDEVICE": "default",
+            "RSIDWIDESEARCH": "1",
+            "RSIDNOTIFYONLY": "0",
+            "RSIDAUTODISABLE": "0",
+            "RSIDRXMODESEXCLUDE": "",
+            "DISABLERSIDFREQCHANGE": "0"
+          },
+          "observed": {
+            "AUDIOIO": "1",
+            "PORTINDEVICE": "default",
+            "PORTOUTDEVICE": "default",
+            "RSIDWIDESEARCH": "1",
+            "RSIDNOTIFYONLY": "0",
+            "RSIDAUTODISABLE": "0",
+            "RSIDRXMODESEXCLUDE": "",
+            "DISABLERSIDFREQCHANGE": "0"
+          },
+          "evidence": [
+            "cases/rsid-64-to-32-no-editorial-gap/received/fldigi/config-start/fldigi_def.xml",
+            "cases/rsid-64-to-32-no-editorial-gap/received/fldigi/control.log"
+          ]
+        },
+        {
+          "id": "rxid-acquisitions-in-order",
+          "status": "pass",
+          "expected": [
+            "MFSK64",
+            "MFSK32"
+          ],
+          "observed": [
+            "MFSK64",
+            "MFSK32"
+          ],
+          "evidence": [
+            "cases/rsid-64-to-32-no-editorial-gap/received/fldigi/control.log"
+          ]
+        },
+        {
+          "id": "carrier-acquisitions-in-order",
+          "status": "pass",
+          "expected": [
+            1600.0,
+            1400.0
+          ],
+          "observed": [
+            1601.0,
+            1402.0
+          ],
+          "evidence": [
+            "cases/rsid-64-to-32-no-editorial-gap/received/fldigi/control.log"
+          ]
+        },
+        {
+          "id": "caller-text-exact-and-ordered",
+          "status": "pass",
+          "expected": [
+            "REVERSE MFSK64 END",
+            "REVERSE MFSK32 END"
+          ],
+          "observed": {
+            "positions": [
+              21,
+              55
+            ],
+            "decoded": "o    e a ee     l \n\u0002\nREVERSE MFSK64 END\n\u0004\nCtt\u00ac< ,\u00c0iu\n\u0002\nREVERSE MFSK32 END\n\u0004\n\u00c1\u00a5d\u00e3w fsehsehsehsehsehsehsehsehsehsehsehsehsehsehsehsehsehsehsehsehsehse"
+          },
+          "evidence": [
+            "cases/rsid-64-to-32-no-editorial-gap/received/decoded.txt"
+          ]
+        },
+        {
+          "id": "picture-count",
+          "status": "pass",
+          "expected": 0,
+          "observed": 0,
+          "evidence": [
+            "cases/rsid-64-to-32-no-editorial-gap/received/metadata.json"
+          ]
+        },
+        {
+          "id": "independent-rsid-oracle-pcm",
+          "status": "pass",
+          "expected": true,
+          "observed": true,
+          "evidence": [
+            "source/rsid-oracle.json",
+            "cases/rsid-64-to-32-no-editorial-gap/generated.wav"
+          ]
+        },
+        {
+          "id": "prefix-inclusive-frames-and-coordinates",
+          "status": "pass",
+          "expected": {
+            "frames": 756750,
+            "starts": [
+              {
+                "input_index": 0,
+                "start_frame": 0,
+                "contents": [
+                  {
+                    "content_index": 0,
+                    "start_frame": 255924
+                  }
+                ]
+              },
+              {
+                "input_index": 1,
+                "start_frame": 388788,
+                "contents": [
+                  {
+                    "content_index": 0,
+                    "start_frame": 547854
+                  }
+                ]
+              }
+            ]
+          },
+          "observed": {
+            "frames": 756750,
+            "starts": [
+              {
+                "input_index": 0,
+                "start_frame": 0,
+                "contents": [
+                  {
+                    "content_index": 0,
+                    "start_frame": 255924
+                  }
+                ]
+              },
+              {
+                "input_index": 1,
+                "start_frame": 388788,
+                "contents": [
+                  {
+                    "content_index": 0,
+                    "start_frame": 547854
+                  }
+                ]
+              }
+            ]
+          },
+          "evidence": [
+            "cases/rsid-64-to-32-no-editorial-gap/encoder-result.json"
+          ]
+        },
+        {
+          "id": "picture-announcements-exact",
+          "status": "pass",
+          "expected": [],
+          "observed": "o    e a ee     l \n\u0002\nREVERSE MFSK64 END\n\u0004\nCtt\u00ac< ,\u00c0iu\n\u0002\nREVERSE MFSK32 END\n\u0004\n\u00c1\u00a5d\u00e3w fsehsehsehsehsehsehsehsehsehsehsehsehsehsehsehsehsehsehsehsehsehse",
+          "evidence": [
+            "cases/rsid-64-to-32-no-editorial-gap/received/decoded.txt"
+          ]
+        }
+      ],
+      "discrepancies": []
+    },
+    {
+      "id": "rsid-repeat-mode-new-carrier",
+      "status": "pass",
+      "generated_wav": {
+        "path": "cases/rsid-repeat-mode-new-carrier/generated.wav",
+        "bytes": 1435028,
+        "sha256": "5a3c1d6cc914e65806ce91302d090172c479231c42e83e4b20480da1a372b842"
+      },
+      "encoder_result": {
+        "path": "cases/rsid-repeat-mode-new-carrier/encoder-result.json",
+        "bytes": 934,
+        "sha256": "0c0151cc552173b15bbe5d20029541c01819e9976c1ef294eba69edf0c4ff531"
+      },
+      "continuous_receiver_runs": [
+        {
+          "input_interval": {
+            "start_frame": 0,
+            "end_frame": 717492
+          },
+          "manual_mode_changes": 0,
+          "exit_code": 0,
+          "log": {
+            "path": "cases/rsid-repeat-mode-new-carrier/received/fldigi/control.log",
+            "bytes": 26285,
+            "sha256": "8c027ada17ddd33f342dc264e92591590c4ae7aca08467c0dc0051afd45e7229"
+          },
+          "rxid_events": [
+            {
+              "mode": "MFSK32",
+              "code": 147,
+              "frequency_hz": 1402.0,
+              "receiver_log_evidence": "status during playback: mode='MFSK32' carrier=1402 quality=0.0 afc=0 squelch=0 squelch_level=0.0 rsid=1 status1='' status2='' trx='rx'"
+            },
+            {
+              "mode": "MFSK32",
+              "code": 147,
+              "frequency_hz": 1601.0,
+              "receiver_log_evidence": "status during playback: mode='MFSK32' carrier=1601 quality=62.962274 afc=0 squelch=0 squelch_level=0.0 rsid=1 status1='' status2='' trx='rx'"
+            }
+          ],
+          "recovered_text": {
+            "path": "cases/rsid-repeat-mode-new-carrier/received/decoded.txt",
+            "bytes": 75,
+            "sha256": "2b2bf129ad5006cf0ddd1c5708e22b66122607a07b8076556a64e409f1140f10"
+          },
+          "recovered_images": []
+        }
+      ],
+      "checks": [
+        {
+          "id": "whole-wav-receiver-exit",
+          "status": "pass",
+          "expected": 0,
+          "observed": 0,
+          "evidence": [
+            "cases/rsid-repeat-mode-new-carrier/received/metadata.json"
+          ]
+        },
+        {
+          "id": "whole-wav-interval-and-no-manual-changes",
+          "status": "pass",
+          "expected": [
+            0,
+            717492,
+            0
+          ],
+          "observed": [
+            0,
+            717492,
+            0
+          ],
+          "evidence": [
+            "cases/rsid-repeat-mode-new-carrier/received/fldigi/control.log",
+            "cases/rsid-repeat-mode-new-carrier/command.json"
+          ]
+        },
+        {
+          "id": "initial-unrelated-mode",
+          "status": "pass",
+          "expected": "BPSK31",
+          "observed": "BPSK31",
+          "evidence": [
+            "cases/rsid-repeat-mode-new-carrier/received/fldigi/control.log"
+          ]
+        },
+        {
+          "id": "receiver-rxid-configuration",
+          "status": "pass",
+          "expected": {
+            "AUDIOIO": "1",
+            "PORTINDEVICE": "default",
+            "PORTOUTDEVICE": "default",
+            "RSIDWIDESEARCH": "1",
+            "RSIDNOTIFYONLY": "0",
+            "RSIDAUTODISABLE": "0",
+            "RSIDRXMODESEXCLUDE": "",
+            "DISABLERSIDFREQCHANGE": "0"
+          },
+          "observed": {
+            "AUDIOIO": "1",
+            "PORTINDEVICE": "default",
+            "PORTOUTDEVICE": "default",
+            "RSIDWIDESEARCH": "1",
+            "RSIDNOTIFYONLY": "0",
+            "RSIDAUTODISABLE": "0",
+            "RSIDRXMODESEXCLUDE": "",
+            "DISABLERSIDFREQCHANGE": "0"
+          },
+          "evidence": [
+            "cases/rsid-repeat-mode-new-carrier/received/fldigi/config-start/fldigi_def.xml",
+            "cases/rsid-repeat-mode-new-carrier/received/fldigi/control.log"
+          ]
+        },
+        {
+          "id": "rxid-acquisitions-in-order",
+          "status": "pass",
+          "expected": [
+            "MFSK32",
+            "MFSK32"
+          ],
+          "observed": [
+            "MFSK32",
+            "MFSK32"
+          ],
+          "evidence": [
+            "cases/rsid-repeat-mode-new-carrier/received/fldigi/control.log"
+          ]
+        },
+        {
+          "id": "carrier-acquisitions-in-order",
+          "status": "pass",
+          "expected": [
+            1400.0,
+            1600.0
+          ],
+          "observed": [
+            1402.0,
+            1601.0
+          ],
+          "evidence": [
+            "cases/rsid-repeat-mode-new-carrier/received/fldigi/control.log"
+          ]
+        },
+        {
+          "id": "caller-text-exact-and-ordered",
+          "status": "pass",
+          "expected": [
+            "FIRST MFSK32 END",
+            "SECOND MFSK32 END"
+          ],
+          "observed": {
+            "positions": [
+              13,
+              53
+            ],
+            "decoded": "    n F e \n\u0002\nFIRST MFSK32 END\n\u0004\n  \u0085 r\b\u00c0vTnT n Mr\"e\n\u0002\nSECOND MFSK32 END\n\u0004\n"
+          },
+          "evidence": [
+            "cases/rsid-repeat-mode-new-carrier/received/decoded.txt"
+          ]
+        },
+        {
+          "id": "picture-count",
+          "status": "pass",
+          "expected": 0,
+          "observed": 0,
+          "evidence": [
+            "cases/rsid-repeat-mode-new-carrier/received/metadata.json"
+          ]
+        },
+        {
+          "id": "independent-rsid-oracle-pcm",
+          "status": "pass",
+          "expected": true,
+          "observed": true,
+          "evidence": [
+            "source/rsid-oracle.json",
+            "cases/rsid-repeat-mode-new-carrier/generated.wav"
+          ]
+        },
+        {
+          "id": "prefix-inclusive-frames-and-coordinates",
+          "status": "pass",
+          "expected": {
+            "frames": 717492,
+            "starts": [
+              {
+                "input_index": 0,
+                "start_frame": 0,
+                "contents": [
+                  {
+                    "content_index": 0,
+                    "start_frame": 159066
+                  }
+                ]
+              },
+              {
+                "input_index": 1,
+                "start_frame": 355674,
+                "contents": [
+                  {
+                    "content_index": 0,
+                    "start_frame": 514740
+                  }
+                ]
+              }
+            ]
+          },
+          "observed": {
+            "frames": 717492,
+            "starts": [
+              {
+                "input_index": 0,
+                "start_frame": 0,
+                "contents": [
+                  {
+                    "content_index": 0,
+                    "start_frame": 159066
+                  }
+                ]
+              },
+              {
+                "input_index": 1,
+                "start_frame": 355674,
+                "contents": [
+                  {
+                    "content_index": 0,
+                    "start_frame": 514740
+                  }
+                ]
+              }
+            ]
+          },
+          "evidence": [
+            "cases/rsid-repeat-mode-new-carrier/encoder-result.json"
+          ]
+        },
+        {
+          "id": "picture-announcements-exact",
+          "status": "pass",
+          "expected": [],
+          "observed": "    n F e \n\u0002\nFIRST MFSK32 END\n\u0004\n  \u0085 r\b\u00c0vTnT n Mr\"e\n\u0002\nSECOND MFSK32 END\n\u0004\n",
+          "evidence": [
+            "cases/rsid-repeat-mode-new-carrier/received/decoded.txt"
+          ]
+        }
+      ],
+      "discrepancies": []
+    },
+    {
+      "id": "rsid-mixed-audio-silence-picture",
+      "status": "fail",
+      "generated_wav": {
+        "path": "cases/rsid-mixed-audio-silence-picture/generated.wav",
+        "bytes": 2176328,
+        "sha256": "ccba1c03648cb7a3f3edc96b323eed713a347c7b175435d61eab1d137012eb41"
+      },
+      "encoder_result": {
+        "path": "cases/rsid-mixed-audio-silence-picture/encoder-result.json",
+        "bytes": 1816,
+        "sha256": "dca6dc7159a65ef16c32f4d610178300cd5c4c2ecfc2598190ca5cc6560ebf52"
+      },
+      "continuous_receiver_runs": [
+        {
+          "input_interval": {
+            "start_frame": 0,
+            "end_frame": 1088142
+          },
+          "manual_mode_changes": 0,
+          "exit_code": 0,
+          "log": {
+            "path": "cases/rsid-mixed-audio-silence-picture/received/fldigi/control.log",
+            "bytes": 34916,
+            "sha256": "ffd2e0d1a19f4309724256204f7df8967f601c9b15ea043818fb09513265db20"
+          },
+          "rxid_events": [
+            {
+              "mode": "MFSK32",
+              "code": 147,
+              "frequency_hz": 1402.0,
+              "receiver_log_evidence": "status during playback: mode='MFSK32' carrier=1402 quality=0.0 afc=0 squelch=0 squelch_level=0.0 rsid=1 status1='' status2='' trx='rx'"
+            },
+            {
+              "mode": "MFSK64",
+              "code": 620,
+              "frequency_hz": 1601.0,
+              "receiver_log_evidence": "status during playback: mode='MFSK64' carrier=1601 quality=0.0 afc=0 squelch=0 squelch_level=0.0 rsid=1 status1='s/n -10 dB' status2='' trx='rx'"
+            }
+          ],
+          "recovered_text": {
+            "path": "cases/rsid-mixed-audio-silence-picture/received/decoded.txt",
+            "bytes": 121,
+            "sha256": "5292a07dc9e3ab7e0c20f5b026008fda5dc0e405f5a3a6334e71940ef21ca12c"
+          },
+          "recovered_images": [
+            {
+              "path": "cases/rsid-mixed-audio-silence-picture/received/images/pic_2026-10-02_031609z.png",
+              "bytes": 278,
+              "sha256": "2c0a0241adf0c22fd239bf8b1b3543603a1a56f27e34022525b21cbff5454984"
+            }
+          ]
+        }
+      ],
+      "checks": [
+        {
+          "id": "whole-wav-receiver-exit",
+          "status": "pass",
+          "expected": 0,
+          "observed": 0,
+          "evidence": [
+            "cases/rsid-mixed-audio-silence-picture/received/metadata.json"
+          ]
+        },
+        {
+          "id": "whole-wav-interval-and-no-manual-changes",
+          "status": "pass",
+          "expected": [
+            0,
+            1088142,
+            0
+          ],
+          "observed": [
+            0,
+            1088142,
+            0
+          ],
+          "evidence": [
+            "cases/rsid-mixed-audio-silence-picture/received/fldigi/control.log",
+            "cases/rsid-mixed-audio-silence-picture/command.json"
+          ]
+        },
+        {
+          "id": "initial-unrelated-mode",
+          "status": "pass",
+          "expected": "BPSK31",
+          "observed": "BPSK31",
+          "evidence": [
+            "cases/rsid-mixed-audio-silence-picture/received/fldigi/control.log"
+          ]
+        },
+        {
+          "id": "receiver-rxid-configuration",
+          "status": "pass",
+          "expected": {
+            "AUDIOIO": "1",
+            "PORTINDEVICE": "default",
+            "PORTOUTDEVICE": "default",
+            "RSIDWIDESEARCH": "1",
+            "RSIDNOTIFYONLY": "0",
+            "RSIDAUTODISABLE": "0",
+            "RSIDRXMODESEXCLUDE": "",
+            "DISABLERSIDFREQCHANGE": "0"
+          },
+          "observed": {
+            "AUDIOIO": "1",
+            "PORTINDEVICE": "default",
+            "PORTOUTDEVICE": "default",
+            "RSIDWIDESEARCH": "1",
+            "RSIDNOTIFYONLY": "0",
+            "RSIDAUTODISABLE": "0",
+            "RSIDRXMODESEXCLUDE": "",
+            "DISABLERSIDFREQCHANGE": "0"
+          },
+          "evidence": [
+            "cases/rsid-mixed-audio-silence-picture/received/fldigi/config-start/fldigi_def.xml",
+            "cases/rsid-mixed-audio-silence-picture/received/fldigi/control.log"
+          ]
+        },
+        {
+          "id": "rxid-acquisitions-in-order",
+          "status": "pass",
+          "expected": [
+            "MFSK32",
+            "MFSK64"
+          ],
+          "observed": [
+            "MFSK32",
+            "MFSK64"
+          ],
+          "evidence": [
+            "cases/rsid-mixed-audio-silence-picture/received/fldigi/control.log"
+          ]
+        },
+        {
+          "id": "carrier-acquisitions-in-order",
+          "status": "pass",
+          "expected": [
+            1400.0,
+            1600.0
+          ],
+          "observed": [
+            1402.0,
+            1601.0
+          ],
+          "evidence": [
+            "cases/rsid-mixed-audio-silence-picture/received/fldigi/control.log"
+          ]
+        },
+        {
+          "id": "caller-text-exact-and-ordered",
+          "status": "pass",
+          "expected": [
+            "MIXED MFSK32 END",
+            "MIXED MFSK64 PICTURE BEGIN\n",
+            "\nMIXED MFSK64 END"
+          ],
+          "observed": {
+            "positions": [
+              11,
+              54,
+              99
+            ],
+            "decoded": "  ola e \n\u0002\nMIXED MFSK32 END\n\u0004\nbG ha\u0010\u00a4p\u00e7unoaeIdkt8h\b\n\u0002\nMIXED MFSK64 PICTURE BEGIN\n\nSending Pic:8x4C;\nMIXED MFSK64 END\n\u0004\n"
+          },
+          "evidence": [
+            "cases/rsid-mixed-audio-silence-picture/received/decoded.txt"
+          ]
+        },
+        {
+          "id": "picture-count",
+          "status": "pass",
+          "expected": 1,
+          "observed": 1,
+          "evidence": [
+            "cases/rsid-mixed-audio-silence-picture/received/metadata.json"
+          ]
+        },
+        {
+          "id": "picture-0-dimensions-and-pixels",
+          "status": "fail",
+          "expected": {
+            "dimensions": [
+              8,
+              4
+            ],
+            "pixel_sha256": "52334109d177d2ed03802ab1c206d4a717d1fe26bbd89d5a6ecde6116a5d3007"
+          },
+          "observed": {
+            "dimensions": [
+              8,
+              4
+            ],
+            "pixel_sha256": "97ea38d5db1f19696fbd22a56388fb44736a272dd266b6ea823cc5a60affe347",
+            "maximum_component_error": 248,
+            "mean_absolute_component_error": 87.55208333333333,
+            "unequal_components": 86
+          },
+          "evidence": [
+            "cases/rsid-mixed-audio-silence-picture/received/images/pic_2026-10-02_031609z.png",
+            "visual-review/candidate-set-review.png"
+          ]
+        },
+        {
+          "id": "silence-at-355674",
+          "status": "pass",
+          "expected": "all-zero PCM",
+          "observed": null,
+          "evidence": [
+            "cases/rsid-mixed-audio-silence-picture/generated.wav"
+          ]
+        },
+        {
+          "id": "audio-at-367674",
+          "status": "pass",
+          "expected": "byte-exact copied PCM",
+          "observed": null,
+          "evidence": [
+            "cases/rsid-mixed-audio-silence-picture/generated.wav"
+          ]
+        },
+        {
+          "id": "silence-at-415674",
+          "status": "pass",
+          "expected": "all-zero PCM",
+          "observed": null,
+          "evidence": [
+            "cases/rsid-mixed-audio-silence-picture/generated.wav"
+          ]
+        },
+        {
+          "id": "independent-rsid-oracle-pcm",
+          "status": "pass",
+          "expected": true,
+          "observed": true,
+          "evidence": [
+            "source/rsid-oracle.json",
+            "cases/rsid-mixed-audio-silence-picture/generated.wav"
+          ]
+        },
+        {
+          "id": "prefix-inclusive-frames-and-coordinates",
+          "status": "pass",
+          "expected": {
+            "frames": 1088142,
+            "starts": [
+              {
+                "input_index": 0,
+                "start_frame": 0,
+                "contents": [
+                  {
+                    "content_index": 0,
+                    "start_frame": 159066
+                  }
+                ]
+              },
+              {
+                "input_index": 1,
+                "start_frame": 355674,
+                "contents": []
+              },
+              {
+                "input_index": 2,
+                "start_frame": 367674,
+                "contents": []
+              },
+              {
+                "input_index": 3,
+                "start_frame": 415674,
+                "contents": []
+              },
+              {
+                "input_index": 4,
+                "start_frame": 427674,
+                "contents": [
+                  {
+                    "content_index": 0,
+                    "start_frame": 683598
+                  },
+                  {
+                    "content_index": 1,
+                    "start_frame": 765006
+                  },
+                  {
+                    "content_index": 2,
+                    "start_frame": 957582
+                  }
+                ]
+              }
+            ]
+          },
+          "observed": {
+            "frames": 1088142,
+            "starts": [
+              {
+                "input_index": 0,
+                "start_frame": 0,
+                "contents": [
+                  {
+                    "content_index": 0,
+                    "start_frame": 159066
+                  }
+                ]
+              },
+              {
+                "input_index": 1,
+                "start_frame": 355674,
+                "contents": []
+              },
+              {
+                "input_index": 2,
+                "start_frame": 367674,
+                "contents": []
+              },
+              {
+                "input_index": 3,
+                "start_frame": 415674,
+                "contents": []
+              },
+              {
+                "input_index": 4,
+                "start_frame": 427674,
+                "contents": [
+                  {
+                    "content_index": 0,
+                    "start_frame": 683598
+                  },
+                  {
+                    "content_index": 1,
+                    "start_frame": 765006
+                  },
+                  {
+                    "content_index": 2,
+                    "start_frame": 957582
+                  }
+                ]
+              }
+            ]
+          },
+          "evidence": [
+            "cases/rsid-mixed-audio-silence-picture/encoder-result.json"
+          ]
+        },
+        {
+          "id": "picture-announcements-exact",
+          "status": "pass",
+          "expected": [
+            "\nSending Pic:8x4C;"
+          ],
+          "observed": "  ola e \n\u0002\nMIXED MFSK32 END\n\u0004\nbG ha\u0010\u00a4p\u00e7unoaeIdkt8h\b\n\u0002\nMIXED MFSK64 PICTURE BEGIN\n\nSending Pic:8x4C;\nMIXED MFSK64 END\n\u0004\n",
+          "evidence": [
+            "cases/rsid-mixed-audio-silence-picture/received/decoded.txt"
+          ]
+        }
+      ],
+      "discrepancies": [
+        {
+          "classification": "unresolved",
+          "summary": "picture-0-dimensions-and-pixels: fail",
+          "evidence": [
+            "cases/rsid-mixed-audio-silence-picture/received/images/pic_2026-10-02_031609z.png",
+            "visual-review/candidate-set-review.png"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mfsk32-grayscale-speeds",
+      "status": "fail",
+      "generated_wav": {
+        "path": "cases/mfsk32-grayscale-speeds/generated.wav",
+        "bytes": 2947424,
+        "sha256": "1811efb18420e6d49881db30eeb4204c0d3afe6a8a03f62b91b29a5d7498f73e"
+      },
+      "encoder_result": {
+        "path": "cases/mfsk32-grayscale-speeds/encoder-result.json",
+        "bytes": 1598,
+        "sha256": "d850d68627f573f567605bfdb08aaee3f4be0cb9144eccdbc18457419f3e71bc"
+      },
+      "continuous_receiver_runs": [
+        {
+          "input_interval": {
+            "start_frame": 0,
+            "end_frame": 1473690
+          },
+          "manual_mode_changes": 0,
+          "exit_code": 0,
+          "log": {
+            "path": "cases/mfsk32-grayscale-speeds/received/fldigi/control.log",
+            "bytes": 44604,
+            "sha256": "2af2bcef02eeb2994d1aa513a877435661fd145246de8802412e7d860d354a2b"
+          },
+          "rxid_events": [
+            {
+              "mode": "MFSK32",
+              "code": 147,
+              "frequency_hz": 1499.0,
+              "receiver_log_evidence": "status during playback: mode='MFSK32' carrier=1499 quality=0.0 afc=0 squelch=0 squelch_level=0.0 rsid=1 status1='' status2='' trx='rx'"
+            }
+          ],
+          "recovered_text": {
+            "path": "cases/mfsk32-grayscale-speeds/received/decoded.txt",
+            "bytes": 134,
+            "sha256": "1dbfcf548346838269aa9dd66305a9b5b9f2ae5f3301ca781e26165d825ae830"
+          },
+          "recovered_images": [
+            {
+              "path": "cases/mfsk32-grayscale-speeds/received/images/pic_2026-10-02_031706z.png",
+              "bytes": 179,
+              "sha256": "f2b522bc7ecac30f5fbc8709597aff10bd199cc26b71f2cb8b6121283966f6e6"
+            },
+            {
+              "path": "cases/mfsk32-grayscale-speeds/received/images/pic_2026-10-02_031714z.png",
+              "bytes": 269,
+              "sha256": "12219eaee18d27bddd88831244948ff96949ba6ea6f23dd647c07a98fd4ca48a"
+            },
+            {
+              "path": "cases/mfsk32-grayscale-speeds/received/images/pic_2026-10-02_031722z.png",
+              "bytes": 268,
+              "sha256": "05abffc37790e24d305d6333f8f58af22f91fa4ce2eb96d0b94a9cb5570fe26d"
+            }
+          ]
+        }
+      ],
+      "checks": [
+        {
+          "id": "whole-wav-receiver-exit",
+          "status": "pass",
+          "expected": 0,
+          "observed": 0,
+          "evidence": [
+            "cases/mfsk32-grayscale-speeds/received/metadata.json"
+          ]
+        },
+        {
+          "id": "whole-wav-interval-and-no-manual-changes",
+          "status": "pass",
+          "expected": [
+            0,
+            1473690,
+            0
+          ],
+          "observed": [
+            0,
+            1473690,
+            0
+          ],
+          "evidence": [
+            "cases/mfsk32-grayscale-speeds/received/fldigi/control.log",
+            "cases/mfsk32-grayscale-speeds/command.json"
+          ]
+        },
+        {
+          "id": "initial-unrelated-mode",
+          "status": "pass",
+          "expected": "BPSK31",
+          "observed": "BPSK31",
+          "evidence": [
+            "cases/mfsk32-grayscale-speeds/received/fldigi/control.log"
+          ]
+        },
+        {
+          "id": "receiver-rxid-configuration",
+          "status": "pass",
+          "expected": {
+            "AUDIOIO": "1",
+            "PORTINDEVICE": "default",
+            "PORTOUTDEVICE": "default",
+            "RSIDWIDESEARCH": "1",
+            "RSIDNOTIFYONLY": "0",
+            "RSIDAUTODISABLE": "0",
+            "RSIDRXMODESEXCLUDE": "",
+            "DISABLERSIDFREQCHANGE": "0"
+          },
+          "observed": {
+            "AUDIOIO": "1",
+            "PORTINDEVICE": "default",
+            "PORTOUTDEVICE": "default",
+            "RSIDWIDESEARCH": "1",
+            "RSIDNOTIFYONLY": "0",
+            "RSIDAUTODISABLE": "0",
+            "RSIDRXMODESEXCLUDE": "",
+            "DISABLERSIDFREQCHANGE": "0"
+          },
+          "evidence": [
+            "cases/mfsk32-grayscale-speeds/received/fldigi/config-start/fldigi_def.xml",
+            "cases/mfsk32-grayscale-speeds/received/fldigi/control.log"
+          ]
+        },
+        {
+          "id": "rxid-acquisitions-in-order",
+          "status": "pass",
+          "expected": [
+            "MFSK32"
+          ],
+          "observed": [
+            "MFSK32"
+          ],
+          "evidence": [
+            "cases/mfsk32-grayscale-speeds/received/fldigi/control.log"
+          ]
+        },
+        {
+          "id": "carrier-acquisitions-in-order",
+          "status": "pass",
+          "expected": [
+            1500.0
+          ],
+          "observed": [
+            1499.0
+          ],
+          "evidence": [
+            "cases/mfsk32-grayscale-speeds/received/fldigi/control.log"
+          ]
+        },
+        {
+          "id": "caller-text-exact-and-ordered",
+          "status": "pass",
+          "expected": [
+            "GRAY P8 BEGIN\n",
+            "\nGRAY P8 END P4 BEGIN\n",
+            "\nGRAY P4 END P2 BEGIN\n",
+            "\nGRAY P2 END"
+          ],
+          "observed": {
+            "positions": [
+              6,
+              37,
+              78,
+              119
+            ],
+            "decoded": "Ct \n\u0002\nGRAY P8 BEGIN\n\nSending Pic:8x4;\nGRAY P8 END P4 BEGIN\n\nSending Pic:8x4p4;\nGRAY P4 END P2 BEGIN\n\nSending Pic:8x4p2;\nGRAY P2 END\n\u0004\n"
+          },
+          "evidence": [
+            "cases/mfsk32-grayscale-speeds/received/decoded.txt"
+          ]
+        },
+        {
+          "id": "picture-count",
+          "status": "pass",
+          "expected": 3,
+          "observed": 3,
+          "evidence": [
+            "cases/mfsk32-grayscale-speeds/received/metadata.json"
+          ]
+        },
+        {
+          "id": "picture-0-dimensions-and-pixels",
+          "status": "fail",
+          "expected": {
+            "dimensions": [
+              8,
+              4
+            ],
+            "pixel_sha256": "ca203f78b5a70b5307ce97d9761b98771b853182119ae6dab1c00cb795135554"
+          },
+          "observed": {
+            "dimensions": [
+              8,
+              4
+            ],
+            "pixel_sha256": "66687aadf862bd776c8fc18b8e9f8e20089714856ee233b3902a591d0d5f2925",
+            "maximum_component_error": 255,
+            "mean_absolute_component_error": 94.84375,
+            "unequal_components": 30
+          },
+          "evidence": [
+            "cases/mfsk32-grayscale-speeds/received/images/pic_2026-10-02_031706z.png",
+            "visual-review/candidate-set-review.png"
+          ]
+        },
+        {
+          "id": "picture-1-dimensions-and-pixels",
+          "status": "fail",
+          "expected": {
+            "dimensions": [
+              8,
+              4
+            ],
+            "pixel_sha256": "ca203f78b5a70b5307ce97d9761b98771b853182119ae6dab1c00cb795135554"
+          },
+          "observed": {
+            "dimensions": [
+              8,
+              4
+            ],
+            "pixel_sha256": "c5380d4567a8590a4169d8382dc31299f814a1c18e7c96d7aab359a7b1c0826e",
+            "maximum_component_error": 93,
+            "mean_absolute_component_error": 27.65625,
+            "unequal_components": 31
+          },
+          "evidence": [
+            "cases/mfsk32-grayscale-speeds/received/images/pic_2026-10-02_031714z.png",
+            "visual-review/candidate-set-review.png"
+          ]
+        },
+        {
+          "id": "picture-2-dimensions-and-pixels",
+          "status": "fail",
+          "expected": {
+            "dimensions": [
+              8,
+              4
+            ],
+            "pixel_sha256": "ca203f78b5a70b5307ce97d9761b98771b853182119ae6dab1c00cb795135554"
+          },
+          "observed": {
+            "dimensions": [
+              8,
+              4
+            ],
+            "pixel_sha256": "8aeddf1e6d0a2fe5e86b83159e2ca062418485640dc8f1eae17f754f1cd75a70",
+            "maximum_component_error": 255,
+            "mean_absolute_component_error": 50.9375,
+            "unequal_components": 32
+          },
+          "evidence": [
+            "cases/mfsk32-grayscale-speeds/received/images/pic_2026-10-02_031722z.png",
+            "visual-review/candidate-set-review.png"
+          ]
+        },
+        {
+          "id": "independent-rsid-oracle-pcm",
+          "status": "pass",
+          "expected": true,
+          "observed": true,
+          "evidence": [
+            "source/rsid-oracle.json",
+            "cases/mfsk32-grayscale-speeds/generated.wav"
+          ]
+        },
+        {
+          "id": "prefix-inclusive-frames-and-coordinates",
+          "status": "pass",
+          "expected": {
+            "frames": 1473690,
+            "starts": [
+              {
+                "input_index": 0,
+                "start_frame": 0,
+                "contents": [
+                  {
+                    "content_index": 0,
+                    "start_frame": 159066
+                  },
+                  {
+                    "content_index": 1,
+                    "start_frame": 243546
+                  },
+                  {
+                    "content_index": 2,
+                    "start_frame": 502170
+                  },
+                  {
+                    "content_index": 3,
+                    "start_frame": 631194
+                  },
+                  {
+                    "content_index": 4,
+                    "start_frame": 901338
+                  },
+                  {
+                    "content_index": 5,
+                    "start_frame": 1030362
+                  },
+                  {
+                    "content_index": 6,
+                    "start_frame": 1300122
+                  }
+                ]
+              }
+            ]
+          },
+          "observed": {
+            "frames": 1473690,
+            "starts": [
+              {
+                "input_index": 0,
+                "start_frame": 0,
+                "contents": [
+                  {
+                    "content_index": 0,
+                    "start_frame": 159066
+                  },
+                  {
+                    "content_index": 1,
+                    "start_frame": 243546
+                  },
+                  {
+                    "content_index": 2,
+                    "start_frame": 502170
+                  },
+                  {
+                    "content_index": 3,
+                    "start_frame": 631194
+                  },
+                  {
+                    "content_index": 4,
+                    "start_frame": 901338
+                  },
+                  {
+                    "content_index": 5,
+                    "start_frame": 1030362
+                  },
+                  {
+                    "content_index": 6,
+                    "start_frame": 1300122
+                  }
+                ]
+              }
+            ]
+          },
+          "evidence": [
+            "cases/mfsk32-grayscale-speeds/encoder-result.json"
+          ]
+        },
+        {
+          "id": "picture-announcements-exact",
+          "status": "pass",
+          "expected": [
+            "\nSending Pic:8x4;",
+            "\nSending Pic:8x4p4;",
+            "\nSending Pic:8x4p2;"
+          ],
+          "observed": "Ct \n\u0002\nGRAY P8 BEGIN\n\nSending Pic:8x4;\nGRAY P8 END P4 BEGIN\n\nSending Pic:8x4p4;\nGRAY P4 END P2 BEGIN\n\nSending Pic:8x4p2;\nGRAY P2 END\n\u0004\n",
+          "evidence": [
+            "cases/mfsk32-grayscale-speeds/received/decoded.txt"
+          ]
+        }
+      ],
+      "discrepancies": [
+        {
+          "classification": "unresolved",
+          "summary": "picture-0-dimensions-and-pixels: fail",
+          "evidence": [
+            "cases/mfsk32-grayscale-speeds/received/images/pic_2026-10-02_031706z.png",
+            "visual-review/candidate-set-review.png",
+            "visual-review/candidate-set-review.png",
+            "visual-review/candidate-set-review.png"
+          ]
+        },
+        {
+          "classification": "unresolved",
+          "summary": "picture-1-dimensions-and-pixels: fail",
+          "evidence": [
+            "cases/mfsk32-grayscale-speeds/received/images/pic_2026-10-02_031714z.png"
+          ]
+        },
+        {
+          "classification": "unresolved",
+          "summary": "picture-2-dimensions-and-pixels: fail",
+          "evidence": [
+            "cases/mfsk32-grayscale-speeds/received/images/pic_2026-10-02_031722z.png"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mfsk64-color-speeds",
+      "status": "fail",
+      "generated_wav": {
+        "path": "cases/mfsk64-color-speeds/generated.wav",
+        "bytes": 2273300,
+        "sha256": "0204283ff510b146eea6a7fc6795a7a1429f537c60b7ed6ce5a65a9d54ad80ea"
+      },
+      "encoder_result": {
+        "path": "cases/mfsk64-color-speeds/encoder-result.json",
+        "bytes": 1583,
+        "sha256": "b144bf18d7c7c1668ce4417f12e9f10ea8ef29753582a3854d5d39f4619f3d08"
+      },
+      "continuous_receiver_runs": [
+        {
+          "input_interval": {
+            "start_frame": 0,
+            "end_frame": 1136628
+          },
+          "manual_mode_changes": 0,
+          "exit_code": 0,
+          "log": {
+            "path": "cases/mfsk64-color-speeds/received/fldigi/control.log",
+            "bytes": 36205,
+            "sha256": "7eb5f41bfd866d739cd2507f1ac62ae4a774d94e1fe0011aa587b9a1cb9cd957"
+          },
+          "rxid_events": [
+            {
+              "mode": "MFSK64",
+              "code": 620,
+              "frequency_hz": 1499.0,
+              "receiver_log_evidence": "status during playback: mode='MFSK64' carrier=1499 quality=0.0 afc=0 squelch=0 squelch_level=0.0 rsid=1 status1='' status2='' trx='rx'"
+            }
+          ],
+          "recovered_text": {
+            "path": "cases/mfsk64-color-speeds/received/decoded.txt",
+            "bytes": 489,
+            "sha256": "382c56f57ef4a263ef7e33c611410af7ce42536c14a97bc032bb64341456d323"
+          },
+          "recovered_images": [
+            {
+              "path": "cases/mfsk64-color-speeds/received/images/pic_2026-10-02_031819z.png",
+              "bytes": 272,
+              "sha256": "3b918363d80405f24215c2ff7e946b01d0da5bf7da19ed8b1d9b0ae29a5d7d8f"
+            },
+            {
+              "path": "cases/mfsk64-color-speeds/received/images/pic_2026-10-02_031825z.png",
+              "bytes": 278,
+              "sha256": "365ef88544b44203c1ce066abc6de1c5a94d5764f50d420fa014db7e0b08d7aa"
+            },
+            {
+              "path": "cases/mfsk64-color-speeds/received/images/pic_2026-10-02_031830z.png",
+              "bytes": 227,
+              "sha256": "dc0e2be6e46ec84c2cbb4f7ab0d4540ee45664bfc84ec9c12c8a2b626ed5b125"
+            }
+          ]
+        }
+      ],
+      "checks": [
+        {
+          "id": "whole-wav-receiver-exit",
+          "status": "pass",
+          "expected": 0,
+          "observed": 0,
+          "evidence": [
+            "cases/mfsk64-color-speeds/received/metadata.json"
+          ]
+        },
+        {
+          "id": "whole-wav-interval-and-no-manual-changes",
+          "status": "pass",
+          "expected": [
+            0,
+            1136628,
+            0
+          ],
+          "observed": [
+            0,
+            1136628,
+            0
+          ],
+          "evidence": [
+            "cases/mfsk64-color-speeds/received/fldigi/control.log",
+            "cases/mfsk64-color-speeds/command.json"
+          ]
+        },
+        {
+          "id": "initial-unrelated-mode",
+          "status": "pass",
+          "expected": "BPSK31",
+          "observed": "BPSK31",
+          "evidence": [
+            "cases/mfsk64-color-speeds/received/fldigi/control.log"
+          ]
+        },
+        {
+          "id": "receiver-rxid-configuration",
+          "status": "pass",
+          "expected": {
+            "AUDIOIO": "1",
+            "PORTINDEVICE": "default",
+            "PORTOUTDEVICE": "default",
+            "RSIDWIDESEARCH": "1",
+            "RSIDNOTIFYONLY": "0",
+            "RSIDAUTODISABLE": "0",
+            "RSIDRXMODESEXCLUDE": "",
+            "DISABLERSIDFREQCHANGE": "0"
+          },
+          "observed": {
+            "AUDIOIO": "1",
+            "PORTINDEVICE": "default",
+            "PORTOUTDEVICE": "default",
+            "RSIDWIDESEARCH": "1",
+            "RSIDNOTIFYONLY": "0",
+            "RSIDAUTODISABLE": "0",
+            "RSIDRXMODESEXCLUDE": "",
+            "DISABLERSIDFREQCHANGE": "0"
+          },
+          "evidence": [
+            "cases/mfsk64-color-speeds/received/fldigi/config-start/fldigi_def.xml",
+            "cases/mfsk64-color-speeds/received/fldigi/control.log"
+          ]
+        },
+        {
+          "id": "rxid-acquisitions-in-order",
+          "status": "pass",
+          "expected": [
+            "MFSK64"
+          ],
+          "observed": [
+            "MFSK64"
+          ],
+          "evidence": [
+            "cases/mfsk64-color-speeds/received/fldigi/control.log"
+          ]
+        },
+        {
+          "id": "carrier-acquisitions-in-order",
+          "status": "pass",
+          "expected": [
+            1500.0
+          ],
+          "observed": [
+            1499.0
+          ],
+          "evidence": [
+            "cases/mfsk64-color-speeds/received/fldigi/control.log"
+          ]
+        },
+        {
+          "id": "caller-text-exact-and-ordered",
+          "status": "pass",
+          "expected": [
+            "COLOR P8 BEGIN\n",
+            "\nCOLOR P8 END P4 BEGIN\n",
+            "\nCOLOR P4 END P2 BEGIN\n",
+            "\nCOLOR P2 END"
+          ],
+          "observed": {
+            "positions": [
+              11,
+              44,
+              87,
+              130
+            ],
+            "decoded": "tlt    s\n\u0002\nCOLOR P8 BEGIN\n\nSending Pic:8x4C;\nCOLOR P8 END P4 BEGIN\n\nSending Pic:8x4Cp4;\nCOLOR P4 END P2 BEGIN\n\nSending Pic:8x4Cp2;\nCOLOR P2 END\n\u0004\n tnettttttdrtttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,t"
+          },
+          "evidence": [
+            "cases/mfsk64-color-speeds/received/decoded.txt"
+          ]
+        },
+        {
+          "id": "picture-count",
+          "status": "pass",
+          "expected": 3,
+          "observed": 3,
+          "evidence": [
+            "cases/mfsk64-color-speeds/received/metadata.json"
+          ]
+        },
+        {
+          "id": "picture-0-dimensions-and-pixels",
+          "status": "fail",
+          "expected": {
+            "dimensions": [
+              8,
+              4
+            ],
+            "pixel_sha256": "52334109d177d2ed03802ab1c206d4a717d1fe26bbd89d5a6ecde6116a5d3007"
+          },
+          "observed": {
+            "dimensions": [
+              8,
+              4
+            ],
+            "pixel_sha256": "83c6f4d9ad6cfdc892c849bb032843154fb4d1b24930d067cf7ef4f3e66e592f",
+            "maximum_component_error": 251,
+            "mean_absolute_component_error": 85.70833333333333,
+            "unequal_components": 85
+          },
+          "evidence": [
+            "cases/mfsk64-color-speeds/received/images/pic_2026-10-02_031819z.png",
+            "visual-review/candidate-set-review.png"
+          ]
+        },
+        {
+          "id": "picture-1-dimensions-and-pixels",
+          "status": "fail",
+          "expected": {
+            "dimensions": [
+              8,
+              4
+            ],
+            "pixel_sha256": "52334109d177d2ed03802ab1c206d4a717d1fe26bbd89d5a6ecde6116a5d3007"
+          },
+          "observed": {
+            "dimensions": [
+              8,
+              4
+            ],
+            "pixel_sha256": "a482499e1a3ee43b967fbd50fc679220dd9e0a2be878c48cc977c438a51853ad",
+            "maximum_component_error": 242,
+            "mean_absolute_component_error": 82.27083333333333,
+            "unequal_components": 85
+          },
+          "evidence": [
+            "cases/mfsk64-color-speeds/received/images/pic_2026-10-02_031825z.png",
+            "visual-review/candidate-set-review.png"
+          ]
+        },
+        {
+          "id": "picture-2-dimensions-and-pixels",
+          "status": "fail",
+          "expected": {
+            "dimensions": [
+              8,
+              4
+            ],
+            "pixel_sha256": "52334109d177d2ed03802ab1c206d4a717d1fe26bbd89d5a6ecde6116a5d3007"
+          },
+          "observed": {
+            "dimensions": [
+              8,
+              4
+            ],
+            "pixel_sha256": "ca375a7468bbe3b4802848fc08608b856fd39bd44cc87f46d42513695fb8dd35",
+            "maximum_component_error": 255,
+            "mean_absolute_component_error": 101.75,
+            "unequal_components": 74
+          },
+          "evidence": [
+            "cases/mfsk64-color-speeds/received/images/pic_2026-10-02_031830z.png",
+            "visual-review/candidate-set-review.png"
+          ]
+        },
+        {
+          "id": "independent-rsid-oracle-pcm",
+          "status": "pass",
+          "expected": true,
+          "observed": true,
+          "evidence": [
+            "source/rsid-oracle.json",
+            "cases/mfsk64-color-speeds/generated.wav"
+          ]
+        },
+        {
+          "id": "prefix-inclusive-frames-and-coordinates",
+          "status": "pass",
+          "expected": {
+            "frames": 1136628,
+            "starts": [
+              {
+                "input_index": 0,
+                "start_frame": 0,
+                "contents": [
+                  {
+                    "content_index": 0,
+                    "start_frame": 255924
+                  },
+                  {
+                    "content_index": 1,
+                    "start_frame": 300468
+                  },
+                  {
+                    "content_index": 2,
+                    "start_frame": 493812
+                  },
+                  {
+                    "content_index": 3,
+                    "start_frame": 560628
+                  },
+                  {
+                    "content_index": 4,
+                    "start_frame": 757044
+                  },
+                  {
+                    "content_index": 5,
+                    "start_frame": 823860
+                  },
+                  {
+                    "content_index": 6,
+                    "start_frame": 1019124
+                  }
+                ]
+              }
+            ]
+          },
+          "observed": {
+            "frames": 1136628,
+            "starts": [
+              {
+                "input_index": 0,
+                "start_frame": 0,
+                "contents": [
+                  {
+                    "content_index": 0,
+                    "start_frame": 255924
+                  },
+                  {
+                    "content_index": 1,
+                    "start_frame": 300468
+                  },
+                  {
+                    "content_index": 2,
+                    "start_frame": 493812
+                  },
+                  {
+                    "content_index": 3,
+                    "start_frame": 560628
+                  },
+                  {
+                    "content_index": 4,
+                    "start_frame": 757044
+                  },
+                  {
+                    "content_index": 5,
+                    "start_frame": 823860
+                  },
+                  {
+                    "content_index": 6,
+                    "start_frame": 1019124
+                  }
+                ]
+              }
+            ]
+          },
+          "evidence": [
+            "cases/mfsk64-color-speeds/encoder-result.json"
+          ]
+        },
+        {
+          "id": "picture-announcements-exact",
+          "status": "pass",
+          "expected": [
+            "\nSending Pic:8x4C;",
+            "\nSending Pic:8x4Cp4;",
+            "\nSending Pic:8x4Cp2;"
+          ],
+          "observed": "tlt    s\n\u0002\nCOLOR P8 BEGIN\n\nSending Pic:8x4C;\nCOLOR P8 END P4 BEGIN\n\nSending Pic:8x4Cp4;\nCOLOR P4 END P2 BEGIN\n\nSending Pic:8x4Cp2;\nCOLOR P2 END\n\u0004\n tnettttttdrtttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,tttt,t",
+          "evidence": [
+            "cases/mfsk64-color-speeds/received/decoded.txt"
+          ]
+        }
+      ],
+      "discrepancies": [
+        {
+          "classification": "unresolved",
+          "summary": "picture-0-dimensions-and-pixels: fail",
+          "evidence": [
+            "cases/mfsk64-color-speeds/received/images/pic_2026-10-02_031819z.png",
+            "visual-review/candidate-set-review.png",
+            "visual-review/candidate-set-review.png",
+            "visual-review/candidate-set-review.png"
+          ]
+        },
+        {
+          "classification": "unresolved",
+          "summary": "picture-1-dimensions-and-pixels: fail",
+          "evidence": [
+            "cases/mfsk64-color-speeds/received/images/pic_2026-10-02_031825z.png"
+          ]
+        },
+        {
+          "classification": "unresolved",
+          "summary": "picture-2-dimensions-and-pixels: fail",
+          "evidence": [
+            "cases/mfsk64-color-speeds/received/images/pic_2026-10-02_031830z.png"
+          ]
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "total": 8,
+    "passed": 5,
+    "failed": 3,
+    "blocked": 0
+  }
+}

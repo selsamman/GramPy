@@ -1,0 +1,129 @@
+		progdefaults.contestiatones = 5;
+		progdefaults.contestiabw = 4;
+		REQ(&set_contestia_tab_widgets);
+		break;
+	default:
+		break;
+	} // switch (iSymbol)
+}
+
+void cRsId::apply(int iBin, int iSymbol, int extended)
+{
+	ENSURE_THREAD(TRX_TID);
+
+	double rsidfreq = 0, currfreq = 0;
+	int n, mbin = NUM_MODES;
+
+	int tblsize;
+	const RSIDs *p_rsid;
+
+	if (extended) {
+		tblsize = rsid_ids_size2;
+		p_rsid = rsid_ids_2;
+	}
+	else {
+		tblsize = rsid_ids_size1;
+		p_rsid = rsid_ids_1;
+	}
+
+	currfreq = active_modem->get_freq();
+	rsidfreq = (iBin + RSID_NSYMBOLS - 0.5) * RSID_SAMPLE_RATE / 2048.0;
+
+	for (n = 0; n < tblsize; n++) {
+		if (p_rsid[n].rs == iSymbol) {
+			mbin = p_rsid[n].mode;
+			break;
+		}
+	}
+
+	if (mbin == NUM_MODES) {
+		char msg[50];
+		if (n < tblsize) // RSID known but unimplemented
+			snprintf(msg, sizeof(msg), "RSID: %s unimplemented",
+				p_rsid[n].name);
+		else // RSID unknown; shouldn't  happen
+			snprintf(msg, sizeof(msg), "RSID: code %d unknown", iSymbol);
+		put_status(msg, 4.0);
+		LOG_VERBOSE("%s", msg);
+		return;
+	}
+/*
+std::cout <<
+  "\n---------------------------------\nRsID configuration:" <<
+  "\ncurrfreq: " << currfreq <<
+  "\nrsidfreq: " << rsidfreq <<
+  "\nretain tx frequency: " << progdefaults.retain_freq_lock <<
+  "\ndisable_freq_change: " << progdefaults.disable_rsid_freq_change <<
+  "\nrsid_mark: " << progdefaults.rsid_mark <<
+  "\nrsid_squelch: " << progdefaults.rsid_squelch <<
+  "\nrsid_notify_only: " << progdefaults.rsid_notify_only <<
+  "\ndisable_warning_dialog_box: " << progdefaults.disable_rsid_warning_dialog_box <<
+  "\nenable_rsid_match: " << progdefaults.ENABLE_RSID_MATCH <<
+  "\nrsid_auto_disable: " << progdefaults.rsid_auto_disable <<
+  "\nrsid_eot_squelch: " << progdefaults.rsid_eot_squelch << std::endl;
+*/
+	if (progdefaults.rsid_rx_modes.test(mbin)) {
+		char msg[50];
+		snprintf(msg, sizeof(msg), "RSID: %s @ %0.1f Hz", p_rsid[n].name, rsidfreq);
+		LOG_VERBOSE("%s", msg);
+	}
+	else {
+		char msg[50];
+		snprintf(msg, sizeof(msg), "Ignoring RSID: %s @ %0.1f Hz", p_rsid[n].name, rsidfreq);
+		LOG_DEBUG("%s", msg);
+		return;
+	}
+
+	if (progdefaults.ENABLE_RSID_MATCH)
+		audio_alert->alert(progdefaults.RSID_MATCH);
+
+	if (mailclient || mailserver)
+		REQ(pskmail_notify_rsid, mbin);
+
+	if (progdefaults.rsid_auto_disable)
+		REQ(toggleRSID);
+
+	if (iSymbol == RSID_EOT) {
+		if (progdefaults.rsid_eot_squelch) {
+			REQ(rsid_eot_squelch);
+			if (!progdefaults.disable_rsid_warning_dialog_box)
+				REQ(notify_rsid_eot, mbin, rsidfreq);
+		}
+		return;
+	}
+
+	if (!progdefaults.disable_rsid_warning_dialog_box) {
+		LOG_INFO("REQ call of notify_ssid: %d %f", mbin, rsidfreq);
+		REQ(notify_rsid, mbin, rsidfreq);
+	}
+
+	if (progdefaults.rsid_notify_only) {
+		if (data_io_enabled == KISS_IO) {
+			bcast_rsid_kiss_frame(rsidfreq, mbin, (int) active_modem->get_txfreq_woffset(),
+								  active_modem->get_mode(), RSID_KISS_NOTIFY);
+		}
+		return;
+	}
+
+	if (progdefaults.rsid_mark) // mark current modem & freq
+		REQ(note_qrg, false, "\nBefore RSID: ", "\n\n",
+			active_modem->get_mode(), 0LL, currfreq);
+
+	if(active_modem) // Currently only effects Olivia, Contestia and MT63.
+		active_modem->rx_flush();
+
+	setup_mode(iSymbol);
+
+	if (progdefaults.rsid_squelch)
+		REQ(init_modem_squelch, mbin, progdefaults.disable_rsid_freq_change ? currfreq : rsidfreq);
+	else
+		REQ(init_modem, mbin, progdefaults.disable_rsid_freq_change ? currfreq : rsidfreq);
+
+}
+
+inline int cRsId::HammingDistance(int iBucket, unsigned char *p2)
+{
+	int dist = 0;
+430:void mfsk::recvpic(cmplx z)
+433:	picf += arg( conj(prevz) * z) * samplerate / TWOPI;
+893:				recvpic(z);

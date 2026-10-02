@@ -1,0 +1,2303 @@
+{
+  "schema": "grampy-mfsk-encoder-pi-qualification-manifest.v2",
+  "status": "failed",
+  "source": {
+    "repository_revision": "f41c0f922caa27c255e5a91b630497dd09983cf7",
+    "matrix": {
+      "path": "source/matrix.json",
+      "bytes": 5691,
+      "sha256": "9c8cba257b3e20861e6978b7c4d33c96f9856d81d9bb3a55d2347282f950fe81"
+    },
+    "rsid_oracle": {
+      "path": "source/rsid-oracle.json",
+      "bytes": 3014,
+      "sha256": "be9e40eae97b1230d50b6991c2d7c853d9562029a4a38b19f19e561bdd5857ec"
+    },
+    "encoder_distribution": {
+      "path": "source/distribution/radiogrampy-0.1.3-py3-none-any.whl",
+      "bytes": 165527,
+      "sha256": "b0ff517be6daa4bc32afac0ac2b5914ca1eeedb785d3f28a5b72be24f09834a1"
+    },
+    "inputs": [
+      {
+        "path": "inputs/audio-marker.wav",
+        "bytes": 96044,
+        "sha256": "fde7892eba90d4d705b5fef99aef4c078c4f65b92af23f06cd2af9a8a4a56fca"
+      },
+      {
+        "path": "inputs/primary-color-8x4.png",
+        "bytes": 137,
+        "sha256": "33e1986427384be02803fe5e8785f3068d17bbacaf6fb6f5b7f880cfea188ea2"
+      },
+      {
+        "path": "reporting-schema.json",
+        "bytes": 7225,
+        "sha256": "a9df84925f0fa75e07586449bfcfc0dbf393f2df0676af9de7968d43c23ee8fd"
+      }
+    ]
+  },
+  "target": {
+    "hostname": "pi3BFirst",
+    "platform": "Linux-6.18.34+rpt-rpi-v8-aarch64-with-glibc2.41",
+    "architecture": "aarch64",
+    "python_version": "3.13.5"
+  },
+  "receiver": {
+    "reference_id": "fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178",
+    "version": "fldigi 4.2.13",
+    "binary": {
+      "path": "receiver-binary",
+      "bytes": 67143320,
+      "sha256": "dd30f86caae1edb5d2998acedb47a3a7b348b727bf6303af1e2f822f549966f3"
+    },
+    "configuration": {
+      "reference_id": "fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178",
+      "rxid_enabled": true,
+      "rxid_passband_search": true,
+      "rxid_notify_only": false,
+      "rxid_auto_disable_after_detection": false,
+      "rxid_mode_exclusions": [],
+      "reverse_sideband": false,
+      "initial_mode": "BPSK31",
+      "initial_carrier_hz": 1500.0,
+      "playback": "one continuous run of the complete generated WAV; no manual mode/frequency selection or window replay"
+    }
+  },
+  "execution": {
+    "workflow": "tools/pi-qualify-mfsk-encoder.sh",
+    "started_utc": "2026-10-02T02:59:21.347879+00:00",
+    "completed_utc": "2026-10-02T03:07:38.463042+00:00",
+    "log": {
+      "path": "execution.log",
+      "bytes": 1242,
+      "sha256": "7aec156e891707e0ca8b9db14ed4de29b3f7a35acab41dad2aa902ad886d598d"
+    }
+  },
+  "cases": [
+    {
+      "id": "rsid-mfsk32-initial",
+      "status": "fail",
+      "generated_wav": {
+        "path": "cases/rsid-mfsk32-initial/generated.wav",
+        "bytes": 788192,
+        "sha256": "59359cc866a89a8884e00263aa6784a8af97bece507c5c81ef658298c5fdbe20"
+      },
+      "encoder_result": {
+        "path": "cases/rsid-mfsk32-initial/encoder-result.json",
+        "bytes": 565,
+        "sha256": "647e5fa87b5837c636af14d6f3da76fad3bfa82eae52a38f08d9b7b9bcaac9f6"
+      },
+      "continuous_receiver_runs": [
+        {
+          "input_interval": {
+            "start_frame": 0,
+            "end_frame": 394074
+          },
+          "manual_mode_changes": 0,
+          "exit_code": 0,
+          "log": {
+            "path": "cases/rsid-mfsk32-initial/received/fldigi/control.log",
+            "bytes": 14330,
+            "sha256": "bc068e836415a226b251df4a55704acc422f78acb4eacdf63c8d1b8f5c1ae059"
+          },
+          "rxid_events": [],
+          "recovered_text": {
+            "path": "cases/rsid-mfsk32-initial/received/decoded.txt",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "recovered_images": []
+        }
+      ],
+      "checks": [
+        {
+          "id": "whole-wav-receiver-exit",
+          "status": "pass",
+          "expected": 0,
+          "observed": 0,
+          "evidence": [
+            "cases/rsid-mfsk32-initial/received/metadata.json"
+          ]
+        },
+        {
+          "id": "whole-wav-interval-and-no-manual-changes",
+          "status": "pass",
+          "expected": [
+            0,
+            394074,
+            0
+          ],
+          "observed": [
+            0,
+            394074,
+            0
+          ],
+          "evidence": [
+            "cases/rsid-mfsk32-initial/received/fldigi/control.log",
+            "cases/rsid-mfsk32-initial/command.json"
+          ]
+        },
+        {
+          "id": "initial-unrelated-mode",
+          "status": "pass",
+          "expected": "BPSK31",
+          "observed": "BPSK31",
+          "evidence": [
+            "cases/rsid-mfsk32-initial/received/fldigi/control.log"
+          ]
+        },
+        {
+          "id": "receiver-rxid-configuration",
+          "status": "fail",
+          "expected": {
+            "AUDIOIO": "1",
+            "PORTINDEVICE": "default",
+            "PORTOUTDEVICE": "default",
+            "RSIDWIDESEARCH": "1",
+            "RSIDNOTIFYONLY": "0",
+            "RSIDAUTODISABLE": "0",
+            "RSIDRXMODESEXCLUDE": "",
+            "DISABLERSIDFREQCHANGE": "0"
+          },
+          "observed": {
+            "AUDIOIO": "3",
+            "PORTINDEVICE": "",
+            "PORTOUTDEVICE": "",
+            "RSIDWIDESEARCH": "1",
+            "RSIDNOTIFYONLY": "0",
+            "RSIDAUTODISABLE": "0",
+            "RSIDRXMODESEXCLUDE": "",
+            "DISABLERSIDFREQCHANGE": "0"
+          },
+          "evidence": [
+            "cases/rsid-mfsk32-initial/received/fldigi/config-start/fldigi_def.xml",
+            "cases/rsid-mfsk32-initial/received/fldigi/control.log"
+          ]
+        },
+        {
+          "id": "rxid-acquisitions-in-order",
+          "status": "fail",
+          "expected": [
+            "MFSK32"
+          ],
+          "observed": [],
+          "evidence": [
+            "cases/rsid-mfsk32-initial/received/fldigi/control.log"
+          ]
+        },
+        {
+          "id": "carrier-acquisitions-in-order",
+          "status": "fail",
+          "expected": [
+            1500.0
+          ],
+          "observed": [],
+          "evidence": [
+            "cases/rsid-mfsk32-initial/received/fldigi/control.log"
+          ]
+        },
+        {
+          "id": "caller-text-exact-and-ordered",
+          "status": "fail",
+          "expected": [
+            "RSID MFSK32 INITIAL END"
+          ],
+          "observed": {
+            "positions": [
+              -1
+            ],
+            "decoded": ""
+          },
+          "evidence": [
+            "cases/rsid-mfsk32-initial/received/decoded.txt"
+          ]
+        },
+        {
+          "id": "picture-count",
+          "status": "pass",
+          "expected": 0,
+          "observed": 0,
+          "evidence": [
+            "cases/rsid-mfsk32-initial/received/metadata.json"
+          ]
+        },
+        {
+          "id": "independent-rsid-oracle-pcm",
+          "status": "pass",
+          "expected": true,
+          "observed": true,
+          "evidence": [
+            "source/rsid-oracle.json",
+            "cases/rsid-mfsk32-initial/generated.wav"
+          ]
+        },
+        {
+          "id": "prefix-inclusive-frames-and-coordinates",
+          "status": "pass",
+          "expected": {
+            "frames": 394074,
+            "starts": [
+              {
+                "input_index": 0,
+                "start_frame": 0,
+                "contents": [
+                  {
+                    "content_index": 0,
+                    "start_frame": 159066
+                  }
+                ]
+              }
+            ]
+          },
+          "observed": {
+            "frames": 394074,
+            "starts": [
+              {
+                "input_index": 0,
+                "start_frame": 0,
+                "contents": [
+                  {
+                    "content_index": 0,
+                    "start_frame": 159066
+                  }
+                ]
+              }
+            ]
+          },
+          "evidence": [
+            "cases/rsid-mfsk32-initial/encoder-result.json"
+          ]
+        },
+        {
+          "id": "picture-announcements-exact",
+          "status": "pass",
+          "expected": [],
+          "observed": "",
+          "evidence": [
+            "cases/rsid-mfsk32-initial/received/decoded.txt"
+          ]
+        }
+      ],
+      "discrepancies": [
+        {
+          "classification": "automation-failure",
+          "summary": "receiver-rxid-configuration: fail",
+          "evidence": [
+            "cases/rsid-mfsk32-initial/received/fldigi/config-start/fldigi_def.xml",
+            "cases/rsid-mfsk32-initial/received/fldigi/control.log"
+          ]
+        },
+        {
+          "classification": "automation-failure",
+          "summary": "rxid-acquisitions-in-order: fail",
+          "evidence": [
+            "cases/rsid-mfsk32-initial/received/fldigi/control.log"
+          ]
+        },
+        {
+          "classification": "automation-failure",
+          "summary": "carrier-acquisitions-in-order: fail",
+          "evidence": [
+            "cases/rsid-mfsk32-initial/received/fldigi/control.log"
+          ]
+        },
+        {
+          "classification": "automation-failure",
+          "summary": "caller-text-exact-and-ordered: fail",
+          "evidence": [
+            "cases/rsid-mfsk32-initial/received/decoded.txt"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rsid-mfsk64-extended-initial",
+      "status": "fail",
+      "generated_wav": {
+        "path": "cases/rsid-mfsk64-extended-initial/generated.wav",
+        "bytes": 803732,
+        "sha256": "dad0fb7a516adfadcef1a9225261d5ad2234407f0cc20843f6c896cda39894a9"
+      },
+      "encoder_result": {
+        "path": "cases/rsid-mfsk64-extended-initial/encoder-result.json",
+        "bytes": 572,
+        "sha256": "83ea87c3732ac167abe213ceaa3946e7d3505ce770834eeb599b721c758f3526"
+      },
+      "continuous_receiver_runs": [
+        {
+          "input_interval": {
+            "start_frame": 0,
+            "end_frame": 401844
+          },
+          "manual_mode_changes": 0,
+          "exit_code": 0,
+          "log": {
+            "path": "cases/rsid-mfsk64-extended-initial/received/fldigi/control.log",
+            "bytes": 14544,
+            "sha256": "24cff0a2e6107a384eda94a6f5116d1df6b3afb70d8e1b0600c13a9e7dfe4e9e"
+          },
+          "rxid_events": [],
+          "recovered_text": {
+            "path": "cases/rsid-mfsk64-extended-initial/received/decoded.txt",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "recovered_images": []
+        }
+      ],
+      "checks": [
+        {
+          "id": "whole-wav-receiver-exit",
+          "status": "pass",
+          "expected": 0,
+          "observed": 0,
+          "evidence": [
+            "cases/rsid-mfsk64-extended-initial/received/metadata.json"
+          ]
+        },
+        {
+          "id": "whole-wav-interval-and-no-manual-changes",
+          "status": "pass",
+          "expected": [
+            0,
+            401844,
+            0
+          ],
+          "observed": [
+            0,
+            401844,
+            0
+          ],
+          "evidence": [
+            "cases/rsid-mfsk64-extended-initial/received/fldigi/control.log",
+            "cases/rsid-mfsk64-extended-initial/command.json"
+          ]
+        },
+        {
+          "id": "initial-unrelated-mode",
+          "status": "pass",
+          "expected": "BPSK31",
+          "observed": "BPSK31",
+          "evidence": [
+            "cases/rsid-mfsk64-extended-initial/received/fldigi/control.log"
+          ]
+        },
+        {
+          "id": "receiver-rxid-configuration",
+          "status": "fail",
+          "expected": {
+            "AUDIOIO": "1",
+            "PORTINDEVICE": "default",
+            "PORTOUTDEVICE": "default",
+            "RSIDWIDESEARCH": "1",
+            "RSIDNOTIFYONLY": "0",
+            "RSIDAUTODISABLE": "0",
+            "RSIDRXMODESEXCLUDE": "",
+            "DISABLERSIDFREQCHANGE": "0"
+          },
+          "observed": {
+            "AUDIOIO": "3",
+            "PORTINDEVICE": "",
+            "PORTOUTDEVICE": "",
+            "RSIDWIDESEARCH": "1",
+            "RSIDNOTIFYONLY": "0",
+            "RSIDAUTODISABLE": "0",
+            "RSIDRXMODESEXCLUDE": "",
+            "DISABLERSIDFREQCHANGE": "0"
+          },
+          "evidence": [
+            "cases/rsid-mfsk64-extended-initial/received/fldigi/config-start/fldigi_def.xml",
+            "cases/rsid-mfsk64-extended-initial/received/fldigi/control.log"
+          ]
+        },
+        {
+          "id": "rxid-acquisitions-in-order",
+          "status": "fail",
+          "expected": [
+            "MFSK64"
+          ],
+          "observed": [],
+          "evidence": [
+            "cases/rsid-mfsk64-extended-initial/received/fldigi/control.log"
+          ]
+        },
+        {
+          "id": "carrier-acquisitions-in-order",
+          "status": "fail",
+          "expected": [
+            1500.0
+          ],
+          "observed": [],
+          "evidence": [
+            "cases/rsid-mfsk64-extended-initial/received/fldigi/control.log"
+          ]
+        },
+        {
+          "id": "caller-text-exact-and-ordered",
+          "status": "fail",
+          "expected": [
+            "RSID MFSK64 INITIAL END"
+          ],
+          "observed": {
+            "positions": [
+              -1
+            ],
+            "decoded": ""
+          },
+          "evidence": [
+            "cases/rsid-mfsk64-extended-initial/received/decoded.txt"
+          ]
+        },
+        {
+          "id": "picture-count",
+          "status": "pass",
+          "expected": 0,
+          "observed": 0,
+          "evidence": [
+            "cases/rsid-mfsk64-extended-initial/received/metadata.json"
+          ]
+        },
+        {
+          "id": "independent-rsid-oracle-pcm",
+          "status": "pass",
+          "expected": true,
+          "observed": true,
+          "evidence": [
+            "source/rsid-oracle.json",
+            "cases/rsid-mfsk64-extended-initial/generated.wav"
+          ]
+        },
+        {
+          "id": "prefix-inclusive-frames-and-coordinates",
+          "status": "pass",
+          "expected": {
+            "frames": 401844,
+            "starts": [
+              {
+                "input_index": 0,
+                "start_frame": 0,
+                "contents": [
+                  {
+                    "content_index": 0,
+                    "start_frame": 255924
+                  }
+                ]
+              }
+            ]
+          },
+          "observed": {
+            "frames": 401844,
+            "starts": [
+              {
+                "input_index": 0,
+                "start_frame": 0,
+                "contents": [
+                  {
+                    "content_index": 0,
+                    "start_frame": 255924
+                  }
+                ]
+              }
+            ]
+          },
+          "evidence": [
+            "cases/rsid-mfsk64-extended-initial/encoder-result.json"
+          ]
+        },
+        {
+          "id": "picture-announcements-exact",
+          "status": "pass",
+          "expected": [],
+          "observed": "",
+          "evidence": [
+            "cases/rsid-mfsk64-extended-initial/received/decoded.txt"
+          ]
+        }
+      ],
+      "discrepancies": [
+        {
+          "classification": "automation-failure",
+          "summary": "receiver-rxid-configuration: fail",
+          "evidence": [
+            "cases/rsid-mfsk64-extended-initial/received/fldigi/config-start/fldigi_def.xml",
+            "cases/rsid-mfsk64-extended-initial/received/fldigi/control.log"
+          ]
+        },
+        {
+          "classification": "automation-failure",
+          "summary": "rxid-acquisitions-in-order: fail",
+          "evidence": [
+            "cases/rsid-mfsk64-extended-initial/received/fldigi/control.log"
+          ]
+        },
+        {
+          "classification": "automation-failure",
+          "summary": "carrier-acquisitions-in-order: fail",
+          "evidence": [
+            "cases/rsid-mfsk64-extended-initial/received/fldigi/control.log"
+          ]
+        },
+        {
+          "classification": "automation-failure",
+          "summary": "caller-text-exact-and-ordered: fail",
+          "evidence": [
+            "cases/rsid-mfsk64-extended-initial/received/decoded.txt"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rsid-32-to-64-no-editorial-gap",
+      "status": "fail",
+      "generated_wav": {
+        "path": "cases/rsid-32-to-64-no-editorial-gap/generated.wav",
+        "bytes": 1499720,
+        "sha256": "e73ceff80bf560ee10e161926d9db7834c0b731cfc4d9c1670d4a9f3207db365"
+      },
+      "encoder_result": {
+        "path": "cases/rsid-32-to-64-no-editorial-gap/encoder-result.json",
+        "bytes": 938,
+        "sha256": "94d7a91d3faa0c410c2a5e677b74d80e677336e9186f116317bafdba50aec3e0"
+      },
+      "continuous_receiver_runs": [
+        {
+          "input_interval": {
+            "start_frame": 0,
+            "end_frame": 749838
+          },
+          "manual_mode_changes": 0,
+          "exit_code": 0,
+          "log": {
+            "path": "cases/rsid-32-to-64-no-editorial-gap/received/fldigi/control.log",
+            "bytes": 20058,
+            "sha256": "006b518410f14331ae658bd132de6f1d5906ed128bffe464b88bf0259d4d21bf"
+          },
+          "rxid_events": [],
+          "recovered_text": {
+            "path": "cases/rsid-32-to-64-no-editorial-gap/received/decoded.txt",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "recovered_images": []
+        }
+      ],
+      "checks": [
+        {
+          "id": "whole-wav-receiver-exit",
+          "status": "pass",
+          "expected": 0,
+          "observed": 0,
+          "evidence": [
+            "cases/rsid-32-to-64-no-editorial-gap/received/metadata.json"
+          ]
+        },
+        {
+          "id": "whole-wav-interval-and-no-manual-changes",
+          "status": "pass",
+          "expected": [
+            0,
+            749838,
+            0
+          ],
+          "observed": [
+            0,
+            749838,
+            0
+          ],
+          "evidence": [
+            "cases/rsid-32-to-64-no-editorial-gap/received/fldigi/control.log",
+            "cases/rsid-32-to-64-no-editorial-gap/command.json"
+          ]
+        },
+        {
+          "id": "initial-unrelated-mode",
+          "status": "pass",
+          "expected": "BPSK31",
+          "observed": "BPSK31",
+          "evidence": [
+            "cases/rsid-32-to-64-no-editorial-gap/received/fldigi/control.log"
+          ]
+        },
+        {
+          "id": "receiver-rxid-configuration",
+          "status": "fail",
+          "expected": {
+            "AUDIOIO": "1",
+            "PORTINDEVICE": "default",
+            "PORTOUTDEVICE": "default",
+            "RSIDWIDESEARCH": "1",
+            "RSIDNOTIFYONLY": "0",
+            "RSIDAUTODISABLE": "0",
+            "RSIDRXMODESEXCLUDE": "",
+            "DISABLERSIDFREQCHANGE": "0"
+          },
+          "observed": {
+            "AUDIOIO": "3",
+            "PORTINDEVICE": "",
+            "PORTOUTDEVICE": "",
+            "RSIDWIDESEARCH": "1",
+            "RSIDNOTIFYONLY": "0",
+            "RSIDAUTODISABLE": "0",
+            "RSIDRXMODESEXCLUDE": "",
+            "DISABLERSIDFREQCHANGE": "0"
+          },
+          "evidence": [
+            "cases/rsid-32-to-64-no-editorial-gap/received/fldigi/config-start/fldigi_def.xml",
+            "cases/rsid-32-to-64-no-editorial-gap/received/fldigi/control.log"
+          ]
+        },
+        {
+          "id": "rxid-acquisitions-in-order",
+          "status": "fail",
+          "expected": [
+            "MFSK32",
+            "MFSK64"
+          ],
+          "observed": [],
+          "evidence": [
+            "cases/rsid-32-to-64-no-editorial-gap/received/fldigi/control.log"
+          ]
+        },
+        {
+          "id": "carrier-acquisitions-in-order",
+          "status": "fail",
+          "expected": [
+            1400.0,
+            1600.0
+          ],
+          "observed": [],
+          "evidence": [
+            "cases/rsid-32-to-64-no-editorial-gap/received/fldigi/control.log"
+          ]
+        },
+        {
+          "id": "caller-text-exact-and-ordered",
+          "status": "fail",
+          "expected": [
+            "CHANGE MFSK32 END",
+            "CHANGE MFSK64 END"
+          ],
+          "observed": {
+            "positions": [
+              -1,
+              -1
+            ],
+            "decoded": ""
+          },
+          "evidence": [
+            "cases/rsid-32-to-64-no-editorial-gap/received/decoded.txt"
+          ]
+        },
+        {
+          "id": "picture-count",
+          "status": "pass",
+          "expected": 0,
+          "observed": 0,
+          "evidence": [
+            "cases/rsid-32-to-64-no-editorial-gap/received/metadata.json"
+          ]
+        },
+        {
+          "id": "independent-rsid-oracle-pcm",
+          "status": "pass",
+          "expected": true,
+          "observed": true,
+          "evidence": [
+            "source/rsid-oracle.json",
+            "cases/rsid-32-to-64-no-editorial-gap/generated.wav"
+          ]
+        },
+        {
+          "id": "prefix-inclusive-frames-and-coordinates",
+          "status": "pass",
+          "expected": {
+            "frames": 749838,
+            "starts": [
+              {
+                "input_index": 0,
+                "start_frame": 0,
+                "contents": [
+                  {
+                    "content_index": 0,
+                    "start_frame": 159066
+                  }
+                ]
+              },
+              {
+                "input_index": 1,
+                "start_frame": 363354,
+                "contents": [
+                  {
+                    "content_index": 0,
+                    "start_frame": 619278
+                  }
+                ]
+              }
+            ]
+          },
+          "observed": {
+            "frames": 749838,
+            "starts": [
+              {
+                "input_index": 0,
+                "start_frame": 0,
+                "contents": [
+                  {
+                    "content_index": 0,
+                    "start_frame": 159066
+                  }
+                ]
+              },
+              {
+                "input_index": 1,
+                "start_frame": 363354,
+                "contents": [
+                  {
+                    "content_index": 0,
+                    "start_frame": 619278
+                  }
+                ]
+              }
+            ]
+          },
+          "evidence": [
+            "cases/rsid-32-to-64-no-editorial-gap/encoder-result.json"
+          ]
+        },
+        {
+          "id": "picture-announcements-exact",
+          "status": "pass",
+          "expected": [],
+          "observed": "",
+          "evidence": [
+            "cases/rsid-32-to-64-no-editorial-gap/received/decoded.txt"
+          ]
+        }
+      ],
+      "discrepancies": [
+        {
+          "classification": "automation-failure",
+          "summary": "receiver-rxid-configuration: fail",
+          "evidence": [
+            "cases/rsid-32-to-64-no-editorial-gap/received/fldigi/config-start/fldigi_def.xml",
+            "cases/rsid-32-to-64-no-editorial-gap/received/fldigi/control.log"
+          ]
+        },
+        {
+          "classification": "automation-failure",
+          "summary": "rxid-acquisitions-in-order: fail",
+          "evidence": [
+            "cases/rsid-32-to-64-no-editorial-gap/received/fldigi/control.log"
+          ]
+        },
+        {
+          "classification": "automation-failure",
+          "summary": "carrier-acquisitions-in-order: fail",
+          "evidence": [
+            "cases/rsid-32-to-64-no-editorial-gap/received/fldigi/control.log"
+          ]
+        },
+        {
+          "classification": "automation-failure",
+          "summary": "caller-text-exact-and-ordered: fail",
+          "evidence": [
+            "cases/rsid-32-to-64-no-editorial-gap/received/decoded.txt"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rsid-64-to-32-no-editorial-gap",
+      "status": "fail",
+      "generated_wav": {
+        "path": "cases/rsid-64-to-32-no-editorial-gap/generated.wav",
+        "bytes": 1513544,
+        "sha256": "9ff25df8d50942028446409793040da3ac652aff612c3fda2c8a741b32a666e8"
+      },
+      "encoder_result": {
+        "path": "cases/rsid-64-to-32-no-editorial-gap/encoder-result.json",
+        "bytes": 936,
+        "sha256": "8a7f9e0b8debd75c2053859c6fe9592eaa4f2a2aeb52d36e7414e3b135a20b76"
+      },
+      "continuous_receiver_runs": [
+        {
+          "input_interval": {
+            "start_frame": 0,
+            "end_frame": 756750
+          },
+          "manual_mode_changes": 0,
+          "exit_code": 0,
+          "log": {
+            "path": "cases/rsid-64-to-32-no-editorial-gap/received/fldigi/control.log",
+            "bytes": 20250,
+            "sha256": "669faa4bec18a2299dcd72013c41a4428f088b19b0fa5b350c35073a2a658794"
+          },
+          "rxid_events": [],
+          "recovered_text": {
+            "path": "cases/rsid-64-to-32-no-editorial-gap/received/decoded.txt",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "recovered_images": []
+        }
+      ],
+      "checks": [
+        {
+          "id": "whole-wav-receiver-exit",
+          "status": "pass",
+          "expected": 0,
+          "observed": 0,
+          "evidence": [
+            "cases/rsid-64-to-32-no-editorial-gap/received/metadata.json"
+          ]
+        },
+        {
+          "id": "whole-wav-interval-and-no-manual-changes",
+          "status": "pass",
+          "expected": [
+            0,
+            756750,
+            0
+          ],
+          "observed": [
+            0,
+            756750,
+            0
+          ],
+          "evidence": [
+            "cases/rsid-64-to-32-no-editorial-gap/received/fldigi/control.log",
+            "cases/rsid-64-to-32-no-editorial-gap/command.json"
+          ]
+        },
+        {
+          "id": "initial-unrelated-mode",
+          "status": "pass",
+          "expected": "BPSK31",
+          "observed": "BPSK31",
+          "evidence": [
+            "cases/rsid-64-to-32-no-editorial-gap/received/fldigi/control.log"
+          ]
+        },
+        {
+          "id": "receiver-rxid-configuration",
+          "status": "fail",
+          "expected": {
+            "AUDIOIO": "1",
+            "PORTINDEVICE": "default",
+            "PORTOUTDEVICE": "default",
+            "RSIDWIDESEARCH": "1",
+            "RSIDNOTIFYONLY": "0",
+            "RSIDAUTODISABLE": "0",
+            "RSIDRXMODESEXCLUDE": "",
+            "DISABLERSIDFREQCHANGE": "0"
+          },
+          "observed": {
+            "AUDIOIO": "3",
+            "PORTINDEVICE": "",
+            "PORTOUTDEVICE": "",
+            "RSIDWIDESEARCH": "1",
+            "RSIDNOTIFYONLY": "0",
+            "RSIDAUTODISABLE": "0",
+            "RSIDRXMODESEXCLUDE": "",
+            "DISABLERSIDFREQCHANGE": "0"
+          },
+          "evidence": [
+            "cases/rsid-64-to-32-no-editorial-gap/received/fldigi/config-start/fldigi_def.xml",
+            "cases/rsid-64-to-32-no-editorial-gap/received/fldigi/control.log"
+          ]
+        },
+        {
+          "id": "rxid-acquisitions-in-order",
+          "status": "fail",
+          "expected": [
+            "MFSK64",
+            "MFSK32"
+          ],
+          "observed": [],
+          "evidence": [
+            "cases/rsid-64-to-32-no-editorial-gap/received/fldigi/control.log"
+          ]
+        },
+        {
+          "id": "carrier-acquisitions-in-order",
+          "status": "fail",
+          "expected": [
+            1600.0,
+            1400.0
+          ],
+          "observed": [],
+          "evidence": [
+            "cases/rsid-64-to-32-no-editorial-gap/received/fldigi/control.log"
+          ]
+        },
+        {
+          "id": "caller-text-exact-and-ordered",
+          "status": "fail",
+          "expected": [
+            "REVERSE MFSK64 END",
+            "REVERSE MFSK32 END"
+          ],
+          "observed": {
+            "positions": [
+              -1,
+              -1
+            ],
+            "decoded": ""
+          },
+          "evidence": [
+            "cases/rsid-64-to-32-no-editorial-gap/received/decoded.txt"
+          ]
+        },
+        {
+          "id": "picture-count",
+          "status": "pass",
+          "expected": 0,
+          "observed": 0,
+          "evidence": [
+            "cases/rsid-64-to-32-no-editorial-gap/received/metadata.json"
+          ]
+        },
+        {
+          "id": "independent-rsid-oracle-pcm",
+          "status": "pass",
+          "expected": true,
+          "observed": true,
+          "evidence": [
+            "source/rsid-oracle.json",
+            "cases/rsid-64-to-32-no-editorial-gap/generated.wav"
+          ]
+        },
+        {
+          "id": "prefix-inclusive-frames-and-coordinates",
+          "status": "pass",
+          "expected": {
+            "frames": 756750,
+            "starts": [
+              {
+                "input_index": 0,
+                "start_frame": 0,
+                "contents": [
+                  {
+                    "content_index": 0,
+                    "start_frame": 255924
+                  }
+                ]
+              },
+              {
+                "input_index": 1,
+                "start_frame": 388788,
+                "contents": [
+                  {
+                    "content_index": 0,
+                    "start_frame": 547854
+                  }
+                ]
+              }
+            ]
+          },
+          "observed": {
+            "frames": 756750,
+            "starts": [
+              {
+                "input_index": 0,
+                "start_frame": 0,
+                "contents": [
+                  {
+                    "content_index": 0,
+                    "start_frame": 255924
+                  }
+                ]
+              },
+              {
+                "input_index": 1,
+                "start_frame": 388788,
+                "contents": [
+                  {
+                    "content_index": 0,
+                    "start_frame": 547854
+                  }
+                ]
+              }
+            ]
+          },
+          "evidence": [
+            "cases/rsid-64-to-32-no-editorial-gap/encoder-result.json"
+          ]
+        },
+        {
+          "id": "picture-announcements-exact",
+          "status": "pass",
+          "expected": [],
+          "observed": "",
+          "evidence": [
+            "cases/rsid-64-to-32-no-editorial-gap/received/decoded.txt"
+          ]
+        }
+      ],
+      "discrepancies": [
+        {
+          "classification": "automation-failure",
+          "summary": "receiver-rxid-configuration: fail",
+          "evidence": [
+            "cases/rsid-64-to-32-no-editorial-gap/received/fldigi/config-start/fldigi_def.xml",
+            "cases/rsid-64-to-32-no-editorial-gap/received/fldigi/control.log"
+          ]
+        },
+        {
+          "classification": "automation-failure",
+          "summary": "rxid-acquisitions-in-order: fail",
+          "evidence": [
+            "cases/rsid-64-to-32-no-editorial-gap/received/fldigi/control.log"
+          ]
+        },
+        {
+          "classification": "automation-failure",
+          "summary": "carrier-acquisitions-in-order: fail",
+          "evidence": [
+            "cases/rsid-64-to-32-no-editorial-gap/received/fldigi/control.log"
+          ]
+        },
+        {
+          "classification": "automation-failure",
+          "summary": "caller-text-exact-and-ordered: fail",
+          "evidence": [
+            "cases/rsid-64-to-32-no-editorial-gap/received/decoded.txt"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rsid-repeat-mode-new-carrier",
+      "status": "fail",
+      "generated_wav": {
+        "path": "cases/rsid-repeat-mode-new-carrier/generated.wav",
+        "bytes": 1435028,
+        "sha256": "5a3c1d6cc914e65806ce91302d090172c479231c42e83e4b20480da1a372b842"
+      },
+      "encoder_result": {
+        "path": "cases/rsid-repeat-mode-new-carrier/encoder-result.json",
+        "bytes": 934,
+        "sha256": "8fe0a2e863b4bb31dcb2f08a6a928f57b8e62faf2ed9896a9d66970e5e5cdb0c"
+      },
+      "continuous_receiver_runs": [
+        {
+          "input_interval": {
+            "start_frame": 0,
+            "end_frame": 717492
+          },
+          "manual_mode_changes": 0,
+          "exit_code": 0,
+          "log": {
+            "path": "cases/rsid-repeat-mode-new-carrier/received/fldigi/control.log",
+            "bytes": 19846,
+            "sha256": "62c251c373fa87a14c51992c3bf412b496532d993738a002adc44590cdc90b76"
+          },
+          "rxid_events": [],
+          "recovered_text": {
+            "path": "cases/rsid-repeat-mode-new-carrier/received/decoded.txt",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "recovered_images": []
+        }
+      ],
+      "checks": [
+        {
+          "id": "whole-wav-receiver-exit",
+          "status": "pass",
+          "expected": 0,
+          "observed": 0,
+          "evidence": [
+            "cases/rsid-repeat-mode-new-carrier/received/metadata.json"
+          ]
+        },
+        {
+          "id": "whole-wav-interval-and-no-manual-changes",
+          "status": "pass",
+          "expected": [
+            0,
+            717492,
+            0
+          ],
+          "observed": [
+            0,
+            717492,
+            0
+          ],
+          "evidence": [
+            "cases/rsid-repeat-mode-new-carrier/received/fldigi/control.log",
+            "cases/rsid-repeat-mode-new-carrier/command.json"
+          ]
+        },
+        {
+          "id": "initial-unrelated-mode",
+          "status": "pass",
+          "expected": "BPSK31",
+          "observed": "BPSK31",
+          "evidence": [
+            "cases/rsid-repeat-mode-new-carrier/received/fldigi/control.log"
+          ]
+        },
+        {
+          "id": "receiver-rxid-configuration",
+          "status": "fail",
+          "expected": {
+            "AUDIOIO": "1",
+            "PORTINDEVICE": "default",
+            "PORTOUTDEVICE": "default",
+            "RSIDWIDESEARCH": "1",
+            "RSIDNOTIFYONLY": "0",
+            "RSIDAUTODISABLE": "0",
+            "RSIDRXMODESEXCLUDE": "",
+            "DISABLERSIDFREQCHANGE": "0"
+          },
+          "observed": {
+            "AUDIOIO": "3",
+            "PORTINDEVICE": "",
+            "PORTOUTDEVICE": "",
+            "RSIDWIDESEARCH": "1",
+            "RSIDNOTIFYONLY": "0",
+            "RSIDAUTODISABLE": "0",
+            "RSIDRXMODESEXCLUDE": "",
+            "DISABLERSIDFREQCHANGE": "0"
+          },
+          "evidence": [
+            "cases/rsid-repeat-mode-new-carrier/received/fldigi/config-start/fldigi_def.xml",
+            "cases/rsid-repeat-mode-new-carrier/received/fldigi/control.log"
+          ]
+        },
+        {
+          "id": "rxid-acquisitions-in-order",
+          "status": "fail",
+          "expected": [
+            "MFSK32",
+            "MFSK32"
+          ],
+          "observed": [],
+          "evidence": [
+            "cases/rsid-repeat-mode-new-carrier/received/fldigi/control.log"
+          ]
+        },
+        {
+          "id": "carrier-acquisitions-in-order",
+          "status": "fail",
+          "expected": [
+            1400.0,
+            1600.0
+          ],
+          "observed": [],
+          "evidence": [
+            "cases/rsid-repeat-mode-new-carrier/received/fldigi/control.log"
+          ]
+        },
+        {
+          "id": "caller-text-exact-and-ordered",
+          "status": "fail",
+          "expected": [
+            "FIRST MFSK32 END",
+            "SECOND MFSK32 END"
+          ],
+          "observed": {
+            "positions": [
+              -1,
+              -1
+            ],
+            "decoded": ""
+          },
+          "evidence": [
+            "cases/rsid-repeat-mode-new-carrier/received/decoded.txt"
+          ]
+        },
+        {
+          "id": "picture-count",
+          "status": "pass",
+          "expected": 0,
+          "observed": 0,
+          "evidence": [
+            "cases/rsid-repeat-mode-new-carrier/received/metadata.json"
+          ]
+        },
+        {
+          "id": "independent-rsid-oracle-pcm",
+          "status": "pass",
+          "expected": true,
+          "observed": true,
+          "evidence": [
+            "source/rsid-oracle.json",
+            "cases/rsid-repeat-mode-new-carrier/generated.wav"
+          ]
+        },
+        {
+          "id": "prefix-inclusive-frames-and-coordinates",
+          "status": "pass",
+          "expected": {
+            "frames": 717492,
+            "starts": [
+              {
+                "input_index": 0,
+                "start_frame": 0,
+                "contents": [
+                  {
+                    "content_index": 0,
+                    "start_frame": 159066
+                  }
+                ]
+              },
+              {
+                "input_index": 1,
+                "start_frame": 355674,
+                "contents": [
+                  {
+                    "content_index": 0,
+                    "start_frame": 514740
+                  }
+                ]
+              }
+            ]
+          },
+          "observed": {
+            "frames": 717492,
+            "starts": [
+              {
+                "input_index": 0,
+                "start_frame": 0,
+                "contents": [
+                  {
+                    "content_index": 0,
+                    "start_frame": 159066
+                  }
+                ]
+              },
+              {
+                "input_index": 1,
+                "start_frame": 355674,
+                "contents": [
+                  {
+                    "content_index": 0,
+                    "start_frame": 514740
+                  }
+                ]
+              }
+            ]
+          },
+          "evidence": [
+            "cases/rsid-repeat-mode-new-carrier/encoder-result.json"
+          ]
+        },
+        {
+          "id": "picture-announcements-exact",
+          "status": "pass",
+          "expected": [],
+          "observed": "",
+          "evidence": [
+            "cases/rsid-repeat-mode-new-carrier/received/decoded.txt"
+          ]
+        }
+      ],
+      "discrepancies": [
+        {
+          "classification": "automation-failure",
+          "summary": "receiver-rxid-configuration: fail",
+          "evidence": [
+            "cases/rsid-repeat-mode-new-carrier/received/fldigi/config-start/fldigi_def.xml",
+            "cases/rsid-repeat-mode-new-carrier/received/fldigi/control.log"
+          ]
+        },
+        {
+          "classification": "automation-failure",
+          "summary": "rxid-acquisitions-in-order: fail",
+          "evidence": [
+            "cases/rsid-repeat-mode-new-carrier/received/fldigi/control.log"
+          ]
+        },
+        {
+          "classification": "automation-failure",
+          "summary": "carrier-acquisitions-in-order: fail",
+          "evidence": [
+            "cases/rsid-repeat-mode-new-carrier/received/fldigi/control.log"
+          ]
+        },
+        {
+          "classification": "automation-failure",
+          "summary": "caller-text-exact-and-ordered: fail",
+          "evidence": [
+            "cases/rsid-repeat-mode-new-carrier/received/decoded.txt"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rsid-mixed-audio-silence-picture",
+      "status": "fail",
+      "generated_wav": {
+        "path": "cases/rsid-mixed-audio-silence-picture/generated.wav",
+        "bytes": 2176328,
+        "sha256": "ccba1c03648cb7a3f3edc96b323eed713a347c7b175435d61eab1d137012eb41"
+      },
+      "encoder_result": {
+        "path": "cases/rsid-mixed-audio-silence-picture/encoder-result.json",
+        "bytes": 1816,
+        "sha256": "f3e8793caaa651a4ad6340e0c41e5a38ade1d75bf87893fb0615f1abeaf4b5df"
+      },
+      "continuous_receiver_runs": [
+        {
+          "input_interval": {
+            "start_frame": 0,
+            "end_frame": 1088142
+          },
+          "manual_mode_changes": 0,
+          "exit_code": 0,
+          "log": {
+            "path": "cases/rsid-mixed-audio-silence-picture/received/fldigi/control.log",
+            "bytes": 25572,
+            "sha256": "0ec9e5628877ef38979b787b2a27fc2ab5e1b20fe694e5d9f3d4eb77d84378aa"
+          },
+          "rxid_events": [],
+          "recovered_text": {
+            "path": "cases/rsid-mixed-audio-silence-picture/received/decoded.txt",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "recovered_images": []
+        }
+      ],
+      "checks": [
+        {
+          "id": "whole-wav-receiver-exit",
+          "status": "pass",
+          "expected": 0,
+          "observed": 0,
+          "evidence": [
+            "cases/rsid-mixed-audio-silence-picture/received/metadata.json"
+          ]
+        },
+        {
+          "id": "whole-wav-interval-and-no-manual-changes",
+          "status": "pass",
+          "expected": [
+            0,
+            1088142,
+            0
+          ],
+          "observed": [
+            0,
+            1088142,
+            0
+          ],
+          "evidence": [
+            "cases/rsid-mixed-audio-silence-picture/received/fldigi/control.log",
+            "cases/rsid-mixed-audio-silence-picture/command.json"
+          ]
+        },
+        {
+          "id": "initial-unrelated-mode",
+          "status": "pass",
+          "expected": "BPSK31",
+          "observed": "BPSK31",
+          "evidence": [
+            "cases/rsid-mixed-audio-silence-picture/received/fldigi/control.log"
+          ]
+        },
+        {
+          "id": "receiver-rxid-configuration",
+          "status": "fail",
+          "expected": {
+            "AUDIOIO": "1",
+            "PORTINDEVICE": "default",
+            "PORTOUTDEVICE": "default",
+            "RSIDWIDESEARCH": "1",
+            "RSIDNOTIFYONLY": "0",
+            "RSIDAUTODISABLE": "0",
+            "RSIDRXMODESEXCLUDE": "",
+            "DISABLERSIDFREQCHANGE": "0"
+          },
+          "observed": {
+            "AUDIOIO": "3",
+            "PORTINDEVICE": "",
+            "PORTOUTDEVICE": "",
+            "RSIDWIDESEARCH": "1",
+            "RSIDNOTIFYONLY": "0",
+            "RSIDAUTODISABLE": "0",
+            "RSIDRXMODESEXCLUDE": "",
+            "DISABLERSIDFREQCHANGE": "0"
+          },
+          "evidence": [
+            "cases/rsid-mixed-audio-silence-picture/received/fldigi/config-start/fldigi_def.xml",
+            "cases/rsid-mixed-audio-silence-picture/received/fldigi/control.log"
+          ]
+        },
+        {
+          "id": "rxid-acquisitions-in-order",
+          "status": "fail",
+          "expected": [
+            "MFSK32",
+            "MFSK64"
+          ],
+          "observed": [],
+          "evidence": [
+            "cases/rsid-mixed-audio-silence-picture/received/fldigi/control.log"
+          ]
+        },
+        {
+          "id": "carrier-acquisitions-in-order",
+          "status": "fail",
+          "expected": [
+            1400.0,
+            1600.0
+          ],
+          "observed": [],
+          "evidence": [
+            "cases/rsid-mixed-audio-silence-picture/received/fldigi/control.log"
+          ]
+        },
+        {
+          "id": "caller-text-exact-and-ordered",
+          "status": "fail",
+          "expected": [
+            "MIXED MFSK32 END",
+            "MIXED MFSK64 PICTURE BEGIN\n",
+            "\nMIXED MFSK64 END"
+          ],
+          "observed": {
+            "positions": [
+              -1,
+              -1,
+              -1
+            ],
+            "decoded": ""
+          },
+          "evidence": [
+            "cases/rsid-mixed-audio-silence-picture/received/decoded.txt"
+          ]
+        },
+        {
+          "id": "picture-count",
+          "status": "fail",
+          "expected": 1,
+          "observed": 0,
+          "evidence": [
+            "cases/rsid-mixed-audio-silence-picture/received/metadata.json"
+          ]
+        },
+        {
+          "id": "silence-at-355674",
+          "status": "pass",
+          "expected": "all-zero PCM",
+          "observed": null,
+          "evidence": [
+            "cases/rsid-mixed-audio-silence-picture/generated.wav"
+          ]
+        },
+        {
+          "id": "audio-at-367674",
+          "status": "pass",
+          "expected": "byte-exact copied PCM",
+          "observed": null,
+          "evidence": [
+            "cases/rsid-mixed-audio-silence-picture/generated.wav"
+          ]
+        },
+        {
+          "id": "silence-at-415674",
+          "status": "pass",
+          "expected": "all-zero PCM",
+          "observed": null,
+          "evidence": [
+            "cases/rsid-mixed-audio-silence-picture/generated.wav"
+          ]
+        },
+        {
+          "id": "independent-rsid-oracle-pcm",
+          "status": "pass",
+          "expected": true,
+          "observed": true,
+          "evidence": [
+            "source/rsid-oracle.json",
+            "cases/rsid-mixed-audio-silence-picture/generated.wav"
+          ]
+        },
+        {
+          "id": "prefix-inclusive-frames-and-coordinates",
+          "status": "pass",
+          "expected": {
+            "frames": 1088142,
+            "starts": [
+              {
+                "input_index": 0,
+                "start_frame": 0,
+                "contents": [
+                  {
+                    "content_index": 0,
+                    "start_frame": 159066
+                  }
+                ]
+              },
+              {
+                "input_index": 1,
+                "start_frame": 355674,
+                "contents": []
+              },
+              {
+                "input_index": 2,
+                "start_frame": 367674,
+                "contents": []
+              },
+              {
+                "input_index": 3,
+                "start_frame": 415674,
+                "contents": []
+              },
+              {
+                "input_index": 4,
+                "start_frame": 427674,
+                "contents": [
+                  {
+                    "content_index": 0,
+                    "start_frame": 683598
+                  },
+                  {
+                    "content_index": 1,
+                    "start_frame": 765006
+                  },
+                  {
+                    "content_index": 2,
+                    "start_frame": 957582
+                  }
+                ]
+              }
+            ]
+          },
+          "observed": {
+            "frames": 1088142,
+            "starts": [
+              {
+                "input_index": 0,
+                "start_frame": 0,
+                "contents": [
+                  {
+                    "content_index": 0,
+                    "start_frame": 159066
+                  }
+                ]
+              },
+              {
+                "input_index": 1,
+                "start_frame": 355674,
+                "contents": []
+              },
+              {
+                "input_index": 2,
+                "start_frame": 367674,
+                "contents": []
+              },
+              {
+                "input_index": 3,
+                "start_frame": 415674,
+                "contents": []
+              },
+              {
+                "input_index": 4,
+                "start_frame": 427674,
+                "contents": [
+                  {
+                    "content_index": 0,
+                    "start_frame": 683598
+                  },
+                  {
+                    "content_index": 1,
+                    "start_frame": 765006
+                  },
+                  {
+                    "content_index": 2,
+                    "start_frame": 957582
+                  }
+                ]
+              }
+            ]
+          },
+          "evidence": [
+            "cases/rsid-mixed-audio-silence-picture/encoder-result.json"
+          ]
+        },
+        {
+          "id": "picture-announcements-exact",
+          "status": "fail",
+          "expected": [
+            "\nSending Pic:8x4C;"
+          ],
+          "observed": "",
+          "evidence": [
+            "cases/rsid-mixed-audio-silence-picture/received/decoded.txt"
+          ]
+        }
+      ],
+      "discrepancies": [
+        {
+          "classification": "automation-failure",
+          "summary": "receiver-rxid-configuration: fail",
+          "evidence": [
+            "cases/rsid-mixed-audio-silence-picture/received/fldigi/config-start/fldigi_def.xml",
+            "cases/rsid-mixed-audio-silence-picture/received/fldigi/control.log"
+          ]
+        },
+        {
+          "classification": "automation-failure",
+          "summary": "rxid-acquisitions-in-order: fail",
+          "evidence": [
+            "cases/rsid-mixed-audio-silence-picture/received/fldigi/control.log"
+          ]
+        },
+        {
+          "classification": "automation-failure",
+          "summary": "carrier-acquisitions-in-order: fail",
+          "evidence": [
+            "cases/rsid-mixed-audio-silence-picture/received/fldigi/control.log"
+          ]
+        },
+        {
+          "classification": "automation-failure",
+          "summary": "caller-text-exact-and-ordered: fail",
+          "evidence": [
+            "cases/rsid-mixed-audio-silence-picture/received/decoded.txt"
+          ]
+        },
+        {
+          "classification": "automation-failure",
+          "summary": "picture-count: fail",
+          "evidence": [
+            "cases/rsid-mixed-audio-silence-picture/received/metadata.json"
+          ]
+        },
+        {
+          "classification": "automation-failure",
+          "summary": "picture-announcements-exact: fail",
+          "evidence": [
+            "cases/rsid-mixed-audio-silence-picture/received/decoded.txt"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mfsk32-grayscale-speeds",
+      "status": "fail",
+      "generated_wav": {
+        "path": "cases/mfsk32-grayscale-speeds/generated.wav",
+        "bytes": 2947424,
+        "sha256": "1811efb18420e6d49881db30eeb4204c0d3afe6a8a03f62b91b29a5d7498f73e"
+      },
+      "encoder_result": {
+        "path": "cases/mfsk32-grayscale-speeds/encoder-result.json",
+        "bytes": 1598,
+        "sha256": "49feeb53c516f5a0300238905bf3d770e1ef36d3e769ad483b1923788413defe"
+      },
+      "continuous_receiver_runs": [
+        {
+          "input_interval": {
+            "start_frame": 0,
+            "end_frame": 1473690
+          },
+          "manual_mode_changes": 0,
+          "exit_code": 0,
+          "log": {
+            "path": "cases/mfsk32-grayscale-speeds/received/fldigi/control.log",
+            "bytes": 31688,
+            "sha256": "6522d225e4427f430d7fb28ed409c494019e7352899b86f8492d9dd54663a61b"
+          },
+          "rxid_events": [],
+          "recovered_text": {
+            "path": "cases/mfsk32-grayscale-speeds/received/decoded.txt",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "recovered_images": []
+        }
+      ],
+      "checks": [
+        {
+          "id": "whole-wav-receiver-exit",
+          "status": "pass",
+          "expected": 0,
+          "observed": 0,
+          "evidence": [
+            "cases/mfsk32-grayscale-speeds/received/metadata.json"
+          ]
+        },
+        {
+          "id": "whole-wav-interval-and-no-manual-changes",
+          "status": "pass",
+          "expected": [
+            0,
+            1473690,
+            0
+          ],
+          "observed": [
+            0,
+            1473690,
+            0
+          ],
+          "evidence": [
+            "cases/mfsk32-grayscale-speeds/received/fldigi/control.log",
+            "cases/mfsk32-grayscale-speeds/command.json"
+          ]
+        },
+        {
+          "id": "initial-unrelated-mode",
+          "status": "pass",
+          "expected": "BPSK31",
+          "observed": "BPSK31",
+          "evidence": [
+            "cases/mfsk32-grayscale-speeds/received/fldigi/control.log"
+          ]
+        },
+        {
+          "id": "receiver-rxid-configuration",
+          "status": "fail",
+          "expected": {
+            "AUDIOIO": "1",
+            "PORTINDEVICE": "default",
+            "PORTOUTDEVICE": "default",
+            "RSIDWIDESEARCH": "1",
+            "RSIDNOTIFYONLY": "0",
+            "RSIDAUTODISABLE": "0",
+            "RSIDRXMODESEXCLUDE": "",
+            "DISABLERSIDFREQCHANGE": "0"
+          },
+          "observed": {
+            "AUDIOIO": "3",
+            "PORTINDEVICE": "",
+            "PORTOUTDEVICE": "",
+            "RSIDWIDESEARCH": "1",
+            "RSIDNOTIFYONLY": "0",
+            "RSIDAUTODISABLE": "0",
+            "RSIDRXMODESEXCLUDE": "",
+            "DISABLERSIDFREQCHANGE": "0"
+          },
+          "evidence": [
+            "cases/mfsk32-grayscale-speeds/received/fldigi/config-start/fldigi_def.xml",
+            "cases/mfsk32-grayscale-speeds/received/fldigi/control.log"
+          ]
+        },
+        {
+          "id": "rxid-acquisitions-in-order",
+          "status": "fail",
+          "expected": [
+            "MFSK32"
+          ],
+          "observed": [],
+          "evidence": [
+            "cases/mfsk32-grayscale-speeds/received/fldigi/control.log"
+          ]
+        },
+        {
+          "id": "carrier-acquisitions-in-order",
+          "status": "fail",
+          "expected": [
+            1500.0
+          ],
+          "observed": [],
+          "evidence": [
+            "cases/mfsk32-grayscale-speeds/received/fldigi/control.log"
+          ]
+        },
+        {
+          "id": "caller-text-exact-and-ordered",
+          "status": "fail",
+          "expected": [
+            "GRAY P8 BEGIN\n",
+            "\nGRAY P8 END P4 BEGIN\n",
+            "\nGRAY P4 END P2 BEGIN\n",
+            "\nGRAY P2 END"
+          ],
+          "observed": {
+            "positions": [
+              -1,
+              -1,
+              -1,
+              -1
+            ],
+            "decoded": ""
+          },
+          "evidence": [
+            "cases/mfsk32-grayscale-speeds/received/decoded.txt"
+          ]
+        },
+        {
+          "id": "picture-count",
+          "status": "fail",
+          "expected": 3,
+          "observed": 0,
+          "evidence": [
+            "cases/mfsk32-grayscale-speeds/received/metadata.json"
+          ]
+        },
+        {
+          "id": "independent-rsid-oracle-pcm",
+          "status": "pass",
+          "expected": true,
+          "observed": true,
+          "evidence": [
+            "source/rsid-oracle.json",
+            "cases/mfsk32-grayscale-speeds/generated.wav"
+          ]
+        },
+        {
+          "id": "prefix-inclusive-frames-and-coordinates",
+          "status": "pass",
+          "expected": {
+            "frames": 1473690,
+            "starts": [
+              {
+                "input_index": 0,
+                "start_frame": 0,
+                "contents": [
+                  {
+                    "content_index": 0,
+                    "start_frame": 159066
+                  },
+                  {
+                    "content_index": 1,
+                    "start_frame": 243546
+                  },
+                  {
+                    "content_index": 2,
+                    "start_frame": 502170
+                  },
+                  {
+                    "content_index": 3,
+                    "start_frame": 631194
+                  },
+                  {
+                    "content_index": 4,
+                    "start_frame": 901338
+                  },
+                  {
+                    "content_index": 5,
+                    "start_frame": 1030362
+                  },
+                  {
+                    "content_index": 6,
+                    "start_frame": 1300122
+                  }
+                ]
+              }
+            ]
+          },
+          "observed": {
+            "frames": 1473690,
+            "starts": [
+              {
+                "input_index": 0,
+                "start_frame": 0,
+                "contents": [
+                  {
+                    "content_index": 0,
+                    "start_frame": 159066
+                  },
+                  {
+                    "content_index": 1,
+                    "start_frame": 243546
+                  },
+                  {
+                    "content_index": 2,
+                    "start_frame": 502170
+                  },
+                  {
+                    "content_index": 3,
+                    "start_frame": 631194
+                  },
+                  {
+                    "content_index": 4,
+                    "start_frame": 901338
+                  },
+                  {
+                    "content_index": 5,
+                    "start_frame": 1030362
+                  },
+                  {
+                    "content_index": 6,
+                    "start_frame": 1300122
+                  }
+                ]
+              }
+            ]
+          },
+          "evidence": [
+            "cases/mfsk32-grayscale-speeds/encoder-result.json"
+          ]
+        },
+        {
+          "id": "picture-announcements-exact",
+          "status": "fail",
+          "expected": [
+            "\nSending Pic:8x4;",
+            "\nSending Pic:8x4p4;",
+            "\nSending Pic:8x4p2;"
+          ],
+          "observed": "",
+          "evidence": [
+            "cases/mfsk32-grayscale-speeds/received/decoded.txt"
+          ]
+        }
+      ],
+      "discrepancies": [
+        {
+          "classification": "automation-failure",
+          "summary": "receiver-rxid-configuration: fail",
+          "evidence": [
+            "cases/mfsk32-grayscale-speeds/received/fldigi/config-start/fldigi_def.xml",
+            "cases/mfsk32-grayscale-speeds/received/fldigi/control.log"
+          ]
+        },
+        {
+          "classification": "automation-failure",
+          "summary": "rxid-acquisitions-in-order: fail",
+          "evidence": [
+            "cases/mfsk32-grayscale-speeds/received/fldigi/control.log"
+          ]
+        },
+        {
+          "classification": "automation-failure",
+          "summary": "carrier-acquisitions-in-order: fail",
+          "evidence": [
+            "cases/mfsk32-grayscale-speeds/received/fldigi/control.log"
+          ]
+        },
+        {
+          "classification": "automation-failure",
+          "summary": "caller-text-exact-and-ordered: fail",
+          "evidence": [
+            "cases/mfsk32-grayscale-speeds/received/decoded.txt"
+          ]
+        },
+        {
+          "classification": "automation-failure",
+          "summary": "picture-count: fail",
+          "evidence": [
+            "cases/mfsk32-grayscale-speeds/received/metadata.json"
+          ]
+        },
+        {
+          "classification": "automation-failure",
+          "summary": "picture-announcements-exact: fail",
+          "evidence": [
+            "cases/mfsk32-grayscale-speeds/received/decoded.txt"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mfsk64-color-speeds",
+      "status": "fail",
+      "generated_wav": {
+        "path": "cases/mfsk64-color-speeds/generated.wav",
+        "bytes": 2273300,
+        "sha256": "0204283ff510b146eea6a7fc6795a7a1429f537c60b7ed6ce5a65a9d54ad80ea"
+      },
+      "encoder_result": {
+        "path": "cases/mfsk64-color-speeds/encoder-result.json",
+        "bytes": 1583,
+        "sha256": "0ec491c5fd45a02bbddc76d156e3cc697969523b95f07a7169c4b27d2442c646"
+      },
+      "continuous_receiver_runs": [
+        {
+          "input_interval": {
+            "start_frame": 0,
+            "end_frame": 1136628
+          },
+          "manual_mode_changes": 0,
+          "exit_code": 0,
+          "log": {
+            "path": "cases/mfsk64-color-speeds/received/fldigi/control.log",
+            "bytes": 26362,
+            "sha256": "b50be5530706b34ff31b3aa63b7a745bf04f7884b12ee811a61a33ad9bc7f702"
+          },
+          "rxid_events": [],
+          "recovered_text": {
+            "path": "cases/mfsk64-color-speeds/received/decoded.txt",
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "recovered_images": []
+        }
+      ],
+      "checks": [
+        {
+          "id": "whole-wav-receiver-exit",
+          "status": "pass",
+          "expected": 0,
+          "observed": 0,
+          "evidence": [
+            "cases/mfsk64-color-speeds/received/metadata.json"
+          ]
+        },
+        {
+          "id": "whole-wav-interval-and-no-manual-changes",
+          "status": "pass",
+          "expected": [
+            0,
+            1136628,
+            0
+          ],
+          "observed": [
+            0,
+            1136628,
+            0
+          ],
+          "evidence": [
+            "cases/mfsk64-color-speeds/received/fldigi/control.log",
+            "cases/mfsk64-color-speeds/command.json"
+          ]
+        },
+        {
+          "id": "initial-unrelated-mode",
+          "status": "pass",
+          "expected": "BPSK31",
+          "observed": "BPSK31",
+          "evidence": [
+            "cases/mfsk64-color-speeds/received/fldigi/control.log"
+          ]
+        },
+        {
+          "id": "receiver-rxid-configuration",
+          "status": "fail",
+          "expected": {
+            "AUDIOIO": "1",
+            "PORTINDEVICE": "default",
+            "PORTOUTDEVICE": "default",
+            "RSIDWIDESEARCH": "1",
+            "RSIDNOTIFYONLY": "0",
+            "RSIDAUTODISABLE": "0",
+            "RSIDRXMODESEXCLUDE": "",
+            "DISABLERSIDFREQCHANGE": "0"
+          },
+          "observed": {
+            "AUDIOIO": "3",
+            "PORTINDEVICE": "",
+            "PORTOUTDEVICE": "",
+            "RSIDWIDESEARCH": "1",
+            "RSIDNOTIFYONLY": "0",
+            "RSIDAUTODISABLE": "0",
+            "RSIDRXMODESEXCLUDE": "",
+            "DISABLERSIDFREQCHANGE": "0"
+          },
+          "evidence": [
+            "cases/mfsk64-color-speeds/received/fldigi/config-start/fldigi_def.xml",
+            "cases/mfsk64-color-speeds/received/fldigi/control.log"
+          ]
+        },
+        {
+          "id": "rxid-acquisitions-in-order",
+          "status": "fail",
+          "expected": [
+            "MFSK64"
+          ],
+          "observed": [],
+          "evidence": [
+            "cases/mfsk64-color-speeds/received/fldigi/control.log"
+          ]
+        },
+        {
+          "id": "carrier-acquisitions-in-order",
+          "status": "fail",
+          "expected": [
+            1500.0
+          ],
+          "observed": [],
+          "evidence": [
+            "cases/mfsk64-color-speeds/received/fldigi/control.log"
+          ]
+        },
+        {
+          "id": "caller-text-exact-and-ordered",
+          "status": "fail",
+          "expected": [
+            "COLOR P8 BEGIN\n",
+            "\nCOLOR P8 END P4 BEGIN\n",
+            "\nCOLOR P4 END P2 BEGIN\n",
+            "\nCOLOR P2 END"
+          ],
+          "observed": {
+            "positions": [
+              -1,
+              -1,
+              -1,
+              -1
+            ],
+            "decoded": ""
+          },
+          "evidence": [
+            "cases/mfsk64-color-speeds/received/decoded.txt"
+          ]
+        },
+        {
+          "id": "picture-count",
+          "status": "fail",
+          "expected": 3,
+          "observed": 0,
+          "evidence": [
+            "cases/mfsk64-color-speeds/received/metadata.json"
+          ]
+        },
+        {
+          "id": "independent-rsid-oracle-pcm",
+          "status": "pass",
+          "expected": true,
+          "observed": true,
+          "evidence": [
+            "source/rsid-oracle.json",
+            "cases/mfsk64-color-speeds/generated.wav"
+          ]
+        },
+        {
+          "id": "prefix-inclusive-frames-and-coordinates",
+          "status": "pass",
+          "expected": {
+            "frames": 1136628,
+            "starts": [
+              {
+                "input_index": 0,
+                "start_frame": 0,
+                "contents": [
+                  {
+                    "content_index": 0,
+                    "start_frame": 255924
+                  },
+                  {
+                    "content_index": 1,
+                    "start_frame": 300468
+                  },
+                  {
+                    "content_index": 2,
+                    "start_frame": 493812
+                  },
+                  {
+                    "content_index": 3,
+                    "start_frame": 560628
+                  },
+                  {
+                    "content_index": 4,
+                    "start_frame": 757044
+                  },
+                  {
+                    "content_index": 5,
+                    "start_frame": 823860
+                  },
+                  {
+                    "content_index": 6,
+                    "start_frame": 1019124
+                  }
+                ]
+              }
+            ]
+          },
+          "observed": {
+            "frames": 1136628,
+            "starts": [
+              {
+                "input_index": 0,
+                "start_frame": 0,
+                "contents": [
+                  {
+                    "content_index": 0,
+                    "start_frame": 255924
+                  },
+                  {
+                    "content_index": 1,
+                    "start_frame": 300468
+                  },
+                  {
+                    "content_index": 2,
+                    "start_frame": 493812
+                  },
+                  {
+                    "content_index": 3,
+                    "start_frame": 560628
+                  },
+                  {
+                    "content_index": 4,
+                    "start_frame": 757044
+                  },
+                  {
+                    "content_index": 5,
+                    "start_frame": 823860
+                  },
+                  {
+                    "content_index": 6,
+                    "start_frame": 1019124
+                  }
+                ]
+              }
+            ]
+          },
+          "evidence": [
+            "cases/mfsk64-color-speeds/encoder-result.json"
+          ]
+        },
+        {
+          "id": "picture-announcements-exact",
+          "status": "fail",
+          "expected": [
+            "\nSending Pic:8x4C;",
+            "\nSending Pic:8x4Cp4;",
+            "\nSending Pic:8x4Cp2;"
+          ],
+          "observed": "",
+          "evidence": [
+            "cases/mfsk64-color-speeds/received/decoded.txt"
+          ]
+        }
+      ],
+      "discrepancies": [
+        {
+          "classification": "automation-failure",
+          "summary": "receiver-rxid-configuration: fail",
+          "evidence": [
+            "cases/mfsk64-color-speeds/received/fldigi/config-start/fldigi_def.xml",
+            "cases/mfsk64-color-speeds/received/fldigi/control.log"
+          ]
+        },
+        {
+          "classification": "automation-failure",
+          "summary": "rxid-acquisitions-in-order: fail",
+          "evidence": [
+            "cases/mfsk64-color-speeds/received/fldigi/control.log"
+          ]
+        },
+        {
+          "classification": "automation-failure",
+          "summary": "carrier-acquisitions-in-order: fail",
+          "evidence": [
+            "cases/mfsk64-color-speeds/received/fldigi/control.log"
+          ]
+        },
+        {
+          "classification": "automation-failure",
+          "summary": "caller-text-exact-and-ordered: fail",
+          "evidence": [
+            "cases/mfsk64-color-speeds/received/decoded.txt"
+          ]
+        },
+        {
+          "classification": "automation-failure",
+          "summary": "picture-count: fail",
+          "evidence": [
+            "cases/mfsk64-color-speeds/received/metadata.json"
+          ]
+        },
+        {
+          "classification": "automation-failure",
+          "summary": "picture-announcements-exact: fail",
+          "evidence": [
+            "cases/mfsk64-color-speeds/received/decoded.txt"
+          ]
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "total": 8,
+    "passed": 0,
+    "failed": 8,
+    "blocked": 0
+  }
+}

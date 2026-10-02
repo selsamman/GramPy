@@ -1,0 +1,50 @@
+{
+  "output_path": "cases/rsid-64-to-32-no-editorial-gap/generated.wav",
+  "duration_seconds": 15.765625,
+  "segments": [
+    {
+      "input_index": 0,
+      "start_seconds": 0.0,
+      "contents": [
+        {
+          "content_index": 0,
+          "start_seconds": 5.33175
+        }
+      ]
+    },
+    {
+      "input_index": 1,
+      "start_seconds": 8.09975,
+      "contents": [
+        {
+          "content_index": 0,
+          "start_seconds": 11.413625
+        }
+      ]
+    }
+  ],
+  "frame_count": 756750,
+  "encode_elapsed_seconds": 1.6817963420180604,
+  "segments_frames": [
+    {
+      "input_index": 0,
+      "start_frame": 0,
+      "contents": [
+        {
+          "content_index": 0,
+          "start_frame": 255924
+        }
+      ]
+    },
+    {
+      "input_index": 1,
+      "start_frame": 388788,
+      "contents": [
+        {
+          "content_index": 0,
+          "start_frame": 547854
+        }
+      ]
+    }
+  ]
+}

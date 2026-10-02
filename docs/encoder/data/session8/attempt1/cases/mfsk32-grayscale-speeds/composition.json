@@ -1,0 +1,53 @@
+[
+  {
+    "kind": "mfsk",
+    "mode": "MFSK32",
+    "carrier_hz": 1500.0,
+    "contents": [
+      {
+        "kind": "text",
+        "id": "before-p8",
+        "utf8": "GRAY P8 BEGIN\n"
+      },
+      {
+        "kind": "image",
+        "id": "gray-p8",
+        "source": "primary_rgb_png",
+        "color": "grayscale",
+        "samples_per_pixel": 8
+      },
+      {
+        "kind": "text",
+        "id": "after-p8",
+        "role": "post-picture",
+        "utf8": "\nGRAY P8 END P4 BEGIN\n"
+      },
+      {
+        "kind": "image",
+        "id": "gray-p4",
+        "source": "primary_rgb_png",
+        "color": "grayscale",
+        "samples_per_pixel": 4
+      },
+      {
+        "kind": "text",
+        "id": "after-p4",
+        "role": "post-picture",
+        "utf8": "\nGRAY P4 END P2 BEGIN\n"
+      },
+      {
+        "kind": "image",
+        "id": "gray-p2",
+        "source": "primary_rgb_png",
+        "color": "grayscale",
+        "samples_per_pixel": 2
+      },
+      {
+        "kind": "text",
+        "id": "after-p2",
+        "role": "post-picture",
+        "utf8": "\nGRAY P2 END"
+      }
+    ]
+  }
+]

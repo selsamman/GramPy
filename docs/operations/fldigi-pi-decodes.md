@@ -84,8 +84,11 @@ Stage each generated WAV and its hash on the Pi, start fldigi in an unrelated
 mode with RxID enabled, play the **entire WAV once** without manual mode
 changes or window replay, and check every expected mode acquisition and
 payload. Manual windows are diagnostics after failure, never a pass. The
-checked-in end-to-end candidate staging/runner is still Session 6R2/8 work;
-this runbook does not claim that the known-recording example is that runner.
+checked-in end-to-end workflow is `tools/pi-qualify-mfsk-encoder.sh`; staging,
+managed execution, scoring, and review instructions are in
+`experiments/mfsk-wav-encoder/README.md`. The Session 8 evidence index is
+`docs/encoder/data/session8/README.md`. Its picture failures require Session 9;
+the known-recording example above is not candidate acceptance evidence.
 
 The adapter owns RPC port 7362 and its own process lifecycle. If another
 listener or persistent fldigi service is using the port, identify it and

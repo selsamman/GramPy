@@ -1,0 +1,46 @@
+[
+  {
+    "kind": "mfsk",
+    "mode": "MFSK32",
+    "carrier_hz": 1400.0,
+    "contents": [
+      {
+        "kind": "text",
+        "utf8": "MIXED MFSK32 END"
+      }
+    ]
+  },
+  {
+    "kind": "silence",
+    "duration_seconds": 0.25
+  },
+  {
+    "kind": "audio",
+    "source": "audio_marker"
+  },
+  {
+    "kind": "silence",
+    "duration_seconds": 0.25
+  },
+  {
+    "kind": "mfsk",
+    "mode": "MFSK64",
+    "carrier_hz": 1600.0,
+    "contents": [
+      {
+        "kind": "text",
+        "utf8": "MIXED MFSK64 PICTURE BEGIN\n"
+      },
+      {
+        "kind": "image",
+        "source": "primary_rgb_png",
+        "color": "color",
+        "samples_per_pixel": 8
+      },
+      {
+        "kind": "text",
+        "utf8": "\nMIXED MFSK64 END"
+      }
+    ]
+  }
+]

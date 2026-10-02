@@ -1,0 +1,30 @@
+{
+  "output_path": "cases/rsid-mfsk64-extended-initial/generated.wav",
+  "duration_seconds": 8.37175,
+  "segments": [
+    {
+      "input_index": 0,
+      "start_seconds": 0.0,
+      "contents": [
+        {
+          "content_index": 0,
+          "start_seconds": 5.33175
+        }
+      ]
+    }
+  ],
+  "frame_count": 401844,
+  "encode_elapsed_seconds": 0.8920170940109529,
+  "segments_frames": [
+    {
+      "input_index": 0,
+      "start_frame": 0,
+      "contents": [
+        {
+          "content_index": 0,
+          "start_frame": 255924
+        }
+      ]
+    }
+  ]
+}

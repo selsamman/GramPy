@@ -1,0 +1,10 @@
+Ct GRAY P8 BEGIN
+
+Sending Pic:8x4;
+GRAY P8 END P4 BEGIN
+
+Sending Pic:8x4p4;
+GRAY P4 END P2 BEGIN
+
+Sending Pic:8x4p2;
+GRAY P2 END

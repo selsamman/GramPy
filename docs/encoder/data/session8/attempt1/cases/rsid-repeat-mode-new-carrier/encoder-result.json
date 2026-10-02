@@ -1,0 +1,50 @@
+{
+  "output_path": "cases/rsid-repeat-mode-new-carrier/generated.wav",
+  "duration_seconds": 14.94775,
+  "segments": [
+    {
+      "input_index": 0,
+      "start_seconds": 0.0,
+      "contents": [
+        {
+          "content_index": 0,
+          "start_seconds": 3.313875
+        }
+      ]
+    },
+    {
+      "input_index": 1,
+      "start_seconds": 7.409875,
+      "contents": [
+        {
+          "content_index": 0,
+          "start_seconds": 10.72375
+        }
+      ]
+    }
+  ],
+  "frame_count": 717492,
+  "encode_elapsed_seconds": 1.7240045259823091,
+  "segments_frames": [
+    {
+      "input_index": 0,
+      "start_frame": 0,
+      "contents": [
+        {
+          "content_index": 0,
+          "start_frame": 159066
+        }
+      ]
+    },
+    {
+      "input_index": 1,
+      "start_frame": 355674,
+      "contents": [
+        {
+          "content_index": 0,
+          "start_frame": 514740
+        }
+      ]
+    }
+  ]
+}

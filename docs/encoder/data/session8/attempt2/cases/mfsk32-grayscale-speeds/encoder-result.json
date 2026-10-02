@@ -1,0 +1,78 @@
+{
+  "output_path": "cases/mfsk32-grayscale-speeds/generated.wav",
+  "duration_seconds": 30.701875,
+  "segments": [
+    {
+      "input_index": 0,
+      "start_seconds": 0.0,
+      "contents": [
+        {
+          "content_index": 0,
+          "start_seconds": 3.313875
+        },
+        {
+          "content_index": 1,
+          "start_seconds": 5.073875
+        },
+        {
+          "content_index": 2,
+          "start_seconds": 10.461875
+        },
+        {
+          "content_index": 3,
+          "start_seconds": 13.149875
+        },
+        {
+          "content_index": 4,
+          "start_seconds": 18.777875
+        },
+        {
+          "content_index": 5,
+          "start_seconds": 21.465875
+        },
+        {
+          "content_index": 6,
+          "start_seconds": 27.085875
+        }
+      ]
+    }
+  ],
+  "frame_count": 1473690,
+  "encode_elapsed_seconds": 4.0397080759867094,
+  "segments_frames": [
+    {
+      "input_index": 0,
+      "start_frame": 0,
+      "contents": [
+        {
+          "content_index": 0,
+          "start_frame": 159066
+        },
+        {
+          "content_index": 1,
+          "start_frame": 243546
+        },
+        {
+          "content_index": 2,
+          "start_frame": 502170
+        },
+        {
+          "content_index": 3,
+          "start_frame": 631194
+        },
+        {
+          "content_index": 4,
+          "start_frame": 901338
+        },
+        {
+          "content_index": 5,
+          "start_frame": 1030362
+        },
+        {
+          "content_index": 6,
+          "start_frame": 1300122
+        }
+      ]
+    }
+  ]
+}

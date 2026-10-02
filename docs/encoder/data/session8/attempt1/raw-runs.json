@@ -1,0 +1,82 @@
+[
+  {
+    "id": "rsid-mfsk32-initial",
+    "matrix_id": "rsid-mfsk32-initial",
+    "exit_code": 0,
+    "input_interval": {
+      "start_frame": 0,
+      "end_frame": 394074
+    },
+    "manual_mode_changes": 0
+  },
+  {
+    "id": "rsid-mfsk64-extended-initial",
+    "matrix_id": "rsid-mfsk64-extended-initial",
+    "exit_code": 0,
+    "input_interval": {
+      "start_frame": 0,
+      "end_frame": 401844
+    },
+    "manual_mode_changes": 0
+  },
+  {
+    "id": "rsid-32-to-64-no-editorial-gap",
+    "matrix_id": "rsid-32-to-64-no-editorial-gap",
+    "exit_code": 0,
+    "input_interval": {
+      "start_frame": 0,
+      "end_frame": 749838
+    },
+    "manual_mode_changes": 0
+  },
+  {
+    "id": "rsid-64-to-32-no-editorial-gap",
+    "matrix_id": "rsid-64-to-32-no-editorial-gap",
+    "exit_code": 0,
+    "input_interval": {
+      "start_frame": 0,
+      "end_frame": 756750
+    },
+    "manual_mode_changes": 0
+  },
+  {
+    "id": "rsid-repeat-mode-new-carrier",
+    "matrix_id": "rsid-repeat-mode-new-carrier",
+    "exit_code": 0,
+    "input_interval": {
+      "start_frame": 0,
+      "end_frame": 717492
+    },
+    "manual_mode_changes": 0
+  },
+  {
+    "id": "rsid-mixed-audio-silence-picture",
+    "matrix_id": "rsid-mixed-audio-silence-picture",
+    "exit_code": 0,
+    "input_interval": {
+      "start_frame": 0,
+      "end_frame": 1088142
+    },
+    "manual_mode_changes": 0
+  },
+  {
+    "id": "mfsk32-grayscale-speeds",
+    "matrix_id": "rsid-picture-speed-coverage",
+    "exit_code": 0,
+    "input_interval": {
+      "start_frame": 0,
+      "end_frame": 1473690
+    },
+    "manual_mode_changes": 0
+  },
+  {
+    "id": "mfsk64-color-speeds",
+    "matrix_id": "rsid-picture-speed-coverage",
+    "exit_code": 0,
+    "input_interval": {
+      "start_frame": 0,
+      "end_frame": 1136628
+    },
+    "manual_mode_changes": 0
+  }
+]

@@ -1,0 +1,23 @@
+{
+  "started_utc": "2026-10-02T03:10:36.413046+00:00",
+  "completed_utc": "2026-10-02T03:18:49.503165+00:00",
+  "target": {
+    "hostname": "pi3BFirst",
+    "platform": "Linux-6.18.34+rpt-rpi-v8-aarch64-with-glibc2.41",
+    "architecture": "aarch64",
+    "python_version": "3.13.5"
+  },
+  "receiver_version": "fldigi 4.2.13",
+  "receiver_configuration": {
+    "reference_id": "fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178",
+    "rxid_enabled": true,
+    "rxid_passband_search": true,
+    "rxid_notify_only": false,
+    "rxid_auto_disable_after_detection": false,
+    "rxid_mode_exclusions": [],
+    "reverse_sideband": false,
+    "initial_mode": "BPSK31",
+    "initial_carrier_hz": 1500.0,
+    "playback": "one continuous run of the complete generated WAV; no manual mode/frequency selection or window replay"
+  }
+}

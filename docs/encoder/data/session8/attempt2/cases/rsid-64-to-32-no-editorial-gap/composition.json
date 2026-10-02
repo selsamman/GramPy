@@ -1,0 +1,24 @@
+[
+  {
+    "kind": "mfsk",
+    "mode": "MFSK64",
+    "carrier_hz": 1600.0,
+    "contents": [
+      {
+        "kind": "text",
+        "utf8": "REVERSE MFSK64 END"
+      }
+    ]
+  },
+  {
+    "kind": "mfsk",
+    "mode": "MFSK32",
+    "carrier_hz": 1400.0,
+    "contents": [
+      {
+        "kind": "text",
+        "utf8": "REVERSE MFSK32 END"
+      }
+    ]
+  }
+]

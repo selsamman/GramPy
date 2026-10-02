@@ -1,8 +1,8 @@
 # Native MFSK WAV encoder active change record
 
 **Change ID:** `mfsk-wav-encoder-v1`  
-**Status:** active — Session 7 local hardening candidate; pinned whole-WAV
-fldigi qualification remains
+**Status:** active — Session 8 executed; text/acquisition pass, picture
+qualification fails; bounded Session 9 investigation required
 **Session 0 completed:** 2026-10-01  
 **Session 1 completed:** 2026-10-01
 **Session 2 completed:** 2026-10-01
@@ -15,6 +15,7 @@ withdrawn pending RSID remediation
 **Session 6R1 isolated waveform completed:** 2026-10-01
 **Session 6R2 local composition/acquisition completed:** 2026-10-01
 **Session 7 local hardening completed:** 2026-10-01
+**Session 8 external evaluation completed:** 2026-10-01; candidate not qualified
 **Accepted production behavior changed:** no
 
 ## Request and boundary
@@ -783,3 +784,88 @@ Session 7 entry condition in the Session 6 closeout.
    decision remains. Session 8 is not folded: it must perform the separate
    pinned-fldigi, continuous whole-WAV RxID matrix and retain the completed v2
    transfer manifest.
+
+## Session 8 investigation — receiver harness correction (2026-10-01)
+
+The first eight whole-WAV replays completed through the managed Pi wrapper
+with exit status zero, but no acquisition, text, or images. The candidate
+wheel SHA-256 is
+`b0ff517be6daa4bc32afac0ac2b5914ca1eeedb785d3f28a5b72be24f09834a1`.
+Independent frozen-oracle checks pass for every emitted RSID prefix; PCM
+copying, explicit silence, frame totals, and public coordinates also pass.
+
+**D-024 — confirmed harness correction before rerun:** the initial harness
+supplied `AUDIOIO=3`, while the qualified adapter's ALSA-loopback branch
+requires `AUDIOIO=1` and default PortAudio device names/indices. The supplied
+configuration bypassed the adapter's generated configuration. This is an
+automation failure, not evidence of an encoder defect. Preserve attempt 1,
+correct the harness to use the adapter's settings, and rerun the unchanged
+wheel, matrix, oracle, and inputs. No production change or manual-window
+substitution is authorized by this diagnosis.
+
+The v2 manifest schema also required at least one receiver event and exit
+status zero even for failed cases. It could not represent this failed run
+truthfully. Extend failure reporting to allow zero events/nonzero exit status
+for failed or blocked cases, while retaining both requirements for passing
+cases. This changes reporting, not any acceptance check. Preserve the initial
+schema and its validation failure alongside attempt 1.
+
+## Session 8 closeout (2026-10-01)
+
+1. **Candidate and reference:** evaluated source revision
+   `f41c0f922caa27c255e5a91b630497dd09983cf7`, with exact source hashes retained
+   alongside the installed wheel. The wheel hash above, frozen v2 matrix
+   (`9c8cba257b3e20861e6978b7c4d33c96f9856d81d9bb3a55d2347282f950fe81`),
+   and RSID oracle
+   (`be9e40eae97b1230d50b6991c2d7c853d9562029a4a38b19f19e561bdd5857ec`)
+   are identical across both attempts. All eight generated WAV hashes are
+   also identical. The receiver is the pinned fldigi 4.2.13 binary
+   `dd30f86caae1edb5d2998acedb47a3a7b348b727bf6303af1e2f822f549966f3`.
+   No encoder, decoder, fixture, or external sample-corpus change was made.
+2. **External run:** the corrected managed Pi matrix completed in **538
+   seconds**, with eight adapter exits of zero. Each complete WAV was played
+   once from BPSK31 with wide-search RxID, notification-only and auto-disable
+   off, and no manual mode changes. Initial MFSK32 and extended MFSK64,
+   both adjacent mode-change directions, repeated MFSK32/carrier retune, and
+   acquisition after copied audio all pass. Every caller text item and every
+   picture announcement occurs exactly and in order, including resumed text
+   after all pictures. Independent RSID PCM checks pass in all cases.
+   Prefix-inclusive frame/timestamp corroboration, copied audio, and zero
+   silence also pass.
+3. **Picture failure:** **5 concrete cases pass and 3 fail**. All seven
+   expected images exist at the exact 8-by-4 geometry. None has the expected
+   pixels. Maximum component errors range from **93 to 255**; mean absolute
+   errors range from **27.65625 to 101.75**. The reviewed pinned artifacts
+   include an entirely black grayscale p8 image, shifted rows/columns,
+   substantial color changes, and missing content. These are meaningful
+   defects, not acceptable quantization noise. Coupled local recovery is
+   shown only as a diagnostic and does not turn these failures into passes.
+4. **Classification:** attempt 1 is an automation failure resolved by D-024.
+   The corrected image failures remain **unresolved**: neither an encoder
+   defect nor a reference limitation has been established. Pinned source
+   inspection shows `recvpic` queuing `REQ(updateRxPic, ...)`, while
+   `rx_process` calls `picRx->save_png` directly at raster completion. An
+   artifact-save race is therefore a specific hypothesis, alongside raster
+   timing and receive-filter transients. It is not a proven explanation.
+   Receiver carrier estimates differ from nominal by -1 through +4 Hz;
+   exact native carrier PCM and successful text recovery are retained, and
+   these receiver estimates are reported rather than rewritten.
+5. **Evidence and validation:** [the durable evidence index](data/session8/README.md)
+   links both schema-valid manifests, authoritative wrapper results,
+   receiver configuration/logs, text, image hashes/pixel scores, source
+   excerpts, and the candidate-set review. The original failed schema
+   report is also preserved. Artifact hashes and cross-field coverage/full
+   replay invariants pass. **18 focused tests pass**: five scorer/mutation
+   checks, three RSID-oracle checks, and ten encoder-evidence checks.
+   The source distribution and complete raw bundles remain deliberately
+   retained in `.local/session8/` and on the Pi. No commit was created.
+6. **Disposition and next entry:** Session 8 closes with a bounded
+   investigation; the candidate is **not qualified or accepted**. Keep
+   Session 9 separate. Compare the same small images transmitted by pinned
+   fldigi with the native candidate, distinguish the receiver's autosaved
+   PNG from its fully updated viewer, and then isolate raster acquisition
+   timing/filter delay if necessary. Retain every p8/p4/p2 and grayscale/RGB
+   case. Confirm a corrective decision before production changes, and rerun
+   affected cases plus the complete matrix when timing/state can be affected.
+   Do not resize the fixture, insert an undocumented gap, accept manual
+   windows, or normalize an unexplained image discrepancy.
