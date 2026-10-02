@@ -14,7 +14,8 @@ For a normal decoder improvement:
 4. Run focused deterministic tests first, then the full development-machine
    suite.
 5. Use the received corpus or Pi only when the change affects real-recording
-   quality or target-platform behavior.
+   quality or target-platform behavior. For independent fldigi WAV decodes on
+   the Pi, follow the [Pi fldigi runbook](../operations/fldigi-pi-decodes.md).
 6. Record durable design decisions and acceptance evidence in the current
    documentation; do not add an unmaintained session narrative to the
    current entry points.

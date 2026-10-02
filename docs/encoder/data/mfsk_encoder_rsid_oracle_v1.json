@@ -1,0 +1,74 @@
+{
+  "schema": "grampy-mfsk-encoder-rsid-oracle.v1",
+  "status": "pinned-v4.2.12-source-verified-implementation-oracle",
+  "source": {
+    "repository": "w1hkj/fldigi",
+    "tag": "v4.2.12",
+    "commit": "b0032cabb70dc670064ed7561b9a626010a5e4ae",
+    "transmitter": "src/rsid/rsid.cxx",
+    "transmitter_sha256": "7cb9de5ed14dff4a213027945dd06a8bdb7f767616ac129e27132a67c2573d6e",
+    "definitions": "src/rsid/rsid_defs.cxx",
+    "definitions_sha256": "e9b1405a1a51fc1074636218b404e2ca87111282365b769b85215b2f7298749e",
+    "header": "src/include/rsid.h",
+    "header_sha256": "5ff78314aa0da1fc7fa430983745b625d238fdefa7456f9cda9c3852dbecd4d0",
+    "independence": "Frozen source-derived vectors; independently regenerated from the pinned C++ Squares and indices tables on the Pi without importing grampy.rsid. The production decoder was checked only afterward."
+  },
+  "field": {
+    "primitive_polynomial": "x^4+x^3+1",
+    "symbol_count_per_word": 15,
+    "symbol_duration_seconds": "1024/11025",
+    "tone_spacing_hz": "11025/1024",
+    "tone_frequency_hz": "carrier_hz+(tone_index-7)*11025/1024",
+    "normal_sideband_only": true,
+    "carrier_hz": "The segment's nominal transmit-frequency center, corresponding to fldigi get_txfreq_woffset() with zero offset",
+    "frames_per_symbol": "floor(sample_rate_hz*1024/11025)",
+    "phase": "Primary 15-tone word starts at phase zero and advances before each sine sample, preserving phase across tone changes; extended secondary word resets phase to zero. Silence frames are zero.",
+    "native_pcm_peak": 16384,
+    "native_pcm_sample": "round(16384*sin(phase_after_increment)) as signed 16-bit PCM, with no added envelope inside RSID"
+  },
+  "words": {
+    "MFSK32": {
+      "primary_code": 147,
+      "tones": [0, 7, 13, 9, 14, 14, 4, 10, 3, 10, 9, 4, 0, 13, 3]
+    },
+    "escape": {
+      "primary_code": 6,
+      "tones": [0, 0, 2, 14, 4, 14, 6, 2, 12, 8, 4, 12, 10, 8, 6]
+    },
+    "MFSK64": {
+      "secondary_code": 620,
+      "tones": [9, 15, 1, 12, 4, 10, 10, 7, 2, 9, 2, 4, 7, 15, 12]
+    }
+  },
+  "sequence_symbol_periods": {
+    "MFSK32": [
+      {"kind": "leading_silence", "count": 5},
+      {"kind": "primary_147", "count": 15},
+      {"kind": "trailing_silence", "count": 5}
+    ],
+    "MFSK64": [
+      {"kind": "leading_silence", "count": 5},
+      {"kind": "primary_escape_6", "count": 15},
+      {"kind": "extended_bridge_silence", "count": 10},
+      {"kind": "secondary_620", "count": 15},
+      {"kind": "trailing_silence", "count": 5}
+    ]
+  },
+  "frame_counts_at_48000_hz": {
+    "frames_per_symbol": 4458,
+    "MFSK32": {
+      "total": 111450,
+      "leading_silence": [0, 22290],
+      "primary_147": [22290, 89160],
+      "trailing_silence": [89160, 111450]
+    },
+    "MFSK64": {
+      "total": 222900,
+      "leading_silence": [0, 22290],
+      "primary_escape_6": [22290, 89160],
+      "extended_bridge_silence": [89160, 133740],
+      "secondary_620": [133740, 200610],
+      "trailing_silence": [200610, 222900]
+    }
+  }
+}

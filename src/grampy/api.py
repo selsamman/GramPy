@@ -11,6 +11,24 @@ from pathlib import Path
 from typing import Any
 
 from .pipeline import DecodeConfig, run_reference_pipeline
+from .mfsk_compose import (
+    AudioPart,
+    ContentStart,
+    EncodeConfig,
+    EncodeResult,
+    ImagePart,
+    MfskMode,
+    MfskPart,
+    MfskSegment,
+    OutputPart,
+    PictureColor,
+    PictureSpeed,
+    SegmentStart,
+    SilencePart,
+    TextFilePart,
+    TextPart,
+    encode_mfsk_wav,
+)
 
 
 def decode_iq(
@@ -99,4 +117,10 @@ def decode_iq_products(
     return DecodeProducts(**result)
 
 
-__all__ = ["DecodeConfig", "DecodeProducts", "decode_iq", "decode_iq_products"]
+__all__ = [
+    "AudioPart", "ContentStart", "DecodeConfig", "DecodeProducts", "EncodeConfig",
+    "EncodeResult", "ImagePart", "MfskMode", "MfskPart", "MfskSegment",
+    "OutputPart", "PictureColor", "PictureSpeed", "SegmentStart", "SilencePart",
+    "TextFilePart", "TextPart", "decode_iq", "decode_iq_products",
+    "encode_mfsk_wav",
+]

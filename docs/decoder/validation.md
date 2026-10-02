@@ -20,6 +20,8 @@ acceptance establishes appliance-specific fldigi/audio/runtime behavior,
 resource cost, and unattended operation when qualifying a Pi deployment. It
 is not a gate for publishing the generic library package to PyPI. Neither
 environment substitutes for the other within its respective decision.
+The [Pi fldigi decode runbook](../operations/fldigi-pi-decodes.md) identifies
+the qualified receiver, receive adapter, managed runner, and evidence bundle.
 
 An improvement should identify its affected contract, establish a baseline,
 measure quality and resource effects, and retain a regression test or durable

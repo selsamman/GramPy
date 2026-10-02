@@ -1,9 +1,8 @@
-"""Private complete-MFSK-segment encoder with ordered text and pictures.
+"""Complete MFSK segment planning and synthesis for the public composer.
 
-This Session 5 slice joins the stateful text encoder, fldigi picture
-transitions, analog raster, and one continuous-phase oscillator.  The public
-composition dataclasses and top-level audio/silence sequencing remain Session
-6 work.
+The segment joins text state, fldigi picture transitions, analog rasters, and
+one continuous-phase oscillator. File-backed text and PNGs are streamed or
+loaded as needed by the top-level composition preflight and writer.
 """
 
 from __future__ import annotations
@@ -22,13 +21,27 @@ from .mfsk_encode import (
 )
 from .picture_encode import (
     NormalizedPicture,
+    PictureColor,
+    normalize_png,
     picture_announcement,
     plan_picture_raster,
 )
 from .text_encode import MODE_PARAMETERS, MfskMode, StatefulTextToneEncoder
 
 
-MfskSegmentContent: TypeAlias = bytes | NormalizedPicture
+@dataclass(frozen=True)
+class TextFileSource:
+    path: Path
+
+
+@dataclass(frozen=True)
+class ImageSource:
+    path: Path
+    color: PictureColor
+    samples_per_pixel: int
+
+
+MfskSegmentContent: TypeAlias = bytes | TextFileSource | NormalizedPicture | ImageSource
 
 _START_CHARACTERS = b"\r\x02\r"
 _END_CHARACTERS = b"\r\x04\r"
@@ -82,8 +95,8 @@ def _snapshot_contents(
     if not snapshot:
         raise ValueError("an MFSK segment must contain at least one content item")
     for content in snapshot:
-        if not isinstance(content, (bytes, NormalizedPicture)):
-            raise TypeError("MFSK segment content must be bytes or a NormalizedPicture")
+        if not isinstance(content, (bytes, TextFileSource, NormalizedPicture, ImageSource)):
+            raise TypeError("unsupported MFSK segment content")
     return snapshot
 
 
@@ -93,6 +106,25 @@ def _iter_byte_tones(
 ) -> Iterator[int]:
     for offset in range(0, len(data), _TEXT_CHUNK_BYTES):
         yield from encoder.push_bytes(data[offset : offset + _TEXT_CHUNK_BYTES])
+
+
+def _iter_file_tones(
+    encoder: StatefulTextToneEncoder,
+    path: Path,
+) -> Iterator[int]:
+    with path.open("rb") as source:
+        while chunk := source.read(_TEXT_CHUNK_BYTES):
+            yield from encoder.push_bytes(chunk)
+
+
+def _load_picture(content: NormalizedPicture | ImageSource) -> NormalizedPicture:
+    if isinstance(content, NormalizedPicture):
+        return content
+    return normalize_png(
+        content.path,
+        color=content.color,
+        samples_per_pixel=content.samples_per_pixel,
+    )
 
 
 def _flush_tones(encoder: StatefulTextToneEncoder) -> tuple[int, ...]:
@@ -145,14 +177,21 @@ def plan_mfsk_segment(
                 1 for _ in _iter_byte_tones(encoder, content)
             ) * frames_per_symbol
             continue
+        if isinstance(content, TextFileSource):
+            frame_cursor += sum(
+                1 for _ in _iter_file_tones(encoder, content.path)
+            ) * frames_per_symbol
+            continue
+
+        picture = _load_picture(content)
 
         raster_plan = plan_picture_raster(
-            content,
+            picture,
             mode=mode,
             carrier_hz=carrier,
             sample_rate_hz=sample_rate_hz,
         )
-        announcement = picture_announcement(content)
+        announcement = picture_announcement(picture)
         announcement_start = frame_cursor
         frame_cursor += sum(
             1 for _ in _iter_byte_tones(encoder, announcement)
@@ -231,9 +270,14 @@ def _write_segment(
                     encoder.push_bytes(content[offset : offset + _TEXT_CHUNK_BYTES])
                 )
             continue
+        if isinstance(content, TextFileSource):
+            synthesizer.push_tones(_iter_file_tones(encoder, content.path))
+            continue
+
+        picture = _load_picture(content)
 
         synthesizer.push_tones(
-            _iter_byte_tones(encoder, picture_announcement(content))
+            _iter_byte_tones(encoder, picture_announcement(picture))
         )
         synthesizer.push_tones(_flush_tones(encoder))
         encoder = _new_neutral_encoder(mode)
@@ -244,7 +288,7 @@ def _write_segment(
             _PROLOGUE_INTERNAL_FRAMES * (sample_rate_hz // 8_000),
         )
         raster_plan = plan_picture_raster(
-            content,
+            picture,
             mode=mode,
             carrier_hz=carrier_hz,
             sample_rate_hz=sample_rate_hz,
@@ -327,10 +371,12 @@ def encode_mfsk_segment_wav(
 
 
 __all__ = [
+    "ImageSource",
     "MfskSegmentContent",
     "MfskSegmentPlan",
     "MfskSegmentWaveResult",
     "PictureTransitionPlan",
+    "TextFileSource",
     "encode_mfsk_segment_wav",
     "plan_mfsk_segment",
 ]

@@ -144,7 +144,11 @@ def normalize_png(
             image.load()
             source_mode: Literal["L", "RGB"] = image.mode
             source_pixels = image.tobytes()
-    except UnidentifiedImageError as error:
+    except (UnidentifiedImageError, Image.DecompressionBombError) as error:
+        raise ValueError("image input must be a valid PNG file") from error
+    except OSError as error:
+        if isinstance(error, (FileNotFoundError, PermissionError, IsADirectoryError)):
+            raise
         raise ValueError("image input must be a valid PNG file") from error
 
     return NormalizedPicture(

@@ -53,6 +53,12 @@ The first supported release must:
     network service.
 12. Produce representative text and pictures that the pinned fldigi receiver
     on the Pi can recover during final qualification.
+13. Let a single continuously played mixed-mode WAV be received by fldigi
+    with RxID enabled, including automatic acquisition of the first MFSK mode
+    and every subsequent MFSK32/MFSK64 change. The WAV must carry
+    fldigi-compatible RSID signaling needed for that acquisition. Selecting
+    modes manually or replaying isolated windows is diagnostic evidence, not
+    acceptance of this requirement.
 
 ### Explicit exclusions
 
@@ -61,21 +67,26 @@ The first release does not include:
 - live sound-device transmission;
 - RF or channel simulation;
 - bit-for-bit equality with a particular fldigi WAV;
-- RSID generation;
 - reverse-sideband transmission;
 - automatic image resizing, alpha compositing, or editorial image processing;
 - seamless modem changes inside one framed MFSK segment; or
 - MFSK modes other than MFSK32 and MFSK64.
 
-Mode changes are represented by adjacent, independently framed `MfskSegment`
-objects. Callers insert `SilencePart` explicitly when they require spacing.
+Mode changes remain represented by independently framed `MfskSegment` objects.
+The encoder supplies RSID before every `MfskSegment` and only the
+source-derived receiver-acquisition spacing required for it; callers insert
+`SilencePart` for any additional editorial spacing. No arbitrary gap is
+authorized. Exact waveform and timing verification remain Session 6R0 work.
 
-## Exact public Python API
+## Session 6 candidate public Python API (RSID behavior confirmed; implementation pending)
 
-The following is the required version-one API in `grampy.api`. Session 0 may
-correct a contradiction discovered while baselining, but implementation must
-not silently reshape this API. Later changes require an explicit requirements
-amendment in this plan and product approval.
+The following was the Session 0 and Session 6 candidate API in `grampy.api`.
+It remains the implemented local slice, but is not yet the final version-one
+behavior: product management confirmed unconditional RSID for every MFSK
+segment, without a caller switch. The public dataclass shapes remain
+unchanged; RSID shifts nested content timestamps and segment duration as
+specified below. The waveform and timing still require technical verification
+before affected production implementation.
 
 ```python
 from __future__ import annotations
@@ -188,6 +199,10 @@ def encode_mfsk_wav(
 - Each `MfskSegment` emits a complete start, payload, and end sequence. An
   image causes the encoder to create its `Sending Pic:` announcement and all
   required transitions; callers do not supply the picture header themselves.
+- RSID framing around a top-level `MfskSegment` is required for automatic
+  fldigi mode acquisition; whether it is unconditional or configurable, its
+  exact placement, timing, carrier relationship, and timestamp treatment are
+  pending Session 6R0 confirmation.
 - `AudioPart` accepts mono, 16-bit PCM WAV with the same sample rate as the
   output. Version one does not resample, remix, normalize, or preserve source
   metadata chunks; incompatible audio is rejected.
@@ -380,7 +395,7 @@ silently become public behavior.
 | --- | --- | --- | --- |
 | D-001 | The version-one public API and filesystem semantics are those specified above, including the Session 0 preflight, alias, failure, and timestamp clarifications. | Confirmed with explicit clarifications | 0 |
 | D-002 | One output may compose independent MFSK32/MFSK64 segments, compatible audio WAVs, and explicit silence. | Confirmed | 0 |
-| D-003 | Mode changes use independently framed `MfskSegment` objects; no implicit RSID or seamless modem switch is emitted. | Confirmed | 0 |
+| D-003 | Mode changes use independently framed `MfskSegment` objects. The former no-RSID exclusion is superseded by the whole-WAV fldigi acquisition requirement. | Framing confirmed; RSID exclusion superseded | 0 and 6R0 |
 | D-004 | Byte input is authoritative; string conversion is explicit strict encoding and file text is read as raw bytes. Empty byte items are permitted and normal strict codec errors are retained. | Confirmed with explicit clarifications | 0 |
 | D-005 | PNG paths are the version-one image input; only the Session 0 `L`/`RGB` profile is accepted, alpha is rejected, and no resizing occurs. | Confirmed with narrowed input profile | 0 |
 | D-006 | Existing audio must satisfy the Session 0 classic PCM profile at the output rate; GramPy performs no v1 audio conversion. | Confirmed with exact container profile | 0 |
@@ -388,7 +403,7 @@ silently become public behavior.
 | D-008 | Routine development uses the checked-in independent vectors and frozen fixture evidence; GramPy decode is a smoke test, not independent acceptance. Session 1 must prove mutation sensitivity before the harness becomes an oracle. | Confirmed; harness coverage remains Session 1 work | 0–1 |
 | D-009 | Pinned fldigi reception is consolidated into final Pi qualification, using qualified reference `fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178`; an earlier targeted Pi experiment occurs only when a contradiction threatens the design. Controlled transmitter fixtures remain pinned separately to fldigi 4.2.12. | Confirmed with exact reference identity | 0–1 |
 | D-010 | Text segments use the fldigi 4.2.12 framing profile: zero-initialized encoder/interleaver state, 35 (MFSK32) or 60 (MFSK64) transmitted leading zero input bits, `CR`/`STX`/`CR`, payload, `CR`/`EOT`/`CR`, and the common one-bit-plus-preamble-zero flush, after which any residual partial coded group is discarded. Generated PCM has peak magnitude 16,384 and a 10 ms raised-cosine attack and release within the first and last emitted symbols; the envelope adds no frames and no shaping occurs at internal symbol boundaries. | Confirmed | 3 |
-| D-011 | Each independently framed MFSK segment starts its oscillator at phase zero, emits the first sample at that phase, preserves phase across every sample and symbol boundary in the segment, and discards oscillator state after the final sample. Each symbol occupies exactly `samples_per_symbol * sample_rate_hz / 8000` frames. Phase and sample-boundary rules for audio and silence remain assigned to Session 6. | MFSK portion confirmed; composition remainder open | 3 and 6 |
+| D-011 | Each independently framed MFSK segment starts its oscillator at phase zero and preserves phase within that segment. Copied audio remains byte-exact and explicit silence remains zero-valued. The RSID prefix has source-derived zero-valued lead, bridge where applicable, and trailing periods; its primary tone phase is continuous, its secondary tone word restarts phase, and the trailing zeros isolate the payload oscillator. No other gap or crossfade is added. Every interval has exact preflight frame counts. | Boundary contract confirmed; RSID implementation pending | 3, 6, and 6R0–6R2 |
 | D-012 | Pillow is a core runtime dependency because PNG transmission is mandatory in the version-one API. | Confirmed | 0 |
 | D-013 | Every image announcement is exactly `LF` followed by `Sending ` and the control token `Pic:<width>x<height>[C][p2|p4];`, with `p8` omitted and no generated whitespace after the semicolon. The leading `LF` and `Sending ` are conventional fldigi output rather than receiver requirements; dimensions, flags, and the semicolon are required control syntax. | Confirmed | 5 |
 | D-021 | PNG normalization retains exactly one decoded 8-bit `L` or `RGB` source raster. Grayscale and color component sequences are derived lazily from it, and isolated raster events are streamed one component at a time. | Confirmed | 4 |
@@ -396,10 +411,11 @@ silently become public behavior.
 | D-015 | Validation precedes output replacement; output/input aliases are rejected; after writing begins, a reported failure removes the new output and does not restore replaced content. | Confirmed | 0 |
 | D-016 | Returned timestamp floats are derived from integer output-frame coordinates using the logical and audible boundaries defined in the Session 0 clarification. | Confirmed | 0 |
 | D-017 | The offline encoder oracle remains test-only and independent of production encoder modules. It binds the frozen vector, Varicode, fixture-evidence, and RGB-source hashes; exact candidate events outrank coupled GramPy round trips; and tone, timing, and RGB-order mutation rejection is mandatory. | Confirmed | 1 |
-| D-018 | Final interoperability uses the versioned 48-kHz Pi matrix and qualification-manifest schema under `docs/encoder/data/`, with explicit receiver-mode windows, complete artifact hashes, and discrepancy classification. The receiver remains `fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178`; no Pi run occurs in Session 1. | Confirmed | 1 and 8 |
+| D-018 | Final interoperability uses a versioned 48-kHz Pi matrix and qualification manifest under `docs/encoder/data/`, with complete artifact hashes and discrepancy classification. The receiver remains `fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178`. The current manual-mode-window matrix is historical diagnostic coverage and must be revised to require continuous whole-WAV RxID reception before Session 8. | Reference and evidence discipline confirmed; matrix acceptance contract superseded | 1, 6R0, and 8 |
 | D-019 | Each `MfskSegment` uses one zero-initialized stateful text-to-tone encoder. Varicode/FEC/interleaver state persists across byte chunks and caller text-item boundaries; only complete four-coded-bit groups emit tones; the remaining zero or two coded bits stay pending; and byte pushes never add framing or flush implicitly. Independently framed segments start new state. | Confirmed | 2 |
 | D-020 | The private Session 2 checkpoint is an immutable in-memory snapshot of mode, convolutional state, pending coded bits, the bounded 30-group interleaver history, and exact input/output counters. Restore must be bit-exact, but the checkpoint is neither public API nor a stable serialized format. | Confirmed | 2 |
 | D-022 | A picture announcement continues through the segment's current text encoder, followed by the mode-specific one-bit-plus-zero header flush and discard of any residual partial coded group. The 44 ms prologue and raster bypass but do not reset the continuous-phase oscillator. The raster is followed immediately by a fresh neutral-equivalent text-path flush of exactly 54 MFSK32 or 90 MFSK64 symbols; resumed caller text has no new preamble, framing, delimiter, silence, or phase reset. Canonicalizing a completely drained text encoder to an equivalent fresh neutral private state is an implementation detail. | Confirmed | 5 |
+| D-023 | A single mixed-mode output must be receivable by fldigi during continuous playback with RxID enabled, without operator mode changes or window replay. Product management confirmed automatic RSID before every MFSK segment, with no caller opt-out or extra editorial gap. The v4.2.12 source fixes codes 147 and 620 (with escape 6), tone/guard sequence, carrier rule, and integer frame accounting. | Product and wire contract confirmed; implementation and candidate reception pending | 6R0–6R2 |
 
 New important decisions are appended to this table. Rejected alternatives and
 their decisive evidence remain in the active change record so later sessions
@@ -606,15 +622,144 @@ Deliverables:
 
 Close when every required public API form works locally without fldigi.
 
-**Fold decision:** Fold Session 7 if packaging and resource tests require no
-design changes.
+**Correction after Session 6:** local composition passed its tests, but the
+manual-mode-window oracle did not exercise automatic fldigi mode acquisition.
+The Session 6 slice is retained as an investigative baseline. Complete
+Sessions 6R0–6R2 before Session 7; do not call the former no-RSID candidate
+feature-complete.
+
+### Session 6R0 — RSID contract and independent evidence
+
+**Suggested model:** Sol, high reasoning.
+
+**Closed contract (2026-10-01):** The Pi already held the pinned fldigi
+`v4.2.12` Git checkout at commit
+`b0032cabb70dc670064ed7561b9a626010a5e4ae`; its tracked RSID source
+was inspected without a new download. Source-derived identifiers, guards,
+symbol words, phase and carrier rules, and 48-kHz frame intervals are frozen
+in `data/mfsk_encoder_rsid_oracle_v1.json` and checked by
+`tests/test_mfsk_rsid_oracle.py`. Product management confirmed automatic RSID
+for every MFSK segment, including the first and repeated same-mode segments,
+with no v1 opt-out or extra editorial gap. This completes the Session 6R0
+implementation contract, not the RSID implementation or fldigi candidate
+qualification.
+
+**Confirmed product/API and wire policy:** every
+`MfskSegment`, including the first and any repeated same-mode segment,
+automatically emits its own RSID before the existing MFSK start framing. No
+caller switch is added in v1: making identification optional would let a
+valid-looking composition violate the central one-playback fldigi outcome.
+This also permits reacquisition after intervening audio and retuning when a
+same-mode segment changes carrier. RSID uses that segment's `carrier_hz`
+as fldigi's nominal transmit frequency. No silence beyond the source-derived
+five-symbol lead, MFSK64 ten-symbol bridge, and five-symbol trailing guard is
+inserted; `SilencePart` remains explicit editorial spacing. An MFSK
+`SegmentStart` remains the first frame of its top-level output, now the first
+RSID lead-silence frame; each nested `ContentStart` moves later by the RSID
+prefix length and keeps its existing meaning. `EncodeConfig` and the public
+dataclass shapes are unchanged. The preflight frame total and RIFF ceiling
+must include the RSID prefix for *every* MFSK segment, including empty text
+contents. The native per-symbol output frame rule is
+`floor(sample_rate_hz * 1024 / 11025)` for each supported sample rate; at
+48 kHz this adds 111,450 frames for MFSK32 or 222,900 for MFSK64 before the
+existing MFSK segment waveform.
+
+**Rejected alternative:** emit RSID only when the mode
+changes. This would not reacquire after audio or a carrier change and would
+make a segment's validity depend on preceding parts. Optional per-segment
+RSID is possible but weakens the guaranteed receiver outcome and adds a
+configuration branch to preflight and accounting.
+
+**Early Pi decision:** no further pre-implementation timing experiment is
+required to settle Session 6R0. The pinned source fixes the guard sequence,
+and the qualified Pi receiver recovered a known continuous RSID mode-change
+recording with RxID enabled. That smoke does not qualify a GramPy candidate.
+Session 6R2 must test the newly implemented native 48-kHz waveform in one
+whole-WAV replay; any acquisition failure is investigated there, never
+preemptively hidden by an implicit editorial gap. The v2 matrix and manifest
+schema make that outcome measurable.
+
+**Entry condition:** preserve the current uncommitted Session 6 candidate and
+the corrected planning documents as the starting state. Do not create a
+checkpoint commit without explicit authorization. Read the Session 6
+closeout and its product correction before proposing the RSID contract.
+
+Amend the product/API and qualification contract before changing production
+encoder behavior. Use the pinned fldigi transmitter source, existing RSID
+decoder evidence, and controlled references to specify MFSK32 and MFSK64
+identifiers and the complete emitted sequence. The confirmed product policy is
+unconditional RSID for every `MfskSegment`, including the first and repeated
+same-mode segments, with no caller switch or extra editorial gap. Technically
+verify carrier alignment, required acquisition spacing, output-duration and
+`SegmentStart` semantics before production implementation. Preserve the
+existing public API shape.
+
+Deliverables:
+
+- confirmed D-023 product/API policy and technically verified RSID portion of
+  D-011, with rejected alternatives and source references recorded;
+- a versioned, independent RSID vector/oracle covering both modes, extended
+  identifiers where required, exact symbol/frame timing, and guard intervals;
+- an amended exact public API and preflight/RIFF/timestamp contract if needed;
+- an amended 48-kHz Pi matrix and manifest contract that require continuous
+  whole-WAV RxID reception, retaining manual windows only as diagnostics; and
+- an explicit decision whether a targeted early Pi experiment is needed to
+  resolve any source-versus-receiver contradiction.
+
+The wire sequence, public behavior, and independent acceptance oracle are now
+precise enough for Session 6R1 implementation. Session 6R0 made no production
+encoder change. Candidate receiver acceptance remains Session 6R2 and 8.
+
+**Fold decision:** keep Session 6R1 separate if the identifier waveform or
+receiver timing has unresolved alternatives.
+
+### Session 6R1 — Isolated RSID waveform
+
+**Suggested model:** Sol, high reasoning for wire checks; Terra, medium
+reasoning after the RSID oracle is fixed.
+
+**Entry condition:** Session 6R0 has confirmed the public and wire decisions,
+recorded an independent oracle, and versioned the qualification contract.
+
+Implement only the source-derived RSID waveform and required internal
+spacing as a bounded, frame-counted private slice. Verify MFSK32 and MFSK64
+identifiers, carrier placement, sample values, guard timing, and mutation
+sensitivity against the independent Session 6R0 oracle. Do not infer success
+from GramPy decoding its own signal.
+
+Close when the isolated RSID output is exact, bounded, and locally testable.
+
+**Fold decision:** fold Session 6R2 only if integration follows mechanically
+from a confirmed framing and timestamp contract.
+
+### Session 6R2 — Compose RSID and qualify whole-file acquisition locally
+
+**Suggested model:** Sol, high reasoning for receiver behavior; Terra, medium
+reasoning for bounded integration after design confirmation.
+
+**Entry condition:** the isolated Session 6R1 RSID output passes its independent
+vectors and exact frame-count checks.
+
+Integrate RSID ahead of the required top-level MFSK segments while retaining
+the confirmed text, picture, copied-audio, silence, preflight, and cleanup
+behavior. Update exact frame predictions and public timestamps. Exercise
+MFSK32→MFSK64, MFSK64→MFSK32, same-mode repetitions, first MFSK after audio,
+and both adjacent and caller-spaced layouts. Run local GramPy acquisition as
+smoke evidence; the pinned fldigi whole-WAV run remains the external gate.
+
+Close when all amended local acceptance cases pass and no important RSID or
+composition decision remains open. The resulting candidate proceeds to
+Session 7 for resource, package, and failure-path hardening.
+
+**Fold decision:** keep Session 7 separate if the added RSID timing or
+streaming path changes resource or package evidence.
 
 ### Session 7 — Packaging and local hardening
 
 **Suggested model:** Terra, medium reasoning.
 
-Make the feature-complete candidate repeatable and bounded before consuming Pi
-qualification effort.
+After Session 6R2, make the feature-complete candidate repeatable and bounded
+before consuming final Pi qualification effort.
 
 Deliverables:
 
@@ -623,10 +768,12 @@ Deliverables:
 - a thin CLI only if product management retains it in scope;
 - bounded-memory evidence for long text, large images, audio, and silence;
 - exact agreement between returned start timestamps and the completed WAV;
+- bounded-memory, frame-count, and error-path evidence for the RSID path;
 - reported interruption, disk failure, invalid input, no-partial-file, and
   existing-output replacement tests;
 - full local encoder and decoder regression results; and
-- the candidate WAV matrix and transfer manifest for Session 8.
+- the amended whole-WAV RxID candidate matrix and transfer manifest for
+  Session 8.
 
 Close when there are no known local failures and no open important design
 decision that fldigi cannot answer directly.
@@ -645,8 +792,10 @@ Deliverables:
 
 - pinned fldigi recovery of representative MFSK32 and MFSK64 text;
 - grayscale and RGB recovery at every picture speed retained in the contract;
-- text recovery after pictures and recovery across the selected mixed-mode
-  composition cases;
+- text recovery after pictures and automatic mode acquisition across complete
+  continuously played mixed-mode WAVs with RxID enabled, including first and
+  subsequent RSID signals;
+- manual-window replays only as diagnostics for a failed whole-WAV run;
 - exact pixel comparisons where fldigi artifacts permit them;
 - candidate-set visual review only where objective evidence cannot exclude a
   meaningful defect;
@@ -704,7 +853,6 @@ Treat each item as a new change request after the core encoder is accepted.
 
 | Capability | Suggested reasoning | Why separate |
 | --- | --- | --- |
-| RSID generation and composition | Sol, high | Separate wire protocol and receiver-acquisition consequences |
 | Reverse-sideband transmission | Sol, high | Documented behavior lacks accepted controlled-transmitter evidence |
 | Live audio-device output | Sol, high initially | Real-time buffering and device behavior differ from file synthesis |
 | Channel/noise simulation | Sol, high | Changes test meaning and requires independently justified models |
@@ -720,11 +868,13 @@ The core project is complete when:
    ordered MFSK32/MFSK64 segments, PNG pictures, compatible audio, and silence;
 2. returned start timestamps for every supplied segment and MFSK content item
    exactly match the completed WAV timeline;
-3. independent vectors validate bit, symbol, frequency, timing, framing, and
-   raster transformations;
+3. independent vectors validate bit, symbol, frequency, timing, framing,
+   raster, and RSID transformations;
 4. pinned fldigi independently recovers representative text, grayscale images,
    RGB images, and text after images;
-5. mixed-mode and audio boundaries have explicit, tested semantics;
+5. mixed-mode and audio boundaries have explicit, tested semantics, and fldigi
+   with RxID enabled automatically recovers both modes from one continuous
+   mixed-mode WAV without operator mode changes;
 6. memory and disk use remain bounded and predictable;
 7. a reported encoding failure removes the requested output, including when it
    replaced an existing file, and the encoder creates no temporary files;

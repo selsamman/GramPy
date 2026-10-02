@@ -20,6 +20,8 @@ The supported importable interface, including its configuration and returned
 manifest, is documented in [`api.md`](api.md).
 Corpus policy is in [`mfsk_received_corpus.md`](mfsk_received_corpus.md), with
 the selection seed in [`corpus/received_corpus_seed.json`](corpus/received_corpus_seed.json).
+Operational Pi fldigi reception is in the
+[`Pi fldigi decode runbook`](../operations/fldigi-pi-decodes.md).
 Machine-readable vectors, Varicode, and fixture evidence are under
 [`data/`](data/).
 

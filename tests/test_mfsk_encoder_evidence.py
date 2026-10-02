@@ -319,6 +319,7 @@ class PiQualificationContractTests(unittest.TestCase):
                 "mfsk64-text",
                 "mfsk32-grayscale-speeds",
                 "mfsk64-color-speeds",
+                "adjacent-modes-no-gap",
                 "mixed-composition-boundaries",
             },
         )
@@ -354,6 +355,15 @@ class PiQualificationContractTests(unittest.TestCase):
             part["kind"] for part in cases["mixed-composition-boundaries"]["composition"]
         ]
         self.assertEqual(mixed_kinds, ["mfsk", "silence", "audio", "silence", "mfsk"])
+        adjacent = cases["adjacent-modes-no-gap"]
+        self.assertEqual(
+            [part["mode"] for part in adjacent["composition"]],
+            ["MFSK32", "MFSK64"],
+        )
+        self.assertEqual(
+            [(run["mode"], run["window"]) for run in adjacent["receiver_runs"]],
+            [("MFSK32", "segment:0"), ("MFSK64", "segment:1")],
+        )
 
     def test_pi_manifest_schema_is_valid_and_requires_hashes_and_outcomes(self) -> None:
         schema = load_json(PI_MANIFEST_SCHEMA)

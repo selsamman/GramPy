@@ -1,13 +1,14 @@
 {
   "schema": "grampy-mfsk-encoder-pi-matrix.v1",
-  "purpose": "Final independent fldigi receive qualification for the native MFSK WAV encoder",
+  "purpose": "Session 6 no-RSID diagnostic coverage; superseded for final mixed-mode qualification",
+  "qualification_status": "diagnostic-only-pending-rsid-remediation",
   "sample_rate_hz": 48000,
   "receiver": {
     "reference_id": "fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178",
     "rsid_enabled": false,
     "reverse_sideband": false,
     "carrier_hz": 1500.0,
-    "note": "Each receive run selects its declared mode explicitly. Mixed-mode windows are replayed or selected independently because the encoder emits no RSID."
+    "note": "Session 6 diagnostic receiver settings only. Manual mode windows cannot satisfy corrected whole-WAV RxID acceptance; Session 6R0 must version a replacement matrix."
   },
   "source_inputs": {
     "primary_rgb_png": {
@@ -129,6 +130,35 @@
         "rgb-pixels-exact-or-reviewed",
         "post-picture-text-exact",
         "receiver-log-and-image-hashes"
+      ]
+    },
+    {
+      "id": "adjacent-modes-no-gap",
+      "purpose": "Independently framed MFSK32 and MFSK64 segments joined at one exact sample boundary without RSID or inserted silence",
+      "composition": [
+        {
+          "kind": "mfsk",
+          "mode": "MFSK32",
+          "carrier_hz": 1400.0,
+          "contents": [{"kind": "text", "id": "adjacent-32", "utf8": "ADJACENT MFSK32 END"}]
+        },
+        {
+          "kind": "mfsk",
+          "mode": "MFSK64",
+          "carrier_hz": 1600.0,
+          "contents": [{"kind": "text", "id": "adjacent-64", "utf8": "ADJACENT MFSK64 END"}]
+        }
+      ],
+      "receiver_runs": [
+        {"mode": "MFSK32", "window": "segment:0"},
+        {"mode": "MFSK64", "window": "segment:1"}
+      ],
+      "required_checks": [
+        "wav-container-and-hash",
+        "adjacent-segment-coordinates-exact",
+        "mfsk32-window-text-exact",
+        "mfsk64-window-text-exact",
+        "receiver-log-hash"
       ]
     },
     {

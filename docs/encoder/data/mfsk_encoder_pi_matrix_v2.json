@@ -1,0 +1,98 @@
+{
+  "schema": "grampy-mfsk-encoder-pi-matrix.v2",
+  "status": "contract-confirmed-pending-encoder-implementation-and-receiver-execution",
+  "purpose": "Continuous whole-WAV fldigi RxID acquisition and payload recovery",
+  "sample_rate_hz": 48000,
+  "candidate_oracle": "docs/encoder/data/mfsk_encoder_rsid_oracle_v1.json",
+  "encoder_rsid_policy": {
+    "per_mfsk_segment": "required-unconditional",
+    "includes_first_and_repeated_same_mode": true,
+    "caller_opt_out": false,
+    "extra_editorial_silence": false
+  },
+  "source_inputs": {
+    "from_matrix": "docs/encoder/data/mfsk_encoder_pi_matrix_v1.json",
+    "matrix_sha256_at_drafting": "84507885e1939b67197b96efe02ed86ed652eb1bd8249c399f2e6ffc3f57e43e"
+  },
+  "receiver": {
+    "reference_id": "fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178",
+    "rxid_enabled": true,
+    "rxid_passband_search": true,
+    "rxid_notify_only": false,
+    "rxid_auto_disable_after_detection": false,
+    "rxid_mode_exclusions": [],
+    "reverse_sideband": false,
+    "initial_mode": "BPSK31",
+    "initial_carrier_hz": 1500.0,
+    "playback": "one continuous run of the complete generated WAV; no manual mode/frequency selection or window replay"
+  },
+  "cases": [
+    {
+      "id": "rsid-mfsk32-initial",
+      "composition": [{"kind": "mfsk", "mode": "MFSK32", "carrier_hz": 1500.0, "contents": [{"kind": "text", "utf8": "RSID MFSK32 INITIAL END"}]}],
+      "expected_rsid_modes": ["MFSK32"],
+      "required_checks": ["one-whole-wav-rxid-run", "first-acquisition-mfsk32", "decoded-text-exact", "rsid-and-segment-frame-accounting", "artifact-hashes"]
+    },
+    {
+      "id": "rsid-mfsk64-extended-initial",
+      "composition": [{"kind": "mfsk", "mode": "MFSK64", "carrier_hz": 1500.0, "contents": [{"kind": "text", "utf8": "RSID MFSK64 INITIAL END"}]}],
+      "expected_rsid_modes": ["MFSK64"],
+      "required_checks": ["one-whole-wav-rxid-run", "escape-then-secondary-620-detected", "first-acquisition-mfsk64", "decoded-text-exact", "rsid-and-segment-frame-accounting", "artifact-hashes"]
+    },
+    {
+      "id": "rsid-32-to-64-no-editorial-gap",
+      "composition": [
+        {"kind": "mfsk", "mode": "MFSK32", "carrier_hz": 1400.0, "contents": [{"kind": "text", "utf8": "CHANGE MFSK32 END"}]},
+        {"kind": "mfsk", "mode": "MFSK64", "carrier_hz": 1600.0, "contents": [{"kind": "text", "utf8": "CHANGE MFSK64 END"}]}
+      ],
+      "expected_rsid_modes": ["MFSK32", "MFSK64"],
+      "required_checks": ["one-whole-wav-rxid-run", "two-rsid-acquisitions-in-order", "both-decoded-texts-exact", "no-undeclared-silence", "rsid-and-segment-frame-accounting", "artifact-hashes"]
+    },
+    {
+      "id": "rsid-64-to-32-no-editorial-gap",
+      "composition": [
+        {"kind": "mfsk", "mode": "MFSK64", "carrier_hz": 1600.0, "contents": [{"kind": "text", "utf8": "REVERSE MFSK64 END"}]},
+        {"kind": "mfsk", "mode": "MFSK32", "carrier_hz": 1400.0, "contents": [{"kind": "text", "utf8": "REVERSE MFSK32 END"}]}
+      ],
+      "expected_rsid_modes": ["MFSK64", "MFSK32"],
+      "required_checks": ["one-whole-wav-rxid-run", "two-rsid-acquisitions-in-order", "both-decoded-texts-exact", "no-undeclared-silence", "artifact-hashes"]
+    },
+    {
+      "id": "rsid-repeat-mode-new-carrier",
+      "composition": [
+        {"kind": "mfsk", "mode": "MFSK32", "carrier_hz": 1400.0, "contents": [{"kind": "text", "utf8": "FIRST MFSK32 END"}]},
+        {"kind": "mfsk", "mode": "MFSK32", "carrier_hz": 1600.0, "contents": [{"kind": "text", "utf8": "SECOND MFSK32 END"}]}
+      ],
+      "expected_rsid_modes": ["MFSK32", "MFSK32"],
+      "required_checks": ["one-whole-wav-rxid-run", "two-rsid-acquisitions-in-order", "carrier-retune-observed", "both-decoded-texts-exact", "artifact-hashes"]
+    },
+    {
+      "id": "rsid-mixed-audio-silence-picture",
+      "composition": [
+        {"kind": "mfsk", "mode": "MFSK32", "carrier_hz": 1400.0, "contents": [{"kind": "text", "utf8": "MIXED MFSK32 END"}]},
+        {"kind": "silence", "duration_seconds": 0.25},
+        {"kind": "audio", "source": "audio_marker"},
+        {"kind": "silence", "duration_seconds": 0.25},
+        {"kind": "mfsk", "mode": "MFSK64", "carrier_hz": 1600.0, "contents": [
+          {"kind": "text", "utf8": "MIXED MFSK64 PICTURE BEGIN\n"},
+          {"kind": "image", "source": "primary_rgb_png", "color": "color", "samples_per_pixel": 8},
+          {"kind": "text", "utf8": "\nMIXED MFSK64 END"}
+        ]}
+      ],
+      "expected_rsid_modes": ["MFSK32", "MFSK64"],
+      "required_checks": ["one-whole-wav-rxid-run", "two-rsid-acquisitions-in-order", "decoded-texts-exact", "recovered-image-dimensions-and-pixels", "audio-pcm-byte-exact", "explicit-silence-frames-zero", "all-result-coordinates-exact", "artifact-hashes"]
+    },
+    {
+      "id": "rsid-picture-speed-coverage",
+      "composition_from_v1_cases": ["mfsk32-grayscale-speeds", "mfsk64-color-speeds"],
+      "expected_rsid_modes": ["MFSK32", "MFSK64"],
+      "required_checks": ["independent-whole-wav-rxid-run-for-each-inherited-composition", "all-picture-announcements-exact", "all-six-recovered-images-checked", "post-picture-text-exact", "artifact-hashes"]
+    }
+  ],
+  "diagnostic_policy": "If a whole-WAV run fails, optional manually selected windows may localize the defect but cannot turn the case into a pass.",
+  "artifact_policy": {
+    "manifest_schema": "docs/encoder/data/mfsk_encoder_pi_qualification_manifest_v2.schema.json",
+    "required_hash_algorithm": "sha256",
+    "retain": ["matrix", "rsid-oracle", "encoder-distribution", "source-inputs", "generated-wavs", "encoder-results", "receiver-configuration", "continuous-receiver-logs", "rxid-events", "recovered-text", "recovered-images", "qualification-manifest"]
+  }
+}
