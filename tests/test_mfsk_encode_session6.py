@@ -49,18 +49,21 @@ class Session6CompositionTests(unittest.TestCase):
             result = api.encode_mfsk_wav(parts=(first, second), output_path=output)
             first_plan = plan_mfsk_segment(contents=(b"FIRST",), mode="MFSK32", carrier_hz=1400.0, sample_rate_hz=48_000)
             second_plan = plan_mfsk_segment(contents=(b"SECOND",), mode="MFSK64", carrier_hz=1600.0, sample_rate_hz=48_000)
+            first_prefix, second_prefix = 111_450, 222_900
+            first_frames = first_prefix + first_plan.frame_count
+            total_frames = first_frames + second_prefix + second_plan.frame_count
             self.assertEqual(result.segments[0].start_seconds, 0.0)
-            self.assertEqual(result.segments[1].start_seconds, first_plan.frame_count / 48_000)
-            self.assertEqual(result.duration_seconds, (first_plan.frame_count + second_plan.frame_count) / 48_000)
-            self.assertEqual(result.segments[0].contents[0].start_seconds, first_plan.content_start_frames[0] / 48_000)
+            self.assertEqual(result.segments[1].start_seconds, first_frames / 48_000)
+            self.assertEqual(result.duration_seconds, total_frames / 48_000)
+            self.assertEqual(result.segments[0].contents[0].start_seconds, (first_prefix + first_plan.content_start_frames[0]) / 48_000)
             with wave.open(str(output), "rb") as source:
-                self.assertEqual(source.getnframes(), first_plan.frame_count + second_plan.frame_count)
-            self.assertEqual(output.stat().st_size, 44 + 2 * (first_plan.frame_count + second_plan.frame_count))
+                self.assertEqual(source.getnframes(), total_frames)
+            self.assertEqual(output.stat().st_size, 44 + 2 * total_frames)
 
             pcm = np.frombuffer(_wav_pcm(output), dtype="<i2").astype(np.float64)
             for mode, start, stop, expected, carrier in (
-                ("MFSK32", 0, first_plan.frame_count, b"FIRST", 1400.0),
-                ("MFSK64", first_plan.frame_count, len(pcm), b"SECOND", 1600.0),
+                ("MFSK32", first_prefix, first_frames, b"FIRST", 1400.0),
+                ("MFSK64", first_frames + second_prefix, len(pcm), b"SECOND", 1600.0),
             ):
                 with self.subTest(mode=mode):
                     analytic = signal.hilbert(pcm[start:stop] / 16_384).astype(np.complex64)
@@ -95,8 +98,8 @@ class Session6CompositionTests(unittest.TestCase):
             self.assertEqual(tuple(item.input_index for item in result.segments), (0, 1, 2))
             self.assertEqual(tuple(item.start_seconds for item in result.segments), (0.0, 1 / 48_000, 5 / 48_000))
             self.assertEqual(tuple(item.content_index for item in result.segments[2].contents), (0, 1, 2))
-            self.assertEqual(tuple(item.start_seconds for item in result.segments[2].contents), tuple((5 + frame) / 48_000 for frame in plan.content_start_frames))
-            self.assertEqual(result.duration_seconds, (5 + plan.frame_count) / 48_000)
+            self.assertEqual(tuple(item.start_seconds for item in result.segments[2].contents), tuple((5 + 222_900 + frame) / 48_000 for frame in plan.content_start_frames))
+            self.assertEqual(result.duration_seconds, (5 + 222_900 + plan.frame_count) / 48_000)
             self.assertEqual(_wav_pcm(output)[:10], b"\x00\x00" + pcm)
 
     def test_audio_ancillary_chunk_is_skipped_and_pcm_copied_exactly(self) -> None:

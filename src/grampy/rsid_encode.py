@@ -1,7 +1,7 @@
 """Private, isolated RSID prefix synthesis from the pinned fldigi contract.
 
-No decoder code or runtime oracle file is used. The composer will adopt this
-slice in Session 6R2; this module does not change public composition behavior.
+No decoder code or runtime oracle file is used. The public composer emits this
+prefix before every independently framed MFSK segment.
 """
 
 from array import array

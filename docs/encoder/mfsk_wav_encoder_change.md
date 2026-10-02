@@ -1,8 +1,8 @@
 # Native MFSK WAV encoder active change record
 
 **Change ID:** `mfsk-wav-encoder-v1`  
-**Status:** active — Session 6 local slice retained; RSID product correction
-requires Sessions 6R0–6R2 before feature completion
+**Status:** active — Session 6R2 RSID composition candidate; local hardening
+and pinned whole-WAV fldigi qualification remain
 **Session 0 completed:** 2026-10-01  
 **Session 1 completed:** 2026-10-01
 **Session 2 completed:** 2026-10-01
@@ -11,6 +11,9 @@ requires Sessions 6R0–6R2 before feature completion
 **Session 5 completed:** 2026-10-01
 **Session 6 local slice completed:** 2026-10-01; whole-WAV mixed-mode acceptance
 withdrawn pending RSID remediation
+**Session 6R0 contract completed:** 2026-10-01
+**Session 6R1 isolated waveform completed:** 2026-10-01
+**Session 6R2 local composition/acquisition completed:** 2026-10-01
 **Accepted production behavior changed:** no
 
 ## Request and boundary
@@ -683,3 +686,69 @@ Session 7 entry condition in the Session 6 closeout.
    without introducing editorial silence. The full decoder regression was not
    rerun for this isolated module; encoder regressions pass and no decoder or
    active composer path changed.
+
+## Session 6R2 closeout (2026-10-01)
+
+1. **Scope and confirmed design:** integrated the passing Session 6R1 prefix
+   before every top-level MFSK segment, including empty text, repeated modes,
+   and segments following copied audio. D-011 and D-023 retain their exact
+   Session 6R0 wire contract: no new API fields, optional switch, crossfade,
+   or editorial gap. A composition item records both the prefix and payload
+   frame plans; preflight includes both in the RIFF ceiling and duration.
+   Top-level starts identify the RSID lead guard, and nested content starts
+   shift by that segment's complete prefix. Writing checks actual prefix and
+   payload frame counts against the composition plan.
+2. **Candidate identity:** starting revision
+   `10b82b26d20f7d27a8d3619e06aec8f055148bfa`, plus the following changes
+   (SHA-256): `src/grampy/mfsk_compose.py`
+   `3c38b8de330baad01dad071e6484f649132b8d11aa413ddf521c6e4dd199869c`;
+   `src/grampy/rsid_encode.py` (documentation only)
+   `c13414837fda148fd3ba29b3578f6c9dbe693a028c084554abc4223953616b08`;
+   `tests/test_mfsk_encode_session6.py`
+   `b4a7c0af8102a42c11792b446c1037beeed919f89c8cd71fde2ca0ebecf91657`;
+   `tests/test_mfsk_encode_session6r2.py`
+   `baef80992020280f2e6e9009574758b59010cc4535c461b6275cef6181b3675d`.
+   The frozen RSID oracle remains unchanged at
+   `be9e40eae97b1230d50b6991c2d7c853d9562029a4a38b19f19e561bdd5857ec`.
+3. **Local evidence:** the complete managed virtualenv regression passed
+   **238 tests in 141.118 seconds, with 6 expected skips**. The authoritative
+   result reports exit 0 and 142 seconds elapsed. Independent RSID PCM joins
+   the unchanged MFSK waveform exactly at 8, 48, and 192 kHz; all 24 rates
+   pass prefix-inclusive preflight and empty-content timestamp checks.
+   Repeated empty segments emit both prefixes. Prefix-inclusive RIFF overflow
+   preserves an existing output; prefix failures, interruption, accounting
+   mismatches, and subsequent payload failures remove the replaced output.
+   Text-file/image coordinates and byte-exact copied audio/silence regressions
+   pass. The full suite includes the isolated waveform's mutation and bounded
+   memory evidence and the existing decoder regressions.
+4. **Acquisition evidence and investigation:** all eight whole-WAV cases
+   pass automatic acquisition and recover both messages in order: 32→64,
+   64→32, 32→32, and 64→64, each adjacent and with caller-inserted audio and
+   silence. The spaced cases start after audio; every pair retunes from
+   1400 to 1600 Hz. The public decoder receives one analytic conversion of
+   the complete 48-kHz WAV with no mode/carrier hints or supplied windows.
+   Two initial managed runs each executed 23 tests and exited 1 (34.006 and
+   34.482 seconds), due to overstrict receiver-distance/timestamp assertions.
+   Investigation confirmed that the existing receiver accepts code distance
+   up to two and reports approximate windows that can precede a tone word.
+   Final smoke assertions require accepted identifiers, carriers within 3 Hz,
+   window overlap with the corresponding on-air word, and complete ordered
+   messages. Exact transmitted words and timing remain independently checked.
+   No decoder or waveform change, added gap, or weaker dependency was used.
+   All managed result records were incorporated and their completed session
+   directories removed per AGENTS.md.
+5. **Limits and disposition:** Session 6R2's local close condition is met;
+   no important RSID/composition design question remains open. This is an
+   investigative candidate, not product acceptance or a deployment claim.
+   GramPy reception is coupled smoke evidence. No Pi job was needed for this
+   local session: there was no acquisition failure contradicting the frozen
+   waveform, and the plan assigns candidate external reception to Session 8.
+   The unchanged v2 matrix/manifest still require pinned fldigi whole-WAV RxID
+   qualification. Resource/platform feasibility and package qualification
+   remain open. No commit was created.
+6. **Fold decision and next entry:** keep Session 7 separate. The added
+   prefix changes aggregate duration and streaming work, so long-duration
+   resources, package installation, and failure hardening deserve their own
+   evidence. Session 7 may proceed from this locally passing candidate with
+   unconditional RSID and the unchanged public API shapes; Session 8 remains
+   the independent whole-WAV receiver gate.

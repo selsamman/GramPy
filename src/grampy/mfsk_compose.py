@@ -24,6 +24,7 @@ from .mfsk_segment_encode import (
     plan_mfsk_segment,
 )
 from .text_encode import MODE_PARAMETERS, MfskMode
+from .rsid_encode import _RsidPrefixPlan, _plan_rsid_prefix, _write_rsid_prefix
 
 
 PictureColor: TypeAlias = Literal["color", "grayscale"]
@@ -118,6 +119,7 @@ class _CompositionItem:
     mfsk_plan: MfskSegmentPlan | None
     audio_plan: _AudioPlan | None
     frame_count: int
+    rsid_plan: _RsidPrefixPlan | None = None
 
 
 def _read_exact(source: BinaryIO, length: int) -> bytes:
@@ -263,12 +265,17 @@ def _preflight(
                 carrier_hz=part.carrier_hz,
                 sample_rate_hz=sample_rate_hz,
             )
-            frame_count = mfsk_plan.frame_count
+            rsid_plan = _plan_rsid_prefix(
+                mode=part.mode,
+                carrier_hz=part.carrier_hz,
+                sample_rate_hz=sample_rate_hz,
+            )
+            frame_count = rsid_plan.frame_count + mfsk_plan.frame_count
             content_starts = tuple(
-                ContentStart(i, (cursor + frame) / sample_rate_hz)
+                ContentStart(i, (cursor + rsid_plan.frame_count + frame) / sample_rate_hz)
                 for i, frame in enumerate(mfsk_plan.content_start_frames)
             )
-            item = _CompositionItem(contents, mfsk_plan, None, frame_count)
+            item = _CompositionItem(contents, mfsk_plan, None, frame_count, rsid_plan)
         elif isinstance(part, AudioPart):
             path = _path(part.path)
             _reject_alias(output_path, path)
@@ -326,7 +333,11 @@ def encode_mfsk_wav(
     output_path: Path,
     config: EncodeConfig | None = None,
 ) -> EncodeResult:
-    """Compose one canonical mono PCM WAV at the caller's exact output path."""
+    """Compose a mono PCM WAV with RSID before every independent MFSK segment.
+
+    Segment starts include the RSID lead guard; content starts follow the
+    complete prefix. Only source-required guards and caller silence are added.
+    """
     snapshot = _snapshot_parts(parts)
     if config is None:
         config = EncodeConfig()
@@ -348,6 +359,16 @@ def encode_mfsk_wav(
                 plan = item.mfsk_plan
                 if item.contents is None:
                     raise RuntimeError("missing planned MFSK contents")
+                if item.rsid_plan is None:
+                    raise RuntimeError("missing planned RSID prefix")
+                prefix_frames = _write_rsid_prefix(
+                    writer,
+                    mode=plan.mode,
+                    carrier_hz=plan.carrier_hz,
+                    sample_rate_hz=config.sample_rate_hz,
+                )
+                if prefix_frames != item.rsid_plan.frame_count:
+                    raise RuntimeError("planned and emitted RSID frame counts disagree")
                 synthesizer = ContinuousPhaseToneWriter(
                     writer,
                     mode=plan.mode,
@@ -366,6 +387,8 @@ def encode_mfsk_wav(
                 synthesizer.finish()
                 if synthesizer.frame_count != plan.frame_count:
                     raise RuntimeError("planned and synthesized MFSK frame counts disagree")
+                if prefix_frames + synthesizer.frame_count != item.frame_count:
+                    raise RuntimeError("planned and emitted composition frame counts disagree")
             elif item.audio_plan is not None:
                 _copy_audio(writer, item.audio_plan)
             else:

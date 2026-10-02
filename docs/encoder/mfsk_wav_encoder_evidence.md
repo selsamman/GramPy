@@ -3,10 +3,11 @@
 ## Purpose and independence boundary
 
 This harness supplies the offline text, picture, and MFSK composition oracle
-established through Session 6. The Session 6R0 source-derived RSID candidate
-vector is now in `data/mfsk_encoder_rsid_oracle_v1.json`, but its pinned-source
-comparison and receiver acceptance are still open; it cannot yet accept the
-corrected whole-WAV mixed-mode requirement. The existing
+established through Session 6. The Session 6R0 source-derived RSID vector in
+`data/mfsk_encoder_rsid_oracle_v1.json` has been checked against the pinned
+transmitter source and drives the independent native PCM checks. Pinned
+receiver acceptance of a GramPy candidate remains open; local evidence cannot
+accept the corrected whole-WAV fldigi requirement. The existing
 `tests/mfsk_encoder_evidence.py` imports no
 encoder code and derives its expected events from frozen protocol evidence and
 wire equations.
@@ -86,8 +87,52 @@ file and imports no RSID decoder.
 
 The managed regression on 2026-10-01 passed 60 encoder/evidence tests in
 6.132 seconds and 3 frozen RSID oracle tests in 0.016 seconds. This qualifies
-the isolated native waveform; continuous acquisition remains unverified.
+the isolated native waveform; candidate reception is covered separately below.
 It does not claim bit-identical fldigi audio/resampler output.
+
+## Session 6R2 composition and local acquisition evidence
+
+`tests/test_mfsk_encode_session6r2.py` compares public WAV data with the
+independent frozen-oracle RSID PCM followed immediately by the existing MFSK
+waveform, for both modes at 8, 48, and 192 kHz. This locks the source-derived
+guards and unchanged payload oscillator/envelope without an editorial gap.
+All 24 rates have exact prefix-inclusive preflight totals and nested empty
+content timestamps. Repeated empty segments emit both complete prefixes.
+The classic RIFF ceiling includes every prefix; overflow preserves an
+existing output. Prefix exceptions, interruption, incorrect prefix frame
+returns, and payload failures after RSID remove a replaced output.
+Session 6's text-file/image coordinates now include the prefix, while its
+audio, silence, alias, preflight, replacement, and cleanup checks remain.
+
+The coupled acquisition matrix uses four ordered mode pairs (32→64, 64→32,
+32→32, and 64→64), each in adjacent and caller-spaced layouts. The latter
+begin with copied audio and insert 250 ms of explicit silence plus copied
+audio between MFSK segments. Carriers change from 1400 to 1600 Hz in every
+pair. A single Hilbert transform converts each complete 48-kHz WAV to
+analytic SigMF; the public decoder runs once with `mode="auto"`, no carrier
+hint, and no caller-selected windows. Both detected identifiers, both
+carriers within 3 Hz, and both complete messages in order are required.
+Every inserted audio byte and silence frame is also checked.
+
+Receiver timing is deliberately approximate evidence: its bucket/refinement
+algorithm can report a window before the on-air word and accepts code
+distance up to two. Initial test runs incorrectly demanded zero distance and
+near-exact tone-word starts; they failed those assertions despite acquiring
+the expected modes. After applying the detector's existing contract, all
+eight layouts recovered both ordered messages. Smoke checks require each
+reported event window to overlap the corresponding on-air identifier word;
+exact emitted words, guards, and public coordinates remain independently
+checked. No encoder gap or decoder change was made to accommodate this.
+
+This evidence is coupled and does not establish fldigi interoperability.
+The unchanged v2 Pi matrix and manifest require pinned whole-WAV RxID
+reception in Session 8. Session 7 retains package, long-duration resource,
+and platform qualification work.
+
+The complete managed regression on 2026-10-01 passed 238 tests in
+141.118 seconds with 6 expected skips; its authoritative result reports exit
+0. Candidate hashes, initial receiver-assertion failures, and the Session 7
+handoff are recorded in `mfsk_wav_encoder_change.md`.
 
 ## Executable contract
 
