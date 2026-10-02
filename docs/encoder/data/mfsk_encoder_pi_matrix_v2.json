@@ -1,6 +1,6 @@
 {
   "schema": "grampy-mfsk-encoder-pi-matrix.v2",
-  "status": "contract-confirmed-pending-encoder-implementation-and-receiver-execution",
+  "status": "candidate-ready-pending-pinned-receiver-execution",
   "purpose": "Continuous whole-WAV fldigi RxID acquisition and payload recovery",
   "sample_rate_hz": 48000,
   "candidate_oracle": "docs/encoder/data/mfsk_encoder_rsid_oracle_v1.json",

@@ -798,6 +798,19 @@ Deliverables:
 Close when there are no known local failures and no open important design
 decision that fldigi cannot answer directly.
 
+**Closed local slice (2026-10-01):** the distribution metadata declares
+Pillow as the required base dependency, the supported public exports and
+library-only scope are documented in `README.md` and `api.md`, and a built
+wheel contains the encoder modules, packaged wire data, and Pillow metadata.
+Session 7 checks confirm fixed 64-KiB PCM writes for long copied audio,
+silence, and text-file reads, one-raster large-image processing, bounded traced
+allocation, exact mixed-composition coordinates from the completed WAV, and
+the already-covered RSID frame/error/cleanup paths. The managed full regression
+passed 243 tests with 6 expected skips. The v2 Pi
+matrix now marks this candidate ready for its pinned whole-WAV receiver run;
+the v2 qualification-manifest schema remains the required transfer record.
+No encoder CLI is retained in v1. Session 8 is still the external fldigi gate.
+
 **Fold decision:** Keep Session 8 separate unless Pi/fldigi execution is already
 prepared and only requires launching the accepted matrix.
 

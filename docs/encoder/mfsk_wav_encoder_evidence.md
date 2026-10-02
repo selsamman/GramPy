@@ -129,6 +129,39 @@ The unchanged v2 Pi matrix and manifest require pinned whole-WAV RxID
 reception in Session 8. Session 7 retains package, long-duration resource,
 and platform qualification work.
 
+## Session 7 packaging and local-hardening evidence
+
+The distribution remains library-only: `grampy.api` exports the complete
+encoder surface and no `mfsk-wav-encode` console script is declared. Pillow is
+a required base dependency, not an optional extra. The API guide documents the
+input profile, automatic RSID rule, frame-derived timestamps, exact-path
+cleanup behavior, and CLI scope; the README includes a text composition
+example.
+
+A managed isolated wheel build verified that the package contains
+`grampy.api`, the public composer, the RSID writer, and the packaged Varicode
+data, and that its core metadata declares Pillow. The local virtualenv did not
+initially contain the PEP 517 backend, so the isolated build resolved the
+already-declared `setuptools>=77.0.3` build requirement without changing the
+repository or its virtualenv.
+
+`tests/test_mfsk_encode_session7.py` proves that large copied-audio and
+silence paths issue at most 64-KiB PCM writes and remain under a 512-KiB traced
+working-allocation bound independent of the 2-MiB exercise input. Long text
+files are read in the same fixed 64-KiB chunks, and a 1024-by-1024 image keeps
+one source raster while component events stream without a second image-sized
+plane. It also checks that a mixed output's returned coordinates are within,
+ordered against, and duration-identical to the completed WAV. The existing
+Session 6R1/R2 tests retain the independent RSID bounded-memory, frame-count,
+interruption, short-write, accounting-mismatch, existing-output replacement,
+and cleanup coverage.
+
+The complete managed regression on 2026-10-01 passed **243 tests in 129.902
+seconds with 6 expected skips**. The v2 matrix status is now
+`candidate-ready-pending-pinned-receiver-execution`; its v2 schema is the
+transfer-manifest contract for the Session 8 run. This is local evidence only;
+pinned fldigi whole-WAV RxID reception is not claimed here.
+
 The complete managed regression on 2026-10-01 passed 238 tests in
 141.118 seconds with 6 expected skips; its authoritative result reports exit
 0. Candidate hashes, initial receiver-assertion failures, and the Session 7

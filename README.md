@@ -33,6 +33,32 @@ for segment in products.text_manifest["mode_segments"]:
             print(item["text"])
 ```
 
+## Create an MFSK WAV
+
+The supported encoder interface is also in `grampy.api`. It writes one
+caller-selected mono PCM WAV and returns exact start timestamps derived from
+the completed file. Every `MfskSegment` includes the required RSID prefix;
+use `SilencePart` only when you want an explicit editorial pause.
+
+```python
+from pathlib import Path
+
+from grampy.api import MfskSegment, TextPart, encode_mfsk_wav
+
+result = encode_mfsk_wav(
+    parts=(
+        MfskSegment((TextPart.from_text("HELLO FROM GRAMPY"),), "MFSK32", 1500.0),
+    ),
+    output_path=Path("out.wav"),
+)
+print(result.duration_seconds, result.segments[0].contents[0].start_seconds)
+```
+
+The encoder requires the base package dependencies, including Pillow for PNG
+input; there is no encoder extra and no encoder CLI in version one. See the
+[encoder API guide](docs/encoder/api.md) for input, output, failure, and
+timestamp behavior.
+
 `decode_iq_products` returns validated, JSON-compatible text and quality
 manifests; it does not write them to disk. `decode_iq` remains available for
 the detailed diagnostic manifest. The optional artifact arguments control where

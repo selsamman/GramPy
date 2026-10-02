@@ -1,8 +1,8 @@
 # Native MFSK WAV encoder active change record
 
 **Change ID:** `mfsk-wav-encoder-v1`  
-**Status:** active — Session 6R2 RSID composition candidate; local hardening
-and pinned whole-WAV fldigi qualification remain
+**Status:** active — Session 7 local hardening candidate; pinned whole-WAV
+fldigi qualification remains
 **Session 0 completed:** 2026-10-01  
 **Session 1 completed:** 2026-10-01
 **Session 2 completed:** 2026-10-01
@@ -14,6 +14,7 @@ withdrawn pending RSID remediation
 **Session 6R0 contract completed:** 2026-10-01
 **Session 6R1 isolated waveform completed:** 2026-10-01
 **Session 6R2 local composition/acquisition completed:** 2026-10-01
+**Session 7 local hardening completed:** 2026-10-01
 **Accepted production behavior changed:** no
 
 ## Request and boundary
@@ -752,3 +753,33 @@ Session 7 entry condition in the Session 6 closeout.
    evidence. Session 7 may proceed from this locally passing candidate with
    unconditional RSID and the unchanged public API shapes; Session 8 remains
    the independent whole-WAV receiver gate.
+
+## Session 7 closeout (2026-10-01)
+
+1. **Scope and package disposition:** `grampy.api` remains the supported
+   encoder surface. `pyproject.toml` describes the combined decoder/encoder
+   package and retains Pillow as a required base dependency. The v1 encoder is
+   deliberately library-only; no encoder console script was added because the
+   product contract does not retain one.
+2. **Documentation and transfer readiness:** the README contains a minimal
+   encoder example and `docs/encoder/api.md` records exact parts, automatic
+   RSID, timestamp, input-profile, failure-cleanup, and no-CLI semantics. The
+   v2 matrix is marked ready for its pinned receiver execution, and the v2
+   qualification-manifest schema remains the Session 8 transfer record.
+3. **Resource and failure evidence:** new Session 7 tests bound audio-copy,
+   silence, and file-backed text reads to 64 KiB, check a one-raster 1024-by-
+   1024 image path, and trace fixed working allocation for a 2-MiB source
+   exercise. They compare returned mixed-composition coordinates with the
+   completed WAV. Existing Session 6R1/R2 checks continue to cover RSID bounded
+   memory, all-rate frame totals, sink failures, interruption, accounting
+   mismatches, replacement, and cleanup.
+4. **Validation:** the managed full virtualenv suite passed **241 tests in
+   129.902 seconds with 6 expected skips**. A managed isolated wheel build
+   passed after resolving the declared build backend in its temporary build
+   environment; it verified encoder modules, packaged data, and Pillow
+   metadata. The repository virtualenv and tracked dependencies were not
+   modified. No commit was created.
+5. **Disposition:** Session 7 is locally closed. No important local design
+   decision remains. Session 8 is not folded: it must perform the separate
+   pinned-fldigi, continuous whole-WAV RxID matrix and retain the completed v2
+   transfer manifest.
