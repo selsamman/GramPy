@@ -718,6 +718,15 @@ receiver timing has unresolved alternatives.
 **Suggested model:** Sol, high reasoning for wire checks; Terra, medium
 reasoning after the RSID oracle is fixed.
 
+**Closed local slice (2026-10-01):** `src/grampy/rsid_encode.py` implements
+the private prefix planner and PCM sink writer. Both identifier waveforms
+match independently integrated frozen-oracle PCM at multiple carriers.
+Exact guards, phase, frame counts at all supported rates, sink failures, and
+bounded memory pass. The managed regression passed 60 encoder tests and 3
+RSID oracle tests. Public composition remains the Session 6 baseline until
+Session 6R2. Keep 6R2 separate: composition accounting and whole-file receiver
+acquisition need their own evidence. See the change record for closeout.
+
 **Entry condition:** Session 6R0 has confirmed the public and wire decisions,
 recorded an independent oracle, and versioned the qualification contract.
 

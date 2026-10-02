@@ -66,6 +66,29 @@ and required internal guards. It does not by itself prove that a new native
 silence in 6R0. `tests/test_mfsk_rsid_oracle.py` validates the words and 48-kHz
 intervals without importing the production encoder or decoder.
 
+## Session 6R1 isolated waveform evidence
+
+`tests/test_mfsk_encode_session6r1.py` compares complete little-endian PCM
+against analytical integration of the frozen Session 6R0 frequencies and
+words, without calling a GramPy decoder. Both modes match byte for byte at
+48 kHz and carriers 700, 1500, and 2317.25 Hz, plus 8-kHz and 192-kHz endpoint
+checks. Exact guards, unshaped 16,384 peak, advance-before-sample phase,
+continuity across symbols, and secondary reset are covered by complete PCM
+comparisons and boundary assertions.
+
+All 24 supported rates have exact planned/emitted frame counts and
+one-symbol sink writes. Three consecutive MFSK64 prefixes at 192 kHz to a
+discard sink stay below 256 KiB of traced peak allocations. Deliberate tone,
+spacing, carrier alignment, level, phase-sample, and guard/frame mutations
+fail the independent PCM comparison. Invalid inputs write nothing; sink
+exceptions and short writes propagate. Runtime synthesis reads no oracle
+file and imports no RSID decoder.
+
+The managed regression on 2026-10-01 passed 60 encoder/evidence tests in
+6.132 seconds and 3 frozen RSID oracle tests in 0.016 seconds. This qualifies
+the isolated native waveform; continuous acquisition remains unverified.
+It does not claim bit-identical fldigi audio/resampler output.
+
 ## Executable contract
 
 `tests/test_mfsk_encoder_evidence.py` makes these checks executable:

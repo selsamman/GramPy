@@ -645,3 +645,41 @@ the pinned fldigi v4.2.12 source already on the Pi. Isolated waveform
 implementation remains Session 6R1, and continuous GramPy-candidate
 reception remains Session 6R2/8. This correction supersedes the former
 Session 7 entry condition in the Session 6 closeout.
+
+## Session 6R1 closeout (2026-10-01)
+
+1. **Scope and decisions:** confirmed the Session 6R0 oracle and D-011/D-023
+   without new wire alternatives. Added only the private RSID prefix planner
+   and sink writer, using immutable source-derived words, exact integer symbol
+   frames, zero guards, and a separate oscillator with no MFSK envelope.
+   Public composition, decoder behavior, corpus, and fixtures are unchanged.
+2. **Candidate identity:** starting revision
+   `a62214cf28eb0a7bd48997b938309fcafc93001b` plus
+   `src/grampy/rsid_encode.py` (SHA-256
+   `294a43e3ecc5047d3c8667bacdf812225c5ce0326c3c637ab2f047e5ce78c6e8`)
+   and `tests/test_mfsk_encode_session6r1.py` (SHA-256
+   `de31c4bbba2792d40c9fddb33a101b1f19bbeaf228e550ae30672fadef4b94a0`).
+   The existing independent oracle remains unchanged.
+3. **Evidence:** initial managed waveform/oracle run passed 8 tests in
+   2.062 seconds. After adding the memory check, the managed encoder/evidence
+   regression passed 60 tests in 6.132 seconds; frozen RSID oracle checks
+   passed 3 tests in 0.016 seconds. Complete PCM equality covers both modes,
+   multiple carriers, and sample-rate endpoints. All 24 rates pass exact frame
+   and one-symbol write checks. Three maximum-rate extended prefixes remain
+   below 256 KiB traced peak allocations. Tone, carrier, spacing, amplitude,
+   phase-sample, and timing mutations disagree with the oracle. Preflight and
+   sink failure checks pass. Both authoritative managed results report exit 0;
+   completed session state was incorporated here and removed per AGENTS.md.
+4. **Limits and disposition:** the isolated slice meets Session 6R1's local
+   close condition. No public behavior is integrated and no commit is created.
+   Native PCM agreement is independent of the receiver, but does not establish
+   fldigi reception or platform feasibility. Pi evidence remains the planned
+   whole-WAV candidate gate after integration, followed by resource hardening;
+   no deployment acceptance is claimed by this isolated local result.
+5. **Fold decision and next entry:** keep Session 6R2 separate because its
+   composition accounting, timestamp shifts, and whole-file acquisition
+   evidence are substantive. It may now integrate the passing private prefix
+   before every MFSK segment, including empty text and same-mode repetitions,
+   without introducing editorial silence. The full decoder regression was not
+   rerun for this isolated module; encoder regressions pass and no decoder or
+   active composer path changed.
