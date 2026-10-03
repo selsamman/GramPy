@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "radiogrampy"
-version = "0.1.3"
+version = "0.2.1"
 description = "Direct MFSK32/MFSK64 decoder and native PCM WAV encoder"
 readme = "README.md"
 requires-python = ">=3.11"
