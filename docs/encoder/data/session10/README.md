@@ -69,3 +69,11 @@ discovery behavior; the full final suite above passes. Its failed attempt/log
 remain in `.local/session10/superseded/`, without treating a runner setup error
 as a production failure. Final full Pi logs/staging and inputs are preserved;
 only new benchmark/check WAVs and consumed managed run directories are removed.
+
+## Subsequent artifact cleanup (2026-10-03)
+
+The [cleanup and restoration record](cleanup.md) supersedes earlier statements
+that all loose working files and transferred Pi staging remain in their
+original locations. Unique evidence is preserved; obsolete snapshots/logs
+are archived, derivable IQ caches are removed after exact regeneration, and
+inactive Pi staging is retired. Accepted measurements and source are unchanged.

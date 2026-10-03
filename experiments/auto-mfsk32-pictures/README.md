@@ -1,5 +1,12 @@
 # Automatic MFSK32 picture correction
 
+**Historical reproduction:** the correction was accepted on 2026-10-03.
+These supplemental workflows are preserved with their original tested scope;
+normal maintenance uses the permanent regression and the
+[decoder validation guide](../../docs/decoder/validation.md).
+Local/remote cache retirement and evidence restoration are recorded in the
+[cleanup record](../../docs/encoder/data/session10/cleanup.md).
+
 The [change record](../../docs/decoder/auto-mfsk32-pictures-change.md) defines
 the October 3 automatic-dispatch fix and its retained baseline. This directory
 contains supplemental evidence workflows; the original encoder qualification

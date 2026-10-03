@@ -86,3 +86,11 @@ raster timing/filter delay. It must retain all contractual picture speeds,
 preserve this evidence, and confirm a corrective decision before changing
 production behavior. See [the closeout](../../mfsk_wav_encoder_change.md) and
 [workflow instructions](../../../../experiments/mfsk-wav-encoder/README.md).
+
+## Subsequent artifact cleanup (2026-10-03)
+
+The [cleanup and restoration record](../session10/cleanup.md) supersedes earlier statements
+that all loose working files and transferred Pi staging remain in their
+original locations. Unique evidence is preserved; obsolete snapshots/logs
+are archived, derivable IQ caches are removed after exact regeneration, and
+inactive Pi staging is retired. Accepted measurements and source are unchanged.

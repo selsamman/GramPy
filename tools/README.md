@@ -87,6 +87,22 @@ Machine addresses and staging commands belong in `.local/`. The
 [recorded performance procedure](../docs/encoder/validation.md) explains the
 measurement boundaries and retained evidence.
 
+The permanent encoder workflows have these roles:
+
+| Role | Scripts |
+| --- | --- |
+| Practical receive qualification | `pi-qualify-mfsk-broadcast.sh` |
+| Encoder performance measurements | `benchmark-mfsk-encoder.py`, `pi-benchmark-mfsk-encoder.sh` |
+| Decoder picture regression on Pi | `pi-verify-mfsk-auto-pictures.sh` |
+| Historical v2 qualification reproduction | `pi-qualify-mfsk-encoder.sh` |
+| Historical picture/harness diagnosis | `pi-investigate-mfsk-pictures.sh`, `pi-inspect-mfsk-picture-artifacts.sh`, `pi-generate-mfsk-roundtrip-control.sh`, `pi-decode-mfsk-roundtrip-control.sh` |
+
+Historical scripts remain useful provenance and reproduction aids. They are
+not runtime dependencies or the normal accepted qualification route. One-off
+transport commands, machine paths and installation targets stay in `.local/`.
+The [post-project cleanup record](../docs/encoder/data/session10/cleanup.md)
+describes retained evidence, archives and disposable caches.
+
 ## Received-IQ corpus
 
 The optional received-IQ corpus is a local, self-contained directory at:

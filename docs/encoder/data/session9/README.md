@@ -369,3 +369,11 @@ identity and buffer checks, valid evidence links, and unchanged hashes for all
 [authoritative managed result](verify-result.md) is preserved. A broad product
 regression was not rerun because no production behavior changed; these new
 sidecar measurements have their own waveform mutation and calibration checks.
+
+## Subsequent artifact cleanup (2026-10-03)
+
+The [cleanup and restoration record](../session10/cleanup.md) supersedes earlier statements
+that all loose working files and transferred Pi staging remain in their
+original locations. Unique evidence is preserved; obsolete snapshots/logs
+are archived, derivable IQ caches are removed after exact regeneration, and
+inactive Pi staging is retired. Accepted measurements and source are unchanged.

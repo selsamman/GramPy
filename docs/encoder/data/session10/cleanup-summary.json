@@ -1,0 +1,29 @@
+{
+  "utc": "2026-10-03T14:33:17.531951+00:00",
+  "scope": "post-project artifact retirement",
+  "mac_initial_project_logical_bytes": 830182239,
+  "mac_remaining_project_logical_bytes": 399372098,
+  "mac_archives_and_cleanup_records_bytes": 180841468,
+  "mac_net_saved_bytes": 250631044,
+  "mac_archiving_and_iq_saved_bytes": 337094868,
+  "mac_iq_caches_removed": 10,
+  "all_removed_iq_regenerated_byte_identical": true,
+  "local_iq_restore_round_trip": "pass",
+  "superseded_mac_directories_archived": 3,
+  "raw_transfer_logs_losslessly_compressed": 2,
+  "build_source_copies_removed": 40,
+  "pi_staging_roots_removed": 15,
+  "pi_removed_logical_bytes": 508999514,
+  "pi_shared_test_runtime_retained": true,
+  "pi_unique_preservation_archive_bytes": 63806751,
+  "all_pi_file_contents_preserved_and_hash_verified": true,
+  "accepted_wavs_and_frozen_records": "unchanged",
+  "source_and_final_wheel": "unchanged",
+  "external_corpus_and_production_installations": "untouched",
+  "private_restore_manifest": ".local/project-cleanup/pi-restore-manifest.json",
+  "private_local_cleanup_manifest": ".local/project-cleanup/mac-cleanup.json",
+  "private_restore_helpers": [
+    ".local/project-cleanup/restore-local.py",
+    ".local/project-cleanup/prepare-pi-restore.py"
+  ]
+}

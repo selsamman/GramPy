@@ -125,3 +125,11 @@ corroboration is exact wire/WAV equality to the equivalent working RGB path.
 The accepted behavior can now be maintained from the API, contracts, design,
 validation and production-baseline guides. Session 9 is closed; Session 10
 is folded and complete within D-029's 48-kHz practical scope.
+
+## Subsequent artifact cleanup (2026-10-03)
+
+The [cleanup and restoration record](data/session10/cleanup.md) supersedes earlier statements
+that all loose working files and transferred Pi staging remain in their
+original locations. Unique evidence is preserved; obsolete snapshots/logs
+are archived, derivable IQ caches are removed after exact regeneration, and
+inactive Pi staging is retired. Accepted measurements and source are unchanged.
