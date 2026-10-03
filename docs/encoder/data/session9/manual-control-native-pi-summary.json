@@ -1,0 +1,38 @@
+{
+  "mode": "MFSK64",
+  "carrier_hz": 1500,
+  "rxid": "off",
+  "afc": "off",
+  "unchanged_production_files_verified": 40,
+  "status_interval_sec": 5,
+  "source_size": [
+    160,
+    120
+  ],
+  "text_recovered": true,
+  "announcement_recovered": true,
+  "source_pixel_sha256": "279696577f448ce5c33978808cd18306e58855d9df86240172eb21653d74154d",
+  "input_wav_sha256": "0a7fb22253f2bcae6c7408880c723652378b840eb352797cea7fc7d0532b53e6",
+  "autosave_equals_viewer": true,
+  "scores": {
+    "viewer": {
+      "pixel_sha256": "32c07b96c4060a0c4a36175317ad566e629a0e2631151eb931ed7363e999ef14",
+      "mae": 13.367951388888889,
+      "max_error": 255,
+      "unequal_components": 37340,
+      "exact": false
+    },
+    "autosave": {
+      "pixel_sha256": "32c07b96c4060a0c4a36175317ad566e629a0e2631151eb931ed7363e999ef14",
+      "mae": 13.367951388888889,
+      "max_error": 255,
+      "unequal_components": 37340,
+      "exact": false
+    }
+  },
+  "qualification_decision": "none; one diagnostic reference round trip",
+  "mac_manual_decode": "visually clean; mac-results/summary.json",
+  "waveform_status": "original unchanged GramPy control WAV; no offline correction",
+  "post_picture_text_recovered": true,
+  "native_pi_vs_native_mac_mae": 1.1657986111111112
+}

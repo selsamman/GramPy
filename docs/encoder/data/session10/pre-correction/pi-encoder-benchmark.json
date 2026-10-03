@@ -1,0 +1,623 @@
+{
+  "started_utc": "2026-10-03T12:44:55.951803+00:00",
+  "completed_utc": "2026-10-03T12:48:54.786441+00:00",
+  "repeats": 2,
+  "sample_rate_hz": 48000,
+  "timing_scope": "encode_mfsk_wav only; process CPU (all threads) and elapsed wall; imports, setup and validation excluded",
+  "rss_scope": "fresh worker process peak including imports, input inspection and encoding; before validation",
+  "io_scope": "ordinary file writes through close; no fsync or cold-cache claim",
+  "wav_retention": "validated benchmark WAVs removed; hashes, counts and metrics retained",
+  "summaries": [
+    {
+      "id": "gray32-p8-card",
+      "description": "Accepted MFSK32 grayscale p8 240x180",
+      "cpu_seconds": {
+        "min": 9.533475547,
+        "median": 9.573853673999999,
+        "max": 9.614231800999999
+      },
+      "wall_seconds": {
+        "min": 9.56480317702517,
+        "median": 9.591929953487124,
+        "max": 9.61905672994908
+      },
+      "broadcast_seconds": {
+        "min": 63.677875,
+        "median": 63.677875,
+        "max": 63.677875
+      },
+      "cpu_to_broadcast_ratio": {
+        "min": 0.14971409688215884,
+        "median": 0.15034819666956536,
+        "max": 0.1509822964569719
+      },
+      "wall_to_broadcast_ratio": {
+        "min": 0.15020606728828764,
+        "median": 0.15063206731517226,
+        "max": 0.15105806734205687
+      },
+      "peak_process_rss_bytes": {
+        "min": 105910272,
+        "median": 105916416.0,
+        "max": 105922560
+      },
+      "wav_bytes": {
+        "min": 6113120,
+        "median": 6113120.0,
+        "max": 6113120
+      }
+    },
+    {
+      "id": "rgb64-p8-photo",
+      "description": "Accepted MFSK64 color p8 240x180",
+      "cpu_seconds": {
+        "min": 21.799085321,
+        "median": 21.8038647545,
+        "max": 21.808644188000002
+      },
+      "wall_seconds": {
+        "min": 21.80412508000154,
+        "median": 21.80940520495642,
+        "max": 21.8146853299113
+      },
+      "broadcast_seconds": {
+        "min": 145.35975,
+        "median": 145.35975,
+        "max": 145.35975
+      },
+      "cpu_to_broadcast_ratio": {
+        "min": 0.14996644752759963,
+        "median": 0.14999932756144668,
+        "max": 0.15003220759529376
+      },
+      "wall_to_broadcast_ratio": {
+        "min": 0.15000111846643616,
+        "median": 0.15003744299887983,
+        "max": 0.15007376753132348
+      },
+      "peak_process_rss_bytes": {
+        "min": 105865216,
+        "median": 105891840.0,
+        "max": 105918464
+      },
+      "wav_bytes": {
+        "min": 13954580,
+        "median": 13954580.0,
+        "max": 13954580
+      }
+    },
+    {
+      "id": "rgb64-p2-chart",
+      "description": "Accepted MFSK64 color p2 160x120",
+      "cpu_seconds": {
+        "min": 5.197357724,
+        "median": 5.2034637915,
+        "max": 5.209569859
+      },
+      "wall_seconds": {
+        "min": 5.198596299975179,
+        "median": 5.205046456481796,
+        "max": 5.211496612988412
+      },
+      "broadcast_seconds": {
+        "min": 30.28775,
+        "median": 30.28775,
+        "max": 30.28775
+      },
+      "cpu_to_broadcast_ratio": {
+        "min": 0.17159933385609694,
+        "median": 0.17180093574134758,
+        "max": 0.17200253762659823
+      },
+      "wall_to_broadcast_ratio": {
+        "min": 0.17164022748388966,
+        "median": 0.1718531900349744,
+        "max": 0.17206615258605915
+      },
+      "peak_process_rss_bytes": {
+        "min": 105590784,
+        "median": 105621504.0,
+        "max": 105652224
+      },
+      "wav_bytes": {
+        "min": 2907668,
+        "median": 2907668.0,
+        "max": 2907668
+      }
+    },
+    {
+      "id": "mixed-broadcast-photo",
+      "description": "Accepted MFSK64 color p4 240x180 with MFSK32 text, audio and silence",
+      "cpu_seconds": {
+        "min": 15.9412638,
+        "median": 15.9704286165,
+        "max": 15.999593433
+      },
+      "wall_seconds": {
+        "min": 15.944158963044174,
+        "median": 15.975997183006257,
+        "max": 16.00783540296834
+      },
+      "broadcast_seconds": {
+        "min": 99.705625,
+        "median": 99.705625,
+        "max": 99.705625
+      },
+      "cpu_to_broadcast_ratio": {
+        "min": 0.1598832944480314,
+        "median": 0.16017580368710393,
+        "max": 0.16046831292617644
+      },
+      "wall_to_broadcast_ratio": {
+        "min": 0.15991233155646106,
+        "median": 0.160231653760821,
+        "max": 0.1605509759651809
+      },
+      "peak_process_rss_bytes": {
+        "min": 105906176,
+        "median": 105914368.0,
+        "max": 105922560
+      },
+      "wav_bytes": {
+        "min": 9571784,
+        "median": 9571784.0,
+        "max": 9571784
+      }
+    },
+    {
+      "id": "text32-2048-bytes",
+      "description": "2048-byte MFSK32 text file",
+      "cpu_seconds": {
+        "min": 33.635203597,
+        "median": 33.774204897999994,
+        "max": 33.913206198999994
+      },
+      "wall_seconds": {
+        "min": 33.645727244904265,
+        "median": 33.78497900895309,
+        "max": 33.92423077300191
+      },
+      "broadcast_seconds": {
+        "min": 250.897875,
+        "median": 250.897875,
+        "max": 250.897875
+      },
+      "cpu_to_broadcast_ratio": {
+        "min": 0.13405934026742952,
+        "median": 0.13461335572491395,
+        "max": 0.13516737118239838
+      },
+      "wall_to_broadcast_ratio": {
+        "min": 0.13410128421735046,
+        "median": 0.13465629794175454,
+        "max": 0.13521131166615863
+      },
+      "peak_process_rss_bytes": {
+        "min": 105000960,
+        "median": 105003008.0,
+        "max": 105005056
+      },
+      "wav_bytes": {
+        "min": 24086240,
+        "median": 24086240.0,
+        "max": 24086240
+      }
+    },
+    {
+      "id": "audio-copy-30s",
+      "description": "30-second exact AudioPart copy",
+      "cpu_seconds": {
+        "min": 0.009988905999999798,
+        "median": 0.010009296500000042,
+        "max": 0.010029687000000287
+      },
+      "wall_seconds": {
+        "min": 0.009970034006983042,
+        "median": 0.009990788996219635,
+        "max": 0.010011543985456228
+      },
+      "broadcast_seconds": {
+        "min": 30.0,
+        "median": 30.0,
+        "max": 30.0
+      },
+      "cpu_to_broadcast_ratio": {
+        "min": 0.0003329635333333266,
+        "median": 0.00033364321666666806,
+        "max": 0.00033432290000000954
+      },
+      "wall_to_broadcast_ratio": {
+        "min": 0.00033233446689943474,
+        "median": 0.00033302629987398783,
+        "max": 0.0003337181328485409
+      },
+      "peak_process_rss_bytes": {
+        "min": 104984576,
+        "median": 104992768.0,
+        "max": 105000960
+      },
+      "wav_bytes": {
+        "min": 2880044,
+        "median": 2880044.0,
+        "max": 2880044
+      }
+    },
+    {
+      "id": "audio-copy-300s",
+      "description": "300-second exact AudioPart copy",
+      "cpu_seconds": {
+        "min": 0.09030671899999998,
+        "median": 0.09453343800000003,
+        "max": 0.09876015700000007
+      },
+      "wall_seconds": {
+        "min": 0.09028894000221044,
+        "median": 0.0970682415063493,
+        "max": 0.10384754301048815
+      },
+      "broadcast_seconds": {
+        "min": 300.0,
+        "median": 300.0,
+        "max": 300.0
+      },
+      "cpu_to_broadcast_ratio": {
+        "min": 0.0003010223966666666,
+        "median": 0.0003151114600000001,
+        "max": 0.00032920052333333357
+      },
+      "wall_to_broadcast_ratio": {
+        "min": 0.00030096313334070145,
+        "median": 0.0003235608050211643,
+        "max": 0.0003461584767016272
+      },
+      "peak_process_rss_bytes": {
+        "min": 105000960,
+        "median": 105021440.0,
+        "max": 105041920
+      },
+      "wav_bytes": {
+        "min": 28800044,
+        "median": 28800044.0,
+        "max": 28800044
+      }
+    }
+  ],
+  "samples": [
+    {
+      "id": "gray32-p8-card",
+      "repeat": 1,
+      "cpu_seconds": 9.533475547,
+      "user_cpu_seconds": 9.476727,
+      "system_cpu_seconds": 0.05678300000000003,
+      "wall_seconds": 9.56480317702517,
+      "broadcast_seconds": 63.677875,
+      "cpu_to_broadcast_ratio": 0.14971409688215884,
+      "wall_to_broadcast_ratio": 0.15020606728828764,
+      "peak_process_rss_bytes": 105910272,
+      "wav_bytes": 6113120,
+      "wav_frames": 3056538,
+      "wav_sha256": "f7291065b072e0fad8e201b434ac99a5e73f8833dad2d7f7fc4e56468cce901b",
+      "temperature_frequency_before": {
+        "temperature_millidegrees_c": "30020",
+        "cpu0_frequency_khz": "1400000"
+      },
+      "temperature_frequency_after": {
+        "temperature_millidegrees_c": "31096",
+        "cpu0_frequency_khz": "1400000"
+      },
+      "wav_audio_silence_timestamps": "pass"
+    },
+    {
+      "id": "gray32-p8-card",
+      "repeat": 2,
+      "cpu_seconds": 9.614231800999999,
+      "user_cpu_seconds": 9.566291,
+      "system_cpu_seconds": 0.04797800000000002,
+      "wall_seconds": 9.61905672994908,
+      "broadcast_seconds": 63.677875,
+      "cpu_to_broadcast_ratio": 0.1509822964569719,
+      "wall_to_broadcast_ratio": 0.15105806734205687,
+      "peak_process_rss_bytes": 105922560,
+      "wav_bytes": 6113120,
+      "wav_frames": 3056538,
+      "wav_sha256": "f7291065b072e0fad8e201b434ac99a5e73f8833dad2d7f7fc4e56468cce901b",
+      "temperature_frequency_before": {
+        "temperature_millidegrees_c": "30558",
+        "cpu0_frequency_khz": "1400000"
+      },
+      "temperature_frequency_after": {
+        "temperature_millidegrees_c": "31096",
+        "cpu0_frequency_khz": "1400000"
+      },
+      "wav_audio_silence_timestamps": "pass"
+    },
+    {
+      "id": "rgb64-p8-photo",
+      "repeat": 1,
+      "cpu_seconds": 21.808644188000002,
+      "user_cpu_seconds": 21.705,
+      "system_cpu_seconds": 0.10368,
+      "wall_seconds": 21.8146853299113,
+      "broadcast_seconds": 145.35975,
+      "cpu_to_broadcast_ratio": 0.15003220759529376,
+      "wall_to_broadcast_ratio": 0.15007376753132348,
+      "peak_process_rss_bytes": 105918464,
+      "wav_bytes": 13954580,
+      "wav_frames": 6977268,
+      "wav_sha256": "6b7aa722eac0a4e4b47196a93e98085279d530185e4d45a834995ccf6af37eca",
+      "temperature_frequency_before": {
+        "temperature_millidegrees_c": "31634",
+        "cpu0_frequency_khz": "1400000"
+      },
+      "temperature_frequency_after": {
+        "temperature_millidegrees_c": "32172",
+        "cpu0_frequency_khz": "1400000"
+      },
+      "wav_audio_silence_timestamps": "pass"
+    },
+    {
+      "id": "rgb64-p8-photo",
+      "repeat": 2,
+      "cpu_seconds": 21.799085321,
+      "user_cpu_seconds": 21.703103000000002,
+      "system_cpu_seconds": 0.09602100000000002,
+      "wall_seconds": 21.80412508000154,
+      "broadcast_seconds": 145.35975,
+      "cpu_to_broadcast_ratio": 0.14996644752759963,
+      "wall_to_broadcast_ratio": 0.15000111846643616,
+      "peak_process_rss_bytes": 105865216,
+      "wav_bytes": 13954580,
+      "wav_frames": 6977268,
+      "wav_sha256": "6b7aa722eac0a4e4b47196a93e98085279d530185e4d45a834995ccf6af37eca",
+      "temperature_frequency_before": {
+        "temperature_millidegrees_c": "31634",
+        "cpu0_frequency_khz": "1400000"
+      },
+      "temperature_frequency_after": {
+        "temperature_millidegrees_c": "32710",
+        "cpu0_frequency_khz": "1400000"
+      },
+      "wav_audio_silence_timestamps": "pass"
+    },
+    {
+      "id": "rgb64-p2-chart",
+      "repeat": 1,
+      "cpu_seconds": 5.209569859,
+      "user_cpu_seconds": 5.1976700000000005,
+      "system_cpu_seconds": 0.01193999999999995,
+      "wall_seconds": 5.211496612988412,
+      "broadcast_seconds": 30.28775,
+      "cpu_to_broadcast_ratio": 0.17200253762659823,
+      "wall_to_broadcast_ratio": 0.17206615258605915,
+      "peak_process_rss_bytes": 105590784,
+      "wav_bytes": 2907668,
+      "wav_frames": 1453812,
+      "wav_sha256": "25fc90bd2590415b84d1f93a01ea61059b77035c2f58e0745e5490f31fb6180b",
+      "temperature_frequency_before": {
+        "temperature_millidegrees_c": "32172",
+        "cpu0_frequency_khz": "1400000"
+      },
+      "temperature_frequency_after": {
+        "temperature_millidegrees_c": "32172",
+        "cpu0_frequency_khz": "1400000"
+      },
+      "wav_audio_silence_timestamps": "pass"
+    },
+    {
+      "id": "rgb64-p2-chart",
+      "repeat": 2,
+      "cpu_seconds": 5.197357724,
+      "user_cpu_seconds": 5.149241,
+      "system_cpu_seconds": 0.048150000000000026,
+      "wall_seconds": 5.198596299975179,
+      "broadcast_seconds": 30.28775,
+      "cpu_to_broadcast_ratio": 0.17159933385609694,
+      "wall_to_broadcast_ratio": 0.17164022748388966,
+      "peak_process_rss_bytes": 105652224,
+      "wav_bytes": 2907668,
+      "wav_frames": 1453812,
+      "wav_sha256": "25fc90bd2590415b84d1f93a01ea61059b77035c2f58e0745e5490f31fb6180b",
+      "temperature_frequency_before": {
+        "temperature_millidegrees_c": "32172",
+        "cpu0_frequency_khz": "1400000"
+      },
+      "temperature_frequency_after": {
+        "temperature_millidegrees_c": "32172",
+        "cpu0_frequency_khz": "1400000"
+      },
+      "wav_audio_silence_timestamps": "pass"
+    },
+    {
+      "id": "mixed-broadcast-photo",
+      "repeat": 1,
+      "cpu_seconds": 15.9412638,
+      "user_cpu_seconds": 15.853329,
+      "system_cpu_seconds": 0.08796899999999996,
+      "wall_seconds": 15.944158963044174,
+      "broadcast_seconds": 99.705625,
+      "cpu_to_broadcast_ratio": 0.1598832944480314,
+      "wall_to_broadcast_ratio": 0.15991233155646106,
+      "peak_process_rss_bytes": 105906176,
+      "wav_bytes": 9571784,
+      "wav_frames": 4785870,
+      "wav_sha256": "ecf6819b916abd6d444fd9ac229d2264772664b234f543ff43ad63ce8d8f5925",
+      "temperature_frequency_before": {
+        "temperature_millidegrees_c": "32172",
+        "cpu0_frequency_khz": "1400000"
+      },
+      "temperature_frequency_after": {
+        "temperature_millidegrees_c": "32710",
+        "cpu0_frequency_khz": "1400000"
+      },
+      "wav_audio_silence_timestamps": "pass"
+    },
+    {
+      "id": "mixed-broadcast-photo",
+      "repeat": 2,
+      "cpu_seconds": 15.999593433,
+      "user_cpu_seconds": 15.915756000000002,
+      "system_cpu_seconds": 0.08388000000000001,
+      "wall_seconds": 16.00783540296834,
+      "broadcast_seconds": 99.705625,
+      "cpu_to_broadcast_ratio": 0.16046831292617644,
+      "wall_to_broadcast_ratio": 0.1605509759651809,
+      "peak_process_rss_bytes": 105922560,
+      "wav_bytes": 9571784,
+      "wav_frames": 4785870,
+      "wav_sha256": "ecf6819b916abd6d444fd9ac229d2264772664b234f543ff43ad63ce8d8f5925",
+      "temperature_frequency_before": {
+        "temperature_millidegrees_c": "32710",
+        "cpu0_frequency_khz": "1400000"
+      },
+      "temperature_frequency_after": {
+        "temperature_millidegrees_c": "32710",
+        "cpu0_frequency_khz": "1400000"
+      },
+      "wav_audio_silence_timestamps": "pass"
+    },
+    {
+      "id": "text32-2048-bytes",
+      "repeat": 1,
+      "cpu_seconds": 33.635203597,
+      "user_cpu_seconds": 33.459496,
+      "system_cpu_seconds": 0.17574399999999996,
+      "wall_seconds": 33.645727244904265,
+      "broadcast_seconds": 250.897875,
+      "cpu_to_broadcast_ratio": 0.13405934026742952,
+      "wall_to_broadcast_ratio": 0.13410128421735046,
+      "peak_process_rss_bytes": 105000960,
+      "wav_bytes": 24086240,
+      "wav_frames": 12043098,
+      "wav_sha256": "1cb4b3bf180ce14495ab0bf1018d3bd2548e028dff03eafefd25369fd85e29f8",
+      "temperature_frequency_before": {
+        "temperature_millidegrees_c": "32710",
+        "cpu0_frequency_khz": "1400000"
+      },
+      "temperature_frequency_after": {
+        "temperature_millidegrees_c": "33786",
+        "cpu0_frequency_khz": "1400000"
+      },
+      "wav_audio_silence_timestamps": "pass"
+    },
+    {
+      "id": "text32-2048-bytes",
+      "repeat": 2,
+      "cpu_seconds": 33.913206198999994,
+      "user_cpu_seconds": 33.749313,
+      "system_cpu_seconds": 0.163929,
+      "wall_seconds": 33.92423077300191,
+      "broadcast_seconds": 250.897875,
+      "cpu_to_broadcast_ratio": 0.13516737118239838,
+      "wall_to_broadcast_ratio": 0.13521131166615863,
+      "peak_process_rss_bytes": 105005056,
+      "wav_bytes": 24086240,
+      "wav_frames": 12043098,
+      "wav_sha256": "1cb4b3bf180ce14495ab0bf1018d3bd2548e028dff03eafefd25369fd85e29f8",
+      "temperature_frequency_before": {
+        "temperature_millidegrees_c": "33786",
+        "cpu0_frequency_khz": "1400000"
+      },
+      "temperature_frequency_after": {
+        "temperature_millidegrees_c": "33786",
+        "cpu0_frequency_khz": "1400000"
+      },
+      "wav_audio_silence_timestamps": "pass"
+    },
+    {
+      "id": "audio-copy-30s",
+      "repeat": 1,
+      "cpu_seconds": 0.009988905999999798,
+      "user_cpu_seconds": 0.00184699999999971,
+      "system_cpu_seconds": 0.008180999999999994,
+      "wall_seconds": 0.009970034006983042,
+      "broadcast_seconds": 30.0,
+      "cpu_to_broadcast_ratio": 0.0003329635333333266,
+      "wall_to_broadcast_ratio": 0.00033233446689943474,
+      "peak_process_rss_bytes": 105000960,
+      "wav_bytes": 2880044,
+      "wav_frames": 1440000,
+      "wav_sha256": "1e100f3632313eb1fb1ca4dda22574c721a956613bed4e3562bc5c2ded278c68",
+      "temperature_frequency_before": {
+        "temperature_millidegrees_c": "32710",
+        "cpu0_frequency_khz": "1400000"
+      },
+      "temperature_frequency_after": {
+        "temperature_millidegrees_c": "33786",
+        "cpu0_frequency_khz": "1400000"
+      },
+      "wav_audio_silence_timestamps": "pass"
+    },
+    {
+      "id": "audio-copy-30s",
+      "repeat": 2,
+      "cpu_seconds": 0.010029687000000287,
+      "user_cpu_seconds": 0.001895000000000202,
+      "system_cpu_seconds": 0.008178000000000019,
+      "wall_seconds": 0.010011543985456228,
+      "broadcast_seconds": 30.0,
+      "cpu_to_broadcast_ratio": 0.00033432290000000954,
+      "wall_to_broadcast_ratio": 0.0003337181328485409,
+      "peak_process_rss_bytes": 104984576,
+      "wav_bytes": 2880044,
+      "wav_frames": 1440000,
+      "wav_sha256": "1e100f3632313eb1fb1ca4dda22574c721a956613bed4e3562bc5c2ded278c68",
+      "temperature_frequency_before": {
+        "temperature_millidegrees_c": "32710",
+        "cpu0_frequency_khz": "1400000"
+      },
+      "temperature_frequency_after": {
+        "temperature_millidegrees_c": "33248",
+        "cpu0_frequency_khz": "1400000"
+      },
+      "wav_audio_silence_timestamps": "pass"
+    },
+    {
+      "id": "audio-copy-300s",
+      "repeat": 1,
+      "cpu_seconds": 0.09030671899999998,
+      "user_cpu_seconds": 0.0,
+      "system_cpu_seconds": 0.09034599999999998,
+      "wall_seconds": 0.09028894000221044,
+      "broadcast_seconds": 300.0,
+      "cpu_to_broadcast_ratio": 0.0003010223966666666,
+      "wall_to_broadcast_ratio": 0.00030096313334070145,
+      "peak_process_rss_bytes": 105041920,
+      "wav_bytes": 28800044,
+      "wav_frames": 14400000,
+      "wav_sha256": "c1451b10e93d31285b08aa0d81ae83057939115e8e99ad38c54289e2c4da258f",
+      "temperature_frequency_before": {
+        "temperature_millidegrees_c": "33248",
+        "cpu0_frequency_khz": "1400000"
+      },
+      "temperature_frequency_after": {
+        "temperature_millidegrees_c": "33248",
+        "cpu0_frequency_khz": "1400000"
+      },
+      "wav_audio_silence_timestamps": "pass"
+    },
+    {
+      "id": "audio-copy-300s",
+      "repeat": 2,
+      "cpu_seconds": 0.09876015700000007,
+      "user_cpu_seconds": 0.01896399999999998,
+      "system_cpu_seconds": 0.07983799999999996,
+      "wall_seconds": 0.10384754301048815,
+      "broadcast_seconds": 300.0,
+      "cpu_to_broadcast_ratio": 0.00032920052333333357,
+      "wall_to_broadcast_ratio": 0.0003461584767016272,
+      "peak_process_rss_bytes": 105000960,
+      "wav_bytes": 28800044,
+      "wav_frames": 14400000,
+      "wav_sha256": "c1451b10e93d31285b08aa0d81ae83057939115e8e99ad38c54289e2c4da258f",
+      "temperature_frequency_before": {
+        "temperature_millidegrees_c": "32710",
+        "cpu0_frequency_khz": "1400000"
+      },
+      "temperature_frequency_after": {
+        "temperature_millidegrees_c": "33786",
+        "cpu0_frequency_khz": "1400000"
+      },
+      "wav_audio_silence_timestamps": "pass"
+    }
+  ]
+}

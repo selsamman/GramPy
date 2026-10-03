@@ -1,0 +1,17 @@
+{
+  "receiver_sha256": "dd30f86caae1edb5d2998acedb47a3a7b348b727bf6303af1e2f822f549966f3",
+  "adapter_original_sha256": "130fe71cef0bbc5585f9cdf74c423cd94999ee34720b277a09814c06d046a211",
+  "adapter_sidecar_sha256": "89087547c53147702dd702705510f054d2adc3eb95d7fbed5fd48c46dd8ae418",
+  "source_png_sha256": "33e1986427384be02803fe5e8785f3068d17bbacaf6fb6f5b7f880cfea188ea2",
+  "source_ppm_sha256": "21d5e19be8566a266d8c01f214e4049b59b9fdbba96ab1069178e88a548dc104",
+  "source_pixel_sha256": "52334109d177d2ed03802ab1c206d4a717d1fe26bbd89d5a6ecde6116a5d3007",
+  "wheel_sha256": "b0ff517be6daa4bc32afac0ac2b5914ca1eeedb785d3f28a5b72be24f09834a1",
+  "settings": {
+    "rxid": "off",
+    "afc": "off",
+    "carrier_hz": 1500,
+    "status_interval_sec": 0.5,
+    "post_playback_sec": 15
+  },
+  "snapshot": "read-only gdb dump after playback/settle, before receiver shutdown"
+}

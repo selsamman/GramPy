@@ -212,35 +212,14 @@ def run_reference_pipeline(
     if text_decode is not None:
         try:
             if config.mode == "auto":
-                mfsk64_decode = next(
-                    (
-                        item for item in mode_text_decodes
-                        if item.mode_segment["mode"] == "MFSK64"
-                    ),
-                    None,
+                picture_decode, picture_warnings = _decode_automatic_pictures(
+                    recording, mode_text_decodes, config,
+                    artifact_dir=artifact_dir,
+                    artifact_path_prefix=artifact_path_prefix,
+                    run_wall_start=wall_start,
                 )
-                picture_decode = (
-                    _decode_bounded_pictures(
-                        recording,
-                        mfsk64_decode,
-                        mode="MFSK64",
-                        artifact_dir=artifact_dir,
-                        artifact_path_prefix=artifact_path_prefix,
-                        run_wall_start=wall_start,
-                        component_estimator=config.picture_component_estimator,
-                        component_window=config.picture_component_window,
-                        filter_profile=config.picture_filter_profile,
-                        boundary_estimator=config.picture_boundary_estimator,
-                        range_config=PictureRangeConfig(
-                            workers=config.picture_range_workers,
-                            components_per_range=config.picture_range_components,
-                            max_in_flight_ranges=config.picture_max_in_flight_ranges,
-                        ),
-                    )
-                    if mfsk64_decode is not None else None
-                )
+                decode_warnings.extend(picture_warnings)
                 if picture_decode is not None:
-                    _suppress_accepted_picture_text(mfsk64_decode, picture_decode)
                     text_decode = _merge_automatic_text(
                         mode_text_decodes, acquisition.mode_segments
                     )
@@ -1539,6 +1518,91 @@ def _suppress_accepted_picture_text(
     text_decode.text_summary["text"] = bytes(octets).decode("latin-1")
 
 
+def _decode_automatic_pictures(
+    recording: SigmfRecording,
+    decoded_modes: list[MFSKTextDecode],
+    config: DecodeConfig,
+    *,
+    artifact_dir: Path | None,
+    artifact_path_prefix: str | None,
+    run_wall_start: float,
+) -> tuple[PictureDecode | None, list[dict[str, str]]]:
+    """Dispatch existing picture paths for each mode, then merge their outputs."""
+    results: list[PictureDecode] = []
+    warnings: list[dict[str, str]] = []
+    id_offset = 0
+    for text_decode in decoded_modes:
+        mode = text_decode.mode_segment["mode"]
+        try:
+            decoded = _decode_bounded_pictures(
+                recording, text_decode, mode=mode,
+                artifact_dir=artifact_dir,
+                artifact_path_prefix=artifact_path_prefix,
+                run_wall_start=run_wall_start,
+                component_estimator=config.picture_component_estimator,
+                component_window=config.picture_component_window,
+                filter_profile=config.picture_filter_profile,
+                boundary_estimator=config.picture_boundary_estimator,
+                # MFSK32 retains its existing complete-picture bounded path.
+                range_config=(PictureRangeConfig(
+                    workers=config.picture_range_workers,
+                    components_per_range=config.picture_range_components,
+                    max_in_flight_ranges=config.picture_max_in_flight_ranges,
+                ) if mode == "MFSK64" else None),
+                id_offset=id_offset,
+            )
+        except ValueError as error:
+            warnings.append({
+                "code": "mfsk-picture-decode-failed",
+                "message": f"{mode} picture decode failed: {error}",
+            })
+            continue
+        _suppress_accepted_picture_text(text_decode, decoded)
+        id_offset += len(decoded.pictures)
+        results.append(decoded)
+    if not results:
+        return None, warnings
+    if len(results) == 1:
+        return results[0], warnings
+
+    pictures = sorted(
+        (picture for result in results for picture in result.pictures),
+        key=lambda picture: picture["prologue_interval"]["start"],
+    )
+    picture_order = {picture["id"]: index for index, picture in enumerate(pictures)}
+    transitions = sorted(
+        (transition for result in results for transition in result.transitions),
+        key=lambda transition: (
+            picture_order[transition["picture"]],
+            transition["kind"] == "picture_to_text",
+        ),
+    )
+    diagnostics = dict(results[0].diagnostics)
+    for name in (
+        "header_candidates", "header_rejections", "picture_count",
+        "clipped_components", "damaged_components", "persistent_artifact_files",
+        "artifact_bytes", "requested_read_samples", "requested_read_bytes",
+    ):
+        diagnostics[name] = sum(result.diagnostics[name] for result in results)
+    diagnostics["maximum_materialized_iq_samples"] = max(
+        result.diagnostics["maximum_materialized_iq_samples"] for result in results
+    )
+    for name in ("first_picture_descriptor_wall_seconds", "first_complete_picture_wall_seconds"):
+        timings = [result.diagnostics[name] for result in results
+                   if result.diagnostics[name] is not None]
+        diagnostics[name] = min(timings) if timings else None
+    diagnostics["range_execution"] = [
+        item for result in results for item in result.diagnostics.get("range_execution", [])
+    ]
+    diagnostics["working_set_organization"] = "automatic_mode_picture_dispatch"
+    return PictureDecode(
+        pictures=pictures,
+        transitions=transitions,
+        artifacts=[artifact for result in results for artifact in result.artifacts],
+        diagnostics=diagnostics,
+    ), warnings
+
+
 def _decode_bounded_pictures(
     recording: SigmfRecording,
     text_decode: MFSKTextDecode,
@@ -1552,6 +1616,7 @@ def _decode_bounded_pictures(
     filter_profile: str,
     boundary_estimator: str,
     range_config: PictureRangeConfig | None,
+    id_offset: int = 0,
 ) -> PictureDecode:
     descriptors, rejected = parse_picture_headers(text_decode.text_events)
     first_descriptor_wall_seconds = (
@@ -1633,7 +1698,7 @@ def _decode_bounded_pictures(
             decoded_bits=text_decode.decoded_bits,
             artifact_dir=artifact_dir,
             artifact_path_prefix=artifact_path_prefix,
-            id_offset=len(pictures),
+            id_offset=id_offset + len(pictures),
             component_estimator=component_estimator,
             component_window=component_window,
             filter_profile=filter_profile,
@@ -1676,6 +1741,7 @@ def _decode_bounded_pictures(
             center_hz=center_hz,
             picture_decode=decoded,
             text_decode=text_decode,
+            id_offset=id_offset + len(pictures),
         )
         pictures.extend(decoded.pictures)
         if (
@@ -1728,6 +1794,7 @@ def _reacquire_picture_text_epochs(
     center_hz: float,
     picture_decode: Any,
     text_decode: Any,
+    id_offset: int = 0,
 ) -> None:
     """Start bounded, independent modem epochs after completed pictures.
 
@@ -1737,7 +1804,7 @@ def _reacquire_picture_text_epochs(
     context_samples = int(round(10.0 * sample_rate))
     attempted = 0
     acquired = 0
-    for index, picture in enumerate(picture_decode.pictures, 1):
+    for index, picture in enumerate(picture_decode.pictures, 1 + id_offset):
         interval = picture["return_to_text_reacquisition_interval"]
         local_start = interval["stop"] - input_start
         local_stop = min(len(samples), local_start + context_samples)

@@ -1,0 +1,204 @@
+{
+  "mode": "MFSK64",
+  "carrier_hz": 1500,
+  "speed": 8,
+  "wav_sha256": "0c126254e70aab6cb4d06b9f834dea48dcc631246409cb0d8597cde9c37abcd4",
+  "duration_seconds": 44.25975,
+  "cases": [
+    {
+      "name": "original",
+      "width": 8,
+      "height": 4,
+      "pixel_count": 32,
+      "source_sha256": "ae0faedb1949965b7264cdfcd676547bc7de4c914513bfcc627b97c16df9c8c2",
+      "samples_per_component_at_8khz": 8,
+      "picture_payload_seconds": 0.096,
+      "pcm_model_max_abs_lsb": 0.5007414620370128,
+      "pcm_model_fit": "Fixed recipe amplitude 16384; least-squares initial phase; all later phase advances source-derived",
+      "model_offsets": [
+        {
+          "offset_from_83_sample_group_delay": -16,
+          "mean_absolute_error_255": 101.625,
+          "exact_component_fraction": 0.10416666666666667
+        },
+        {
+          "offset_from_83_sample_group_delay": -8,
+          "mean_absolute_error_255": 77.40625,
+          "exact_component_fraction": 0.09375
+        },
+        {
+          "offset_from_83_sample_group_delay": -4,
+          "mean_absolute_error_255": 42.25,
+          "exact_component_fraction": 0.21875
+        },
+        {
+          "offset_from_83_sample_group_delay": 0,
+          "mean_absolute_error_255": 15.3125,
+          "exact_component_fraction": 0.13541666666666666
+        },
+        {
+          "offset_from_83_sample_group_delay": 4,
+          "mean_absolute_error_255": 43.833333333333336,
+          "exact_component_fraction": 0.21875
+        },
+        {
+          "offset_from_83_sample_group_delay": 8,
+          "mean_absolute_error_255": 77.65625,
+          "exact_component_fraction": 0.11458333333333333
+        },
+        {
+          "offset_from_83_sample_group_delay": 16,
+          "mean_absolute_error_255": 102.22916666666667,
+          "exact_component_fraction": 0.09375
+        }
+      ]
+    },
+    {
+      "name": "constant",
+      "width": 8,
+      "height": 4,
+      "pixel_count": 32,
+      "source_sha256": "65489266bba151ac086eed598971854fbf4fa8c7b160043aa49178278d50f69e",
+      "samples_per_component_at_8khz": 8,
+      "picture_payload_seconds": 0.096,
+      "pcm_model_max_abs_lsb": 0.492273473089881,
+      "pcm_model_fit": "Fixed recipe amplitude 16384; least-squares initial phase; all later phase advances source-derived",
+      "model_offsets": [
+        {
+          "offset_from_83_sample_group_delay": -16,
+          "mean_absolute_error_255": 3.25,
+          "exact_component_fraction": 0.4583333333333333
+        },
+        {
+          "offset_from_83_sample_group_delay": -8,
+          "mean_absolute_error_255": 1.9375,
+          "exact_component_fraction": 0.46875
+        },
+        {
+          "offset_from_83_sample_group_delay": -4,
+          "mean_absolute_error_255": 1.53125,
+          "exact_component_fraction": 0.5104166666666666
+        },
+        {
+          "offset_from_83_sample_group_delay": 0,
+          "mean_absolute_error_255": 0.90625,
+          "exact_component_fraction": 0.46875
+        },
+        {
+          "offset_from_83_sample_group_delay": 4,
+          "mean_absolute_error_255": 1.5208333333333333,
+          "exact_component_fraction": 0.5104166666666666
+        },
+        {
+          "offset_from_83_sample_group_delay": 8,
+          "mean_absolute_error_255": 1.9166666666666667,
+          "exact_component_fraction": 0.46875
+        },
+        {
+          "offset_from_83_sample_group_delay": 16,
+          "mean_absolute_error_255": 3.2083333333333335,
+          "exact_component_fraction": 0.46875
+        }
+      ]
+    },
+    {
+      "name": "tall",
+      "width": 8,
+      "height": 120,
+      "pixel_count": 960,
+      "source_sha256": "4b7cf412f07ba3fe227a2e3ddcb3c32bfc91f1074723f4478656e14f2b95781e",
+      "samples_per_component_at_8khz": 8,
+      "picture_payload_seconds": 2.88,
+      "pcm_model_max_abs_lsb": 0.5002475647197571,
+      "pcm_model_fit": "Fixed recipe amplitude 16384; least-squares initial phase; all later phase advances source-derived",
+      "model_offsets": [
+        {
+          "offset_from_83_sample_group_delay": -16,
+          "mean_absolute_error_255": 104.13923611111112,
+          "exact_component_fraction": 0.08715277777777777
+        },
+        {
+          "offset_from_83_sample_group_delay": -8,
+          "mean_absolute_error_255": 78.5982638888889,
+          "exact_component_fraction": 0.09895833333333333
+        },
+        {
+          "offset_from_83_sample_group_delay": -4,
+          "mean_absolute_error_255": 42.91979166666667,
+          "exact_component_fraction": 0.20868055555555556
+        },
+        {
+          "offset_from_83_sample_group_delay": 0,
+          "mean_absolute_error_255": 15.180555555555555,
+          "exact_component_fraction": 0.11840277777777777
+        },
+        {
+          "offset_from_83_sample_group_delay": 4,
+          "mean_absolute_error_255": 43.77534722222222,
+          "exact_component_fraction": 0.20868055555555556
+        },
+        {
+          "offset_from_83_sample_group_delay": 8,
+          "mean_absolute_error_255": 78.01388888888889,
+          "exact_component_fraction": 0.1076388888888889
+        },
+        {
+          "offset_from_83_sample_group_delay": 16,
+          "mean_absolute_error_255": 103.73472222222222,
+          "exact_component_fraction": 0.09375
+        }
+      ]
+    },
+    {
+      "name": "wide",
+      "width": 240,
+      "height": 4,
+      "pixel_count": 960,
+      "source_sha256": "bfe0abc7d71a316875022b8ecce94ee6f24856d5f6c756f5ab9840217020776a",
+      "samples_per_component_at_8khz": 8,
+      "picture_payload_seconds": 2.88,
+      "pcm_model_max_abs_lsb": 0.5018022788763119,
+      "pcm_model_fit": "Fixed recipe amplitude 16384; least-squares initial phase; all later phase advances source-derived",
+      "model_offsets": [
+        {
+          "offset_from_83_sample_group_delay": -16,
+          "mean_absolute_error_255": 6.006944444444445,
+          "exact_component_fraction": 0.6215277777777778
+        },
+        {
+          "offset_from_83_sample_group_delay": -8,
+          "mean_absolute_error_255": 3.2246527777777776,
+          "exact_component_fraction": 0.6295138888888889
+        },
+        {
+          "offset_from_83_sample_group_delay": -4,
+          "mean_absolute_error_255": 1.8479166666666667,
+          "exact_component_fraction": 0.61875
+        },
+        {
+          "offset_from_83_sample_group_delay": 0,
+          "mean_absolute_error_255": 0.9579861111111111,
+          "exact_component_fraction": 0.6295138888888889
+        },
+        {
+          "offset_from_83_sample_group_delay": 4,
+          "mean_absolute_error_255": 1.8746527777777777,
+          "exact_component_fraction": 0.6184027777777777
+        },
+        {
+          "offset_from_83_sample_group_delay": 8,
+          "mean_absolute_error_255": 3.2444444444444445,
+          "exact_component_fraction": 0.6291666666666667
+        },
+        {
+          "offset_from_83_sample_group_delay": 16,
+          "mean_absolute_error_255": 6.055902777777778,
+          "exact_component_fraction": 0.6232638888888888
+        }
+      ]
+    }
+  ],
+  "method": "Unchanged native encoder; source-derived fldigi filter model at nominal delay and predeclared offsets; no live receive, GUI/save, final-component omission or trigger model",
+  "purpose": "Equal-duration tall/wide controls separate total picture duration from colour-plane width and transition spacing; original/constant controls separate internal transitions from tiny geometry",
+  "acceptance": "Additional diagnostics; original qualification fixtures and failure records preserved; no passing tolerance"
+}

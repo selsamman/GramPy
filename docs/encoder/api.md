@@ -4,6 +4,13 @@ Use `grampy.api` to compose a canonical mono, signed-16-bit PCM WAV from
 MFSK text or PNG content, compatible PCM WAV audio, and explicit silence.
 The encoder has no fldigi runtime dependency.
 
+The required and qualified broadcast rate is **48,000 Hz**, the default in
+`EncodeConfig`. Supplied audio must also be 48-kHz mono PCM16. Other rates
+accepted by the configuration validator are compatibility behavior, not a
+receive-quality commitment. Use representative broadcast-sized pictures;
+tiny diagnostic rasters are outside the accepted quality scope. See the
+[production baseline](production-baseline.md) for the acceptance and limits.
+
 ```python
 from pathlib import Path
 
@@ -22,7 +29,7 @@ result = encode_mfsk_wav(
         SilencePart(0.25),
         AudioPart(Path("marker.wav")),
         MfskSegment(
-            (TextPart.from_text("PICTURE\\n"), ImagePart(Path("image.png"))),
+            (TextPart.from_text("PICTURE\n"), ImagePart(Path("image.png"))),
             "MFSK64",
             1600.0,
         ),

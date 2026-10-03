@@ -1,0 +1,22 @@
+[
+  {
+    "mode": "MFSK32",
+    "speed": 8,
+    "dimensions": [
+      240,
+      180
+    ],
+    "equivalent_l_rgb_wav_equality": "pass",
+    "wav_sha256": "0e89c096b0692bb27bd4cd610963f0f779ce5c94f17dc096bab052265b26199a"
+  },
+  {
+    "mode": "MFSK64",
+    "speed": 8,
+    "dimensions": [
+      240,
+      180
+    ],
+    "equivalent_l_rgb_wav_equality": "pass",
+    "wav_sha256": "30c31b8f814d98b0ed7fe29a487fbf2b8b8fdedeb7fff37909099bebe0a47023"
+  }
+]

@@ -1,0 +1,182 @@
+{
+  "sample_rate_hz": 48000,
+  "repeats": 2,
+  "cases": [
+    {
+      "id": "gray32-p8-card",
+      "description": "Accepted MFSK32 grayscale p8 240x180",
+      "composition": [
+        {
+          "kind": "mfsk",
+          "mode": "MFSK32",
+          "carrier_hz": 1500.0,
+          "contents": [
+            {
+              "kind": "text",
+              "utf8": "\u0002\nGRAM PY PRACTICAL BROADCAST GRAY32 P8 CARD\n"
+            },
+            {
+              "kind": "image",
+              "source": "card.png",
+              "color": "grayscale",
+              "speed": 8
+            },
+            {
+              "kind": "text",
+              "utf8": "\nGRAM PY GRAY32 P8 CARD END\n\u0004"
+            }
+          ]
+        }
+      ],
+      "accepted_frame_count": 3056538,
+      "accepted_mac_wav_sha256": "f7291065b072e0fad8e201b434ac99a5e73f8833dad2d7f7fc4e56468cce901b"
+    },
+    {
+      "id": "rgb64-p8-photo",
+      "description": "Accepted MFSK64 color p8 240x180",
+      "composition": [
+        {
+          "kind": "mfsk",
+          "mode": "MFSK64",
+          "carrier_hz": 1500.0,
+          "contents": [
+            {
+              "kind": "text",
+              "utf8": "\u0002\nGRAM PY PRACTICAL BROADCAST RGB64 P8 PHOTO\n"
+            },
+            {
+              "kind": "image",
+              "source": "photo.png",
+              "color": "color",
+              "speed": 8
+            },
+            {
+              "kind": "text",
+              "utf8": "\nGRAM PY RGB64 P8 PHOTO END\n\u0004"
+            }
+          ]
+        }
+      ],
+      "accepted_frame_count": 6977268,
+      "accepted_mac_wav_sha256": "6b7aa722eac0a4e4b47196a93e98085279d530185e4d45a834995ccf6af37eca"
+    },
+    {
+      "id": "rgb64-p2-chart",
+      "description": "Accepted MFSK64 color p2 160x120",
+      "composition": [
+        {
+          "kind": "mfsk",
+          "mode": "MFSK64",
+          "carrier_hz": 1500.0,
+          "contents": [
+            {
+              "kind": "text",
+              "utf8": "\u0002\nGRAM PY PRACTICAL BROADCAST RGB64 P2 CHART\n"
+            },
+            {
+              "kind": "image",
+              "source": "chart.png",
+              "color": "color",
+              "speed": 2
+            },
+            {
+              "kind": "text",
+              "utf8": "\nGRAM PY RGB64 P2 CHART END\n\u0004"
+            }
+          ]
+        }
+      ],
+      "accepted_frame_count": 1453812,
+      "accepted_mac_wav_sha256": "25fc90bd2590415b84d1f93a01ea61059b77035c2f58e0745e5490f31fb6180b"
+    },
+    {
+      "id": "mixed-broadcast-photo",
+      "description": "Accepted MFSK64 color p4 240x180 with MFSK32 text, audio and silence",
+      "composition": [
+        {
+          "kind": "mfsk",
+          "mode": "MFSK32",
+          "carrier_hz": 1400,
+          "contents": [
+            {
+              "kind": "text",
+              "utf8": "\u0002\nGRAM PY BROADCAST MFSK32 NEWS BEGIN\nTODAY WE TEST TEXT AUDIO SILENCE AND A PICTURE.\nNEWS END\n\u0004"
+            }
+          ]
+        },
+        {
+          "kind": "silence",
+          "duration_seconds": 0.25
+        },
+        {
+          "kind": "audio",
+          "source": "audio-marker.wav"
+        },
+        {
+          "kind": "silence",
+          "duration_seconds": 0.25
+        },
+        {
+          "kind": "mfsk",
+          "mode": "MFSK64",
+          "carrier_hz": 1600.0,
+          "contents": [
+            {
+              "kind": "text",
+              "utf8": "\u0002\nGRAM PY PRACTICAL BROADCAST MIXED BROADCAST PHOTO\n"
+            },
+            {
+              "kind": "image",
+              "source": "photo.png",
+              "color": "color",
+              "speed": 4
+            },
+            {
+              "kind": "text",
+              "utf8": "\nGRAM PY MIXED BROADCAST PHOTO END\n\u0004"
+            }
+          ]
+        }
+      ],
+      "accepted_frame_count": 4785870,
+      "accepted_mac_wav_sha256": "ecf6819b916abd6d444fd9ac229d2264772664b234f543ff43ad63ce8d8f5925"
+    },
+    {
+      "id": "text32-2048-bytes",
+      "description": "2048-byte MFSK32 text file",
+      "composition": [
+        {
+          "kind": "mfsk",
+          "mode": "MFSK32",
+          "carrier_hz": 1500,
+          "contents": [
+            {
+              "kind": "text_file",
+              "source": "long-text.txt"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "audio-copy-30s",
+      "description": "30-second exact AudioPart copy",
+      "composition": [
+        {
+          "kind": "audio",
+          "source": "audio-30.wav"
+        }
+      ]
+    },
+    {
+      "id": "audio-copy-300s",
+      "description": "300-second exact AudioPart copy",
+      "composition": [
+        {
+          "kind": "audio",
+          "source": "audio-300.wav"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+[
+  {
+    "speed": 4,
+    "mode": "MFSK64",
+    "carrier_hz": 1500,
+    "source_size": [
+      160,
+      120
+    ],
+    "source_sha256": "89a6447653925769b728b44b7d97168b792827e6eac2bfffdc28abaa605b3f77",
+    "wav_filename": "grampy-mfsk64-rgb-p4-160x120.wav",
+    "wav_sha256": "ad964a13c7d843d66f82343de95c244c1bc0250fb85bf72d0e95caf81185fdac",
+    "frames": 2105076,
+    "duration_seconds": 43.85575,
+    "scope": "Additional native size-versus-speed diagnostic; not a replacement acceptance fixture"
+  },
+  {
+    "speed": 2,
+    "mode": "MFSK64",
+    "carrier_hz": 1500,
+    "source_size": [
+      160,
+      120
+    ],
+    "source_sha256": "89a6447653925769b728b44b7d97168b792827e6eac2bfffdc28abaa605b3f77",
+    "wav_filename": "grampy-mfsk64-rgb-p2-160x120.wav",
+    "wav_sha256": "e7b1ef08e5ade6764654d75316dd5f020be0cc29f40d1dfaa35bee5988f199fe",
+    "frames": 1413876,
+    "duration_seconds": 29.45575,
+    "scope": "Additional native size-versus-speed diagnostic; not a replacement acceptance fixture"
+  }
+]

@@ -88,3 +88,21 @@ of PNGs. With the same manifests, compact-only published size would be
 891,909 bytes instead of 7,108,032 bytes. The paired runtime and memory
 figures above precede this retention change; the decoder and quality
 calculations are unchanged.
+
+## Automatic MFSK32 picture correction (2026-10-03)
+
+PM accepted all practical qualification images and the automatic-dispatch
+correction in [D-028](auto-mfsk32-pictures-change.md). The pipeline now sends
+both acquired MFSK32 and MFSK64 text results to their existing picture paths,
+preserving broadcast order and unique artifact/recovery references. Picture
+filters, estimators and the accepted configuration above are unchanged.
+
+The accepted pipeline SHA-256 is
+`6256a56d5273f98ba02e071ee8582c6a6cafbc7c4302e9825887c3ecebcd6fba`.
+All ten unchanged 48-kHz practical cases pass the existing gate, including
+three MFSK32 grayscale pictures; the seven previous MFSK64 rasters remain
+pixel-identical. The full suite passes (247 tests run, six expected skips),
+the retained received broadcast preserves its text and nine PNG hashes, and
+the representative Pi subset passes. The [acceptance record](../encoder/data/session9/practical-acceptance.json)
+binds the PM decision to those results. Separate fixed-mode acquisition and
+nondefault-rate quality limitations remain documented in the change record.

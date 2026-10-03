@@ -10,8 +10,9 @@ The following are current behavioral contracts:
   timing, resource, event, and stage information.
 - MFSK32 and MFSK64 text decode follows the wire behavior in
   [`mfsk_wire_spec.md`](mfsk_wire_spec.md).
-- MFSK64 grayscale and color picture assembly preserves the specified geometry,
-  component order, and completion behavior.
+- MFSK32 grayscale and MFSK64 grayscale/color picture assembly preserves the
+  specified geometry, component order, and completion behavior. Automatic mode
+  dispatches picture decoding for both modes and preserves broadcast order.
 - Text, picture, and mode transitions must not silently discard valid content.
 - Invalid, incomplete, or uncertain material is represented explicitly rather
   than reported as successful empty output.

@@ -1,0 +1,83 @@
+{
+  "architecture": "aarch64",
+  "platform": "Linux-6.18.34+rpt-rpi-v8-aarch64-with-glibc2.41",
+  "python": "3.13.5",
+  "device_model": "Raspberry Pi 3 Model B Plus Rev 1.4",
+  "dependencies": {
+    "radiogrampy": "0.1.3",
+    "numpy": "2.2.4",
+    "scipy": "1.15.3",
+    "Pillow": "11.1.0",
+    "jsonschema": "4.19.2"
+  },
+  "package_source_hashes": {
+    "__init__.py": "3317d8d65f5b86022abac06adc5ff5048d0b1fba83ab4481738b216c3eb45a89",
+    "accuracy.py": "d932f0a3f3e5bccb31849756e37dc0b447915914aa02fb15cdd3470711c1de41",
+    "accuracy_cli.py": "7279b8bb730393cb661315e91d5b122ad14543cc027c4b94cd8509020dbf85b2",
+    "acquisition.py": "17aa672b424f9b4ac858cf772cb02a97c562d2803b8bfcf6921ac4adf422f9f4",
+    "api.py": "00d59716e58a78aa2ca1d3b00d7a101f168c7fd71f602bebdf5104b66c9a9928",
+    "cli.py": "f1e24a1eb11019b7504f7ee594c95b34a4f8210f59f3eb05cbc79ae3848a2fc3",
+    "coordinates.py": "70cfb36c0f40682c34eaa622ac0a277c36d4429a5780f1e7cb3cb8411c2a1d28",
+    "corpus.py": "ea69026cf2df6ae470e54e7a07d943db785547fd141a6d43dd0bbd441b5f054c",
+    "corpus_cli.py": "d96ad8c205df7486a6c13e6807178cff101bdd694dd901d9036e459c9a6651f9",
+    "corpus_package.py": "bedbc36f21afe31881e7d31435887823cd87e238ffd74c25ee8d494dbdc32da3",
+    "corpus_setup.py": "4fb09941b8323278514da01d0645f56728270e530a7046df692de7aedc1e2454",
+    "decode_quality.py": "75cf5e540e75aab8ccd45b8bb134b76c3b0695743c702f9a3675c19df9eaa7c8",
+    "fixture_cli.py": "2606eb33b19837ef2633e85a89f76e1dcc827c8904b800a93d3a5245f321a70d",
+    "fixtures.py": "5bd9ad6b5b9e682d35b284cd7dd3c053a004d36f6ef24b2f4e492d9fa5bbb310",
+    "mfsk_compose.py": "3c38b8de330baad01dad071e6484f649132b8d11aa413ddf521c6e4dd199869c",
+    "mfsk_encode.py": "18c52be08415c998db0f561d1a5b26c8ca51665c71d82dadcc5a819c46b77d07",
+    "mfsk_segment_encode.py": "1a7cbe6584236ff1e0dcb71659d804ed18a8c82654930c04ffa10dc284537a28",
+    "picture_decode.py": "2bca8c22dcd0d2f735ec3a8c4b910ba32b3f19b8b550f35b44ef1c33370d8b29",
+    "picture_encode.py": "3e5c1a761d54052db3045a5fcf31b46fb275ca7af6f57c7f2571a2aa6b0947c6",
+    "pipeline.py": "6256a56d5273f98ba02e071ee8582c6a6cafbc7c4302e9825887c3ecebcd6fba",
+    "reception_quality.py": "33e8b1b5ff70b449c29270e96b996f1b4e3a966d3cea105d7f4cd100a3afb576",
+    "resources.py": "474882ec0ae2340c9a125a3c9ff128c5ad59ab585c9bccd7003ac0612736112e",
+    "rsid.py": "7f6457ec6f095b8625b2128f6c7f9c1dff2bbf5099c1146635907807d5ab5c73",
+    "rsid_encode.py": "c13414837fda148fd3ba29b3578f6c9dbe693a028c084554abc4223953616b08",
+    "sigmf.py": "093e159575ccc42dc81c572bf4cb173d9657159d020614fb94d510cb8fde9aaf",
+    "stateful_pipeline.py": "ea99d7519782aa20dbadaa7c1dde0437571f32e506044c1f92f4096356a5e5c5",
+    "stateful_text.py": "5a76d1dcec81295ed42171f3691383685ca820469d4ceea4a299ca598f950fc4",
+    "text_decode.py": "4326ac7f73d6ed30b33810db1845eefb10a7b9bf64bce774757ad5c2ad64a6ff",
+    "text_encode.py": "a815c65ea303b789a3a058caa957da6d2b2f7ae84545dfe1640777704af6bed2",
+    "text_manifest.py": "54f0b0fef596a3260e017df286042b153b7e32cd09eafea9a6feb285f8e1f699",
+    "tracking.py": "aabf8b6c9ca8c4a8d0a671d609b4f0027242c96b4174f361c843f188a62047f9",
+    "wire.py": "9ddb2819ea1c3b22fc6aa537ea37da9efe00f76dad30b93f6b04abb5d20e26ff"
+  },
+  "wheel_sha256": "e549e3d7cc635f678e04a43b2cd79407f2c7622d56293e98fc50eca67b543ab7",
+  "matrix_sha256": "4aa70d9c9c320b044487faa6e242383dcc5e64b12a967d39d0eb0a21ec5703eb",
+  "inputs": {
+    "audio-30.wav": {
+      "bytes": 2880044,
+      "sha256": "1e100f3632313eb1fb1ca4dda22574c721a956613bed4e3562bc5c2ded278c68"
+    },
+    "audio-300.wav": {
+      "bytes": 28800044,
+      "sha256": "c1451b10e93d31285b08aa0d81ae83057939115e8e99ad38c54289e2c4da258f"
+    },
+    "audio-marker.wav": {
+      "bytes": 48044,
+      "sha256": "de54751d4d0363fefd49d1dab1d902ee7c9b30738f142a7b60968bb66b4d9b25"
+    },
+    "card.png": {
+      "bytes": 66779,
+      "sha256": "f54c55ee0eda798a3fa9d4bcc32ba45cebc08eaa5ddb41808ac3fc7b44aaddc7"
+    },
+    "chart.png": {
+      "bytes": 2859,
+      "sha256": "89a6447653925769b728b44b7d97168b792827e6eac2bfffdc28abaa605b3f77"
+    },
+    "long-text.txt": {
+      "bytes": 2048,
+      "sha256": "f985b0f8d3d988c35b606f6fd2fbd1b17c42ff32ca1bd6842a67abb203a7af8b"
+    },
+    "photo.png": {
+      "bytes": 60016,
+      "sha256": "1d316ddfc96078f19a20d83769d36b1efcd23cdc03d0047832e65024fcd026d0"
+    }
+  },
+  "thread_environment": {
+    "OPENBLAS_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1"
+  }
+}

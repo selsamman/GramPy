@@ -1,0 +1,1350 @@
+{
+  "configuration": {
+    "block_samples": 262144,
+    "orientation": "unknown",
+    "trace_level": "none",
+    "mode": "auto",
+    "center_hz": null,
+    "picture_component_estimator": "bounded_correlation",
+    "picture_component_window": "full_hann",
+    "picture_filter_profile": "response_matched",
+    "picture_boundary_estimator": "unified_grid",
+    "persistent_tone_policy": "measure",
+    "pipeline_organization": "supported_hybrid",
+    "picture_range_workers": 1,
+    "picture_range_components": 16384,
+    "picture_max_in_flight_ranges": 1,
+    "persistent_intermediates": false
+  },
+  "cases": [
+    {
+      "case": "rsid-mixed-audio-silence-picture",
+      "speed": 8,
+      "mode": "MFSK64",
+      "color": "color",
+      "source_sha256": "33e1986427384be02803fe5e8785f3068d17bbacaf6fb6f5b7f880cfea188ea2",
+      "wav_sha256": "ccba1c03648cb7a3f3edc96b323eed713a347c7b175435d61eab1d137012eb41",
+      "grampy": {
+        "schema": "grampy-accuracy.v1",
+        "kind": "raw-raster-error",
+        "whole_raster": {
+          "mean_absolute_error_255": 0.5520833333333334,
+          "root_mean_square_error_255": 1.0944937947136415,
+          "signed_bias_255": -0.17708333333333334,
+          "exact_component_fraction": 0.59375,
+          "psnr_db": 47.34653753553867
+        },
+        "channels": {
+          "red": {
+            "mean_absolute_error_255": 0.6875,
+            "root_mean_square_error_255": 1.5,
+            "signed_bias_255": -0.375,
+            "exact_component_fraction": 0.59375,
+            "psnr_db": 44.60897842756548
+          },
+          "green": {
+            "mean_absolute_error_255": 0.4375,
+            "root_mean_square_error_255": 0.75,
+            "signed_bias_255": -0.1875,
+            "exact_component_fraction": 0.625,
+            "psnr_db": 50.6295783408451
+          },
+          "blue": {
+            "mean_absolute_error_255": 0.53125,
+            "root_mean_square_error_255": 0.8838834764831844,
+            "signed_bias_255": 0.03125,
+            "exact_component_fraction": 0.5625,
+            "psnr_db": 49.20290330515779
+          }
+        },
+        "differing_pixel_percent": 68.75,
+        "geometry": {
+          "width": 8,
+          "height": 4
+        },
+        "alignment": {
+          "schema": "grampy-accuracy.v1",
+          "kind": "picture-component-alignment",
+          "algorithm": "bounded-regularized-offset-viterbi-v1",
+          "reference_components": 96,
+          "decoded_components": 96,
+          "compared_components": 96,
+          "raw_mean_absolute_error_255": 0.5520833134651184,
+          "raw_exact_component_fraction": 0.59375,
+          "aligned_mean_absolute_error_255": 0.5520833134651184,
+          "aligned_exact_component_fraction": 0.59375,
+          "zero_offset_fraction": 1.0,
+          "maximum_absolute_offset_components": 0,
+          "offset_change_count": 0,
+          "offset_changes": [],
+          "offset_path_rle": [
+            {
+              "start_component": 0,
+              "stop_component": 96,
+              "offset": 0
+            }
+          ],
+          "alignment_parameters": {
+            "max_offset_components": 24,
+            "change_penalty": 25.0,
+            "offset_penalty": 0.0005
+          }
+        }
+      },
+      "picture": {
+        "header_text": "Pic:8x4C;",
+        "width": 8,
+        "height": 4,
+        "color": true,
+        "samples_per_component": 8,
+        "complete": true,
+        "completion_reason": "expected_component_count",
+        "observed_component_count": 96,
+        "expected_component_count": 96
+      },
+      "boundary_error_frames": 1,
+      "method": "Accepted picture estimator/window/filter settings in coupled known-segment/mode/carrier WAV diagnostic; not full production IQ pipeline or independent encoder qualification"
+    },
+    {
+      "case": "mfsk32-grayscale-speeds",
+      "speed": 8,
+      "mode": "MFSK32",
+      "color": "grayscale",
+      "source_sha256": "33e1986427384be02803fe5e8785f3068d17bbacaf6fb6f5b7f880cfea188ea2",
+      "wav_sha256": "1811efb18420e6d49881db30eeb4204c0d3afe6a8a03f62b91b29a5d7498f73e",
+      "grampy": {
+        "schema": "grampy-accuracy.v1",
+        "kind": "raw-raster-error",
+        "whole_raster": {
+          "mean_absolute_error_255": 0.9375,
+          "root_mean_square_error_255": 1.2747548783981961,
+          "signed_bias_255": 0.0625,
+          "exact_component_fraction": 0.34375,
+          "psnr_db": 46.02226995553017
+        },
+        "channels": {
+          "gray": {
+            "mean_absolute_error_255": 0.9375,
+            "root_mean_square_error_255": 1.2747548783981961,
+            "signed_bias_255": 0.0625,
+            "exact_component_fraction": 0.34375,
+            "psnr_db": 46.02226995553017
+          }
+        },
+        "differing_pixel_percent": 65.625,
+        "geometry": {
+          "width": 8,
+          "height": 4
+        },
+        "alignment": {
+          "schema": "grampy-accuracy.v1",
+          "kind": "picture-component-alignment",
+          "algorithm": "bounded-regularized-offset-viterbi-v1",
+          "reference_components": 32,
+          "decoded_components": 32,
+          "compared_components": 32,
+          "raw_mean_absolute_error_255": 0.9375,
+          "raw_exact_component_fraction": 0.34375,
+          "aligned_mean_absolute_error_255": 0.9375,
+          "aligned_exact_component_fraction": 0.34375,
+          "zero_offset_fraction": 1.0,
+          "maximum_absolute_offset_components": 0,
+          "offset_change_count": 0,
+          "offset_changes": [],
+          "offset_path_rle": [
+            {
+              "start_component": 0,
+              "stop_component": 32,
+              "offset": 0
+            }
+          ],
+          "alignment_parameters": {
+            "max_offset_components": 24,
+            "change_penalty": 25.0,
+            "offset_penalty": 0.0005
+          }
+        }
+      },
+      "picture": {
+        "header_text": "Pic:8x4;",
+        "width": 8,
+        "height": 4,
+        "color": false,
+        "samples_per_component": 8,
+        "complete": true,
+        "completion_reason": "expected_component_count",
+        "observed_component_count": 32,
+        "expected_component_count": 32
+      },
+      "boundary_error_frames": 1,
+      "method": "Accepted picture estimator/window/filter settings in coupled known-segment/mode/carrier WAV diagnostic; not full production IQ pipeline or independent encoder qualification"
+    },
+    {
+      "case": "mfsk32-grayscale-speeds",
+      "speed": 4,
+      "mode": "MFSK32",
+      "color": "grayscale",
+      "source_sha256": "33e1986427384be02803fe5e8785f3068d17bbacaf6fb6f5b7f880cfea188ea2",
+      "wav_sha256": "1811efb18420e6d49881db30eeb4204c0d3afe6a8a03f62b91b29a5d7498f73e",
+      "grampy": {
+        "schema": "grampy-accuracy.v1",
+        "kind": "raw-raster-error",
+        "whole_raster": {
+          "mean_absolute_error_255": 3.8125,
+          "root_mean_square_error_255": 5.3967582862307255,
+          "signed_bias_255": 1.0,
+          "exact_component_fraction": 0.1875,
+          "psnr_db": 33.488144268338345
+        },
+        "channels": {
+          "gray": {
+            "mean_absolute_error_255": 3.8125,
+            "root_mean_square_error_255": 5.3967582862307255,
+            "signed_bias_255": 1.0,
+            "exact_component_fraction": 0.1875,
+            "psnr_db": 33.488144268338345
+          }
+        },
+        "differing_pixel_percent": 81.25,
+        "geometry": {
+          "width": 8,
+          "height": 4
+        },
+        "alignment": {
+          "schema": "grampy-accuracy.v1",
+          "kind": "picture-component-alignment",
+          "algorithm": "bounded-regularized-offset-viterbi-v1",
+          "reference_components": 32,
+          "decoded_components": 32,
+          "compared_components": 32,
+          "raw_mean_absolute_error_255": 3.8125,
+          "raw_exact_component_fraction": 0.1875,
+          "aligned_mean_absolute_error_255": 3.8125,
+          "aligned_exact_component_fraction": 0.1875,
+          "zero_offset_fraction": 1.0,
+          "maximum_absolute_offset_components": 0,
+          "offset_change_count": 0,
+          "offset_changes": [],
+          "offset_path_rle": [
+            {
+              "start_component": 0,
+              "stop_component": 32,
+              "offset": 0
+            }
+          ],
+          "alignment_parameters": {
+            "max_offset_components": 24,
+            "change_penalty": 25.0,
+            "offset_penalty": 0.0005
+          }
+        }
+      },
+      "picture": {
+        "header_text": "Pic:8x4p4;",
+        "width": 8,
+        "height": 4,
+        "color": false,
+        "samples_per_component": 4,
+        "complete": true,
+        "completion_reason": "expected_component_count",
+        "observed_component_count": 32,
+        "expected_component_count": 32
+      },
+      "boundary_error_frames": 2,
+      "method": "Accepted picture estimator/window/filter settings in coupled known-segment/mode/carrier WAV diagnostic; not full production IQ pipeline or independent encoder qualification"
+    },
+    {
+      "case": "mfsk32-grayscale-speeds",
+      "speed": 2,
+      "mode": "MFSK32",
+      "color": "grayscale",
+      "source_sha256": "33e1986427384be02803fe5e8785f3068d17bbacaf6fb6f5b7f880cfea188ea2",
+      "wav_sha256": "1811efb18420e6d49881db30eeb4204c0d3afe6a8a03f62b91b29a5d7498f73e",
+      "grampy": {
+        "schema": "grampy-accuracy.v1",
+        "kind": "raw-raster-error",
+        "whole_raster": {
+          "mean_absolute_error_255": 18.84375,
+          "root_mean_square_error_255": 27.539176639834388,
+          "signed_bias_255": -0.40625,
+          "exact_component_fraction": 0.0625,
+          "psnr_db": 19.33178457517163
+        },
+        "channels": {
+          "gray": {
+            "mean_absolute_error_255": 18.84375,
+            "root_mean_square_error_255": 27.539176639834388,
+            "signed_bias_255": -0.40625,
+            "exact_component_fraction": 0.0625,
+            "psnr_db": 19.33178457517163
+          }
+        },
+        "differing_pixel_percent": 93.75,
+        "geometry": {
+          "width": 8,
+          "height": 4
+        },
+        "alignment": {
+          "schema": "grampy-accuracy.v1",
+          "kind": "picture-component-alignment",
+          "algorithm": "bounded-regularized-offset-viterbi-v1",
+          "reference_components": 32,
+          "decoded_components": 32,
+          "compared_components": 32,
+          "raw_mean_absolute_error_255": 18.84375,
+          "raw_exact_component_fraction": 0.0625,
+          "aligned_mean_absolute_error_255": 18.84375,
+          "aligned_exact_component_fraction": 0.0625,
+          "zero_offset_fraction": 1.0,
+          "maximum_absolute_offset_components": 0,
+          "offset_change_count": 0,
+          "offset_changes": [],
+          "offset_path_rle": [
+            {
+              "start_component": 0,
+              "stop_component": 32,
+              "offset": 0
+            }
+          ],
+          "alignment_parameters": {
+            "max_offset_components": 24,
+            "change_penalty": 25.0,
+            "offset_penalty": 0.0005
+          }
+        }
+      },
+      "picture": {
+        "header_text": "Pic:8x4p2;",
+        "width": 8,
+        "height": 4,
+        "color": false,
+        "samples_per_component": 2,
+        "complete": true,
+        "completion_reason": "expected_component_count",
+        "observed_component_count": 32,
+        "expected_component_count": 32
+      },
+      "boundary_error_frames": -4,
+      "method": "Accepted picture estimator/window/filter settings in coupled known-segment/mode/carrier WAV diagnostic; not full production IQ pipeline or independent encoder qualification"
+    },
+    {
+      "case": "mfsk64-color-speeds",
+      "speed": 8,
+      "mode": "MFSK64",
+      "color": "color",
+      "source_sha256": "33e1986427384be02803fe5e8785f3068d17bbacaf6fb6f5b7f880cfea188ea2",
+      "wav_sha256": "0204283ff510b146eea6a7fc6795a7a1429f537c60b7ed6ce5a65a9d54ad80ea",
+      "grampy": {
+        "schema": "grampy-accuracy.v1",
+        "kind": "raw-raster-error",
+        "whole_raster": {
+          "mean_absolute_error_255": 0.4375,
+          "root_mean_square_error_255": 0.82915619758885,
+          "signed_bias_255": -0.14583333333333334,
+          "exact_component_fraction": 0.6770833333333334,
+          "psnr_db": 49.758076583656106
+        },
+        "channels": {
+          "red": {
+            "mean_absolute_error_255": 0.40625,
+            "root_mean_square_error_255": 0.8477912478906585,
+            "signed_bias_255": -0.09375,
+            "exact_component_fraction": 0.71875,
+            "psnr_db": 49.565025031702234
+          },
+          "green": {
+            "mean_absolute_error_255": 0.46875,
+            "root_mean_square_error_255": 0.8477912478906585,
+            "signed_bias_255": -0.34375,
+            "exact_component_fraction": 0.65625,
+            "psnr_db": 49.565025031702234
+          },
+          "blue": {
+            "mean_absolute_error_255": 0.4375,
+            "root_mean_square_error_255": 0.7905694150420949,
+            "signed_bias_255": 0.0,
+            "exact_component_fraction": 0.65625,
+            "psnr_db": 50.17200343523835
+          }
+        },
+        "differing_pixel_percent": 68.75,
+        "geometry": {
+          "width": 8,
+          "height": 4
+        },
+        "alignment": {
+          "schema": "grampy-accuracy.v1",
+          "kind": "picture-component-alignment",
+          "algorithm": "bounded-regularized-offset-viterbi-v1",
+          "reference_components": 96,
+          "decoded_components": 96,
+          "compared_components": 96,
+          "raw_mean_absolute_error_255": 0.4375,
+          "raw_exact_component_fraction": 0.6770833333333334,
+          "aligned_mean_absolute_error_255": 0.4375,
+          "aligned_exact_component_fraction": 0.6770833333333334,
+          "zero_offset_fraction": 1.0,
+          "maximum_absolute_offset_components": 0,
+          "offset_change_count": 0,
+          "offset_changes": [],
+          "offset_path_rle": [
+            {
+              "start_component": 0,
+              "stop_component": 96,
+              "offset": 0
+            }
+          ],
+          "alignment_parameters": {
+            "max_offset_components": 24,
+            "change_penalty": 25.0,
+            "offset_penalty": 0.0005
+          }
+        }
+      },
+      "picture": {
+        "header_text": "Pic:8x4C;",
+        "width": 8,
+        "height": 4,
+        "color": true,
+        "samples_per_component": 8,
+        "complete": true,
+        "completion_reason": "expected_component_count",
+        "observed_component_count": 96,
+        "expected_component_count": 96
+      },
+      "boundary_error_frames": 1,
+      "method": "Accepted picture estimator/window/filter settings in coupled known-segment/mode/carrier WAV diagnostic; not full production IQ pipeline or independent encoder qualification",
+      "mac": {
+        "schema": "grampy-accuracy.v1",
+        "kind": "raw-raster-error",
+        "whole_raster": {
+          "mean_absolute_error_255": 87.80208333333333,
+          "root_mean_square_error_255": 121.83522855343058,
+          "signed_bias_255": -1.65625,
+          "exact_component_fraction": 0.10416666666666667,
+          "psnr_db": 6.415345961917874
+        },
+        "channels": {
+          "red": {
+            "mean_absolute_error_255": 88.90625,
+            "root_mean_square_error_255": 122.49017817768085,
+            "signed_bias_255": 6.28125,
+            "exact_component_fraction": 0.0625,
+            "psnr_db": 6.36877828107576
+          },
+          "green": {
+            "mean_absolute_error_255": 99.5625,
+            "root_mean_square_error_255": 129.92714304563154,
+            "signed_bias_255": 7.4375,
+            "exact_component_fraction": 0.09375,
+            "psnr_db": 5.856805830708579
+          },
+          "blue": {
+            "mean_absolute_error_255": 74.9375,
+            "root_mean_square_error_255": 112.45693620226366,
+            "signed_bias_255": -18.6875,
+            "exact_component_fraction": 0.15625,
+            "psnr_db": 7.111078661984642
+          }
+        },
+        "differing_pixel_percent": 100.0,
+        "geometry": {
+          "width": 8,
+          "height": 4
+        },
+        "alignment": {
+          "schema": "grampy-accuracy.v1",
+          "kind": "picture-component-alignment",
+          "algorithm": "bounded-regularized-offset-viterbi-v1",
+          "reference_components": 96,
+          "decoded_components": 96,
+          "compared_components": 96,
+          "raw_mean_absolute_error_255": 87.80208587646484,
+          "raw_exact_component_fraction": 0.10416666666666667,
+          "aligned_mean_absolute_error_255": 87.80208587646484,
+          "aligned_exact_component_fraction": 0.10416666666666667,
+          "zero_offset_fraction": 1.0,
+          "maximum_absolute_offset_components": 0,
+          "offset_change_count": 0,
+          "offset_changes": [],
+          "offset_path_rle": [
+            {
+              "start_component": 0,
+              "stop_component": 96,
+              "offset": 0
+            }
+          ],
+          "alignment_parameters": {
+            "max_offset_components": 24,
+            "change_penalty": 25.0,
+            "offset_penalty": 0.0005
+          }
+        }
+      },
+      "mac_source_sha256": "7295b863aac40e7118521b5f15483a13f160e42cf6d07b8769c0951292f3960f",
+      "mac_method": "Retained user Mac fldigi 4.2.11 saved PNG; completed widget not captured"
+    },
+    {
+      "case": "mfsk64-color-speeds",
+      "speed": 4,
+      "mode": "MFSK64",
+      "color": "color",
+      "source_sha256": "33e1986427384be02803fe5e8785f3068d17bbacaf6fb6f5b7f880cfea188ea2",
+      "wav_sha256": "0204283ff510b146eea6a7fc6795a7a1429f537c60b7ed6ce5a65a9d54ad80ea",
+      "grampy": {
+        "schema": "grampy-accuracy.v1",
+        "kind": "raw-raster-error",
+        "whole_raster": {
+          "mean_absolute_error_255": 3.7291666666666665,
+          "root_mean_square_error_255": 6.239991987174342,
+          "signed_bias_255": 2.375,
+          "exact_component_fraction": 0.3645833333333333,
+          "psnr_db": 32.227122968646654
+        },
+        "channels": {
+          "red": {
+            "mean_absolute_error_255": 3.5,
+            "root_mean_square_error_255": 5.963430220938282,
+            "signed_bias_255": 2.5,
+            "exact_component_fraction": 0.4375,
+            "psnr_db": 32.62088077128764
+          },
+          "green": {
+            "mean_absolute_error_255": 3.5,
+            "root_mean_square_error_255": 5.921359641163505,
+            "signed_bias_255": 2.5,
+            "exact_component_fraction": 0.3125,
+            "psnr_db": 32.682374822676735
+          },
+          "blue": {
+            "mean_absolute_error_255": 4.1875,
+            "root_mean_square_error_255": 6.796138609534093,
+            "signed_bias_255": 2.125,
+            "exact_component_fraction": 0.34375,
+            "psnr_db": 31.485559051290096
+          }
+        },
+        "differing_pixel_percent": 93.75,
+        "geometry": {
+          "width": 8,
+          "height": 4
+        },
+        "alignment": {
+          "schema": "grampy-accuracy.v1",
+          "kind": "picture-component-alignment",
+          "algorithm": "bounded-regularized-offset-viterbi-v1",
+          "reference_components": 96,
+          "decoded_components": 96,
+          "compared_components": 96,
+          "raw_mean_absolute_error_255": 3.7291667461395264,
+          "raw_exact_component_fraction": 0.3645833333333333,
+          "aligned_mean_absolute_error_255": 3.7291667461395264,
+          "aligned_exact_component_fraction": 0.3645833333333333,
+          "zero_offset_fraction": 1.0,
+          "maximum_absolute_offset_components": 0,
+          "offset_change_count": 0,
+          "offset_changes": [],
+          "offset_path_rle": [
+            {
+              "start_component": 0,
+              "stop_component": 96,
+              "offset": 0
+            }
+          ],
+          "alignment_parameters": {
+            "max_offset_components": 24,
+            "change_penalty": 25.0,
+            "offset_penalty": 0.0005
+          }
+        }
+      },
+      "picture": {
+        "header_text": "Pic:8x4Cp4;",
+        "width": 8,
+        "height": 4,
+        "color": true,
+        "samples_per_component": 4,
+        "complete": true,
+        "completion_reason": "expected_component_count",
+        "observed_component_count": 96,
+        "expected_component_count": 96
+      },
+      "boundary_error_frames": 0,
+      "method": "Accepted picture estimator/window/filter settings in coupled known-segment/mode/carrier WAV diagnostic; not full production IQ pipeline or independent encoder qualification",
+      "mac": {
+        "schema": "grampy-accuracy.v1",
+        "kind": "raw-raster-error",
+        "whole_raster": {
+          "mean_absolute_error_255": 113.17708333333333,
+          "root_mean_square_error_255": 136.03013606060486,
+          "signed_bias_255": -11.96875,
+          "exact_component_fraction": 0.052083333333333336,
+          "psnr_db": 5.458100959661052
+        },
+        "channels": {
+          "red": {
+            "mean_absolute_error_255": 116.28125,
+            "root_mean_square_error_255": 138.27610513027912,
+            "signed_bias_255": -5.59375,
+            "exact_component_fraction": 0.0,
+            "psnr_db": 5.315860846210986
+          },
+          "green": {
+            "mean_absolute_error_255": 110.0625,
+            "root_mean_square_error_255": 129.47900408946617,
+            "signed_bias_255": -6.5,
+            "exact_component_fraction": 0.0625,
+            "psnr_db": 5.886816602859357
+          },
+          "blue": {
+            "mean_absolute_error_255": 113.1875,
+            "root_mean_square_error_255": 140.09817985969696,
+            "signed_bias_255": -23.8125,
+            "exact_component_fraction": 0.09375,
+            "psnr_db": 5.202153748363293
+          }
+        },
+        "differing_pixel_percent": 100.0,
+        "geometry": {
+          "width": 8,
+          "height": 4
+        },
+        "alignment": {
+          "schema": "grampy-accuracy.v1",
+          "kind": "picture-component-alignment",
+          "algorithm": "bounded-regularized-offset-viterbi-v1",
+          "reference_components": 96,
+          "decoded_components": 96,
+          "compared_components": 96,
+          "raw_mean_absolute_error_255": 113.17708587646484,
+          "raw_exact_component_fraction": 0.052083333333333336,
+          "aligned_mean_absolute_error_255": 113.17708587646484,
+          "aligned_exact_component_fraction": 0.052083333333333336,
+          "zero_offset_fraction": 1.0,
+          "maximum_absolute_offset_components": 0,
+          "offset_change_count": 0,
+          "offset_changes": [],
+          "offset_path_rle": [
+            {
+              "start_component": 0,
+              "stop_component": 96,
+              "offset": 0
+            }
+          ],
+          "alignment_parameters": {
+            "max_offset_components": 24,
+            "change_penalty": 25.0,
+            "offset_penalty": 0.0005
+          }
+        }
+      },
+      "mac_source_sha256": "f42eb6642cff4cf1b04c4190f64a7282ab03927a96ef9262f2d43c9f41beda3b",
+      "mac_method": "Retained user Mac fldigi 4.2.11 saved PNG; completed widget not captured"
+    },
+    {
+      "case": "mfsk64-color-speeds",
+      "speed": 2,
+      "mode": "MFSK64",
+      "color": "color",
+      "source_sha256": "33e1986427384be02803fe5e8785f3068d17bbacaf6fb6f5b7f880cfea188ea2",
+      "wav_sha256": "0204283ff510b146eea6a7fc6795a7a1429f537c60b7ed6ce5a65a9d54ad80ea",
+      "grampy": {
+        "schema": "grampy-accuracy.v1",
+        "kind": "raw-raster-error",
+        "whole_raster": {
+          "mean_absolute_error_255": 14.375,
+          "root_mean_square_error_255": 23.875545368989304,
+          "signed_bias_255": 0.3125,
+          "exact_component_fraction": 0.16666666666666666,
+          "psnr_db": 20.571737596830403
+        },
+        "channels": {
+          "red": {
+            "mean_absolute_error_255": 10.25,
+            "root_mean_square_error_255": 15.751984002023365,
+            "signed_bias_255": 0.3125,
+            "exact_component_fraction": 0.1875,
+            "psnr_db": 24.1840983676072
+          },
+          "green": {
+            "mean_absolute_error_255": 18.8125,
+            "root_mean_square_error_255": 31.38072656902641,
+            "signed_bias_255": 0.375,
+            "exact_component_fraction": 0.15625,
+            "psnr_db": 18.197543713867308
+          },
+          "blue": {
+            "mean_absolute_error_255": 14.0625,
+            "root_mean_square_error_255": 21.84605227495348,
+            "signed_bias_255": 0.25,
+            "exact_component_fraction": 0.15625,
+            "psnr_db": 21.343344238022055
+          }
+        },
+        "differing_pixel_percent": 100.0,
+        "geometry": {
+          "width": 8,
+          "height": 4
+        },
+        "alignment": {
+          "schema": "grampy-accuracy.v1",
+          "kind": "picture-component-alignment",
+          "algorithm": "bounded-regularized-offset-viterbi-v1",
+          "reference_components": 96,
+          "decoded_components": 96,
+          "compared_components": 96,
+          "raw_mean_absolute_error_255": 14.375,
+          "raw_exact_component_fraction": 0.16666666666666666,
+          "aligned_mean_absolute_error_255": 14.375,
+          "aligned_exact_component_fraction": 0.16666666666666666,
+          "zero_offset_fraction": 1.0,
+          "maximum_absolute_offset_components": 0,
+          "offset_change_count": 0,
+          "offset_changes": [],
+          "offset_path_rle": [
+            {
+              "start_component": 0,
+              "stop_component": 96,
+              "offset": 0
+            }
+          ],
+          "alignment_parameters": {
+            "max_offset_components": 24,
+            "change_penalty": 25.0,
+            "offset_penalty": 0.0005
+          }
+        }
+      },
+      "picture": {
+        "header_text": "Pic:8x4Cp2;",
+        "width": 8,
+        "height": 4,
+        "color": true,
+        "samples_per_component": 2,
+        "complete": true,
+        "completion_reason": "expected_component_count",
+        "observed_component_count": 96,
+        "expected_component_count": 96
+      },
+      "boundary_error_frames": 1,
+      "method": "Accepted picture estimator/window/filter settings in coupled known-segment/mode/carrier WAV diagnostic; not full production IQ pipeline or independent encoder qualification",
+      "mac": {
+        "schema": "grampy-accuracy.v1",
+        "kind": "raw-raster-error",
+        "whole_raster": {
+          "mean_absolute_error_255": 97.77083333333333,
+          "root_mean_square_error_255": 140.3983914912608,
+          "signed_bias_255": -73.0625,
+          "exact_component_fraction": 0.2916666666666667,
+          "psnr_db": 5.183560964266501
+        },
+        "channels": {
+          "red": {
+            "mean_absolute_error_255": 103.875,
+            "root_mean_square_error_255": 147.67278015937805,
+            "signed_bias_255": -87.9375,
+            "exact_component_fraction": 0.28125,
+            "psnr_db": 4.74479458477023
+          },
+          "green": {
+            "mean_absolute_error_255": 91.875,
+            "root_mean_square_error_255": 133.54329822196246,
+            "signed_bias_255": -63.125,
+            "exact_component_fraction": 0.28125,
+            "psnr_db": 5.61836164595677
+          },
+          "blue": {
+            "mean_absolute_error_255": 97.5625,
+            "root_mean_square_error_255": 139.62113915879644,
+            "signed_bias_255": -68.125,
+            "exact_component_fraction": 0.3125,
+            "psnr_db": 5.231780067435926
+          }
+        },
+        "differing_pixel_percent": 96.875,
+        "geometry": {
+          "width": 8,
+          "height": 4
+        },
+        "alignment": {
+          "schema": "grampy-accuracy.v1",
+          "kind": "picture-component-alignment",
+          "algorithm": "bounded-regularized-offset-viterbi-v1",
+          "reference_components": 96,
+          "decoded_components": 96,
+          "compared_components": 96,
+          "raw_mean_absolute_error_255": 97.77083587646484,
+          "raw_exact_component_fraction": 0.2916666666666667,
+          "aligned_mean_absolute_error_255": 97.77083587646484,
+          "aligned_exact_component_fraction": 0.2916666666666667,
+          "zero_offset_fraction": 1.0,
+          "maximum_absolute_offset_components": 0,
+          "offset_change_count": 0,
+          "offset_changes": [],
+          "offset_path_rle": [
+            {
+              "start_component": 0,
+              "stop_component": 96,
+              "offset": 0
+            }
+          ],
+          "alignment_parameters": {
+            "max_offset_components": 24,
+            "change_penalty": 25.0,
+            "offset_penalty": 0.0005
+          }
+        }
+      },
+      "mac_source_sha256": "d4a5fb53e1aedfa4e936628eab5d055a30351344bdc21a48b6faf0b704a6f8bf",
+      "mac_method": "Retained user Mac fldigi 4.2.11 saved PNG; completed widget not captured"
+    },
+    {
+      "case": "normal-sized-rgb",
+      "speed": 8,
+      "mode": "MFSK64",
+      "color": "color",
+      "source_sha256": "89a6447653925769b728b44b7d97168b792827e6eac2bfffdc28abaa605b3f77",
+      "wav_sha256": "0a7fb22253f2bcae6c7408880c723652378b840eb352797cea7fc7d0532b53e6",
+      "grampy": {
+        "schema": "grampy-accuracy.v1",
+        "kind": "raw-raster-error",
+        "whole_raster": {
+          "mean_absolute_error_255": 0.6214236111111111,
+          "root_mean_square_error_255": 2.6965255422487657,
+          "signed_bias_255": 0.11409722222222222,
+          "exact_component_fraction": 0.9040451388888889,
+          "psnr_db": 39.51471284061486
+        },
+        "channels": {
+          "red": {
+            "mean_absolute_error_255": 0.6009375,
+            "root_mean_square_error_255": 2.636798879955264,
+            "signed_bias_255": 0.1271875,
+            "exact_component_fraction": 0.9065104166666667,
+            "psnr_db": 39.709263497881686
+          },
+          "green": {
+            "mean_absolute_error_255": 0.6032291666666667,
+            "root_mean_square_error_255": 2.642737690350671,
+            "signed_bias_255": 0.1284375,
+            "exact_component_fraction": 0.9063541666666667,
+            "psnr_db": 39.689722436750266
+          },
+          "blue": {
+            "mean_absolute_error_255": 0.6601041666666667,
+            "root_mean_square_error_255": 2.8065956542877113,
+            "signed_bias_255": 0.08666666666666667,
+            "exact_component_fraction": 0.8992708333333334,
+            "psnr_db": 39.16720664035597
+          }
+        },
+        "differing_pixel_percent": 10.432291666666666,
+        "geometry": {
+          "width": 160,
+          "height": 120
+        },
+        "alignment": {
+          "schema": "grampy-accuracy.v1",
+          "kind": "picture-component-alignment",
+          "algorithm": "bounded-regularized-offset-viterbi-v1",
+          "reference_components": 57600,
+          "decoded_components": 57600,
+          "compared_components": 57600,
+          "raw_mean_absolute_error_255": 0.621423602104187,
+          "raw_exact_component_fraction": 0.9040451388888889,
+          "aligned_mean_absolute_error_255": 0.621423602104187,
+          "aligned_exact_component_fraction": 0.9040451388888889,
+          "zero_offset_fraction": 1.0,
+          "maximum_absolute_offset_components": 0,
+          "offset_change_count": 0,
+          "offset_changes": [],
+          "offset_path_rle": [
+            {
+              "start_component": 0,
+              "stop_component": 57600,
+              "offset": 0
+            }
+          ],
+          "alignment_parameters": {
+            "max_offset_components": 24,
+            "change_penalty": 25.0,
+            "offset_penalty": 0.0005
+          }
+        }
+      },
+      "picture": {
+        "header_text": "Pic:160x120C;",
+        "width": 160,
+        "height": 120,
+        "color": true,
+        "samples_per_component": 8,
+        "complete": true,
+        "completion_reason": "expected_component_count",
+        "observed_component_count": 57600,
+        "expected_component_count": 57600
+      },
+      "boundary_error_frames": 1,
+      "method": "Accepted picture estimator/window/filter settings in coupled known-segment/mode/carrier WAV diagnostic; not full production IQ pipeline or independent encoder qualification",
+      "mac": {
+        "schema": "grampy-accuracy.v1",
+        "kind": "raw-raster-error",
+        "whole_raster": {
+          "mean_absolute_error_255": 13.69704861111111,
+          "root_mean_square_error_255": 46.357677956898954,
+          "signed_bias_255": -0.43756944444444446,
+          "exact_component_fraction": 0.3539236111111111,
+          "psnr_db": 14.808370125730423
+        },
+        "channels": {
+          "red": {
+            "mean_absolute_error_255": 13.72484375,
+            "root_mean_square_error_255": 45.855782191744005,
+            "signed_bias_255": -0.6675520833333334,
+            "exact_component_fraction": 0.2975,
+            "psnr_db": 14.902921490941011
+          },
+          "green": {
+            "mean_absolute_error_255": 14.119635416666666,
+            "root_mean_square_error_255": 47.39404905066317,
+            "signed_bias_255": -0.04286458333333333,
+            "exact_component_fraction": 0.29239583333333335,
+            "psnr_db": 14.616327334990281
+          },
+          "blue": {
+            "mean_absolute_error_255": 13.246666666666666,
+            "root_mean_square_error_255": 45.805613966339685,
+            "signed_bias_255": -0.6022916666666667,
+            "exact_component_fraction": 0.471875,
+            "psnr_db": 14.912429434982357
+          }
+        },
+        "differing_pixel_percent": 86.56770833333334,
+        "geometry": {
+          "width": 160,
+          "height": 120
+        },
+        "alignment": {
+          "schema": "grampy-accuracy.v1",
+          "kind": "picture-component-alignment",
+          "algorithm": "bounded-regularized-offset-viterbi-v1",
+          "reference_components": 57600,
+          "decoded_components": 57600,
+          "compared_components": 57600,
+          "raw_mean_absolute_error_255": 13.69704818725586,
+          "raw_exact_component_fraction": 0.3539236111111111,
+          "aligned_mean_absolute_error_255": 4.427881717681885,
+          "aligned_exact_component_fraction": 0.4186111111111111,
+          "zero_offset_fraction": 0.06677083333333333,
+          "maximum_absolute_offset_components": 1,
+          "offset_change_count": 1,
+          "offset_changes": [
+            {
+              "component_index": 3846,
+              "offset": -1
+            }
+          ],
+          "offset_path_rle": [
+            {
+              "start_component": 0,
+              "stop_component": 3846,
+              "offset": 0
+            },
+            {
+              "start_component": 3846,
+              "stop_component": 57600,
+              "offset": -1
+            }
+          ],
+          "alignment_parameters": {
+            "max_offset_components": 24,
+            "change_penalty": 25.0,
+            "offset_penalty": 0.0005
+          }
+        }
+      },
+      "mac_source_sha256": "93271a6a45c8e0c9eac6151c567783a21cd02d8acdc1ccc3e73638a65d950e62",
+      "mac_method": "Retained user Mac fldigi 4.2.11 saved PNG; completed widget not captured"
+    },
+    {
+      "case": "normal-sized-rgb",
+      "speed": 4,
+      "mode": "MFSK64",
+      "color": "color",
+      "source_sha256": "89a6447653925769b728b44b7d97168b792827e6eac2bfffdc28abaa605b3f77",
+      "wav_sha256": "ad964a13c7d843d66f82343de95c244c1bc0250fb85bf72d0e95caf81185fdac",
+      "grampy": {
+        "schema": "grampy-accuracy.v1",
+        "kind": "raw-raster-error",
+        "whole_raster": {
+          "mean_absolute_error_255": 7.27265625,
+          "root_mean_square_error_255": 23.719042323626812,
+          "signed_bias_255": -0.24828125,
+          "exact_component_fraction": 0.7800347222222223,
+          "psnr_db": 20.62886060788742
+        },
+        "channels": {
+          "red": {
+            "mean_absolute_error_255": 6.885260416666667,
+            "root_mean_square_error_255": 23.28496362999092,
+            "signed_bias_255": -0.3602604166666667,
+            "exact_component_fraction": 0.7949479166666666,
+            "psnr_db": 20.78929233024126
+          },
+          "green": {
+            "mean_absolute_error_255": 7.56265625,
+            "root_mean_square_error_255": 24.08644263377222,
+            "signed_bias_255": -0.21192708333333332,
+            "exact_component_fraction": 0.7690625,
+            "psnr_db": 20.495350347280038
+          },
+          "blue": {
+            "mean_absolute_error_255": 7.370052083333333,
+            "root_mean_square_error_255": 23.778827898994518,
+            "signed_bias_255": -0.17265625,
+            "exact_component_fraction": 0.77609375,
+            "psnr_db": 20.60699473552723
+          }
+        },
+        "differing_pixel_percent": 27.250000000000004,
+        "geometry": {
+          "width": 160,
+          "height": 120
+        },
+        "alignment": {
+          "schema": "grampy-accuracy.v1",
+          "kind": "picture-component-alignment",
+          "algorithm": "bounded-regularized-offset-viterbi-v1",
+          "reference_components": 57600,
+          "decoded_components": 57600,
+          "compared_components": 57600,
+          "raw_mean_absolute_error_255": 7.272656440734863,
+          "raw_exact_component_fraction": 0.7800347222222223,
+          "aligned_mean_absolute_error_255": 7.272656440734863,
+          "aligned_exact_component_fraction": 0.7800347222222223,
+          "zero_offset_fraction": 1.0,
+          "maximum_absolute_offset_components": 0,
+          "offset_change_count": 0,
+          "offset_changes": [],
+          "offset_path_rle": [
+            {
+              "start_component": 0,
+              "stop_component": 57600,
+              "offset": 0
+            }
+          ],
+          "alignment_parameters": {
+            "max_offset_components": 24,
+            "change_penalty": 25.0,
+            "offset_penalty": 0.0005
+          }
+        }
+      },
+      "picture": {
+        "header_text": "Pic:160x120Cp4;",
+        "width": 160,
+        "height": 120,
+        "color": true,
+        "samples_per_component": 4,
+        "complete": true,
+        "completion_reason": "expected_component_count",
+        "observed_component_count": 57600,
+        "expected_component_count": 57600
+      },
+      "boundary_error_frames": 2,
+      "method": "Accepted picture estimator/window/filter settings in coupled known-segment/mode/carrier WAV diagnostic; not full production IQ pipeline or independent encoder qualification",
+      "mac": {
+        "schema": "grampy-accuracy.v1",
+        "kind": "raw-raster-error",
+        "whole_raster": {
+          "mean_absolute_error_255": 16.213697916666668,
+          "root_mean_square_error_255": 48.57374315724037,
+          "signed_bias_255": -0.47463541666666664,
+          "exact_component_fraction": 0.3099826388888889,
+          "psnr_db": 14.402772167220819
+        },
+        "channels": {
+          "red": {
+            "mean_absolute_error_255": 16.1190625,
+            "root_mean_square_error_255": 47.755280030938295,
+            "signed_bias_255": -0.8521875,
+            "exact_component_fraction": 0.2864583333333333,
+            "psnr_db": 14.550375687549051
+          },
+          "green": {
+            "mean_absolute_error_255": 17.01859375,
+            "root_mean_square_error_255": 50.28721932144721,
+            "signed_bias_255": 0.22682291666666668,
+            "exact_component_fraction": 0.27515625,
+            "psnr_db": 14.101651177326147
+          },
+          "blue": {
+            "mean_absolute_error_255": 15.5034375,
+            "root_mean_square_error_255": 47.63249284889465,
+            "signed_bias_255": -0.7985416666666667,
+            "exact_component_fraction": 0.36833333333333335,
+            "psnr_db": 14.572737390083276
+          }
+        },
+        "differing_pixel_percent": 90.875,
+        "geometry": {
+          "width": 160,
+          "height": 120
+        },
+        "alignment": {
+          "schema": "grampy-accuracy.v1",
+          "kind": "picture-component-alignment",
+          "algorithm": "bounded-regularized-offset-viterbi-v1",
+          "reference_components": 57600,
+          "decoded_components": 57600,
+          "compared_components": 57600,
+          "raw_mean_absolute_error_255": 16.21369743347168,
+          "raw_exact_component_fraction": 0.3099826388888889,
+          "aligned_mean_absolute_error_255": 6.966545104980469,
+          "aligned_exact_component_fraction": 0.40588541666666667,
+          "zero_offset_fraction": 0.06677083333333333,
+          "maximum_absolute_offset_components": 2,
+          "offset_change_count": 2,
+          "offset_changes": [
+            {
+              "component_index": 3846,
+              "offset": -1
+            },
+            {
+              "component_index": 3847,
+              "offset": -2
+            }
+          ],
+          "offset_path_rle": [
+            {
+              "start_component": 0,
+              "stop_component": 3846,
+              "offset": 0
+            },
+            {
+              "start_component": 3846,
+              "stop_component": 3847,
+              "offset": -1
+            },
+            {
+              "start_component": 3847,
+              "stop_component": 57600,
+              "offset": -2
+            }
+          ],
+          "alignment_parameters": {
+            "max_offset_components": 24,
+            "change_penalty": 25.0,
+            "offset_penalty": 0.0005
+          }
+        }
+      },
+      "mac_source_sha256": "f3d0e56afc32c38731d7e88830a3ede4f62e0340eee928d1848605f74b6ee6f6",
+      "mac_method": "Retained user Mac fldigi 4.2.11 saved PNG; completed widget not captured"
+    },
+    {
+      "case": "normal-sized-rgb",
+      "speed": 2,
+      "mode": "MFSK64",
+      "color": "color",
+      "source_sha256": "89a6447653925769b728b44b7d97168b792827e6eac2bfffdc28abaa605b3f77",
+      "wav_sha256": "e7b1ef08e5ade6764654d75316dd5f020be0cc29f40d1dfaa35bee5988f199fe",
+      "grampy": {
+        "schema": "grampy-accuracy.v1",
+        "kind": "raw-raster-error",
+        "whole_raster": {
+          "mean_absolute_error_255": 11.290225694444445,
+          "root_mean_square_error_255": 30.64852979299696,
+          "signed_bias_255": -0.07717013888888889,
+          "exact_component_fraction": 0.6418055555555555,
+          "psnr_db": 18.402610682881054
+        },
+        "channels": {
+          "red": {
+            "mean_absolute_error_255": 10.44359375,
+            "root_mean_square_error_255": 29.794620774282954,
+            "signed_bias_255": -0.30609375,
+            "exact_component_fraction": 0.6486979166666667,
+            "psnr_db": 18.648046366699727
+          },
+          "green": {
+            "mean_absolute_error_255": 12.0275,
+            "root_mean_square_error_255": 31.45579735915146,
+            "signed_bias_255": 0.001979166666666667,
+            "exact_component_fraction": 0.6404166666666666,
+            "psnr_db": 18.176789640677566
+          },
+          "blue": {
+            "mean_absolute_error_255": 11.399583333333334,
+            "root_mean_square_error_255": 30.672634722718772,
+            "signed_bias_255": 0.07260416666666666,
+            "exact_component_fraction": 0.6363020833333334,
+            "psnr_db": 18.39578195509238
+          }
+        },
+        "differing_pixel_percent": 38.69270833333333,
+        "geometry": {
+          "width": 160,
+          "height": 120
+        },
+        "alignment": {
+          "schema": "grampy-accuracy.v1",
+          "kind": "picture-component-alignment",
+          "algorithm": "bounded-regularized-offset-viterbi-v1",
+          "reference_components": 57600,
+          "decoded_components": 57600,
+          "compared_components": 57600,
+          "raw_mean_absolute_error_255": 11.290225982666016,
+          "raw_exact_component_fraction": 0.6418055555555555,
+          "aligned_mean_absolute_error_255": 11.290225982666016,
+          "aligned_exact_component_fraction": 0.6418055555555555,
+          "zero_offset_fraction": 1.0,
+          "maximum_absolute_offset_components": 0,
+          "offset_change_count": 0,
+          "offset_changes": [],
+          "offset_path_rle": [
+            {
+              "start_component": 0,
+              "stop_component": 57600,
+              "offset": 0
+            }
+          ],
+          "alignment_parameters": {
+            "max_offset_components": 24,
+            "change_penalty": 25.0,
+            "offset_penalty": 0.0005
+          }
+        }
+      },
+      "picture": {
+        "header_text": "Pic:160x120Cp2;",
+        "width": 160,
+        "height": 120,
+        "color": true,
+        "samples_per_component": 2,
+        "complete": true,
+        "completion_reason": "expected_component_count",
+        "observed_component_count": 57600,
+        "expected_component_count": 57600
+      },
+      "boundary_error_frames": 0,
+      "method": "Accepted picture estimator/window/filter settings in coupled known-segment/mode/carrier WAV diagnostic; not full production IQ pipeline or independent encoder qualification",
+      "mac": {
+        "schema": "grampy-accuracy.v1",
+        "kind": "raw-raster-error",
+        "whole_raster": {
+          "mean_absolute_error_255": 22.05923611111111,
+          "root_mean_square_error_255": 55.338894361621165,
+          "signed_bias_255": -0.5549652777777778,
+          "exact_component_fraction": 0.27154513888888887,
+          "psnr_db": 13.270194049784509
+        },
+        "channels": {
+          "red": {
+            "mean_absolute_error_255": 21.742916666666666,
+            "root_mean_square_error_255": 53.876985655596336,
+            "signed_bias_255": -1.3576041666666667,
+            "exact_component_fraction": 0.2528125,
+            "psnr_db": 13.502737817831614
+          },
+          "green": {
+            "mean_absolute_error_255": 23.98953125,
+            "root_mean_square_error_255": 58.47381402887393,
+            "signed_bias_255": 0.94140625,
+            "exact_component_fraction": 0.23682291666666666,
+            "psnr_db": 12.791575165259296
+          },
+          "blue": {
+            "mean_absolute_error_255": 20.445260416666667,
+            "root_mean_square_error_255": 53.52815312602643,
+            "signed_bias_255": -1.2486979166666667,
+            "exact_component_fraction": 0.325,
+            "psnr_db": 13.55915842380983
+          }
+        },
+        "differing_pixel_percent": 89.96354166666667,
+        "geometry": {
+          "width": 160,
+          "height": 120
+        },
+        "alignment": {
+          "schema": "grampy-accuracy.v1",
+          "kind": "picture-component-alignment",
+          "algorithm": "bounded-regularized-offset-viterbi-v1",
+          "reference_components": 57600,
+          "decoded_components": 57600,
+          "compared_components": 57600,
+          "raw_mean_absolute_error_255": 22.059236526489258,
+          "raw_exact_component_fraction": 0.27154513888888887,
+          "aligned_mean_absolute_error_255": 10.602882385253906,
+          "aligned_exact_component_fraction": 0.4483506944444444,
+          "zero_offset_fraction": 0.06677083333333333,
+          "maximum_absolute_offset_components": 5,
+          "offset_change_count": 5,
+          "offset_changes": [
+            {
+              "component_index": 3846,
+              "offset": -1
+            },
+            {
+              "component_index": 3847,
+              "offset": -2
+            },
+            {
+              "component_index": 3848,
+              "offset": -3
+            },
+            {
+              "component_index": 3849,
+              "offset": -4
+            },
+            {
+              "component_index": 3864,
+              "offset": -5
+            }
+          ],
+          "offset_path_rle": [
+            {
+              "start_component": 0,
+              "stop_component": 3846,
+              "offset": 0
+            },
+            {
+              "start_component": 3846,
+              "stop_component": 3847,
+              "offset": -1
+            },
+            {
+              "start_component": 3847,
+              "stop_component": 3848,
+              "offset": -2
+            },
+            {
+              "start_component": 3848,
+              "stop_component": 3849,
+              "offset": -3
+            },
+            {
+              "start_component": 3849,
+              "stop_component": 3864,
+              "offset": -4
+            },
+            {
+              "start_component": 3864,
+              "stop_component": 57600,
+              "offset": -5
+            }
+          ],
+          "alignment_parameters": {
+            "max_offset_components": 24,
+            "change_penalty": 25.0,
+            "offset_penalty": 0.0005
+          }
+        }
+      },
+      "mac_source_sha256": "1115a83188381a6c56c8c22669a846199f94041af30ba87110adf41453fa7024",
+      "mac_method": "Retained user Mac fldigi 4.2.11 saved PNG; completed widget not captured"
+    }
+  ],
+  "acceptance": "Descriptive scorecard; no thresholds applied or qualification disposition",
+  "alignment_warning": "Bounded truth-selected compensation reported separately; cannot hide delivered-picture defects"
+}

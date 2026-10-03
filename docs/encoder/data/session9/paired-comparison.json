@@ -1,0 +1,20 @@
+[
+  {
+    "case": "mfsk32-gray",
+    "native_source_mae": 34.5625,
+    "reference_source_mae": 91.5,
+    "native_vs_reference_mae": 85.6875,
+    "native_vs_reference_max_error": 213,
+    "native_autosave_equals_viewer": false,
+    "reference_autosave_equals_viewer": false
+  },
+  {
+    "case": "mfsk64-color",
+    "native_source_mae": 23.958333333333332,
+    "reference_source_mae": 118.09375,
+    "native_vs_reference_mae": 104.98958333333333,
+    "native_vs_reference_max_error": 241,
+    "native_autosave_equals_viewer": false,
+    "reference_autosave_equals_viewer": false
+  }
+]

@@ -1,0 +1,22 @@
+practical_root=/var/tmp/grampy-encoder-session9-practical.kHjMad
+START gray64-p8-card duration=58.880s
+END gray64-p8-card exit=0
+START gray64-p4-photo duration=37.552s
+END gray64-p4-photo exit=0
+START gray64-p2-chart duration=20.752s
+END gray64-p2-chart exit=0
+START rgb64-p8-photo duration=145.360s
+END rgb64-p8-photo exit=0
+START rgb64-p4-card duration=80.544s
+END rgb64-p4-card exit=0
+START rgb64-p2-chart duration=30.288s
+END rgb64-p2-chart exit=0
+START gray32-p8-card duration=63.678s
+END gray32-p8-card exit=0
+START gray32-p4-photo duration=42.590s
+END gray32-p4-photo exit=0
+START gray32-p2-chart duration=25.790s
+END gray32-p2-chart exit=0
+START mixed-broadcast-photo duration=99.706s
+END mixed-broadcast-photo exit=0
+

@@ -1,0 +1,8 @@
+FINAL VERIFIED: 10/10 numerical passes; 150 source/WAV/receive artifacts; all 40 production hashes unchanged; 10/10 autosaves equal settled viewers.
+gray64-p8-card GramPy/Pi raw MAE 8.337
+gray64-p4-photo GramPy/Pi raw MAE 2.33
+gray64-p2-chart GramPy/Pi raw MAE 2.431
+rgb64-p8-photo GramPy/Pi raw MAE 0.5
+rgb64-p4-card GramPy/Pi raw MAE 1.801
+rgb64-p2-chart GramPy/Pi raw MAE 3.465
+mixed-broadcast-photo GramPy/Pi raw MAE 5.32

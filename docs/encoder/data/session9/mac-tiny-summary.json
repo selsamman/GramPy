@@ -1,0 +1,157 @@
+{
+  "scope": "independent Mac autosaves for the exact original MFSK64 RGB p8/p4/p2 qualification WAV",
+  "input_wav_sha256": "0204283ff510b146eea6a7fc6795a7a1429f537c60b7ed6ce5a65a9d54ad80ea",
+  "source_pixel_sha256": "52334109d177d2ed03802ab1c206d4a717d1fe26bbd89d5a6ecde6116a5d3007",
+  "mac_completed_buffer_captured": false,
+  "mac_text_or_settings_independently_captured": false,
+  "cases": [
+    {
+      "speed": 8,
+      "mode": "MFSK64",
+      "color": "RGB",
+      "size": [
+        8,
+        4
+      ],
+      "mapping_basis": "user supplied images after replaying the original WAV; transmission and attachment order p8, p4, p2",
+      "original_mac_path": "/Users/sam/.fldigi/images/pic_2026-10-02_203342z.png",
+      "png_metadata": {
+        "Comment": "Program: fldigi 4.2.11\nReceived: 2026-10-02T20:33:42Z\nModem: MFSK-64\nFrequency: 14072.500\n"
+      },
+      "mac_file_sha256": "7295b863aac40e7118521b5f15483a13f160e42cf6d07b8769c0951292f3960f",
+      "mac_pixel_sha256": "694db7ada69e8ba26bade8c34a6eac55b9e49786a14b4c41418b17c61a020e1a",
+      "source_last_rgb": [
+        240,
+        15,
+        129
+      ],
+      "mac_last_rgb": [
+        159,
+        77,
+        0
+      ],
+      "original_pi_autosave": {
+        "source_mae": 85.70833333333333,
+        "source_max_error": 251,
+        "source_unequal_components": 85,
+        "source_exact": false,
+        "pixel_sha256": "83c6f4d9ad6cfdc892c849bb032843154fb4d1b24930d067cf7ef4f3e66e592f"
+      },
+      "pi_completed_replay": {
+        "source_mae": 44.177083333333336,
+        "source_max_error": 129,
+        "source_unequal_components": 75,
+        "source_exact": false,
+        "pixel_sha256": "29c6196a180d2d98c292681c07ed3d57f3ae1df42ad3d0ed0f270c5e38107062"
+      },
+      "mac_autosave": {
+        "source_mae": 87.80208333333333,
+        "source_max_error": 255,
+        "source_unequal_components": 86,
+        "source_exact": false,
+        "pixel_sha256": "694db7ada69e8ba26bade8c34a6eac55b9e49786a14b4c41418b17c61a020e1a"
+      },
+      "mac_vs_original_pi_autosave_mae": 22.53125,
+      "mac_vs_pi_completed_replay_mae": 45.020833333333336
+    },
+    {
+      "speed": 4,
+      "mode": "MFSK64",
+      "color": "RGB",
+      "size": [
+        8,
+        4
+      ],
+      "mapping_basis": "user supplied images after replaying the original WAV; transmission and attachment order p8, p4, p2",
+      "original_mac_path": "/Users/sam/.fldigi/images/pic_2026-10-02_203348z.png",
+      "png_metadata": {
+        "Comment": "Program: fldigi 4.2.11\nReceived: 2026-10-02T20:33:48Z\nModem: MFSK-64\nFrequency: 14072.500\n"
+      },
+      "mac_file_sha256": "f42eb6642cff4cf1b04c4190f64a7282ab03927a96ef9262f2d43c9f41beda3b",
+      "mac_pixel_sha256": "2bd5e7f6d8f46253222168231d3ea0fcd80cfee8cdd4cbbd1d34413d45034a23",
+      "source_last_rgb": [
+        240,
+        15,
+        129
+      ],
+      "mac_last_rgb": [
+        139,
+        0,
+        0
+      ],
+      "original_pi_autosave": {
+        "source_mae": 82.27083333333333,
+        "source_max_error": 242,
+        "source_unequal_components": 85,
+        "source_exact": false,
+        "pixel_sha256": "a482499e1a3ee43b967fbd50fc679220dd9e0a2be878c48cc977c438a51853ad"
+      },
+      "pi_completed_replay": {
+        "source_mae": 105.0625,
+        "source_max_error": 255,
+        "source_unequal_components": 90,
+        "source_exact": false,
+        "pixel_sha256": "a26e4603237fa14f60ecd10b821d8e361280c73bebb85db7c68c7c076871259c"
+      },
+      "mac_autosave": {
+        "source_mae": 113.17708333333333,
+        "source_max_error": 255,
+        "source_unequal_components": 91,
+        "source_exact": false,
+        "pixel_sha256": "2bd5e7f6d8f46253222168231d3ea0fcd80cfee8cdd4cbbd1d34413d45034a23"
+      },
+      "mac_vs_original_pi_autosave_mae": 86.44791666666667,
+      "mac_vs_pi_completed_replay_mae": 47.697916666666664
+    },
+    {
+      "speed": 2,
+      "mode": "MFSK64",
+      "color": "RGB",
+      "size": [
+        8,
+        4
+      ],
+      "mapping_basis": "user supplied images after replaying the original WAV; transmission and attachment order p8, p4, p2",
+      "original_mac_path": "/Users/sam/.fldigi/images/pic_2026-10-02_203355z.png",
+      "png_metadata": {
+        "Comment": "Program: fldigi 4.2.11\nReceived: 2026-10-02T20:33:55Z\nModem: MFSK-64\nFrequency: 14072.500\n"
+      },
+      "mac_file_sha256": "d4a5fb53e1aedfa4e936628eab5d055a30351344bdc21a48b6faf0b704a6f8bf",
+      "mac_pixel_sha256": "dd8320c669a76eba210ffc4492f0ff92a3c6fc44e0041f56ff56234c0629bc2f",
+      "source_last_rgb": [
+        240,
+        15,
+        129
+      ],
+      "mac_last_rgb": [
+        0,
+        0,
+        0
+      ],
+      "original_pi_autosave": {
+        "source_mae": 101.75,
+        "source_max_error": 255,
+        "source_unequal_components": 74,
+        "source_exact": false,
+        "pixel_sha256": "ca375a7468bbe3b4802848fc08608b856fd39bd44cc87f46d42513695fb8dd35"
+      },
+      "pi_completed_replay": {
+        "source_mae": 96.36458333333333,
+        "source_max_error": 255,
+        "source_unequal_components": 95,
+        "source_exact": false,
+        "pixel_sha256": "88bbff79c7a441df357f73f6a1a37c7cb3b77b249837a5fd23328aa2796fb7d7"
+      },
+      "mac_autosave": {
+        "source_mae": 97.77083333333333,
+        "source_max_error": 255,
+        "source_unequal_components": 68,
+        "source_exact": false,
+        "pixel_sha256": "dd8320c669a76eba210ffc4492f0ff92a3c6fc44e0041f56ff56234c0629bc2f"
+      },
+      "mac_vs_original_pi_autosave_mae": 20.395833333333332,
+      "mac_vs_pi_completed_replay_mae": 75.86458333333333
+    }
+  ],
+  "qualification_decision": "none; retained original qualification unchanged"
+}

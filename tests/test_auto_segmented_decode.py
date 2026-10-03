@@ -10,7 +10,7 @@ from unittest import mock
 import numpy as np
 
 from grampy.picture_decode import PictureDecode
-from grampy.pipeline import DecodeConfig, run_reference_pipeline
+from grampy.pipeline import DecodeConfig, _decode_automatic_pictures, run_reference_pipeline
 from grampy.text_decode import MFSKTextDecode
 
 
@@ -96,6 +96,25 @@ def _decoded(mode: str, segment: str, events: list[dict]) -> MFSKTextDecode:
     )
 
 
+def _pictures(identifier: str | None, sample: int = 9_000) -> PictureDecode:
+    return PictureDecode(
+        pictures=[] if identifier is None else [{
+            "id": identifier,
+            "prologue_interval": {"start": sample, "stop": sample + 100},
+            "end_alternatives": [{"input_sample": sample + 500, "selected": True}],
+        }],
+        transitions=[], artifacts=[],
+        diagnostics={
+            "header_candidates": int(identifier is not None), "header_rejections": 0,
+            "picture_count": int(identifier is not None), "clipped_components": 0,
+            "damaged_components": 0, "persistent_artifact_files": 0, "artifact_bytes": 0,
+            "maximum_materialized_iq_samples": 1000, "requested_read_samples": 1000,
+            "requested_read_bytes": 8000, "first_picture_descriptor_wall_seconds": 0.2,
+            "first_complete_picture_wall_seconds": 0.3,
+        },
+    )
+
+
 class AutomaticSegmentedDecodeTests(unittest.TestCase):
     def test_auto_dispatches_both_modes_and_publishes_picture(self) -> None:
         segments = (
@@ -163,7 +182,7 @@ class AutomaticSegmentedDecodeTests(unittest.TestCase):
                 ) as decode_text,
                 mock.patch(
                     "grampy.pipeline._decode_bounded_pictures",
-                    return_value=picture,
+                    side_effect=[_pictures(None), picture],
                 ) as decode_pictures,
             ):
                 manifest = run_reference_pipeline(
@@ -177,7 +196,7 @@ class AutomaticSegmentedDecodeTests(unittest.TestCase):
         self.assertEqual([call.args[2].mode for call in decode_text.call_args_list], [
             "MFSK32", "MFSK64"
         ])
-        self.assertEqual(decode_pictures.call_args.kwargs["mode"], "MFSK64")
+        self.assertEqual([call.kwargs["mode"] for call in decode_pictures.call_args_list], ["MFSK32", "MFSK64"])
         self.assertEqual([item["mode"] for item in manifest["mode_segments"]], [
             "MFSK32", "MFSK64", "MFSK32"
         ])
@@ -187,6 +206,45 @@ class AutomaticSegmentedDecodeTests(unittest.TestCase):
             "segmented-payload-decode-deferred",
             {warning["code"] for warning in manifest["warnings"]},
         )
+
+    def test_auto_dispatches_mfsk32_only_picture(self) -> None:
+        decoded = _decoded("MFSK32", "segment-32", [])
+        with mock.patch("grampy.pipeline._decode_bounded_pictures", return_value=_pictures("picture-0001")) as picture:
+            result, warnings = _decode_automatic_pictures(
+                SimpleNamespace(), [decoded], DecodeConfig(), artifact_dir=None,
+                artifact_path_prefix=None, run_wall_start=0,
+            )
+        self.assertEqual(len(result.pictures), 1)
+        self.assertEqual(picture.call_args.kwargs["mode"], "MFSK32")
+        self.assertIsNone(picture.call_args.kwargs["range_config"])
+        self.assertEqual(warnings, [])
+
+    def test_auto_combines_modes_without_losing_order_or_reusing_ids(self) -> None:
+        decoded = [_decoded("MFSK64", "segment-64", []), _decoded("MFSK32", "segment-32", [])]
+        with mock.patch("grampy.pipeline._decode_bounded_pictures", side_effect=[
+            _pictures("picture-0001", 10_000), _pictures("picture-0002", 1_000),
+        ]) as picture:
+            result, warnings = _decode_automatic_pictures(
+                SimpleNamespace(), decoded, DecodeConfig(), artifact_dir=None,
+                artifact_path_prefix=None, run_wall_start=0,
+            )
+        self.assertEqual([call.kwargs["id_offset"] for call in picture.call_args_list], [0, 1])
+        self.assertEqual([item["id"] for item in result.pictures], ["picture-0002", "picture-0001"])
+        self.assertEqual(result.diagnostics["picture_count"], 2)
+        self.assertEqual(warnings, [])
+
+    def test_failed_mfsk32_picture_does_not_discard_mfsk64_picture(self) -> None:
+        decoded = [_decoded("MFSK32", "segment-32", []), _decoded("MFSK64", "segment-64", [])]
+        with mock.patch("grampy.pipeline._decode_bounded_pictures", side_effect=[
+            ValueError("bad picture boundary"), _pictures("picture-0001"),
+        ]):
+            result, warnings = _decode_automatic_pictures(
+                SimpleNamespace(), decoded, DecodeConfig(), artifact_dir=None,
+                artifact_path_prefix=None, run_wall_start=0,
+            )
+        self.assertEqual(len(result.pictures), 1)
+        self.assertEqual(len(warnings), 1)
+        self.assertIn("MFSK32", warnings[0]["message"])
 
 
 if __name__ == "__main__":

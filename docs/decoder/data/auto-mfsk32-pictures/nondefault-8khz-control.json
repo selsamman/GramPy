@@ -1,0 +1,24 @@
+{
+  "sample_rate_hz": 8000,
+  "fixture_assertion": "np.float64(35.62272569444445) not less than 25 : MFSK64 picture-0003",
+  "pictures": [
+    {
+      "mode": "MFSK32",
+      "raw_mae_255": 2.0469791666666666
+    },
+    {
+      "mode": "MFSK64",
+      "raw_mae_255": 35.62272569444445,
+      "baseline_pixel_identical": true
+    },
+    {
+      "mode": "MFSK32",
+      "raw_mae_255": 170.75
+    }
+  ],
+  "interpretation": "Nondefault 8-kHz mixed fixture is outside the frozen 48-kHz matrix. Its MFSK64 defect occurs in the retained automatic baseline, and both MFSK32 rasters match the pre-change bounded picture algorithm exactly. These existing quality limitations are not repaired by this dispatch correction.",
+  "existing_mfsk32_path_pixel_identical": [
+    true,
+    true
+  ]
+}

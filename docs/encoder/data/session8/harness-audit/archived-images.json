@@ -1,0 +1,161 @@
+[
+  {
+    "case": "mfsk64-gray",
+    "archive_sha256": "59cbb1973982dcb430b7488a357b6206e3ffbcd3f5e2799072b3103bbed322f6",
+    "images": [
+      {
+        "name": "./images/pic_2026-07-31_191137z.png",
+        "bytes": 143,
+        "decode_error": "cannot identify image file <_io.BytesIO object at 0x7fbba89a80>",
+        "header_hex": "89504e470d0a1a0a0000000d4948445200000088000000680802000000a59c2f",
+        "retained_path": "harness-audit/mfsk64-gray-pic_2026-07-31_191137z.png",
+        "artifact_sha256": "5e109a2701bea92e83b63eaba2a5da3a52313423e1f6afef678a462882d6b71d",
+        "repository_pillow_decodable": false,
+        "repository_pillow_error": "cannot identify image file <_io.BytesIO object at 0x100919530>"
+      }
+    ],
+    "metadata": {
+      "script": "fldigi-decode-wav",
+      "input": "/opt/radiogram/reference/fixtures/wire-matrix-4.2.12/mfsk64-gray-8x4-p8/transmission.wav",
+      "fldigi_path": "/opt/radiogram/reference/session10d/builds/fldigi-4.2.13-pi3-aarch64/install/bin/fldigi",
+      "fldigi_version": "fldigi 4.2.13",
+      "mode": "MFSK64",
+      "rxid": "off",
+      "mode_map_meta": "",
+      "audio_frequency_hz": 1500,
+      "squelch": "off",
+      "squelch_level": 0,
+      "sqlch_by_mode": 0,
+      "afc": "off",
+      "afc_by_mode": 0,
+      "timeout_sec": 35,
+      "audio_backend": "alsa-loopback",
+      "alsa_capture_plugin": "plug",
+      "aplay_device": "rg_playback",
+      "original_home": "/root",
+      "fldigi_home": "/root",
+      "fldigi_image_dir": "/root/images",
+      "config_image_dir": "/tmp/radiogram-fldigi.St7QyJ/config/images",
+      "image_count": 1,
+      "status_interval_sec": 5,
+      "post_playback_sec": 15,
+      "debug_bundle": "full",
+      "nice_value": 0,
+      "control_nice_status": "not_requested",
+      "fldigi_nice_status": "not_requested",
+      "xmlrpc_port": 7362,
+      "start_utc": "2026-07-31T19:11:09Z",
+      "end_utc": "2026-07-31T19:11:55Z",
+      "control_resource_usage": {
+        "resource_scope": "process_group_sampled",
+        "cpu_user_seconds": 0.57,
+        "cpu_system_seconds": 0.1,
+        "elapsed_seconds": 46.29,
+        "cpu_utilization_percent": 1,
+        "max_rss_kb": 20768
+      },
+      "fldigi_resource_usage": {
+        "resource_scope": "process_group_sampled",
+        "cpu_user_seconds": 21.52,
+        "cpu_system_seconds": 2.62,
+        "elapsed_seconds": 46.71,
+        "cpu_utilization_percent": 52,
+        "max_rss_kb": 451648
+      },
+      "control_exit_status": 0
+    },
+    "./fldigi/control.py": {
+      "sha256": "4d38bb0bb1025f458722179b28642a4386b1e02975268e689abb8045c88d34f2"
+    },
+    "./fldigi/asound.conf": {
+      "sha256": "7fbe5a215fa9ad00602d396c7037b809970b72a2acd35f52b756d0cd2808c499"
+    }
+  },
+  {
+    "case": "mfsk64-color",
+    "archive_sha256": "71dbc2939cc093ddd51203f86caf0553c631726e4bda2373e18020bcf6ecd184",
+    "images": [
+      {
+        "name": "./images/pic_2026-07-31_191238z.png",
+        "size": [
+          8,
+          4
+        ],
+        "pixel_sha256": "5818c81a454a0d69ddecaa4bfb7b868ed416e561da83eb7a933518331b831b97",
+        "extrema": [
+          [
+            0,
+            244
+          ],
+          [
+            0,
+            246
+          ],
+          [
+            0,
+            247
+          ]
+        ],
+        "retained_path": "harness-audit/mfsk64-color-pic_2026-07-31_191238z.png",
+        "artifact_sha256": "17fb809be9d921ac8de9bdbe0a7b5499f2b460935c28cf4d42ae7290352570b5",
+        "repository_pillow_decodable": true
+      }
+    ],
+    "metadata": {
+      "script": "fldigi-decode-wav",
+      "input": "/opt/radiogram/reference/fixtures/mfsk64-primary-color-8x4-4.2.12/transmission.wav",
+      "fldigi_path": "/opt/radiogram/reference/session10d/builds/fldigi-4.2.13-pi3-aarch64/install/bin/fldigi",
+      "fldigi_version": "fldigi 4.2.13",
+      "mode": "MFSK64",
+      "rxid": "off",
+      "mode_map_meta": "",
+      "audio_frequency_hz": 1500,
+      "squelch": "off",
+      "squelch_level": 0,
+      "sqlch_by_mode": 0,
+      "afc": "off",
+      "afc_by_mode": 0,
+      "timeout_sec": 36,
+      "audio_backend": "alsa-loopback",
+      "alsa_capture_plugin": "plug",
+      "aplay_device": "rg_playback",
+      "original_home": "/root",
+      "fldigi_home": "/root",
+      "fldigi_image_dir": "/root/images",
+      "config_image_dir": "/tmp/radiogram-fldigi.9tosSD/config/images",
+      "image_count": 1,
+      "status_interval_sec": 5,
+      "post_playback_sec": 15,
+      "debug_bundle": "full",
+      "nice_value": 0,
+      "control_nice_status": "not_requested",
+      "fldigi_nice_status": "not_requested",
+      "xmlrpc_port": 7362,
+      "start_utc": "2026-07-31T19:12:09Z",
+      "end_utc": "2026-07-31T19:12:57Z",
+      "control_resource_usage": {
+        "resource_scope": "process_group_sampled",
+        "cpu_user_seconds": 0.48,
+        "cpu_system_seconds": 0.13,
+        "elapsed_seconds": 47.26,
+        "cpu_utilization_percent": 1,
+        "max_rss_kb": 20772
+      },
+      "fldigi_resource_usage": {
+        "resource_scope": "process_group_sampled",
+        "cpu_user_seconds": 20.66,
+        "cpu_system_seconds": 2.81,
+        "elapsed_seconds": 47.67,
+        "cpu_utilization_percent": 49,
+        "max_rss_kb": 451688
+      },
+      "control_exit_status": 0
+    },
+    "./fldigi/control.py": {
+      "sha256": "4d38bb0bb1025f458722179b28642a4386b1e02975268e689abb8045c88d34f2"
+    },
+    "./fldigi/asound.conf": {
+      "sha256": "7fbe5a215fa9ad00602d396c7037b809970b72a2acd35f52b756d0cd2808c499"
+    }
+  }
+]

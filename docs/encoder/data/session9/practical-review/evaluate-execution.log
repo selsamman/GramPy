@@ -1,0 +1,15 @@
+......
+----------------------------------------------------------------------
+Ran 6 tests in 0.954s
+
+OK
+SCORED gray64-p8-card fldigi=True grampy=True piMAE=8.613310185185185
+SCORED gray64-p4-photo fldigi=True grampy=True piMAE=2.458587962962963
+SCORED gray64-p2-chart fldigi=True grampy=True piMAE=9.987552083333334
+SCORED rgb64-p8-photo fldigi=True grampy=True piMAE=0.6040586419753087
+SCORED rgb64-p4-card fldigi=True grampy=True piMAE=3.0752314814814814
+SCORED rgb64-p2-chart fldigi=True grampy=True piMAE=10.70486111111111
+SCORED gray32-p8-card fldigi=True grampy=True piMAE=3.632175925925926
+SCORED gray32-p4-photo fldigi=True grampy=True piMAE=1.6348842592592592
+SCORED gray32-p2-chart fldigi=True grampy=True piMAE=14.107864583333333
+SCORED mixed-broadcast-photo fldigi=True grampy=True piMAE=5.713703703703704

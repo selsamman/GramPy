@@ -1,0 +1,153 @@
+
+FILE qualification/fldigi-4.2.13-pi3-aarch64-q2/run-smoke.sh
+#!/bin/sh
+set -eu
+root=/opt/radiogram/reference/session10d
+build="$root/builds/fldigi-4.2.13-pi3-aarch64"
+state="$root/qualification/fldigi-4.2.13-pi3-aarch64-q2"
+tools=/opt/radiogram/current/tools
+fixtures=/opt/radiogram/reference/fixtures
+started=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+export PATH="$build/install/bin:$PATH"
+
+run_case() {
+  name=$1 input=$2 mode=$3 rxid=$4 expect_text=$5 min_images=$6
+  case_dir="$state/cases/$name"
+  install -d -m 0755 "$case_dir"
+  if [ -f "$case_dir/done.sha256" ] && sha256sum -c "$case_dir/done.sha256" >/dev/null 2>&1; then return; fi
+  "$tools/fldigi-decode-wav" --input "$input" --output "$case_dir/decode.tar" \
+    --mode "$mode" --rxid "$rxid" --afc off --audio-frequency-hz 1500 \
+    --debug-bundle full --nice 0 --post-playback-sec 15 \
+    --audio-backend alsa-loopback --alsa-capture-plugin plug \
+    >"$case_dir/adapter.stdout" 2>"$case_dir/adapter.stderr"
+  test -s "$case_dir/decode.tar"
+  tar -tf "$case_dir/decode.tar" >"$case_dir/tar-list.txt"
+  tmp=$(mktemp -d); trap 'rm -rf "$tmp"' EXIT INT TERM
+  tar -xf "$case_dir/decode.tar" -C "$tmp"
+  grep -Fq "$expect_text" "$tmp/decoded.txt"
+  python3 - "$tmp/metadata.json" "$min_images" <<'PY'
+import json, sys
+d=json.load(open(sys.argv[1], encoding='utf-8'))
+assert d['control_exit_status'] == 0, d
+assert d['image_count'] >= int(sys.argv[2]), d
+PY
+  ! grep -q 'ConnectionRefusedError' "$tmp/fldigi/control.log"
+  rm -rf "$tmp"; trap - EXIT INT TERM
+  sha256sum "$case_dir/decode.tar" >"$case_dir/done.sha256"
+}
+
+run_case mfsk32-text "$fixtures/wire-matrix-4.2.12/mfsk32-text-printable/transmission.wav" MFSK32 off 'RG-MFSK32 AaZz' 0
+run_case mfsk64-text "$fixtures/wire-matrix-4.2.12/mfsk64-text-printable/transmission.wav" MFSK64 off 'RG-MFSK64 AaZz' 0
+run_case mfsk64-gray "$fixtures/wire-matrix-4.2.12/mfsk64-gray-8x4-p8/transmission.wav" MFSK64 off 'Sending Pic:8x4;' 1
+run_case mfsk64-color "$fixtures/mfsk64-primary-color-8x4-4.2.12/transmission.wav" MFSK64 off 'Sending Pic:8x4C;' 1
+run_case mode-change /var/lib/radiogram/rsid-debug/wrmi-425-475.wav MFSK32 on 'This is Shortwave Radiogram in MFSK64' 0
+run_case appliance-audio /var/lib/radiogram/reference-captures/output/MANUAL-001-20260722T133001Z-15770000/MANUAL-001-20260722T133001Z-15770000.wav MFSK32 on 'Welcome to program 458' 8
+completed=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+python3 - "$state/result.json" "$started" "$completed" <<'PY'
+import hashlib,json,pathlib,sys
+path,started,completed=sys.argv[1:]; state=pathlib.Path(path).parent
+cases=[]
+for item in sorted((state/'cases').iterdir()):
+ t=item/'decode.tar'; cases.append({'name':item.name,'decode_tar_sha256':hashlib.sha256(t.read_bytes()).hexdigest()})
+r={'schema':'radiogram.fldigi-qualification.v1','status':'qualified','version':'4.2.13','build_id':'fldigi-4.2.13-pi3-aarch64','qualification_id':'fldigi-4.2.13-pi3-aarch64-q2','binary_sha256':'dd30f86caae1edb5d2998acedb47a3a7b348b727bf6303af1e2f822f549966f3','decoder_configuration':{'initial_mode':'fixture-specific','rxid':'fixture-specific','afc':'off','audio_frequency_hz':1500,'backend':'alsa-loopback','capture_plugin':'plug'},'assertions':['expected text','minimum picture count','no XML-RPC connection refusal'],'cases':cases,'started_utc':started,'completed_utc':completed}
+with open(path+'.tmp','w') as f: json.dump(r,f,indent=2,sort_keys=True); f.write('\n')
+pathlib.Path(path+'.tmp').replace(path)
+PY
+
+FILE corpus/fldigi-4.2.13-pi3-aarch64-rxid-q3/run-corpus.sh
+#!/bin/sh
+set -eu
+root=/opt/radiogram/reference/session10d
+build="$root/builds/fldigi-4.2.13-pi3-aarch64"
+qualification="$root/qualification/fldigi-4.2.13-pi3-aarch64-q2/result.json"
+state="$root/corpus/fldigi-4.2.13-pi3-aarch64-rxid-q3"
+tools=/opt/radiogram/current/tools
+grep -q '"status": "qualified"' "$qualification"
+started=$(date -u +%Y-%m-%dT%H:%M:%SZ); export PATH="$build/install/bin:$PATH"
+run_one() {
+ id=$1 stem=$2 carrier=$3 expected=$4 min_images=$5
+ source_dir="/var/lib/radiogram/reference-captures/output/$stem"; out="$state/transmissions/$id"
+ install -d -m 0755 "$out"
+ if [ -f "$out/done.sha256" ] && sha256sum -c "$out/done.sha256" >/dev/null 2>&1; then return; fi
+ wav="$source_dir/$stem.wav"; meta="$source_dir/$stem.sigmf-meta"; test -s "$wav"; test -s "$meta"
+ sha256sum "$wav" "$meta" >"$out/source.sha256"
+ "$tools/fldigi-decode-wav" --input "$wav" --output "$out/decode.tar" \
+  --mode MFSK32 --rxid on --afc off --audio-frequency-hz "$carrier" \
+  --debug-bundle full --nice 0 --post-playback-sec 15 \
+  --audio-backend alsa-loopback --alsa-capture-plugin plug \
+  >"$out/adapter.stdout" 2>"$out/adapter.stderr"
+ test -s "$out/decode.tar"; tar -tf "$out/decode.tar" >"$out/tar-list.txt"
+ tmp=$(mktemp -d); trap 'rm -rf "$tmp"' EXIT INT TERM; tar -xf "$out/decode.tar" -C "$tmp"
+ grep -Fq "$expected" "$tmp/decoded.txt"
+ python3 - "$tmp/metadata.json" "$min_images" "$carrier" <<'PY'
+import json,sys
+d=json.load(open(sys.argv[1],encoding='utf-8'))
+assert d['control_exit_status']==0 and d['rxid']=='on', d
+assert d['image_count']>=int(sys.argv[2]), d
+assert d['audio_frequency_hz']==int(sys.argv[3]), d
+PY
+ ! grep -q 'ConnectionRefusedError' "$tmp/fldigi/control.log"
+ rm -rf "$tmp"; trap - EXIT INT TERM; sha256sum "$out/decode.tar" >"$out/done.sha256"
+}
+run_one wrmi-20260708T133006Z-15770000 MANUAL-001-20260708T133001Z-15770000 1582 'program 456' 8
+run_one winb-20260718T023007Z-9265000 MANUAL-001-20260718T023001Z-9265000 1500 'Welcome to program 458' 2
+run_one wrmi-20260722T133008Z-15770000 MANUAL-001-20260722T133001Z-15770000 1500 'Welcome to program 458' 8
+run_one wrmi-20260729T133010Z-15770000 MANUAL-001-20260729T133001Z-15770000 1500 'Welcome to program 459' 11
+completed=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+python3 - "$state/result.json" "$started" "$completed" <<'PY'
+import hashlib,json,pathlib,sys
+path,started,completed=sys.argv[1:]; state=pathlib.Path(path).parent; items=[]
+for d in sorted((state/'transmissions').iterdir()):
+ t=d/'decode.tar'; m=json.loads(next(iter(__import__('tarfile').open(t).extractfile('./metadata.json').read().decode() for _ in [0]))) if False else None
+ items.append({'transmission_id':d.name,'decode_tar_sha256':hashlib.sha256(t.read_bytes()).hexdigest(),'source_hashes':(d/'source.sha256').read_text().splitlines()})
+r={'schema':'radiogram.fldigi-corpus-decode.v1','status':'complete','corpus_id':'fldigi-4.2.13-pi3-aarch64-rxid-q3','qualification_id':'fldigi-4.2.13-pi3-aarch64-q2','configuration':{'mode':'MFSK32','rxid':'on','afc':'off','audio_frequency_hz':{'legacy_rtl_wrmi':1582,'other_transmissions':1500},'backend':'alsa-loopback','capture_plugin':'plug'},'assertions':['expected program text','historical minimum picture count','exact per-transmission carrier','no XML-RPC connection refusal'],'transmissions':items,'started_utc':started,'completed_utc':completed}
+with open(path+'.tmp','w') as f: json.dump(r,f,indent=2,sort_keys=True); f.write('\n')
+pathlib.Path(path+'.tmp').replace(path)
+PY
+
+FILE corpus/fldigi-4.2.13-pi3-aarch64-mapped-q5/run-corpus.sh
+#!/bin/sh
+set -eu
+root=/opt/radiogram/reference/session10d
+build="$root/builds/fldigi-4.2.13-pi3-aarch64"
+qualification="$root/qualification/fldigi-4.2.13-pi3-aarch64-q2/result.json"
+state="$root/corpus/fldigi-4.2.13-pi3-aarch64-mapped-q5"; tools=/opt/radiogram/current/tools
+grep -q '"status": "qualified"' "$qualification"; started=$(date -u +%Y-%m-%dT%H:%M:%SZ); export PATH="$build/install/bin:$PATH"
+run_mapped() {
+ id=$1 stem=$2 expected=$3 min_images=$4
+ source_dir="/var/lib/radiogram/reference-captures/output/$stem"; out="$state/transmissions/$id"; install -d -m 0755 "$out"
+ if [ -f "$out/done.sha256" ] && sha256sum -c "$out/done.sha256" >/dev/null 2>&1; then return; fi
+ wav="$source_dir/$stem.wav"; raw="$source_dir/$stem.sigmf-meta"; map="$source_dir/$stem.iqprep.sigmf-meta"
+ test -s "$wav"; test -s "$raw"; test -s "$map"; sha256sum "$wav" "$raw" "$map" >"$out/source.sha256"
+ "$tools/fldigi-decode-wav" --input "$wav" --output "$out/decode.tar" --mode MFSK32 --rxid off --afc off \
+  --audio-frequency-hz 1500 --debug-bundle full --nice 0 --post-playback-sec 15 \
+  --audio-backend alsa-loopback --alsa-capture-plugin plug --mode-map-meta "$map" \
+  >"$out/adapter.stdout" 2>"$out/adapter.stderr"
+ test -s "$out/decode.tar"; tar -tf "$out/decode.tar" >"$out/tar-list.txt"
+ tmp=$(mktemp -d); trap 'rm -rf "$tmp"' EXIT INT TERM; tar -xf "$out/decode.tar" -C "$tmp"
+ grep -Fq "$expected" "$tmp/decoded.txt"
+ python3 - "$tmp/metadata.json" "$min_images" "$map" <<'PY'
+import json,sys
+d=json.load(open(sys.argv[1],encoding='utf-8'))
+assert d['control_exit_status']==0 and d['rxid']=='off', d
+assert d['image_count']>=int(sys.argv[2]), d
+assert d['audio_frequency_hz']==1500 and d['mode_map_meta']==sys.argv[3], d
+PY
+ ! grep -q 'ConnectionRefusedError' "$tmp/fldigi/control.log"
+ grep -q 'mapped mode switch' "$tmp/fldigi/control.log"
+ rm -rf "$tmp"; trap - EXIT INT TERM; sha256sum "$out/decode.tar" >"$out/done.sha256"
+}
+run_mapped winb-20260718T023007Z-9265000 MANUAL-001-20260718T023001Z-9265000 'program 458' 2
+run_mapped wrmi-20260722T133008Z-15770000 MANUAL-001-20260722T133001Z-15770000 'program 458' 8
+run_mapped wrmi-20260729T133010Z-15770000 MANUAL-001-20260729T133001Z-15770000 'program 459' 11
+completed=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+python3 - "$state/result.json" "$started" "$completed" <<'PY'
+import hashlib,json,pathlib,sys
+path,started,completed=sys.argv[1:]; state=pathlib.Path(path).parent; items=[]
+for d in sorted((state/'transmissions').iterdir()):
+ t=d/'decode.tar'; items.append({'transmission_id':d.name,'decode_tar_sha256':hashlib.sha256(t.read_bytes()).hexdigest(),'source_hashes':(d/'source.sha256').read_text().splitlines()})
+r={'schema':'radiogram.fldigi-corpus-decode.v1','status':'complete','corpus_id':'fldigi-4.2.13-pi3-aarch64-mapped-q5','qualification_id':'fldigi-4.2.13-pi3-aarch64-q2','configuration':{'legacy_rtl_wrmi':{'audio_frequency_hz':1582,'rxid':'on','mode_map':'none'},'prepared_captures':{'audio_frequency_hz':1500,'rxid':'off','mode_map':'durable-iqprep-metadata'},'mode':'MFSK32','afc':'off','backend':'alsa-loopback','capture_plugin':'plug'},'assertions':['program identity','historical minimum picture count','exact carrier/mode-map policy','mapped mode switch observed','no XML-RPC connection refusal'],'transmissions':items,'started_utc':started,'completed_utc':completed}
+with open(path+'.tmp','w') as f: json.dump(r,f,indent=2,sort_keys=True); f.write('\n')
+pathlib.Path(path+'.tmp').replace(path)
+PY
+130fe71cef0bbc5585f9cdf74c423cd94999ee34720b277a09814c06d046a211  /opt/radiogram/current/tools/fldigi-decode-wav

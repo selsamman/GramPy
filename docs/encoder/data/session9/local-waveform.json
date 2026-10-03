@@ -1,0 +1,205 @@
+[
+  {
+    "case": "rsid-mixed-audio-silence-picture",
+    "mode": "MFSK64",
+    "color": "color",
+    "speed": 8,
+    "wav_sha256": "ccba1c03648cb7a3f3edc96b323eed713a347c7b175435d61eab1d137012eb41",
+    "raster_start_frame": 883854,
+    "pcm_model": {
+      "rms_lsb": 0.2902289796271729,
+      "max_abs_lsb": 0.5054241135421762,
+      "fitted_amplitude": 16384.005976336888
+    },
+    "mutation_rms_lsb": {
+      "frequency": 11566.856947143991,
+      "order": 11178.294643507397,
+      "timing": 536.9337757508026
+    },
+    "grampy_boundary_error_frames": 1,
+    "grampy_default": {
+      "unequal_components": 54,
+      "mae": 1.78125,
+      "max_error": 13.0
+    },
+    "grampy_estimator_at_exact_boundary": {
+      "unequal_components": 52,
+      "mae": 1.75,
+      "max_error": 14.0
+    }
+  },
+  {
+    "case": "mfsk32-grayscale-speeds",
+    "mode": "MFSK32",
+    "color": "grayscale",
+    "speed": 8,
+    "wav_sha256": "1811efb18420e6d49881db30eeb4204c0d3afe6a8a03f62b91b29a5d7498f73e",
+    "raster_start_frame": 417690,
+    "pcm_model": {
+      "rms_lsb": 0.28042368001048684,
+      "max_abs_lsb": 0.5417671896484535,
+      "fitted_amplitude": 16384.046467556178
+    },
+    "mutation_rms_lsb": {
+      "frequency": 11328.503022064602,
+      "order": 9872.026504804458,
+      "timing": 192.8616862978348
+    },
+    "grampy_boundary_error_frames": 1,
+    "grampy_default": {
+      "unequal_components": 21,
+      "mae": 1.28125,
+      "max_error": 5.0
+    },
+    "grampy_estimator_at_exact_boundary": {
+      "unequal_components": 22,
+      "mae": 1.46875,
+      "max_error": 5.0
+    }
+  },
+  {
+    "case": "mfsk32-grayscale-speeds",
+    "mode": "MFSK32",
+    "color": "grayscale",
+    "speed": 4,
+    "wav_sha256": "1811efb18420e6d49881db30eeb4204c0d3afe6a8a03f62b91b29a5d7498f73e",
+    "raster_start_frame": 817626,
+    "pcm_model": {
+      "rms_lsb": 0.27899374829489426,
+      "max_abs_lsb": 0.5075060552935611,
+      "fitted_amplitude": 16383.992047158687
+    },
+    "mutation_rms_lsb": {
+      "frequency": 11442.672414669822,
+      "order": 7926.715654137802,
+      "timing": 159.99980848992695
+    },
+    "grampy_boundary_error_frames": 2,
+    "grampy_default": {
+      "unequal_components": 27,
+      "mae": 4.34375,
+      "max_error": 19.0
+    },
+    "grampy_estimator_at_exact_boundary": {
+      "unequal_components": 25,
+      "mae": 4.09375,
+      "max_error": 17.0
+    }
+  },
+  {
+    "case": "mfsk32-grayscale-speeds",
+    "mode": "MFSK32",
+    "color": "grayscale",
+    "speed": 2,
+    "wav_sha256": "1811efb18420e6d49881db30eeb4204c0d3afe6a8a03f62b91b29a5d7498f73e",
+    "raster_start_frame": 1216794,
+    "pcm_model": {
+      "rms_lsb": 0.2917235288507497,
+      "max_abs_lsb": 0.5285829868171277,
+      "fitted_amplitude": 16384.008886007592
+    },
+    "mutation_rms_lsb": {
+      "frequency": 11569.005841295068,
+      "order": 4767.62906929728,
+      "timing": 129.6764959885334
+    },
+    "grampy_boundary_error_frames": -4,
+    "grampy_default": {
+      "unequal_components": 30,
+      "mae": 15.34375,
+      "max_error": 69.0
+    },
+    "grampy_estimator_at_exact_boundary": {
+      "unequal_components": 30,
+      "mae": 10.65625,
+      "max_error": 57.0
+    }
+  },
+  {
+    "case": "mfsk64-color-speeds",
+    "mode": "MFSK64",
+    "color": "color",
+    "speed": 8,
+    "wav_sha256": "0204283ff510b146eea6a7fc6795a7a1429f537c60b7ed6ce5a65a9d54ad80ea",
+    "raster_start_frame": 420084,
+    "pcm_model": {
+      "rms_lsb": 0.2800125946669177,
+      "max_abs_lsb": 0.5420871047372202,
+      "fitted_amplitude": 16384.04230494791
+    },
+    "mutation_rms_lsb": {
+      "frequency": 11561.656478241399,
+      "order": 11179.340508829178,
+      "timing": 537.336941841908
+    },
+    "grampy_boundary_error_frames": 1,
+    "grampy_default": {
+      "unequal_components": 52,
+      "mae": 1.25,
+      "max_error": 6.0
+    },
+    "grampy_estimator_at_exact_boundary": {
+      "unequal_components": 50,
+      "mae": 1.4791666666666667,
+      "max_error": 7.0
+    }
+  },
+  {
+    "case": "mfsk64-color-speeds",
+    "mode": "MFSK64",
+    "color": "color",
+    "speed": 4,
+    "wav_sha256": "0204283ff510b146eea6a7fc6795a7a1429f537c60b7ed6ce5a65a9d54ad80ea",
+    "raster_start_frame": 685620,
+    "pcm_model": {
+      "rms_lsb": 0.28525491504688133,
+      "max_abs_lsb": 0.5263433901500321,
+      "fitted_amplitude": 16384.02963214752
+    },
+    "mutation_rms_lsb": {
+      "frequency": 11547.656179431397,
+      "order": 9893.210676902676,
+      "timing": 493.83360569502304
+    },
+    "grampy_boundary_error_frames": 0,
+    "grampy_default": {
+      "unequal_components": 62,
+      "mae": 3.6770833333333335,
+      "max_error": 22.0
+    },
+    "grampy_estimator_at_exact_boundary": {
+      "unequal_components": 62,
+      "mae": 3.6770833333333335,
+      "max_error": 22.0
+    }
+  },
+  {
+    "case": "mfsk64-color-speeds",
+    "mode": "MFSK64",
+    "color": "color",
+    "speed": 2,
+    "wav_sha256": "0204283ff510b146eea6a7fc6795a7a1429f537c60b7ed6ce5a65a9d54ad80ea",
+    "raster_start_frame": 948852,
+    "pcm_model": {
+      "rms_lsb": 0.27647085663776516,
+      "max_abs_lsb": 0.502610602263303,
+      "fitted_amplitude": 16384.00530572821
+    },
+    "mutation_rms_lsb": {
+      "frequency": 11317.476164028794,
+      "order": 8669.515568488403,
+      "timing": 427.3212775357208
+    },
+    "grampy_boundary_error_frames": 1,
+    "grampy_default": {
+      "unequal_components": 80,
+      "mae": 14.25,
+      "max_error": 104.0
+    },
+    "grampy_estimator_at_exact_boundary": {
+      "unequal_components": 82,
+      "mae": 14.760416666666666,
+      "max_error": 102.0
+    }
+  }
+]

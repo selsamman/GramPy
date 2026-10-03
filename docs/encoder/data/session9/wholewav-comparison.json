@@ -1,0 +1,347 @@
+[
+  {
+    "case": "rsid-mixed-audio-silence-picture",
+    "speed": 8,
+    "raster_start_frame": 883854,
+    "source": {
+      "geometry_match": true,
+      "exact": true,
+      "unequal_components": 0,
+      "max_error": 0,
+      "mae": 0.0,
+      "pixel_sha256": "52334109d177d2ed03802ab1c206d4a717d1fe26bbd89d5a6ecde6116a5d3007"
+    },
+    "session8_autosave": {
+      "geometry_match": true,
+      "exact": false,
+      "unequal_components": 86,
+      "max_error": 248,
+      "mae": 87.55208333333333,
+      "pixel_sha256": "97ea38d5db1f19696fbd22a56388fb44736a272dd266b6ea823cc5a60affe347"
+    },
+    "replay_autosave": {
+      "geometry_match": true,
+      "exact": false,
+      "unequal_components": 85,
+      "max_error": 241,
+      "mae": 84.75,
+      "pixel_sha256": "58e441ea18383639d15298d43dbd48194446d9b64986c90b351cbc25765fc3ab"
+    },
+    "viewer": {
+      "geometry_match": true,
+      "exact": false,
+      "unequal_components": 85,
+      "max_error": 241,
+      "mae": 82.32291666666667,
+      "pixel_sha256": "abce52022d6dcaf49a32e04898ec91d0f8a1f5a1a952ce4b142e65a183b481f8"
+    },
+    "viewer_selected_model_fit": {
+      "interior_mae": 0.2978723404255319,
+      "interior_max_error": 1.0,
+      "resample_phase": 0,
+      "offset_internal_samples": 74,
+      "offset_from_filter_group_delay": -9,
+      "excludes_first_and_last_component": true,
+      "acceptance_evidence": false
+    },
+    "last_component": {
+      "expected": 129,
+      "viewer": 0
+    }
+  },
+  {
+    "case": "mfsk32-grayscale-speeds",
+    "speed": 8,
+    "raster_start_frame": 417690,
+    "source": {
+      "geometry_match": true,
+      "exact": true,
+      "unequal_components": 0,
+      "max_error": 0,
+      "mae": 0.0,
+      "pixel_sha256": "6c8b0ece21f56133f3664d98da7197029e57efc2d2ea342f7a0fb69255b30909"
+    },
+    "session8_autosave": {
+      "geometry_match": true,
+      "exact": false,
+      "unequal_components": 90,
+      "max_error": 255,
+      "mae": 94.84375,
+      "pixel_sha256": "2ea9ab9198d1638007400cd2c3bef1cc745b864b76011a0e1bc52180ac6452d4"
+    },
+    "replay_autosave": {
+      "decode_error": "cannot identify image file '.local/session9/wholewav/mfsk32-grayscale-speeds/work/images/pic_2026-10-02_134201z.png'"
+    },
+    "viewer": {
+      "geometry_match": true,
+      "exact": false,
+      "unequal_components": 93,
+      "max_error": 109,
+      "mae": 31.125,
+      "pixel_sha256": "5246beb077c6db965c153efabcad967fbb92fea6382438e0fe6b6b5628c76000"
+    },
+    "viewer_selected_model_fit": {
+      "interior_mae": 0.5333333333333333,
+      "interior_max_error": 1.0,
+      "resample_phase": 0,
+      "offset_internal_samples": 80,
+      "offset_from_filter_group_delay": -3,
+      "excludes_first_and_last_component": true,
+      "acceptance_evidence": false
+    },
+    "last_component": {
+      "expected": 93,
+      "viewer": 0
+    }
+  },
+  {
+    "case": "mfsk32-grayscale-speeds",
+    "speed": 4,
+    "raster_start_frame": 817626,
+    "source": {
+      "geometry_match": true,
+      "exact": true,
+      "unequal_components": 0,
+      "max_error": 0,
+      "mae": 0.0,
+      "pixel_sha256": "6c8b0ece21f56133f3664d98da7197029e57efc2d2ea342f7a0fb69255b30909"
+    },
+    "session8_autosave": {
+      "geometry_match": true,
+      "exact": false,
+      "unequal_components": 93,
+      "max_error": 93,
+      "mae": 27.65625,
+      "pixel_sha256": "b41e8d897b83ce9f5919338042a18a81cf5cc9c03eefa601ea9177ba2e19af1b"
+    },
+    "replay_autosave": {
+      "geometry_match": true,
+      "exact": false,
+      "unequal_components": 93,
+      "max_error": 109,
+      "mae": 31.125,
+      "pixel_sha256": "5246beb077c6db965c153efabcad967fbb92fea6382438e0fe6b6b5628c76000"
+    },
+    "viewer": {
+      "geometry_match": true,
+      "exact": false,
+      "unequal_components": 96,
+      "max_error": 255,
+      "mae": 55.75,
+      "pixel_sha256": "d09b80bdcd675857afd90d55579f80da6a0d84a519342a94a39424587e324ebd"
+    },
+    "viewer_selected_model_fit": {
+      "interior_mae": 0.6333333333333333,
+      "interior_max_error": 1.0,
+      "resample_phase": 0,
+      "offset_internal_samples": 80,
+      "offset_from_filter_group_delay": -3,
+      "excludes_first_and_last_component": true,
+      "acceptance_evidence": false
+    },
+    "last_component": {
+      "expected": 93,
+      "viewer": 0
+    }
+  },
+  {
+    "case": "mfsk32-grayscale-speeds",
+    "speed": 2,
+    "raster_start_frame": 1216794,
+    "source": {
+      "geometry_match": true,
+      "exact": true,
+      "unequal_components": 0,
+      "max_error": 0,
+      "mae": 0.0,
+      "pixel_sha256": "6c8b0ece21f56133f3664d98da7197029e57efc2d2ea342f7a0fb69255b30909"
+    },
+    "session8_autosave": {
+      "geometry_match": true,
+      "exact": false,
+      "unequal_components": 96,
+      "max_error": 255,
+      "mae": 50.9375,
+      "pixel_sha256": "cc3f708bae2580f143cb66594dcfb98b941eb91ccc50c5d455057cfe6b4dab68"
+    },
+    "replay_autosave": {
+      "geometry_match": true,
+      "exact": false,
+      "unequal_components": 96,
+      "max_error": 255,
+      "mae": 55.75,
+      "pixel_sha256": "d09b80bdcd675857afd90d55579f80da6a0d84a519342a94a39424587e324ebd"
+    },
+    "viewer": {
+      "geometry_match": true,
+      "exact": false,
+      "unequal_components": 93,
+      "max_error": 158,
+      "mae": 58.09375,
+      "pixel_sha256": "8fc4ae4266f23eb9e84ad2f34045dcdcfa7795a9eda422423e76c1eda6083d97"
+    },
+    "viewer_selected_model_fit": {
+      "interior_mae": 0.6,
+      "interior_max_error": 1.0,
+      "resample_phase": 0,
+      "offset_internal_samples": 80,
+      "offset_from_filter_group_delay": -3,
+      "excludes_first_and_last_component": true,
+      "acceptance_evidence": false
+    },
+    "last_component": {
+      "expected": 93,
+      "viewer": 0
+    }
+  },
+  {
+    "case": "mfsk64-color-speeds",
+    "speed": 8,
+    "raster_start_frame": 420084,
+    "source": {
+      "geometry_match": true,
+      "exact": true,
+      "unequal_components": 0,
+      "max_error": 0,
+      "mae": 0.0,
+      "pixel_sha256": "52334109d177d2ed03802ab1c206d4a717d1fe26bbd89d5a6ecde6116a5d3007"
+    },
+    "session8_autosave": {
+      "geometry_match": true,
+      "exact": false,
+      "unequal_components": 85,
+      "max_error": 251,
+      "mae": 85.70833333333333,
+      "pixel_sha256": "83c6f4d9ad6cfdc892c849bb032843154fb4d1b24930d067cf7ef4f3e66e592f"
+    },
+    "replay_autosave": {
+      "geometry_match": true,
+      "exact": false,
+      "unequal_components": 75,
+      "max_error": 254,
+      "mae": 55.875,
+      "pixel_sha256": "5cfae2c83d998a8841d07156523ad7bc9cb0f4919c895d8f9926b39a040491d0"
+    },
+    "viewer": {
+      "geometry_match": true,
+      "exact": false,
+      "unequal_components": 75,
+      "max_error": 129,
+      "mae": 44.177083333333336,
+      "pixel_sha256": "29c6196a180d2d98c292681c07ed3d57f3ae1df42ad3d0ed0f270c5e38107062"
+    },
+    "viewer_selected_model_fit": {
+      "interior_mae": 0.23404255319148937,
+      "interior_max_error": 1.0,
+      "resample_phase": 0,
+      "offset_internal_samples": 79,
+      "offset_from_filter_group_delay": -4,
+      "excludes_first_and_last_component": true,
+      "acceptance_evidence": false
+    },
+    "last_component": {
+      "expected": 129,
+      "viewer": 0
+    }
+  },
+  {
+    "case": "mfsk64-color-speeds",
+    "speed": 4,
+    "raster_start_frame": 685620,
+    "source": {
+      "geometry_match": true,
+      "exact": true,
+      "unequal_components": 0,
+      "max_error": 0,
+      "mae": 0.0,
+      "pixel_sha256": "52334109d177d2ed03802ab1c206d4a717d1fe26bbd89d5a6ecde6116a5d3007"
+    },
+    "session8_autosave": {
+      "geometry_match": true,
+      "exact": false,
+      "unequal_components": 85,
+      "max_error": 242,
+      "mae": 82.27083333333333,
+      "pixel_sha256": "a482499e1a3ee43b967fbd50fc679220dd9e0a2be878c48cc977c438a51853ad"
+    },
+    "replay_autosave": {
+      "geometry_match": true,
+      "exact": false,
+      "unequal_components": 90,
+      "max_error": 255,
+      "mae": 107.6875,
+      "pixel_sha256": "1bf2e0fd75d59fd372378d376ca1efc24b7bc11e909336c0c148a6924ba09120"
+    },
+    "viewer": {
+      "geometry_match": true,
+      "exact": false,
+      "unequal_components": 90,
+      "max_error": 255,
+      "mae": 105.0625,
+      "pixel_sha256": "a26e4603237fa14f60ecd10b821d8e361280c73bebb85db7c68c7c076871259c"
+    },
+    "viewer_selected_model_fit": {
+      "interior_mae": 0.32978723404255317,
+      "interior_max_error": 2.0,
+      "resample_phase": 0,
+      "offset_internal_samples": 75,
+      "offset_from_filter_group_delay": -8,
+      "excludes_first_and_last_component": true,
+      "acceptance_evidence": false
+    },
+    "last_component": {
+      "expected": 129,
+      "viewer": 0
+    }
+  },
+  {
+    "case": "mfsk64-color-speeds",
+    "speed": 2,
+    "raster_start_frame": 948852,
+    "source": {
+      "geometry_match": true,
+      "exact": true,
+      "unequal_components": 0,
+      "max_error": 0,
+      "mae": 0.0,
+      "pixel_sha256": "52334109d177d2ed03802ab1c206d4a717d1fe26bbd89d5a6ecde6116a5d3007"
+    },
+    "session8_autosave": {
+      "geometry_match": true,
+      "exact": false,
+      "unequal_components": 74,
+      "max_error": 255,
+      "mae": 101.75,
+      "pixel_sha256": "ca375a7468bbe3b4802848fc08608b856fd39bd44cc87f46d42513695fb8dd35"
+    },
+    "replay_autosave": {
+      "geometry_match": true,
+      "exact": false,
+      "unequal_components": 68,
+      "max_error": 255,
+      "mae": 96.02083333333333,
+      "pixel_sha256": "04b94cc68ec5adbfb56d6a2018318576c4bf64672f91651fdd35c87463fa4839"
+    },
+    "viewer": {
+      "geometry_match": true,
+      "exact": false,
+      "unequal_components": 95,
+      "max_error": 255,
+      "mae": 96.36458333333333,
+      "pixel_sha256": "88bbff79c7a441df357f73f6a1a37c7cb3b77b249837a5fd23328aa2796fb7d7"
+    },
+    "viewer_selected_model_fit": {
+      "interior_mae": 0.5638297872340425,
+      "interior_max_error": 3.0,
+      "resample_phase": 0,
+      "offset_internal_samples": 71,
+      "offset_from_filter_group_delay": -12,
+      "excludes_first_and_last_component": true,
+      "acceptance_evidence": false
+    },
+    "last_component": {
+      "expected": 129,
+      "viewer": 0
+    }
+  }
+]

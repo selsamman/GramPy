@@ -50,10 +50,10 @@ class NormalizedPicture:
             if self.color == "grayscale":
                 yield from self.source_pixels
                 return
-            for value in self.source_pixels:
-                yield value
-                yield value
-                yield value
+            for row_start in range(0, len(self.source_pixels), self.width):
+                row = self.source_pixels[row_start : row_start + self.width]
+                for _ in range(3):
+                    yield from row
             return
 
         if self.color == "grayscale":

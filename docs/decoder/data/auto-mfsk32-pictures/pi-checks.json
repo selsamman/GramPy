@@ -1,0 +1,264 @@
+{
+  "target": "Pi 3B, isolated candidate source; existing qualification virtualenv and whole-WAV bundle",
+  "method": "No supplied mode, carrier or picture coordinates. Fresh process for each case; times and peak RSS include PCM-to-IQ conversion, default decode, quality calculation and output.",
+  "pipeline_sha256": "6256a56d5273f98ba02e071ee8582c6a6cafbc7c4302e9825887c3ecebcd6fba",
+  "source_bundle_sha256": "47a278204270ebc6989c8ebc570137d72d41dcd05d2a15f6441d9fbad99d9386",
+  "returned_archive_sha256": "764f952fd9a5b1dc263c70f45060c93b326571ce6ff8f9f74ac51c339ff81674",
+  "cases": [
+    {
+      "id": "gray32-p8-card",
+      "checks": {
+        "whole_input": true,
+        "ordered_text_and_header": true,
+        "automatic_modes": true,
+        "complete_framing": true,
+        "complete_picture": true,
+        "same_candidate_source": true,
+        "same_wav": true,
+        "picture_gate": true,
+        "automatic_carriers": true,
+        "artifact_hashes": true
+      },
+      "pass": true,
+      "wav_sha256": "f7291065b072e0fad8e201b434ac99a5e73f8833dad2d7f7fc4e56468cce901b",
+      "pipeline_sha256": "6256a56d5273f98ba02e071ee8582c6a6cafbc7c4302e9825887c3ecebcd6fba",
+      "elapsed_seconds": 210.51159499492496,
+      "peak_rss_bytes": 496377856,
+      "picture_score": {
+        "pass": true,
+        "checks": {
+          "raw_mae": true,
+          "aligned_mae": true,
+          "channel_bias": true,
+          "alignment_offset": true,
+          "alignment_changes": true
+        },
+        "raw": {
+          "schema": "grampy-accuracy.v1",
+          "kind": "raw-raster-error",
+          "whole_raster": {
+            "mean_absolute_error_255": 2.5405324074074076,
+            "root_mean_square_error_255": 5.224565815736554,
+            "signed_bias_255": 0.3305787037037037,
+            "exact_component_fraction": 0.3836574074074074,
+            "psnr_db": 33.76979951843265
+          },
+          "channels": {
+            "gray": {
+              "mean_absolute_error_255": 2.5405324074074076,
+              "root_mean_square_error_255": 5.224565815736554,
+              "signed_bias_255": 0.3305787037037037,
+              "exact_component_fraction": 0.3836574074074074,
+              "psnr_db": 33.76979951843265
+            }
+          }
+        },
+        "alignment": {
+          "schema": "grampy-accuracy.v1",
+          "kind": "picture-component-alignment",
+          "algorithm": "bounded-regularized-offset-viterbi-v1",
+          "reference_components": 43200,
+          "decoded_components": 43200,
+          "compared_components": 43200,
+          "raw_mean_absolute_error_255": 2.540532350540161,
+          "raw_exact_component_fraction": 0.3836574074074074,
+          "aligned_mean_absolute_error_255": 2.540532350540161,
+          "aligned_exact_component_fraction": 0.3836574074074074,
+          "zero_offset_fraction": 1.0,
+          "maximum_absolute_offset_components": 0,
+          "offset_change_count": 0,
+          "offset_changes": [],
+          "offset_path_rle": [
+            {
+              "start_component": 0,
+              "stop_component": 43200,
+              "offset": 0
+            }
+          ],
+          "alignment_parameters": {
+            "max_offset_components": 24,
+            "change_penalty": 25.0,
+            "offset_penalty": 0.0005
+          }
+        }
+      },
+      "mac_pixel_identical": false,
+      "raster_sha256": "2f13f7f8aedfee8704619280b45139798494af11102e5923f8da07771eda1b8a"
+    },
+    {
+      "id": "gray32-p2-chart",
+      "checks": {
+        "whole_input": true,
+        "ordered_text_and_header": true,
+        "automatic_modes": true,
+        "complete_framing": true,
+        "complete_picture": true,
+        "same_candidate_source": true,
+        "same_wav": true,
+        "picture_gate": true,
+        "automatic_carriers": true,
+        "artifact_hashes": true
+      },
+      "pass": true,
+      "wav_sha256": "c7e80cfceef19e014542d41fc7e224631bbe2c04288b4188a1a4d1f73e721d1e",
+      "pipeline_sha256": "6256a56d5273f98ba02e071ee8582c6a6cafbc7c4302e9825887c3ecebcd6fba",
+      "elapsed_seconds": 91.25092929496896,
+      "peak_rss_bytes": 203595776,
+      "picture_score": {
+        "pass": true,
+        "checks": {
+          "raw_mae": true,
+          "aligned_mae": true,
+          "channel_bias": true,
+          "alignment_offset": true,
+          "alignment_changes": true
+        },
+        "raw": {
+          "schema": "grampy-accuracy.v1",
+          "kind": "raw-raster-error",
+          "whole_raster": {
+            "mean_absolute_error_255": 13.31171875,
+            "root_mean_square_error_255": 33.15988964471987,
+            "signed_bias_255": 0.24140625,
+            "exact_component_fraction": 0.44067708333333333,
+            "psnr_db": 17.71854207748891
+          },
+          "channels": {
+            "gray": {
+              "mean_absolute_error_255": 13.31171875,
+              "root_mean_square_error_255": 33.15988964471987,
+              "signed_bias_255": 0.24140625,
+              "exact_component_fraction": 0.44067708333333333,
+              "psnr_db": 17.71854207748891
+            }
+          }
+        },
+        "alignment": {
+          "schema": "grampy-accuracy.v1",
+          "kind": "picture-component-alignment",
+          "algorithm": "bounded-regularized-offset-viterbi-v1",
+          "reference_components": 19200,
+          "decoded_components": 19200,
+          "compared_components": 19200,
+          "raw_mean_absolute_error_255": 13.311718940734863,
+          "raw_exact_component_fraction": 0.44067708333333333,
+          "aligned_mean_absolute_error_255": 13.311718940734863,
+          "aligned_exact_component_fraction": 0.44067708333333333,
+          "zero_offset_fraction": 1.0,
+          "maximum_absolute_offset_components": 0,
+          "offset_change_count": 0,
+          "offset_changes": [],
+          "offset_path_rle": [
+            {
+              "start_component": 0,
+              "stop_component": 19200,
+              "offset": 0
+            }
+          ],
+          "alignment_parameters": {
+            "max_offset_components": 24,
+            "change_penalty": 25.0,
+            "offset_penalty": 0.0005
+          }
+        }
+      },
+      "mac_pixel_identical": false,
+      "raster_sha256": "17c621c4b48595846f9efa66b8eb95b7e8d16b5937ecfc050b474d63671e5752"
+    },
+    {
+      "id": "mixed-broadcast-photo",
+      "checks": {
+        "whole_input": true,
+        "ordered_text_and_header": true,
+        "automatic_modes": true,
+        "complete_framing": true,
+        "complete_picture": true,
+        "same_candidate_source": true,
+        "same_wav": true,
+        "picture_gate": true,
+        "automatic_carriers": true,
+        "artifact_hashes": true
+      },
+      "pass": true,
+      "wav_sha256": "ecf6819b916abd6d444fd9ac229d2264772664b234f543ff43ad63ce8d8f5925",
+      "pipeline_sha256": "6256a56d5273f98ba02e071ee8582c6a6cafbc7c4302e9825887c3ecebcd6fba",
+      "elapsed_seconds": 284.6873442659853,
+      "peak_rss_bytes": 710905856,
+      "picture_score": {
+        "pass": true,
+        "checks": {
+          "raw_mae": true,
+          "aligned_mae": true,
+          "channel_bias": true,
+          "alignment_offset": true,
+          "alignment_changes": true
+        },
+        "raw": {
+          "schema": "grampy-accuracy.v1",
+          "kind": "raw-raster-error",
+          "whole_raster": {
+            "mean_absolute_error_255": 1.389645061728395,
+            "root_mean_square_error_255": 3.554780731547688,
+            "signed_bias_255": -0.3972530864197531,
+            "exact_component_fraction": 0.4149151234567901,
+            "psnr_db": 37.11454725991342
+          },
+          "channels": {
+            "red": {
+              "mean_absolute_error_255": 1.4313888888888888,
+              "root_mean_square_error_255": 3.7261649930666723,
+              "signed_bias_255": -0.5824537037037038,
+              "exact_component_fraction": 0.3983101851851852,
+              "psnr_db": 36.705561981307454
+            },
+            "green": {
+              "mean_absolute_error_255": 1.2749305555555555,
+              "root_mean_square_error_255": 3.211809084082146,
+              "signed_bias_255": -0.38960648148148147,
+              "exact_component_fraction": 0.45263888888888887,
+              "psnr_db": 37.99580916666987
+            },
+            "blue": {
+              "mean_absolute_error_255": 1.4626157407407407,
+              "root_mean_square_error_255": 3.702617317520135,
+              "signed_bias_255": -0.21969907407407407,
+              "exact_component_fraction": 0.3937962962962963,
+              "psnr_db": 36.76062704782871
+            }
+          }
+        },
+        "alignment": {
+          "schema": "grampy-accuracy.v1",
+          "kind": "picture-component-alignment",
+          "algorithm": "bounded-regularized-offset-viterbi-v1",
+          "reference_components": 129600,
+          "decoded_components": 129600,
+          "compared_components": 129600,
+          "raw_mean_absolute_error_255": 1.3896450996398926,
+          "raw_exact_component_fraction": 0.4149151234567901,
+          "aligned_mean_absolute_error_255": 1.3896450996398926,
+          "aligned_exact_component_fraction": 0.4149151234567901,
+          "zero_offset_fraction": 1.0,
+          "maximum_absolute_offset_components": 0,
+          "offset_change_count": 0,
+          "offset_changes": [],
+          "offset_path_rle": [
+            {
+              "start_component": 0,
+              "stop_component": 129600,
+              "offset": 0
+            }
+          ],
+          "alignment_parameters": {
+            "max_offset_components": 24,
+            "change_penalty": 25.0,
+            "offset_penalty": 0.0005
+          }
+        }
+      },
+      "mac_pixel_identical": false,
+      "raster_sha256": "3868b60fe861b7e5be75b9717e51e696161aaa90509c5776caed12bc8bf7009f"
+    }
+  ],
+  "pass": true
+}

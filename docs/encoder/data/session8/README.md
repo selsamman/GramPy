@@ -24,6 +24,13 @@ The installed candidate wheel SHA-256 is
 The generated WAV hashes are identical across both attempts. Inputs and
 candidate identities are bound in [summary.json](summary.json).
 
+[Open the HTML human comparison page](comparison.html) for all seven images,
+pixel inspection, metrics, and evidence links. The
+[2026-10-02 harness audit](harness-audit.md) confirms identical archived
+control/ALSA scripts and records a previously unvalidated, unreadable
+historical grayscale PNG. This raises a reference-evidence concern without
+changing the Session 8 qualification result.
+
 - [Corrected qualification manifest](attempt2/qualification-manifest.json)
   and [schema validation](attempt2/schema-validation.json).
 - [Initial harness-failure manifest](attempt1/qualification-manifest.json),

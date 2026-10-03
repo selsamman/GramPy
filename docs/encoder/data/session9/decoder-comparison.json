@@ -1,0 +1,218 @@
+{
+  "scope": "Descriptive Mac fldigi and coupled GramPy direct-WAV comparison; no acceptance changes",
+  "grampy_method": "Coupled direct-WAV diagnostic: real-to-analytic conversion; known encoder segment start/mode/carrier; normal picture boundary/component defaults; not blind end-to-end IQ reception",
+  "normal_sized": [
+    {
+      "speed": 8,
+      "source_size": [
+        160,
+        120
+      ],
+      "input_wav_sha256": "0a7fb22253f2bcae6c7408880c723652378b840eb352797cea7fc7d0532b53e6",
+      "mac_file_sha256": "93271a6a45c8e0c9eac6151c567783a21cd02d8acdc1ccc3e73638a65d950e62",
+      "mac_png_metadata": {
+        "Comment": "Program: fldigi 4.2.11\nReceived: 2026-10-02T16:08:10Z\nModem: MFSK-64\nFrequency: 14072.500\n"
+      },
+      "mac": {
+        "component_count": 57600,
+        "unequal_components": 37214,
+        "unequal_component_percent": 64.60763888888889,
+        "pixel_count": 19200,
+        "unequal_pixels": 16621,
+        "unequal_pixel_percent": 86.56770833333333,
+        "mean_absolute_component_error": 13.69704861111111,
+        "maximum_component_error": 255,
+        "exact": false,
+        "pixel_sha256": "4422161e1cfece3d8c46204c1003fcbcd28c8e86610141ac0aea82f2df6dd084"
+      },
+      "grampy": {
+        "component_count": 57600,
+        "unequal_components": 3467,
+        "unequal_component_percent": 6.019097222222222,
+        "pixel_count": 19200,
+        "unequal_pixels": 1452,
+        "unequal_pixel_percent": 7.5625,
+        "mean_absolute_component_error": 0.38581597222222225,
+        "maximum_component_error": 19,
+        "exact": false,
+        "pixel_sha256": "10224013affd0d6b6d3a3329bfd36123e6f840548c7d568c61ad5cf0b021d9c6"
+      },
+      "grampy_boundary_error_frames": 0,
+      "grampy_picture": {
+        "header_text": "Pic:160x120C;",
+        "width": 160,
+        "height": 120,
+        "color": true,
+        "samples_per_component": 8,
+        "complete": true,
+        "completion_reason": "expected_component_count",
+        "component_estimator": "fft_peak",
+        "component_clock": {
+          "kind": "affine_fractional_component_clock",
+          "epoch_input_sample": 277824.49862703244,
+          "nominal_samples_per_component": 48.0,
+          "tracked_samples_per_component": 48.0,
+          "rate_error_ppm": 0.0,
+          "phase_offset_input_samples": 0.0,
+          "uncertainty_input_samples": 0.5,
+          "source": "header_speed_nominal_fractional"
+        }
+      },
+      "grampy_filter_profile": "current_wide (normal large-picture path)",
+      "grampy_inline_component_limit": 4096
+    },
+    {
+      "speed": 4,
+      "source_size": [
+        160,
+        120
+      ],
+      "input_wav_sha256": "ad964a13c7d843d66f82343de95c244c1bc0250fb85bf72d0e95caf81185fdac",
+      "mac_file_sha256": "f3d0e56afc32c38731d7e88830a3ede4f62e0340eee928d1848605f74b6ee6f6",
+      "mac_png_metadata": {
+        "Comment": "Program: fldigi 4.2.11\nReceived: 2026-10-02T20:50:08Z\nModem: MFSK-64\nFrequency: 14072.500\n"
+      },
+      "mac": {
+        "component_count": 57600,
+        "unequal_components": 39745,
+        "unequal_component_percent": 69.00173611111111,
+        "pixel_count": 19200,
+        "unequal_pixels": 17448,
+        "unequal_pixel_percent": 90.875,
+        "mean_absolute_component_error": 16.213697916666668,
+        "maximum_component_error": 255,
+        "exact": false,
+        "pixel_sha256": "14cdbabd1140661dbd8e26748603afed129af436629b5271e7a1a63ed1dde771"
+      },
+      "grampy": {
+        "component_count": 57600,
+        "unequal_components": 7413,
+        "unequal_component_percent": 12.869791666666666,
+        "pixel_count": 19200,
+        "unequal_pixels": 3384,
+        "unequal_pixel_percent": 17.625,
+        "mean_absolute_component_error": 0.6940104166666666,
+        "maximum_component_error": 26,
+        "exact": false,
+        "pixel_sha256": "c5d0bea8bb6a3eda4040508ad8987caf7e235c2955b6b4be9897e7a61d9242ee"
+      },
+      "grampy_boundary_error_frames": 1,
+      "grampy_picture": {
+        "header_text": "Pic:160x120Cp4;",
+        "width": 160,
+        "height": 120,
+        "color": true,
+        "samples_per_component": 4,
+        "complete": true,
+        "completion_reason": "expected_component_count",
+        "component_estimator": "fft_peak",
+        "component_clock": {
+          "kind": "affine_fractional_component_clock",
+          "epoch_input_sample": 271681.2960424933,
+          "nominal_samples_per_component": 24.0,
+          "tracked_samples_per_component": 24.0,
+          "rate_error_ppm": 0.0,
+          "phase_offset_input_samples": 0.0,
+          "uncertainty_input_samples": 0.5,
+          "source": "header_speed_nominal_fractional"
+        }
+      },
+      "grampy_filter_profile": "current_wide (normal large-picture path)",
+      "grampy_inline_component_limit": 4096
+    },
+    {
+      "speed": 2,
+      "source_size": [
+        160,
+        120
+      ],
+      "input_wav_sha256": "e7b1ef08e5ade6764654d75316dd5f020be0cc29f40d1dfaa35bee5988f199fe",
+      "mac_file_sha256": "1115a83188381a6c56c8c22669a846199f94041af30ba87110adf41453fa7024",
+      "mac_png_metadata": {
+        "Comment": "Program: fldigi 4.2.11\nReceived: 2026-10-02T20:51:11Z\nModem: MFSK-64\nFrequency: 14072.500\n"
+      },
+      "mac": {
+        "component_count": 57600,
+        "unequal_components": 41959,
+        "unequal_component_percent": 72.84548611111111,
+        "pixel_count": 19200,
+        "unequal_pixels": 17273,
+        "unequal_pixel_percent": 89.96354166666667,
+        "mean_absolute_component_error": 22.05923611111111,
+        "maximum_component_error": 255,
+        "exact": false,
+        "pixel_sha256": "0b98c06bad41ddadaf2a0dabc47f0961090f99345048a8762abedcd6109f49d9"
+      },
+      "grampy": {
+        "component_count": 57600,
+        "unequal_components": 9948,
+        "unequal_component_percent": 17.270833333333332,
+        "pixel_count": 19200,
+        "unequal_pixels": 4411,
+        "unequal_pixel_percent": 22.973958333333332,
+        "mean_absolute_component_error": 5.890069444444444,
+        "maximum_component_error": 161,
+        "exact": false,
+        "pixel_sha256": "f64b3c530dd7fcb9d484f58df91d44b28ce893e04f7bbf3524a8063bb8693217"
+      },
+      "grampy_boundary_error_frames": 1,
+      "grampy_picture": {
+        "header_text": "Pic:160x120Cp2;",
+        "width": 160,
+        "height": 120,
+        "color": true,
+        "samples_per_component": 2,
+        "complete": true,
+        "completion_reason": "expected_component_count",
+        "component_estimator": "fft_peak",
+        "component_clock": {
+          "kind": "affine_fractional_component_clock",
+          "epoch_input_sample": 271680.7731693904,
+          "nominal_samples_per_component": 12.0,
+          "tracked_samples_per_component": 12.0,
+          "rate_error_ppm": 0.0,
+          "phase_offset_input_samples": 0.0,
+          "uncertainty_input_samples": 0.5,
+          "source": "header_speed_nominal_fractional"
+        }
+      },
+      "grampy_filter_profile": "current_wide (normal large-picture path)",
+      "grampy_inline_component_limit": 4096
+    }
+  ],
+  "tiny": [
+    {
+      "speed": 8,
+      "component_count": 96,
+      "mac_unequal_component_percent": 89.58333333333333,
+      "mac_mean_absolute_component_error": 87.80208333333333,
+      "grampy_unequal_component_percent": 54.166666666666664,
+      "grampy_mean_absolute_component_error": 1.25,
+      "grampy_scope": "retained coupled tiny-image diagnostic; inline path without large-picture filtering",
+      "mac_unequal_pixel_percent": 100.0,
+      "grampy_unequal_pixel_percent": 90.625
+    },
+    {
+      "speed": 4,
+      "component_count": 96,
+      "mac_unequal_component_percent": 94.79166666666667,
+      "mac_mean_absolute_component_error": 113.17708333333333,
+      "grampy_unequal_component_percent": 64.58333333333333,
+      "grampy_mean_absolute_component_error": 3.6770833333333335,
+      "grampy_scope": "retained coupled tiny-image diagnostic; inline path without large-picture filtering",
+      "mac_unequal_pixel_percent": 100.0,
+      "grampy_unequal_pixel_percent": 93.75
+    },
+    {
+      "speed": 2,
+      "component_count": 96,
+      "mac_unequal_component_percent": 70.83333333333333,
+      "mac_mean_absolute_component_error": 97.77083333333333,
+      "grampy_unequal_component_percent": 83.33333333333333,
+      "grampy_mean_absolute_component_error": 14.25,
+      "grampy_scope": "retained coupled tiny-image diagnostic; inline path without large-picture filtering",
+      "mac_unequal_pixel_percent": 96.875,
+      "grampy_unequal_pixel_percent": 100.0
+    }
+  ]
+}

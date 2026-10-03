@@ -1,0 +1,404 @@
+{
+  "scope": "Descriptive raw Mac pixel error distribution and integer-translation diagnostic",
+  "cases": [
+    {
+      "speed": 8,
+      "source_file_sha256": "89a6447653925769b728b44b7d97168b792827e6eac2bfffdc28abaa605b3f77",
+      "received_file_sha256": "93271a6a45c8e0c9eac6151c567783a21cd02d8acdc1ccc3e73638a65d950e62",
+      "component_difference_percentiles": {
+        "25": 0.0,
+        "50": 1.0,
+        "75": 3.0,
+        "90": 8.0,
+        "95": 120.0,
+        "99": 238.0
+      },
+      "pixel_max_channel_difference_percentiles": {
+        "25": 1.0,
+        "50": 2.0,
+        "75": 3.0,
+        "90": 28.0,
+        "95": 134.0,
+        "99": 252.0
+      },
+      "pixels_with_all_channels_within": {
+        "0": 13.432291666666666,
+        "1": 48.06770833333333,
+        "2": 63.53124999999999,
+        "5": 87.86979166666666,
+        "10": 89.25,
+        "20": 89.72916666666667,
+        "32": 90.10416666666666,
+        "64": 91.06770833333333
+      },
+      "mean_absolute_component_difference": 13.69704861111111,
+      "examples": [
+        {
+          "x": 10,
+          "y": 82,
+          "source_rgb": [
+            255,
+            0,
+            0
+          ],
+          "received_rgb": [
+            254,
+            0,
+            0
+          ]
+        },
+        {
+          "x": 50,
+          "y": 82,
+          "source_rgb": [
+            0,
+            0,
+            255
+          ],
+          "received_rgb": [
+            0,
+            0,
+            255
+          ]
+        },
+        {
+          "x": 110,
+          "y": 82,
+          "source_rgb": [
+            255,
+            255,
+            0
+          ],
+          "received_rgb": [
+            254,
+            255,
+            0
+          ]
+        },
+        {
+          "x": 80,
+          "y": 30,
+          "source_rgb": [
+            128,
+            128,
+            128
+          ],
+          "received_rgb": [
+            126,
+            126,
+            126
+          ]
+        },
+        {
+          "x": 80,
+          "y": 60,
+          "source_rgb": [
+            128,
+            127,
+            128
+          ],
+          "received_rgb": [
+            126,
+            128,
+            128
+          ]
+        },
+        {
+          "x": 80,
+          "y": 110,
+          "source_rgb": [
+            196,
+            196,
+            196
+          ],
+          "received_rgb": [
+            252,
+            252,
+            252
+          ]
+        }
+      ],
+      "translation_diagnostic": {
+        "method": "Offsets -3..3 pixels, fixed source crop [4:-4,4:-4]; diagnostic only, no resampling or acceptance changes",
+        "unshifted": {
+          "received_offset_x": 0,
+          "received_offset_y": 0,
+          "mean_absolute_component_difference": 14.573269110275689,
+          "differing_pixel_percent": 87.24154135338345
+        },
+        "best_by_mean_error": {
+          "received_offset_x": 1,
+          "received_offset_y": 0,
+          "mean_absolute_component_difference": 4.705494204260652,
+          "differing_pixel_percent": 87.32377819548873
+        }
+      }
+    },
+    {
+      "speed": 4,
+      "source_file_sha256": "89a6447653925769b728b44b7d97168b792827e6eac2bfffdc28abaa605b3f77",
+      "received_file_sha256": "f3d0e56afc32c38731d7e88830a3ede4f62e0340eee928d1848605f74b6ee6f6",
+      "component_difference_percentiles": {
+        "25": 0.0,
+        "50": 1.0,
+        "75": 4.0,
+        "90": 46.0,
+        "95": 119.0,
+        "99": 236.0
+      },
+      "pixel_max_channel_difference_percentiles": {
+        "25": 1.0,
+        "50": 4.0,
+        "75": 5.0,
+        "90": 69.0,
+        "95": 145.04999999999927,
+        "99": 247.0
+      },
+      "pixels_with_all_channels_within": {
+        "0": 9.125,
+        "1": 41.348958333333336,
+        "2": 42.302083333333336,
+        "5": 82.63020833333333,
+        "10": 85.09375,
+        "20": 87.06770833333334,
+        "32": 87.61458333333333,
+        "64": 89.609375
+      },
+      "mean_absolute_component_difference": 16.213697916666668,
+      "examples": [
+        {
+          "x": 10,
+          "y": 82,
+          "source_rgb": [
+            255,
+            0,
+            0
+          ],
+          "received_rgb": [
+            255,
+            0,
+            0
+          ]
+        },
+        {
+          "x": 50,
+          "y": 82,
+          "source_rgb": [
+            0,
+            0,
+            255
+          ],
+          "received_rgb": [
+            0,
+            0,
+            255
+          ]
+        },
+        {
+          "x": 110,
+          "y": 82,
+          "source_rgb": [
+            255,
+            255,
+            0
+          ],
+          "received_rgb": [
+            254,
+            255,
+            0
+          ]
+        },
+        {
+          "x": 80,
+          "y": 30,
+          "source_rgb": [
+            128,
+            128,
+            128
+          ],
+          "received_rgb": [
+            124,
+            124,
+            124
+          ]
+        },
+        {
+          "x": 80,
+          "y": 60,
+          "source_rgb": [
+            128,
+            127,
+            128
+          ],
+          "received_rgb": [
+            124,
+            130,
+            127
+          ]
+        },
+        {
+          "x": 80,
+          "y": 110,
+          "source_rgb": [
+            196,
+            196,
+            196
+          ],
+          "received_rgb": [
+            233,
+            233,
+            233
+          ]
+        }
+      ],
+      "translation_diagnostic": {
+        "method": "Offsets -3..3 pixels, fixed source crop [4:-4,4:-4]; diagnostic only, no resampling or acceptance changes",
+        "unshifted": {
+          "received_offset_x": 0,
+          "received_offset_y": 0,
+          "mean_absolute_component_difference": 16.86047149122807,
+          "differing_pixel_percent": 90.67786654135338
+        },
+        "best_by_mean_error": {
+          "received_offset_x": 2,
+          "received_offset_y": 0,
+          "mean_absolute_component_difference": 7.4066611842105265,
+          "differing_pixel_percent": 88.98613721804512
+        }
+      }
+    },
+    {
+      "speed": 2,
+      "source_file_sha256": "89a6447653925769b728b44b7d97168b792827e6eac2bfffdc28abaa605b3f77",
+      "received_file_sha256": "1115a83188381a6c56c8c22669a846199f94041af30ba87110adf41453fa7024",
+      "component_difference_percentiles": {
+        "25": 0.0,
+        "50": 6.0,
+        "75": 9.0,
+        "90": 78.0,
+        "95": 146.0,
+        "99": 239.0
+      },
+      "pixel_max_channel_difference_percentiles": {
+        "25": 1.0,
+        "50": 8.0,
+        "75": 12.0,
+        "90": 100.0,
+        "95": 210.0,
+        "99": 255.0
+      },
+      "pixels_with_all_channels_within": {
+        "0": 10.036458333333332,
+        "1": 35.911458333333336,
+        "2": 36.59895833333333,
+        "5": 37.567708333333336,
+        "10": 73.13020833333333,
+        "20": 79.73958333333333,
+        "32": 82.96875,
+        "64": 85.89583333333334
+      },
+      "mean_absolute_component_difference": 22.05923611111111,
+      "examples": [
+        {
+          "x": 10,
+          "y": 82,
+          "source_rgb": [
+            255,
+            0,
+            0
+          ],
+          "received_rgb": [
+            255,
+            0,
+            0
+          ]
+        },
+        {
+          "x": 50,
+          "y": 82,
+          "source_rgb": [
+            0,
+            0,
+            255
+          ],
+          "received_rgb": [
+            0,
+            0,
+            255
+          ]
+        },
+        {
+          "x": 110,
+          "y": 82,
+          "source_rgb": [
+            255,
+            255,
+            0
+          ],
+          "received_rgb": [
+            255,
+            255,
+            0
+          ]
+        },
+        {
+          "x": 80,
+          "y": 30,
+          "source_rgb": [
+            128,
+            128,
+            128
+          ],
+          "received_rgb": [
+            120,
+            120,
+            120
+          ]
+        },
+        {
+          "x": 80,
+          "y": 60,
+          "source_rgb": [
+            128,
+            127,
+            128
+          ],
+          "received_rgb": [
+            120,
+            134,
+            128
+          ]
+        },
+        {
+          "x": 80,
+          "y": 110,
+          "source_rgb": [
+            196,
+            196,
+            196
+          ],
+          "received_rgb": [
+            171,
+            171,
+            171
+          ]
+        }
+      ],
+      "translation_diagnostic": {
+        "method": "Offsets -3..3 pixels, fixed source crop [4:-4,4:-4]; diagnostic only, no resampling or acceptance changes",
+        "unshifted": {
+          "received_offset_x": 0,
+          "received_offset_y": 0,
+          "mean_absolute_component_difference": 22.439614661654137,
+          "differing_pixel_percent": 89.98472744360903
+        },
+        "best_by_mean_error": {
+          "received_offset_x": 3,
+          "received_offset_y": 0,
+          "mean_absolute_component_difference": 15.14342496867168,
+          "differing_pixel_percent": 88.95089285714286
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+[
+  {
+    "case": "rsid-mixed-audio-silence-picture",
+    "text_and_announcements_in_order": true,
+    "expected": [
+      "MIXED MFSK32 END",
+      "MIXED MFSK64 PICTURE BEGIN\n",
+      "Pic:8x4C;",
+      "\nMIXED MFSK64 END"
+    ]
+  },
+  {
+    "case": "mfsk32-grayscale-speeds",
+    "text_and_announcements_in_order": true,
+    "expected": [
+      "GRAY P8 BEGIN\n",
+      "Pic:8x4;",
+      "\nGRAY P8 END P4 BEGIN\n",
+      "Pic:8x4p4;",
+      "\nGRAY P4 END P2 BEGIN\n",
+      "Pic:8x4p2;",
+      "\nGRAY P2 END"
+    ]
+  },
+  {
+    "case": "mfsk64-color-speeds",
+    "text_and_announcements_in_order": true,
+    "expected": [
+      "COLOR P8 BEGIN\n",
+      "Pic:8x4C;",
+      "\nCOLOR P8 END P4 BEGIN\n",
+      "Pic:8x4Cp4;",
+      "\nCOLOR P4 END P2 BEGIN\n",
+      "Pic:8x4Cp2;",
+      "\nCOLOR P2 END"
+    ]
+  }
+]

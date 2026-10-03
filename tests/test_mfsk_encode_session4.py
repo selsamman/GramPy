@@ -29,7 +29,8 @@ class Session4PictureTests(unittest.TestCase):
             gray = normalize_png(l_path, color="grayscale", samples_per_pixel=8)
             color = normalize_png(l_path, color="color", samples_per_pixel=8)
             self.assertEqual(tuple(gray.iter_component_values()), (0, 128, 255, 7))
-            self.assertEqual(tuple(color.iter_component_values()), (0, 0, 0, 128, 128, 128, 255, 255, 255, 7, 7, 7))
+            # Each row is sent as complete R, G and B planes, including L input.
+            self.assertEqual(tuple(color.iter_component_values()), (0, 128, 0, 128, 0, 128, 255, 7, 255, 7, 255, 7))
 
             rgb_path = self.write_image(
                 directory, "RGB", (2, 2),
@@ -42,6 +43,26 @@ class Session4PictureTests(unittest.TestCase):
                 tuple(color.iter_component_values()),
                 (0, 128, 128, 255, 255, 0, 255, 7, 0, 8, 128, 9),
             )
+
+    def test_l_color_public_wav_matches_equivalent_rgb_in_both_modes_and_all_speeds(self) -> None:
+        from grampy.api import ImagePart, MfskSegment, encode_mfsk_wav
+
+        with tempfile.TemporaryDirectory() as directory:
+            l_path = Path(directory) / "gray.png"
+            self.write_image(directory, "L", (2, 2), [0, 128, 255, 7]).rename(l_path)
+            rgb_path = self.write_image(directory, "RGB", (2, 2),
+                [0, 0, 0, 128, 128, 128, 255, 255, 255, 7, 7, 7])
+            for mode in ("MFSK32", "MFSK64"):
+                for speed in (8, 4, 2):
+                    with self.subTest(mode=mode, speed=speed):
+                        outputs = []
+                        for source in (l_path, rgb_path):
+                            output = Path(directory) / f"{source.stem}-{mode}-{speed}.wav"
+                            encode_mfsk_wav(parts=(MfskSegment((ImagePart(source,
+                                color="color", samples_per_pixel=speed),), mode, 1500),),
+                                output_path=output)
+                            outputs.append(output.read_bytes())
+                        self.assertEqual(outputs[0], outputs[1])
 
     def test_raster_frequencies_and_timings_are_exact_at_endpoints(self) -> None:
         with tempfile.TemporaryDirectory() as directory:

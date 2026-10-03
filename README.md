@@ -3,6 +3,8 @@
 GramPy is an importable Python library and command-line tooling for decoding
 MFSK32 and MFSK64 transmissions from SigMF IQ recordings. It is maintained as
 a standalone project after its extraction from Radiogram.
+It also creates native MFSK broadcast WAVs from text, PNG pictures, audio and
+silence through its public Python API.
 
 The PyPI distribution name is `radiogrampy`; its Python import name is
 `grampy`.
@@ -57,7 +59,9 @@ print(result.duration_seconds, result.segments[0].contents[0].start_seconds)
 The encoder requires the base package dependencies, including Pillow for PNG
 input; there is no encoder extra and no encoder CLI in version one. See the
 [encoder API guide](docs/encoder/api.md) for input, output, failure, and
-timestamp behavior.
+timestamp behavior. **48-kHz mono PCM16** is the required and qualified
+broadcast output. Acceptance, maintenance and performance evidence are
+indexed in the [encoder documentation](docs/encoder/README.md).
 
 `decode_iq_products` returns validated, JSON-compatible text and quality
 manifests; it does not write them to disk. `decode_iq` remains available for
@@ -114,7 +118,7 @@ tools/mfsk-iq-decode \
 ```
 
 The default automatic mode decodes every resolved MFSK32 and MFSK64 segment
-and the pictures carried by MFSK64 segments in one run. The command writes
+and the pictures carried by both modes in one run. The command writes
 ordered readable text and one-second reception and decode quality data.
 Add `--out-manifest results/decode.json` to request the large diagnostic
 manifest as well, or use that option alone for the legacy invocation.

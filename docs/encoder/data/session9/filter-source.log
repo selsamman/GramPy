@@ -1,0 +1,401 @@
+// ----------------------------------------------------------------------------
+//
+// filters.cxx  --  Several Digital Filter classes used in fldigi
+//
+// Copyright (C) 2006-2008 Dave Freese, W1HKJ
+//
+// These filters are based on the gmfsk design and the design notes given in
+// "Digital Signal Processing, A Practical Guid for Engineers and Scientists"
+// by Steven W. Smith.
+//
+// This file is part of fldigi.
+//
+// Fldigi is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Fldigi is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with fldigi.  If not, see <http://www.gnu.org/licenses/>.
+// ----------------------------------------------------------------------------
+
+#include <config.h>
+
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+
+#include "filters.h"
+
+#include <iostream>
+
+
+//=====================================================================
+// C_FIR_filter
+//
+//   a class of Finite Impulse Response (FIR) filters with 
+//   decimate in time capability
+//   
+//=====================================================================
+
+C_FIR_filter::C_FIR_filter () {
+	pointer = counter = length = 0;
+	decimateratio = 1;
+	ifilter = qfilter = (double *)0;
+	ffreq = 0.0;
+}
+
+C_FIR_filter::~C_FIR_filter() {
+	if (ifilter) delete [] ifilter;
+	if (qfilter) delete [] qfilter;
+}
+
+void C_FIR_filter::init(int len, int dec, double *itaps, double *qtaps) {
+	length = len;
+	decimateratio = dec;
+	if (ifilter) {
+		delete [] ifilter;
+		ifilter = (double *)0;
+	}
+	if (qfilter) {
+		delete [] qfilter;
+		qfilter = (double *)0;
+	}
+
+	for (int i = 0; i < FIRBufferLen; i++)
+		ibuffer[i] = qbuffer[i] = 0.0;
+	
+	if (itaps) {
+            ifilter = new double[len];
+		for (int i = 0; i < len; i++) ifilter[i] = itaps[i];
+	}
+	if (qtaps) {
+		qfilter = new double[len];
+		for (int i = 0; i < len; i++) qfilter[i] = qtaps[i];
+	}
+
+	pointer = len;
+	counter = 0;
+}
+
+
+//=====================================================================
+// Create a band pass FIR filter with 6 dB corner frequencies
+// of 'f1' and 'f2'. (0 <= f1 < f2 <= 0.5)
+//=====================================================================
+
+double * C_FIR_filter::bp_FIR(int len, int hilbert, double f1, double f2)
+{
+	double *fir;
+	double t, h, x;
+
+	fir = new double[len];
+
+	for (int i = 0; i < len; i++) {
+		t = i - (len - 1.0) / 2.0;
+		h = i * (1.0 / (len - 1.0));
+
+		if (!hilbert) {
+			x = (2 * f2 * sinc(2 * f2 * t) -
+			     2 * f1 * sinc(2 * f1 * t)) * hamming(h);
+		} else {
+			x = (2 * f2 * cosc(2 * f2 * t) -
+			     2 * f1 * cosc(2 * f1 * t)) * hamming(h);
+// The actual filter code assumes the impulse response
+// is in time reversed order. This will be anti-
+// symmetric so the minus sign handles that for us.
+			x = -x;
+		}
+
+		fir[i] = x;
+	}
+
+	return fir;
+}
+
+//=====================================================================
+// Filter will be a lowpass with
+// length = len
+// decimation = dec
+// 0.5 frequency point = freq
+//=====================================================================
+
+void C_FIR_filter::init_lowpass (int len, int dec, double freq) {
+	double *fi = bp_FIR(len, 0, 0.0, freq);
+	ffreq = freq;
+	init (len, dec, fi, fi);
+	delete [] fi;
+}
+
+//=====================================================================
+// Filter will be a bandpass with
+// length = len
+// decimation = dec
+// 0.5 frequency points of f1 (low) and f2 (high)
+//=====================================================================
+
+void C_FIR_filter::init_bandpass (int len, int dec, double f1, double f2) {
+	double *fi = bp_FIR (len, 0, f1, f2);
+	init (len, dec, fi, fi);
+	delete [] fi;
+}
+
+//=====================================================================
+// Filter will the Hilbert form
+//=====================================================================
+
+void C_FIR_filter::init_hilbert (int len, int dec) {
+	double *fi = bp_FIR(len, 0, 0.05, 0.45);
+	double *fq = bp_FIR(len, 1, 0.05, 0.45);
+	init (len, dec, fi, fq);
+	delete [] fi;
+	delete [] fq;
+}
+
+
+//=====================================================================
+// Run
+// passes a cmplx value (in) and receives the cmplx value (out)
+// function returns 0 if the filter is not yet stable
+// returns 1 when stable and decimated cmplx output value is valid
+//=====================================================================
+
+int C_FIR_filter::run (const cmplx &in, cmplx &out) {
+	ibuffer[pointer] = in.real();
+	qbuffer[pointer] = in.imag();
+	counter++;
+	if (counter == decimateratio)
+		out = cmplx (	mac(&ibuffer[pointer - length], ifilter, length),
+						mac(&qbuffer[pointer - length], qfilter, length) );
+	pointer++;
+	if (pointer == FIRBufferLen) {
+		/// memmove is necessary if length >= FIRBufferLen/2 , theoretically possible.
+		memmove (ibuffer, ibuffer + FIRBufferLen - length, length * sizeof (double) );
+		memmove (qbuffer, qbuffer + FIRBufferLen - length, length * sizeof (double) );
+		pointer = length;
+	}
+	if (counter == decimateratio) {
+		counter = 0;
+		return 1;
+	}
+	return 0;
+}
+
+//=====================================================================
+// Run the filter for the Real part of the cmplx variable
+//=====================================================================
+
+int C_FIR_filter::Irun (const double &in, double &out) {
+	double *iptr = ibuffer + pointer;
+
+	pointer++;
+	counter++;
+
+	*iptr = in;
+
+	if (counter == decimateratio) {
+		out = mac(iptr - length, ifilter, length);
+	}
+
+	if (pointer == FIRBufferLen) {
+		iptr = ibuffer + FIRBufferLen - length;
+		memcpy(ibuffer, iptr, length * sizeof(double));
+		pointer = length;
+	}
+
+	if (counter == decimateratio) {
+		counter = 0;
+		return 1;
+	}
+
+	return 0;
+}
+
+//=====================================================================
+// Run the filter for the Imaginary part of the cmplx variable
+//=====================================================================
+
+int C_FIR_filter::Qrun (const double &in, double &out) {
+	double *qptr = ibuffer + pointer;
+
+	pointer++;
+	counter++;
+
+	*qptr = in;
+
+	if (counter == decimateratio) {
+		out = mac(qptr - length, qfilter, length);
+	}
+
+	if (pointer == FIRBufferLen) {
+		qptr = qbuffer + FIRBufferLen - length;
+		memcpy(qbuffer, qptr, length * sizeof(double));
+		pointer = length;
+	}
+
+	if (counter == decimateratio) {
+		counter = 0;
+		return 1;
+	}
+
+	return 0;
+}
+class C_FIR_filter {
+#define FIRBufferLen 4096
+private:
+	int length;
+	int decimateratio;
+
+	double *ifilter;
+	double *qfilter;
+
+	double ffreq;
+	
+	double ibuffer[FIRBufferLen];
+	double qbuffer[FIRBufferLen];
+
+	int pointer;
+	int counter;
+	
+	cmplx fu;
+
+	inline double sinc(double x) {
+		if (fabs(x) < 1e-10)
+			return 1.0;
+		else
+			return sin(M_PI * x) / (M_PI * x);
+	}
+	inline double cosc(double x) {
+		if (fabs(x) < 1e-10)
+			return 0.0;
+		else
+			return (1.0 - cos(M_PI * x)) / (M_PI * x);
+	}
+	inline double hamming(double x) {
+		return 0.54 - 0.46 * cos(2 * M_PI * x);
+	}
+	inline double mac(const double *a, const double *b, unsigned int size) {
+		double sum = 0.0;
+		double sum2 = 0.0;
+		double sum3 = 0.0;
+		double sum4 = 0.0;
+		// Reduces read-after-write dependencies : Each subsum does not wait for the others.
+		// The CPU can therefore schedule each line independently.
+		for (; size > 3; size -= 4, a += 4, b+=4)
+		{
+			sum  += a[0] * b[0];
+			sum2 += a[1] * b[1];
+			sum3 += a[2] * b[2];
+			sum4 += a[3] * b[3];
+		}
+		for (; size; --size)
+			sum += (*a++) * (*b++);
+		return sum + sum2 + sum3 + sum4 ;
+	}
+
+protected:
+	
+public:
+	C_FIR_filter ();
+	~C_FIR_filter ();
+
+	void init (int len, int dec, double *ifil, double *qfil);
+	void init_lowpass (int len, int dec, double freq );
+	void init_bandpass (int len, int dec, double freq1, double freq2);
+	void init_hilbert (int len, int dec);
+	double *bp_FIR(int len, int hilbert, double f1, double f2);
+
+	void clear();
+	int run (const cmplx &in, cmplx &out);
+	int Irun (const double &in, double &out);
+	int Qrun (const double &in, double &out);
+};
+
+//=====================================================================
+// Moving average filter
+//=====================================================================
+
+class Cmovavg {
+#define MAXMOVAVG 2048
+private:
+	double	*in;
+	double	out;
+	int		len, pint;
+	bool	empty;
+public:
+	Cmovavg(int filtlen = 64);
+	~Cmovavg();
+	double run(double a);
+	void setLength(int filtlen);
+	void reset();
+	double value() { return out / (len > 0 ? len : 1); }
+};
+
+
+//=====================================================================
+// Sliding FFT
+//=====================================================================
+
+class sfft {
+#define K1 0.99999999999L
+private:
+	int fftlen;
+	int first;
+	int last;
+	int ptr;
+	struct vrot_bins_pair ;
+	vrot_bins_pair * __restrict__ vrot_bins ;
+	cmplx * __restrict__ delay;
+	double k2;
+	int count;
+public:
+		decodesymbol(symbols[i]);
+		if (counter) return;
+	}
+}
+
+cmplx mfsk::mixer(cmplx in, double f)
+{
+	cmplx z;
+
+// Basetone is a nominal 1000 Hz
+	f -= tonespacing * basetone + bandwidth / 2;
+
+	z = in * cmplx( cos(phaseacc), sin(phaseacc) );
+
+	phaseacc -= TWOPI * f / samplerate;
+	if (phaseacc < 0) phaseacc += TWOPI;
+
+	return z;
+}
+
+// finds the tone bin with the largest signal level
+// assumes that will be the present tone received
+// with NO CW inteference
+
+int mfsk::harddecode(cmplx *in)
+{
+193:		basetone = 256;
+202:		basetone = 128;
+211:		basetone = 32;
+215:	case MODE_MFSK32:
+220:		basetone = 32;
+225:	case MODE_MFSK64:
+230:		basetone = 16;
+240:		basetone = 8;
+246:	case MODE_MFSK64L:
+252:		basetone = 16;
+261:		basetone = 8;
+270:		basetone = 93;
+279:		basetone = 46;
+290:		basetone = 64;
+481:			case MODE_MFSK32:
+484:			case MODE_MFSK64:
+690:cmplx mfsk::mixer(cmplx in, double f)
+868:		z = mixer(z, frequency);
+1109:		if (mode != MODE_MFSK64L && mode != MODE_MFSK128L )

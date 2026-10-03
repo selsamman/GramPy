@@ -1,0 +1,16 @@
+[
+  {
+    "transmitter": "fldigi",
+    "duration_seconds": 82.004,
+    "peak_pcm": 8831,
+    "clipped_frames": 0,
+    "wav_sha256": "ced694687e6f81d5b80cfc003a594e22974665f377b4cc7cd62e32cea308b6e7"
+  },
+  {
+    "transmitter": "grampy",
+    "duration_seconds": 72.87975,
+    "peak_pcm": 16384,
+    "clipped_frames": 0,
+    "wav_sha256": "0a7fb22253f2bcae6c7408880c723652378b840eb352797cea7fc7d0532b53e6"
+  }
+]

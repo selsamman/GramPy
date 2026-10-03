@@ -30,7 +30,7 @@ tools/mfsk-iq-decode \
 ```
 
 This defaults to automatic mixed-mode decoding: RSID-derived MFSK32 and
-MFSK64 segments are decoded in one run, including pictures in MFSK64 segments.
+MFSK64 segments are decoded in one run, including pictures in both modes.
 Pass `--mode MFSK32` or `--mode MFSK64` only for a mode-constrained run.
 
 Use `--start-sample` and `--stop-sample` for a half-open interval,
@@ -70,10 +70,22 @@ reported but fail only with `--require-all`; hash mismatches always fail.
 
 The existing fixture-generation `pi-*` scripts are retained helpers for
 maintainers who already have a compatible environment. They are not the native
-encoder's final receive-qualification workflow. That workflow is defined by
-`docs/encoder/data/mfsk_encoder_pi_matrix_v1.json`, must be implemented as a
-reusable checked-in `tools/pi-*.sh` script before encoder Session 8, and must be
-invoked through `tools/pi-remote.sh`.
+encoder's final receive-qualification workflow. The accepted practical
+workflow uses `docs/encoder/data/mfsk_encoder_pi_matrix_v3.json` and
+`tools/pi-qualify-mfsk-broadcast.sh`, invoked through `tools/pi-remote.sh`.
+Its frozen numerical and PM visual acceptance are indexed in the
+[encoder validation guide](../docs/encoder/validation.md).
+
+`tools/pi-benchmark-mfsk-encoder.sh BUNDLE OUTPUT` installs a supplied wheel
+into an isolated target using an explicitly supplied
+`GRAMPY_BENCHMARK_PYTHON` runtime with the required dependencies. Run it through
+the managed Pi wrapper. `tools/benchmark-mfsk-encoder.py` measures only the
+public encoder call, in a fresh process per sample, and records CPU time,
+wall time, emitted duration, peak process RSS and WAV bytes. Its bundle needs
+`matrix.json`, `inputs/`, the benchmark script and a `distribution/` wheel.
+Machine addresses and staging commands belong in `.local/`. The
+[recorded performance procedure](../docs/encoder/validation.md) explains the
+measurement boundaries and retained evidence.
 
 ## Received-IQ corpus
 

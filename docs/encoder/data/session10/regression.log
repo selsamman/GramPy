@@ -1,0 +1,24 @@
+Raspberry Pi 3 Model B Plus Rev 1.4 3.13.5
+gray32-p8-card CPU 9.4944 wall 9.5075 duration 63.6779 CPU ratio 0.1491 RSS MiB 101.01 bytes 6113120.0
+rgb64-p8-photo CPU 21.9501 wall 21.9574 duration 145.3597 CPU ratio 0.15101 RSS MiB 101.02 bytes 13954580.0
+rgb64-p2-chart CPU 5.2085 wall 5.21 duration 30.2877 CPU ratio 0.17197 RSS MiB 100.75 bytes 2907668.0
+mixed-broadcast-photo CPU 15.7229 wall 15.7291 duration 99.7056 CPU ratio 0.15769 RSS MiB 101.02 bytes 9571784.0
+text32-2048-bytes CPU 33.3344 wall 33.3506 duration 250.8979 CPU ratio 0.13286 RSS MiB 100.14 bytes 24086240.0
+audio-copy-30s CPU 0.0103 wall 0.0103 duration 30.0 CPU ratio 0.00034 RSS MiB 100.14 bytes 2880044.0
+audio-copy-300s CPU 0.0909 wall 0.0909 duration 300.0 CPU ratio 0.0003 RSS MiB 100.14 bytes 28800044.0
+Corrected independent row-plane assertion rejects the prior encoder
+All ten accepted WAVs byte-identical in the final installed wheel
+Regression uses isolated final wheel
+........mfsk-iq-decode: [Errno 2] No such file or directory: '/var/folders/xv/0spp6rc11q3_2p1y7tp0g_kc0000gn/T/tmp0k4v6lfo/missing.sigmf-meta'
+..............................................s....................................................................s...s.ss.............................................................................s.......................................
+----------------------------------------------------------------------
+Ran 248 tests in 145.172s
+
+OK (skipped=6)
+wrote /var/folders/xv/0spp6rc11q3_2p1y7tp0g_kc0000gn/T/tmppxbs3j6o/summary.json
+wrote /var/folders/xv/0spp6rc11q3_2p1y7tp0g_kc0000gn/T/tmppb9x4k3o/score.json
+wrote /var/folders/xv/0spp6rc11q3_2p1y7tp0g_kc0000gn/T/tmpx_5b_yi3/gate.json
+wrote /var/folders/xv/0spp6rc11q3_2p1y7tp0g_kc0000gn/T/tmphl1xstw1/gate.json
+wrote /var/folders/xv/0spp6rc11q3_2p1y7tp0g_kc0000gn/T/tmpmml3nqrh/score.json
+wrote /var/folders/xv/0spp6rc11q3_2p1y7tp0g_kc0000gn/T/tmplp0khjvb/score.json
+wrote /var/folders/xv/0spp6rc11q3_2p1y7tp0g_kc0000gn/T/tmp4cty0wo1/score.json

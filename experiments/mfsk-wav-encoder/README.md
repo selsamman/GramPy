@@ -1,5 +1,53 @@
 # Session 8 qualification workflow
 
+**Historical reproduction:** Sessions 8/9 evidence is deliberately retained.
+Practical image qualification and the automatic MFSK32 correction were
+accepted on 2026-10-03. Current encoder usage and maintenance are in the
+[encoder documentation](../../docs/encoder/README.md); packaging and Pi encoder
+timing are in [Session 10](../../docs/encoder/session10-closeout.md).
+These investigation scripts are not runtime dependencies.
+
+Session 9's picture-path diagnosis and experimental limits are recorded
+in [the investigation index](../../docs/encoder/data/session9/README.md).
+`session9_local.py` measures retained PCM and exact-boundary decoder errors;
+`session9_filter_model.py` isolates source-derived receiver filtering.
+`session9_probe.py` runs paired fixed-mode diagnostics on the Pi through
+`tools/pi-investigate-mfsk-pictures.sh`, using unchanged binaries and a
+read-only settled-viewer snapshot after playback. Its results cannot replace
+the whole-WAV RxID qualification described below.
+
+`session9_wholewav.py` replays the three original failed WAVs through
+`tools/pi-inspect-mfsk-picture-artifacts.sh`, keeping RxID and the original
+starting configurations. `session9_widget.py` reads stable widget bytes
+without stopping reception, using the pinned binary's debug-symbol layout;
+each case's final buffer must match an independent post-playback gdb dump.
+The failed X11 prototype is retained in `.local/session9/` because painted
+pixels can lag the complete buffer. These sidecars diagnose artifact quality;
+they do not amend the qualification collector or pixel criterion.
+
+`session9_review.py` renders the four unaligned paired p8 results;
+`session9_timing.py` fits the source-derived receiver model to their interiors.
+`session9_whole_review.py` compares all seven original autosaves, replay
+autosaves, and settled buffers, fits their receiver-model interiors, and
+checks ordered text/announcements. Viewer-selected model timing and first/
+last-component exclusions are diagnostic, never acceptance evidence. Full
+results and the recommended receiver/reference remediation are linked from
+the Session 9 index. No production encoder correction is confirmed.
+
+Fresh normal-sized manual controls and the exact-file Pi comparison are described
+in [the Mac handoff](../../docs/encoder/data/session9/manual-control.md).
+The user's Mac PNGs independently distinguish a visually clean native picture
+from a slanted reference picture. `session9_wave_clock.py --output REPORT WAV...`
+measures the known chart's repeated grayscale ramp spacing in mono 48-kHz PCM16
+WAVs. It is a timing diagnostic for that chart at MFSK64 p8, not a qualification
+score or a general picture detector. Run it through the managed Mac wrapper.
+`tools/pi-generate-mfsk-roundtrip-control.sh` uses unchanged pinned fldigi 4.2.13
+and the existing generator to record a new MFSK64 RGB p8 chart transmission.
+`tools/pi-decode-mfsk-roundtrip-control.sh` receives that exact WAV in fixed mode
+with RxID/AFC off and five-second polling, collecting a post-playback widget
+snapshot. Invoke both through `tools/pi-remote.sh`; keep paths/staging in `.local/`.
+These controls supplement the frozen matrix and cannot qualify the candidate.
+
 This evidence workflow leaves the encoder and decoder implementation unchanged.
 All experiments run through the managed wrappers on a network-capable surface.
 The repository virtualenv owns local Python work; the Pi workflow creates an
@@ -45,6 +93,38 @@ resolved with the requester before proceeding.
    explicitly coupled diagnostic evidence. It cannot qualify a failed Pi
    case. A baseline placeholder is required because this new encoder has no
    accepted production-output baseline.
+   For portable human inspection, run `build_html_review.py EVIDENCE_ROOT
+   docs/encoder/data/session8/comparison.html` through the Mac wrapper. The
+   standalone HTML embeds the images and pixel values and links saved logs.
+   It provides speed/color filtering, enlargement, component-error metrics,
+   and hover inspection. Preserve the historical audit separately; it must
+   not overwrite the original qualification artifacts or their scores.
+
+## Session 9 practical large-image qualification (D-027)
+
+`session9_broadcast.py prepare OUTPUT`, `decode OUTPUT`, and `evaluate OUTPUT`
+run through the managed Mac wrapper with the repository virtualenv. Preparation
+copies caller-prepared 240×180 photographs and a 160×120 chart, freezes the v3
+matrix, generates complete WAVs with the public encoder, and checks independent
+raster/prologue and RSID PCM plus exact audio/silence and frame accounting.
+Decoding uses the unchanged public auto-mode decoder on full analytic WAV IQ,
+with accepted defaults and no encoder timing or mode hints. MFSK32 production
+picture support is explicitly excluded from that decoder's claims.
+
+`tools/pi-qualify-mfsk-broadcast.sh BUNDLE OUTPUT ADAPTER BINARY PYTHON` runs via
+the managed Pi wrapper; target-specific paths and transfer scripts live only in
+`.local/`. It verifies the existing pinned binary and completed-viewer adapter,
+starts in BPSK31 with RxID on, and replays all ten unmodified WAVs. Reception
+retains logs, configs, autosaves and the read-only settled viewer snapshot.
+`session9_broadcast_receive.py` imports no GramPy encoder/decoder code.
+
+The v3 matrix's engineering limits are frozen before new outputs. Evaluation
+uses the existing raw/aligned scorecard, preserves alignment burden, binds
+ordered text/header/mode recovery to whole-WAV evidence, and creates a native-
+size visual review. Numerical passing does not supply PM visual acceptance.
+`test_session9_broadcast.py` checks meaningful rejected/allowed cases for the
+new screen. This route supersedes earlier mandatory tiny/reference calibration
+steps under the PM's explicit direction; it never rewrites historical v2 data.
 
 Artifacts include the installed distribution, candidate source hashes,
 source fixture and audio recipe, WAVs and integer encoder coordinates,

@@ -1,0 +1,19 @@
+[
+  {
+    "id": "gray32-p8-card",
+    "pictures": 1,
+    "explicit_center_hz": 1500,
+    "raw_mae_255": 2.4832638888888887
+  },
+  {
+    "id": "gray32-p4-photo",
+    "pictures": 1,
+    "explicit_center_hz": 1500,
+    "raw_mae_255": 1.7779166666666666
+  },
+  {
+    "id": "gray32-p2-chart",
+    "pictures": 0,
+    "explicit_center_hz": 1500
+  }
+]

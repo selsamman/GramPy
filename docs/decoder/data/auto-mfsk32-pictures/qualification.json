@@ -1,0 +1,930 @@
+{
+  "source_changes": [
+    "src/grampy/pipeline.py"
+  ],
+  "pipeline_sha256": "6256a56d5273f98ba02e071ee8582c6a6cafbc7c4302e9825887c3ecebcd6fba",
+  "frozen_matrix_sha256": "055c9ddeddab966bd41df2ebc7353664236eb7e08dd3a119ff82451310a98b75",
+  "picture_gate": {
+    "raw_mae_255_max": 25,
+    "aligned_mae_255_max": 20,
+    "absolute_channel_bias_255_max": 15,
+    "alignment_max_offset_components": 12,
+    "alignment_max_changes": 12,
+    "alignment_parameters": {
+      "max_offset": 24,
+      "change_penalty": 25.0,
+      "offset_penalty": 0.0005
+    },
+    "requires_exact_dimensions_and_picture_count": true,
+    "requires_all_caller_text_and_announcements_in_order": true,
+    "requires_automatic_mode_and_carrier_acquisition": true,
+    "requires_pm_visual_review": true
+  },
+  "summary": {
+    "passes": 10,
+    "total": 10,
+    "mfsk32_pictures_recovered": 3,
+    "mfsk64_pixel_identical": 7,
+    "pm_visual_status": "pending"
+  },
+  "cases": [
+    {
+      "id": "gray64-p8-card",
+      "mode": "MFSK64",
+      "speed": 8,
+      "checks": {
+        "whole_input": true,
+        "complete_framing": true,
+        "ordered_caller_text_and_header": true,
+        "automatic_modes": true,
+        "automatic_carriers": true,
+        "one_complete_picture": true,
+        "unique_artifact_ids": true,
+        "valid_artifact_hashes": true,
+        "compact_picture_link": true,
+        "quality_gate": true,
+        "unchanged_mfsk64_pixels": true
+      },
+      "pass": true,
+      "picture_score": {
+        "pass": true,
+        "checks": {
+          "raw_mae": true,
+          "aligned_mae": true,
+          "channel_bias": true,
+          "alignment_offset": true,
+          "alignment_changes": true
+        },
+        "raw": {
+          "schema": "grampy-accuracy.v1",
+          "kind": "raw-raster-error",
+          "whole_raster": {
+            "mean_absolute_error_255": 0.7724537037037037,
+            "root_mean_square_error_255": 1.6955688436933793,
+            "signed_bias_255": 0.15583333333333332,
+            "exact_component_fraction": 0.6274305555555556,
+            "psnr_db": 43.544495053684884
+          },
+          "channels": {
+            "gray": {
+              "mean_absolute_error_255": 0.7724537037037037,
+              "root_mean_square_error_255": 1.6955688436933793,
+              "signed_bias_255": 0.15583333333333332,
+              "exact_component_fraction": 0.6274305555555556,
+              "psnr_db": 43.544495053684884
+            }
+          }
+        },
+        "alignment": {
+          "schema": "grampy-accuracy.v1",
+          "kind": "picture-component-alignment",
+          "algorithm": "bounded-regularized-offset-viterbi-v1",
+          "reference_components": 43200,
+          "decoded_components": 43200,
+          "compared_components": 43200,
+          "raw_mean_absolute_error_255": 0.7724537253379822,
+          "raw_exact_component_fraction": 0.6274305555555556,
+          "aligned_mean_absolute_error_255": 0.7724537253379822,
+          "aligned_exact_component_fraction": 0.6274305555555556,
+          "zero_offset_fraction": 1.0,
+          "maximum_absolute_offset_components": 0,
+          "offset_change_count": 0,
+          "offset_changes": [],
+          "offset_path_rle": [
+            {
+              "start_component": 0,
+              "stop_component": 43200,
+              "offset": 0
+            }
+          ],
+          "alignment_parameters": {
+            "max_offset_components": 24,
+            "change_penalty": 25.0,
+            "offset_penalty": 0.0005
+          }
+        }
+      },
+      "width": 240,
+      "height": 180,
+      "wav_sha256": "4d2d0f2148d36d6be288d4515167df9bace98d334a89bedd0e85d7dcdf16dbf3",
+      "truth_sha256": "313ed61c44caaee44823e304b1ccc2332858710c3fd7d1ee67b57043b2cb998f",
+      "diagnostic_sha256": "22687bac8b21e267c9ce82f29c2059e3c201061d3c59ab5438de31bf23c29d16",
+      "candidate_raster_sha256": "e9da735b733e629207c8f1b46fbb0707525da08ced2d9ac67601145044acbabd"
+    },
+    {
+      "id": "gray64-p4-photo",
+      "mode": "MFSK64",
+      "speed": 4,
+      "checks": {
+        "whole_input": true,
+        "complete_framing": true,
+        "ordered_caller_text_and_header": true,
+        "automatic_modes": true,
+        "automatic_carriers": true,
+        "one_complete_picture": true,
+        "unique_artifact_ids": true,
+        "valid_artifact_hashes": true,
+        "compact_picture_link": true,
+        "quality_gate": true,
+        "unchanged_mfsk64_pixels": true
+      },
+      "pass": true,
+      "picture_score": {
+        "pass": true,
+        "checks": {
+          "raw_mae": true,
+          "aligned_mae": true,
+          "channel_bias": true,
+          "alignment_offset": true,
+          "alignment_changes": true
+        },
+        "raw": {
+          "schema": "grampy-accuracy.v1",
+          "kind": "raw-raster-error",
+          "whole_raster": {
+            "mean_absolute_error_255": 0.8224537037037037,
+            "root_mean_square_error_255": 2.1417693447068302,
+            "signed_bias_255": 0.1549074074074074,
+            "exact_component_fraction": 0.6165277777777778,
+            "psnr_db": 41.515349644913826
+          },
+          "channels": {
+            "gray": {
+              "mean_absolute_error_255": 0.8224537037037037,
+              "root_mean_square_error_255": 2.1417693447068302,
+              "signed_bias_255": 0.1549074074074074,
+              "exact_component_fraction": 0.6165277777777778,
+              "psnr_db": 41.515349644913826
+            }
+          }
+        },
+        "alignment": {
+          "schema": "grampy-accuracy.v1",
+          "kind": "picture-component-alignment",
+          "algorithm": "bounded-regularized-offset-viterbi-v1",
+          "reference_components": 43200,
+          "decoded_components": 43200,
+          "compared_components": 43200,
+          "raw_mean_absolute_error_255": 0.8224536776542664,
+          "raw_exact_component_fraction": 0.6165277777777778,
+          "aligned_mean_absolute_error_255": 0.8224536776542664,
+          "aligned_exact_component_fraction": 0.6165277777777778,
+          "zero_offset_fraction": 1.0,
+          "maximum_absolute_offset_components": 0,
+          "offset_change_count": 0,
+          "offset_changes": [],
+          "offset_path_rle": [
+            {
+              "start_component": 0,
+              "stop_component": 43200,
+              "offset": 0
+            }
+          ],
+          "alignment_parameters": {
+            "max_offset_components": 24,
+            "change_penalty": 25.0,
+            "offset_penalty": 0.0005
+          }
+        }
+      },
+      "width": 240,
+      "height": 180,
+      "wav_sha256": "78248ba1d602137847c55b1ce875f941b204a9be589fbd36595238a06f7a7e89",
+      "truth_sha256": "457d5428a7ff449c352de059809b55701b917f2c0290c709998d27e33b665115",
+      "diagnostic_sha256": "f1cd3ef3578b19296cdfe4e21d58b48249c0e3d25243504f307bf813a45f7301",
+      "candidate_raster_sha256": "b91fc8833af17d193e76c0c725dba7c8244436056f55c1b5cc3ae48a4310a6b4"
+    },
+    {
+      "id": "gray64-p2-chart",
+      "mode": "MFSK64",
+      "speed": 2,
+      "checks": {
+        "whole_input": true,
+        "complete_framing": true,
+        "ordered_caller_text_and_header": true,
+        "automatic_modes": true,
+        "automatic_carriers": true,
+        "one_complete_picture": true,
+        "unique_artifact_ids": true,
+        "valid_artifact_hashes": true,
+        "compact_picture_link": true,
+        "quality_gate": true,
+        "unchanged_mfsk64_pixels": true
+      },
+      "pass": true,
+      "picture_score": {
+        "pass": true,
+        "checks": {
+          "raw_mae": true,
+          "aligned_mae": true,
+          "channel_bias": true,
+          "alignment_offset": true,
+          "alignment_changes": true
+        },
+        "raw": {
+          "schema": "grampy-accuracy.v1",
+          "kind": "raw-raster-error",
+          "whole_raster": {
+            "mean_absolute_error_255": 10.2503125,
+            "root_mean_square_error_255": 28.833960734985173,
+            "signed_bias_255": 0.058333333333333334,
+            "exact_component_fraction": 0.5619791666666667,
+            "psnr_db": 18.9327175543928
+          },
+          "channels": {
+            "gray": {
+              "mean_absolute_error_255": 10.2503125,
+              "root_mean_square_error_255": 28.833960734985173,
+              "signed_bias_255": 0.058333333333333334,
+              "exact_component_fraction": 0.5619791666666667,
+              "psnr_db": 18.9327175543928
+            }
+          }
+        },
+        "alignment": {
+          "schema": "grampy-accuracy.v1",
+          "kind": "picture-component-alignment",
+          "algorithm": "bounded-regularized-offset-viterbi-v1",
+          "reference_components": 19200,
+          "decoded_components": 19200,
+          "compared_components": 19200,
+          "raw_mean_absolute_error_255": 10.250312805175781,
+          "raw_exact_component_fraction": 0.5619791666666667,
+          "aligned_mean_absolute_error_255": 10.250312805175781,
+          "aligned_exact_component_fraction": 0.5619791666666667,
+          "zero_offset_fraction": 1.0,
+          "maximum_absolute_offset_components": 0,
+          "offset_change_count": 0,
+          "offset_changes": [],
+          "offset_path_rle": [
+            {
+              "start_component": 0,
+              "stop_component": 19200,
+              "offset": 0
+            }
+          ],
+          "alignment_parameters": {
+            "max_offset_components": 24,
+            "change_penalty": 25.0,
+            "offset_penalty": 0.0005
+          }
+        }
+      },
+      "width": 160,
+      "height": 120,
+      "wav_sha256": "5d65aa0a6cc6942280d08996bf999f0c6206a4b6bfaf960260c0c0f2d71772a8",
+      "truth_sha256": "ef5b254666f554eb2e02641fad50b2a06c78f9e90c1ae3d7f3f1f606bd9e4770",
+      "diagnostic_sha256": "e6f355e452d072f79d25dc5da15c02e037dbe7e9f67b9c2fdb1fb8ea501510cb",
+      "candidate_raster_sha256": "26d57a92b132e0177e0b9482d85f5bb6f136b9615377771a9755f31f7f1b5490"
+    },
+    {
+      "id": "rgb64-p8-photo",
+      "mode": "MFSK64",
+      "speed": 8,
+      "checks": {
+        "whole_input": true,
+        "complete_framing": true,
+        "ordered_caller_text_and_header": true,
+        "automatic_modes": true,
+        "automatic_carriers": true,
+        "one_complete_picture": true,
+        "unique_artifact_ids": true,
+        "valid_artifact_hashes": true,
+        "compact_picture_link": true,
+        "quality_gate": true,
+        "unchanged_mfsk64_pixels": true
+      },
+      "pass": true,
+      "picture_score": {
+        "pass": true,
+        "checks": {
+          "raw_mae": true,
+          "aligned_mae": true,
+          "channel_bias": true,
+          "alignment_offset": true,
+          "alignment_changes": true
+        },
+        "raw": {
+          "schema": "grampy-accuracy.v1",
+          "kind": "raw-raster-error",
+          "whole_raster": {
+            "mean_absolute_error_255": 0.35734567901234565,
+            "root_mean_square_error_255": 1.0105920523615335,
+            "signed_bias_255": 0.10532407407407407,
+            "exact_component_fraction": 0.7709182098765432,
+            "psnr_db": 48.039286039146695
+          },
+          "channels": {
+            "red": {
+              "mean_absolute_error_255": 0.3838888888888889,
+              "root_mean_square_error_255": 1.0122170386499791,
+              "signed_bias_255": 0.09078703703703704,
+              "exact_component_fraction": 0.7378703703703704,
+              "psnr_db": 48.02533073840799
+            },
+            "green": {
+              "mean_absolute_error_255": 0.3068287037037037,
+              "root_mean_square_error_255": 1.0629601400143183,
+              "signed_bias_255": 0.08150462962962964,
+              "exact_component_fraction": 0.8295833333333333,
+              "psnr_db": 47.60046402463647
+            },
+            "blue": {
+              "mean_absolute_error_255": 0.38131944444444443,
+              "root_mean_square_error_255": 0.9536358300191412,
+              "signed_bias_255": 0.14368055555555556,
+              "exact_component_fraction": 0.7453009259259259,
+              "psnr_db": 48.54315240825439
+            }
+          }
+        },
+        "alignment": {
+          "schema": "grampy-accuracy.v1",
+          "kind": "picture-component-alignment",
+          "algorithm": "bounded-regularized-offset-viterbi-v1",
+          "reference_components": 129600,
+          "decoded_components": 129600,
+          "compared_components": 129600,
+          "raw_mean_absolute_error_255": 0.35734567046165466,
+          "raw_exact_component_fraction": 0.7709182098765432,
+          "aligned_mean_absolute_error_255": 0.35734567046165466,
+          "aligned_exact_component_fraction": 0.7709182098765432,
+          "zero_offset_fraction": 1.0,
+          "maximum_absolute_offset_components": 0,
+          "offset_change_count": 0,
+          "offset_changes": [],
+          "offset_path_rle": [
+            {
+              "start_component": 0,
+              "stop_component": 129600,
+              "offset": 0
+            }
+          ],
+          "alignment_parameters": {
+            "max_offset_components": 24,
+            "change_penalty": 25.0,
+            "offset_penalty": 0.0005
+          }
+        }
+      },
+      "width": 240,
+      "height": 180,
+      "wav_sha256": "6b7aa722eac0a4e4b47196a93e98085279d530185e4d45a834995ccf6af37eca",
+      "truth_sha256": "1d316ddfc96078f19a20d83769d36b1efcd23cdc03d0047832e65024fcd026d0",
+      "diagnostic_sha256": "0dab5bc6f23274aa28245751a59a96c927b614dcbf43f8977459182c75362e7c",
+      "candidate_raster_sha256": "153be64e48ca9050846165408f36745ddc9b7a209cefa34c62a43fdd71ae84db"
+    },
+    {
+      "id": "rgb64-p4-card",
+      "mode": "MFSK64",
+      "speed": 4,
+      "checks": {
+        "whole_input": true,
+        "complete_framing": true,
+        "ordered_caller_text_and_header": true,
+        "automatic_modes": true,
+        "automatic_carriers": true,
+        "one_complete_picture": true,
+        "unique_artifact_ids": true,
+        "valid_artifact_hashes": true,
+        "compact_picture_link": true,
+        "quality_gate": true,
+        "unchanged_mfsk64_pixels": true
+      },
+      "pass": true,
+      "picture_score": {
+        "pass": true,
+        "checks": {
+          "raw_mae": true,
+          "aligned_mae": true,
+          "channel_bias": true,
+          "alignment_offset": true,
+          "alignment_changes": true
+        },
+        "raw": {
+          "schema": "grampy-accuracy.v1",
+          "kind": "raw-raster-error",
+          "whole_raster": {
+            "mean_absolute_error_255": 2.62724537037037,
+            "root_mean_square_error_255": 5.332742299427075,
+            "signed_bias_255": 0.1639891975308642,
+            "exact_component_fraction": 0.3804243827160494,
+            "psnr_db": 33.591791663658114
+          },
+          "channels": {
+            "red": {
+              "mean_absolute_error_255": 2.7467129629629627,
+              "root_mean_square_error_255": 5.590646123130498,
+              "signed_bias_255": 0.16546296296296295,
+              "exact_component_fraction": 0.371875,
+              "psnr_db": 33.181563545782986
+            },
+            "green": {
+              "mean_absolute_error_255": 2.7249074074074073,
+              "root_mean_square_error_255": 5.521586426622938,
+              "signed_bias_255": 0.16824074074074075,
+              "exact_component_fraction": 0.3798842592592593,
+              "psnr_db": 33.28952612169409
+            },
+            "blue": {
+              "mean_absolute_error_255": 2.4101157407407405,
+              "root_mean_square_error_255": 4.855016020113173,
+              "signed_bias_255": 0.1582638888888889,
+              "exact_component_fraction": 0.3895138888888889,
+              "psnr_db": 34.40699026289123
+            }
+          }
+        },
+        "alignment": {
+          "schema": "grampy-accuracy.v1",
+          "kind": "picture-component-alignment",
+          "algorithm": "bounded-regularized-offset-viterbi-v1",
+          "reference_components": 129600,
+          "decoded_components": 129600,
+          "compared_components": 129600,
+          "raw_mean_absolute_error_255": 2.6272454261779785,
+          "raw_exact_component_fraction": 0.3804243827160494,
+          "aligned_mean_absolute_error_255": 2.6272454261779785,
+          "aligned_exact_component_fraction": 0.3804243827160494,
+          "zero_offset_fraction": 1.0,
+          "maximum_absolute_offset_components": 0,
+          "offset_change_count": 0,
+          "offset_changes": [],
+          "offset_path_rle": [
+            {
+              "start_component": 0,
+              "stop_component": 129600,
+              "offset": 0
+            }
+          ],
+          "alignment_parameters": {
+            "max_offset_components": 24,
+            "change_penalty": 25.0,
+            "offset_penalty": 0.0005
+          }
+        }
+      },
+      "width": 240,
+      "height": 180,
+      "wav_sha256": "a1adfd84f6d45cc12e2cc1b8ffeea11e16b4c7cc13cb2b95d534ea172a0e3d05",
+      "truth_sha256": "f54c55ee0eda798a3fa9d4bcc32ba45cebc08eaa5ddb41808ac3fc7b44aaddc7",
+      "diagnostic_sha256": "75777563130cc2bcc5b075dc378b7e28c37264a227ce1b03b5759d9958283b82",
+      "candidate_raster_sha256": "4df378cb7f7595f525f9b34402f9bc4ef14684d71177aa855bb1a45de29404f6"
+    },
+    {
+      "id": "rgb64-p2-chart",
+      "mode": "MFSK64",
+      "speed": 2,
+      "checks": {
+        "whole_input": true,
+        "complete_framing": true,
+        "ordered_caller_text_and_header": true,
+        "automatic_modes": true,
+        "automatic_carriers": true,
+        "one_complete_picture": true,
+        "unique_artifact_ids": true,
+        "valid_artifact_hashes": true,
+        "compact_picture_link": true,
+        "quality_gate": true,
+        "unchanged_mfsk64_pixels": true
+      },
+      "pass": true,
+      "picture_score": {
+        "pass": true,
+        "checks": {
+          "raw_mae": true,
+          "aligned_mae": true,
+          "channel_bias": true,
+          "alignment_offset": true,
+          "alignment_changes": true
+        },
+        "raw": {
+          "schema": "grampy-accuracy.v1",
+          "kind": "raw-raster-error",
+          "whole_raster": {
+            "mean_absolute_error_255": 11.314982638888889,
+            "root_mean_square_error_255": 30.651127460231105,
+            "signed_bias_255": 0.047100694444444445,
+            "exact_component_fraction": 0.6118229166666667,
+            "psnr_db": 18.401874527021896
+          },
+          "channels": {
+            "red": {
+              "mean_absolute_error_255": 10.479583333333334,
+              "root_mean_square_error_255": 29.800718321879426,
+              "signed_bias_255": -0.17854166666666665,
+              "exact_component_fraction": 0.6128645833333334,
+              "psnr_db": 18.646268958383107
+            },
+            "green": {
+              "mean_absolute_error_255": 12.0634375,
+              "root_mean_square_error_255": 31.46135857418324,
+              "signed_bias_255": 0.13947916666666665,
+              "exact_component_fraction": 0.6009375,
+              "psnr_db": 18.17525415804397
+            },
+            "blue": {
+              "mean_absolute_error_255": 11.401927083333334,
+              "root_mean_square_error_255": 30.668794366858744,
+              "signed_bias_255": 0.18036458333333333,
+              "exact_component_fraction": 0.6216666666666667,
+              "psnr_db": 18.396869536771185
+            }
+          }
+        },
+        "alignment": {
+          "schema": "grampy-accuracy.v1",
+          "kind": "picture-component-alignment",
+          "algorithm": "bounded-regularized-offset-viterbi-v1",
+          "reference_components": 57600,
+          "decoded_components": 57600,
+          "compared_components": 57600,
+          "raw_mean_absolute_error_255": 11.314982414245605,
+          "raw_exact_component_fraction": 0.6118229166666667,
+          "aligned_mean_absolute_error_255": 11.314982414245605,
+          "aligned_exact_component_fraction": 0.6118229166666667,
+          "zero_offset_fraction": 1.0,
+          "maximum_absolute_offset_components": 0,
+          "offset_change_count": 0,
+          "offset_changes": [],
+          "offset_path_rle": [
+            {
+              "start_component": 0,
+              "stop_component": 57600,
+              "offset": 0
+            }
+          ],
+          "alignment_parameters": {
+            "max_offset_components": 24,
+            "change_penalty": 25.0,
+            "offset_penalty": 0.0005
+          }
+        }
+      },
+      "width": 160,
+      "height": 120,
+      "wav_sha256": "25fc90bd2590415b84d1f93a01ea61059b77035c2f58e0745e5490f31fb6180b",
+      "truth_sha256": "89a6447653925769b728b44b7d97168b792827e6eac2bfffdc28abaa605b3f77",
+      "diagnostic_sha256": "d090eae15644361d35ef32c8926e47703df4c50ed571f4e1e72c560b70618ed3",
+      "candidate_raster_sha256": "e3e72ffa13e9d0b9b912d39d1b11e27df92ab7a7e434d93e83b0107e09523f1e"
+    },
+    {
+      "id": "gray32-p8-card",
+      "mode": "MFSK32",
+      "speed": 8,
+      "checks": {
+        "whole_input": true,
+        "complete_framing": true,
+        "ordered_caller_text_and_header": true,
+        "automatic_modes": true,
+        "automatic_carriers": true,
+        "one_complete_picture": true,
+        "unique_artifact_ids": true,
+        "valid_artifact_hashes": true,
+        "compact_picture_link": true,
+        "quality_gate": true
+      },
+      "pass": true,
+      "picture_score": {
+        "pass": true,
+        "checks": {
+          "raw_mae": true,
+          "aligned_mae": true,
+          "channel_bias": true,
+          "alignment_offset": true,
+          "alignment_changes": true
+        },
+        "raw": {
+          "schema": "grampy-accuracy.v1",
+          "kind": "raw-raster-error",
+          "whole_raster": {
+            "mean_absolute_error_255": 2.540509259259259,
+            "root_mean_square_error_255": 5.224563600418203,
+            "signed_bias_255": 0.33055555555555555,
+            "exact_component_fraction": 0.3836805555555556,
+            "psnr_db": 33.76980320142095
+          },
+          "channels": {
+            "gray": {
+              "mean_absolute_error_255": 2.540509259259259,
+              "root_mean_square_error_255": 5.224563600418203,
+              "signed_bias_255": 0.33055555555555555,
+              "exact_component_fraction": 0.3836805555555556,
+              "psnr_db": 33.76980320142095
+            }
+          }
+        },
+        "alignment": {
+          "schema": "grampy-accuracy.v1",
+          "kind": "picture-component-alignment",
+          "algorithm": "bounded-regularized-offset-viterbi-v1",
+          "reference_components": 43200,
+          "decoded_components": 43200,
+          "compared_components": 43200,
+          "raw_mean_absolute_error_255": 2.5405092239379883,
+          "raw_exact_component_fraction": 0.3836805555555556,
+          "aligned_mean_absolute_error_255": 2.5405092239379883,
+          "aligned_exact_component_fraction": 0.3836805555555556,
+          "zero_offset_fraction": 1.0,
+          "maximum_absolute_offset_components": 0,
+          "offset_change_count": 0,
+          "offset_changes": [],
+          "offset_path_rle": [
+            {
+              "start_component": 0,
+              "stop_component": 43200,
+              "offset": 0
+            }
+          ],
+          "alignment_parameters": {
+            "max_offset_components": 24,
+            "change_penalty": 25.0,
+            "offset_penalty": 0.0005
+          }
+        }
+      },
+      "width": 240,
+      "height": 180,
+      "wav_sha256": "f7291065b072e0fad8e201b434ac99a5e73f8833dad2d7f7fc4e56468cce901b",
+      "truth_sha256": "313ed61c44caaee44823e304b1ccc2332858710c3fd7d1ee67b57043b2cb998f",
+      "diagnostic_sha256": "43c2f87601652cc1be552ccf2e6ecadbdf4b90bb457082edaf3e5ac9d21a07d1",
+      "candidate_raster_sha256": "25e9948b66c60cc18959dcd42c46027ff76c8685c38614366d1a41cb93d38fe2",
+      "review_images": {
+        "truth": "gray32-p8-card-truth.png",
+        "candidate": "gray32-p8-card-candidate.png",
+        "fldigi": "gray32-p8-card-fldigi.png"
+      }
+    },
+    {
+      "id": "gray32-p4-photo",
+      "mode": "MFSK32",
+      "speed": 4,
+      "checks": {
+        "whole_input": true,
+        "complete_framing": true,
+        "ordered_caller_text_and_header": true,
+        "automatic_modes": true,
+        "automatic_carriers": true,
+        "one_complete_picture": true,
+        "unique_artifact_ids": true,
+        "valid_artifact_hashes": true,
+        "compact_picture_link": true,
+        "quality_gate": true
+      },
+      "pass": true,
+      "picture_score": {
+        "pass": true,
+        "checks": {
+          "raw_mae": true,
+          "aligned_mae": true,
+          "channel_bias": true,
+          "alignment_offset": true,
+          "alignment_changes": true
+        },
+        "raw": {
+          "schema": "grampy-accuracy.v1",
+          "kind": "raw-raster-error",
+          "whole_raster": {
+            "mean_absolute_error_255": 1.8697453703703704,
+            "root_mean_square_error_255": 4.150488034668444,
+            "signed_bias_255": 0.38738425925925923,
+            "exact_component_fraction": 0.36796296296296294,
+            "psnr_db": 35.76882028503054
+          },
+          "channels": {
+            "gray": {
+              "mean_absolute_error_255": 1.8697453703703704,
+              "root_mean_square_error_255": 4.150488034668444,
+              "signed_bias_255": 0.38738425925925923,
+              "exact_component_fraction": 0.36796296296296294,
+              "psnr_db": 35.76882028503054
+            }
+          }
+        },
+        "alignment": {
+          "schema": "grampy-accuracy.v1",
+          "kind": "picture-component-alignment",
+          "algorithm": "bounded-regularized-offset-viterbi-v1",
+          "reference_components": 43200,
+          "decoded_components": 43200,
+          "compared_components": 43200,
+          "raw_mean_absolute_error_255": 1.8697453737258911,
+          "raw_exact_component_fraction": 0.36796296296296294,
+          "aligned_mean_absolute_error_255": 1.8697453737258911,
+          "aligned_exact_component_fraction": 0.36796296296296294,
+          "zero_offset_fraction": 1.0,
+          "maximum_absolute_offset_components": 0,
+          "offset_change_count": 0,
+          "offset_changes": [],
+          "offset_path_rle": [
+            {
+              "start_component": 0,
+              "stop_component": 43200,
+              "offset": 0
+            }
+          ],
+          "alignment_parameters": {
+            "max_offset_components": 24,
+            "change_penalty": 25.0,
+            "offset_penalty": 0.0005
+          }
+        }
+      },
+      "width": 240,
+      "height": 180,
+      "wav_sha256": "9d7ef79fa1def81e082d1b120f50e21071e7c1f1c86bba665669d5304704f9ec",
+      "truth_sha256": "457d5428a7ff449c352de059809b55701b917f2c0290c709998d27e33b665115",
+      "diagnostic_sha256": "32b9e54bc799e4508f79ceea770219d032683906c4b86c3c7df9cbc6131ebafe",
+      "candidate_raster_sha256": "4da48d9cf56322aa2585bb9949e13360648abedc8809455b6f179ff63a602a2d",
+      "review_images": {
+        "truth": "gray32-p4-photo-truth.png",
+        "candidate": "gray32-p4-photo-candidate.png",
+        "fldigi": "gray32-p4-photo-fldigi.png"
+      }
+    },
+    {
+      "id": "gray32-p2-chart",
+      "mode": "MFSK32",
+      "speed": 2,
+      "checks": {
+        "whole_input": true,
+        "complete_framing": true,
+        "ordered_caller_text_and_header": true,
+        "automatic_modes": true,
+        "automatic_carriers": true,
+        "one_complete_picture": true,
+        "unique_artifact_ids": true,
+        "valid_artifact_hashes": true,
+        "compact_picture_link": true,
+        "quality_gate": true
+      },
+      "pass": true,
+      "picture_score": {
+        "pass": true,
+        "checks": {
+          "raw_mae": true,
+          "aligned_mae": true,
+          "channel_bias": true,
+          "alignment_offset": true,
+          "alignment_changes": true
+        },
+        "raw": {
+          "schema": "grampy-accuracy.v1",
+          "kind": "raw-raster-error",
+          "whole_raster": {
+            "mean_absolute_error_255": 13.344375,
+            "root_mean_square_error_255": 33.21113643543884,
+            "signed_bias_255": 0.24614583333333334,
+            "exact_component_fraction": 0.44223958333333335,
+            "psnr_db": 17.705128873467917
+          },
+          "channels": {
+            "gray": {
+              "mean_absolute_error_255": 13.344375,
+              "root_mean_square_error_255": 33.21113643543884,
+              "signed_bias_255": 0.24614583333333334,
+              "exact_component_fraction": 0.44223958333333335,
+              "psnr_db": 17.705128873467917
+            }
+          }
+        },
+        "alignment": {
+          "schema": "grampy-accuracy.v1",
+          "kind": "picture-component-alignment",
+          "algorithm": "bounded-regularized-offset-viterbi-v1",
+          "reference_components": 19200,
+          "decoded_components": 19200,
+          "compared_components": 19200,
+          "raw_mean_absolute_error_255": 13.344374656677246,
+          "raw_exact_component_fraction": 0.44223958333333335,
+          "aligned_mean_absolute_error_255": 13.344374656677246,
+          "aligned_exact_component_fraction": 0.44223958333333335,
+          "zero_offset_fraction": 1.0,
+          "maximum_absolute_offset_components": 0,
+          "offset_change_count": 0,
+          "offset_changes": [],
+          "offset_path_rle": [
+            {
+              "start_component": 0,
+              "stop_component": 19200,
+              "offset": 0
+            }
+          ],
+          "alignment_parameters": {
+            "max_offset_components": 24,
+            "change_penalty": 25.0,
+            "offset_penalty": 0.0005
+          }
+        }
+      },
+      "width": 160,
+      "height": 120,
+      "wav_sha256": "c7e80cfceef19e014542d41fc7e224631bbe2c04288b4188a1a4d1f73e721d1e",
+      "truth_sha256": "ef5b254666f554eb2e02641fad50b2a06c78f9e90c1ae3d7f3f1f606bd9e4770",
+      "diagnostic_sha256": "b03467450a8944202a8712fe18dd2b5ef28aeca81d4338fa46b5a2fa4ac7375b",
+      "candidate_raster_sha256": "4f419827b9e1a5b96d1e89d4af00785a960ae7afd4d7f018442d9dc90750a8a7",
+      "review_images": {
+        "truth": "gray32-p2-chart-truth.png",
+        "candidate": "gray32-p2-chart-candidate.png",
+        "fldigi": "gray32-p2-chart-fldigi.png"
+      }
+    },
+    {
+      "id": "mixed-broadcast-photo",
+      "mode": "MFSK64",
+      "speed": 4,
+      "checks": {
+        "whole_input": true,
+        "complete_framing": true,
+        "ordered_caller_text_and_header": true,
+        "automatic_modes": true,
+        "automatic_carriers": true,
+        "one_complete_picture": true,
+        "unique_artifact_ids": true,
+        "valid_artifact_hashes": true,
+        "compact_picture_link": true,
+        "quality_gate": true,
+        "unchanged_mfsk64_pixels": true
+      },
+      "pass": true,
+      "picture_score": {
+        "pass": true,
+        "checks": {
+          "raw_mae": true,
+          "aligned_mae": true,
+          "channel_bias": true,
+          "alignment_offset": true,
+          "alignment_changes": true
+        },
+        "raw": {
+          "schema": "grampy-accuracy.v1",
+          "kind": "raw-raster-error",
+          "whole_raster": {
+            "mean_absolute_error_255": 1.3780864197530864,
+            "root_mean_square_error_255": 3.5274037422010296,
+            "signed_bias_255": -0.3956172839506173,
+            "exact_component_fraction": 0.41563271604938273,
+            "psnr_db": 37.181700182412584
+          },
+          "channels": {
+            "red": {
+              "mean_absolute_error_255": 1.4277777777777778,
+              "root_mean_square_error_255": 3.7944098745781663,
+              "signed_bias_255": -0.5877777777777777,
+              "exact_component_fraction": 0.39740740740740743,
+              "psnr_db": 36.54791877160066
+            },
+            "green": {
+              "mean_absolute_error_255": 1.2664583333333332,
+              "root_mean_square_error_255": 3.2248277301103836,
+              "signed_bias_255": -0.373912037037037,
+              "exact_component_fraction": 0.4544212962962963,
+              "psnr_db": 37.9606732159867
+            },
+            "blue": {
+              "mean_absolute_error_255": 1.4400231481481482,
+              "root_mean_square_error_255": 3.5398688247301333,
+              "signed_bias_255": -0.22516203703703705,
+              "exact_component_fraction": 0.3950694444444444,
+              "psnr_db": 37.151060231165516
+            }
+          }
+        },
+        "alignment": {
+          "schema": "grampy-accuracy.v1",
+          "kind": "picture-component-alignment",
+          "algorithm": "bounded-regularized-offset-viterbi-v1",
+          "reference_components": 129600,
+          "decoded_components": 129600,
+          "compared_components": 129600,
+          "raw_mean_absolute_error_255": 1.3780864477157593,
+          "raw_exact_component_fraction": 0.41563271604938273,
+          "aligned_mean_absolute_error_255": 1.3780864477157593,
+          "aligned_exact_component_fraction": 0.41563271604938273,
+          "zero_offset_fraction": 1.0,
+          "maximum_absolute_offset_components": 0,
+          "offset_change_count": 0,
+          "offset_changes": [],
+          "offset_path_rle": [
+            {
+              "start_component": 0,
+              "stop_component": 129600,
+              "offset": 0
+            }
+          ],
+          "alignment_parameters": {
+            "max_offset_components": 24,
+            "change_penalty": 25.0,
+            "offset_penalty": 0.0005
+          }
+        }
+      },
+      "width": 240,
+      "height": 180,
+      "wav_sha256": "ecf6819b916abd6d444fd9ac229d2264772664b234f543ff43ad63ce8d8f5925",
+      "truth_sha256": "1d316ddfc96078f19a20d83769d36b1efcd23cdc03d0047832e65024fcd026d0",
+      "diagnostic_sha256": "45b67bf04f4741c08a8432778eaeee0aab1ef5779e3203cd2dfcb5474ca1ee43",
+      "candidate_raster_sha256": "d2731055786a5c6010e9f29646047773d49ab1842bbf163c0b37c1d5e3e44404"
+    }
+  ]
+}

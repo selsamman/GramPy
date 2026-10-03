@@ -1,0 +1,59 @@
+[
+  {
+    "transmitter": "grampy",
+    "original_path": "/Users/sam/.fldigi/images/pic_2026-10-02_160810z.png",
+    "file_sha256": "93271a6a45c8e0c9eac6151c567783a21cd02d8acdc1ccc3e73638a65d950e62",
+    "pixel_sha256": "4422161e1cfece3d8c46204c1003fcbcd28c8e86610141ac0aea82f2df6dd084",
+    "size": [
+      160,
+      120
+    ],
+    "source_mae": 13.69704861111111,
+    "source_max_error": 255,
+    "source_unequal_components": 37214,
+    "source_last_rgb": [
+      255,
+      255,
+      255
+    ],
+    "received_last_rgb": [
+      255,
+      255,
+      0
+    ],
+    "mac_png_metadata": {
+      "Comment": "Program: fldigi 4.2.11\nReceived: 2026-10-02T16:08:10Z\nModem: MFSK-64\nFrequency: 14072.500\n"
+    },
+    "mac_fldigi_version": "4.2.11 (embedded PNG comment)",
+    "mapping_basis": "user attachment order and description"
+  },
+  {
+    "transmitter": "fldigi",
+    "original_path": "/Users/sam/.fldigi/images/pic_2026-10-02_161604z.png",
+    "file_sha256": "faf5c1e936a896fa10ca3ee8758d31ca14389cd9d03e3ab2d4e5510a02bbeb6b",
+    "pixel_sha256": "6f83b117455a76248467c0a669d90f2d82c8011123ec7ad4c52ab3cd9a4ee654",
+    "size": [
+      160,
+      120
+    ],
+    "source_mae": 69.66559027777778,
+    "source_max_error": 255,
+    "source_unequal_components": 54866,
+    "source_last_rgb": [
+      255,
+      255,
+      255
+    ],
+    "received_last_rgb": [
+      254,
+      253,
+      0
+    ],
+    "mac_png_metadata": {
+      "Comment": "Program: fldigi 4.2.11\nReceived: 2026-10-02T16:16:04Z\nModem: MFSK-64\nFrequency: 14072.500\n"
+    },
+    "mac_fldigi_version": "4.2.11 (embedded PNG comment)",
+    "mapping_basis": "user attachment order and description",
+    "mac_vs_pi_mae": 2.043420138888889
+  }
+]

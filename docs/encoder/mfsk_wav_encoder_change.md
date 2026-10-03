@@ -1,8 +1,10 @@
-# Native MFSK WAV encoder active change record
+# Native MFSK WAV encoder completed change record
 
 **Change ID:** `mfsk-wav-encoder-v1`  
-**Status:** active — Session 8 executed; text/acquisition pass, picture
-qualification fails; bounded Session 9 investigation required
+**Status:** Session 9 practical broadcast qualification accepted, 2026-10-03 —
+10/10 cases pass under D-027; PM accepted all reviewed images and D-028's
+automatic MFSK32 decoder correction. Session 10 packaging/cleanup is
+complete, including D-030's narrow L-to-color ordering correction.
 **Session 0 completed:** 2026-10-01  
 **Session 1 completed:** 2026-10-01
 **Session 2 completed:** 2026-10-01
@@ -16,7 +18,21 @@ withdrawn pending RSID remediation
 **Session 6R2 local composition/acquisition completed:** 2026-10-01
 **Session 7 local hardening completed:** 2026-10-01
 **Session 8 external evaluation completed:** 2026-10-01; candidate not qualified
-**Accepted production behavior changed:** no
+**Session 9 production delta:** encoder unchanged; automatic MFSK32 decoder
+picture dispatch corrected and accepted separately under D-028
+
+**Accepted Session 9 scope:** representative broadcast-sized pictures pass a
+frozen engineering scorecard and PM visual review. Tiny-image diagnosis and
+fresh fldigi transmitter calibration are deferred. D-028 separately corrects
+automatic MFSK32 picture dispatch. All ten unchanged whole-WAVs now pass in
+both decoders; the prior seven MFSK64 rasters remain pixel-identical. All ten
+Pi saves equal completed viewers. The [acceptance record](data/session9/practical-acceptance.json)
+binds the source and retained results; the old v2 failures remain intact.
+
+**Session 10 direction, D-029:** PM confirms 48 kHz is sufficient, so other
+sample rates are not qualification requirements. Final local packaging,
+installed-wheel regression, encoder-only Pi CPU measurements and enduring
+maintenance documentation are recorded in [the closeout](session10-closeout.md).
 
 ## Request and boundary
 
@@ -869,3 +885,359 @@ schema and its validation failure alongside attempt 1.
    affected cases plus the complete matrix when timing/state can be affected.
    Do not resize the fixture, insert an undocumented gap, accept manual
    windows, or normalize an unexplained image discrepancy.
+
+## Session 9 investigation checkpoint (2026-10-02)
+
+[The investigation record](data/session9/README.md) retains a measured
+explanation of the current picture evidence, seven-case waveform/mutation
+results, exact-boundary GramPy diagnostics, and a calibrated source-derived
+fldigi receive-filter model. Each native prologue/raster matches independently
+constructed component order, frequency, duration, and phase advance with
+maximum residual below 0.55 signed-PCM units. This rules against those specific
+wire defects in the retained intervals; it does not qualify the full encoder.
+
+GramPy frequency-estimation errors remain when supplied the exact boundary.
+The pinned fldigi 37/127-tap filter model produces substantial transient pixel
+errors even at its truth-selected best offset, while steady endpoint tones
+recover within 0.01 intensity units. The paired experiment separately verifies
+the queued-GUI-update/direct-autosave discrepancy. The filter-only model excludes
+live transport, text-trigger latency, receiver tuning, first-pixel state, and
+save concurrency; those limitations remain material.
+
+**D-025 — diagnosis established for paired p8; corrective reference/evidence
+decision provisional:** four fixed-mode p8 comparisons completed after the
+authorized SSH retry through `tools/pi-remote.sh`. Both transmitters use identical
+decoded source pixels; the unchanged candidate wheel and pinned receiver hashes
+are retained. Every autosave differs from its settled widget. Both grayscale
+autosaves are unreadable 143-byte PNGs whose headers retain the default 136×104
+geometry. Both pinned-transmitter settled pictures also fail source-pixel checks;
+they are not a usable passing baseline.
+
+The source-derived filter/timing model matches pinned-transmitter interiors
+exactly and native interiors with component MAE 0.067/0.223 (gray/RGB). Its
+viewer-selected phase/offset and exclusion of first/last components make it
+diagnostic only. Receiver source skips the last component at the zero-counter
+transition, matching the observed zero instead of source gray 93/blue 129 in
+all four buffers. Initial `picf`/`prevz` state remains a separate first-component
+concern.
+
+Original whole-WAV p8/p4/p2 replay completed in 224 seconds using a non-pausing
+read-only widget sidecar and independent final gdb verification for all three
+cases. All seven pictures and ordered caller text/announcements are retained.
+Every settled image still fails source pixels; interior model MAE is 0.234–0.633
+and every final component remains zero. The grayscale p4/p2 autosave hashes
+equal the preceding p8/p4 settled buffer hashes, establishing stale-picture
+collection in this sequence. Two unsuccessful setup/
+collector attempts are preserved; the X11 prototype failed the required
+buffer-equality check because screen painting can lag widget updates. No failed
+collector result is promoted to acceptance. The recommendation is to retain the
+wire raster and defer encoder qualification for collector/receiver/reference
+remediation before proposing encoder changes. Autosave repair alone cannot
+satisfy exact source-pixel equality. A changed receiver requires an explicitly
+qualified new identity; filter transients mean lifecycle repair alone cannot
+promise exact source pixels. See the investigation record for the bounded
+follow-up and minimal explanation of each failed case.
+
+Completed managed results are preserved, and their state directories are removed
+only after completion. No production code, sample corpus, acceptance threshold,
+or Session 8 evidence changed. Session 9 remains open at the product decision
+checkpoint: the recommended defer disposition and reference/evidence correction
+have not been confirmed.
+
+## Session 9 PM review: reference calibration first (2026-10-02)
+
+PM questioned whether the shared harness and 8×4 controls establish a useful
+measuring tool, given successful decoding of ordinary broadcast pictures and
+expected analog image differences. The paired controls were archived pinned-
+transmitter WAVs received by fldigi 4.2.13; fresh same-build round trips and
+representative image sizes have not been demonstrated. The earlier proposal to
+proceed directly to receiver/reference remediation was premature.
+
+D-025 now prioritizes [reference round-trip calibration](data/session9/roundtrip-calibration.md):
+fresh unchanged-fldigi transmission/reception, representative known images,
+audio harness validation, completed-buffer versus saved-file checks, repeatability,
+and then native comparisons. Existing narrow-case source/measurement findings
+remain evidence; their practical scope and corrective implications remain open.
+No production reference, fixture, fidelity rule, or qualification disposition
+has changed. Sidecar calibration can proceed under the current investigation;
+any later production/evidence decision must be based on its results.
+
+## Session 9 manual Mac control handoff (2026-10-02)
+
+The user offered direct Mac fldigi decoding to bypass the Pi harness, noting
+the sibling radiogram setup's complicated but previously reliable audio and
+mode-control path. [Two normal-sized controls](data/session9/manual-control.md)
+now carry the same new 160×120 RGB chart: a fresh unchanged fldigi 4.2.13 WAV
+(82.004 seconds) and an unchanged native WAV (72.87975 seconds). Both are mono
+48-kHz PCM16 without clipping. All 40 retained production-file hashes remain
+unchanged. The current sibling receive adapter is byte-identical to the retained
+Pi adapter, but runtime-path equivalence is not established.
+
+The exact delivered fldigi WAV also completed a same-build Pi decode in 129
+seconds, with fixed MFSK64/1500 Hz, RxID/AFC off and five-second polling. Caller
+text and picture dimensions pass; the received chart is substantially slanted.
+Autosave and the independently dumped completed buffer match exactly, so the
+save discrepancy does not explain this larger control. The independent Mac
+decode is pending. The reference round trip remains unresolved; preserve the
+generation, audio, configuration and receiving evidence before attributing the
+slant to generation/capture, playback, tuning or receiver implementation.
+
+## Session 9 independent Mac result (2026-10-02)
+
+The user returned two 160×120 PNGs: the native WAV produces a visually clean
+picture, while the fldigi-generated control is severely slanted. PNG comments
+identify Mac fldigi 4.2.11 in MFSK-64. Source component MAE is 13.697 for native
+and 69.666 for reference; the latter differs from the Pi reference result by
+only 2.043. These measurements describe the saved images without inventing an
+analog quality threshold. This is one useful native interoperability case;
+the frozen qualification matrix remains failed and retained.
+
+A waveform-only timing diagnostic finds approximately 0.186% longer gray-ramp
+periods in the reference WAV, while the native WAV matches nominal periods.
+This is consistent with cumulative slant. Compare simultaneous built-in fldigi
+WAV recording and ALSA capture before choosing a correction: a Pi-only receive
+harness fault cannot explain the user's independent result. No production
+change or further PM approval is required for this sidecar investigation.
+
+The simultaneous built-in/ALSA attempt timed out; the explicit-rate attempt
+logged a memory-corruption error and stalled control, requiring isolated cleanup.
+Both failed attempts and partial artifacts are retained, and neither supplies
+a capture fix. A separately labeled offline correction of the original WAV's
+measured time scale (resample ratio 7509/7523) restores nominal ramp timing.
+With unchanged pinned reception, its chart is straight and readable, caller
+text/dimensions pass, autosave equals the completed widget, and source MAE falls
+from 69.660 to 2.706. Forty retained production hashes remain unchanged.
+
+This is strong evidence that the recorded control's timing caused the slant.
+The exact originating generation/capture stage remains unresolved. D-025 now
+records that causal result while requiring a repeatable fresh path without
+offline correction before reference qualification or production remediation.
+The corrected diagnostic WAV is available for an independent Mac replay.
+Session 9 remains open; no new PM production decision is required at this point.
+
+## Session 9 reconnecting manual success to qualification (2026-10-02)
+
+The user confirmed the corrected control is visually straight but questioned
+how these experiments explain all the failed native qualification images.
+The timing error belonged to the recorded fldigi control, not the GramPy WAV;
+the failed control could not independently validate the receiving path. The
+new Mac result did not establish a pixel-perfect GramPy decoder round trip.
+[A simplified explanation](data/session9/qualification-explained.md) now names
+each waveform's producer and distinguishes visual usefulness from exact pixel
+qualification. The original 8×4 RGB p8 raster lasts 0.096 seconds; the new
+160×120 raster lasts 57.6 seconds. Modes, speeds, acquisition and receivers also
+differ, and original tiny-image collection faults are retained.
+
+To test reception directly, the exact unchanged native WAV already received
+cleanly on the Mac was replayed through the unchanged pinned Pi path. It
+completed in 121 seconds with caller/post-picture text, announcement and
+dimensions recovered, a visually clean picture, and matching autosave/widget.
+Source MAE is 13.368 (Mac 13.697); Pi-versus-Mac MAE is 1.166. Both clean images
+still fail exact source-pixel equality. All 40 production-file hashes remain
+unchanged. This demonstrates a useful native encoder and Pi receive path for
+this case, without repairing fldigi transmit capture or correcting native audio.
+
+D-025 now prioritizes independent Mac reception of an original failed 8×4 WAV
+and comparison of saved/completed pictures and scoring before further capture
+repair. A fresh reference quality baseline remains desirable, but the flawed
+transmit control need not block that comparison. No production or acceptance
+change is made or requested; the original qualification remains failed.
+
+## Session 9 original tiny images received on the Mac (2026-10-02)
+
+The user returned three PNGs after replaying the original MFSK64 RGB speed WAV.
+Transmission/attachment order identifies p8/p4/p2; PNG comments identify Mac
+fldigi 4.2.11 and all dimensions are 8×4. Source MAE is 87.802/113.177/97.771,
+with visible color/content changes and a predominantly black p2 save. They are
+not identical to the Pi saves or completed buffers. [The comparison](data/session9/mac-tiny-comparison.md)
+retains all original PNGs, hashes, source, enlarged figures and managed records.
+
+The independent saved-image failures exclude a Pi-only automation/audio fault
+as the sole explanation. They do not separate shared fldigi saving behavior
+from completed-viewer distortion or establish an encoder/profile defect. The
+earlier independent native waveform checks remain unchanged. The successful
+160×120 p8 picture on both receivers and failed tiny pictures now directly
+support comparing size and speed as separate variables.
+
+Two additional unchanged-native 160×120 RGB p4/p2 controls are ready, using the
+exact known p8 chart at MFSK64/1500 Hz. Durations are 43.85575 and 29.45575
+seconds. Their managed generation exited zero after three seconds and verified
+all 40 production-file hashes. They supplement, never replace, the original
+8×4 fixtures. D-025 records the new evidence and next comparison. No production
+or acceptance change or new PM approval is requested at this point.
+
+## Session 9 both decoders and normal-sized speeds (2026-10-02)
+
+The user returned the normal-sized native p4/p2 PNGs and correct picture
+announcements, caller and end labels, and corrected the binary failure wording:
+all measured images fail exact pixels, with tiny fixtures more affected. The
+same native p8/p4/p2 WAVs were processed by GramPy's unchanged picture decoder.
+Its managed diagnostic completed in five seconds and verified all 40 production
+hashes. The compact measurement summary completed in one second. Scripts,
+full diagnostics, components and logs remain local; [the retained comparison](data/session9/decoder-comparison.md)
+includes source, received PNGs, hashes, percentages and error magnitudes.
+
+At p8/p4/p2, differing-pixel percentages are 7.6/17.6/23.0% for normal-sized
+GramPy and 86.6/90.9/90.0% for Mac fldigi; the tiny fixtures are respectively
+90.6/93.8/100.0% and 100.0/100.0/96.9%. A pixel is counted when any channel
+differs, even by one. Normal-sized mean absolute component errors are
+0.386/0.694/5.890 for GramPy and 13.697/16.214/22.059 for Mac fldigi. Both paths
+are non-exact, but the distortions differ in magnitude and appearance.
+
+GramPy's result is a coupled direct-WAV diagnostic with known segment start,
+mode and carrier, analytic conversion, recovered text headers and default
+picture boundaries/estimation. It does not constitute independent blind IQ
+qualification; the tiny and large decoder paths also use different filtering.
+The source chart's P8 text is intentionally unchanged at all speeds. Mac saved
+files do not establish completed-widget contents. These measurements describe
+the tested cases without isolating size as the single cause or setting a new
+passing tolerance. D-025 and the explanatory checkpoint are updated. No source,
+decoder, fixture or acceptance change is made; Session 9 remains open.
+
+The user's follow-up challenged whether an 86–91% mismatch count means visible
+damage in the clean-looking normal-sized Mac images. A managed descriptive check
+of the identical files completed successfully. Median per-pixel maximum channel
+differences are 2/4/8 levels out of 255 at p8/p4/p2; 87.9% of p8 pixels and 82.6%
+of p4 pixels have every channel within five levels. A fixed-crop translation
+diagnostic reduces mean error from 14.573 to 4.705 at a one-pixel p8 offset,
+and from 16.860 to 7.407 at a two-pixel p4 offset. Thus small intensity differences
+explain widespread exact mismatches, while slight misregistration substantially
+contributes to raw sharp-edge error. Neither descriptive level bins nor aligned
+scores replace qualification criteria. The [distribution record](data/session9/pixel-difference-detail.json)
+and [method explanation](data/session9/decoder-comparison.md) are retained; no
+production change or new PM decision follows.
+
+## Session 9 acceptance assumption and tiny failures separated (2026-10-02)
+
+The user recalled the existing decoder quality scorecard and distinguished a
+possible revision of the clean-loopback bit-perfection expectation from severe
+tiny-image failures. D-026 records that separation without treating a suggested
+future policy change as approval. [The checkpoint](data/session9/acceptance-and-tiny-images.md)
+names established facts, confidence, proposed work and the future decision.
+
+The current decoder scoring framework already measures raw/aligned error,
+channel bias, required alignment compensation, picture geometry/completion and
+text recovery, with visual review for image-related changes or plausible defects
+hidden by aggregate/aligned scores. Reuse this framework for any later loopback
+quality proposal, without importing historical corpus thresholds. The recent
+coupled WAV diagnostic uses low-level defaults, which differ from the accepted
+decoder configuration; it is not the production scorecard or a quality ranking.
+
+Severe tiny fldigi colour/content distortion remains a separate open diagnosis,
+with original fixtures and failed evidence preserved. Exact waveform/protocol
+evidence is distinct from decoded-image fidelity. No acceptance criterion,
+fixture, encoder/decoder implementation or production baseline changes; no new
+PM approval is requested at this checkpoint. Session 9 remains open.
+
+## Session 9 concrete qualification proposal and tiny hypotheses (2026-10-02)
+
+The user confirms that decoded-picture bit perfection must sensibly change,
+with the existing scorecard informing qualification and tiny-picture failures
+requiring separate hypotheses. D-026 now records that replacement principle;
+exact transmitted waveform/protocol checks and original failed manifests remain.
+Specific numerical limits are to be calibrated and versioned before application,
+not inferred from the candidate's failures. [The concrete proposal](data/session9/qualification-proposal.md)
+states the revised gate structure, hypotheses/evidence/confidence, discriminating
+tests, contingent remediation and bounded route to the whole-WAV rerun.
+
+A corrected coupled diagnostic uses accepted picture settings and existing
+raw/aligned scorecard functions across all seven original tiny and three large
+native pictures. It completed in 15 seconds with all 40 production hashes
+unchanged. MFSK64 RGB raw MAE is 0.438/3.729/14.375 for tiny p8/p4/p2 and
+0.621/7.273/11.290 for normal-sized pictures. These replace low-level-default
+numbers for accepted-settings discussions; they are not full IQ pipeline or
+independent encoder qualification results. Full scorecards, retained received
+PNGs and an updated comparison are linked from the proposal.
+
+The leading tiny hypotheses are receiver filtering of rapid colour transitions
+and picture-entry timing errors amplified by narrow planes. GUI/autosave races
+and omitted final components are separately demonstrated contributors; neither
+alone explains completed-picture interior distortion. A native raster defect
+has low support in the independent waveform measurements but remains testable
+through same-source reference and entry-timing comparisons.
+
+A new unchanged-encoder 44.25975-second MFSK64 RGB p8 WAV contains original
+8×4, constant 8×4, tall 8×120 and wide 240×4 controls. Tall/wide have equal
+2.880-second payloads. The source-derived model predicts nominal MAE
+15.313/0.906/15.181/0.958 respectively; at a predeclared eight-internal-sample
+early offset, 77.406/1.938/78.598/3.225. Duration alone does not reduce modeled
+loss, while horizontal spreading does. These are simulation predictions,
+not live received results or acceptance scores. Waveforms independently fit
+source-derived order/frequency/width/phase to below 0.55 signed-PCM units;
+generation/model execution completed in two seconds and verified all 40 hashes.
+
+The initial scorecard attempt needed inline-artifact reporting corrected. The
+initial control-model fit allowed rounding noise to bias constant-tone amplitude;
+holding the specified waveform amplitude fixed resolved it without changing the
+encoder or residual threshold. Both attempts and outputs are retained locally.
+No encoder/decoder implementation, original fixture or old manifest is changed.
+Live control reception, reference calibration, numerical-gate freeze and the
+affected whole-WAV qualification remain required for Session 9 closeout.
+
+## Session 9 accepted practical closeout (2026-10-03)
+
+The preceding investigative closeout route was superseded by D-027's explicit
+PM scope. All ten practical 48-kHz cases pass the frozen numerical and
+functional limits. PM has viewed all images and accepts them, including the
+three MFSK32 pictures recovered by the separately evaluated D-028 decoder
+dispatch correction. The [acceptance record](data/session9/practical-acceptance.json)
+binds that decision to the original and supplemental qualification records.
+Encoder source is unchanged; the accepted decoder correction is already in
+place. The 247-test suite, received-broadcast preservation and representative
+Pi subset pass. No commit or deployment was performed.
+
+Audio insertion is covered by exact PCM-copy/timestamp tests, bounded
+long-audio copying, and whole-WAV mode-acquisition tests across inserted audio.
+The practical mixed case contains MFSK32 text, 250 ms silence, a 500 ms 800-Hz
+`AudioPart`, 250 ms silence and MFSK64 text/picture/text. The source audio
+samples appear byte-for-byte at the returned output coordinates; silence,
+frame count and subsequent content starts are exact. Both public GramPy and
+pinned Pi fldigi recover the following MFSK64 content during continuous
+reception; the corrected GramPy Pi subset also includes this same mixed WAV.
+The test assets are known PCM patterns and a tone, with compatible mono PCM16
+WAV at the configured rate. No separate audio-content approval is pending.
+
+An exploratory 8-kHz mixed-picture round trip remains an observed quality
+failure, not an established native encoder defect. It reproduces with the
+retained automatic MFSK64 output and the pre-change MFSK32 picture algorithm,
+so D-028 did not introduce it. The failing source-versus-receive scores do not
+identify its encoder/decoder cause. It limits claims for nondefault output
+rates; the accepted practical rate is 48 kHz. Tiny-image reliability and fresh
+fldigi transmitter/capture calibration remain deferred outside this scope.
+The earlier recorded fldigi timing error and final-component omission are
+separate reference/capture and receiver findings, not demonstrated native
+encoder defects.
+
+
+## Session 10 final packaging and cleanup (2026-10-03)
+
+D-029 confirms 48-kHz output is sufficient; the 8-kHz exploratory failure is
+not a qualification requirement or closeout blocker. Session 9 is accepted
+and Session 10 is folded and closed. [Requirement disposition](session10-closeout.md#requirement-disposition)
+maps AC-001–AC-023 to the accepted practical scope and retained evidence.
+
+The packaging audit found a narrow native encoder defect: `L` input requested
+as color emitted three copies of each pixel, instead of three planes of each
+row. D-030 recorded the correction before source changes. This could create
+wrong colors/detail; the previous regression assertion incorrectly endorsed
+that order. The corrected independent assertion rejects the old wheel, exact
+L/RGB public WAV equivalence passes in both modes/all speeds, and full-size
+equivalence is retained. All ten previously accepted RGB-source WAVs and all
+14 Pi benchmark WAV hashes are unchanged. Decoder/source API defaults are
+unchanged; `picture_encode.py` is the only encoder production delta here.
+
+The final local `radiogrampy` 0.1.3 wheel passes isolated installed-package
+validation: 248 tests, six expected skips, zero failures/errors. Four package
+waveform smoke cases and all ten practical waveform-preservation cases pass.
+The final wheel runs on the Pi in an isolated target: 14 samples over seven
+workloads, CPU ratios 0.133–0.172 for generated broadcasts,
+ordinary wall time nearly identical, peak process RSS 101.02 MiB,
+exact audio copying and frame/byte totals. [Final artifacts and measurements](data/session10/README.md)
+bind wheel, source, runtimes and inputs. These are feasibility estimates from
+two samples per workload, not a general performance SLA.
+
+Durable API, contracts, design, validation and production-baseline guides are
+indexed in [README.md](README.md). Investigation scripts/evidence and `.local/`
+state are deliberately preserved, the external corpus is unchanged, and
+completed managed run state is consumed. No package publication, appliance
+installation or commit was performed.

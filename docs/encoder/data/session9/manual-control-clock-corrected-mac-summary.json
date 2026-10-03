@@ -1,0 +1,18 @@
+{
+  "input_identity": "User reports replay of the offline timing-corrected fldigi control; not a native GramPy waveform",
+  "original_path": "/Users/sam/.fldigi/images/pic_2026-10-02_165952z.png",
+  "file_sha256": "8b09bac0ae0d2000f2dd1ea1c4d98fbda516a5505e92e7f2a30a9e83a6aead0f",
+  "pixel_sha256": "f5da8001fbd9657f28c87efc66de376aa9799954de6948b4ba99e1dfd07f38ba",
+  "size": [
+    160,
+    120
+  ],
+  "png_metadata": {
+    "Comment": "Program: fldigi 4.2.11\nReceived: 2026-10-02T16:59:52Z\nModem: MFSK-64\nFrequency: 14072.500\n"
+  },
+  "source_mae": 13.406458333333333,
+  "source_max_error": 255,
+  "source_unequal_components": 38805,
+  "corrected_mac_vs_corrected_pi_mae": 11.639982638888888,
+  "qualification_decision": "none; independent manual confirmation of timing-corrected diagnostic"
+}

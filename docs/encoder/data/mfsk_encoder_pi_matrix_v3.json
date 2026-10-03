@@ -1,0 +1,44 @@
+{
+  "schema": "grampy-mfsk-practical-qualification.v3",
+  "decision": "D-027",
+  "frozen_before_execution": "2026-10-02",
+  "purpose": "Representative broadcast pictures, complete WAV reception, numerical screening followed by PM visual review",
+  "sample_rate_hz": 48000,
+  "picture_gate": {
+    "raw_mae_255_max": 25,
+    "aligned_mae_255_max": 20,
+    "absolute_channel_bias_255_max": 15,
+    "alignment_max_offset_components": 12,
+    "alignment_max_changes": 12,
+    "alignment_parameters": {"max_offset": 24, "change_penalty": 25.0, "offset_penalty": 0.0005},
+    "requires_exact_dimensions_and_picture_count": true,
+    "requires_all_caller_text_and_announcements_in_order": true,
+    "requires_automatic_mode_and_carrier_acquisition": true,
+    "requires_pm_visual_review": true
+  },
+  "policy": {
+    "tiny_images": "Historical failures retained; excluded from this practical qualification. No minimum universally safe size is established.",
+    "bit_perfection": "Diagnostic only for decoded pictures; exact encoder protocol, waveform, copied audio and silence checks remain.",
+    "reference_transmitter": "Fresh fldigi TX calibration is no longer a prerequisite under the PM scope decision.",
+    "receiver": "Pinned Pi fldigi 4.2.13, complete WAV, initial BPSK31, RxID on, AFC off, 5-second polling, settled viewer plus autosave retained.",
+    "grampy": "Unchanged public auto-mode IQ decoder with accepted default settings. Its production picture support is MFSK64; MFSK32 picture cases explicitly test fldigi compatibility and GramPy text acquisition only.",
+    "gate_rationale": "Engineering screening limit: raw mean error at most 9.8% of the intensity range, aligned mean at most 7.8%, and channel bias at most 5.9%. Based on useful prior normal-size controls, not a calibrated probabilistic standard. Freeze before new outputs; visual review can reject visible defects despite passing averages."
+  },
+  "sources": {
+    "photo": {"path": "tests/samples/received-corpus/programs/459/truth/images/004-SWRG459_Scotland_sunset.png", "output_size": [240, 180], "preprocessing": "Caller-owned RGB conversion and aspect-preserving Lanczos fit"},
+    "card": {"path": "tests/samples/received-corpus/programs/459/truth/images/001-SWRG459_Rti_KANHAM.png", "output_size": [240, 180], "preprocessing": "Caller-owned RGB conversion and aspect-preserving Lanczos fit"},
+    "chart": {"path": ".local/session9/mac-control/source-160x120.png", "output_size": [160, 120], "preprocessing": "Unchanged previously reviewed diagnostic chart; encoder performs its specified integer grayscale conversion"}
+  },
+  "cases": [
+    {"id": "gray64-p8-card", "mode": "MFSK64", "color": "grayscale", "speed": 8, "source": "card", "grampy_picture_required": true},
+    {"id": "gray64-p4-photo", "mode": "MFSK64", "color": "grayscale", "speed": 4, "source": "photo", "grampy_picture_required": true},
+    {"id": "gray64-p2-chart", "mode": "MFSK64", "color": "grayscale", "speed": 2, "source": "chart", "grampy_picture_required": true},
+    {"id": "rgb64-p8-photo", "mode": "MFSK64", "color": "color", "speed": 8, "source": "photo", "grampy_picture_required": true},
+    {"id": "rgb64-p4-card", "mode": "MFSK64", "color": "color", "speed": 4, "source": "card", "grampy_picture_required": true},
+    {"id": "rgb64-p2-chart", "mode": "MFSK64", "color": "color", "speed": 2, "source": "chart", "grampy_picture_required": true},
+    {"id": "gray32-p8-card", "mode": "MFSK32", "color": "grayscale", "speed": 8, "source": "card", "grampy_picture_required": false},
+    {"id": "gray32-p4-photo", "mode": "MFSK32", "color": "grayscale", "speed": 4, "source": "photo", "grampy_picture_required": false},
+    {"id": "gray32-p2-chart", "mode": "MFSK32", "color": "grayscale", "speed": 2, "source": "chart", "grampy_picture_required": false},
+    {"id": "mixed-broadcast-photo", "mode": "MFSK64", "color": "color", "speed": 4, "source": "photo", "mixed": true, "grampy_picture_required": true}
+  ]
+}

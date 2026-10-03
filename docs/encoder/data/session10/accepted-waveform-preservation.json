@@ -1,0 +1,62 @@
+[
+  {
+    "id": "gray64-p8-card",
+    "wav_sha256": "4d2d0f2148d36d6be288d4515167df9bace98d334a89bedd0e85d7dcdf16dbf3",
+    "frame_count": 2826228,
+    "accepted_wav_equality": "pass"
+  },
+  {
+    "id": "gray64-p4-photo",
+    "wav_sha256": "78248ba1d602137847c55b1ce875f941b204a9be589fbd36595238a06f7a7e89",
+    "frame_count": 1802484,
+    "accepted_wav_equality": "pass"
+  },
+  {
+    "id": "gray64-p2-chart",
+    "wav_sha256": "5d65aa0a6cc6942280d08996bf999f0c6206a4b6bfaf960260c0c0f2d71772a8",
+    "frame_count": 996084,
+    "accepted_wav_equality": "pass"
+  },
+  {
+    "id": "rgb64-p8-photo",
+    "wav_sha256": "6b7aa722eac0a4e4b47196a93e98085279d530185e4d45a834995ccf6af37eca",
+    "frame_count": 6977268,
+    "accepted_wav_equality": "pass"
+  },
+  {
+    "id": "rgb64-p4-card",
+    "wav_sha256": "a1adfd84f6d45cc12e2cc1b8ffeea11e16b4c7cc13cb2b95d534ea172a0e3d05",
+    "frame_count": 3866100,
+    "accepted_wav_equality": "pass"
+  },
+  {
+    "id": "rgb64-p2-chart",
+    "wav_sha256": "25fc90bd2590415b84d1f93a01ea61059b77035c2f58e0745e5490f31fb6180b",
+    "frame_count": 1453812,
+    "accepted_wav_equality": "pass"
+  },
+  {
+    "id": "gray32-p8-card",
+    "wav_sha256": "f7291065b072e0fad8e201b434ac99a5e73f8833dad2d7f7fc4e56468cce901b",
+    "frame_count": 3056538,
+    "accepted_wav_equality": "pass"
+  },
+  {
+    "id": "gray32-p4-photo",
+    "wav_sha256": "9d7ef79fa1def81e082d1b120f50e21071e7c1f1c86bba665669d5304704f9ec",
+    "frame_count": 2044314,
+    "accepted_wav_equality": "pass"
+  },
+  {
+    "id": "gray32-p2-chart",
+    "wav_sha256": "c7e80cfceef19e014542d41fc7e224631bbe2c04288b4188a1a4d1f73e721d1e",
+    "frame_count": 1237914,
+    "accepted_wav_equality": "pass"
+  },
+  {
+    "id": "mixed-broadcast-photo",
+    "wav_sha256": "ecf6819b916abd6d444fd9ac229d2264772664b234f543ff43ad63ce8d8f5925",
+    "frame_count": 4785870,
+    "accepted_wav_equality": "pass"
+  }
+]

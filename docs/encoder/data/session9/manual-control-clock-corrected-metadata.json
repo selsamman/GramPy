@@ -1,0 +1,13 @@
+{
+  "scope": "Diagnostic time-scale correction of the retained control; not an unchanged-fldigi reference or qualification artifact",
+  "original_sha256": "ced694687e6f81d5b80cfc003a594e22974665f377b4cc7cd62e32cea308b6e7",
+  "corrected_sha256": "eb407f20f7277891991e962f83425c2488231895945fd8449ec149928c759e9a",
+  "measured_time_scale": 1.0018644273018762,
+  "resample_ratio": [
+    7509,
+    7523
+  ],
+  "duration_seconds": 81.85139583333333,
+  "sample_rate_hz": 48000,
+  "method": "scipy.signal.resample_poly, default filter; PCM16 rounding; full WAV uniform correction"
+}

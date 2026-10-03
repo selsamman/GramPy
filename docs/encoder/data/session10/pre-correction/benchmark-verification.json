@@ -1,0 +1,15 @@
+{
+  "authoritative_pi_result": "exit status 0",
+  "elapsed_seconds": 253,
+  "wheel_and_all_package_source_hashes": "pass",
+  "sample_count": 14,
+  "all_repeated_wav_hashes": "identical within case",
+  "accepted_broadcast_frame_counts": "pass",
+  "cpu_clock_corroboration": "pass",
+  "wav_audio_silence_timestamps": "pass",
+  "tools_sha256": {
+    "benchmark-mfsk-encoder.py": "ba10dc02f11c1810f2bb524c81f46a125f1359a3341802ce51c2c7f9987b4bba",
+    "pi-benchmark-mfsk-encoder.sh": "e3c536ee449380a97c7e7f19ae9cc579402ced8a27d8dd0ad79456e9cf8b534e"
+  },
+  "full_log_retention": ".local/session10/pi-benchmark.log"
+}

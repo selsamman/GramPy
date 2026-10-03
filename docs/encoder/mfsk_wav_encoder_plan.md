@@ -1,5 +1,10 @@
 # Native MFSK WAV Encoder Project Plan
 
+**Completed 2026-10-03:** Session 9 practical qualification is accepted;
+Session 10 packaging, measurements and preservation are complete. Current
+usage/maintenance is in [the encoder documentation](README.md), with scope
+and source identities in [the production baseline](production-baseline.md).
+
 ## Purpose
 
 Build a supported GramPy API that composes MFSK32 and MFSK64 text and images,
@@ -83,8 +88,8 @@ authorized. Session 6R0 fixes the waveform and timing contract.
 The following preserves the Session 0 and Session 6 API shapes in `grampy.api`.
 Session 6R2 integrates the confirmed unconditional RSID prefix for every MFSK
 segment, without a caller switch. RSID shifts nested content timestamps and
-segment duration as specified below. This remains an investigative candidate
-pending hardening and external qualification.
+segment duration as specified below. This API is now accepted under the 48-kHz practical scope recorded in the
+production baseline; the sections below retain its development contract.
 
 ```python
 from __future__ import annotations
@@ -312,7 +317,9 @@ Version one uses these exact input and container bounds:
 - `sample_rate_hz` is an integer multiple of 8000 in the inclusive range 8000
   through 192,000. This is an explicit operational and resource ceiling, not
   merely the much larger arithmetic limit of a RIFF header. Final
-  qualification uses 48,000 Hz.
+  qualification uses 48,000 Hz. D-029 confirms that 48,000 Hz is the required
+  broadcast output rate; accepting other rates at the API boundary does not
+  promise their picture quality or require their receive qualification.
 - Output is classic 44-byte-header RIFF/WAVE PCM, not RF64. Its data chunk is
   limited to 4,294,967,258 bytes, or 2,147,483,629 mono frames, so the RIFF
   chunk size remains representable. Preflight rejects any composition whose
@@ -416,6 +423,13 @@ silently become public behavior.
 | D-020 | The private Session 2 checkpoint is an immutable in-memory snapshot of mode, convolutional state, pending coded bits, the bounded 30-group interleaver history, and exact input/output counters. Restore must be bit-exact, but the checkpoint is neither public API nor a stable serialized format. | Confirmed | 2 |
 | D-022 | A picture announcement continues through the segment's current text encoder, followed by the mode-specific one-bit-plus-zero header flush and discard of any residual partial coded group. The 44 ms prologue and raster bypass but do not reset the continuous-phase oscillator. The raster is followed immediately by a fresh neutral-equivalent text-path flush of exactly 54 MFSK32 or 90 MFSK64 symbols; resumed caller text has no new preamble, framing, delimiter, silence, or phase reset. Canonicalizing a completely drained text encoder to an equivalent fresh neutral private state is an implementation detail. | Confirmed | 5 |
 | D-023 | A single mixed-mode output must be receivable by fldigi during continuous playback with RxID enabled, without operator mode changes or window replay. Product management confirmed automatic RSID before every MFSK segment, with no caller opt-out or extra editorial gap. The v4.2.12 source fixes codes 147 and 620 (with escape 6), tone/guard sequence, carrier rule, and integer frame accounting. | Implemented and locally verified; pinned fldigi candidate qualification pending | 6R0–6R2 |
+| D-024 | The corrected receiver harness uses the qualified adapter's ALSA-loopback settings (`AUDIOIO=1` and default device fields). Preserve the initial failed run and permit truthful failed-manifest reporting without weakening passing-case requirements. | Confirmed harness correction; unchanged candidate rerun retained | 8 |
+| D-025 | Retain the source-compatible native raster and failed qualification evidence. Every measured tiny/normal-sized RGB p8/p4/p2 picture differs from source pixels in Mac fldigi and GramPy's coupled diagnostic; tiny fixtures have higher differing-pixel percentages in the earlier low-level comparison. Normal-sized native p8 remains visually useful on Mac and pinned Pi. Accepted-picture-settings scores are recorded separately under D-026. Independent Mac failures exclude a Pi-only fault as the sole cause; completed Mac buffers and general receive equivalence remain unmeasured. The recorded fldigi control's separate 0.186% timing fault is established; its corrected derivative is diagnostic and fresh capture calibration remains open. Preserve original cases, scores and threshold provenance. D-026 supersedes the exact-pixel acceptance assumption; no encoder/receiver implementation change or reject/defer disposition is confirmed. | Non-exact pixels distinguished from useful images; causal calibration and qualification disposition unresolved | 9 |
+| D-026 | User confirms replacing exact decoded-picture equality with a sensible scorecard-based qualification requirement, independently of severe tiny-picture diagnosis. Retain exact encoder protocol/waveform checks and original failed manifests. Reuse raw/aligned raster scoring, alignment burden and candidate-set visual review; calibrate per-case numerical limits against a valid repeatable reference before applying them. Original tiny fixtures remain visible and cannot be excused by changing equality. Accepted-picture-settings diagnostics and predeclared width/duration controls support H1/H2 filter/timing hypotheses; live confirmation and collector/endpoint classification remain open. See data/session9/qualification-proposal.md for the bounded route to qualification. | Replacement principle and separate diagnosis confirmed; numerical gate and live qualification pending | 9 |
+| D-027 | PM explicitly narrows practical qualification to representative broadcast-sized pictures and directs numerical screening by the agent followed by PM visual review. Tiny-image diagnosis and fresh fldigi TX calibration cease to be prerequisites; their original failures remain historical evidence. Freeze the separate v3 matrix before execution: raw picture MAE ≤25/255, aligned MAE ≤20/255, absolute channel bias ≤15/255, alignment offset ≤12 components and ≤12 changes, plus correct geometry/count, ordered caller text/announcements and automatic whole-WAV acquisition. These are provisional engineering margins, not a calibrated universal quality standard. Use the pinned Pi harness and unchanged accepted public GramPy decoder; explicitly identify its then-current MFSK64-only automatic picture dispatch. Retain exact signal/protocol, audio/silence and frame checks. No production change is authorized by a passing average or an unresolved hypothesis. Supersedes D-025/D-026's mandatory tiny/reference-calibration closeout route. | Accepted 2026-10-03: 10/10 practical cases pass; PM viewed and accepted all images; supplemental MFSK32 recovery under D-028 | 9 |
+| D-028 | PM directs fixing automatic omission of MFSK32 pictures. The September 20 multimode pipeline selected only MFSK64 for picture dispatch, and its regression expected that restriction. Connect both acquired modes to their existing picture paths, preserve broadcast order and unique artifact/recovery references, and evaluate separately from the frozen encoder run. All ten unchanged large-image WAVs pass the existing gate with the correction; the previous seven MFSK64 rasters are pixel-identical. See [decoder change record](../decoder/auto-mfsk32-pictures-change.md) and [MFSK32 review](../decoder/data/auto-mfsk32-pictures/index.html). | Accepted and closed 2026-10-03: PM accepts all images; 247 tests run with six expected skips; representative Pi subset passes | 9 |
+| D-029 | PM confirms 48-kHz WAV output is sufficient and directs final packaging/cleanup plus Pi encoder CPU-to-broadcast timing. Close the accepted Session 9 scope and fold Session 10. The broader accepted API rate range remains compatible input validation, not a requirement to qualify other rates; the exploratory 8-kHz picture failure is not a closeout blocker. Validate a final local 0.1.3 wheel incorporating D-028, measure encoder-only CPU/wall time on representative broadcasts, and preserve historical investigation evidence. | Closed 2026-10-03: final wheel validated, 248 tests/six expected skips, 14 Pi encoder samples; see Session 10 closeout | 10 |
+| D-030 | Packaging audit finds that an L PNG requested as color emits pixel-interleaved equal components rather than the required three row planes. The existing Session 4 assertion incorrectly endorses that order. Correct this narrow implementation defect under the existing AC-005 contract: repeat each grayscale row as R, G and B, keep bounded row allocation, and independently assert wire order plus byte-identical public WAVs for equivalent L/RGB inputs in both modes and all speeds. Accepted practical inputs are RGB and their WAVs must remain byte-identical. Rebuild and validate the final artifact, retaining the earlier wheel/benchmark as superseded evidence. | Verified and closed 2026-10-03: independent order and L/RGB WAV equivalence pass; ten accepted WAVs unchanged; final wheel regression/Pi benchmark pass | 10 |
 
 New important decisions are appended to this table. Rejected alternatives and
 their decisive evidence remain in the active change record so later sessions
@@ -841,7 +855,9 @@ Deliverables:
   continuously played mixed-mode WAVs with RxID enabled, including first and
   subsequent RSID signals;
 - manual-window replays only as diagnostics for a failed whole-WAV run;
-- exact pixel comparisons where fldigi artifacts permit them;
+- decoded-picture scorecards and candidate-set visual review under D-027's
+  separately versioned practical quality gate; exact pixel comparisons retained as
+  diagnostics, alongside unchanged exact waveform/protocol checks;
 - candidate-set visual review only where objective evidence cannot exclude a
   meaningful defect;
 - hashes, configuration, fldigi identity, logs, and received artifacts; and
@@ -861,6 +877,62 @@ keep remediation separate so the original external evidence remains clear.
 only after the corrective design decision is confirmed.
 
 This session is skipped when Session 8 passes.
+
+**Investigation checkpoint (2026-10-02):** all seven retained native rasters
+fit the independent source-image/frequency/timing/phase recipe to PCM16
+rounding precision. GramPy estimation errors persist at exact boundaries;
+source-derived fldigi filter simulation also produces significant pixel
+errors. Paired p8 unchanged-receiver runs establish that autosaves differ from
+settled widgets and that both pinned/native transmitter pictures are distorted.
+The receiver skips the final component; fitted filtering/timing reproduces
+nearly every interior component. Original whole-WAV sidecars retain all seven
+p8/p4/p2 settled buffers, with independent final-dump verification and ordered
+text recovery. Gray p4/p2 autosaves contain the preceding picture's buffer.
+Every settled picture still fails source pixels; all interior model fits have
+MAE below one intensity unit. PM review identifies the archived controls and
+tiny images as insufficient for a general reference baseline. D-025 now puts
+fresh same-build fldigi round trips and harness calibration with representative
+images ahead of a corrective decision. Product disposition remains unconfirmed.
+No production change or acceptance relaxation is confirmed. See
+`data/session9/README.md` for evidence, limits, and recommendations.
+
+**Normal-sized comparison checkpoint (2026-10-02):** the user returned native
+160×120 RGB p4/p2 Mac saves, and GramPy's unchanged picture decoder processed
+the same native chart WAVs at p8/p4/p2. Every measured tiny/large picture fails
+exact source pixels in both paths; tiny fixtures have higher differing-pixel
+percentages. GramPy's coupled diagnostic has smaller mean errors, while both
+normal-sized paths' errors increase at p2. Known GramPy mode/start and differing
+filter paths limit causal and qualification claims. No production or acceptance
+change follows. See `data/session9/decoder-comparison.md` for metrics and limits.
+
+**User direction checkpoint (2026-10-02):** D-026 now confirms replacement of
+exact decoded-picture equality with a scorecard-based requirement, separately
+from severe tiny-picture diagnosis. Exact encoder waveform/protocol evidence
+remains required. Numerical margins still need calibrated reference evidence;
+original manifests and fixtures remain unchanged. A corrected accepted-picture-
+settings diagnostic covers all seven tiny and three normal-sized pictures. New
+equal-duration width/height controls and a constant tiny image make the filter/
+timing hypotheses testable; the unchanged-encoder control WAV is ready. See
+`data/session9/qualification-proposal.md` for evidence and the bounded closeout.
+
+**Current PM scope checkpoint (2026-10-02):** D-027 supersedes the mandatory
+tiny-image and fresh-transmitter calibration closeout route above. The PM
+directs a new practical qualification with representative large pictures,
+the Pi harness, the unchanged accepted public GramPy decoder, and numerical
+screening followed by PM visual review. The v3 limits were frozen before
+generating the new outputs. No production behavior changes. See
+`data/session9/practical-qualification.md`; preserve all earlier failures.
+
+**Practical qualification result (2026-10-02):** all ten v3 cases pass their
+frozen functional and numerical checks. Seven MFSK64 picture cases pass both
+decoders; three MFSK32 grayscale cases pass fldigi picture recovery and GramPy
+text recovery. Pi autosaves equal the settled viewers in all ten cases, and
+all 40 production hashes remain unchanged. The portable review presents p2
+chart blur and a thin left-edge colour strip in the mixed fldigi photograph
+as visible limits. Session 9's final disposition awaits PM visual acceptance;
+no production remediation follows from this run.
+
+**PM acceptance (2026-10-03):** PM viewed all practical and supplemental MFSK32 images and accepts them. D-027 practical qualification and D-028 automatic decoder correction are accepted. All ten unchanged large-picture WAVs now pass in both decoders; the seven previous MFSK64 rasters remain unchanged. The 247-test suite, received-broadcast preservation and representative Pi subset pass. The [acceptance record](data/session9/practical-acceptance.json) preserves the source/evidence identities and the scope limits. Tiny-image reliability, nondefault-rate picture quality and fresh fldigi transmitter calibration remain separate deferred work; no further image approval is pending.
 
 Deliverables when needed:
 

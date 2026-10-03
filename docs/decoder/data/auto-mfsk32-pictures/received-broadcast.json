@@ -1,0 +1,13 @@
+{
+  "checks": {
+    "modes_unchanged": true,
+    "text_summary_unchanged": true,
+    "nine_rasters_identical": true,
+    "unique_epoch_ids": true
+  },
+  "pass": true,
+  "elapsed_seconds": 99.25730500003556,
+  "baseline_manifest_sha256": "127d2760ad2ddfbc3c6135db27546e7e6e16bce7475be20074901dfdd500067e",
+  "input_metadata_sha256": "80368684009a967e6abfc55c811d031d10b27d3fef6cbf9e722dc85941ea6f1a",
+  "candidate_pipeline_sha256": "6256a56d5273f98ba02e071ee8582c6a6cafbc7c4302e9825887c3ecebcd6fba"
+}

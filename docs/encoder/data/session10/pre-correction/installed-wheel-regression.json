@@ -1,0 +1,35 @@
+{
+  "completed_utc": "2026-10-03T12:54:10.041895+00:00",
+  "tests_run": 222,
+  "errors": 3,
+  "failures": 0,
+  "skips": [
+    {
+      "test": "test_controlled_text_can_use_bounded_organization (tests.test_mfsk_decode_remediation_r5.BoundedPipelineTests.test_controlled_text_can_use_bounded_organization)",
+      "reason": "controlled MFSK fixture unavailable"
+    },
+    {
+      "test": "test_pinned_iq_decodes_to_exact_final_octets_with_coordinates (tests.test_mfsk_decode_session3.ControlledMFSK32VerticalSliceTests.test_pinned_iq_decodes_to_exact_final_octets_with_coordinates)",
+      "reason": "controlled MFSK fixtures unavailable; set GRAM_PY_MFSK_FIXTURES"
+    },
+    {
+      "test": "test_controlled_iq_decodes_exact_octets_through_shared_pipeline (tests.test_mfsk_decode_session5.MFSK64TextVerticalSliceTests.test_controlled_iq_decodes_exact_octets_through_shared_pipeline)",
+      "reason": "controlled MFSK fixtures unavailable; set GRAM_PY_MFSK_FIXTURES"
+    },
+    {
+      "test": "test_color_header_row_plane_assembly_and_reacquisition (tests.test_mfsk_decode_session6.ControlledPictureVerticalSliceTests.test_color_header_row_plane_assembly_and_reacquisition)",
+      "reason": "controlled MFSK picture fixtures unavailable"
+    },
+    {
+      "test": "test_grayscale_header_transition_and_complete_raster (tests.test_mfsk_decode_session6.ControlledPictureVerticalSliceTests.test_grayscale_header_transition_and_complete_raster)",
+      "reason": "controlled MFSK picture fixtures unavailable"
+    },
+    {
+      "test": "test_available_pinned_artifacts_match_all_hashes (tests.test_mfsk_fixture_inventory.MfskControlledCorpusTests.test_available_pinned_artifacts_match_all_hashes)",
+      "reason": "controlled MFSK corpus unavailable; set GRAM_PY_MFSK_FIXTURES"
+    }
+  ],
+  "elapsed_seconds": 142.54686712502735,
+  "success": false,
+  "imports": "isolated final wheel, not source checkout"
+}

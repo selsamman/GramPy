@@ -1,0 +1,22 @@
+[
+  {
+    "id": "gray32-p8-card",
+    "wav_sha256": "f7291065b072e0fad8e201b434ac99a5e73f8833dad2d7f7fc4e56468cce901b",
+    "accepted_wav_equality": "pass"
+  },
+  {
+    "id": "rgb64-p8-photo",
+    "wav_sha256": "6b7aa722eac0a4e4b47196a93e98085279d530185e4d45a834995ccf6af37eca",
+    "accepted_wav_equality": "pass"
+  },
+  {
+    "id": "rgb64-p2-chart",
+    "wav_sha256": "25fc90bd2590415b84d1f93a01ea61059b77035c2f58e0745e5490f31fb6180b",
+    "accepted_wav_equality": "pass"
+  },
+  {
+    "id": "mixed-broadcast-photo",
+    "wav_sha256": "ecf6819b916abd6d444fd9ac229d2264772664b234f543ff43ad63ce8d8f5925",
+    "accepted_wav_equality": "pass"
+  }
+]

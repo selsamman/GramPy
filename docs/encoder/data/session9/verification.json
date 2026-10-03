@@ -1,0 +1,15 @@
+{
+  "production_files_hash_verified": 40,
+  "raster_cases": 7,
+  "steady_tone_checks": 6,
+  "experimental_scripts_compile": true,
+  "script_count": 8,
+  "paired_cases": 4,
+  "wholewav_pictures": 7,
+  "final_live_buffers_equal_gdb": 3,
+  "wholewav_text_checks": 3,
+  "stale_grayscale_autosaves_confirmed": 2,
+  "missing_final_components_confirmed": 7,
+  "model_interior_mae_below_one": true,
+  "evidence_links_valid": true
+}

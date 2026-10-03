@@ -1,0 +1,18 @@
+.
+----------------------------------------------------------------------
+Ran 1 test in 11.981s
+
+OK
+........mfsk-iq-decode: [Errno 2] No such file or directory: '/var/folders/xv/0spp6rc11q3_2p1y7tp0g_kc0000gn/T/tmpuw9nio65/missing.sigmf-meta'
+..............................................s....................................................................s...s.ss............................................................................s.......................................
+----------------------------------------------------------------------
+Ran 247 tests in 152.109s
+
+OK (skipped=6)
+wrote /var/folders/xv/0spp6rc11q3_2p1y7tp0g_kc0000gn/T/tmp0llrr9i3/summary.json
+wrote /var/folders/xv/0spp6rc11q3_2p1y7tp0g_kc0000gn/T/tmp43nd7rs6/score.json
+wrote /var/folders/xv/0spp6rc11q3_2p1y7tp0g_kc0000gn/T/tmpkuq4jhlk/gate.json
+wrote /var/folders/xv/0spp6rc11q3_2p1y7tp0g_kc0000gn/T/tmpymlgcqo_/gate.json
+wrote /var/folders/xv/0spp6rc11q3_2p1y7tp0g_kc0000gn/T/tmp031_q7qm/score.json
+wrote /var/folders/xv/0spp6rc11q3_2p1y7tp0g_kc0000gn/T/tmpp0vdindv/score.json
+wrote /var/folders/xv/0spp6rc11q3_2p1y7tp0g_kc0000gn/T/tmpy9olrc9i/score.json

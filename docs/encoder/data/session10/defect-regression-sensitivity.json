@@ -1,0 +1,6 @@
+{
+  "prior_wheel_sha256": "bf7596cc4ccf87a4cfd13e928c7e14639d8366f2b0eded2c3af5f2b2cca86fd3",
+  "independent_corrected_row_plane_test_on_prior_wheel": "expected assertion failure",
+  "test": "tests.test_mfsk_encode_session4.Session4PictureTests.test_l_and_rgb_normalization_have_exact_component_order",
+  "full_log": ".local/session10/superseded/defect-regression.log"
+}

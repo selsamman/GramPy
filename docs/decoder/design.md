@@ -3,7 +3,7 @@
 ## Purpose
 
 The direct decoder consumes SigMF IQ recordings or bounded sample intervals
-and produces deterministic MFSK32/MFSK64 text and MFSK64 picture results with
+and produces deterministic MFSK32/MFSK64 text and picture results with
 manifested provenance. It is an importable library with a thin CLI wrapper.
 
 ## Enduring design principles

@@ -1,0 +1,35 @@
+{
+  "mode": "MFSK64",
+  "carrier_hz": 1500,
+  "rxid": "off",
+  "afc": "off",
+  "unchanged_production_files_verified": 40,
+  "status_interval_sec": 5,
+  "source_size": [
+    160,
+    120
+  ],
+  "text_recovered": true,
+  "announcement_recovered": true,
+  "source_pixel_sha256": "279696577f448ce5c33978808cd18306e58855d9df86240172eb21653d74154d",
+  "input_wav_sha256": "ced694687e6f81d5b80cfc003a594e22974665f377b4cc7cd62e32cea308b6e7",
+  "autosave_equals_viewer": true,
+  "scores": {
+    "viewer": {
+      "pixel_sha256": "cceaeaa636f9315711f4b65788692eb3872accafc4d3c35f6376331558328576",
+      "mae": 69.66019097222222,
+      "max_error": 255,
+      "unequal_components": 54837,
+      "exact": false
+    },
+    "autosave": {
+      "pixel_sha256": "cceaeaa636f9315711f4b65788692eb3872accafc4d3c35f6376331558328576",
+      "mae": 69.66019097222222,
+      "max_error": 255,
+      "unequal_components": 54837,
+      "exact": false
+    }
+  },
+  "qualification_decision": "none; one diagnostic reference round trip",
+  "mac_manual_decode": "pending user result"
+}

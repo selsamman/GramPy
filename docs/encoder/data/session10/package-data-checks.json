@@ -1,0 +1,50 @@
+[
+  {
+    "path": "grampy/data/mfsk_fixture_evidence.json",
+    "sha256": "062fbfe512c32c645c4f16b83d8076aea7e481fdb0bd3c4c97735423d6055cb2",
+    "bytes": 4674,
+    "source_wheel_equality": "pass"
+  },
+  {
+    "path": "grampy/data/mfsk_varicode.json",
+    "sha256": "8e40e8927059dc592f97f15e1a96d2ad430c284f1d074c8df61e0847ffaf27a3",
+    "bytes": 5173,
+    "source_wheel_equality": "pass"
+  },
+  {
+    "path": "grampy/data/mfsk_wire_vectors.json",
+    "sha256": "e98ecc1982c97d4362846c6cf56e163cab035f73c9c9bc35b2406bccb613e4bc",
+    "bytes": 4698,
+    "source_wheel_equality": "pass"
+  },
+  {
+    "path": "grampy/schemas/grampy-quality-manifest-v1.json",
+    "sha256": "52d1aea2d482229956de751c51ca8ee1b7d45f312c96b10a3605dda0018b45b2",
+    "bytes": 4420,
+    "source_wheel_equality": "pass"
+  },
+  {
+    "path": "grampy/schemas/grampy-text-manifest-v1.json",
+    "sha256": "d8a7801346d32f4d516215ebc02585af1cc33c8f7098ed6703872a7994ae56e1",
+    "bytes": 5059,
+    "source_wheel_equality": "pass"
+  },
+  {
+    "path": "grampy/schemas/mfsk-decode-config-v1.json",
+    "sha256": "5f85ea5dd075cfc13b17dfd80f4cf402e537202f6ae197db7c249696cd66fd84",
+    "bytes": 1764,
+    "source_wheel_equality": "pass"
+  },
+  {
+    "path": "grampy/schemas/mfsk-decode-manifest-v1.json",
+    "sha256": "b933d6276dfd347bb36a32fb3d88518f82e81e45b5e3356eb109a9593d26d290",
+    "bytes": 6120,
+    "source_wheel_equality": "pass"
+  },
+  {
+    "path": "grampy/py.typed",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0,
+    "source_wheel_equality": "pass"
+  }
+]

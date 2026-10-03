@@ -1,0 +1,9 @@
+{
+  "receiver_sha256": "dd30f86caae1edb5d2998acedb47a3a7b348b727bf6303af1e2f822f549966f3",
+  "adapter_sha256": "0e81899def09d8d7e352d408b5da3255c4681304407cf83d5d0835034be34a03",
+  "artifact_method": "stable read-only widget bytes; no pause during playback; final pixels verified against gdb",
+  "whole_wav": true,
+  "rxid": true,
+  "initial_mode": "BPSK31",
+  "manual_mode_changes": 0
+}

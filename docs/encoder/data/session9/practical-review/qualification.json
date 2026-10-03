@@ -1,0 +1,4265 @@
+{
+  "schema": "grampy-mfsk-practical-qualification.v3",
+  "matrix": {
+    "path": "matrix.json",
+    "bytes": 3976,
+    "sha256": "055c9ddeddab966bd41df2ebc7353664236eb7e08dd3a119ff82451310a98b75"
+  },
+  "picture_gate": {
+    "raw_mae_255_max": 25,
+    "aligned_mae_255_max": 20,
+    "absolute_channel_bias_255_max": 15,
+    "alignment_max_offset_components": 12,
+    "alignment_max_changes": 12,
+    "alignment_parameters": {
+      "max_offset": 24,
+      "change_penalty": 25.0,
+      "offset_penalty": 0.0005
+    },
+    "requires_exact_dimensions_and_picture_count": true,
+    "requires_all_caller_text_and_announcements_in_order": true,
+    "requires_automatic_mode_and_carrier_acquisition": true,
+    "requires_pm_visual_review": true
+  },
+  "receiver": {
+    "platform": "Linux-6.18.34+rpt-rpi-v8-aarch64-with-glibc2.41",
+    "architecture": "aarch64",
+    "receiver_version": "fldigi 4.2.13",
+    "receiver_sha256": "dd30f86caae1edb5d2998acedb47a3a7b348b727bf6303af1e2f822f549966f3",
+    "adapter_sha256": "89087547c53147702dd702705510f054d2adc3eb95d7fbed5fd48c46dd8ae418"
+  },
+  "production": {
+    "unchanged_production_files": 40,
+    "source_hashes": {
+      "src/grampy/reception_quality.py": "33e8b1b5ff70b449c29270e96b996f1b4e3a966d3cea105d7f4cd100a3afb576",
+      "src/grampy/corpus_package.py": "bedbc36f21afe31881e7d31435887823cd87e238ffd74c25ee8d494dbdc32da3",
+      "src/grampy/text_manifest.py": "54f0b0fef596a3260e017df286042b153b7e32cd09eafea9a6feb285f8e1f699",
+      "src/grampy/corpus_setup.py": "4fb09941b8323278514da01d0645f56728270e530a7046df692de7aedc1e2454",
+      "src/grampy/stateful_pipeline.py": "ea99d7519782aa20dbadaa7c1dde0437571f32e506044c1f92f4096356a5e5c5",
+      "src/grampy/picture_decode.py": "2bca8c22dcd0d2f735ec3a8c4b910ba32b3f19b8b550f35b44ef1c33370d8b29",
+      "src/grampy/text_encode.py": "a815c65ea303b789a3a058caa957da6d2b2f7ae84545dfe1640777704af6bed2",
+      "src/grampy/__init__.py": "3317d8d65f5b86022abac06adc5ff5048d0b1fba83ab4481738b216c3eb45a89",
+      "src/grampy/decode_quality.py": "75cf5e540e75aab8ccd45b8bb134b76c3b0695743c702f9a3675c19df9eaa7c8",
+      "src/grampy/sigmf.py": "093e159575ccc42dc81c572bf4cb173d9657159d020614fb94d510cb8fde9aaf",
+      "src/grampy/wire.py": "9ddb2819ea1c3b22fc6aa537ea37da9efe00f76dad30b93f6b04abb5d20e26ff",
+      "src/grampy/api.py": "00d59716e58a78aa2ca1d3b00d7a101f168c7fd71f602bebdf5104b66c9a9928",
+      "src/grampy/text_decode.py": "4326ac7f73d6ed30b33810db1845eefb10a7b9bf64bce774757ad5c2ad64a6ff",
+      "src/grampy/mfsk_encode.py": "18c52be08415c998db0f561d1a5b26c8ca51665c71d82dadcc5a819c46b77d07",
+      "src/grampy/cli.py": "f1e24a1eb11019b7504f7ee594c95b34a4f8210f59f3eb05cbc79ae3848a2fc3",
+      "src/grampy/pipeline.py": "6fb80720f7e0c7abe57d0095bd7af04ba46b431a65ba7391b29bf17b7f154321",
+      "src/grampy/stateful_text.py": "5a76d1dcec81295ed42171f3691383685ca820469d4ceea4a299ca598f950fc4",
+      "src/grampy/corpus_cli.py": "d96ad8c205df7486a6c13e6807178cff101bdd694dd901d9036e459c9a6651f9",
+      "src/grampy/mfsk_segment_encode.py": "1a7cbe6584236ff1e0dcb71659d804ed18a8c82654930c04ffa10dc284537a28",
+      "src/grampy/accuracy_cli.py": "7279b8bb730393cb661315e91d5b122ad14543cc027c4b94cd8509020dbf85b2",
+      "src/grampy/picture_encode.py": "def188575ba7064e8436516eca5971c79304ca0f46e207d27a04342b6c684845",
+      "src/grampy/py.typed": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "src/grampy/resources.py": "474882ec0ae2340c9a125a3c9ff128c5ad59ab585c9bccd7003ac0612736112e",
+      "src/grampy/acquisition.py": "17aa672b424f9b4ac858cf772cb02a97c562d2803b8bfcf6921ac4adf422f9f4",
+      "src/grampy/rsid.py": "7f6457ec6f095b8625b2128f6c7f9c1dff2bbf5099c1146635907807d5ab5c73",
+      "src/grampy/mfsk_compose.py": "3c38b8de330baad01dad071e6484f649132b8d11aa413ddf521c6e4dd199869c",
+      "src/grampy/accuracy.py": "d932f0a3f3e5bccb31849756e37dc0b447915914aa02fb15cdd3470711c1de41",
+      "src/grampy/tracking.py": "aabf8b6c9ca8c4a8d0a671d609b4f0027242c96b4174f361c843f188a62047f9",
+      "src/grampy/fixture_cli.py": "2606eb33b19837ef2633e85a89f76e1dcc827c8904b800a93d3a5245f321a70d",
+      "src/grampy/rsid_encode.py": "c13414837fda148fd3ba29b3578f6c9dbe693a028c084554abc4223953616b08",
+      "src/grampy/coordinates.py": "70cfb36c0f40682c34eaa622ac0a277c36d4429a5780f1e7cb3cb8411c2a1d28",
+      "src/grampy/corpus.py": "ea69026cf2df6ae470e54e7a07d943db785547fd141a6d43dd0bbd441b5f054c",
+      "src/grampy/fixtures.py": "5bd9ad6b5b9e682d35b284cd7dd3c053a004d36f6ef24b2f4e492d9fa5bbb310",
+      "src/grampy/schemas/mfsk-decode-config-v1.json": "5f85ea5dd075cfc13b17dfd80f4cf402e537202f6ae197db7c249696cd66fd84",
+      "src/grampy/schemas/grampy-text-manifest-v1.json": "d8a7801346d32f4d516215ebc02585af1cc33c8f7098ed6703872a7994ae56e1",
+      "src/grampy/schemas/mfsk-decode-manifest-v1.json": "b933d6276dfd347bb36a32fb3d88518f82e81e45b5e3356eb109a9593d26d290",
+      "src/grampy/schemas/grampy-quality-manifest-v1.json": "52d1aea2d482229956de751c51ca8ee1b7d45f312c96b10a3605dda0018b45b2",
+      "src/grampy/data/mfsk_fixture_evidence.json": "062fbfe512c32c645c4f16b83d8076aea7e481fdb0bd3c4c97735423d6055cb2",
+      "src/grampy/data/mfsk_varicode.json": "8e40e8927059dc592f97f15e1a96d2ad430c284f1d074c8df61e0847ffaf27a3",
+      "src/grampy/data/mfsk_wire_vectors.json": "e98ecc1982c97d4362846c6cf56e163cab035f73c9c9bc35b2406bccb613e4bc"
+    }
+  },
+  "cases": [
+    {
+      "id": "gray64-p8-card",
+      "mode": "MFSK64",
+      "color": "grayscale",
+      "speed": 8,
+      "source": "card",
+      "grampy_picture_required": true,
+      "expected_text_in_order": [
+        "\u0002\nGRAM PY PRACTICAL BROADCAST GRAY64 P8 CARD\n",
+        "Pic:240x180;",
+        "\nGRAM PY GRAY64 P8 CARD END\n\u0004"
+      ],
+      "expected_modes": [
+        "MFSK64"
+      ],
+      "expected_carriers_hz": [
+        1500.0
+      ],
+      "width": 240,
+      "height": 180,
+      "frame_count": 2826228,
+      "duration_seconds": 58.87975,
+      "encode_seconds": 0.6383974999771453,
+      "wav": {
+        "path": "cases/gray64-p8-card/generated.wav",
+        "bytes": 5652500,
+        "sha256": "4d2d0f2148d36d6be288d4515167df9bace98d334a89bedd0e85d7dcdf16dbf3"
+      },
+      "truth": {
+        "path": "cases/gray64-p8-card/truth.png",
+        "bytes": 23641,
+        "sha256": "313ed61c44caaee44823e304b1ccc2332858710c3fd7d1ee67b57043b2cb998f"
+      },
+      "independent_waveform": {
+        "nominal": {
+          "rms_pcm_lsb": 0.28673205519030753,
+          "max_pcm_lsb": 0.5231598983980348
+        },
+        "frequency_mutation": {
+          "rms_pcm_lsb": 16382.96677889051,
+          "max_pcm_lsb": 32767.99933486926
+        },
+        "raster_start_frame": 518388,
+        "component_count": 43200
+      },
+      "exact_rsid_audio_silence_frame_checks": "pass",
+      "fldigi": {
+        "checks": {
+          "receiver_exit": true,
+          "whole_wav": true,
+          "text_and_header_in_order": true,
+          "automatic_modes": true,
+          "automatic_carriers": true,
+          "initial_unrelated_mode": true,
+          "no_manual_changes": true,
+          "one_saved_image": true,
+          "grayscale_channels_equal": true,
+          "saved_picture_quality": true
+        },
+        "mode_events": {
+          "schema": "grampy-accuracy.v1",
+          "kind": "mode-event-sequence",
+          "alignment_algorithm": "python-difflib-sequence-matcher-v1",
+          "truth_scope": "ordered_mode_change_sequence",
+          "coordinate_truth_status": "not_available",
+          "expected_count": 1,
+          "detected_count": 1,
+          "matched_count": 1,
+          "missed_count": 0,
+          "false_count": 0,
+          "recall": 1.0,
+          "precision": 1.0,
+          "exact": true,
+          "expected_modes": [
+            "MFSK64"
+          ],
+          "detected_events": [
+            {
+              "mode": "MFSK64",
+              "code": 620,
+              "frequency_hz": 1499.0,
+              "receiver_log_evidence": "status during playback: mode='MFSK64' carrier=1499 quality=0.0 afc=0 squelch=0 squelch_level=0.0 rsid=1 status1='' status2='' trx='rx'"
+            }
+          ],
+          "missed_events": [],
+          "false_events": []
+        },
+        "picture": {
+          "pass": true,
+          "checks": {
+            "raw_mae": true,
+            "aligned_mae": true,
+            "channel_bias": true,
+            "alignment_offset": true,
+            "alignment_changes": true
+          },
+          "raw": {
+            "schema": "grampy-accuracy.v1",
+            "kind": "raw-raster-error",
+            "whole_raster": {
+              "mean_absolute_error_255": 8.613310185185185,
+              "root_mean_square_error_255": 17.899099268667953,
+              "signed_bias_255": -0.18979166666666666,
+              "exact_component_fraction": 0.2591898148148148,
+              "psnr_db": 23.074180075661918
+            },
+            "channels": {
+              "gray": {
+                "mean_absolute_error_255": 8.613310185185185,
+                "root_mean_square_error_255": 17.899099268667953,
+                "signed_bias_255": -0.18979166666666666,
+                "exact_component_fraction": 0.2591898148148148,
+                "psnr_db": 23.074180075661918
+              }
+            }
+          },
+          "alignment": {
+            "schema": "grampy-accuracy.v1",
+            "kind": "picture-component-alignment",
+            "algorithm": "bounded-regularized-offset-viterbi-v1",
+            "reference_components": 43200,
+            "decoded_components": 43200,
+            "compared_components": 43200,
+            "raw_mean_absolute_error_255": 8.613309860229492,
+            "raw_exact_component_fraction": 0.2591898148148148,
+            "aligned_mean_absolute_error_255": 1.4513194561004639,
+            "aligned_exact_component_fraction": 0.5036342592592593,
+            "zero_offset_fraction": 0.08888888888888889,
+            "maximum_absolute_offset_components": 1,
+            "offset_change_count": 1,
+            "offset_changes": [
+              {
+                "component_index": 3840,
+                "offset": -1
+              }
+            ],
+            "offset_path_rle": [
+              {
+                "start_component": 0,
+                "stop_component": 3840,
+                "offset": 0
+              },
+              {
+                "start_component": 3840,
+                "stop_component": 43200,
+                "offset": -1
+              }
+            ],
+            "alignment_parameters": {
+              "max_offset_components": 24,
+              "change_penalty": 25.0,
+              "offset_penalty": 0.0005
+            }
+          }
+        },
+        "autosave": {
+          "pass": true,
+          "checks": {
+            "raw_mae": true,
+            "aligned_mae": true,
+            "channel_bias": true,
+            "alignment_offset": true,
+            "alignment_changes": true
+          },
+          "raw": {
+            "schema": "grampy-accuracy.v1",
+            "kind": "raw-raster-error",
+            "whole_raster": {
+              "mean_absolute_error_255": 8.613310185185185,
+              "root_mean_square_error_255": 17.899099268667953,
+              "signed_bias_255": -0.18979166666666666,
+              "exact_component_fraction": 0.2591898148148148,
+              "psnr_db": 23.074180075661918
+            },
+            "channels": {
+              "gray": {
+                "mean_absolute_error_255": 8.613310185185185,
+                "root_mean_square_error_255": 17.899099268667953,
+                "signed_bias_255": -0.18979166666666666,
+                "exact_component_fraction": 0.2591898148148148,
+                "psnr_db": 23.074180075661918
+              }
+            }
+          },
+          "alignment": {
+            "schema": "grampy-accuracy.v1",
+            "kind": "picture-component-alignment",
+            "algorithm": "bounded-regularized-offset-viterbi-v1",
+            "reference_components": 43200,
+            "decoded_components": 43200,
+            "compared_components": 43200,
+            "raw_mean_absolute_error_255": 8.613309860229492,
+            "raw_exact_component_fraction": 0.2591898148148148,
+            "aligned_mean_absolute_error_255": 1.4513194561004639,
+            "aligned_exact_component_fraction": 0.5036342592592593,
+            "zero_offset_fraction": 0.08888888888888889,
+            "maximum_absolute_offset_components": 1,
+            "offset_change_count": 1,
+            "offset_changes": [
+              {
+                "component_index": 3840,
+                "offset": -1
+              }
+            ],
+            "offset_path_rle": [
+              {
+                "start_component": 0,
+                "stop_component": 3840,
+                "offset": 0
+              },
+              {
+                "start_component": 3840,
+                "stop_component": 43200,
+                "offset": -1
+              }
+            ],
+            "alignment_parameters": {
+              "max_offset_components": 24,
+              "change_penalty": 25.0,
+              "offset_penalty": 0.0005
+            }
+          }
+        },
+        "autosave_equals_viewer": true,
+        "pass": true
+      },
+      "grampy": {
+        "picture_support": "supported",
+        "status": "complete",
+        "warnings": [
+          {
+            "code": "absent-capture-time",
+            "message": "capture time is absent"
+          }
+        ],
+        "configuration": {
+          "block_samples": 262144,
+          "orientation": "unknown",
+          "trace_level": "none",
+          "mode": "auto",
+          "center_hz": null,
+          "picture_component_estimator": "bounded_correlation",
+          "picture_component_window": "full_hann",
+          "picture_filter_profile": "response_matched",
+          "picture_boundary_estimator": "unified_grid",
+          "persistent_tone_policy": "measure",
+          "pipeline_organization": "supported_hybrid",
+          "picture_range_workers": 1,
+          "picture_range_components": 16384,
+          "picture_max_in_flight_ranges": 1,
+          "persistent_intermediates": false
+        },
+        "whole_input_interval": true,
+        "text_and_header_in_order": true,
+        "mode_segments": [
+          {
+            "id": "8567058efc65653ead5251fc",
+            "mode": "MFSK64",
+            "orientation": "normal",
+            "interval": {
+              "start": 169412,
+              "stop": 2826228
+            },
+            "endpoint_uncertainty_samples": 66873,
+            "source": "rsid",
+            "confidence": {
+              "kind": "detector_snr_db",
+              "value": 24.783038098925513,
+              "calibrated": false
+            },
+            "supporting_events": [
+              "3833758127633d4a3650dfde"
+            ],
+            "acquisition_state": "candidate",
+            "symbol_phase_uncertainty_input_samples": 4458,
+            "superseded_alternatives": [],
+            "center_hz": 1499.249267578125,
+            "frequency_track": 0
+          }
+        ],
+        "automatic_modes": true,
+        "automatic_carriers": true,
+        "complete_framing": true,
+        "picture_count": 1,
+        "complete_picture": true,
+        "picture": {
+          "pass": true,
+          "checks": {
+            "raw_mae": true,
+            "aligned_mae": true,
+            "channel_bias": true,
+            "alignment_offset": true,
+            "alignment_changes": true
+          },
+          "raw": {
+            "schema": "grampy-accuracy.v1",
+            "kind": "raw-raster-error",
+            "whole_raster": {
+              "mean_absolute_error_255": 0.7724537037037037,
+              "root_mean_square_error_255": 1.6955688436933793,
+              "signed_bias_255": 0.15583333333333332,
+              "exact_component_fraction": 0.6274305555555556,
+              "psnr_db": 43.544495053684884
+            },
+            "channels": {
+              "gray": {
+                "mean_absolute_error_255": 0.7724537037037037,
+                "root_mean_square_error_255": 1.6955688436933793,
+                "signed_bias_255": 0.15583333333333332,
+                "exact_component_fraction": 0.6274305555555556,
+                "psnr_db": 43.544495053684884
+              }
+            }
+          },
+          "alignment": {
+            "schema": "grampy-accuracy.v1",
+            "kind": "picture-component-alignment",
+            "algorithm": "bounded-regularized-offset-viterbi-v1",
+            "reference_components": 43200,
+            "decoded_components": 43200,
+            "compared_components": 43200,
+            "raw_mean_absolute_error_255": 0.7724537253379822,
+            "raw_exact_component_fraction": 0.6274305555555556,
+            "aligned_mean_absolute_error_255": 0.7724537253379822,
+            "aligned_exact_component_fraction": 0.6274305555555556,
+            "zero_offset_fraction": 1.0,
+            "maximum_absolute_offset_components": 0,
+            "offset_change_count": 0,
+            "offset_changes": [],
+            "offset_path_rle": [
+              {
+                "start_component": 0,
+                "stop_component": 43200,
+                "offset": 0
+              }
+            ],
+            "alignment_parameters": {
+              "max_offset_components": 24,
+              "change_penalty": 25.0,
+              "offset_penalty": 0.0005
+            }
+          }
+        },
+        "pass": true
+      },
+      "numerical_pass": true,
+      "pm_visual_status": "pending",
+      "evidence": [
+        {
+          "path": "pi/gray64-p8-card/decode.tar",
+          "bytes": 174080,
+          "sha256": "5676762f2091949967894c3c26d771d2869fa8b4b4b3eafcc381e4033014ba99"
+        },
+        {
+          "path": "pi/gray64-p8-card/viewer.rgb",
+          "bytes": 129600,
+          "sha256": "f05f6536cc77797cce70d85e95c6ca387defc5e733e41db6c0efbbaca2ade22b"
+        },
+        {
+          "path": "pi/gray64-p8-card/viewer-gdb.log",
+          "bytes": 511,
+          "sha256": "4779bb9c92a30dccaed9b023f9924e6cd9a610a061c4b0c8940e3c3c11c7bf3f"
+        },
+        {
+          "path": "cases/gray64-p8-card/grampy/diagnostic.json",
+          "bytes": 281093,
+          "sha256": "86ee5e6fd3a9bc5445fb5cc6665db19fc7d435288f11d00eec4c1a9a739a8814"
+        },
+        {
+          "path": "cases/gray64-p8-card/grampy/text.json",
+          "bytes": 2947,
+          "sha256": "6b02e53c764045b88e9aeb4a2b241c761ec9831e73bb23e3bc65e699eab3e1b0"
+        },
+        {
+          "path": "cases/gray64-p8-card/grampy/quality.json",
+          "bytes": 6384,
+          "sha256": "b066f8521ebd9213802b88f04a79139c82ea712f4fd047dd7cd10d650d5ba42b"
+        },
+        {
+          "path": "cases/gray64-p8-card/grampy/input.sigmf-meta",
+          "bytes": 194,
+          "sha256": "d58a45f963bb9cfd9f7e3004759b4613e534da749a8bacf0aff4855e2621f5c0"
+        },
+        {
+          "path": "cases/gray64-p8-card/grampy/input.sigmf-data",
+          "bytes": 22609824,
+          "sha256": "ddd6f4bc4928506731b1f4931bbe7c973344296d03259134357f1b15256bae40"
+        },
+        {
+          "path": "cases/gray64-p8-card/encoder-result.json",
+          "bytes": 509,
+          "sha256": "5a0ca10576cd0cc3be402fcc34fb264514ec7931e9385685b99999414d196c6f"
+        },
+        {
+          "path": "pi/gray64-p8-card/command.json",
+          "bytes": 825,
+          "sha256": "b0ccf381b374d0a1ef80f0d7db98413a66f76537e949470d891ef1067432276f"
+        },
+        {
+          "path": "pi/gray64-p8-card/received/metadata.json",
+          "bytes": 1513,
+          "sha256": "8147a64024842f3fe5aac2ce7ce0665da740fafbd496193f8a11077035defeb6"
+        },
+        {
+          "path": "pi/gray64-p8-card/received/decoded.txt",
+          "bytes": 107,
+          "sha256": "46e2ea7099c22bd64bd388d3b58abcbf721d222c3a5131345e2acf1b2f7cdbb1"
+        },
+        {
+          "path": "pi/gray64-p8-card/received/fldigi/control.log",
+          "bytes": 9627,
+          "sha256": "921ad8260980a471935ae71344e6e87485c0b63531f69344971e68591ed3f252"
+        }
+      ]
+    },
+    {
+      "id": "gray64-p4-photo",
+      "mode": "MFSK64",
+      "color": "grayscale",
+      "speed": 4,
+      "source": "photo",
+      "grampy_picture_required": true,
+      "expected_text_in_order": [
+        "\u0002\nGRAM PY PRACTICAL BROADCAST GRAY64 P4 PHOTO\n",
+        "Pic:240x180p4;",
+        "\nGRAM PY GRAY64 P4 PHOTO END\n\u0004"
+      ],
+      "expected_modes": [
+        "MFSK64"
+      ],
+      "expected_carriers_hz": [
+        1500.0
+      ],
+      "width": 240,
+      "height": 180,
+      "frame_count": 1802484,
+      "duration_seconds": 37.55175,
+      "encode_seconds": 0.4185687080025673,
+      "wav": {
+        "path": "cases/gray64-p4-photo/generated.wav",
+        "bytes": 3605012,
+        "sha256": "78248ba1d602137847c55b1ce875f941b204a9be589fbd36595238a06f7a7e89"
+      },
+      "truth": {
+        "path": "cases/gray64-p4-photo/truth.png",
+        "bytes": 19987,
+        "sha256": "457d5428a7ff449c352de059809b55701b917f2c0290c709998d27e33b665115"
+      },
+      "independent_waveform": {
+        "nominal": {
+          "rms_pcm_lsb": 0.286221534896331,
+          "max_pcm_lsb": 0.5019067788812208
+        },
+        "frequency_mutation": {
+          "rms_pcm_lsb": 16381.798287447147,
+          "max_pcm_lsb": 32767.980181662773
+        },
+        "raster_start_frame": 527604,
+        "component_count": 43200
+      },
+      "exact_rsid_audio_silence_frame_checks": "pass",
+      "fldigi": {
+        "checks": {
+          "receiver_exit": true,
+          "whole_wav": true,
+          "text_and_header_in_order": true,
+          "automatic_modes": true,
+          "automatic_carriers": true,
+          "initial_unrelated_mode": true,
+          "no_manual_changes": true,
+          "one_saved_image": true,
+          "grayscale_channels_equal": true,
+          "saved_picture_quality": true
+        },
+        "mode_events": {
+          "schema": "grampy-accuracy.v1",
+          "kind": "mode-event-sequence",
+          "alignment_algorithm": "python-difflib-sequence-matcher-v1",
+          "truth_scope": "ordered_mode_change_sequence",
+          "coordinate_truth_status": "not_available",
+          "expected_count": 1,
+          "detected_count": 1,
+          "matched_count": 1,
+          "missed_count": 0,
+          "false_count": 0,
+          "recall": 1.0,
+          "precision": 1.0,
+          "exact": true,
+          "expected_modes": [
+            "MFSK64"
+          ],
+          "detected_events": [
+            {
+              "mode": "MFSK64",
+              "code": 620,
+              "frequency_hz": 1499.0,
+              "receiver_log_evidence": "status during playback: mode='MFSK64' carrier=1499 quality=0.0 afc=0 squelch=0 squelch_level=0.0 rsid=1 status1='' status2='' trx='rx'"
+            }
+          ],
+          "missed_events": [],
+          "false_events": []
+        },
+        "picture": {
+          "pass": true,
+          "checks": {
+            "raw_mae": true,
+            "aligned_mae": true,
+            "channel_bias": true,
+            "alignment_offset": true,
+            "alignment_changes": true
+          },
+          "raw": {
+            "schema": "grampy-accuracy.v1",
+            "kind": "raw-raster-error",
+            "whole_raster": {
+              "mean_absolute_error_255": 2.458587962962963,
+              "root_mean_square_error_255": 6.015252603913562,
+              "signed_bias_255": -0.20386574074074074,
+              "exact_component_fraction": 0.32708333333333334,
+              "psnr_db": 32.545726213126
+            },
+            "channels": {
+              "gray": {
+                "mean_absolute_error_255": 2.458587962962963,
+                "root_mean_square_error_255": 6.015252603913562,
+                "signed_bias_255": -0.20386574074074074,
+                "exact_component_fraction": 0.32708333333333334,
+                "psnr_db": 32.545726213126
+              }
+            }
+          },
+          "alignment": {
+            "schema": "grampy-accuracy.v1",
+            "kind": "picture-component-alignment",
+            "algorithm": "bounded-regularized-offset-viterbi-v1",
+            "reference_components": 43200,
+            "decoded_components": 43200,
+            "compared_components": 43200,
+            "raw_mean_absolute_error_255": 2.458587884902954,
+            "raw_exact_component_fraction": 0.32708333333333334,
+            "aligned_mean_absolute_error_255": 0.7917361259460449,
+            "aligned_exact_component_fraction": 0.6037037037037037,
+            "zero_offset_fraction": 0.011111111111111112,
+            "maximum_absolute_offset_components": 1,
+            "offset_change_count": 1,
+            "offset_changes": [
+              {
+                "component_index": 480,
+                "offset": -1
+              }
+            ],
+            "offset_path_rle": [
+              {
+                "start_component": 0,
+                "stop_component": 480,
+                "offset": 0
+              },
+              {
+                "start_component": 480,
+                "stop_component": 43200,
+                "offset": -1
+              }
+            ],
+            "alignment_parameters": {
+              "max_offset_components": 24,
+              "change_penalty": 25.0,
+              "offset_penalty": 0.0005
+            }
+          }
+        },
+        "autosave": {
+          "pass": true,
+          "checks": {
+            "raw_mae": true,
+            "aligned_mae": true,
+            "channel_bias": true,
+            "alignment_offset": true,
+            "alignment_changes": true
+          },
+          "raw": {
+            "schema": "grampy-accuracy.v1",
+            "kind": "raw-raster-error",
+            "whole_raster": {
+              "mean_absolute_error_255": 2.458587962962963,
+              "root_mean_square_error_255": 6.015252603913562,
+              "signed_bias_255": -0.20386574074074074,
+              "exact_component_fraction": 0.32708333333333334,
+              "psnr_db": 32.545726213126
+            },
+            "channels": {
+              "gray": {
+                "mean_absolute_error_255": 2.458587962962963,
+                "root_mean_square_error_255": 6.015252603913562,
+                "signed_bias_255": -0.20386574074074074,
+                "exact_component_fraction": 0.32708333333333334,
+                "psnr_db": 32.545726213126
+              }
+            }
+          },
+          "alignment": {
+            "schema": "grampy-accuracy.v1",
+            "kind": "picture-component-alignment",
+            "algorithm": "bounded-regularized-offset-viterbi-v1",
+            "reference_components": 43200,
+            "decoded_components": 43200,
+            "compared_components": 43200,
+            "raw_mean_absolute_error_255": 2.458587884902954,
+            "raw_exact_component_fraction": 0.32708333333333334,
+            "aligned_mean_absolute_error_255": 0.7917361259460449,
+            "aligned_exact_component_fraction": 0.6037037037037037,
+            "zero_offset_fraction": 0.011111111111111112,
+            "maximum_absolute_offset_components": 1,
+            "offset_change_count": 1,
+            "offset_changes": [
+              {
+                "component_index": 480,
+                "offset": -1
+              }
+            ],
+            "offset_path_rle": [
+              {
+                "start_component": 0,
+                "stop_component": 480,
+                "offset": 0
+              },
+              {
+                "start_component": 480,
+                "stop_component": 43200,
+                "offset": -1
+              }
+            ],
+            "alignment_parameters": {
+              "max_offset_components": 24,
+              "change_penalty": 25.0,
+              "offset_penalty": 0.0005
+            }
+          }
+        },
+        "autosave_equals_viewer": true,
+        "pass": true
+      },
+      "grampy": {
+        "picture_support": "supported",
+        "status": "complete",
+        "warnings": [
+          {
+            "code": "absent-capture-time",
+            "message": "capture time is absent"
+          }
+        ],
+        "configuration": {
+          "block_samples": 262144,
+          "orientation": "unknown",
+          "trace_level": "none",
+          "mode": "auto",
+          "center_hz": null,
+          "picture_component_estimator": "bounded_correlation",
+          "picture_component_window": "full_hann",
+          "picture_filter_profile": "response_matched",
+          "picture_boundary_estimator": "unified_grid",
+          "persistent_tone_policy": "measure",
+          "pipeline_organization": "supported_hybrid",
+          "picture_range_workers": 1,
+          "picture_range_components": 16384,
+          "picture_max_in_flight_ranges": 1,
+          "persistent_intermediates": false
+        },
+        "whole_input_interval": true,
+        "text_and_header_in_order": true,
+        "mode_segments": [
+          {
+            "id": "8567058efc65653ead5251fc",
+            "mode": "MFSK64",
+            "orientation": "normal",
+            "interval": {
+              "start": 169412,
+              "stop": 1802484
+            },
+            "endpoint_uncertainty_samples": 66873,
+            "source": "rsid",
+            "confidence": {
+              "kind": "detector_snr_db",
+              "value": 24.783038435122286,
+              "calibrated": false
+            },
+            "supporting_events": [
+              "3833758127633d4a3650dfde"
+            ],
+            "acquisition_state": "candidate",
+            "symbol_phase_uncertainty_input_samples": 4458,
+            "superseded_alternatives": [],
+            "center_hz": 1499.249267578125,
+            "frequency_track": 0
+          }
+        ],
+        "automatic_modes": true,
+        "automatic_carriers": true,
+        "complete_framing": true,
+        "picture_count": 1,
+        "complete_picture": true,
+        "picture": {
+          "pass": true,
+          "checks": {
+            "raw_mae": true,
+            "aligned_mae": true,
+            "channel_bias": true,
+            "alignment_offset": true,
+            "alignment_changes": true
+          },
+          "raw": {
+            "schema": "grampy-accuracy.v1",
+            "kind": "raw-raster-error",
+            "whole_raster": {
+              "mean_absolute_error_255": 0.8224537037037037,
+              "root_mean_square_error_255": 2.1417693447068302,
+              "signed_bias_255": 0.1549074074074074,
+              "exact_component_fraction": 0.6165277777777778,
+              "psnr_db": 41.515349644913826
+            },
+            "channels": {
+              "gray": {
+                "mean_absolute_error_255": 0.8224537037037037,
+                "root_mean_square_error_255": 2.1417693447068302,
+                "signed_bias_255": 0.1549074074074074,
+                "exact_component_fraction": 0.6165277777777778,
+                "psnr_db": 41.515349644913826
+              }
+            }
+          },
+          "alignment": {
+            "schema": "grampy-accuracy.v1",
+            "kind": "picture-component-alignment",
+            "algorithm": "bounded-regularized-offset-viterbi-v1",
+            "reference_components": 43200,
+            "decoded_components": 43200,
+            "compared_components": 43200,
+            "raw_mean_absolute_error_255": 0.8224536776542664,
+            "raw_exact_component_fraction": 0.6165277777777778,
+            "aligned_mean_absolute_error_255": 0.8224536776542664,
+            "aligned_exact_component_fraction": 0.6165277777777778,
+            "zero_offset_fraction": 1.0,
+            "maximum_absolute_offset_components": 0,
+            "offset_change_count": 0,
+            "offset_changes": [],
+            "offset_path_rle": [
+              {
+                "start_component": 0,
+                "stop_component": 43200,
+                "offset": 0
+              }
+            ],
+            "alignment_parameters": {
+              "max_offset_components": 24,
+              "change_penalty": 25.0,
+              "offset_penalty": 0.0005
+            }
+          }
+        },
+        "pass": true
+      },
+      "numerical_pass": true,
+      "pm_visual_status": "pending",
+      "evidence": [
+        {
+          "path": "pi/gray64-p4-photo/decode.tar",
+          "bytes": 153600,
+          "sha256": "167b0318623e4e77a0e9c4f6495be28bdce4924a1cf68079980b89ed66dcbbeb"
+        },
+        {
+          "path": "pi/gray64-p4-photo/viewer.rgb",
+          "bytes": 129600,
+          "sha256": "edcf5d1c3e8934dc5e8e182ff7332222fa8dc0c5bacbdf9aafb92d0c6d47a653"
+        },
+        {
+          "path": "pi/gray64-p4-photo/viewer-gdb.log",
+          "bytes": 511,
+          "sha256": "7ac9677422a69e5282713bd0482a9d2d6f2c50cb639090524443ab868c0e32e6"
+        },
+        {
+          "path": "cases/gray64-p4-photo/grampy/diagnostic.json",
+          "bytes": 278332,
+          "sha256": "b32650b5ef810eed658521388879504c017d5170e27f97a1cac06452249c0e03"
+        },
+        {
+          "path": "cases/gray64-p4-photo/grampy/text.json",
+          "bytes": 2952,
+          "sha256": "c1a1f9fc3250fc388b95b287f67847d2052e1f5f1f22e8435c8e74481daec242"
+        },
+        {
+          "path": "cases/gray64-p4-photo/grampy/quality.json",
+          "bytes": 5226,
+          "sha256": "f195fad69583348863f2680260adbad5670d79c61b0ba2781c63f6043f13555f"
+        },
+        {
+          "path": "cases/gray64-p4-photo/grampy/input.sigmf-meta",
+          "bytes": 194,
+          "sha256": "d58a45f963bb9cfd9f7e3004759b4613e534da749a8bacf0aff4855e2621f5c0"
+        },
+        {
+          "path": "cases/gray64-p4-photo/grampy/input.sigmf-data",
+          "bytes": 14419872,
+          "sha256": "3b105e9c4aab5b010cb60de6eb4207321a149c53237b03c6c594e7d5df080e79"
+        },
+        {
+          "path": "cases/gray64-p4-photo/encoder-result.json",
+          "bytes": 510,
+          "sha256": "fecd663c57daa0ad1feb18226f1c825c1e7f00dd7067730a993131926724a769"
+        },
+        {
+          "path": "pi/gray64-p4-photo/command.json",
+          "bytes": 829,
+          "sha256": "6d4163f164995d75a9be8e9a38f5e863bed4d60249f296bef7d9b31a0811b24d"
+        },
+        {
+          "path": "pi/gray64-p4-photo/received/metadata.json",
+          "bytes": 1515,
+          "sha256": "7619617b94b969e1c8b2b12fa70a4a2c30a4ebe686835a72e386369eff164b13"
+        },
+        {
+          "path": "pi/gray64-p4-photo/received/decoded.txt",
+          "bytes": 112,
+          "sha256": "e610e2176817eed0e021f43ddf868d131608f3d49f8ac4b45795bb4dd8568083"
+        },
+        {
+          "path": "pi/gray64-p4-photo/received/fldigi/control.log",
+          "bytes": 7219,
+          "sha256": "6b8b91f4ac68fbb93353fed6c492bfaab9f04b5d41333e274f04214ac4b5d32d"
+        }
+      ]
+    },
+    {
+      "id": "gray64-p2-chart",
+      "mode": "MFSK64",
+      "color": "grayscale",
+      "speed": 2,
+      "source": "chart",
+      "grampy_picture_required": true,
+      "expected_text_in_order": [
+        "\u0002\nGRAM PY PRACTICAL BROADCAST GRAY64 P2 CHART\n",
+        "Pic:160x120p2;",
+        "\nGRAM PY GRAY64 P2 CHART END\n\u0004"
+      ],
+      "expected_modes": [
+        "MFSK64"
+      ],
+      "expected_carriers_hz": [
+        1500.0
+      ],
+      "width": 160,
+      "height": 120,
+      "frame_count": 996084,
+      "duration_seconds": 20.75175,
+      "encode_seconds": 0.21782124997116625,
+      "wav": {
+        "path": "cases/gray64-p2-chart/generated.wav",
+        "bytes": 1992212,
+        "sha256": "5d65aa0a6cc6942280d08996bf999f0c6206a4b6bfaf960260c0c0f2d71772a8"
+      },
+      "truth": {
+        "path": "cases/gray64-p2-chart/truth.png",
+        "bytes": 1465,
+        "sha256": "ef5b254666f554eb2e02641fad50b2a06c78f9e90c1ae3d7f3f1f606bd9e4770"
+      },
+      "independent_waveform": {
+        "nominal": {
+          "rms_pcm_lsb": 0.2870765287259899,
+          "max_pcm_lsb": 0.5003430491497056
+        },
+        "frequency_mutation": {
+          "rms_pcm_lsb": 16373.870810023807,
+          "max_pcm_lsb": 32767.979688020234
+        },
+        "raster_start_frame": 527604,
+        "component_count": 19200
+      },
+      "exact_rsid_audio_silence_frame_checks": "pass",
+      "fldigi": {
+        "checks": {
+          "receiver_exit": true,
+          "whole_wav": true,
+          "text_and_header_in_order": true,
+          "automatic_modes": true,
+          "automatic_carriers": true,
+          "initial_unrelated_mode": true,
+          "no_manual_changes": true,
+          "one_saved_image": true,
+          "grayscale_channels_equal": true,
+          "saved_picture_quality": true
+        },
+        "mode_events": {
+          "schema": "grampy-accuracy.v1",
+          "kind": "mode-event-sequence",
+          "alignment_algorithm": "python-difflib-sequence-matcher-v1",
+          "truth_scope": "ordered_mode_change_sequence",
+          "coordinate_truth_status": "not_available",
+          "expected_count": 1,
+          "detected_count": 1,
+          "matched_count": 1,
+          "missed_count": 0,
+          "false_count": 0,
+          "recall": 1.0,
+          "precision": 1.0,
+          "exact": true,
+          "expected_modes": [
+            "MFSK64"
+          ],
+          "detected_events": [
+            {
+              "mode": "MFSK64",
+              "code": 620,
+              "frequency_hz": 1499.0,
+              "receiver_log_evidence": "status during playback: mode='MFSK64' carrier=1499 quality=0.0 afc=0 squelch=0 squelch_level=0.0 rsid=1 status1='' status2='' trx='rx'"
+            }
+          ],
+          "missed_events": [],
+          "false_events": []
+        },
+        "picture": {
+          "pass": true,
+          "checks": {
+            "raw_mae": true,
+            "aligned_mae": true,
+            "channel_bias": true,
+            "alignment_offset": true,
+            "alignment_changes": true
+          },
+          "raw": {
+            "schema": "grampy-accuracy.v1",
+            "kind": "raw-raster-error",
+            "whole_raster": {
+              "mean_absolute_error_255": 9.987552083333334,
+              "root_mean_square_error_255": 28.97140562261348,
+              "signed_bias_255": -0.24140625,
+              "exact_component_fraction": 0.47192708333333333,
+              "psnr_db": 18.891412275998032
+            },
+            "channels": {
+              "gray": {
+                "mean_absolute_error_255": 9.987552083333334,
+                "root_mean_square_error_255": 28.97140562261348,
+                "signed_bias_255": -0.24140625,
+                "exact_component_fraction": 0.47192708333333333,
+                "psnr_db": 18.891412275998032
+              }
+            }
+          },
+          "alignment": {
+            "schema": "grampy-accuracy.v1",
+            "kind": "picture-component-alignment",
+            "algorithm": "bounded-regularized-offset-viterbi-v1",
+            "reference_components": 19200,
+            "decoded_components": 19200,
+            "compared_components": 19200,
+            "raw_mean_absolute_error_255": 9.98755168914795,
+            "raw_exact_component_fraction": 0.47192708333333333,
+            "aligned_mean_absolute_error_255": 9.98755168914795,
+            "aligned_exact_component_fraction": 0.47192708333333333,
+            "zero_offset_fraction": 1.0,
+            "maximum_absolute_offset_components": 0,
+            "offset_change_count": 0,
+            "offset_changes": [],
+            "offset_path_rle": [
+              {
+                "start_component": 0,
+                "stop_component": 19200,
+                "offset": 0
+              }
+            ],
+            "alignment_parameters": {
+              "max_offset_components": 24,
+              "change_penalty": 25.0,
+              "offset_penalty": 0.0005
+            }
+          }
+        },
+        "autosave": {
+          "pass": true,
+          "checks": {
+            "raw_mae": true,
+            "aligned_mae": true,
+            "channel_bias": true,
+            "alignment_offset": true,
+            "alignment_changes": true
+          },
+          "raw": {
+            "schema": "grampy-accuracy.v1",
+            "kind": "raw-raster-error",
+            "whole_raster": {
+              "mean_absolute_error_255": 9.987552083333334,
+              "root_mean_square_error_255": 28.97140562261348,
+              "signed_bias_255": -0.24140625,
+              "exact_component_fraction": 0.47192708333333333,
+              "psnr_db": 18.891412275998032
+            },
+            "channels": {
+              "gray": {
+                "mean_absolute_error_255": 9.987552083333334,
+                "root_mean_square_error_255": 28.97140562261348,
+                "signed_bias_255": -0.24140625,
+                "exact_component_fraction": 0.47192708333333333,
+                "psnr_db": 18.891412275998032
+              }
+            }
+          },
+          "alignment": {
+            "schema": "grampy-accuracy.v1",
+            "kind": "picture-component-alignment",
+            "algorithm": "bounded-regularized-offset-viterbi-v1",
+            "reference_components": 19200,
+            "decoded_components": 19200,
+            "compared_components": 19200,
+            "raw_mean_absolute_error_255": 9.98755168914795,
+            "raw_exact_component_fraction": 0.47192708333333333,
+            "aligned_mean_absolute_error_255": 9.98755168914795,
+            "aligned_exact_component_fraction": 0.47192708333333333,
+            "zero_offset_fraction": 1.0,
+            "maximum_absolute_offset_components": 0,
+            "offset_change_count": 0,
+            "offset_changes": [],
+            "offset_path_rle": [
+              {
+                "start_component": 0,
+                "stop_component": 19200,
+                "offset": 0
+              }
+            ],
+            "alignment_parameters": {
+              "max_offset_components": 24,
+              "change_penalty": 25.0,
+              "offset_penalty": 0.0005
+            }
+          }
+        },
+        "autosave_equals_viewer": true,
+        "pass": true
+      },
+      "grampy": {
+        "picture_support": "supported",
+        "status": "complete",
+        "warnings": [
+          {
+            "code": "absent-capture-time",
+            "message": "capture time is absent"
+          }
+        ],
+        "configuration": {
+          "block_samples": 262144,
+          "orientation": "unknown",
+          "trace_level": "none",
+          "mode": "auto",
+          "center_hz": null,
+          "picture_component_estimator": "bounded_correlation",
+          "picture_component_window": "full_hann",
+          "picture_filter_profile": "response_matched",
+          "picture_boundary_estimator": "unified_grid",
+          "persistent_tone_policy": "measure",
+          "pipeline_organization": "supported_hybrid",
+          "picture_range_workers": 1,
+          "picture_range_components": 16384,
+          "picture_max_in_flight_ranges": 1,
+          "persistent_intermediates": false
+        },
+        "whole_input_interval": true,
+        "text_and_header_in_order": true,
+        "mode_segments": [
+          {
+            "id": "8567058efc65653ead5251fc",
+            "mode": "MFSK64",
+            "orientation": "normal",
+            "interval": {
+              "start": 169412,
+              "stop": 996084
+            },
+            "endpoint_uncertainty_samples": 66873,
+            "source": "rsid",
+            "confidence": {
+              "kind": "detector_snr_db",
+              "value": 24.783037799367737,
+              "calibrated": false
+            },
+            "supporting_events": [
+              "3833758127633d4a3650dfde"
+            ],
+            "acquisition_state": "candidate",
+            "symbol_phase_uncertainty_input_samples": 4458,
+            "superseded_alternatives": [],
+            "center_hz": 1499.249267578125,
+            "frequency_track": 0
+          }
+        ],
+        "automatic_modes": true,
+        "automatic_carriers": true,
+        "complete_framing": true,
+        "picture_count": 1,
+        "complete_picture": true,
+        "picture": {
+          "pass": true,
+          "checks": {
+            "raw_mae": true,
+            "aligned_mae": true,
+            "channel_bias": true,
+            "alignment_offset": true,
+            "alignment_changes": true
+          },
+          "raw": {
+            "schema": "grampy-accuracy.v1",
+            "kind": "raw-raster-error",
+            "whole_raster": {
+              "mean_absolute_error_255": 10.2503125,
+              "root_mean_square_error_255": 28.833960734985173,
+              "signed_bias_255": 0.058333333333333334,
+              "exact_component_fraction": 0.5619791666666667,
+              "psnr_db": 18.9327175543928
+            },
+            "channels": {
+              "gray": {
+                "mean_absolute_error_255": 10.2503125,
+                "root_mean_square_error_255": 28.833960734985173,
+                "signed_bias_255": 0.058333333333333334,
+                "exact_component_fraction": 0.5619791666666667,
+                "psnr_db": 18.9327175543928
+              }
+            }
+          },
+          "alignment": {
+            "schema": "grampy-accuracy.v1",
+            "kind": "picture-component-alignment",
+            "algorithm": "bounded-regularized-offset-viterbi-v1",
+            "reference_components": 19200,
+            "decoded_components": 19200,
+            "compared_components": 19200,
+            "raw_mean_absolute_error_255": 10.250312805175781,
+            "raw_exact_component_fraction": 0.5619791666666667,
+            "aligned_mean_absolute_error_255": 10.250312805175781,
+            "aligned_exact_component_fraction": 0.5619791666666667,
+            "zero_offset_fraction": 1.0,
+            "maximum_absolute_offset_components": 0,
+            "offset_change_count": 0,
+            "offset_changes": [],
+            "offset_path_rle": [
+              {
+                "start_component": 0,
+                "stop_component": 19200,
+                "offset": 0
+              }
+            ],
+            "alignment_parameters": {
+              "max_offset_components": 24,
+              "change_penalty": 25.0,
+              "offset_penalty": 0.0005
+            }
+          }
+        },
+        "pass": true
+      },
+      "numerical_pass": true,
+      "pm_visual_status": "pending",
+      "evidence": [
+        {
+          "path": "pi/gray64-p2-chart/decode.tar",
+          "bytes": 122880,
+          "sha256": "480b3ef3c095c4c6981f3184d3bc9dbe8229e78c61d7e9ec4f053551320f9983"
+        },
+        {
+          "path": "pi/gray64-p2-chart/viewer.rgb",
+          "bytes": 57600,
+          "sha256": "ac0ba9c4e7f15bfa911b3b3a6f1f8a092d0f705a981d7fe6844acd28c446f06c"
+        },
+        {
+          "path": "pi/gray64-p2-chart/viewer-gdb.log",
+          "bytes": 510,
+          "sha256": "8e5439861b19fa5246ad19759e8fb0c4f78702e61963ceb2f5c6f668ed342040"
+        },
+        {
+          "path": "cases/gray64-p2-chart/grampy/diagnostic.json",
+          "bytes": 275351,
+          "sha256": "e925e0d01d795abb9680be4a3d4fa3b99126ab0397c14d99a885597a6e0bad4f"
+        },
+        {
+          "path": "cases/gray64-p2-chart/grampy/text.json",
+          "bytes": 2948,
+          "sha256": "624a271fbce4dd5389458d86e89a9d5d4ea74e177e0201ad4890bff33f7ce207"
+        },
+        {
+          "path": "cases/gray64-p2-chart/grampy/quality.json",
+          "bytes": 4342,
+          "sha256": "91f699dc0ea5fa8d8f8c3afc55499d308661028165cbf15a6f9969fd3b01dec3"
+        },
+        {
+          "path": "cases/gray64-p2-chart/grampy/input.sigmf-meta",
+          "bytes": 194,
+          "sha256": "d58a45f963bb9cfd9f7e3004759b4613e534da749a8bacf0aff4855e2621f5c0"
+        },
+        {
+          "path": "cases/gray64-p2-chart/grampy/input.sigmf-data",
+          "bytes": 7968672,
+          "sha256": "4c959d97e14d48d4374e14cb7b35a7503a5e3a88e2fcbbb93d1c4be9000b5df0"
+        },
+        {
+          "path": "cases/gray64-p2-chart/encoder-result.json",
+          "bytes": 510,
+          "sha256": "432d266e7faf97c9488709b58a1c5c6b8c2397a78d09807e08a611c5c2f0630b"
+        },
+        {
+          "path": "pi/gray64-p2-chart/command.json",
+          "bytes": 829,
+          "sha256": "255f30e569be05e19cc359a0d394990b853ae995dfaffeda931a3453de28c3f9"
+        },
+        {
+          "path": "pi/gray64-p2-chart/received/metadata.json",
+          "bytes": 1515,
+          "sha256": "b52cf7d8bec5863ee22acba6564a9a20a318fd68049f35aa041a3d7028710b91"
+        },
+        {
+          "path": "pi/gray64-p2-chart/received/decoded.txt",
+          "bytes": 419,
+          "sha256": "3db8ef37d8c2741be175e11be271bae06d2b423ea1d70b791b03a5eca53e2b57"
+        },
+        {
+          "path": "pi/gray64-p2-chart/received/fldigi/control.log",
+          "bytes": 5549,
+          "sha256": "f6438febc523ce6038088c403478465cd10f5b976e94ad874554b1ac545f3686"
+        }
+      ]
+    },
+    {
+      "id": "rgb64-p8-photo",
+      "mode": "MFSK64",
+      "color": "color",
+      "speed": 8,
+      "source": "photo",
+      "grampy_picture_required": true,
+      "expected_text_in_order": [
+        "\u0002\nGRAM PY PRACTICAL BROADCAST RGB64 P8 PHOTO\n",
+        "Pic:240x180C;",
+        "\nGRAM PY RGB64 P8 PHOTO END\n\u0004"
+      ],
+      "expected_modes": [
+        "MFSK64"
+      ],
+      "expected_carriers_hz": [
+        1500.0
+      ],
+      "width": 240,
+      "height": 180,
+      "frame_count": 6977268,
+      "duration_seconds": 145.35975,
+      "encode_seconds": 1.574636625009589,
+      "wav": {
+        "path": "cases/rgb64-p8-photo/generated.wav",
+        "bytes": 13954580,
+        "sha256": "6b7aa722eac0a4e4b47196a93e98085279d530185e4d45a834995ccf6af37eca"
+      },
+      "truth": {
+        "path": "cases/rgb64-p8-photo/truth.png",
+        "bytes": 60016,
+        "sha256": "1d316ddfc96078f19a20d83769d36b1efcd23cdc03d0047832e65024fcd026d0"
+      },
+      "independent_waveform": {
+        "nominal": {
+          "rms_pcm_lsb": 0.28673591157793166,
+          "max_pcm_lsb": 0.5320847043858521
+        },
+        "frequency_mutation": {
+          "rms_pcm_lsb": 16383.604554841713,
+          "max_pcm_lsb": 32767.999890398532
+        },
+        "raster_start_frame": 521460,
+        "component_count": 129600
+      },
+      "exact_rsid_audio_silence_frame_checks": "pass",
+      "fldigi": {
+        "checks": {
+          "receiver_exit": true,
+          "whole_wav": true,
+          "text_and_header_in_order": true,
+          "automatic_modes": true,
+          "automatic_carriers": true,
+          "initial_unrelated_mode": true,
+          "no_manual_changes": true,
+          "one_saved_image": true,
+          "grayscale_channels_equal": true,
+          "saved_picture_quality": true
+        },
+        "mode_events": {
+          "schema": "grampy-accuracy.v1",
+          "kind": "mode-event-sequence",
+          "alignment_algorithm": "python-difflib-sequence-matcher-v1",
+          "truth_scope": "ordered_mode_change_sequence",
+          "coordinate_truth_status": "not_available",
+          "expected_count": 1,
+          "detected_count": 1,
+          "matched_count": 1,
+          "missed_count": 0,
+          "false_count": 0,
+          "recall": 1.0,
+          "precision": 1.0,
+          "exact": true,
+          "expected_modes": [
+            "MFSK64"
+          ],
+          "detected_events": [
+            {
+              "mode": "MFSK64",
+              "code": 620,
+              "frequency_hz": 1499.0,
+              "receiver_log_evidence": "status during playback: mode='MFSK64' carrier=1499 quality=0.0 afc=0 squelch=0 squelch_level=0.0 rsid=1 status1='' status2='' trx='rx'"
+            }
+          ],
+          "missed_events": [],
+          "false_events": []
+        },
+        "picture": {
+          "pass": true,
+          "checks": {
+            "raw_mae": true,
+            "aligned_mae": true,
+            "channel_bias": true,
+            "alignment_offset": true,
+            "alignment_changes": true
+          },
+          "raw": {
+            "schema": "grampy-accuracy.v1",
+            "kind": "raw-raster-error",
+            "whole_raster": {
+              "mean_absolute_error_255": 0.6040586419753087,
+              "root_mean_square_error_255": 1.9548096746736063,
+              "signed_bias_255": -0.16393518518518518,
+              "exact_component_fraction": 0.6622299382716049,
+              "psnr_db": 42.30871401355802
+            },
+            "channels": {
+              "red": {
+                "mean_absolute_error_255": 0.6625694444444444,
+                "root_mean_square_error_255": 2.1341524035273305,
+                "signed_bias_255": -0.2972916666666667,
+                "exact_component_fraction": 0.6301157407407407,
+                "psnr_db": 41.54629501030666
+              },
+              "green": {
+                "mean_absolute_error_255": 0.5312731481481482,
+                "root_mean_square_error_255": 1.6871038629688584,
+                "signed_bias_255": -0.08965277777777778,
+                "exact_component_fraction": 0.7060185185185185,
+                "psnr_db": 43.587967212074325
+              },
+              "blue": {
+                "mean_absolute_error_255": 0.6183333333333333,
+                "root_mean_square_error_255": 2.0156677967032826,
+                "signed_bias_255": -0.10486111111111111,
+                "exact_component_fraction": 0.6505555555555556,
+                "psnr_db": 42.04242446141296
+              }
+            }
+          },
+          "alignment": {
+            "schema": "grampy-accuracy.v1",
+            "kind": "picture-component-alignment",
+            "algorithm": "bounded-regularized-offset-viterbi-v1",
+            "reference_components": 129600,
+            "decoded_components": 129600,
+            "compared_components": 129600,
+            "raw_mean_absolute_error_255": 0.6040586233139038,
+            "raw_exact_component_fraction": 0.6622299382716049,
+            "aligned_mean_absolute_error_255": 0.6040586233139038,
+            "aligned_exact_component_fraction": 0.6622299382716049,
+            "zero_offset_fraction": 1.0,
+            "maximum_absolute_offset_components": 0,
+            "offset_change_count": 0,
+            "offset_changes": [],
+            "offset_path_rle": [
+              {
+                "start_component": 0,
+                "stop_component": 129600,
+                "offset": 0
+              }
+            ],
+            "alignment_parameters": {
+              "max_offset_components": 24,
+              "change_penalty": 25.0,
+              "offset_penalty": 0.0005
+            }
+          }
+        },
+        "autosave": {
+          "pass": true,
+          "checks": {
+            "raw_mae": true,
+            "aligned_mae": true,
+            "channel_bias": true,
+            "alignment_offset": true,
+            "alignment_changes": true
+          },
+          "raw": {
+            "schema": "grampy-accuracy.v1",
+            "kind": "raw-raster-error",
+            "whole_raster": {
+              "mean_absolute_error_255": 0.6040586419753087,
+              "root_mean_square_error_255": 1.9548096746736063,
+              "signed_bias_255": -0.16393518518518518,
+              "exact_component_fraction": 0.6622299382716049,
+              "psnr_db": 42.30871401355802
+            },
+            "channels": {
+              "red": {
+                "mean_absolute_error_255": 0.6625694444444444,
+                "root_mean_square_error_255": 2.1341524035273305,
+                "signed_bias_255": -0.2972916666666667,
+                "exact_component_fraction": 0.6301157407407407,
+                "psnr_db": 41.54629501030666
+              },
+              "green": {
+                "mean_absolute_error_255": 0.5312731481481482,
+                "root_mean_square_error_255": 1.6871038629688584,
+                "signed_bias_255": -0.08965277777777778,
+                "exact_component_fraction": 0.7060185185185185,
+                "psnr_db": 43.587967212074325
+              },
+              "blue": {
+                "mean_absolute_error_255": 0.6183333333333333,
+                "root_mean_square_error_255": 2.0156677967032826,
+                "signed_bias_255": -0.10486111111111111,
+                "exact_component_fraction": 0.6505555555555556,
+                "psnr_db": 42.04242446141296
+              }
+            }
+          },
+          "alignment": {
+            "schema": "grampy-accuracy.v1",
+            "kind": "picture-component-alignment",
+            "algorithm": "bounded-regularized-offset-viterbi-v1",
+            "reference_components": 129600,
+            "decoded_components": 129600,
+            "compared_components": 129600,
+            "raw_mean_absolute_error_255": 0.6040586233139038,
+            "raw_exact_component_fraction": 0.6622299382716049,
+            "aligned_mean_absolute_error_255": 0.6040586233139038,
+            "aligned_exact_component_fraction": 0.6622299382716049,
+            "zero_offset_fraction": 1.0,
+            "maximum_absolute_offset_components": 0,
+            "offset_change_count": 0,
+            "offset_changes": [],
+            "offset_path_rle": [
+              {
+                "start_component": 0,
+                "stop_component": 129600,
+                "offset": 0
+              }
+            ],
+            "alignment_parameters": {
+              "max_offset_components": 24,
+              "change_penalty": 25.0,
+              "offset_penalty": 0.0005
+            }
+          }
+        },
+        "autosave_equals_viewer": true,
+        "pass": true
+      },
+      "grampy": {
+        "picture_support": "supported",
+        "status": "complete",
+        "warnings": [
+          {
+            "code": "absent-capture-time",
+            "message": "capture time is absent"
+          }
+        ],
+        "configuration": {
+          "block_samples": 262144,
+          "orientation": "unknown",
+          "trace_level": "none",
+          "mode": "auto",
+          "center_hz": null,
+          "picture_component_estimator": "bounded_correlation",
+          "picture_component_window": "full_hann",
+          "picture_filter_profile": "response_matched",
+          "picture_boundary_estimator": "unified_grid",
+          "persistent_tone_policy": "measure",
+          "pipeline_organization": "supported_hybrid",
+          "picture_range_workers": 1,
+          "picture_range_components": 16384,
+          "picture_max_in_flight_ranges": 1,
+          "persistent_intermediates": false
+        },
+        "whole_input_interval": true,
+        "text_and_header_in_order": true,
+        "mode_segments": [
+          {
+            "id": "8567058efc65653ead5251fc",
+            "mode": "MFSK64",
+            "orientation": "normal",
+            "interval": {
+              "start": 169412,
+              "stop": 6977268
+            },
+            "endpoint_uncertainty_samples": 66873,
+            "source": "rsid",
+            "confidence": {
+              "kind": "detector_snr_db",
+              "value": 24.78304192738896,
+              "calibrated": false
+            },
+            "supporting_events": [
+              "3833758127633d4a3650dfde"
+            ],
+            "acquisition_state": "candidate",
+            "symbol_phase_uncertainty_input_samples": 4458,
+            "superseded_alternatives": [],
+            "center_hz": 1499.249267578125,
+            "frequency_track": 0
+          }
+        ],
+        "automatic_modes": true,
+        "automatic_carriers": true,
+        "complete_framing": true,
+        "picture_count": 1,
+        "complete_picture": true,
+        "picture": {
+          "pass": true,
+          "checks": {
+            "raw_mae": true,
+            "aligned_mae": true,
+            "channel_bias": true,
+            "alignment_offset": true,
+            "alignment_changes": true
+          },
+          "raw": {
+            "schema": "grampy-accuracy.v1",
+            "kind": "raw-raster-error",
+            "whole_raster": {
+              "mean_absolute_error_255": 0.35734567901234565,
+              "root_mean_square_error_255": 1.0105920523615335,
+              "signed_bias_255": 0.10532407407407407,
+              "exact_component_fraction": 0.7709182098765432,
+              "psnr_db": 48.039286039146695
+            },
+            "channels": {
+              "red": {
+                "mean_absolute_error_255": 0.3838888888888889,
+                "root_mean_square_error_255": 1.0122170386499791,
+                "signed_bias_255": 0.09078703703703704,
+                "exact_component_fraction": 0.7378703703703704,
+                "psnr_db": 48.02533073840799
+              },
+              "green": {
+                "mean_absolute_error_255": 0.3068287037037037,
+                "root_mean_square_error_255": 1.0629601400143183,
+                "signed_bias_255": 0.08150462962962964,
+                "exact_component_fraction": 0.8295833333333333,
+                "psnr_db": 47.60046402463647
+              },
+              "blue": {
+                "mean_absolute_error_255": 0.38131944444444443,
+                "root_mean_square_error_255": 0.9536358300191412,
+                "signed_bias_255": 0.14368055555555556,
+                "exact_component_fraction": 0.7453009259259259,
+                "psnr_db": 48.54315240825439
+              }
+            }
+          },
+          "alignment": {
+            "schema": "grampy-accuracy.v1",
+            "kind": "picture-component-alignment",
+            "algorithm": "bounded-regularized-offset-viterbi-v1",
+            "reference_components": 129600,
+            "decoded_components": 129600,
+            "compared_components": 129600,
+            "raw_mean_absolute_error_255": 0.35734567046165466,
+            "raw_exact_component_fraction": 0.7709182098765432,
+            "aligned_mean_absolute_error_255": 0.35734567046165466,
+            "aligned_exact_component_fraction": 0.7709182098765432,
+            "zero_offset_fraction": 1.0,
+            "maximum_absolute_offset_components": 0,
+            "offset_change_count": 0,
+            "offset_changes": [],
+            "offset_path_rle": [
+              {
+                "start_component": 0,
+                "stop_component": 129600,
+                "offset": 0
+              }
+            ],
+            "alignment_parameters": {
+              "max_offset_components": 24,
+              "change_penalty": 25.0,
+              "offset_penalty": 0.0005
+            }
+          }
+        },
+        "pass": true
+      },
+      "numerical_pass": true,
+      "pm_visual_status": "pending",
+      "evidence": [
+        {
+          "path": "pi/rgb64-p8-photo/decode.tar",
+          "bytes": 225280,
+          "sha256": "087c20af8f9f698b504fa8ba9f687cb4caf25e15920103e941e9af2c9b53003f"
+        },
+        {
+          "path": "pi/rgb64-p8-photo/viewer.rgb",
+          "bytes": 129600,
+          "sha256": "55c784265154464ddf15bdae40220455db1b52a393dc0ed5685a99ff9c350cc1"
+        },
+        {
+          "path": "pi/rgb64-p8-photo/viewer-gdb.log",
+          "bytes": 511,
+          "sha256": "4206465b274e1cb03f8e276daeb6becc02118e654c8c5b4e77840221e63f77d1"
+        },
+        {
+          "path": "cases/rgb64-p8-photo/grampy/diagnostic.json",
+          "bytes": 276572,
+          "sha256": "b4e66db92cd4eebc40a2ae65a2b69bb56b53b5121cda1309e262945aa3248ea5"
+        },
+        {
+          "path": "cases/rgb64-p8-photo/grampy/text.json",
+          "bytes": 2948,
+          "sha256": "73abe14c803e7cb7c8d21c5bd517ed2117423c33c8126670dc25172ad8504129"
+        },
+        {
+          "path": "cases/rgb64-p8-photo/grampy/quality.json",
+          "bytes": 11027,
+          "sha256": "3b829e3404c6e9a667976f0a46c66a355f122133b7aa98a645bb6fcc5f21a165"
+        },
+        {
+          "path": "cases/rgb64-p8-photo/grampy/input.sigmf-meta",
+          "bytes": 194,
+          "sha256": "d58a45f963bb9cfd9f7e3004759b4613e534da749a8bacf0aff4855e2621f5c0"
+        },
+        {
+          "path": "cases/rgb64-p8-photo/grampy/input.sigmf-data",
+          "bytes": 55818144,
+          "sha256": "879fd4ef5f1c9e56c1c139e7e1b3f0acf382d46ed0e607a031de616ae9823205"
+        },
+        {
+          "path": "cases/rgb64-p8-photo/encoder-result.json",
+          "bytes": 511,
+          "sha256": "c30f56a6ed9eeb296af153cc8befb1906ec9c721db3e9b2193c3e8f5209b5ee5"
+        },
+        {
+          "path": "pi/rgb64-p8-photo/command.json",
+          "bytes": 825,
+          "sha256": "ef094548df5a810721df9c360f0cfbd0127b95060e0637a7346c3c156b2b2af6"
+        },
+        {
+          "path": "pi/rgb64-p8-photo/received/metadata.json",
+          "bytes": 1515,
+          "sha256": "50a7dc348184419c811051e47950dd0289a48dd83cc8f7d8818464b14d9538c7"
+        },
+        {
+          "path": "pi/rgb64-p8-photo/received/decoded.txt",
+          "bytes": 473,
+          "sha256": "cdad12db3fe09970ac7a3188d409cea86aee8265dbe6a21a6d7017ddca24b90d"
+        },
+        {
+          "path": "pi/rgb64-p8-photo/received/fldigi/control.log",
+          "bytes": 20150,
+          "sha256": "7e8a58a1235e42e7283349ec4a7663224b400ad605a79d7f87fb5163aeb3cb7e"
+        }
+      ]
+    },
+    {
+      "id": "rgb64-p4-card",
+      "mode": "MFSK64",
+      "color": "color",
+      "speed": 4,
+      "source": "card",
+      "grampy_picture_required": true,
+      "expected_text_in_order": [
+        "\u0002\nGRAM PY PRACTICAL BROADCAST RGB64 P4 CARD\n",
+        "Pic:240x180Cp4;",
+        "\nGRAM PY RGB64 P4 CARD END\n\u0004"
+      ],
+      "expected_modes": [
+        "MFSK64"
+      ],
+      "expected_carriers_hz": [
+        1500.0
+      ],
+      "width": 240,
+      "height": 180,
+      "frame_count": 3866100,
+      "duration_seconds": 80.54375,
+      "encode_seconds": 0.9942016659770161,
+      "wav": {
+        "path": "cases/rgb64-p4-card/generated.wav",
+        "bytes": 7732244,
+        "sha256": "a1adfd84f6d45cc12e2cc1b8ffeea11e16b4c7cc13cb2b95d534ea172a0e3d05"
+      },
+      "truth": {
+        "path": "cases/rgb64-p4-card/truth.png",
+        "bytes": 66779,
+        "sha256": "f54c55ee0eda798a3fa9d4bcc32ba45cebc08eaa5ddb41808ac3fc7b44aaddc7"
+      },
+      "independent_waveform": {
+        "nominal": {
+          "rms_pcm_lsb": 0.2866680741844266,
+          "max_pcm_lsb": 0.5316889088312564
+        },
+        "frequency_mutation": {
+          "rms_pcm_lsb": 16383.328869452269,
+          "max_pcm_lsb": 32767.998285255926
+        },
+        "raster_start_frame": 524532,
+        "component_count": 129600
+      },
+      "exact_rsid_audio_silence_frame_checks": "pass",
+      "fldigi": {
+        "checks": {
+          "receiver_exit": true,
+          "whole_wav": true,
+          "text_and_header_in_order": true,
+          "automatic_modes": true,
+          "automatic_carriers": true,
+          "initial_unrelated_mode": true,
+          "no_manual_changes": true,
+          "one_saved_image": true,
+          "grayscale_channels_equal": true,
+          "saved_picture_quality": true
+        },
+        "mode_events": {
+          "schema": "grampy-accuracy.v1",
+          "kind": "mode-event-sequence",
+          "alignment_algorithm": "python-difflib-sequence-matcher-v1",
+          "truth_scope": "ordered_mode_change_sequence",
+          "coordinate_truth_status": "not_available",
+          "expected_count": 1,
+          "detected_count": 1,
+          "matched_count": 1,
+          "missed_count": 0,
+          "false_count": 0,
+          "recall": 1.0,
+          "precision": 1.0,
+          "exact": true,
+          "expected_modes": [
+            "MFSK64"
+          ],
+          "detected_events": [
+            {
+              "mode": "MFSK64",
+              "code": 620,
+              "frequency_hz": 1499.0,
+              "receiver_log_evidence": "status during playback: mode='MFSK64' carrier=1499 quality=0.0 afc=0 squelch=0 squelch_level=0.0 rsid=1 status1='' status2='' trx='rx'"
+            }
+          ],
+          "missed_events": [],
+          "false_events": []
+        },
+        "picture": {
+          "pass": true,
+          "checks": {
+            "raw_mae": true,
+            "aligned_mae": true,
+            "channel_bias": true,
+            "alignment_offset": true,
+            "alignment_changes": true
+          },
+          "raw": {
+            "schema": "grampy-accuracy.v1",
+            "kind": "raw-raster-error",
+            "whole_raster": {
+              "mean_absolute_error_255": 3.0752314814814814,
+              "root_mean_square_error_255": 6.359547357524166,
+              "signed_bias_255": -0.1907716049382716,
+              "exact_component_fraction": 0.353125,
+              "psnr_db": 32.0622794942177
+            },
+            "channels": {
+              "red": {
+                "mean_absolute_error_255": 3.1378472222222222,
+                "root_mean_square_error_255": 6.526684896694549,
+                "signed_bias_255": -0.1841898148148148,
+                "exact_component_fraction": 0.35194444444444445,
+                "psnr_db": 31.836950692679544
+              },
+              "green": {
+                "mean_absolute_error_255": 3.181574074074074,
+                "root_mean_square_error_255": 6.514140601627952,
+                "signed_bias_255": -0.1837037037037037,
+                "exact_component_fraction": 0.35085648148148146,
+                "psnr_db": 31.853661045280486
+              },
+              "blue": {
+                "mean_absolute_error_255": 2.906273148148148,
+                "root_mean_square_error_255": 6.024938527425758,
+                "signed_bias_255": -0.2044212962962963,
+                "exact_component_fraction": 0.3565740740740741,
+                "psnr_db": 32.53175120560315
+              }
+            }
+          },
+          "alignment": {
+            "schema": "grampy-accuracy.v1",
+            "kind": "picture-component-alignment",
+            "algorithm": "bounded-regularized-offset-viterbi-v1",
+            "reference_components": 129600,
+            "decoded_components": 129600,
+            "compared_components": 129600,
+            "raw_mean_absolute_error_255": 3.0752315521240234,
+            "raw_exact_component_fraction": 0.353125,
+            "aligned_mean_absolute_error_255": 3.0752315521240234,
+            "aligned_exact_component_fraction": 0.353125,
+            "zero_offset_fraction": 1.0,
+            "maximum_absolute_offset_components": 0,
+            "offset_change_count": 0,
+            "offset_changes": [],
+            "offset_path_rle": [
+              {
+                "start_component": 0,
+                "stop_component": 129600,
+                "offset": 0
+              }
+            ],
+            "alignment_parameters": {
+              "max_offset_components": 24,
+              "change_penalty": 25.0,
+              "offset_penalty": 0.0005
+            }
+          }
+        },
+        "autosave": {
+          "pass": true,
+          "checks": {
+            "raw_mae": true,
+            "aligned_mae": true,
+            "channel_bias": true,
+            "alignment_offset": true,
+            "alignment_changes": true
+          },
+          "raw": {
+            "schema": "grampy-accuracy.v1",
+            "kind": "raw-raster-error",
+            "whole_raster": {
+              "mean_absolute_error_255": 3.0752314814814814,
+              "root_mean_square_error_255": 6.359547357524166,
+              "signed_bias_255": -0.1907716049382716,
+              "exact_component_fraction": 0.353125,
+              "psnr_db": 32.0622794942177
+            },
+            "channels": {
+              "red": {
+                "mean_absolute_error_255": 3.1378472222222222,
+                "root_mean_square_error_255": 6.526684896694549,
+                "signed_bias_255": -0.1841898148148148,
+                "exact_component_fraction": 0.35194444444444445,
+                "psnr_db": 31.836950692679544
+              },
+              "green": {
+                "mean_absolute_error_255": 3.181574074074074,
+                "root_mean_square_error_255": 6.514140601627952,
+                "signed_bias_255": -0.1837037037037037,
+                "exact_component_fraction": 0.35085648148148146,
+                "psnr_db": 31.853661045280486
+              },
+              "blue": {
+                "mean_absolute_error_255": 2.906273148148148,
+                "root_mean_square_error_255": 6.024938527425758,
+                "signed_bias_255": -0.2044212962962963,
+                "exact_component_fraction": 0.3565740740740741,
+                "psnr_db": 32.53175120560315
+              }
+            }
+          },
+          "alignment": {
+            "schema": "grampy-accuracy.v1",
+            "kind": "picture-component-alignment",
+            "algorithm": "bounded-regularized-offset-viterbi-v1",
+            "reference_components": 129600,
+            "decoded_components": 129600,
+            "compared_components": 129600,
+            "raw_mean_absolute_error_255": 3.0752315521240234,
+            "raw_exact_component_fraction": 0.353125,
+            "aligned_mean_absolute_error_255": 3.0752315521240234,
+            "aligned_exact_component_fraction": 0.353125,
+            "zero_offset_fraction": 1.0,
+            "maximum_absolute_offset_components": 0,
+            "offset_change_count": 0,
+            "offset_changes": [],
+            "offset_path_rle": [
+              {
+                "start_component": 0,
+                "stop_component": 129600,
+                "offset": 0
+              }
+            ],
+            "alignment_parameters": {
+              "max_offset_components": 24,
+              "change_penalty": 25.0,
+              "offset_penalty": 0.0005
+            }
+          }
+        },
+        "autosave_equals_viewer": true,
+        "pass": true
+      },
+      "grampy": {
+        "picture_support": "supported",
+        "status": "complete",
+        "warnings": [
+          {
+            "code": "absent-capture-time",
+            "message": "capture time is absent"
+          }
+        ],
+        "configuration": {
+          "block_samples": 262144,
+          "orientation": "unknown",
+          "trace_level": "none",
+          "mode": "auto",
+          "center_hz": null,
+          "picture_component_estimator": "bounded_correlation",
+          "picture_component_window": "full_hann",
+          "picture_filter_profile": "response_matched",
+          "picture_boundary_estimator": "unified_grid",
+          "persistent_tone_policy": "measure",
+          "pipeline_organization": "supported_hybrid",
+          "picture_range_workers": 1,
+          "picture_range_components": 16384,
+          "picture_max_in_flight_ranges": 1,
+          "persistent_intermediates": false
+        },
+        "whole_input_interval": true,
+        "text_and_header_in_order": true,
+        "mode_segments": [
+          {
+            "id": "8567058efc65653ead5251fc",
+            "mode": "MFSK64",
+            "orientation": "normal",
+            "interval": {
+              "start": 169412,
+              "stop": 3866100
+            },
+            "endpoint_uncertainty_samples": 66873,
+            "source": "rsid",
+            "confidence": {
+              "kind": "detector_snr_db",
+              "value": 24.783036505966763,
+              "calibrated": false
+            },
+            "supporting_events": [
+              "3833758127633d4a3650dfde"
+            ],
+            "acquisition_state": "candidate",
+            "symbol_phase_uncertainty_input_samples": 4458,
+            "superseded_alternatives": [],
+            "center_hz": 1499.249267578125,
+            "frequency_track": 0
+          }
+        ],
+        "automatic_modes": true,
+        "automatic_carriers": true,
+        "complete_framing": true,
+        "picture_count": 1,
+        "complete_picture": true,
+        "picture": {
+          "pass": true,
+          "checks": {
+            "raw_mae": true,
+            "aligned_mae": true,
+            "channel_bias": true,
+            "alignment_offset": true,
+            "alignment_changes": true
+          },
+          "raw": {
+            "schema": "grampy-accuracy.v1",
+            "kind": "raw-raster-error",
+            "whole_raster": {
+              "mean_absolute_error_255": 2.62724537037037,
+              "root_mean_square_error_255": 5.332742299427075,
+              "signed_bias_255": 0.1639891975308642,
+              "exact_component_fraction": 0.3804243827160494,
+              "psnr_db": 33.591791663658114
+            },
+            "channels": {
+              "red": {
+                "mean_absolute_error_255": 2.7467129629629627,
+                "root_mean_square_error_255": 5.590646123130498,
+                "signed_bias_255": 0.16546296296296295,
+                "exact_component_fraction": 0.371875,
+                "psnr_db": 33.181563545782986
+              },
+              "green": {
+                "mean_absolute_error_255": 2.7249074074074073,
+                "root_mean_square_error_255": 5.521586426622938,
+                "signed_bias_255": 0.16824074074074075,
+                "exact_component_fraction": 0.3798842592592593,
+                "psnr_db": 33.28952612169409
+              },
+              "blue": {
+                "mean_absolute_error_255": 2.4101157407407405,
+                "root_mean_square_error_255": 4.855016020113173,
+                "signed_bias_255": 0.1582638888888889,
+                "exact_component_fraction": 0.3895138888888889,
+                "psnr_db": 34.40699026289123
+              }
+            }
+          },
+          "alignment": {
+            "schema": "grampy-accuracy.v1",
+            "kind": "picture-component-alignment",
+            "algorithm": "bounded-regularized-offset-viterbi-v1",
+            "reference_components": 129600,
+            "decoded_components": 129600,
+            "compared_components": 129600,
+            "raw_mean_absolute_error_255": 2.6272454261779785,
+            "raw_exact_component_fraction": 0.3804243827160494,
+            "aligned_mean_absolute_error_255": 2.6272454261779785,
+            "aligned_exact_component_fraction": 0.3804243827160494,
+            "zero_offset_fraction": 1.0,
+            "maximum_absolute_offset_components": 0,
+            "offset_change_count": 0,
+            "offset_changes": [],
+            "offset_path_rle": [
+              {
+                "start_component": 0,
+                "stop_component": 129600,
+                "offset": 0
+              }
+            ],
+            "alignment_parameters": {
+              "max_offset_components": 24,
+              "change_penalty": 25.0,
+              "offset_penalty": 0.0005
+            }
+          }
+        },
+        "pass": true
+      },
+      "numerical_pass": true,
+      "pm_visual_status": "pending",
+      "evidence": [
+        {
+          "path": "pi/rgb64-p4-card/decode.tar",
+          "bytes": 235520,
+          "sha256": "b93fbfc36f888741f2d9d873f2f9754aaf742ba05cf055d1469647fe3a87f85c"
+        },
+        {
+          "path": "pi/rgb64-p4-card/viewer.rgb",
+          "bytes": 129600,
+          "sha256": "6b52a193e3b5b5e2c459ea38fca2c93d85a3ad25e570c04622f6f4cf4b425dbc"
+        },
+        {
+          "path": "pi/rgb64-p4-card/viewer-gdb.log",
+          "bytes": 511,
+          "sha256": "14853fc3af4d98fb703e04a2e3c1461e59abe4df587ac3167d6e3c0474aeeafa"
+        },
+        {
+          "path": "cases/rgb64-p4-card/grampy/diagnostic.json",
+          "bytes": 276343,
+          "sha256": "d98e9cf8de38a50cc958de95798f90e747419c220c9da2cadd3f2f506aab3a8c"
+        },
+        {
+          "path": "cases/rgb64-p4-card/grampy/text.json",
+          "bytes": 2949,
+          "sha256": "e84878c6456f3b524603bc08ed9c91aad1f27e221648ae26a32b68ea9fc1bdd6"
+        },
+        {
+          "path": "cases/rgb64-p4-card/grampy/quality.json",
+          "bytes": 7542,
+          "sha256": "78729f4cde6be491bd5847ab483dc432adb7f4026d43dc30b9c59c0b776c9457"
+        },
+        {
+          "path": "cases/rgb64-p4-card/grampy/input.sigmf-meta",
+          "bytes": 194,
+          "sha256": "d58a45f963bb9cfd9f7e3004759b4613e534da749a8bacf0aff4855e2621f5c0"
+        },
+        {
+          "path": "cases/rgb64-p4-card/grampy/input.sigmf-data",
+          "bytes": 30928800,
+          "sha256": "28623d7e35cf713c2a1b9bd479dbb05d2014ca5d64c768d62cc6581b68564923"
+        },
+        {
+          "path": "cases/rgb64-p4-card/encoder-result.json",
+          "bytes": 508,
+          "sha256": "e8cc40f2eba06f5910b72cc792f50aa755cce49aad3701d9f5576daa41c066b1"
+        },
+        {
+          "path": "pi/rgb64-p4-card/command.json",
+          "bytes": 821,
+          "sha256": "1fd76c4ac4a8250a35ab282c9ad93595b9e14d7e021a76081003585b77662376"
+        },
+        {
+          "path": "pi/rgb64-p4-card/received/metadata.json",
+          "bytes": 1513,
+          "sha256": "2db711dbdc93e133d59c8d84ce7b44f4cfde1cc79abb11cc2f045be55f999bb2"
+        },
+        {
+          "path": "pi/rgb64-p4-card/received/decoded.txt",
+          "bytes": 116,
+          "sha256": "b92eb41799973f5b297ad9edb0e15f5f2d9c42a168650426215432218c87ad2d"
+        },
+        {
+          "path": "pi/rgb64-p4-card/received/fldigi/control.log",
+          "bytes": 12867,
+          "sha256": "e9a40a97e22afd6aaf8d4086166fe4cc8924351651ab72737ce647e8fbf9d6d8"
+        }
+      ]
+    },
+    {
+      "id": "rgb64-p2-chart",
+      "mode": "MFSK64",
+      "color": "color",
+      "speed": 2,
+      "source": "chart",
+      "grampy_picture_required": true,
+      "expected_text_in_order": [
+        "\u0002\nGRAM PY PRACTICAL BROADCAST RGB64 P2 CHART\n",
+        "Pic:160x120Cp2;",
+        "\nGRAM PY RGB64 P2 CHART END\n\u0004"
+      ],
+      "expected_modes": [
+        "MFSK64"
+      ],
+      "expected_carriers_hz": [
+        1500.0
+      ],
+      "width": 160,
+      "height": 120,
+      "frame_count": 1453812,
+      "duration_seconds": 30.28775,
+      "encode_seconds": 0.36679658299544826,
+      "wav": {
+        "path": "cases/rgb64-p2-chart/generated.wav",
+        "bytes": 2907668,
+        "sha256": "25fc90bd2590415b84d1f93a01ea61059b77035c2f58e0745e5490f31fb6180b"
+      },
+      "truth": {
+        "path": "cases/rgb64-p2-chart/truth.png",
+        "bytes": 2859,
+        "sha256": "89a6447653925769b728b44b7d97168b792827e6eac2bfffdc28abaa605b3f77"
+      },
+      "independent_waveform": {
+        "nominal": {
+          "rms_pcm_lsb": 0.28591589818588137,
+          "max_pcm_lsb": 0.5112382917227478
+        },
+        "frequency_mutation": {
+          "rms_pcm_lsb": 16381.140370095603,
+          "max_pcm_lsb": 32767.99937857091
+        },
+        "raster_start_frame": 527604,
+        "component_count": 57600
+      },
+      "exact_rsid_audio_silence_frame_checks": "pass",
+      "fldigi": {
+        "checks": {
+          "receiver_exit": true,
+          "whole_wav": true,
+          "text_and_header_in_order": true,
+          "automatic_modes": true,
+          "automatic_carriers": true,
+          "initial_unrelated_mode": true,
+          "no_manual_changes": true,
+          "one_saved_image": true,
+          "grayscale_channels_equal": true,
+          "saved_picture_quality": true
+        },
+        "mode_events": {
+          "schema": "grampy-accuracy.v1",
+          "kind": "mode-event-sequence",
+          "alignment_algorithm": "python-difflib-sequence-matcher-v1",
+          "truth_scope": "ordered_mode_change_sequence",
+          "coordinate_truth_status": "not_available",
+          "expected_count": 1,
+          "detected_count": 1,
+          "matched_count": 1,
+          "missed_count": 0,
+          "false_count": 0,
+          "recall": 1.0,
+          "precision": 1.0,
+          "exact": true,
+          "expected_modes": [
+            "MFSK64"
+          ],
+          "detected_events": [
+            {
+              "mode": "MFSK64",
+              "code": 620,
+              "frequency_hz": 1499.0,
+              "receiver_log_evidence": "status during playback: mode='MFSK64' carrier=1499 quality=0.0 afc=0 squelch=0 squelch_level=0.0 rsid=1 status1='' status2='' trx='rx'"
+            }
+          ],
+          "missed_events": [],
+          "false_events": []
+        },
+        "picture": {
+          "pass": true,
+          "checks": {
+            "raw_mae": true,
+            "aligned_mae": true,
+            "channel_bias": true,
+            "alignment_offset": true,
+            "alignment_changes": true
+          },
+          "raw": {
+            "schema": "grampy-accuracy.v1",
+            "kind": "raw-raster-error",
+            "whole_raster": {
+              "mean_absolute_error_255": 10.70486111111111,
+              "root_mean_square_error_255": 30.480757819027765,
+              "signed_bias_255": -0.19267361111111111,
+              "exact_component_fraction": 0.47850694444444447,
+              "psnr_db": 18.450288402223695
+            },
+            "channels": {
+              "red": {
+                "mean_absolute_error_255": 10.230520833333333,
+                "root_mean_square_error_255": 29.95873550958607,
+                "signed_bias_255": -0.41583333333333333,
+                "exact_component_fraction": 0.424375,
+                "psnr_db": 18.600334032134832
+              },
+              "green": {
+                "mean_absolute_error_255": 11.22828125,
+                "root_mean_square_error_255": 31.131914392629312,
+                "signed_bias_255": 0.009114583333333334,
+                "exact_component_fraction": 0.46359375,
+                "psnr_db": 18.26668705780319
+              },
+              "blue": {
+                "mean_absolute_error_255": 10.65578125,
+                "root_mean_square_error_255": 30.339872520881386,
+                "signed_bias_255": -0.17130208333333333,
+                "exact_component_fraction": 0.5475520833333334,
+                "psnr_db": 18.49052857511252
+              }
+            }
+          },
+          "alignment": {
+            "schema": "grampy-accuracy.v1",
+            "kind": "picture-component-alignment",
+            "algorithm": "bounded-regularized-offset-viterbi-v1",
+            "reference_components": 57600,
+            "decoded_components": 57600,
+            "compared_components": 57600,
+            "raw_mean_absolute_error_255": 10.70486068725586,
+            "raw_exact_component_fraction": 0.47850694444444447,
+            "aligned_mean_absolute_error_255": 10.70486068725586,
+            "aligned_exact_component_fraction": 0.47850694444444447,
+            "zero_offset_fraction": 1.0,
+            "maximum_absolute_offset_components": 0,
+            "offset_change_count": 0,
+            "offset_changes": [],
+            "offset_path_rle": [
+              {
+                "start_component": 0,
+                "stop_component": 57600,
+                "offset": 0
+              }
+            ],
+            "alignment_parameters": {
+              "max_offset_components": 24,
+              "change_penalty": 25.0,
+              "offset_penalty": 0.0005
+            }
+          }
+        },
+        "autosave": {
+          "pass": true,
+          "checks": {
+            "raw_mae": true,
+            "aligned_mae": true,
+            "channel_bias": true,
+            "alignment_offset": true,
+            "alignment_changes": true
+          },
+          "raw": {
+            "schema": "grampy-accuracy.v1",
+            "kind": "raw-raster-error",
+            "whole_raster": {
+              "mean_absolute_error_255": 10.70486111111111,
+              "root_mean_square_error_255": 30.480757819027765,
+              "signed_bias_255": -0.19267361111111111,
+              "exact_component_fraction": 0.47850694444444447,
+              "psnr_db": 18.450288402223695
+            },
+            "channels": {
+              "red": {
+                "mean_absolute_error_255": 10.230520833333333,
+                "root_mean_square_error_255": 29.95873550958607,
+                "signed_bias_255": -0.41583333333333333,
+                "exact_component_fraction": 0.424375,
+                "psnr_db": 18.600334032134832
+              },
+              "green": {
+                "mean_absolute_error_255": 11.22828125,
+                "root_mean_square_error_255": 31.131914392629312,
+                "signed_bias_255": 0.009114583333333334,
+                "exact_component_fraction": 0.46359375,
+                "psnr_db": 18.26668705780319
+              },
+              "blue": {
+                "mean_absolute_error_255": 10.65578125,
+                "root_mean_square_error_255": 30.339872520881386,
+                "signed_bias_255": -0.17130208333333333,
+                "exact_component_fraction": 0.5475520833333334,
+                "psnr_db": 18.49052857511252
+              }
+            }
+          },
+          "alignment": {
+            "schema": "grampy-accuracy.v1",
+            "kind": "picture-component-alignment",
+            "algorithm": "bounded-regularized-offset-viterbi-v1",
+            "reference_components": 57600,
+            "decoded_components": 57600,
+            "compared_components": 57600,
+            "raw_mean_absolute_error_255": 10.70486068725586,
+            "raw_exact_component_fraction": 0.47850694444444447,
+            "aligned_mean_absolute_error_255": 10.70486068725586,
+            "aligned_exact_component_fraction": 0.47850694444444447,
+            "zero_offset_fraction": 1.0,
+            "maximum_absolute_offset_components": 0,
+            "offset_change_count": 0,
+            "offset_changes": [],
+            "offset_path_rle": [
+              {
+                "start_component": 0,
+                "stop_component": 57600,
+                "offset": 0
+              }
+            ],
+            "alignment_parameters": {
+              "max_offset_components": 24,
+              "change_penalty": 25.0,
+              "offset_penalty": 0.0005
+            }
+          }
+        },
+        "autosave_equals_viewer": true,
+        "pass": true
+      },
+      "grampy": {
+        "picture_support": "supported",
+        "status": "complete",
+        "warnings": [
+          {
+            "code": "absent-capture-time",
+            "message": "capture time is absent"
+          }
+        ],
+        "configuration": {
+          "block_samples": 262144,
+          "orientation": "unknown",
+          "trace_level": "none",
+          "mode": "auto",
+          "center_hz": null,
+          "picture_component_estimator": "bounded_correlation",
+          "picture_component_window": "full_hann",
+          "picture_filter_profile": "response_matched",
+          "picture_boundary_estimator": "unified_grid",
+          "persistent_tone_policy": "measure",
+          "pipeline_organization": "supported_hybrid",
+          "picture_range_workers": 1,
+          "picture_range_components": 16384,
+          "picture_max_in_flight_ranges": 1,
+          "persistent_intermediates": false
+        },
+        "whole_input_interval": true,
+        "text_and_header_in_order": true,
+        "mode_segments": [
+          {
+            "id": "8567058efc65653ead5251fc",
+            "mode": "MFSK64",
+            "orientation": "normal",
+            "interval": {
+              "start": 169412,
+              "stop": 1453812
+            },
+            "endpoint_uncertainty_samples": 66873,
+            "source": "rsid",
+            "confidence": {
+              "kind": "detector_snr_db",
+              "value": 24.783042548760807,
+              "calibrated": false
+            },
+            "supporting_events": [
+              "3833758127633d4a3650dfde"
+            ],
+            "acquisition_state": "candidate",
+            "symbol_phase_uncertainty_input_samples": 4458,
+            "superseded_alternatives": [],
+            "center_hz": 1499.249267578125,
+            "frequency_track": 0
+          }
+        ],
+        "automatic_modes": true,
+        "automatic_carriers": true,
+        "complete_framing": true,
+        "picture_count": 1,
+        "complete_picture": true,
+        "picture": {
+          "pass": true,
+          "checks": {
+            "raw_mae": true,
+            "aligned_mae": true,
+            "channel_bias": true,
+            "alignment_offset": true,
+            "alignment_changes": true
+          },
+          "raw": {
+            "schema": "grampy-accuracy.v1",
+            "kind": "raw-raster-error",
+            "whole_raster": {
+              "mean_absolute_error_255": 11.314982638888889,
+              "root_mean_square_error_255": 30.651127460231105,
+              "signed_bias_255": 0.047100694444444445,
+              "exact_component_fraction": 0.6118229166666667,
+              "psnr_db": 18.401874527021896
+            },
+            "channels": {
+              "red": {
+                "mean_absolute_error_255": 10.479583333333334,
+                "root_mean_square_error_255": 29.800718321879426,
+                "signed_bias_255": -0.17854166666666665,
+                "exact_component_fraction": 0.6128645833333334,
+                "psnr_db": 18.646268958383107
+              },
+              "green": {
+                "mean_absolute_error_255": 12.0634375,
+                "root_mean_square_error_255": 31.46135857418324,
+                "signed_bias_255": 0.13947916666666665,
+                "exact_component_fraction": 0.6009375,
+                "psnr_db": 18.17525415804397
+              },
+              "blue": {
+                "mean_absolute_error_255": 11.401927083333334,
+                "root_mean_square_error_255": 30.668794366858744,
+                "signed_bias_255": 0.18036458333333333,
+                "exact_component_fraction": 0.6216666666666667,
+                "psnr_db": 18.396869536771185
+              }
+            }
+          },
+          "alignment": {
+            "schema": "grampy-accuracy.v1",
+            "kind": "picture-component-alignment",
+            "algorithm": "bounded-regularized-offset-viterbi-v1",
+            "reference_components": 57600,
+            "decoded_components": 57600,
+            "compared_components": 57600,
+            "raw_mean_absolute_error_255": 11.314982414245605,
+            "raw_exact_component_fraction": 0.6118229166666667,
+            "aligned_mean_absolute_error_255": 11.314982414245605,
+            "aligned_exact_component_fraction": 0.6118229166666667,
+            "zero_offset_fraction": 1.0,
+            "maximum_absolute_offset_components": 0,
+            "offset_change_count": 0,
+            "offset_changes": [],
+            "offset_path_rle": [
+              {
+                "start_component": 0,
+                "stop_component": 57600,
+                "offset": 0
+              }
+            ],
+            "alignment_parameters": {
+              "max_offset_components": 24,
+              "change_penalty": 25.0,
+              "offset_penalty": 0.0005
+            }
+          }
+        },
+        "pass": true
+      },
+      "numerical_pass": true,
+      "pm_visual_status": "pending",
+      "evidence": [
+        {
+          "path": "pi/rgb64-p2-chart/decode.tar",
+          "bytes": 133120,
+          "sha256": "22603241803c74b4b2eef09e0c2f43ef86f64992dec057308d5fe833674f026a"
+        },
+        {
+          "path": "pi/rgb64-p2-chart/viewer.rgb",
+          "bytes": 57600,
+          "sha256": "5d4dfbbb8a710acd091bc39150d75d771669d7f50ce565722ef1b3c24c00d03f"
+        },
+        {
+          "path": "pi/rgb64-p2-chart/viewer-gdb.log",
+          "bytes": 510,
+          "sha256": "fc0b6ea0d5b143a6d09eacf7289edc0d378ed9d0762b4893b51278e8da47e626"
+        },
+        {
+          "path": "cases/rgb64-p2-chart/grampy/diagnostic.json",
+          "bytes": 276404,
+          "sha256": "52eb480d5ee554ac56eab8d220e50fda516fda2cfe424064b0df4c97fbcc883a"
+        },
+        {
+          "path": "cases/rgb64-p2-chart/grampy/text.json",
+          "bytes": 2951,
+          "sha256": "636574d9e5a323a748b4b73ed5a0689cad099925907a56e8ec6669c3ec12be48"
+        },
+        {
+          "path": "cases/rgb64-p2-chart/grampy/quality.json",
+          "bytes": 4872,
+          "sha256": "3e8722fd713bd644efa1c72b62c07586c42b67da0691325c2ebd656d28c311ea"
+        },
+        {
+          "path": "cases/rgb64-p2-chart/grampy/input.sigmf-meta",
+          "bytes": 194,
+          "sha256": "d58a45f963bb9cfd9f7e3004759b4613e534da749a8bacf0aff4855e2621f5c0"
+        },
+        {
+          "path": "cases/rgb64-p2-chart/grampy/input.sigmf-data",
+          "bytes": 11630496,
+          "sha256": "e58c44a060018a604decda86f133e58ec740308da5c872f7630a7b7ee922e71a"
+        },
+        {
+          "path": "cases/rgb64-p2-chart/encoder-result.json",
+          "bytes": 509,
+          "sha256": "1d4cac444eb898e92c69f9b0c999f0a887b0fd2c5be93c2bf01b406054bb28d2"
+        },
+        {
+          "path": "pi/rgb64-p2-chart/command.json",
+          "bytes": 825,
+          "sha256": "6af408a0ce3cc00cc7c127b70d11044388bdd0988fefc38185b0ebefee7a5a90"
+        },
+        {
+          "path": "pi/rgb64-p2-chart/received/metadata.json",
+          "bytes": 1513,
+          "sha256": "aa61e25460ba7ef740cd9ffb126abe81ca999dd480e09bf9d21c27ed81f6fb85"
+        },
+        {
+          "path": "pi/rgb64-p2-chart/received/decoded.txt",
+          "bytes": 332,
+          "sha256": "2717c28108a62badda0d3ead4b3894c36c690eedf29134bbfe656e9267dbbf85"
+        },
+        {
+          "path": "pi/rgb64-p2-chart/received/fldigi/control.log",
+          "bytes": 6796,
+          "sha256": "5fa44c79b49efa40f2d6a9ed1d687cbd66e13d50614f8deaa55a14087cf28233"
+        }
+      ]
+    },
+    {
+      "id": "gray32-p8-card",
+      "mode": "MFSK32",
+      "color": "grayscale",
+      "speed": 8,
+      "source": "card",
+      "grampy_picture_required": false,
+      "expected_text_in_order": [
+        "\u0002\nGRAM PY PRACTICAL BROADCAST GRAY32 P8 CARD\n",
+        "Pic:240x180;",
+        "\nGRAM PY GRAY32 P8 CARD END\n\u0004"
+      ],
+      "expected_modes": [
+        "MFSK32"
+      ],
+      "expected_carriers_hz": [
+        1500.0
+      ],
+      "width": 240,
+      "height": 180,
+      "frame_count": 3056538,
+      "duration_seconds": 63.677875,
+      "encode_seconds": 0.8533322910079733,
+      "wav": {
+        "path": "cases/gray32-p8-card/generated.wav",
+        "bytes": 6113120,
+        "sha256": "f7291065b072e0fad8e201b434ac99a5e73f8833dad2d7f7fc4e56468cce901b"
+      },
+      "truth": {
+        "path": "cases/gray32-p8-card/truth.png",
+        "bytes": 23641,
+        "sha256": "313ed61c44caaee44823e304b1ccc2332858710c3fd7d1ee67b57043b2cb998f"
+      },
+      "independent_waveform": {
+        "nominal": {
+          "rms_pcm_lsb": 0.28767766206967366,
+          "max_pcm_lsb": 0.5272291720375506
+        },
+        "frequency_mutation": {
+          "rms_pcm_lsb": 16382.902233205921,
+          "max_pcm_lsb": 32767.999624914995
+        },
+        "raster_start_frame": 625050,
+        "component_count": 43200
+      },
+      "exact_rsid_audio_silence_frame_checks": "pass",
+      "fldigi": {
+        "checks": {
+          "receiver_exit": true,
+          "whole_wav": true,
+          "text_and_header_in_order": true,
+          "automatic_modes": true,
+          "automatic_carriers": true,
+          "initial_unrelated_mode": true,
+          "no_manual_changes": true,
+          "one_saved_image": true,
+          "grayscale_channels_equal": true,
+          "saved_picture_quality": true
+        },
+        "mode_events": {
+          "schema": "grampy-accuracy.v1",
+          "kind": "mode-event-sequence",
+          "alignment_algorithm": "python-difflib-sequence-matcher-v1",
+          "truth_scope": "ordered_mode_change_sequence",
+          "coordinate_truth_status": "not_available",
+          "expected_count": 1,
+          "detected_count": 1,
+          "matched_count": 1,
+          "missed_count": 0,
+          "false_count": 0,
+          "recall": 1.0,
+          "precision": 1.0,
+          "exact": true,
+          "expected_modes": [
+            "MFSK32"
+          ],
+          "detected_events": [
+            {
+              "mode": "MFSK32",
+              "code": 147,
+              "frequency_hz": 1499.0,
+              "receiver_log_evidence": "status during playback: mode='MFSK32' carrier=1499 quality=75.503115 afc=0 squelch=0 squelch_level=0.0 rsid=1 status1='' status2='' trx='rx'"
+            }
+          ],
+          "missed_events": [],
+          "false_events": []
+        },
+        "picture": {
+          "pass": true,
+          "checks": {
+            "raw_mae": true,
+            "aligned_mae": true,
+            "channel_bias": true,
+            "alignment_offset": true,
+            "alignment_changes": true
+          },
+          "raw": {
+            "schema": "grampy-accuracy.v1",
+            "kind": "raw-raster-error",
+            "whole_raster": {
+              "mean_absolute_error_255": 3.632175925925926,
+              "root_mean_square_error_255": 7.657905622199749,
+              "signed_bias_255": 0.027777777777777776,
+              "exact_component_fraction": 0.3456712962962963,
+              "psnr_db": 30.448603414699143
+            },
+            "channels": {
+              "gray": {
+                "mean_absolute_error_255": 3.632175925925926,
+                "root_mean_square_error_255": 7.657905622199749,
+                "signed_bias_255": 0.027777777777777776,
+                "exact_component_fraction": 0.3456712962962963,
+                "psnr_db": 30.448603414699143
+              }
+            }
+          },
+          "alignment": {
+            "schema": "grampy-accuracy.v1",
+            "kind": "picture-component-alignment",
+            "algorithm": "bounded-regularized-offset-viterbi-v1",
+            "reference_components": 43200,
+            "decoded_components": 43200,
+            "compared_components": 43200,
+            "raw_mean_absolute_error_255": 3.632175922393799,
+            "raw_exact_component_fraction": 0.3456712962962963,
+            "aligned_mean_absolute_error_255": 3.632175922393799,
+            "aligned_exact_component_fraction": 0.3456712962962963,
+            "zero_offset_fraction": 1.0,
+            "maximum_absolute_offset_components": 0,
+            "offset_change_count": 0,
+            "offset_changes": [],
+            "offset_path_rle": [
+              {
+                "start_component": 0,
+                "stop_component": 43200,
+                "offset": 0
+              }
+            ],
+            "alignment_parameters": {
+              "max_offset_components": 24,
+              "change_penalty": 25.0,
+              "offset_penalty": 0.0005
+            }
+          }
+        },
+        "autosave": {
+          "pass": true,
+          "checks": {
+            "raw_mae": true,
+            "aligned_mae": true,
+            "channel_bias": true,
+            "alignment_offset": true,
+            "alignment_changes": true
+          },
+          "raw": {
+            "schema": "grampy-accuracy.v1",
+            "kind": "raw-raster-error",
+            "whole_raster": {
+              "mean_absolute_error_255": 3.632175925925926,
+              "root_mean_square_error_255": 7.657905622199749,
+              "signed_bias_255": 0.027777777777777776,
+              "exact_component_fraction": 0.3456712962962963,
+              "psnr_db": 30.448603414699143
+            },
+            "channels": {
+              "gray": {
+                "mean_absolute_error_255": 3.632175925925926,
+                "root_mean_square_error_255": 7.657905622199749,
+                "signed_bias_255": 0.027777777777777776,
+                "exact_component_fraction": 0.3456712962962963,
+                "psnr_db": 30.448603414699143
+              }
+            }
+          },
+          "alignment": {
+            "schema": "grampy-accuracy.v1",
+            "kind": "picture-component-alignment",
+            "algorithm": "bounded-regularized-offset-viterbi-v1",
+            "reference_components": 43200,
+            "decoded_components": 43200,
+            "compared_components": 43200,
+            "raw_mean_absolute_error_255": 3.632175922393799,
+            "raw_exact_component_fraction": 0.3456712962962963,
+            "aligned_mean_absolute_error_255": 3.632175922393799,
+            "aligned_exact_component_fraction": 0.3456712962962963,
+            "zero_offset_fraction": 1.0,
+            "maximum_absolute_offset_components": 0,
+            "offset_change_count": 0,
+            "offset_changes": [],
+            "offset_path_rle": [
+              {
+                "start_component": 0,
+                "stop_component": 43200,
+                "offset": 0
+              }
+            ],
+            "alignment_parameters": {
+              "max_offset_components": 24,
+              "change_penalty": 25.0,
+              "offset_penalty": 0.0005
+            }
+          }
+        },
+        "autosave_equals_viewer": true,
+        "pass": true
+      },
+      "grampy": {
+        "picture_support": "MFSK32 production picture decoding outside accepted decoder scope",
+        "status": "complete",
+        "warnings": [
+          {
+            "code": "absent-capture-time",
+            "message": "capture time is absent"
+          }
+        ],
+        "configuration": {
+          "block_samples": 262144,
+          "orientation": "unknown",
+          "trace_level": "none",
+          "mode": "auto",
+          "center_hz": null,
+          "picture_component_estimator": "bounded_correlation",
+          "picture_component_window": "full_hann",
+          "picture_filter_profile": "response_matched",
+          "picture_boundary_estimator": "unified_grid",
+          "persistent_tone_policy": "measure",
+          "pipeline_organization": "supported_hybrid",
+          "picture_range_workers": 1,
+          "picture_range_components": 16384,
+          "picture_max_in_flight_ranges": 1,
+          "persistent_intermediates": false
+        },
+        "whole_input_interval": true,
+        "text_and_header_in_order": true,
+        "mode_segments": [
+          {
+            "id": "e8c8fbcff94c176a34b77305",
+            "mode": "MFSK32",
+            "orientation": "normal",
+            "interval": {
+              "start": 66873,
+              "stop": 3056538
+            },
+            "endpoint_uncertainty_samples": 66873,
+            "source": "rsid",
+            "confidence": {
+              "kind": "detector_snr_db",
+              "value": 21.245009192000698,
+              "calibrated": false
+            },
+            "supporting_events": [
+              "51c6543a69c58fb98e9f1d03"
+            ],
+            "acquisition_state": "candidate",
+            "symbol_phase_uncertainty_input_samples": 4458,
+            "superseded_alternatives": [],
+            "center_hz": 1499.249267578125,
+            "frequency_track": 0
+          }
+        ],
+        "automatic_modes": true,
+        "automatic_carriers": true,
+        "complete_framing": true,
+        "picture_count": 0,
+        "complete_picture": false,
+        "pass": true
+      },
+      "numerical_pass": true,
+      "pm_visual_status": "pending",
+      "evidence": [
+        {
+          "path": "pi/gray32-p8-card/decode.tar",
+          "bytes": 174080,
+          "sha256": "f0933ca07bfbc4ad411be1e8705713177d2a6deeec7a93dbc83867705cf5193b"
+        },
+        {
+          "path": "pi/gray32-p8-card/viewer.rgb",
+          "bytes": 129600,
+          "sha256": "0a646b9a597e4ec4b6230495ecd35e62ebc59136b9a9cb8df11637942a8d140d"
+        },
+        {
+          "path": "pi/gray32-p8-card/viewer-gdb.log",
+          "bytes": 511,
+          "sha256": "1b490bc7eb79be4bd55799ce449f081275bf3d345846a6a7d184df8613a24200"
+        },
+        {
+          "path": "cases/gray32-p8-card/grampy/diagnostic.json",
+          "bytes": 870096,
+          "sha256": "9770c543399704831448e637a0ca6fa66cbd9174e2edca5a1bd86185fb7053cb"
+        },
+        {
+          "path": "cases/gray32-p8-card/grampy/text.json",
+          "bytes": 2727,
+          "sha256": "5f244b2572c73315bdcf742e06b2f2de72bdc0f522125b7da7183bed455b1976"
+        },
+        {
+          "path": "cases/gray32-p8-card/grampy/quality.json",
+          "bytes": 6657,
+          "sha256": "7707874efe61833775d032daf81aa198c2e5f86a7c8d8bb078f9f8d582a0d439"
+        },
+        {
+          "path": "cases/gray32-p8-card/grampy/input.sigmf-meta",
+          "bytes": 194,
+          "sha256": "d58a45f963bb9cfd9f7e3004759b4613e534da749a8bacf0aff4855e2621f5c0"
+        },
+        {
+          "path": "cases/gray32-p8-card/grampy/input.sigmf-data",
+          "bytes": 24452304,
+          "sha256": "5c564b2116a8fcd5b7e8e1599235febb93471e9b385af126c406f90bb6eb156c"
+        },
+        {
+          "path": "cases/gray32-p8-card/encoder-result.json",
+          "bytes": 513,
+          "sha256": "80ab30c537bed643c9db4b297a3fa240d800212fb684193aad0c68c14e912609"
+        },
+        {
+          "path": "pi/gray32-p8-card/command.json",
+          "bytes": 825,
+          "sha256": "ff183ddde5d9f0a753ed76f0af413b5ccf3f34f3d9676be5307e864ca350b243"
+        },
+        {
+          "path": "pi/gray32-p8-card/received/metadata.json",
+          "bytes": 1513,
+          "sha256": "035c3a6eaf5c0126a4a391048bee40483f722fd1fbcb57346686b423f3f7ffd1"
+        },
+        {
+          "path": "pi/gray32-p8-card/received/decoded.txt",
+          "bytes": 108,
+          "sha256": "b65b4f4622deb780c3fcdcc5c3a26fb5047a814ccd166a04fd8b551af8f5b544"
+        },
+        {
+          "path": "pi/gray32-p8-card/received/fldigi/control.log",
+          "bytes": 10452,
+          "sha256": "9242993c3662e6feaae295d6e3ece4dec0867aa1ee8be608bfe209ae99082105"
+        }
+      ]
+    },
+    {
+      "id": "gray32-p4-photo",
+      "mode": "MFSK32",
+      "color": "grayscale",
+      "speed": 4,
+      "source": "photo",
+      "grampy_picture_required": false,
+      "expected_text_in_order": [
+        "\u0002\nGRAM PY PRACTICAL BROADCAST GRAY32 P4 PHOTO\n",
+        "Pic:240x180p4;",
+        "\nGRAM PY GRAY32 P4 PHOTO END\n\u0004"
+      ],
+      "expected_modes": [
+        "MFSK32"
+      ],
+      "expected_carriers_hz": [
+        1500.0
+      ],
+      "width": 240,
+      "height": 180,
+      "frame_count": 2044314,
+      "duration_seconds": 42.589875,
+      "encode_seconds": 0.49219666700810194,
+      "wav": {
+        "path": "cases/gray32-p4-photo/generated.wav",
+        "bytes": 4088672,
+        "sha256": "9d7ef79fa1def81e082d1b120f50e21071e7c1f1c86bba665669d5304704f9ec"
+      },
+      "truth": {
+        "path": "cases/gray32-p4-photo/truth.png",
+        "bytes": 19987,
+        "sha256": "457d5428a7ff449c352de059809b55701b917f2c0290c709998d27e33b665115"
+      },
+      "independent_waveform": {
+        "nominal": {
+          "rms_pcm_lsb": 0.28739740339910447,
+          "max_pcm_lsb": 0.5018028798031082
+        },
+        "frequency_mutation": {
+          "rms_pcm_lsb": 16381.747025888759,
+          "max_pcm_lsb": 32767.99559028012
+        },
+        "raster_start_frame": 643482,
+        "component_count": 43200
+      },
+      "exact_rsid_audio_silence_frame_checks": "pass",
+      "fldigi": {
+        "checks": {
+          "receiver_exit": true,
+          "whole_wav": true,
+          "text_and_header_in_order": true,
+          "automatic_modes": true,
+          "automatic_carriers": true,
+          "initial_unrelated_mode": true,
+          "no_manual_changes": true,
+          "one_saved_image": true,
+          "grayscale_channels_equal": true,
+          "saved_picture_quality": true
+        },
+        "mode_events": {
+          "schema": "grampy-accuracy.v1",
+          "kind": "mode-event-sequence",
+          "alignment_algorithm": "python-difflib-sequence-matcher-v1",
+          "truth_scope": "ordered_mode_change_sequence",
+          "coordinate_truth_status": "not_available",
+          "expected_count": 1,
+          "detected_count": 1,
+          "matched_count": 1,
+          "missed_count": 0,
+          "false_count": 0,
+          "recall": 1.0,
+          "precision": 1.0,
+          "exact": true,
+          "expected_modes": [
+            "MFSK32"
+          ],
+          "detected_events": [
+            {
+              "mode": "MFSK32",
+              "code": 147,
+              "frequency_hz": 1499.0,
+              "receiver_log_evidence": "status during playback: mode='MFSK32' carrier=1499 quality=70.618529 afc=0 squelch=0 squelch_level=0.0 rsid=1 status1='' status2='' trx='rx'"
+            }
+          ],
+          "missed_events": [],
+          "false_events": []
+        },
+        "picture": {
+          "pass": true,
+          "checks": {
+            "raw_mae": true,
+            "aligned_mae": true,
+            "channel_bias": true,
+            "alignment_offset": true,
+            "alignment_changes": true
+          },
+          "raw": {
+            "schema": "grampy-accuracy.v1",
+            "kind": "raw-raster-error",
+            "whole_raster": {
+              "mean_absolute_error_255": 1.6348842592592592,
+              "root_mean_square_error_255": 4.214104953077884,
+              "signed_bias_255": 0.030810185185185184,
+              "exact_component_fraction": 0.47583333333333333,
+              "psnr_db": 35.6366966568256
+            },
+            "channels": {
+              "gray": {
+                "mean_absolute_error_255": 1.6348842592592592,
+                "root_mean_square_error_255": 4.214104953077884,
+                "signed_bias_255": 0.030810185185185184,
+                "exact_component_fraction": 0.47583333333333333,
+                "psnr_db": 35.6366966568256
+              }
+            }
+          },
+          "alignment": {
+            "schema": "grampy-accuracy.v1",
+            "kind": "picture-component-alignment",
+            "algorithm": "bounded-regularized-offset-viterbi-v1",
+            "reference_components": 43200,
+            "decoded_components": 43200,
+            "compared_components": 43200,
+            "raw_mean_absolute_error_255": 1.634884238243103,
+            "raw_exact_component_fraction": 0.47583333333333333,
+            "aligned_mean_absolute_error_255": 1.634884238243103,
+            "aligned_exact_component_fraction": 0.47583333333333333,
+            "zero_offset_fraction": 1.0,
+            "maximum_absolute_offset_components": 0,
+            "offset_change_count": 0,
+            "offset_changes": [],
+            "offset_path_rle": [
+              {
+                "start_component": 0,
+                "stop_component": 43200,
+                "offset": 0
+              }
+            ],
+            "alignment_parameters": {
+              "max_offset_components": 24,
+              "change_penalty": 25.0,
+              "offset_penalty": 0.0005
+            }
+          }
+        },
+        "autosave": {
+          "pass": true,
+          "checks": {
+            "raw_mae": true,
+            "aligned_mae": true,
+            "channel_bias": true,
+            "alignment_offset": true,
+            "alignment_changes": true
+          },
+          "raw": {
+            "schema": "grampy-accuracy.v1",
+            "kind": "raw-raster-error",
+            "whole_raster": {
+              "mean_absolute_error_255": 1.6348842592592592,
+              "root_mean_square_error_255": 4.214104953077884,
+              "signed_bias_255": 0.030810185185185184,
+              "exact_component_fraction": 0.47583333333333333,
+              "psnr_db": 35.6366966568256
+            },
+            "channels": {
+              "gray": {
+                "mean_absolute_error_255": 1.6348842592592592,
+                "root_mean_square_error_255": 4.214104953077884,
+                "signed_bias_255": 0.030810185185185184,
+                "exact_component_fraction": 0.47583333333333333,
+                "psnr_db": 35.6366966568256
+              }
+            }
+          },
+          "alignment": {
+            "schema": "grampy-accuracy.v1",
+            "kind": "picture-component-alignment",
+            "algorithm": "bounded-regularized-offset-viterbi-v1",
+            "reference_components": 43200,
+            "decoded_components": 43200,
+            "compared_components": 43200,
+            "raw_mean_absolute_error_255": 1.634884238243103,
+            "raw_exact_component_fraction": 0.47583333333333333,
+            "aligned_mean_absolute_error_255": 1.634884238243103,
+            "aligned_exact_component_fraction": 0.47583333333333333,
+            "zero_offset_fraction": 1.0,
+            "maximum_absolute_offset_components": 0,
+            "offset_change_count": 0,
+            "offset_changes": [],
+            "offset_path_rle": [
+              {
+                "start_component": 0,
+                "stop_component": 43200,
+                "offset": 0
+              }
+            ],
+            "alignment_parameters": {
+              "max_offset_components": 24,
+              "change_penalty": 25.0,
+              "offset_penalty": 0.0005
+            }
+          }
+        },
+        "autosave_equals_viewer": true,
+        "pass": true
+      },
+      "grampy": {
+        "picture_support": "MFSK32 production picture decoding outside accepted decoder scope",
+        "status": "complete",
+        "warnings": [
+          {
+            "code": "absent-capture-time",
+            "message": "capture time is absent"
+          }
+        ],
+        "configuration": {
+          "block_samples": 262144,
+          "orientation": "unknown",
+          "trace_level": "none",
+          "mode": "auto",
+          "center_hz": null,
+          "picture_component_estimator": "bounded_correlation",
+          "picture_component_window": "full_hann",
+          "picture_filter_profile": "response_matched",
+          "picture_boundary_estimator": "unified_grid",
+          "persistent_tone_policy": "measure",
+          "pipeline_organization": "supported_hybrid",
+          "picture_range_workers": 1,
+          "picture_range_components": 16384,
+          "picture_max_in_flight_ranges": 1,
+          "persistent_intermediates": false
+        },
+        "whole_input_interval": true,
+        "text_and_header_in_order": true,
+        "mode_segments": [
+          {
+            "id": "e8c8fbcff94c176a34b77305",
+            "mode": "MFSK32",
+            "orientation": "normal",
+            "interval": {
+              "start": 66873,
+              "stop": 2044314
+            },
+            "endpoint_uncertainty_samples": 66873,
+            "source": "rsid",
+            "confidence": {
+              "kind": "detector_snr_db",
+              "value": 21.245008848309933,
+              "calibrated": false
+            },
+            "supporting_events": [
+              "51c6543a69c58fb98e9f1d03"
+            ],
+            "acquisition_state": "candidate",
+            "symbol_phase_uncertainty_input_samples": 4458,
+            "superseded_alternatives": [],
+            "center_hz": 1499.249267578125,
+            "frequency_track": 0
+          }
+        ],
+        "automatic_modes": true,
+        "automatic_carriers": true,
+        "complete_framing": true,
+        "picture_count": 0,
+        "complete_picture": false,
+        "pass": true
+      },
+      "numerical_pass": true,
+      "pm_visual_status": "pending",
+      "evidence": [
+        {
+          "path": "pi/gray32-p4-photo/decode.tar",
+          "bytes": 143360,
+          "sha256": "d432dd11c4a942d11d3750580a557813a7e5b7ccfe2d9eeda9f311e8a298fd34"
+        },
+        {
+          "path": "pi/gray32-p4-photo/viewer.rgb",
+          "bytes": 129600,
+          "sha256": "26378d8a09dcf404404196fc2278b2bbca86d74984dedb87cafde6b8f214a9f3"
+        },
+        {
+          "path": "pi/gray32-p4-photo/viewer-gdb.log",
+          "bytes": 511,
+          "sha256": "92eb80afe9b26b23d2dedd59569293e49df38e69172b457cd91619c06771fa18"
+        },
+        {
+          "path": "cases/gray32-p4-photo/grampy/diagnostic.json",
+          "bytes": 601157,
+          "sha256": "06343a407c705399302a1ea1fe259423472ad98625f9beaa2b9e882126344ac3"
+        },
+        {
+          "path": "cases/gray32-p4-photo/grampy/text.json",
+          "bytes": 2180,
+          "sha256": "41cf8babb170b177e38ace39d68c1fad15c3a522e8e226602d31c340fe003cb7"
+        },
+        {
+          "path": "cases/gray32-p4-photo/grampy/quality.json",
+          "bytes": 5515,
+          "sha256": "27ad7b94e42dd5b5d2f2922de66c8fd8d6c7b2d00c787c1c8ac24295c96b08f3"
+        },
+        {
+          "path": "cases/gray32-p4-photo/grampy/input.sigmf-meta",
+          "bytes": 194,
+          "sha256": "d58a45f963bb9cfd9f7e3004759b4613e534da749a8bacf0aff4855e2621f5c0"
+        },
+        {
+          "path": "cases/gray32-p4-photo/grampy/input.sigmf-data",
+          "bytes": 16354512,
+          "sha256": "b721e3602486a716ce04d862845b2a985def43b8a7addb072afb49bf004d535c"
+        },
+        {
+          "path": "cases/gray32-p4-photo/encoder-result.json",
+          "bytes": 514,
+          "sha256": "96fac401589ad9807ae5592a790997d113f9a69da0f8bbce60ae10e2a3f62fd7"
+        },
+        {
+          "path": "pi/gray32-p4-photo/command.json",
+          "bytes": 829,
+          "sha256": "e0053fd7f44d63dd98de37112a8e60f07773e2a92751bff5492c7d15cc4dba37"
+        },
+        {
+          "path": "pi/gray32-p4-photo/received/metadata.json",
+          "bytes": 1515,
+          "sha256": "2679e0383af682b7993317d4777f7f4a2dbed5ea895962afb01d78015a23d1d3"
+        },
+        {
+          "path": "pi/gray32-p4-photo/received/decoded.txt",
+          "bytes": 112,
+          "sha256": "5a4658a1e4c84f85229a0d1581ea1c6938d5d5c20f5308669a5db776cf1f84b3"
+        },
+        {
+          "path": "pi/gray32-p4-photo/received/fldigi/control.log",
+          "bytes": 8025,
+          "sha256": "c8d6b1c30f4e05afaeb7d70dc7c4734a408828ad3b5f131e532bf368a2c07c75"
+        }
+      ]
+    },
+    {
+      "id": "gray32-p2-chart",
+      "mode": "MFSK32",
+      "color": "grayscale",
+      "speed": 2,
+      "source": "chart",
+      "grampy_picture_required": false,
+      "expected_text_in_order": [
+        "\u0002\nGRAM PY PRACTICAL BROADCAST GRAY32 P2 CHART\n",
+        "Pic:160x120p2;",
+        "\nGRAM PY GRAY32 P2 CHART END\n\u0004"
+      ],
+      "expected_modes": [
+        "MFSK32"
+      ],
+      "expected_carriers_hz": [
+        1500.0
+      ],
+      "width": 160,
+      "height": 120,
+      "frame_count": 1237914,
+      "duration_seconds": 25.789875,
+      "encode_seconds": 0.28422441601287574,
+      "wav": {
+        "path": "cases/gray32-p2-chart/generated.wav",
+        "bytes": 2475872,
+        "sha256": "c7e80cfceef19e014542d41fc7e224631bbe2c04288b4188a1a4d1f73e721d1e"
+      },
+      "truth": {
+        "path": "cases/gray32-p2-chart/truth.png",
+        "bytes": 1465,
+        "sha256": "ef5b254666f554eb2e02641fad50b2a06c78f9e90c1ae3d7f3f1f606bd9e4770"
+      },
+      "independent_waveform": {
+        "nominal": {
+          "rms_pcm_lsb": 0.28778515533221183,
+          "max_pcm_lsb": 0.5010163411579924
+        },
+        "frequency_mutation": {
+          "rms_pcm_lsb": 16374.44449176742,
+          "max_pcm_lsb": 32767.98136338559
+        },
+        "raster_start_frame": 643482,
+        "component_count": 19200
+      },
+      "exact_rsid_audio_silence_frame_checks": "pass",
+      "fldigi": {
+        "checks": {
+          "receiver_exit": true,
+          "whole_wav": true,
+          "text_and_header_in_order": true,
+          "automatic_modes": true,
+          "automatic_carriers": true,
+          "initial_unrelated_mode": true,
+          "no_manual_changes": true,
+          "one_saved_image": true,
+          "grayscale_channels_equal": true,
+          "saved_picture_quality": true
+        },
+        "mode_events": {
+          "schema": "grampy-accuracy.v1",
+          "kind": "mode-event-sequence",
+          "alignment_algorithm": "python-difflib-sequence-matcher-v1",
+          "truth_scope": "ordered_mode_change_sequence",
+          "coordinate_truth_status": "not_available",
+          "expected_count": 1,
+          "detected_count": 1,
+          "matched_count": 1,
+          "missed_count": 0,
+          "false_count": 0,
+          "recall": 1.0,
+          "precision": 1.0,
+          "exact": true,
+          "expected_modes": [
+            "MFSK32"
+          ],
+          "detected_events": [
+            {
+              "mode": "MFSK32",
+              "code": 147,
+              "frequency_hz": 1499.0,
+              "receiver_log_evidence": "status during playback: mode='MFSK32' carrier=1499 quality=72.106258 afc=0 squelch=0 squelch_level=0.0 rsid=1 status1='' status2='' trx='rx'"
+            }
+          ],
+          "missed_events": [],
+          "false_events": []
+        },
+        "picture": {
+          "pass": true,
+          "checks": {
+            "raw_mae": true,
+            "aligned_mae": true,
+            "channel_bias": true,
+            "alignment_offset": true,
+            "alignment_changes": true
+          },
+          "raw": {
+            "schema": "grampy-accuracy.v1",
+            "kind": "raw-raster-error",
+            "whole_raster": {
+              "mean_absolute_error_255": 14.107864583333333,
+              "root_mean_square_error_255": 35.116227403913044,
+              "signed_bias_255": -0.03442708333333333,
+              "exact_component_fraction": 0.31234375,
+              "psnr_db": 17.22064655378645
+            },
+            "channels": {
+              "gray": {
+                "mean_absolute_error_255": 14.107864583333333,
+                "root_mean_square_error_255": 35.116227403913044,
+                "signed_bias_255": -0.03442708333333333,
+                "exact_component_fraction": 0.31234375,
+                "psnr_db": 17.22064655378645
+              }
+            }
+          },
+          "alignment": {
+            "schema": "grampy-accuracy.v1",
+            "kind": "picture-component-alignment",
+            "algorithm": "bounded-regularized-offset-viterbi-v1",
+            "reference_components": 19200,
+            "decoded_components": 19200,
+            "compared_components": 19200,
+            "raw_mean_absolute_error_255": 14.107864379882812,
+            "raw_exact_component_fraction": 0.31234375,
+            "aligned_mean_absolute_error_255": 12.527864456176758,
+            "aligned_exact_component_fraction": 0.578125,
+            "zero_offset_fraction": 0.06697916666666667,
+            "maximum_absolute_offset_components": 2,
+            "offset_change_count": 2,
+            "offset_changes": [
+              {
+                "component_index": 1286,
+                "offset": -1
+              },
+              {
+                "component_index": 1301,
+                "offset": -2
+              }
+            ],
+            "offset_path_rle": [
+              {
+                "start_component": 0,
+                "stop_component": 1286,
+                "offset": 0
+              },
+              {
+                "start_component": 1286,
+                "stop_component": 1301,
+                "offset": -1
+              },
+              {
+                "start_component": 1301,
+                "stop_component": 19200,
+                "offset": -2
+              }
+            ],
+            "alignment_parameters": {
+              "max_offset_components": 24,
+              "change_penalty": 25.0,
+              "offset_penalty": 0.0005
+            }
+          }
+        },
+        "autosave": {
+          "pass": true,
+          "checks": {
+            "raw_mae": true,
+            "aligned_mae": true,
+            "channel_bias": true,
+            "alignment_offset": true,
+            "alignment_changes": true
+          },
+          "raw": {
+            "schema": "grampy-accuracy.v1",
+            "kind": "raw-raster-error",
+            "whole_raster": {
+              "mean_absolute_error_255": 14.107864583333333,
+              "root_mean_square_error_255": 35.116227403913044,
+              "signed_bias_255": -0.03442708333333333,
+              "exact_component_fraction": 0.31234375,
+              "psnr_db": 17.22064655378645
+            },
+            "channels": {
+              "gray": {
+                "mean_absolute_error_255": 14.107864583333333,
+                "root_mean_square_error_255": 35.116227403913044,
+                "signed_bias_255": -0.03442708333333333,
+                "exact_component_fraction": 0.31234375,
+                "psnr_db": 17.22064655378645
+              }
+            }
+          },
+          "alignment": {
+            "schema": "grampy-accuracy.v1",
+            "kind": "picture-component-alignment",
+            "algorithm": "bounded-regularized-offset-viterbi-v1",
+            "reference_components": 19200,
+            "decoded_components": 19200,
+            "compared_components": 19200,
+            "raw_mean_absolute_error_255": 14.107864379882812,
+            "raw_exact_component_fraction": 0.31234375,
+            "aligned_mean_absolute_error_255": 12.527864456176758,
+            "aligned_exact_component_fraction": 0.578125,
+            "zero_offset_fraction": 0.06697916666666667,
+            "maximum_absolute_offset_components": 2,
+            "offset_change_count": 2,
+            "offset_changes": [
+              {
+                "component_index": 1286,
+                "offset": -1
+              },
+              {
+                "component_index": 1301,
+                "offset": -2
+              }
+            ],
+            "offset_path_rle": [
+              {
+                "start_component": 0,
+                "stop_component": 1286,
+                "offset": 0
+              },
+              {
+                "start_component": 1286,
+                "stop_component": 1301,
+                "offset": -1
+              },
+              {
+                "start_component": 1301,
+                "stop_component": 19200,
+                "offset": -2
+              }
+            ],
+            "alignment_parameters": {
+              "max_offset_components": 24,
+              "change_penalty": 25.0,
+              "offset_penalty": 0.0005
+            }
+          }
+        },
+        "autosave_equals_viewer": true,
+        "pass": true
+      },
+      "grampy": {
+        "picture_support": "MFSK32 production picture decoding outside accepted decoder scope",
+        "status": "complete",
+        "warnings": [
+          {
+            "code": "absent-capture-time",
+            "message": "capture time is absent"
+          }
+        ],
+        "configuration": {
+          "block_samples": 262144,
+          "orientation": "unknown",
+          "trace_level": "none",
+          "mode": "auto",
+          "center_hz": null,
+          "picture_component_estimator": "bounded_correlation",
+          "picture_component_window": "full_hann",
+          "picture_filter_profile": "response_matched",
+          "picture_boundary_estimator": "unified_grid",
+          "persistent_tone_policy": "measure",
+          "pipeline_organization": "supported_hybrid",
+          "picture_range_workers": 1,
+          "picture_range_components": 16384,
+          "picture_max_in_flight_ranges": 1,
+          "persistent_intermediates": false
+        },
+        "whole_input_interval": true,
+        "text_and_header_in_order": true,
+        "mode_segments": [
+          {
+            "id": "e8c8fbcff94c176a34b77305",
+            "mode": "MFSK32",
+            "orientation": "normal",
+            "interval": {
+              "start": 66873,
+              "stop": 1237914
+            },
+            "endpoint_uncertainty_samples": 66873,
+            "source": "rsid",
+            "confidence": {
+              "kind": "detector_snr_db",
+              "value": 21.245009872893203,
+              "calibrated": false
+            },
+            "supporting_events": [
+              "51c6543a69c58fb98e9f1d03"
+            ],
+            "acquisition_state": "candidate",
+            "symbol_phase_uncertainty_input_samples": 4458,
+            "superseded_alternatives": [],
+            "center_hz": 1499.249267578125,
+            "frequency_track": 0
+          }
+        ],
+        "automatic_modes": true,
+        "automatic_carriers": true,
+        "complete_framing": true,
+        "picture_count": 0,
+        "complete_picture": false,
+        "pass": true
+      },
+      "numerical_pass": true,
+      "pm_visual_status": "pending",
+      "evidence": [
+        {
+          "path": "pi/gray32-p2-chart/decode.tar",
+          "bytes": 112640,
+          "sha256": "74eaaee502b3664c78416e961b1e62996670d99631d0e0d4822c1bf485eadfa7"
+        },
+        {
+          "path": "pi/gray32-p2-chart/viewer.rgb",
+          "bytes": 57600,
+          "sha256": "112fb3c30f45e255b830c68236b62a2f462ba26ed23e2fcb6f40ff78c6efeb46"
+        },
+        {
+          "path": "pi/gray32-p2-chart/viewer-gdb.log",
+          "bytes": 510,
+          "sha256": "c628b01978a06ba80a75a8e4b2b99084ad433bad5c4007a762d0527870ac5e20"
+        },
+        {
+          "path": "cases/gray32-p2-chart/grampy/diagnostic.json",
+          "bytes": 442022,
+          "sha256": "bd857220d2cb347eccb5915480d084f983cf4126d09103b7eba7f64744200c72"
+        },
+        {
+          "path": "cases/gray32-p2-chart/grampy/text.json",
+          "bytes": 2068,
+          "sha256": "500721a4d9ec9202eb54d787496cb759865b6190342341c84e6ac782b38708fe"
+        },
+        {
+          "path": "cases/gray32-p2-chart/grampy/quality.json",
+          "bytes": 4606,
+          "sha256": "89989f6ade4bf183b6ade5d119c8fc2bd81c2bade9518d87a17539685bdd5be2"
+        },
+        {
+          "path": "cases/gray32-p2-chart/grampy/input.sigmf-meta",
+          "bytes": 194,
+          "sha256": "d58a45f963bb9cfd9f7e3004759b4613e534da749a8bacf0aff4855e2621f5c0"
+        },
+        {
+          "path": "cases/gray32-p2-chart/grampy/input.sigmf-data",
+          "bytes": 9903312,
+          "sha256": "44973336d445cd258869c0d6c31d15cadfd95dc3c1ef654366fadd284a24b824"
+        },
+        {
+          "path": "cases/gray32-p2-chart/encoder-result.json",
+          "bytes": 514,
+          "sha256": "4249a054767567ddf8d037e4d0c5943dcf668cbc8cfc1d9064747de087daf813"
+        },
+        {
+          "path": "pi/gray32-p2-chart/command.json",
+          "bytes": 829,
+          "sha256": "2514c6ec3e9d46cff7b7910750317c6c9daced0f6577470a12b22e906425cf5d"
+        },
+        {
+          "path": "pi/gray32-p2-chart/received/metadata.json",
+          "bytes": 1515,
+          "sha256": "c5c2f94df58a0a080496f4fc82ef50e0200f593d356772854b6a678437956f01"
+        },
+        {
+          "path": "pi/gray32-p2-chart/received/decoded.txt",
+          "bytes": 109,
+          "sha256": "971c830e43868e1c0ccce4907fdc26fa113367f451a9637d420201d5a2fd7c94"
+        },
+        {
+          "path": "pi/gray32-p2-chart/received/fldigi/control.log",
+          "bytes": 6196,
+          "sha256": "bd8d89753e6f61354133fe41a95dd60801c572a0b914e20a05ba7bede2017ef7"
+        }
+      ]
+    },
+    {
+      "id": "mixed-broadcast-photo",
+      "mode": "MFSK64",
+      "color": "color",
+      "speed": 4,
+      "source": "photo",
+      "mixed": true,
+      "grampy_picture_required": true,
+      "expected_text_in_order": [
+        "\u0002\nGRAM PY BROADCAST MFSK32 NEWS BEGIN\nTODAY WE TEST TEXT AUDIO SILENCE AND A PICTURE.\nNEWS END\n\u0004",
+        "\u0002\nGRAM PY PRACTICAL BROADCAST MIXED BROADCAST PHOTO\n",
+        "Pic:240x180Cp4;",
+        "\nGRAM PY MIXED BROADCAST PHOTO END\n\u0004"
+      ],
+      "expected_modes": [
+        "MFSK32",
+        "MFSK64"
+      ],
+      "expected_carriers_hz": [
+        1400,
+        1600.0
+      ],
+      "width": 240,
+      "height": 180,
+      "frame_count": 4785870,
+      "duration_seconds": 99.705625,
+      "encode_seconds": 1.1714265830232762,
+      "wav": {
+        "path": "cases/mixed-broadcast-photo/generated.wav",
+        "bytes": 9571784,
+        "sha256": "ecf6819b916abd6d444fd9ac229d2264772664b234f543ff43ad63ce8d8f5925"
+      },
+      "truth": {
+        "path": "cases/mixed-broadcast-photo/truth.png",
+        "bytes": 60016,
+        "sha256": "1d316ddfc96078f19a20d83769d36b1efcd23cdc03d0047832e65024fcd026d0"
+      },
+      "independent_waveform": {
+        "nominal": {
+          "rms_pcm_lsb": 0.28839869929117723,
+          "max_pcm_lsb": 0.5117572712206311
+        },
+        "frequency_mutation": {
+          "rms_pcm_lsb": 16383.345238560398,
+          "max_pcm_lsb": 32767.99938799197
+        },
+        "raster_start_frame": 1420494,
+        "component_count": 129600
+      },
+      "exact_rsid_audio_silence_frame_checks": "pass",
+      "fldigi": {
+        "checks": {
+          "receiver_exit": true,
+          "whole_wav": true,
+          "text_and_header_in_order": true,
+          "automatic_modes": true,
+          "automatic_carriers": true,
+          "initial_unrelated_mode": true,
+          "no_manual_changes": true,
+          "one_saved_image": true,
+          "grayscale_channels_equal": true,
+          "saved_picture_quality": true
+        },
+        "mode_events": {
+          "schema": "grampy-accuracy.v1",
+          "kind": "mode-event-sequence",
+          "alignment_algorithm": "python-difflib-sequence-matcher-v1",
+          "truth_scope": "ordered_mode_change_sequence",
+          "coordinate_truth_status": "not_available",
+          "expected_count": 2,
+          "detected_count": 2,
+          "matched_count": 2,
+          "missed_count": 0,
+          "false_count": 0,
+          "recall": 1.0,
+          "precision": 1.0,
+          "exact": true,
+          "expected_modes": [
+            "MFSK32",
+            "MFSK64"
+          ],
+          "detected_events": [
+            {
+              "mode": "MFSK32",
+              "code": 147,
+              "frequency_hz": 1402.0,
+              "receiver_log_evidence": "status during playback: mode='MFSK32' carrier=1402 quality=74.480561 afc=0 squelch=0 squelch_level=0.0 rsid=1 status1='' status2='' trx='rx'"
+            },
+            {
+              "mode": "MFSK64",
+              "code": 620,
+              "frequency_hz": 1601.0,
+              "receiver_log_evidence": "status during playback: mode='MFSK64' carrier=1601 quality=94.605346 afc=0 squelch=0 squelch_level=0.0 rsid=1 status1='s/n  14 dB' status2='' trx='rx'"
+            }
+          ],
+          "missed_events": [],
+          "false_events": []
+        },
+        "picture": {
+          "pass": true,
+          "checks": {
+            "raw_mae": true,
+            "aligned_mae": true,
+            "channel_bias": true,
+            "alignment_offset": true,
+            "alignment_changes": true
+          },
+          "raw": {
+            "schema": "grampy-accuracy.v1",
+            "kind": "raw-raster-error",
+            "whole_raster": {
+              "mean_absolute_error_255": 5.713703703703704,
+              "root_mean_square_error_255": 15.520526531891903,
+              "signed_bias_255": -0.79375,
+              "exact_component_fraction": 0.12314043209876543,
+              "psnr_db": 24.31267459753422
+            },
+            "channels": {
+              "red": {
+                "mean_absolute_error_255": 6.046180555555556,
+                "root_mean_square_error_255": 17.742253787059987,
+                "signed_bias_255": -2.22099537037037,
+                "exact_component_fraction": 0.12451388888888888,
+                "psnr_db": 23.150627865718416
+              },
+              "green": {
+                "mean_absolute_error_255": 5.7039583333333335,
+                "root_mean_square_error_255": 13.61917986463154,
+                "signed_bias_255": -0.047060185185185184,
+                "exact_component_fraction": 0.11016203703703703,
+                "psnr_db": 25.447784498243855
+              },
+              "blue": {
+                "mean_absolute_error_255": 5.3909722222222225,
+                "root_mean_square_error_255": 14.91276640505885,
+                "signed_bias_255": -0.11319444444444444,
+                "exact_component_fraction": 0.13474537037037038,
+                "psnr_db": 24.659639307012466
+              }
+            }
+          },
+          "alignment": {
+            "schema": "grampy-accuracy.v1",
+            "kind": "picture-component-alignment",
+            "algorithm": "bounded-regularized-offset-viterbi-v1",
+            "reference_components": 129600,
+            "decoded_components": 129600,
+            "compared_components": 129600,
+            "raw_mean_absolute_error_255": 5.713703632354736,
+            "raw_exact_component_fraction": 0.12314043209876543,
+            "aligned_mean_absolute_error_255": 1.691558599472046,
+            "aligned_exact_component_fraction": 0.20483024691358026,
+            "zero_offset_fraction": 0.011111111111111112,
+            "maximum_absolute_offset_components": 2,
+            "offset_change_count": 2,
+            "offset_changes": [
+              {
+                "component_index": 1440,
+                "offset": -1
+              },
+              {
+                "component_index": 1441,
+                "offset": -2
+              }
+            ],
+            "offset_path_rle": [
+              {
+                "start_component": 0,
+                "stop_component": 1440,
+                "offset": 0
+              },
+              {
+                "start_component": 1440,
+                "stop_component": 1441,
+                "offset": -1
+              },
+              {
+                "start_component": 1441,
+                "stop_component": 129600,
+                "offset": -2
+              }
+            ],
+            "alignment_parameters": {
+              "max_offset_components": 24,
+              "change_penalty": 25.0,
+              "offset_penalty": 0.0005
+            }
+          }
+        },
+        "autosave": {
+          "pass": true,
+          "checks": {
+            "raw_mae": true,
+            "aligned_mae": true,
+            "channel_bias": true,
+            "alignment_offset": true,
+            "alignment_changes": true
+          },
+          "raw": {
+            "schema": "grampy-accuracy.v1",
+            "kind": "raw-raster-error",
+            "whole_raster": {
+              "mean_absolute_error_255": 5.713703703703704,
+              "root_mean_square_error_255": 15.520526531891903,
+              "signed_bias_255": -0.79375,
+              "exact_component_fraction": 0.12314043209876543,
+              "psnr_db": 24.31267459753422
+            },
+            "channels": {
+              "red": {
+                "mean_absolute_error_255": 6.046180555555556,
+                "root_mean_square_error_255": 17.742253787059987,
+                "signed_bias_255": -2.22099537037037,
+                "exact_component_fraction": 0.12451388888888888,
+                "psnr_db": 23.150627865718416
+              },
+              "green": {
+                "mean_absolute_error_255": 5.7039583333333335,
+                "root_mean_square_error_255": 13.61917986463154,
+                "signed_bias_255": -0.047060185185185184,
+                "exact_component_fraction": 0.11016203703703703,
+                "psnr_db": 25.447784498243855
+              },
+              "blue": {
+                "mean_absolute_error_255": 5.3909722222222225,
+                "root_mean_square_error_255": 14.91276640505885,
+                "signed_bias_255": -0.11319444444444444,
+                "exact_component_fraction": 0.13474537037037038,
+                "psnr_db": 24.659639307012466
+              }
+            }
+          },
+          "alignment": {
+            "schema": "grampy-accuracy.v1",
+            "kind": "picture-component-alignment",
+            "algorithm": "bounded-regularized-offset-viterbi-v1",
+            "reference_components": 129600,
+            "decoded_components": 129600,
+            "compared_components": 129600,
+            "raw_mean_absolute_error_255": 5.713703632354736,
+            "raw_exact_component_fraction": 0.12314043209876543,
+            "aligned_mean_absolute_error_255": 1.691558599472046,
+            "aligned_exact_component_fraction": 0.20483024691358026,
+            "zero_offset_fraction": 0.011111111111111112,
+            "maximum_absolute_offset_components": 2,
+            "offset_change_count": 2,
+            "offset_changes": [
+              {
+                "component_index": 1440,
+                "offset": -1
+              },
+              {
+                "component_index": 1441,
+                "offset": -2
+              }
+            ],
+            "offset_path_rle": [
+              {
+                "start_component": 0,
+                "stop_component": 1440,
+                "offset": 0
+              },
+              {
+                "start_component": 1440,
+                "stop_component": 1441,
+                "offset": -1
+              },
+              {
+                "start_component": 1441,
+                "stop_component": 129600,
+                "offset": -2
+              }
+            ],
+            "alignment_parameters": {
+              "max_offset_components": 24,
+              "change_penalty": 25.0,
+              "offset_penalty": 0.0005
+            }
+          }
+        },
+        "autosave_equals_viewer": true,
+        "pass": true
+      },
+      "grampy": {
+        "picture_support": "supported",
+        "status": "complete",
+        "warnings": [
+          {
+            "code": "absent-capture-time",
+            "message": "capture time is absent"
+          }
+        ],
+        "configuration": {
+          "block_samples": 262144,
+          "orientation": "unknown",
+          "trace_level": "none",
+          "mode": "auto",
+          "center_hz": null,
+          "picture_component_estimator": "bounded_correlation",
+          "picture_component_window": "full_hann",
+          "picture_filter_profile": "response_matched",
+          "picture_boundary_estimator": "unified_grid",
+          "persistent_tone_policy": "measure",
+          "pipeline_organization": "supported_hybrid",
+          "picture_range_workers": 1,
+          "picture_range_components": 16384,
+          "picture_max_in_flight_ranges": 1,
+          "persistent_intermediates": false
+        },
+        "whole_input_interval": true,
+        "text_and_header_in_order": true,
+        "mode_segments": [
+          {
+            "id": "e8c8fbcff94c176a34b77305",
+            "mode": "MFSK32",
+            "orientation": "normal",
+            "interval": {
+              "start": 66873,
+              "stop": 983244
+            },
+            "endpoint_uncertainty_samples": 66873,
+            "source": "rsid",
+            "confidence": {
+              "kind": "detector_snr_db",
+              "value": 27.588906315007932,
+              "calibrated": false
+            },
+            "supporting_events": [
+              "51c6543a69c58fb98e9f1d03"
+            ],
+            "acquisition_state": "candidate",
+            "symbol_phase_uncertainty_input_samples": 4458,
+            "superseded_alternatives": [],
+            "center_hz": 1402.349853515625,
+            "frequency_track": 0
+          },
+          {
+            "id": "2688857499bf37a2d7258f0c",
+            "mode": "MFSK64",
+            "orientation": "normal",
+            "interval": {
+              "start": 1050117,
+              "stop": 4785870
+            },
+            "endpoint_uncertainty_samples": 66873,
+            "source": "rsid",
+            "confidence": {
+              "kind": "detector_snr_db",
+              "value": 32.423900593428584,
+              "calibrated": false
+            },
+            "supporting_events": [
+              "f3dc94cccbd41ce3d595eabf"
+            ],
+            "acquisition_state": "candidate",
+            "symbol_phase_uncertainty_input_samples": 4458,
+            "superseded_alternatives": [],
+            "center_hz": 1601.531982421875,
+            "frequency_track": 0
+          }
+        ],
+        "automatic_modes": true,
+        "automatic_carriers": true,
+        "complete_framing": true,
+        "picture_count": 1,
+        "complete_picture": true,
+        "picture": {
+          "pass": true,
+          "checks": {
+            "raw_mae": true,
+            "aligned_mae": true,
+            "channel_bias": true,
+            "alignment_offset": true,
+            "alignment_changes": true
+          },
+          "raw": {
+            "schema": "grampy-accuracy.v1",
+            "kind": "raw-raster-error",
+            "whole_raster": {
+              "mean_absolute_error_255": 1.3780864197530864,
+              "root_mean_square_error_255": 3.5274037422010296,
+              "signed_bias_255": -0.3956172839506173,
+              "exact_component_fraction": 0.41563271604938273,
+              "psnr_db": 37.181700182412584
+            },
+            "channels": {
+              "red": {
+                "mean_absolute_error_255": 1.4277777777777778,
+                "root_mean_square_error_255": 3.7944098745781663,
+                "signed_bias_255": -0.5877777777777777,
+                "exact_component_fraction": 0.39740740740740743,
+                "psnr_db": 36.54791877160066
+              },
+              "green": {
+                "mean_absolute_error_255": 1.2664583333333332,
+                "root_mean_square_error_255": 3.2248277301103836,
+                "signed_bias_255": -0.373912037037037,
+                "exact_component_fraction": 0.4544212962962963,
+                "psnr_db": 37.9606732159867
+              },
+              "blue": {
+                "mean_absolute_error_255": 1.4400231481481482,
+                "root_mean_square_error_255": 3.5398688247301333,
+                "signed_bias_255": -0.22516203703703705,
+                "exact_component_fraction": 0.3950694444444444,
+                "psnr_db": 37.151060231165516
+              }
+            }
+          },
+          "alignment": {
+            "schema": "grampy-accuracy.v1",
+            "kind": "picture-component-alignment",
+            "algorithm": "bounded-regularized-offset-viterbi-v1",
+            "reference_components": 129600,
+            "decoded_components": 129600,
+            "compared_components": 129600,
+            "raw_mean_absolute_error_255": 1.3780864477157593,
+            "raw_exact_component_fraction": 0.41563271604938273,
+            "aligned_mean_absolute_error_255": 1.3780864477157593,
+            "aligned_exact_component_fraction": 0.41563271604938273,
+            "zero_offset_fraction": 1.0,
+            "maximum_absolute_offset_components": 0,
+            "offset_change_count": 0,
+            "offset_changes": [],
+            "offset_path_rle": [
+              {
+                "start_component": 0,
+                "stop_component": 129600,
+                "offset": 0
+              }
+            ],
+            "alignment_parameters": {
+              "max_offset_components": 24,
+              "change_penalty": 25.0,
+              "offset_penalty": 0.0005
+            }
+          }
+        },
+        "pass": true
+      },
+      "numerical_pass": true,
+      "pm_visual_status": "pending",
+      "evidence": [
+        {
+          "path": "pi/mixed-broadcast-photo/decode.tar",
+          "bytes": 215040,
+          "sha256": "839c79e10ce5ec3defe480878b9a1c2b44bd52ce09e7ca6ed121570da6ab0a35"
+        },
+        {
+          "path": "pi/mixed-broadcast-photo/viewer.rgb",
+          "bytes": 129600,
+          "sha256": "90686cbbd9da38bbfa25c8e64073a267f9e2e6c83c6bb3b9bb32c52721e1195b"
+        },
+        {
+          "path": "pi/mixed-broadcast-photo/viewer-gdb.log",
+          "bytes": 511,
+          "sha256": "8ab171bc430dd397acb876c616fa7fd891f5669e7b95839f49612a5a6bb607c3"
+        },
+        {
+          "path": "cases/mixed-broadcast-photo/grampy/diagnostic.json",
+          "bytes": 509805,
+          "sha256": "f8848962b676394b7c66293579209f026824c273216278d84f54a7ea93d254df"
+        },
+        {
+          "path": "cases/mixed-broadcast-photo/grampy/text.json",
+          "bytes": 4055,
+          "sha256": "1b847d7db983b80f93dc659a319bf2c1457cc6b2ee30a6abfa3b73cb6fe022aa"
+        },
+        {
+          "path": "cases/mixed-broadcast-photo/grampy/quality.json",
+          "bytes": 8485,
+          "sha256": "ca4b1bc3f4b2626bc27254bb506a53dd186fb116c0c9eece1033b19b82acf520"
+        },
+        {
+          "path": "cases/mixed-broadcast-photo/grampy/input.sigmf-meta",
+          "bytes": 194,
+          "sha256": "d58a45f963bb9cfd9f7e3004759b4613e534da749a8bacf0aff4855e2621f5c0"
+        },
+        {
+          "path": "cases/mixed-broadcast-photo/grampy/input.sigmf-data",
+          "bytes": 38286960,
+          "sha256": "04e98798edd1c04acb2ae91c3e82f5eb0d5ac33f056741553d1ca024fb4a40a3"
+        },
+        {
+          "path": "cases/mixed-broadcast-photo/encoder-result.json",
+          "bytes": 983,
+          "sha256": "51badd3d44ae1a2cb924d1a69b1f2f11a78f274939a4898ff35d4123dc8a5d67"
+        },
+        {
+          "path": "pi/mixed-broadcast-photo/command.json",
+          "bytes": 853,
+          "sha256": "3244730b2c0f11bdec88111fe9d375221be6ab6448afb86484118ec585e23682"
+        },
+        {
+          "path": "pi/mixed-broadcast-photo/received/metadata.json",
+          "bytes": 1529,
+          "sha256": "c202dd2429dbbb6da171542acec30c6a93bf017324f0586b116061019a8cfc77"
+        },
+        {
+          "path": "pi/mixed-broadcast-photo/received/decoded.txt",
+          "bytes": 528,
+          "sha256": "09e4500f23d1238e3d748c8f63d717c02b891388d22b5a7fea8037f0c16151b4"
+        },
+        {
+          "path": "pi/mixed-broadcast-photo/received/fldigi/control.log",
+          "bytes": 14751,
+          "sha256": "421c361812838046a80168273ddd2b3e7bffa657baab5a6dfd294bbc113eb955"
+        }
+      ]
+    }
+  ],
+  "sources": {
+    "photo": {
+      "original": {
+        "path": "tests/samples/received-corpus/programs/459/truth/images/004-SWRG459_Scotland_sunset.png",
+        "bytes": 78452,
+        "sha256": "17e4a583692e1ec8b63caf4b4446668a1e5db88d864ef150aacfeca108cc91fa"
+      },
+      "original_size": [
+        197,
+        144
+      ],
+      "prepared": {
+        "path": "inputs/photo.png",
+        "bytes": 60016,
+        "sha256": "1d316ddfc96078f19a20d83769d36b1efcd23cdc03d0047832e65024fcd026d0"
+      },
+      "path": "tests/samples/received-corpus/programs/459/truth/images/004-SWRG459_Scotland_sunset.png",
+      "output_size": [
+        240,
+        180
+      ],
+      "preprocessing": "Caller-owned RGB conversion and aspect-preserving Lanczos fit"
+    },
+    "card": {
+      "original": {
+        "path": "tests/samples/received-corpus/programs/459/truth/images/001-SWRG459_Rti_KANHAM.png",
+        "bytes": 76910,
+        "sha256": "32b5600e30b9a81472497b4bcffb652ca95b52ded7c89eac438a5336a1b0415e"
+      },
+      "original_size": [
+        209,
+        129
+      ],
+      "prepared": {
+        "path": "inputs/card.png",
+        "bytes": 66779,
+        "sha256": "f54c55ee0eda798a3fa9d4bcc32ba45cebc08eaa5ddb41808ac3fc7b44aaddc7"
+      },
+      "path": "tests/samples/received-corpus/programs/459/truth/images/001-SWRG459_Rti_KANHAM.png",
+      "output_size": [
+        240,
+        180
+      ],
+      "preprocessing": "Caller-owned RGB conversion and aspect-preserving Lanczos fit"
+    },
+    "chart": {
+      "original": {
+        "path": ".local/session9/mac-control/source-160x120.png",
+        "bytes": 2859,
+        "sha256": "89a6447653925769b728b44b7d97168b792827e6eac2bfffdc28abaa605b3f77"
+      },
+      "original_size": [
+        160,
+        120
+      ],
+      "prepared": {
+        "path": "inputs/chart.png",
+        "bytes": 2859,
+        "sha256": "89a6447653925769b728b44b7d97168b792827e6eac2bfffdc28abaa605b3f77"
+      },
+      "path": ".local/session9/mac-control/source-160x120.png",
+      "output_size": [
+        160,
+        120
+      ],
+      "preprocessing": "Unchanged previously reviewed diagnostic chart; encoder performs its specified integer grayscale conversion"
+    }
+  },
+  "experiment_identity": [
+    {
+      "path": "experiments/mfsk-wav-encoder/session9_broadcast.py",
+      "bytes": 28735,
+      "sha256": "68318fe67f185296d9aeb7c9d02576e03032c9b4c6bb0c490f5ea8096f3dc856"
+    },
+    {
+      "path": "experiments/mfsk-wav-encoder/session9_broadcast_receive.py",
+      "bytes": 3924,
+      "sha256": "4e1635b03ba86fbd1f9934d9d2dda00fc3d8ac8a7bd7fbc9824858deaf3c8f71"
+    },
+    {
+      "path": "tools/pi-qualify-mfsk-broadcast.sh",
+      "bytes": 613,
+      "sha256": "d68c1605256b1d0b0a25768b9b2132e1e8f67d98898149446d4d95f84242abc3"
+    }
+  ],
+  "summary": {
+    "total": 10,
+    "numerical_passes": 10,
+    "fldigi_passes": 10,
+    "grampy_required_picture_cases": 7,
+    "pm_visual_status": "pending"
+  }
+}

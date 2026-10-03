@@ -1,0 +1,38 @@
+{
+  "mode": "MFSK64",
+  "carrier_hz": 1500,
+  "rxid": "off",
+  "afc": "off",
+  "unchanged_production_files_verified": 40,
+  "status_interval_sec": 5,
+  "source_size": [
+    160,
+    120
+  ],
+  "text_recovered": true,
+  "announcement_recovered": true,
+  "source_pixel_sha256": "279696577f448ce5c33978808cd18306e58855d9df86240172eb21653d74154d",
+  "input_wav_sha256": "eb407f20f7277891991e962f83425c2488231895945fd8449ec149928c759e9a",
+  "autosave_equals_viewer": true,
+  "scores": {
+    "viewer": {
+      "pixel_sha256": "da7b2d671af7559fc12ee4b448c904baf9ba2d4b28035f39ffe5eb09dd8d7404",
+      "mae": 2.706371527777778,
+      "max_error": 255,
+      "unequal_components": 31022,
+      "exact": false
+    },
+    "autosave": {
+      "pixel_sha256": "da7b2d671af7559fc12ee4b448c904baf9ba2d4b28035f39ffe5eb09dd8d7404",
+      "mae": 2.706371527777778,
+      "max_error": 255,
+      "unequal_components": 31022,
+      "exact": false
+    }
+  },
+  "qualification_decision": "none; one diagnostic reference round trip",
+  "mac_manual_decode": "not performed",
+  "waveform_status": "offline timing-corrected diagnostic; not an unchanged-fldigi reference",
+  "corrected_pi_vs_native_mac_mae": 12.114947916666667,
+  "original_control_pi_source_mae": 69.66019097222222
+}

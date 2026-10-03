@@ -1,0 +1,48 @@
+{
+  "record_version": 1,
+  "date": "2026-10-03",
+  "decision": "accepted",
+  "user_statement": "Very good.  I have looked at all images and accept them.",
+  "decisions": [
+    "D-027",
+    "D-028"
+  ],
+  "scope": "Practical 48-kHz broadcast qualification and automatic MFSK32 picture-dispatch correction; all reviewed source/GramPy/fldigi outputs accepted.",
+  "cases": [
+    "gray64-p8-card",
+    "gray64-p4-photo",
+    "gray64-p2-chart",
+    "rgb64-p8-photo",
+    "rgb64-p4-card",
+    "rgb64-p2-chart",
+    "gray32-p8-card",
+    "gray32-p4-photo",
+    "gray32-p2-chart",
+    "mixed-broadcast-photo"
+  ],
+  "pipeline_sha256": "6256a56d5273f98ba02e071ee8582c6a6cafbc7c4302e9825887c3ecebcd6fba",
+  "evidence": [
+    {
+      "path": "docs/encoder/data/session9/practical-review/qualification.json",
+      "sha256": "b244e45a530becfaaeeade46ef4b39dc996c1a130c520c692925f20e1943077e"
+    },
+    {
+      "path": "docs/decoder/data/auto-mfsk32-pictures/qualification.json",
+      "sha256": "71ab8d76265f5d99444cc7395e92dc36c7565ebb762b1cefc070be1769579a4a"
+    },
+    {
+      "path": "docs/decoder/data/auto-mfsk32-pictures/pi-checks.json",
+      "sha256": "7cb78cbd56b90f0b273d66d8afeb2f51a013082dfa475fbd833eb20abcf58c77"
+    },
+    {
+      "path": "docs/decoder/data/auto-mfsk32-pictures/received-broadcast.json",
+      "sha256": "4a84eb601b6166863397556c3e3ff404c4ec5abe287a53adb480a6f00b1f5016"
+    }
+  ],
+  "preservation": "Frozen numerical qualification records retain their original execution-time pending visual status. This acceptance record supplies the subsequent PM decision without rewriting measured results.",
+  "limits": [
+    "No exact decoded-pixel promise.",
+    "Tiny-image reliability, nondefault-rate picture quality and fresh fldigi transmitter/capture calibration remain outside this accepted practical scope.",
+    "No package publication, appliance installation, Git commit or new encoder remediation is authorized by this visual acceptance."
+  ]
+}

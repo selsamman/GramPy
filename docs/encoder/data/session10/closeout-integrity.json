@@ -1,0 +1,21 @@
+{
+  "closed_utc": "2026-10-03T13:09:43.347619+00:00",
+  "package_source_hashes_match_checkout": "all 32 Python modules and eight data/type files pass",
+  "frozen_acceptance_evidence_sha256": "all pass",
+  "frozen_v3_matrix_sha256": "pass",
+  "accepted_waveforms": "10/10 unchanged",
+  "pi_samples": "14/14 pass and unchanged",
+  "installed_wheel_suite": {
+    "tests_run": 248,
+    "skips": 6,
+    "failures": 0,
+    "errors": 0
+  },
+  "operational_document_links": "pass",
+  "cpu_to_broadcast_range": [
+    0.13272981191251618,
+    0.17196799052422182
+  ],
+  "wheel_sha256": "e549e3d7cc635f678e04a43b2cd79407f2c7622d56293e98fc50eca67b543ab7",
+  "scope": "D-027/D-028/D-029/D-030"
+}
