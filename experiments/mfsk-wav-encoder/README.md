@@ -7,6 +7,18 @@ accepted on 2026-10-03. Current encoder usage and maintenance are in the
 timing are in [Session 10](../../docs/encoder/session10-closeout.md).
 These investigation scripts are not runtime dependencies.
 
+Historical v1/v2 matrix and schema checks live in `test_historical_contracts.py`,
+beside the reproduction workflow. Run its contracts, scorer integrity checks
+and practical gate sensitivity checks explicitly through the managed Mac
+wrapper with a batch containing:
+
+```sh
+.venv/bin/python -m unittest discover -s experiments/mfsk-wav-encoder -p 'test_*.py'
+```
+
+The standard `tests/` suite checks the maintained v3 matrix and receive-harness
+settings. Neither suite runs fldigi or establishes current corpus quality.
+
 Session 9's picture-path diagnosis and experimental limits are recorded
 in [the investigation index](../../docs/encoder/data/session9/README.md).
 `session9_local.py` measures retained PCM and exact-boundary decoder errors;

@@ -318,27 +318,31 @@ class Session11CStateCarrySpikeTests(unittest.TestCase):
     def test_varicode_source_coordinates_survive_checkpoint(self) -> None:
         bits = tuple(map(int, "1010011100101"))
         intervals = [(10_000 + 17 * i, 10_000 + 17 * (i + 1)) for i in range(13)]
-        whole = StatefulVaricodeParser().push(
-            bits, [0.8] * len(bits), source_intervals=intervals
-        )
+        for source_intervals in (None, intervals):
+            with self.subTest(has_input_coordinates=source_intervals is not None):
+                whole = StatefulVaricodeParser().push(
+                    bits, [0.8] * len(bits), source_intervals=source_intervals
+                )
+                split = StatefulVaricodeParser()
+                first = split.push(
+                    bits[:5], [0.8] * 5,
+                    source_intervals=None if source_intervals is None else source_intervals[:5],
+                )
+                restored = StatefulVaricodeParser()
+                restored.restore(split.checkpoint())
+                second = restored.push(
+                    bits[5:], [0.8] * 8,
+                    source_intervals=None if source_intervals is None else source_intervals[5:],
+                )
 
-        split = StatefulVaricodeParser()
-        first = split.push(
-            bits[:5], [0.8] * 5, source_intervals=intervals[:5]
-        )
-        restored = StatefulVaricodeParser()
-        restored.restore(split.checkpoint())
-        second = restored.push(
-            bits[5:], [0.8] * 8, source_intervals=intervals[5:]
-        )
-
-        self.assertEqual(first + second, whole)
-        self.assertTrue(
-            all(event.source_input_interval is not None for event in whole)
-        )
-        for event in whole:
-            start, stop = event.source_input_interval
-            self.assertLess(start, stop)
+                self.assertEqual(first + second, whole)
+                self.assertTrue(whole)
+                for event in whole:
+                    self.assertEqual(event.confidence, 0.8)
+                    self.assertLess(*event.source_bit_interval)
+                    if source_intervals is not None:
+                        self.assertIsNotNone(event.source_input_interval)
+                        self.assertLess(*event.source_input_interval)
 
     def test_header_checkpoint_is_transactional_and_coordinate_aware(self) -> None:
         def event(index: int, octet: int | None) -> dict:

@@ -30,7 +30,7 @@ class _TrackingSink:
 
 
 class Session7HardeningTests(unittest.TestCase):
-    def test_distribution_metadata_public_exports_and_library_docs_agree(self) -> None:
+    def test_distribution_metadata_and_public_exports_agree(self) -> None:
         project = tomllib.loads((ROOT / "pyproject.toml").read_text())
         self.assertEqual(project["project"]["name"], "radiogrampy")
         self.assertGreaterEqual(project["project"]["requires-python"], ">=3.11")
@@ -43,11 +43,6 @@ class Session7HardeningTests(unittest.TestCase):
             "TextFilePart", "TextPart", "encode_mfsk_wav",
         }
         self.assertTrue(expected <= set(api.__all__))
-        guide = (ROOT / "docs" / "encoder" / "api.md").read_text()
-        readme = (ROOT / "README.md").read_text()
-        self.assertIn("encode_mfsk_wav", guide)
-        self.assertIn("library-only", guide)
-        self.assertIn("encoder API guide", readme)
 
     def test_audio_copy_and_silence_use_fixed_size_pcm_writes(self) -> None:
         # This exercises the long-duration paths without retaining generated

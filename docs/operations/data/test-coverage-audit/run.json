@@ -1,0 +1,1529 @@
+{
+  "tests_run": 248,
+  "success": true,
+  "failures": 0,
+  "errors": 0,
+  "skips": 6,
+  "seconds": 144.945,
+  "tests": [
+    {
+      "id": "test_analyze_mfsk_color_fixture.AnalyzeMfskColorFixtureTests.test_locates_known_row_plane_raster",
+      "status": "pass",
+      "seconds": 0.7217,
+      "reason": null
+    },
+    {
+      "id": "test_auto_picture_roundtrip.AutomaticPictureRoundtripTests.test_mixed_picture_modes_keep_order_files_and_resumed_text",
+      "status": "pass",
+      "seconds": 11.2475,
+      "reason": null
+    },
+    {
+      "id": "test_auto_segmented_decode.AutomaticSegmentedDecodeTests.test_auto_combines_modes_without_losing_order_or_reusing_ids",
+      "status": "pass",
+      "seconds": 0.0004,
+      "reason": null
+    },
+    {
+      "id": "test_auto_segmented_decode.AutomaticSegmentedDecodeTests.test_auto_dispatches_both_modes_and_publishes_picture",
+      "status": "pass",
+      "seconds": 0.0093,
+      "reason": null
+    },
+    {
+      "id": "test_auto_segmented_decode.AutomaticSegmentedDecodeTests.test_auto_dispatches_mfsk32_only_picture",
+      "status": "pass",
+      "seconds": 0.0002,
+      "reason": null
+    },
+    {
+      "id": "test_auto_segmented_decode.AutomaticSegmentedDecodeTests.test_failed_mfsk32_picture_does_not_discard_mfsk64_picture",
+      "status": "pass",
+      "seconds": 0.0001,
+      "reason": null
+    },
+    {
+      "id": "test_cli_public_api.CliPublicApiTests.test_cli_decodes_through_public_api_then_writes_result",
+      "status": "pass",
+      "seconds": 0.0008,
+      "reason": null
+    },
+    {
+      "id": "test_cli_public_api.CliPublicApiTests.test_compact_outputs_use_one_product_decode",
+      "status": "pass",
+      "seconds": 0.0007,
+      "reason": null
+    },
+    {
+      "id": "test_cli_public_api.CliPublicApiTests.test_compact_terminal_failure_is_published_to_both_paths",
+      "status": "pass",
+      "seconds": 0.0013,
+      "reason": null
+    },
+    {
+      "id": "test_cli_public_api.CliPublicApiTests.test_diagnostic_alongside_products_still_decodes_once",
+      "status": "pass",
+      "seconds": 0.0005,
+      "reason": null
+    },
+    {
+      "id": "test_decode_quality.DecodeQualityTests.test_incomplete_picture_does_not_penalize_received_components",
+      "status": "pass",
+      "seconds": 0.0015,
+      "reason": null
+    },
+    {
+      "id": "test_decode_quality.DecodeQualityTests.test_inline_component_evidence_needs_no_artifact",
+      "status": "pass",
+      "seconds": 0.0007,
+      "reason": null
+    },
+    {
+      "id": "test_decode_quality.DecodeQualityTests.test_missing_picture_evidence_remains_null",
+      "status": "pass",
+      "seconds": 0.0005,
+      "reason": null
+    },
+    {
+      "id": "test_decode_quality.DecodeQualityTests.test_spatial_outliers_reduce_picture_score_without_clipping",
+      "status": "pass",
+      "seconds": 0.0011,
+      "reason": null
+    },
+    {
+      "id": "test_decode_quality.DecodeQualityTests.test_text_margin_invalid_code_and_picture_damage",
+      "status": "pass",
+      "seconds": 0.0011,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_accuracy.FramedTextTests.test_concatenates_only_complete_payload_epochs",
+      "status": "pass",
+      "seconds": 0.0,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_accuracy.FramedTextTests.test_mode_sequence_reports_missed_and_false_events",
+      "status": "pass",
+      "seconds": 0.0001,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_accuracy.FramedTextTests.test_presentation_normalization_ignores_line_wrapping",
+      "status": "pass",
+      "seconds": 0.0,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_accuracy.FramedTextTests.test_text_score_separates_error_kinds",
+      "status": "pass",
+      "seconds": 0.0001,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_accuracy.FramedTextTests.test_unmatched_controls_are_diagnostics_not_payload",
+      "status": "pass",
+      "seconds": 0.0,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_accuracy.PictureAccuracyTests.test_alignment_finds_persistent_one_component_shift",
+      "status": "pass",
+      "seconds": 0.003,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_accuracy.PictureAccuracyTests.test_declared_missing_truth_is_not_an_artifact_failure",
+      "status": "pass",
+      "seconds": 0.0,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_accuracy.PictureAccuracyTests.test_noise_does_not_force_offset_changes",
+      "status": "pass",
+      "seconds": 0.0033,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_accuracy.PictureAccuracyTests.test_raw_raster_metrics_report_signed_channel_bias",
+      "status": "pass",
+      "seconds": 0.0001,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_accuracy.PictureAccuracyTests.test_rgb_wire_order_is_row_plane_order",
+      "status": "pass",
+      "seconds": 0.0003,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_accuracy_cli.AccuracyCliTests.test_baseline_summary_retains_hash_and_headline_metrics",
+      "status": "pass",
+      "seconds": 0.0016,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_accuracy_cli.AccuracyCliTests.test_picture_command_scores_identical_png",
+      "status": "pass",
+      "seconds": 0.0025,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_accuracy_cli.AccuracyCliTests.test_planning_gate_is_hierarchical_and_enforces_regression_limits",
+      "status": "pass",
+      "seconds": 0.0014,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_accuracy_cli.AccuracyCliTests.test_planning_gate_is_not_computable_with_an_unpaired_case",
+      "status": "pass",
+      "seconds": 0.0014,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_accuracy_cli.AccuracyCliTests.test_program_direct_merges_modes_and_labels_two_pass_result",
+      "status": "pass",
+      "seconds": 0.0047,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_accuracy_cli.AccuracyCliTests.test_program_fldigi_accepts_an_immutable_recent_reference",
+      "status": "pass",
+      "seconds": 0.0031,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_accuracy_cli.AccuracyCliTests.test_text_command_writes_framing_diagnostics",
+      "status": "pass",
+      "seconds": 0.0013,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_corpus.ReceivedCorpusTests.test_inventory_measures_complete_capture_and_excludes_output",
+      "status": "pass",
+      "seconds": 0.008,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_corpus.ReceivedCorpusTests.test_promotion_is_self_contained_and_verifiable",
+      "status": "pass",
+      "seconds": 0.0031,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_corpus.ReceivedCorpusTests.test_verifier_allows_explicitly_missing_picture_truth",
+      "status": "pass",
+      "seconds": 0.001,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_corpus.ReceivedCorpusTests.test_verifier_rejects_missing_scorecard",
+      "status": "pass",
+      "seconds": 0.0005,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_remediation_r1.RemediationR1Test.test_auto_manifest_attempts_segmented_payload_after_r1_evidence",
+      "status": "pass",
+      "seconds": 0.4131,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_remediation_r1.RemediationR1Test.test_shared_detector_emits_ranked_mode_region_and_track",
+      "status": "pass",
+      "seconds": 0.1047,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_remediation_r1.RemediationR1Test.test_weak_full_broadcasts_recover_established_mode_events",
+      "status": "pass",
+      "seconds": 38.9214,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_remediation_r2.RemediationR2ReceivedTest.test_held_out_text_segments_decode_without_center_hint",
+      "status": "pass",
+      "seconds": 12.6403,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_remediation_r2.RemediationR2Test.test_auto_manifest_serializes_missing_rsid_competitors",
+      "status": "pass",
+      "seconds": 0.2104,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_remediation_r2.RemediationR2Test.test_carrier_step_fade_and_tone_interference_are_explicit",
+      "status": "pass",
+      "seconds": 0.0042,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_remediation_r2.RemediationR2Test.test_flat_tone_evidence_becomes_neutral_llr_erasure",
+      "status": "pass",
+      "seconds": 0.0032,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_remediation_r2.RemediationR2Test.test_missing_rsid_comb_retains_both_modes_and_orientations",
+      "status": "pass",
+      "seconds": 0.1298,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_remediation_r2.RemediationR2Test.test_single_adjacent_carrier_and_picture_sweep_are_not_text_combs",
+      "status": "pass",
+      "seconds": 0.2544,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_remediation_r2.RemediationR2Test.test_tracks_drive_non_integer_intervals_and_local_oscillators",
+      "status": "pass",
+      "seconds": 0.0026,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_remediation_r3.RemediationR3ReceivedTest.test_received_cut_without_nearby_rsid_records_independent_epoch",
+      "status": "pass",
+      "seconds": 5.7159,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_remediation_r3.RemediationR3StateTests.test_confidence_aware_header_rejects_damage_and_accepts_split_token",
+      "status": "pass",
+      "seconds": 0.0001,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_remediation_r3.RemediationR3StateTests.test_deinterleaver_checkpoint_restore_and_fill_validity",
+      "status": "pass",
+      "seconds": 0.0002,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_remediation_r3.RemediationR3StateTests.test_sustained_dropout_creates_explicit_new_epoch",
+      "status": "pass",
+      "seconds": 0.0001,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_remediation_r3.RemediationR3StateTests.test_unknown_viterbi_start_recovers_midstream_without_invented_reset",
+      "status": "pass",
+      "seconds": 0.0019,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_remediation_r3.RemediationR3StateTests.test_varicode_checkpoint_is_chunk_equivalent_and_has_provenance",
+      "status": "pass",
+      "seconds": 0.0003,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_remediation_r4.RemediationR4PictureEvidenceTests.test_fractional_p2_p4_p8_clock_and_ranked_boundaries",
+      "status": "pass",
+      "seconds": 0.0373,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_remediation_r4.RemediationR4PictureEvidenceTests.test_offset_drift_step_and_content_bias_matrix",
+      "status": "pass",
+      "seconds": 0.1617,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_remediation_r5.BoundedPipelineTests.test_controlled_text_can_use_bounded_organization",
+      "status": "skip",
+      "seconds": 0.0001,
+      "reason": "controlled MFSK fixture unavailable"
+    },
+    {
+      "id": "test_mfsk_decode_session1.CoordinateTests.test_composition_retains_exact_ratio_and_uncertainty",
+      "status": "pass",
+      "seconds": 0.0001,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_session1.CoordinateTests.test_rational_resampling_round_trip_and_ties_to_even",
+      "status": "pass",
+      "seconds": 0.0,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_session1.SigmfHarnessTests.test_capture_must_establish_requested_interval",
+      "status": "pass",
+      "seconds": 0.001,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_session1.SigmfHarnessTests.test_cf32_nonfinite_and_ci16_clipping_are_reported",
+      "status": "pass",
+      "seconds": 0.0206,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_session1.SigmfHarnessTests.test_cli_emits_schema_valid_atomic_manifest_without_intermediates",
+      "status": "pass",
+      "seconds": 0.9336,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_session1.SigmfHarnessTests.test_malformed_and_misaligned_inputs_are_rejected",
+      "status": "pass",
+      "seconds": 0.0014,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_session1.SigmfHarnessTests.test_trim_ancestry_is_explicit_and_input_coordinates_stay_identity",
+      "status": "pass",
+      "seconds": 0.0005,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_session1.WirePrimitiveTests.test_convolutional_encoder_matches_all_fixed_vectors",
+      "status": "pass",
+      "seconds": 0.0001,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_session1.WirePrimitiveTests.test_gray_mapping_matches_composed_fixed_vector",
+      "status": "pass",
+      "seconds": 0.0,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_session1.WirePrimitiveTests.test_soft_deinterleaver_recovers_groups_after_fixed_delay",
+      "status": "pass",
+      "seconds": 0.0002,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_session1.WirePrimitiveTests.test_tone_metrics_produce_transmitted_lane_llrs",
+      "status": "pass",
+      "seconds": 0.0018,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_session10b.PictureComponentEstimatorExperimentTests.test_experiment_compares_all_predeclared_estimators",
+      "status": "pass",
+      "seconds": 0.0082,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_session10b.PictureComponentEstimatorExperimentTests.test_fractional_clock_batches_equal_width_component_runs",
+      "status": "pass",
+      "seconds": 0.0504,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_session10b.PictureComponentEstimatorExperimentTests.test_phase_difference_is_stable_under_deterministic_ci16_quantization",
+      "status": "pass",
+      "seconds": 0.0006,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_session10b.PictureComponentEstimatorExperimentTests.test_phase_difference_meets_p2_p4_p8_value_and_ramp_acceptance",
+      "status": "pass",
+      "seconds": 0.0017,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_session10b.PictureComponentEstimatorExperimentTests.test_session10e_component_windows_preserve_clean_p8_ramp",
+      "status": "pass",
+      "seconds": 0.0109,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_session10b.PictureComponentEstimatorExperimentTests.test_session10e_response_matched_filter_preserves_picture_endpoints",
+      "status": "pass",
+      "seconds": 0.0126,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_session10b.PictureComponentEstimatorExperimentTests.test_session10e_unknown_component_window_is_rejected",
+      "status": "pass",
+      "seconds": 0.0002,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_session10b.PictureComponentEstimatorExperimentTests.test_unknown_estimator_is_rejected",
+      "status": "pass",
+      "seconds": 0.0001,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_session10b.PictureCoordinatorTests.test_damaged_header_retries_at_half_symbol_alignment",
+      "status": "pass",
+      "seconds": 0.001,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_session10b.PictureCoordinatorTests.test_damaged_landmarks_trigger_exact_local_recovery",
+      "status": "pass",
+      "seconds": 0.0028,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_session10b.PictureCoordinatorTests.test_landmark_without_exact_local_header_does_not_create_picture",
+      "status": "pass",
+      "seconds": 0.0039,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_session10b.PictureCoordinatorTests.test_suppresses_only_events_inside_accepted_picture_interval",
+      "status": "pass",
+      "seconds": 0.0,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_session10c.PersistentToneMeasurementTests.test_adjacent_competition_is_measured_without_changing_metrics",
+      "status": "pass",
+      "seconds": 0.0003,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_session10c.PersistentToneMeasurementTests.test_legitimate_repeated_winner_is_not_its_own_competitor",
+      "status": "pass",
+      "seconds": 0.0002,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_session10c.PersistentToneMeasurementTests.test_predeclared_feature_detects_nonwinning_persistent_tone",
+      "status": "pass",
+      "seconds": 0.0001,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_session10c.PersistentToneMeasurementTests.test_unknown_policy_is_rejected_at_public_boundary",
+      "status": "pass",
+      "seconds": 0.0001,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_session10f.ProtocolPictureBoundaryTests.test_experimental_change_score_recovers_synthetic_boundary",
+      "status": "pass",
+      "seconds": 0.0614,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_session10f.ProtocolPictureBoundaryTests.test_flush_tone_vector_accounts_for_coded_bit_accumulator",
+      "status": "pass",
+      "seconds": 0.0004,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_session10f.ProtocolPictureBoundaryTests.test_forward_interleaver_uses_fldigi_lane_delays",
+      "status": "pass",
+      "seconds": 0.0001,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_session10f.ProtocolPictureBoundaryTests.test_global_crossover_clock_recovers_constructed_symbol_grid",
+      "status": "pass",
+      "seconds": 0.0062,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_session10f.ProtocolPictureBoundaryTests.test_global_grid_selects_semantic_start_before_leading_zeros",
+      "status": "pass",
+      "seconds": 0.0309,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_session10f.ProtocolPictureBoundaryTests.test_group_phase_offsets_account_for_recognition_lane",
+      "status": "pass",
+      "seconds": 0.0,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_session10f.ProtocolPictureBoundaryTests.test_header_event_carries_compact_flush_reconstruction",
+      "status": "pass",
+      "seconds": 0.0004,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_session10f.ProtocolPictureBoundaryTests.test_header_parser_retains_final_decoded_bit_phase",
+      "status": "pass",
+      "seconds": 0.0,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_session10f.ProtocolPictureBoundaryTests.test_known_flush_crossovers_recover_constructed_grid",
+      "status": "pass",
+      "seconds": 0.0033,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_session10f.ProtocolPictureBoundaryTests.test_prediction_is_explicitly_non_operative_and_uncertain",
+      "status": "pass",
+      "seconds": 0.0,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_session10f.ProtocolPictureBoundaryTests.test_unified_boundary_estimator_is_the_only_supported_policy",
+      "status": "pass",
+      "seconds": 0.0006,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_session10f.ProtocolPictureBoundaryTests.test_unified_grid_increases_variance_when_flush_is_missing",
+      "status": "pass",
+      "seconds": 0.0003,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_session10f.ProtocolPictureBoundaryTests.test_unified_grid_robustly_uses_partial_damaged_flush",
+      "status": "pass",
+      "seconds": 0.0009,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_session10f.ProtocolPictureBoundaryTests.test_unified_grid_uses_local_flush_to_correct_global_phase",
+      "status": "pass",
+      "seconds": 0.0034,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_session11c.Session11CStateCarrySpikeTests.test_checkpoint_rollback_contains_a_damaged_chunk",
+      "status": "pass",
+      "seconds": 0.0053,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_session11c.Session11CStateCarrySpikeTests.test_checkpoint_working_set_stays_bounded_by_traceback",
+      "status": "pass",
+      "seconds": 0.0905,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_session11c.Session11CStateCarrySpikeTests.test_deinterleaver_fec_and_varicode_restore_mid_header",
+      "status": "pass",
+      "seconds": 0.0058,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_session11c.Session11CStateCarrySpikeTests.test_fixed_track_iq_observer_is_sample_split_equivalent",
+      "status": "pass",
+      "seconds": 0.0059,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_session11c.Session11CStateCarrySpikeTests.test_header_checkpoint_is_transactional_and_coordinate_aware",
+      "status": "pass",
+      "seconds": 0.0002,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_session11c.Session11CStateCarrySpikeTests.test_sustained_loss_is_chunk_equivalent_and_bounds_contamination",
+      "status": "pass",
+      "seconds": 0.1088,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_session11c.Session11CStateCarrySpikeTests.test_track_measurement_uses_bounded_random_access",
+      "status": "pass",
+      "seconds": 0.0353,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_session11c.Session11CStateCarrySpikeTests.test_varicode_source_coordinates_survive_checkpoint",
+      "status": "pass",
+      "seconds": 0.0005,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_session11c.Session11CStateCarrySpikeTests.test_vectorized_viterbi_step_matches_scalar_tie_semantics",
+      "status": "pass",
+      "seconds": 0.0467,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_session11c.Session11CStateCarrySpikeTests.test_viterbi_checkpoint_is_chunk_and_batch_equivalent",
+      "status": "pass",
+      "seconds": 0.0254,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_session11e.Session11EPictureRangeTests.test_cancellation_and_worker_failure_are_explicit",
+      "status": "pass",
+      "seconds": 0.0033,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_session11e.Session11EPictureRangeTests.test_compact_picture_flush_state_is_exact_to_full_prefix",
+      "status": "pass",
+      "seconds": 0.0201,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_session11e.Session11EPictureRangeTests.test_compact_track_plan_uses_bounded_recording_reads",
+      "status": "pass",
+      "seconds": 0.0422,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_session11e.Session11EPictureRangeTests.test_configuration_exposes_three_separate_controls",
+      "status": "pass",
+      "seconds": 0.0021,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_session11e.Session11EPictureRangeTests.test_first_and_last_recording_edges_and_component_speeds",
+      "status": "pass",
+      "seconds": 0.5569,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_session11e.Session11EPictureRangeTests.test_in_flight_depth_is_independent_of_worker_count",
+      "status": "pass",
+      "seconds": 0.0489,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_session11e.Session11EPictureRangeTests.test_large_picture_beyond_received_corpus_stays_range_bounded",
+      "status": "pass",
+      "seconds": 4.2559,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_session11e.Session11EPictureRangeTests.test_long_resolved_fixed_mode_routes_to_compact_p11d",
+      "status": "pass",
+      "seconds": 0.0022,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_session11e.Session11EPictureRangeTests.test_one_and_multiple_workers_are_exact_to_whole_filter",
+      "status": "pass",
+      "seconds": 0.1808,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_session11e.Session11EPictureRangeTests.test_picture_interval_advances_track_without_decoding_raster",
+      "status": "pass",
+      "seconds": 0.0038,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_session11e.Session11EPictureRangeTests.test_public_adapter_preserves_frozen_nominal_coordinates",
+      "status": "pass",
+      "seconds": 0.0019,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_session11e.Session11EPictureRangeTests.test_ranges_cover_indices_once_and_preserve_color_order",
+      "status": "pass",
+      "seconds": 0.0018,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_session11e.Session11EPictureRangeTests.test_supported_hybrid_routes_only_qualified_mfsk64_to_p11d",
+      "status": "pass",
+      "seconds": 0.0022,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_session11e.Session11EPictureRangeTests.test_text_epochs_close_only_at_explicit_semantic_boundaries",
+      "status": "pass",
+      "seconds": 0.0018,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_session11e.Session11EPictureRangeTests.test_text_observer_and_receiver_rollback_as_one_transaction",
+      "status": "pass",
+      "seconds": 0.0051,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_session12a.Session12ADefaultTests.test_cli_uses_approved_picture_measurement",
+      "status": "pass",
+      "seconds": 0.0003,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_session12a.Session12ADefaultTests.test_decode_config_uses_approved_picture_measurement",
+      "status": "pass",
+      "seconds": 0.0,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_session3.ControlledMFSK32VerticalSliceTests.test_pinned_iq_decodes_to_exact_final_octets_with_coordinates",
+      "status": "skip",
+      "seconds": 0.0001,
+      "reason": "controlled MFSK fixtures unavailable; set GRAM_PY_MFSK_FIXTURES"
+    },
+    {
+      "id": "test_mfsk_decode_session3.Session3WireTests.test_soft_viterbi_recovers_fixed_encoded_bits",
+      "status": "pass",
+      "seconds": 0.0003,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_session3.Session3WireTests.test_varicode_parser_uses_lookahead_and_retains_invalid_words",
+      "status": "pass",
+      "seconds": 0.0002,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_session4.ReceivedMFSK32AcquisitionTests.test_untouched_wrmi_interval_decodes_with_rf_tracking",
+      "status": "pass",
+      "seconds": 5.5157,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_session5.MFSK64TextVerticalSliceTests.test_controlled_iq_decodes_exact_octets_through_shared_pipeline",
+      "status": "skip",
+      "seconds": 0.0001,
+      "reason": "controlled MFSK fixtures unavailable; set GRAM_PY_MFSK_FIXTURES"
+    },
+    {
+      "id": "test_mfsk_decode_session5.MFSK64TextVerticalSliceTests.test_untouched_received_interval_decodes_mfsk64_without_hints",
+      "status": "pass",
+      "seconds": 7.6794,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_session6.ControlledPictureVerticalSliceTests.test_color_header_row_plane_assembly_and_reacquisition",
+      "status": "skip",
+      "seconds": 0.0001,
+      "reason": "controlled MFSK picture fixtures unavailable"
+    },
+    {
+      "id": "test_mfsk_decode_session6.ControlledPictureVerticalSliceTests.test_grayscale_header_transition_and_complete_raster",
+      "status": "skip",
+      "seconds": 0.0,
+      "reason": "controlled MFSK picture fixtures unavailable"
+    },
+    {
+      "id": "test_mfsk_decode_session6.PictureHeaderTests.test_accepts_all_wire_forms_and_rejects_invalid_values",
+      "status": "pass",
+      "seconds": 0.0001,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_session6.PictureHeaderTests.test_p2_p4_p8_component_clock_and_mapping",
+      "status": "pass",
+      "seconds": 0.0403,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_session6.PictureHeaderTests.test_picture_mapping_uses_local_frequency_track",
+      "status": "pass",
+      "seconds": 0.0167,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_session7.BoundedPictureArtifactTests.test_large_raster_and_component_planes_are_atomic_sidecars",
+      "status": "pass",
+      "seconds": 0.1417,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_decode_session7.ReceivedPictureTransitionTests.test_received_color_picture_completes_and_returns_to_text",
+      "status": "pass",
+      "seconds": 17.9687,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_encode_session2.MfskTextToneEncoderTests.test_all_binary_labels_map_to_exact_physical_tones",
+      "status": "pass",
+      "seconds": 0.0,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_encode_session2.MfskTextToneEncoderTests.test_all_octets_cover_steady_state_interleaving",
+      "status": "pass",
+      "seconds": 0.0058,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_encode_session2.MfskTextToneEncoderTests.test_all_varicode_octets_match_the_frozen_table",
+      "status": "pass",
+      "seconds": 0.0011,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_encode_session2.MfskTextToneEncoderTests.test_checkpoint_restore_is_exact_across_a_partial_group",
+      "status": "pass",
+      "seconds": 0.0021,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_encode_session2.MfskTextToneEncoderTests.test_chunk_boundaries_do_not_change_tones_or_final_state",
+      "status": "pass",
+      "seconds": 0.8702,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_encode_session2.MfskTextToneEncoderTests.test_every_convolutional_vector_matches_through_candidate_state",
+      "status": "pass",
+      "seconds": 0.0002,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_encode_session2.MfskTextToneEncoderTests.test_input_validation_does_not_mutate_state",
+      "status": "pass",
+      "seconds": 0.0,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_encode_session2.MfskTextToneEncoderTests.test_long_input_retains_fixed_interleaver_history",
+      "status": "pass",
+      "seconds": 0.1262,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_encode_session2.MfskTextToneEncoderTests.test_malformed_checkpoints_are_rejected",
+      "status": "pass",
+      "seconds": 0.0002,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_encode_session2.MfskTextToneEncoderTests.test_mode_parameters_match_frozen_wire_vectors",
+      "status": "pass",
+      "seconds": 0.0,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_encode_session2.MfskTextToneEncoderTests.test_modes_share_logical_tones_but_not_physical_parameters",
+      "status": "pass",
+      "seconds": 0.0004,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_encode_session2.MfskTextToneEncoderTests.test_partial_group_is_retained_and_completed_without_implicit_flush",
+      "status": "pass",
+      "seconds": 0.0,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_encode_session2.MfskTextToneEncoderTests.test_short_text_vector_matches_every_intermediate_and_tone",
+      "status": "pass",
+      "seconds": 0.0,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_encode_session3.Session3FramingTests.test_complete_framing_matches_independent_oracle_in_both_modes",
+      "status": "pass",
+      "seconds": 0.0034,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_encode_session3.Session3FramingTests.test_plan_has_exact_frames_and_logical_item_boundaries",
+      "status": "pass",
+      "seconds": 0.0005,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_encode_session3.Session3FramingTests.test_text_item_chunking_is_wire_invariant",
+      "status": "pass",
+      "seconds": 0.0015,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_encode_session3.Session3SynthesisTests.test_frequency_formula_and_every_supported_output_rate",
+      "status": "pass",
+      "seconds": 0.0661,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_encode_session3.Session3SynthesisTests.test_pcm_level_and_frame_neutral_raised_cosine_envelope",
+      "status": "pass",
+      "seconds": 0.0018,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_encode_session3.Session3SynthesisTests.test_pcm_quantization_has_exact_initial_samples",
+      "status": "pass",
+      "seconds": 0.0042,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_encode_session3.Session3SynthesisTests.test_pcm_writes_remain_one_symbol_bounded_for_long_tone_streams",
+      "status": "pass",
+      "seconds": 0.2506,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_encode_session3.Session3SynthesisTests.test_phase_is_continuous_and_matches_integrated_frequency",
+      "status": "pass",
+      "seconds": 0.0012,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_encode_session3.Session3WaveTests.test_coupled_round_trip_recovers_payload_in_both_modes",
+      "status": "pass",
+      "seconds": 0.6338,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_encode_session3.Session3WaveTests.test_invalid_preflight_preserves_existing_output",
+      "status": "pass",
+      "seconds": 0.0009,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_encode_session3.Session3WaveTests.test_reported_write_failure_removes_replaced_output",
+      "status": "pass",
+      "seconds": 0.0013,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_encode_session3.Session3WaveTests.test_streaming_output_is_canonical_wav_with_exact_duration",
+      "status": "pass",
+      "seconds": 0.042,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_encode_session3.Session3WaveTests.test_validation_boundaries",
+      "status": "pass",
+      "seconds": 0.0,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_encode_session4.Session4PictureTests.test_geometry_profile_alpha_and_input_size_are_rejected",
+      "status": "pass",
+      "seconds": 0.0104,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_encode_session4.Session4PictureTests.test_l_and_rgb_normalization_have_exact_component_order",
+      "status": "pass",
+      "seconds": 0.0013,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_encode_session4.Session4PictureTests.test_l_color_public_wav_matches_equivalent_rgb_in_both_modes_and_all_speeds",
+      "status": "pass",
+      "seconds": 1.1452,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_encode_session4.Session4PictureTests.test_raster_frequencies_and_timings_are_exact_at_endpoints",
+      "status": "pass",
+      "seconds": 0.0011,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_encode_session4.Session4PictureTests.test_resource_limits_and_invalid_forms_are_checked_before_raster_output",
+      "status": "pass",
+      "seconds": 0.0005,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_encode_session5.Session5AnnouncementAndPlanTests.test_all_orderings_have_exact_independent_transition_coordinates",
+      "status": "pass",
+      "seconds": 0.0082,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_encode_session5.Session5AnnouncementAndPlanTests.test_announcements_match_the_accepted_fldigi_convention",
+      "status": "pass",
+      "seconds": 0.0011,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_encode_session5.Session5SynthesisTests.test_complete_wav_matches_plan_for_both_modes_and_multiple_images",
+      "status": "pass",
+      "seconds": 0.2654,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_encode_session5.Session5SynthesisTests.test_coupled_grampy_recovers_header_picture_and_resumed_text",
+      "status": "pass",
+      "seconds": 0.5085,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_encode_session5.Session5SynthesisTests.test_phase_is_continuous_across_tone_prologue_raster_and_tone",
+      "status": "pass",
+      "seconds": 0.001,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_encode_session6.Session6CompositionTests.test_adjacent_modes_have_no_implicit_gap_and_independent_framing",
+      "status": "pass",
+      "seconds": 0.5506,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_encode_session6.Session6CompositionTests.test_audio_ancillary_chunk_is_skipped_and_pcm_copied_exactly",
+      "status": "pass",
+      "seconds": 0.0014,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_encode_session6.Session6CompositionTests.test_malformed_audio_rejected_before_replacement",
+      "status": "pass",
+      "seconds": 0.0009,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_encode_session6.Session6CompositionTests.test_mixed_text_file_picture_audio_and_silence_coordinates",
+      "status": "pass",
+      "seconds": 0.0968,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_encode_session6.Session6CompositionTests.test_preflight_preserves_existing_output_for_bad_input_and_alias",
+      "status": "pass",
+      "seconds": 0.0018,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_encode_session6.Session6CompositionTests.test_public_surface_and_text_conversion",
+      "status": "pass",
+      "seconds": 0.0001,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_encode_session6.Session6CompositionTests.test_removal_failure_reports_residual_path_and_preserves_cause",
+      "status": "pass",
+      "seconds": 0.0008,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_encode_session6.Session6CompositionTests.test_reported_write_failure_removes_replaced_output",
+      "status": "pass",
+      "seconds": 0.0006,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_encode_session6.Session6CompositionTests.test_truncated_png_rejected_before_replacement",
+      "status": "pass",
+      "seconds": 0.0313,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_encode_session6r1.Session6R1Tests.test_complete_pcm_matches_independent_oracle_at_multiple_carriers",
+      "status": "pass",
+      "seconds": 0.1041,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_encode_session6r1.Session6R1Tests.test_every_supported_rate_has_exact_frames_and_symbol_bounded_writes",
+      "status": "pass",
+      "seconds": 1.7283,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_encode_session6r1.Session6R1Tests.test_guards_phase_reset_and_no_envelope",
+      "status": "pass",
+      "seconds": 0.033,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_encode_session6r1.Session6R1Tests.test_invalid_preflight_and_sink_failures",
+      "status": "pass",
+      "seconds": 0.0003,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_encode_session6r1.Session6R1Tests.test_oracle_rejects_tone_carrier_timing_phase_and_level_mutations",
+      "status": "pass",
+      "seconds": 0.1096,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_encode_session6r1.Session6R1Tests.test_streaming_peak_memory_is_bounded_at_maximum_rate",
+      "status": "pass",
+      "seconds": 0.3611,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_encode_session6r2.Session6R2Tests.test_empty_items_and_every_rate_include_each_prefix_in_preflight",
+      "status": "pass",
+      "seconds": 0.0477,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_encode_session6r2.Session6R2Tests.test_prefix_and_existing_mfsk_pcm_join_exactly_without_extra_gap",
+      "status": "pass",
+      "seconds": 0.8315,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_encode_session6r2.Session6R2Tests.test_prefix_failure_and_accounting_mismatch_remove_replaced_output",
+      "status": "pass",
+      "seconds": 0.0256,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_encode_session6r2.Session6R2Tests.test_repeated_empty_segments_each_emit_complete_prefix_and_framing",
+      "status": "pass",
+      "seconds": 0.1818,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_encode_session6r2.Session6R2Tests.test_riff_ceiling_counts_prefix_for_empty_and_repeated_segments",
+      "status": "pass",
+      "seconds": 0.0026,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_encode_session6r2.Session6R2Tests.test_whole_wav_auto_acquisition_and_payload_recovery",
+      "status": "pass",
+      "seconds": 25.9127,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_encode_session7.Session7HardeningTests.test_audio_copy_and_silence_use_fixed_size_pcm_writes",
+      "status": "pass",
+      "seconds": 0.0317,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_encode_session7.Session7HardeningTests.test_distribution_metadata_public_exports_and_library_docs_agree",
+      "status": "pass",
+      "seconds": 0.0018,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_encode_session7.Session7HardeningTests.test_large_image_keeps_one_source_raster_and_streams_components",
+      "status": "pass",
+      "seconds": 1.3756,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_encode_session7.Session7HardeningTests.test_long_text_file_is_consumed_in_fixed_chunks",
+      "status": "pass",
+      "seconds": 0.0026,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_encode_session7.Session7HardeningTests.test_result_coordinates_match_completed_wav_after_mixed_parts",
+      "status": "pass",
+      "seconds": 0.096,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_encoder_evidence.OfflineEncoderOracleTests.test_all_varicode_octets_are_exact_and_uniquely_terminated",
+      "status": "pass",
+      "seconds": 0.0009,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_encoder_evidence.OfflineEncoderOracleTests.test_every_fec_vector_matches_the_independent_equations",
+      "status": "pass",
+      "seconds": 0.0001,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_encoder_evidence.OfflineEncoderOracleTests.test_frozen_reference_wav_measurements_remain_exact",
+      "status": "pass",
+      "seconds": 0.0,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_encoder_evidence.OfflineEncoderOracleTests.test_interleaver_and_text_to_tone_vectors_are_exact",
+      "status": "pass",
+      "seconds": 0.0001,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_encoder_evidence.OfflineEncoderOracleTests.test_mode_and_framing_counts_are_exact",
+      "status": "pass",
+      "seconds": 0.0001,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_encoder_evidence.OfflineEncoderOracleTests.test_oracle_inputs_have_frozen_identity_and_match_packaged_copies",
+      "status": "pass",
+      "seconds": 0.0015,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_encoder_evidence.OfflineEncoderOracleTests.test_oracle_rejects_deliberate_tone_timing_and_rgb_order_defects",
+      "status": "pass",
+      "seconds": 0.0002,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_encoder_evidence.OfflineEncoderOracleTests.test_picture_headers_prologue_raster_order_and_frequencies_are_exact",
+      "status": "pass",
+      "seconds": 0.0001,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_encoder_evidence.PiQualificationContractTests.test_matrix_has_the_required_interoperability_coverage",
+      "status": "pass",
+      "seconds": 0.0003,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_encoder_evidence.PiQualificationContractTests.test_pi_manifest_schema_is_valid_and_requires_hashes_and_outcomes",
+      "status": "pass",
+      "seconds": 0.0191,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_fixture_inventory.MfskControlledCorpusTests.test_available_pinned_artifacts_match_all_hashes",
+      "status": "skip",
+      "seconds": 0.0003,
+      "reason": "controlled MFSK corpus unavailable; set GRAM_PY_MFSK_FIXTURES"
+    },
+    {
+      "id": "test_mfsk_fixture_inventory.MfskFixtureInventoryTests.test_checked_in_evidence_has_complete_controlled_fixture_matrix",
+      "status": "pass",
+      "seconds": 0.0001,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_fixture_inventory.MfskFixtureInventoryTests.test_cli_missing_is_available_by_default_and_strict_on_request",
+      "status": "pass",
+      "seconds": 0.1481,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_fixture_inventory.MfskFixtureInventoryTests.test_inventory_distinguishes_verified_missing_and_mismatch",
+      "status": "pass",
+      "seconds": 0.0015,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_fixture_inventory.MfskFixtureInventoryTests.test_rejects_artifact_path_escape",
+      "status": "pass",
+      "seconds": 0.0001,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_fixture_source.MfskFixtureSourceTests.test_checked_in_png_matches_deterministic_generator",
+      "status": "pass",
+      "seconds": 0.001,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_fixture_source.MfskFixtureSourceTests.test_png_contains_exact_normative_rgb_vector",
+      "status": "pass",
+      "seconds": 0.0004,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_image_review.MfskImageReviewTests.test_candidate_specs_accept_an_arbitrary_named_set",
+      "status": "pass",
+      "seconds": 0.0001,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_image_review.MfskImageReviewTests.test_final_scorecard_preserves_identity_metrics_and_gate_status",
+      "status": "pass",
+      "seconds": 0.0011,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_image_review.MfskImageReviewTests.test_summary_and_gate_must_be_supplied_together",
+      "status": "pass",
+      "seconds": 0.0001,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_rsid_oracle.RsidOracleTests.test_48k_prefix_intervals_are_contiguous_and_exact",
+      "status": "pass",
+      "seconds": 0.0001,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_rsid_oracle.RsidOracleTests.test_draft_pi_contract_requires_continuous_rxid_acquisition",
+      "status": "pass",
+      "seconds": 0.0169,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_rsid_oracle.RsidOracleTests.test_frozen_words_cover_primary_and_extended_identifiers",
+      "status": "pass",
+      "seconds": 0.0003,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_wire_vectors.MfskWireVectorTests.test_complete_varicode_table_has_required_structure",
+      "status": "pass",
+      "seconds": 0.0002,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_wire_vectors.MfskWireVectorTests.test_convolutional_vectors_match_explicit_contract",
+      "status": "pass",
+      "seconds": 0.0001,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_wire_vectors.MfskWireVectorTests.test_fixture_evidence_is_well_formed_and_independently_received",
+      "status": "pass",
+      "seconds": 0.0001,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_wire_vectors.MfskWireVectorTests.test_fldigi_interleaver_vectors_match_closed_form_rule",
+      "status": "pass",
+      "seconds": 0.0,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_wire_vectors.MfskWireVectorTests.test_lettered_interleaver_example_distinguishes_orientations",
+      "status": "pass",
+      "seconds": 0.0,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_wire_vectors.MfskWireVectorTests.test_mode_timing_is_internally_consistent",
+      "status": "pass",
+      "seconds": 0.0,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_wire_vectors.MfskWireVectorTests.test_text_to_tones_vector_composes_independent_contracts",
+      "status": "pass",
+      "seconds": 0.0001,
+      "reason": null
+    },
+    {
+      "id": "test_mfsk_wire_vectors.MfskWireVectorTests.test_transmission_framing_counts_match_mode_parameters",
+      "status": "pass",
+      "seconds": 0.0,
+      "reason": null
+    },
+    {
+      "id": "test_reception_quality.ReceptionQualityTests.test_nonfinite_iq_has_explicit_unavailable_values",
+      "status": "pass",
+      "seconds": 0.0087,
+      "reason": null
+    },
+    {
+      "id": "test_reception_quality.ReceptionQualityTests.test_signal_fade_drift_noise_rise_and_quiet_interval",
+      "status": "pass",
+      "seconds": 0.0157,
+      "reason": null
+    },
+    {
+      "id": "test_setup_corpus.CorpusTransferTests.test_checksum_failure_preserves_existing_corpus",
+      "status": "pass",
+      "seconds": 0.0285,
+      "reason": null
+    },
+    {
+      "id": "test_setup_corpus.CorpusTransferTests.test_curl_failure_is_reported_without_leaving_a_corpus",
+      "status": "pass",
+      "seconds": 0.001,
+      "reason": null
+    },
+    {
+      "id": "test_setup_corpus.CorpusTransferTests.test_fetch_installs_requested_archive_without_version_synchronization",
+      "status": "pass",
+      "seconds": 0.0366,
+      "reason": null
+    },
+    {
+      "id": "test_setup_corpus.CorpusTransferTests.test_fetch_script_installs_explicit_archive",
+      "status": "pass",
+      "seconds": 0.089,
+      "reason": null
+    },
+    {
+      "id": "test_setup_corpus.CorpusTransferTests.test_ignores_optional_appledouble_root_metadata",
+      "status": "pass",
+      "seconds": 0.0187,
+      "reason": null
+    },
+    {
+      "id": "test_setup_corpus.CorpusTransferTests.test_invalid_checksum_is_rejected_before_download",
+      "status": "pass",
+      "seconds": 0.0003,
+      "reason": null
+    },
+    {
+      "id": "test_setup_corpus.CorpusTransferTests.test_missing_version_file_preserves_existing_corpus",
+      "status": "pass",
+      "seconds": 0.0171,
+      "reason": null
+    },
+    {
+      "id": "test_setup_corpus.CorpusTransferTests.test_package_and_fetch_encrypted_corpus_round_trip",
+      "status": "pass",
+      "seconds": 0.1458,
+      "reason": null
+    },
+    {
+      "id": "test_setup_corpus.CorpusTransferTests.test_package_refuses_to_overwrite_archive",
+      "status": "pass",
+      "seconds": 0.0006,
+      "reason": null
+    },
+    {
+      "id": "test_setup_corpus.CorpusTransferTests.test_package_without_encryption_round_trip",
+      "status": "pass",
+      "seconds": 0.0254,
+      "reason": null
+    },
+    {
+      "id": "test_setup_corpus.CorpusTransferTests.test_symlinked_corpus_root_is_rejected",
+      "status": "pass",
+      "seconds": 0.0011,
+      "reason": null
+    },
+    {
+      "id": "test_setup_corpus.CorpusTransferTests.test_unsafe_archive_path_preserves_existing_corpus",
+      "status": "pass",
+      "seconds": 0.0155,
+      "reason": null
+    },
+    {
+      "id": "test_setup_corpus.CorpusTransferTests.test_wrong_password_preserves_existing_corpus",
+      "status": "pass",
+      "seconds": 0.1419,
+      "reason": null
+    },
+    {
+      "id": "test_text_manifest.TextManifestTests.test_complete_frame_spans_picture_and_links_to_introductory_text",
+      "status": "pass",
+      "seconds": 0.002,
+      "reason": null
+    },
+    {
+      "id": "test_text_manifest.TextManifestTests.test_full_broadcast_reference_has_ordered_modes_and_nine_images",
+      "status": "pass",
+      "seconds": 0.1027,
+      "reason": null
+    },
+    {
+      "id": "test_text_manifest.TextManifestTests.test_unframed_text_is_retained_when_no_stx_is_detected",
+      "status": "pass",
+      "seconds": 0.0005,
+      "reason": null
+    },
+    {
+      "id": "test_text_manifest.TextManifestTests.test_utf8_quotes_and_accent_with_invalid_octet_preserved",
+      "status": "pass",
+      "seconds": 0.0004,
+      "reason": null
+    }
+  ],
+  "audit_date": "2026-10-11",
+  "source_commit": "2126385",
+  "runner_note": "Repository virtualenv, PYTHONPATH=src; audit runner adds repository root to sys.path to match python -m unittest. Final corrected harness run.",
+  "static_test_modules": 42,
+  "status_counts": {
+    "pass": 242,
+    "skip": 6
+  },
+  "disposition_counts": {
+    "keep": 232,
+    "consolidate": 4,
+    "repair": 5,
+    "rewrite": 1,
+    "split": 1,
+    "retire from current product suite": 4,
+    "reclassify": 1
+  },
+  "tier_counts": {
+    "self-contained": 231,
+    "received-IQ sidecar": 6,
+    "missing independent controlled recordings": 6,
+    "historical committed evidence": 4,
+    "saved GramPy manifest sidecar": 1
+  },
+  "python_version": "3.14.3",
+  "dependency_versions": {
+    "numpy": "2.5.2",
+    "scipy": "1.18.0",
+    "Pillow": "12.3.0",
+    "jsonschema": "4.26.0"
+  }
+}

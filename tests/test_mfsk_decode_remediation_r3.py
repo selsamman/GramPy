@@ -9,7 +9,6 @@ import numpy as np
 from grampy.pipeline import DecodeConfig, run_reference_pipeline
 from grampy.stateful_text import (
     PictureHeaderScanner,
-    StatefulVaricodeParser,
     plan_text_epochs,
 )
 from grampy.wire import (
@@ -50,25 +49,6 @@ class RemediationR3StateTests(unittest.TestCase):
         # Six predecessor bits are intrinsically ambiguous at an arbitrary cut;
         # the remaining committed interval is exact.
         self.assertEqual(result.bits[6:], bits[6:])
-
-    def test_varicode_checkpoint_is_chunk_equivalent_and_has_provenance(
-        self,
-    ) -> None:
-        parser = StatefulVaricodeParser()
-        whole = parser.push(tuple(map(int, "1010011100101")), [0.8] * 13)
-
-        split = StatefulVaricodeParser()
-        first = split.push(tuple(map(int, "10100")), [0.8] * 5)
-        checkpoint = split.checkpoint()
-        resumed = StatefulVaricodeParser()
-        resumed.restore(checkpoint)
-        second = resumed.push(tuple(map(int, "11100101")), [0.8] * 8)
-
-        self.assertEqual(first + second, whole)
-        self.assertTrue(all(event.confidence == 0.8 for event in whole))
-        self.assertTrue(
-            all(event.source_bit_interval[0] < event.source_bit_interval[1] for event in whole)
-        )
 
     def test_confidence_aware_header_rejects_damage_and_accepts_split_token(
         self,

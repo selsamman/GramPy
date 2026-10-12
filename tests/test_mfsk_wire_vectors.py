@@ -7,7 +7,6 @@ import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
 VECTORS = ROOT / "docs" / "decoder" / "data" / "mfsk_wire_vectors.json"
-EVIDENCE = ROOT / "docs" / "decoder" / "data" / "mfsk_fixture_evidence.json"
 VARICODE = ROOT / "docs" / "decoder" / "data" / "mfsk_varicode.json"
 
 
@@ -147,39 +146,6 @@ class MfskWireVectorTests(unittest.TestCase):
             [fldigi_gray_encode(label) for label in labels],
             vector["normal_sideband_physical_tone_indices"],
         )
-
-    def test_fixture_evidence_is_well_formed_and_independently_received(self) -> None:
-        evidence = json.loads(EVIDENCE.read_text(encoding="utf-8"))
-        self.assertEqual(
-            evidence["schema"],
-            "grampy-fixture-evidence.v1",
-        )
-        self.assertEqual(len(evidence["fixtures"]), 4)
-        for fixture in evidence["fixtures"]:
-            for field in ("wav_sha256", "sigmf_data_sha256", "sigmf_meta_sha256"):
-                digest = fixture[field]
-                self.assertEqual(len(digest), 64)
-                self.assertTrue(all(character in "0123456789abcdef" for character in digest))
-            if fixture["kind"] == "text":
-                self.assertEqual(fixture["decoded_text"], fixture["input_text"])
-            else:
-                self.assertTrue(fixture["receiver_produced_image"])
-
-    def test_complete_varicode_table_has_required_structure(self) -> None:
-        document = json.loads(VARICODE.read_text(encoding="utf-8"))
-        self.assertEqual(document["schema"], "grampy-varicode.v1")
-        encodings = document["encodings"]
-        self.assertEqual(len(encodings), 256)
-        self.assertEqual(len(set(encodings)), 256)
-        for encoding in encodings:
-            self.assertTrue(encoding.startswith("1"))
-            self.assertTrue(encoding.endswith("00"))
-            self.assertNotIn("00", encoding.rstrip("0"))
-        self.assertEqual(encodings[32], "100")
-        self.assertEqual(encodings[101], "1000")
-        self.assertEqual(encodings[116], "1100")
-        self.assertEqual(encodings[2], "11101101000")
-        self.assertEqual(encodings[4], "11101110000")
 
 
 if __name__ == "__main__":

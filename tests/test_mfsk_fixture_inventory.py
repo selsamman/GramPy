@@ -19,6 +19,8 @@ EVIDENCE = ROOT / "docs" / "decoder" / "data" / "mfsk_fixture_evidence.json"
 class MfskFixtureInventoryTests(unittest.TestCase):
     def test_checked_in_evidence_has_complete_controlled_fixture_matrix(self) -> None:
         evidence = load_evidence(EVIDENCE)
+        self.assertEqual(evidence["schema"], "grampy-fixture-evidence.v1")
+        self.assertEqual(len(evidence["fixtures"]), 4)
         fixtures = {fixture["id"]: fixture for fixture in evidence["fixtures"]}
         self.assertEqual(
             set(fixtures),
@@ -35,6 +37,14 @@ class MfskFixtureInventoryTests(unittest.TestCase):
                 set(fixture["artifacts"]),
                 {"wav", "sigmf_data", "sigmf_meta"},
             )
+            for field in ("wav_sha256", "sigmf_data_sha256", "sigmf_meta_sha256"):
+                digest = fixture[field]
+                self.assertEqual(len(digest), 64)
+                self.assertTrue(all(character in "0123456789abcdef" for character in digest))
+            if fixture["kind"] == "text":
+                self.assertEqual(fixture["decoded_text"], fixture["input_text"])
+            else:
+                self.assertTrue(fixture["receiver_produced_image"])
 
     def test_inventory_distinguishes_verified_missing_and_mismatch(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:

@@ -1,10 +1,7 @@
 from __future__ import annotations
 
-import hashlib
 from pathlib import Path
 import unittest
-
-from jsonschema import Draft202012Validator
 
 from mfsk_encoder_evidence import (
     EvidenceMismatch,
@@ -41,14 +38,6 @@ FIXTURE_EVIDENCE = (
 )
 PACKAGED_DATA = ROOT / "src" / "grampy" / "data"
 PRIMARY_RGB_PPM = ROOT / "tests" / "fixtures" / "mfsk" / "primary-color-8x4.ppm"
-PI_MATRIX = ROOT / "docs" / "encoder" / "data" / "mfsk_encoder_pi_matrix_v1.json"
-PI_MANIFEST_SCHEMA = (
-    ROOT
-    / "docs"
-    / "encoder"
-    / "data"
-    / "mfsk_encoder_pi_qualification_manifest_v1.schema.json"
-)
 
 
 class OfflineEncoderOracleTests(unittest.TestCase):
@@ -56,7 +45,6 @@ class OfflineEncoderOracleTests(unittest.TestCase):
     def setUpClass(cls) -> None:
         cls.vectors = load_json(WIRE_VECTORS)
         cls.varicode = load_json(VARICODE)["encodings"]
-        cls.fixture_evidence = load_json(FIXTURE_EVIDENCE)
 
     def test_oracle_inputs_have_frozen_identity_and_match_packaged_copies(self) -> None:
         for path, expected in (
@@ -77,6 +65,7 @@ class OfflineEncoderOracleTests(unittest.TestCase):
             )
 
     def test_all_varicode_octets_are_exact_and_uniquely_terminated(self) -> None:
+        self.assertEqual(load_json(VARICODE)["schema"], "grampy-varicode.v1")
         self.assertEqual(len(self.varicode), 256)
         self.assertEqual(len(set(self.varicode)), 256)
         for octet, codeword in enumerate(self.varicode):
@@ -251,25 +240,6 @@ class OfflineEncoderOracleTests(unittest.TestCase):
                 color_frames,
             )
 
-    def test_frozen_reference_wav_measurements_remain_exact(self) -> None:
-        fixtures = {
-            fixture["id"]: fixture
-            for fixture in self.fixture_evidence["fixtures"]
-        }
-        gray = fixtures["mfsk64-gray-8x4-p8"]
-        self.assertEqual(gray["raster_start_wav_sample"], 784285)
-        self.assertEqual(gray["raster_samples"], 1536)
-        self.assertEqual(gray["raster_duration_seconds"], 0.032)
-        color = fixtures["mfsk64-primary-color-8x4-p8"]
-        self.assertEqual(color["prologue_start_wav_sample"], 820600)
-        self.assertEqual(color["prologue_samples"], 2112)
-        self.assertEqual(color["raster_start_wav_sample"], 822712)
-        self.assertEqual(color["raster_samples"], 4608)
-        self.assertEqual(color["raster_duration_seconds"], 0.096)
-        self.assertLess(color["row_plane_rgb_rmse_hz"], 20)
-        self.assertGreater(color["pixel_interleaved_rgb_rmse_hz"], 400)
-        self.assertGreater(color["whole_image_planes_rmse_hz"], 400)
-
     def test_oracle_rejects_deliberate_tone_timing_and_rgb_order_defects(self) -> None:
         expected_tones = self.vectors["text_to_tones_from_reset"][
             "normal_sideband_physical_tone_indices"
@@ -289,182 +259,6 @@ class OfflineEncoderOracleTests(unittest.TestCase):
         pixel_interleaved = tuple(component for pixel in pixels for component in pixel)
         with self.assertRaisesRegex(EvidenceMismatch, "RGB raster order"):
             require_exact("RGB raster order", pixel_interleaved, expected_rgb)
-
-
-class PiQualificationContractTests(unittest.TestCase):
-    def test_matrix_has_the_required_interoperability_coverage(self) -> None:
-        matrix = load_json(PI_MATRIX)
-        self.assertEqual(matrix["schema"], "grampy-mfsk-encoder-pi-matrix.v1")
-        self.assertEqual(matrix["sample_rate_hz"], 48000)
-        self.assertEqual(
-            matrix["receiver"]["reference_id"],
-            "fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178",
-        )
-        width, height, pixels = read_ppm(PRIMARY_RGB_PPM)
-        rgb_bytes = bytes(component for pixel in pixels for component in pixel)
-        gray_bytes = bytes(grayscale_values(pixels))
-        source = matrix["source_inputs"]["primary_rgb_png"]
-        self.assertEqual((source["width"], source["height"]), (width, height))
-        self.assertEqual(
-            source["rgb_pixel_sha256"], hashlib.sha256(rgb_bytes).hexdigest()
-        )
-        self.assertEqual(
-            source["grayscale_pixel_sha256"], hashlib.sha256(gray_bytes).hexdigest()
-        )
-        cases = {case["id"]: case for case in matrix["cases"]}
-        self.assertEqual(
-            set(cases),
-            {
-                "mfsk32-text",
-                "mfsk64-text",
-                "mfsk32-grayscale-speeds",
-                "mfsk64-color-speeds",
-                "adjacent-modes-no-gap",
-                "mixed-composition-boundaries",
-            },
-        )
-        image_coverage = {
-            (content["color"], content["samples_per_pixel"])
-            for case in matrix["cases"]
-            for segment in case["composition"]
-            if segment["kind"] == "mfsk"
-            for content in segment["contents"]
-            if content["kind"] == "image"
-        }
-        self.assertTrue(
-            {(color, speed) for color in ("grayscale", "color") for speed in (2, 4, 8)}
-            <= image_coverage
-        )
-        modes = {
-            segment["mode"]
-            for case in matrix["cases"]
-            for segment in case["composition"]
-            if segment["kind"] == "mfsk"
-        }
-        self.assertEqual(modes, {"MFSK32", "MFSK64"})
-        self.assertTrue(
-            any(
-                content["kind"] == "text" and content.get("role") == "post-picture"
-                for case in matrix["cases"]
-                for segment in case["composition"]
-                if segment["kind"] == "mfsk"
-                for content in segment["contents"]
-            )
-        )
-        mixed_kinds = [
-            part["kind"] for part in cases["mixed-composition-boundaries"]["composition"]
-        ]
-        self.assertEqual(mixed_kinds, ["mfsk", "silence", "audio", "silence", "mfsk"])
-        adjacent = cases["adjacent-modes-no-gap"]
-        self.assertEqual(
-            [part["mode"] for part in adjacent["composition"]],
-            ["MFSK32", "MFSK64"],
-        )
-        self.assertEqual(
-            [(run["mode"], run["window"]) for run in adjacent["receiver_runs"]],
-            [("MFSK32", "segment:0"), ("MFSK64", "segment:1")],
-        )
-
-    def test_pi_manifest_schema_is_valid_and_requires_hashes_and_outcomes(self) -> None:
-        schema = load_json(PI_MANIFEST_SCHEMA)
-        Draft202012Validator.check_schema(schema)
-        required = set(schema["required"])
-        self.assertTrue(
-            {
-                "schema",
-                "run_id",
-                "status",
-                "source",
-                "target",
-                "receiver",
-                "cases",
-                "summary",
-            }
-            <= required
-        )
-        case_required = set(schema["$defs"]["case"]["required"])
-        self.assertTrue(
-            {
-                "id",
-                "status",
-                "generated_wav",
-                "encoder_result",
-                "receiver_runs",
-                "checks",
-                "discrepancies",
-            }
-            <= case_required
-        )
-        digest = "0" * 64
-        artifact = {"path": "artifact.bin", "sha256": digest, "bytes": 1}
-        case = {
-            "id": "case",
-            "status": "pass",
-            "generated_wav": {
-                "path": "case.wav",
-                "sha256": digest,
-                "bytes": 46,
-                "sample_rate_hz": 48000,
-                "channels": 1,
-                "sample_width_bytes": 2,
-                "frame_count": 1,
-            },
-            "encoder_result": {
-                "artifact": artifact,
-                "output_path": "case.wav",
-                "duration_seconds": 1 / 48000,
-                "segments": [
-                    {"input_index": 0, "start_frame": 0, "content_start_frames": [0]}
-                ],
-            },
-            "receiver_runs": [
-                {
-                    "mode": "MFSK32",
-                    "input_interval": {"start_frame": 0, "end_frame": 1},
-                    "configuration": {},
-                    "exit_code": 0,
-                    "log": artifact,
-                    "recovered_text": {"artifact": artifact, "decoded_utf8": "ok"},
-                    "recovered_images": [],
-                }
-            ],
-            "checks": [
-                {"id": "receiver-exit-success", "status": "pass", "expected": 0, "observed": 0}
-            ],
-            "discrepancies": [],
-        }
-        manifest = {
-            "schema": "grampy-mfsk-encoder-pi-qualification-manifest.v1",
-            "run_id": "0" * 24,
-            "status": "complete",
-            "source": {
-                "repository_revision": "0" * 40,
-                "matrix": artifact,
-                "encoder_distribution": artifact,
-                "inputs": [artifact],
-            },
-            "target": {
-                "hostname": "pi",
-                "platform": "linux",
-                "architecture": "aarch64",
-                "python_version": "3.11",
-            },
-            "receiver": {
-                "reference_id": "fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178",
-                "version": "4.2.13",
-                "binary": artifact,
-                "configuration": {},
-            },
-            "execution": {
-                "workflow": "tools/pi-qualify-mfsk-encoder.sh",
-                "started_utc": "2026-10-01T00:00:00Z",
-                "completed_utc": "2026-10-01T00:01:00Z",
-                "log": artifact,
-            },
-            "cases": [{**case, "id": f"case-{index}"} for index in range(5)],
-            "summary": {"total": 5, "passed": 5, "failed": 0, "blocked": 0},
-        }
-        Draft202012Validator(schema).validate(manifest)
 
 
 if __name__ == "__main__":
