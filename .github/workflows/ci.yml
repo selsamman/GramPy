@@ -31,7 +31,7 @@ jobs:
         run: .venv/bin/python -m pip install --upgrade pip pillow .
 
       - name: Run corpus-independent regression suite
-        run: PYTHONPATH="$PWD/src" PATH="$PWD/.venv/bin:$PATH" .venv/bin/python -m unittest discover -s tests
+        run: PYTHONPATH="$PWD/src" PATH="$PWD/.venv/bin:$PATH" .venv/bin/python tools/test-suite --suite unit
 
   build:
     name: Build and install distributions

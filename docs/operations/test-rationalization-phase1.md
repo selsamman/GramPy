@@ -1,7 +1,7 @@
 # Test rationalization: phase 1
 
-Date: 2026-10-11. Status: validated and staged for user review; no phase commit
-has been created. Based on the
+Date: 2026-10-11. Status: committed as `12b4e92`; original validation records
+below are preserved. Based on the
 [coverage audit](test-coverage-audit.md) at `2126385`.
 
 ## Five-phase plan

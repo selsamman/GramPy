@@ -3,10 +3,12 @@
 from __future__ import annotations
 
 import json
+import os
 from pathlib import Path
 import unittest
 
 from grampy.text_manifest import build_text_manifest
+from tests.suites import data_test
 
 
 def _event(identifier: str, octet: int | None, sample: int) -> dict:
@@ -103,14 +105,15 @@ class TextManifestTests(unittest.TestCase):
         self.assertEqual(item["text"], '“Silver Age” café é')
         self.assertEqual(item["framing"], "complete_stx_eot")
 
+    @data_test("received")
     def test_full_broadcast_reference_has_ordered_modes_and_nine_images(self) -> None:
-        root = Path(__file__).parent / "samples/received-corpus/references"
+        root = Path(os.environ.get("GRAMPY_TEST_SAMPLES", Path(__file__).parent / "samples")) / "received-corpus/references"
         reference = (
             root / "wrmi-20260923T133007Z-15770000"
             / "grampy-0.2.0-reference/decode.manifest.json"
         )
         if not reference.is_file():
-            self.skipTest("optional full-broadcast reference unavailable")
+            self.fail("required saved full-broadcast reference unavailable")
         result = build_text_manifest(json.loads(reference.read_text()))
         self.assertEqual(
             [item["mode"] for item in result["mode_segments"]],

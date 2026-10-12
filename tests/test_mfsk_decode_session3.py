@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import json
-import os
 from pathlib import Path
 import unittest
 
@@ -14,11 +13,11 @@ from grampy.wire import (
     soft_viterbi_decode,
 )
 
+from tests.suites import data_test
+from tests.controlled_fixtures import require_fixture
+
 
 ROOT = Path(__file__).resolve().parents[1]
-EVIDENCE = json.loads(
-    (ROOT / "docs" / "decoder" / "data" / "mfsk_fixture_evidence.json").read_text(encoding="utf-8")
-)
 VARICODE = json.loads(
     (ROOT / "docs" / "decoder" / "data" / "mfsk_varicode.json").read_text(encoding="utf-8")
 )["encodings"]
@@ -44,23 +43,9 @@ class Session3WireTests(unittest.TestCase):
 
 
 class ControlledMFSK32VerticalSliceTests(unittest.TestCase):
+    @data_test("controlled")
     def test_pinned_iq_decodes_to_exact_final_octets_with_coordinates(self) -> None:
-        fixture = next(
-            item for item in EVIDENCE["fixtures"]
-            if item["id"] == "mfsk32-text-printable"
-        )
-        fixture_root = Path(
-            os.environ.get(
-                "GRAM_PY_MFSK_FIXTURES",
-                ROOT / ".local" / "fldigi-fixtures",
-            )
-        ) / fixture["artifact_directory"]
-        meta = fixture_root / fixture["artifacts"]["sigmf_meta"]
-        data = fixture_root / fixture["artifacts"]["sigmf_data"]
-        if not meta.exists() or not data.exists():
-            self.skipTest(
-                "controlled MFSK fixtures unavailable; set GRAM_PY_MFSK_FIXTURES"
-            )
+        fixture, meta, data = require_fixture("mfsk32-text-printable")
 
         manifest = run_reference_pipeline(
             meta_path=meta,

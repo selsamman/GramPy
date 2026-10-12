@@ -1,0 +1,398 @@
+{
+  "date": "2026-10-12",
+  "scope": "Candidate experiment, not fixture acceptance",
+  "committed_evidence_sha256": "062fbfe512c32c645c4f16b83d8076aea7e481fdb0bd3c4c97735423d6055cb2",
+  "identities": [
+    {
+      "fixture_id": "mfsk32-text-printable",
+      "artifacts": {
+        "wav": {
+          "expected_sha256": "9621633a1c6ba4297fbb2db24611f297f49d56520b45eb2334d843ba8553482d",
+          "actual_sha256": "379310c43590b78373b9cfe809706147272156e214b9cc6b449fc59c6641271e",
+          "matches": false,
+          "bytes": 2400428
+        },
+        "sigmf_data": {
+          "expected_sha256": "82bbac22ae4e4fb015873aa72ca507b761099e601f8de16992c5c94ad39ab6cf",
+          "actual_sha256": "b1d34f3acb43ded70351a63296ad31be77fa0bc12b9ddc8077114c0d7812c12d",
+          "matches": false,
+          "bytes": 9601536
+        },
+        "sigmf_meta": {
+          "expected_sha256": "e1b5243e6d26b6be4e1446fec6aacafa8eac415040b7578082e94064b4cb7ade",
+          "actual_sha256": "21693252b1f7f6315e84ad53a3214101f3fec6da15fc301a487c0508e0a44376",
+          "matches": false,
+          "bytes": 1114
+        }
+      }
+    },
+    {
+      "fixture_id": "mfsk64-text-printable",
+      "artifacts": {
+        "wav": {
+          "expected_sha256": "4fe82965d4abaaff9bc9cc6d9a54d38f048ae049825de750bd99cb55cd755653",
+          "actual_sha256": "0f9fa76b9c0afbb0d9dd9126562b0b81ebd0425fb225d87673ca176e353d8c8a",
+          "matches": false,
+          "bytes": 2088620
+        },
+        "sigmf_data": {
+          "expected_sha256": "b4d848a49d6ad176f3ee8350dd7c9738be222ea1f8adb75d860a0c527dc76a97",
+          "actual_sha256": "64bd981cebd89b866cb51180696380f565078549b64e6512c11f1142b7033167",
+          "matches": false,
+          "bytes": 8354304
+        },
+        "sigmf_meta": {
+          "expected_sha256": "26f14e44bb010553ff86f28f422d0042928375be583ecd0f3cb4fefc5d7d1f33",
+          "actual_sha256": "f5848fa1de73caded2f6e8a76b214e3362cf964ccb42341e856ed7e210000285",
+          "matches": false,
+          "bytes": 1114
+        }
+      }
+    },
+    {
+      "fixture_id": "mfsk64-gray-8x4-p8",
+      "artifacts": {
+        "wav": {
+          "expected_sha256": "8f0c4707296e1d0f7718f43abad865081ec7204e08263836733784e07d8101d5",
+          "actual_sha256": "eb74b7dad6e70cf7fc46aa76253e7b5dca0ce921db6ea5f6d08a58dd6f9a69d2",
+          "matches": false,
+          "bytes": 1968428
+        },
+        "sigmf_data": {
+          "expected_sha256": "ca0675d99c7aa39128fcfffb0783dace9946fa9e88f499b4a26c231a5cedb536",
+          "actual_sha256": "24541017a252d27bf5c0c18967b0253ae4c401c573faf0842cc5c512b3ce0768",
+          "matches": false,
+          "bytes": 7873536
+        },
+        "sigmf_meta": {
+          "expected_sha256": "13488a95af4ca681816c96d440898e1f1dfef4c31b0f0a2c42aa152c4108c836",
+          "actual_sha256": "003a6c318a23ed6bf2e1e2b1412b494876a0a0c78ac4f45877e7eba42cab6e65",
+          "matches": false,
+          "bytes": 1108
+        }
+      }
+    },
+    {
+      "fixture_id": "mfsk64-primary-color-8x4-p8",
+      "artifacts": {
+        "wav": {
+          "expected_sha256": "1105fb392d59a55ed315c9552118391e489b0210828a3197489e68fffadd4721",
+          "actual_sha256": "d7dae1d9dcc558b53ae55eca824b7c2a4caac3010631116b16e342e81fd88895",
+          "matches": false,
+          "bytes": 2112428
+        },
+        "sigmf_data": {
+          "expected_sha256": "6e00322628618b74d58828f4ebfbe599d4853f79c1e5bac48935142fa46ecd26",
+          "actual_sha256": "bd2a697b6660e21e692b976ae09faa6e6d6ff4a96d50838307d810e581d02641",
+          "matches": false,
+          "bytes": 8449536
+        },
+        "sigmf_meta": {
+          "expected_sha256": "65617638447c1b776cee0190e47048ed144f8df52d8124c7f517287d025066e0",
+          "actual_sha256": "d0481aee00788dc9b116a4bc1227eb6cbb996ff35f588a01aea22b508ffc7bfa",
+          "matches": false,
+          "bytes": 1105
+        }
+      }
+    }
+  ],
+  "diagnostic_assertions": [
+    {
+      "test": "test_mfsk_decode_session3.ControlledMFSK32VerticalSliceTests.test_pinned_iq_decodes_to_exact_final_octets_with_coordinates",
+      "passed_assertions": 169,
+      "failed_assertions": [
+        {
+          "line": 74,
+          "expression": "self.assertEqual(manifest['input']['data_sha256'], fixture['sigmf_data_sha256'])",
+          "category": "identity",
+          "message": "'b1d34f3acb43ded70351a63296ad31be77fa0bc12b9ddc8077114c0d7812c12d' != '82bbac22ae4e4fb015873aa72ca507b761099e601f8de16992c5c94ad39ab6cf'\n- b1d34f3acb43ded70351a63296ad31be77fa0bc12b9ddc8077114c0d7812c12d\n+ 82bbac22ae4e4fb015873aa72ca507b761099e601f8de16992c5c94ad39ab6cf\n"
+        }
+      ],
+      "execution_error": null
+    },
+    {
+      "test": "test_mfsk_decode_session5.MFSK64TextVerticalSliceTests.test_controlled_iq_decodes_exact_octets_through_shared_pipeline",
+      "passed_assertions": 9,
+      "failed_assertions": [
+        {
+          "line": 59,
+          "expression": "self.assertEqual(manifest['input']['data_sha256'], fixture['sigmf_data_sha256'])",
+          "category": "identity",
+          "message": "'64bd981cebd89b866cb51180696380f565078549b64e6512c11f1142b7033167' != 'b4d848a49d6ad176f3ee8350dd7c9738be222ea1f8adb75d860a0c527dc76a97'\n- 64bd981cebd89b866cb51180696380f565078549b64e6512c11f1142b7033167\n+ b4d848a49d6ad176f3ee8350dd7c9738be222ea1f8adb75d860a0c527dc76a97\n"
+        }
+      ],
+      "execution_error": null
+    },
+    {
+      "test": "test_mfsk_decode_session6.ControlledPictureVerticalSliceTests.test_grayscale_header_transition_and_complete_raster",
+      "passed_assertions": 6,
+      "failed_assertions": [
+        {
+          "line": 192,
+          "expression": "self.assertEqual(manifest['input']['data_sha256'], fixture['sigmf_data_sha256'])",
+          "category": "identity",
+          "message": "'24541017a252d27bf5c0c18967b0253ae4c401c573faf0842cc5c512b3ce0768' != 'ca0675d99c7aa39128fcfffb0783dace9946fa9e88f499b4a26c231a5cedb536'\n- 24541017a252d27bf5c0c18967b0253ae4c401c573faf0842cc5c512b3ce0768\n+ ca0675d99c7aa39128fcfffb0783dace9946fa9e88f499b4a26c231a5cedb536\n"
+        },
+        {
+          "line": 200,
+          "expression": "self.assertLessEqual(abs(picture['first_raster_input_sample'] - expected), 48)",
+          "category": "behavior_or_timing",
+          "message": "60855 not less than or equal to 48"
+        }
+      ],
+      "execution_error": null
+    },
+    {
+      "test": "test_mfsk_decode_session6.ControlledPictureVerticalSliceTests.test_color_header_row_plane_assembly_and_reacquisition",
+      "passed_assertions": 7,
+      "failed_assertions": [
+        {
+          "line": 211,
+          "expression": "self.assertLessEqual(abs(picture['first_raster_input_sample'] - expected), 48)",
+          "category": "behavior_or_timing",
+          "message": "87363 not less than or equal to 48"
+        },
+        {
+          "line": 213,
+          "expression": "self.assertFalse(protocol['operative'])",
+          "category": "behavior_or_timing",
+          "message": "True is not false"
+        },
+        {
+          "line": 215,
+          "expression": "self.assertEqual(expected_prologue - protocol['predicted_prologue_start_input_sample'], 252)",
+          "category": "behavior_or_timing",
+          "message": "-87359 != 252"
+        }
+      ],
+      "execution_error": null
+    },
+    {
+      "test": "test_mfsk_decode_remediation_r5.BoundedPipelineTests.test_controlled_text_can_use_bounded_organization",
+      "passed_assertions": 2,
+      "failed_assertions": [
+        {
+          "line": 51,
+          "expression": "self.assertEqual(manifest['diagnostics']['working_set_organization'], 'p11d_bounded_text_and_picture_ranges')",
+          "category": "behavior_or_timing",
+          "message": "'bounded_overlapping_text_windows_and_complete_picture_windows' != 'p11d_bounded_text_and_picture_ranges'\n- bounded_overlapping_text_windows_and_complete_picture_windows\n+ p11d_bounded_text_and_picture_ranges\n"
+        },
+        {
+          "line": 61,
+          "expression": "self.assertEqual(bounded['kind'], 'p11d_compact_tracks_and_stateful_text_pass')",
+          "category": "behavior_or_timing",
+          "message": "'overlapping_complete-region_text_windows' != 'p11d_compact_tracks_and_stateful_text_pass'\n- overlapping_complete-region_text_windows\n+ p11d_compact_tracks_and_stateful_text_pass\n"
+        }
+      ],
+      "execution_error": null
+    },
+    {
+      "test": "test_mfsk_fixture_inventory.MfskControlledCorpusTests.test_available_pinned_artifacts_match_all_hashes",
+      "passed_assertions": 0,
+      "failed_assertions": [
+        {
+          "line": 128,
+          "expression": "self.assertEqual(mismatches, [])",
+          "category": "identity",
+          "message": "Lists differ: ['mfsk32-text-printable', 'mfsk64-text-pri[56 chars]-p8'] != []\n\nFirst list contains 4 additional elements.\nFirst extra element 0:\n'mfsk32-text-printable'\n\n+ []\n- ['mfsk32-text-printable',\n-  'mfsk64-text-printable',\n-  'mfsk64-gray-8x4-p8',\n-  'mfsk64-primary-color-8x4-p8']"
+        },
+        {
+          "line": 133,
+          "expression": "self.assertTrue(all((check.status == 'verified' for check in checks)))",
+          "category": "identity",
+          "message": "False is not true"
+        }
+      ],
+      "execution_error": null
+    }
+  ],
+  "decode_summaries": [
+    {
+      "case": "mfsk32-text-printable",
+      "config": {
+        "block_samples": 262144,
+        "orientation": "unknown",
+        "trace_level": "events",
+        "mode": "MFSK32",
+        "center_hz": null,
+        "picture_component_estimator": "bounded_correlation",
+        "picture_component_window": "full_hann",
+        "picture_filter_profile": "response_matched",
+        "picture_boundary_estimator": "unified_grid",
+        "persistent_tone_policy": "measure",
+        "pipeline_organization": "supported_hybrid",
+        "picture_range_workers": 1,
+        "picture_range_components": 16384,
+        "picture_max_in_flight_ranges": 1,
+        "persistent_intermediates": false
+      },
+      "threshold_seconds": 180.0,
+      "elapsed_seconds": 2.71,
+      "status": "complete",
+      "text": "RG-MFSK32 AaZz 09 .,!?/+-=: END",
+      "pictures": [],
+      "working_set_organization": "complete_requested_region"
+    },
+    {
+      "case": "mfsk64-text-printable",
+      "config": {
+        "block_samples": 262144,
+        "orientation": "unknown",
+        "trace_level": "events",
+        "mode": "MFSK64",
+        "center_hz": null,
+        "picture_component_estimator": "bounded_correlation",
+        "picture_component_window": "full_hann",
+        "picture_filter_profile": "response_matched",
+        "picture_boundary_estimator": "unified_grid",
+        "persistent_tone_policy": "measure",
+        "pipeline_organization": "supported_hybrid",
+        "picture_range_workers": 1,
+        "picture_range_components": 16384,
+        "picture_max_in_flight_ranges": 1,
+        "persistent_intermediates": false
+      },
+      "threshold_seconds": 180.0,
+      "elapsed_seconds": 2.059,
+      "status": "complete",
+      "text": "RG-MFSK64 AaZz 09 .,!?/+-=: END",
+      "pictures": [],
+      "working_set_organization": "complete_requested_region"
+    },
+    {
+      "case": "mfsk64-gray-8x4-p8",
+      "config": {
+        "block_samples": 262144,
+        "orientation": "unknown",
+        "trace_level": "events",
+        "mode": "MFSK64",
+        "center_hz": null,
+        "picture_component_estimator": "bounded_correlation",
+        "picture_component_window": "full_hann",
+        "picture_filter_profile": "response_matched",
+        "picture_boundary_estimator": "unified_grid",
+        "persistent_tone_policy": "measure",
+        "pipeline_organization": "supported_hybrid",
+        "picture_range_workers": 1,
+        "picture_range_components": 16384,
+        "picture_max_in_flight_ranges": 1,
+        "persistent_intermediates": false
+      },
+      "threshold_seconds": 180.0,
+      "elapsed_seconds": 2.422,
+      "status": "complete",
+      "text": "RG-MFSK64-GRAY-8X4-P8\nSending Pic:8x4;",
+      "pictures": [
+        {
+          "header_text": "Pic:8x4;",
+          "width": 8,
+          "height": 4,
+          "color": false,
+          "observed_component_count": 32,
+          "complete": true,
+          "first_raster_input_sample": 797140,
+          "return_to_text_reacquisition_interval": {
+            "start": 798676,
+            "stop": 867796
+          },
+          "protocol_boundary_prediction": {
+            "status": "qualified_unified_global_text_local_header_flush_grid",
+            "operative": true,
+            "predicted_prologue_start_input_sample": 795024,
+            "predicted_first_raster_input_sample": 797140
+          }
+        }
+      ],
+      "working_set_organization": "complete_requested_region"
+    },
+    {
+      "case": "mfsk64-primary-color-8x4-4.2.12",
+      "config": {
+        "block_samples": 262144,
+        "orientation": "unknown",
+        "trace_level": "events",
+        "mode": "MFSK64",
+        "center_hz": null,
+        "picture_component_estimator": "bounded_correlation",
+        "picture_component_window": "full_hann",
+        "picture_filter_profile": "response_matched",
+        "picture_boundary_estimator": "unified_grid",
+        "persistent_tone_policy": "measure",
+        "pipeline_organization": "supported_hybrid",
+        "picture_range_workers": 1,
+        "picture_range_components": 16384,
+        "picture_max_in_flight_ranges": 1,
+        "persistent_intermediates": false
+      },
+      "threshold_seconds": 180.0,
+      "elapsed_seconds": 2.345,
+      "status": "complete",
+      "text": "RG-PRIMARY-MFSK64-COLOR-8X4\nSending Pic:8x4C;",
+      "pictures": [
+        {
+          "header_text": "Pic:8x4C;",
+          "width": 8,
+          "height": 4,
+          "color": true,
+          "observed_component_count": 96,
+          "complete": true,
+          "first_raster_input_sample": 862075,
+          "return_to_text_reacquisition_interval": {
+            "start": 866683,
+            "stop": 935803
+          },
+          "protocol_boundary_prediction": {
+            "status": "qualified_unified_global_text_local_header_flush_grid",
+            "operative": true,
+            "predicted_prologue_start_input_sample": 859959,
+            "predicted_first_raster_input_sample": 862075
+          }
+        }
+      ],
+      "working_set_organization": "complete_requested_region"
+    },
+    {
+      "case": "mfsk32-text-printable",
+      "config": {
+        "block_samples": 262144,
+        "orientation": "normal",
+        "trace_level": "summary",
+        "mode": "MFSK32",
+        "center_hz": 1500.0,
+        "picture_component_estimator": "bounded_correlation",
+        "picture_component_window": "full_hann",
+        "picture_filter_profile": "response_matched",
+        "picture_boundary_estimator": "unified_grid",
+        "persistent_tone_policy": "measure",
+        "pipeline_organization": "supported_hybrid",
+        "picture_range_workers": 1,
+        "picture_range_components": 16384,
+        "picture_max_in_flight_ranges": 1,
+        "persistent_intermediates": false
+      },
+      "threshold_seconds": 0.0,
+      "elapsed_seconds": 2.422,
+      "status": "complete",
+      "text": "RG-MFSK32 AaZz 09 .,!?/+-=: END",
+      "pictures": [],
+      "working_set_organization": "bounded_overlapping_text_windows_and_complete_picture_windows"
+    }
+  ],
+  "input_bytes_and_committed_expectations_unchanged": true,
+  "source_revision": "12b4e92",
+  "strict_results": {
+    "tests_run": 6,
+    "success": false,
+    "failure_count": 6,
+    "error_count": 0,
+    "skip_count": 0,
+    "failed_tests": [
+      "test_mfsk_decode_session3.ControlledMFSK32VerticalSliceTests.test_pinned_iq_decodes_to_exact_final_octets_with_coordinates",
+      "test_mfsk_decode_session5.MFSK64TextVerticalSliceTests.test_controlled_iq_decodes_exact_octets_through_shared_pipeline",
+      "test_mfsk_decode_session6.ControlledPictureVerticalSliceTests.test_grayscale_header_transition_and_complete_raster",
+      "test_mfsk_decode_session6.ControlledPictureVerticalSliceTests.test_color_header_row_plane_assembly_and_reacquisition",
+      "test_mfsk_decode_remediation_r5.BoundedPipelineTests.test_controlled_text_can_use_bounded_organization",
+      "test_mfsk_fixture_inventory.MfskControlledCorpusTests.test_available_pinned_artifacts_match_all_hashes"
+    ]
+  }
+}

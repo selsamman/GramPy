@@ -1,0 +1,55 @@
+#!/usr/bin/env python3
+"""Run a named test tier; required data or skipped selected tests fail the run."""
+import argparse
+from pathlib import Path
+import sys
+import unittest
+
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
+sys.path.insert(0, str(ROOT / "tests"))
+sys.path.insert(0, str(ROOT / "src"))
+
+
+def flatten(suite):
+    for item in suite:
+        if isinstance(item, unittest.TestSuite):
+            yield from flatten(item)
+        else:
+            yield item
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--suite", choices=("unit", "controlled", "received", "all"), default="all")
+    parser.add_argument("--verbose", action="store_true")
+    args = parser.parse_args()
+    if args.suite in {"controlled", "all"}:
+        from tests.controlled_fixtures import preflight
+        try:
+            preflight()
+        except (AssertionError, OSError, ValueError) as error:
+            print(f"Fixture preflight failed: {error}", file=sys.stderr)
+            return 1
+    discovered = list(flatten(unittest.defaultTestLoader.discover(str(ROOT / "tests"))))
+    selected = []
+    for test in discovered:
+        method = getattr(test, test._testMethodName)
+        tier = getattr(method, "data_suite", "unit")
+        # Loader errors must never disappear because their module lacks tags.
+        if args.suite == "all" or tier == args.suite or isinstance(test, unittest.loader._FailedTest):
+            selected.append(test)
+    print(f"Selected suite={args.suite}: {len(selected)} tests; explicitly excluded {len(discovered)-len(selected)} other-tier tests.", flush=True)
+    if not selected:
+        print("No tests selected", file=sys.stderr)
+        return 1
+    result = unittest.TextTestRunner(verbosity=2 if args.verbose else 1).run(unittest.TestSuite(selected))
+    if result.skipped:
+        print("Incomplete validation: selected tests were skipped:", file=sys.stderr)
+        for test, reason in result.skipped:
+            print(f"  {test.id()}: {reason}", file=sys.stderr)
+    return 0 if result.wasSuccessful() and not result.skipped else 1
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

@@ -11,6 +11,8 @@ import numpy as np
 from grampy.picture_decode import decode_pictures
 from grampy.pipeline import DecodeConfig, run_reference_pipeline
 
+from tests.suites import data_test
+
 
 ROOT = Path(__file__).resolve().parents[1]
 SAMPLES = Path(
@@ -112,11 +114,12 @@ class ReceivedPictureTransitionTests(unittest.TestCase):
         "1c1e443e64e47835bb38bd1996b935ada432e9db7b46a9fc3a01d7a8f5bb1cc6"
     )
 
+    @data_test("received")
     def test_received_color_picture_completes_and_returns_to_text(self) -> None:
         meta = CAPTURE.with_suffix(".sigmf-meta")
         data = CAPTURE.with_suffix(".sigmf-data")
         if not meta.is_file() or not data.is_file():
-            self.skipTest(
+            self.fail(
                 "received WRMI corpus unavailable; set GRAMPY_TEST_SAMPLES"
             )
         with tempfile.TemporaryDirectory(prefix="radiogram-mfsk-received-") as name:

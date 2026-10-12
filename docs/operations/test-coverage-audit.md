@@ -9,6 +9,11 @@ fixtures, corpus files, acceptance limits, or defaults were changed. No commits
 were created. Recommendations to retire tests are separate from authorization
 to implement them.
 
+Subsequent repairs are recorded separately in
+[phase 1](test-rationalization-phase1.md) and
+[phase 2](test-rationalization-phase2.md). This inventory describes the original
+baseline, including its six fixture skips; it is not a current-suite verdict.
+
 ## Findings
 
 1. **The standard suite does not enforce the accepted real-corpus decoder

@@ -7,6 +7,8 @@ import unittest
 
 from grampy.pipeline import DecodeConfig, run_reference_pipeline
 
+from tests.suites import data_test
+
 
 ROOT = Path(__file__).resolve().parents[1]
 SAMPLES = Path(
@@ -30,12 +32,13 @@ DATA_SHA256 = "1c1e443e64e47835bb38bd1996b935ada432e9db7b46a9fc3a01d7a8f5bb1cc6"
 
 
 class ReceivedMFSK32AcquisitionTests(unittest.TestCase):
+    @data_test("received")
     def test_untouched_wrmi_interval_decodes_with_rf_tracking(self) -> None:
         meta = SOURCE / "capture.sigmf-meta"
         data = SOURCE / "capture.sigmf-data"
         expected_path = TRUTH / "mfsk32-84-151-expected.txt"
         if not all(path.is_file() for path in (meta, data, expected_path)):
-            self.skipTest(
+            self.fail(
                 "received WRMI fixture unavailable; set GRAMPY_TEST_SAMPLES"
             )
 

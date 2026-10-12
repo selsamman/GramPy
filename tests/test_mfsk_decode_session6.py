@@ -1,24 +1,16 @@
 from __future__ import annotations
 
-import json
-import os
-from pathlib import Path
 import unittest
 
 import numpy as np
+from PIL import Image
 
 from grampy.picture_decode import decode_pictures, parse_picture_headers
 from grampy.pipeline import DecodeConfig, run_reference_pipeline
 from grampy.tracking import FrequencyAnchor, FrequencyTrack
 
-
-ROOT = Path(__file__).resolve().parents[1]
-EVIDENCE = json.loads(
-    (ROOT / "docs" / "decoder" / "data" / "mfsk_fixture_evidence.json").read_text(encoding="utf-8")
-)
-FIXTURE_ROOT = Path(
-    os.environ.get("GRAM_PY_MFSK_FIXTURES", ROOT / ".local" / "fldigi-fixtures")
-)
+from tests.suites import data_test
+from tests.controlled_fixtures import ROOT, require_fixture
 
 
 def event(index: int, value: int, recognized: int = 0) -> dict:
@@ -170,14 +162,7 @@ class PictureHeaderTests(unittest.TestCase):
 
 class ControlledPictureVerticalSliceTests(unittest.TestCase):
     def _decode(self, fixture_id: str) -> tuple[dict, dict]:
-        fixture = next(
-            item for item in EVIDENCE["fixtures"] if item["id"] == fixture_id
-        )
-        root = FIXTURE_ROOT / fixture["artifact_directory"]
-        meta = root / fixture["artifacts"]["sigmf_meta"]
-        data = root / fixture["artifacts"]["sigmf_data"]
-        if not meta.is_file() or not data.is_file():
-            self.skipTest("controlled MFSK picture fixtures unavailable")
+        fixture, meta, data = require_fixture(fixture_id)
         manifest = run_reference_pipeline(
             meta_path=meta,
             data_path=data,
@@ -187,6 +172,7 @@ class ControlledPictureVerticalSliceTests(unittest.TestCase):
         )
         return fixture, manifest
 
+    @data_test("controlled")
     def test_grayscale_header_transition_and_complete_raster(self) -> None:
         fixture, manifest = self._decode("mfsk64-gray-8x4-p8")
         self.assertEqual(manifest["input"]["data_sha256"], fixture["sigmf_data_sha256"])
@@ -196,10 +182,13 @@ class ControlledPictureVerticalSliceTests(unittest.TestCase):
         self.assertFalse(picture["color"])
         self.assertEqual(picture["observed_component_count"], 32)
         self.assertTrue(picture["complete"])
-        expected = fixture["raster_start_wav_sample"] - 48_000
-        self.assertLessEqual(abs(picture["first_raster_input_sample"] - expected), 48)
+        expected = fixture["raster_start_iq_sample"]
+        self.assertLessEqual(abs(picture["first_raster_input_sample"] - expected),
+                             fixture["raster_start_tolerance_samples"])
         self.assertEqual(manifest["artifacts"][0]["shape"], [4, 8])
+        self._check_pixels(fixture, manifest, color=False)
 
+    @data_test("controlled")
     def test_color_header_row_plane_assembly_and_reacquisition(self) -> None:
         fixture, manifest = self._decode("mfsk64-primary-color-8x4-p8")
         picture = manifest["pictures"][0]
@@ -207,20 +196,27 @@ class ControlledPictureVerticalSliceTests(unittest.TestCase):
         self.assertTrue(picture["color"])
         self.assertEqual(picture["observed_component_count"], 96)
         self.assertTrue(picture["complete"])
-        expected = fixture["raster_start_wav_sample"] - 48_000
-        self.assertLessEqual(abs(picture["first_raster_input_sample"] - expected), 48)
+        self.assertEqual(manifest["input"]["data_sha256"], fixture["sigmf_data_sha256"])
+        expected = fixture["raster_start_iq_sample"]
+        self.assertLessEqual(abs(picture["first_raster_input_sample"] - expected),
+                             fixture["raster_start_tolerance_samples"])
         protocol = picture["protocol_boundary_prediction"]
-        self.assertFalse(protocol["operative"])
-        expected_prologue = fixture["prologue_start_wav_sample"] - 48_000
-        self.assertEqual(
-            expected_prologue
-            - protocol["predicted_prologue_start_input_sample"],
-            252,
-        )
+        self.assertTrue(protocol["operative"])
+        self.assertLessEqual(abs(protocol["predicted_prologue_start_input_sample"]
+                                 - fixture["prologue_start_iq_sample"]),
+                             fixture["raster_start_tolerance_samples"])
         self.assertEqual(manifest["artifacts"][0]["shape"], [4, 8, 3])
+        self._check_pixels(fixture, manifest, color=True)
         interval = picture["return_to_text_reacquisition_interval"]
         self.assertEqual(interval["stop"] - interval["start"], 69_120)
         self.assertEqual(manifest["diagnostics"]["persistent_intermediate_files"], 0)
+
+    def _check_pixels(self, fixture, manifest, *, color):
+        with Image.open(ROOT / fixture["source_image"]) as source:
+            rgb = np.asarray(source.convert("RGB"), dtype=np.int32)
+        truth = rgb if color else (31 * rgb[:, :, 0] + 61 * rgb[:, :, 1] + 8 * rgb[:, :, 2]) // 100
+        observed = np.asarray(manifest["artifacts"][0]["values"], dtype=np.int32).reshape(truth.shape)
+        self.assertLessEqual(int(np.max(np.abs(observed - truth))), fixture["max_pixel_error_255"])
 
 
 if __name__ == "__main__":

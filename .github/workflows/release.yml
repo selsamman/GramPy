@@ -37,7 +37,7 @@ jobs:
           test "$RELEASE_TAG" = "v$package_version"
 
       - name: Run corpus-independent regression suite
-        run: PYTHONPATH="$PWD/src" PATH="$PWD/.venv/bin:$PATH" .venv/bin/python -m unittest discover -s tests
+        run: PYTHONPATH="$PWD/src" PATH="$PWD/.venv/bin:$PATH" .venv/bin/python tools/test-suite --suite unit
 
       - name: Build source and wheel distributions
         run: .venv/bin/python -m build

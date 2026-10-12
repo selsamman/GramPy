@@ -1,19 +1,18 @@
 from __future__ import annotations
 
-import json
 import os
 from pathlib import Path
 import unittest
 
 from grampy.pipeline import DecodeConfig, run_reference_pipeline
 
+from tests.suites import data_test
+from tests.controlled_fixtures import require_fixture
+
 
 ROOT = Path(__file__).resolve().parents[1]
 SAMPLES = Path(
     os.environ.get("GRAMPY_TEST_SAMPLES", ROOT / "tests" / "samples")
-)
-EVIDENCE = json.loads(
-    (ROOT / "docs" / "decoder" / "data" / "mfsk_fixture_evidence.json").read_text(encoding="utf-8")
 )
 RECEIVED = (
     SAMPLES
@@ -28,24 +27,9 @@ DATA_SHA256 = "1c1e443e64e47835bb38bd1996b935ada432e9db7b46a9fc3a01d7a8f5bb1cc6"
 
 
 class MFSK64TextVerticalSliceTests(unittest.TestCase):
+    @data_test("controlled")
     def test_controlled_iq_decodes_exact_octets_through_shared_pipeline(self) -> None:
-        fixture = next(
-            item
-            for item in EVIDENCE["fixtures"]
-            if item["id"] == "mfsk64-text-printable"
-        )
-        fixture_root = Path(
-            os.environ.get(
-                "GRAM_PY_MFSK_FIXTURES",
-                ROOT / ".local" / "fldigi-fixtures",
-            )
-        ) / fixture["artifact_directory"]
-        meta = fixture_root / fixture["artifacts"]["sigmf_meta"]
-        data = fixture_root / fixture["artifacts"]["sigmf_data"]
-        if not meta.is_file() or not data.is_file():
-            self.skipTest(
-                "controlled MFSK fixtures unavailable; set GRAM_PY_MFSK_FIXTURES"
-            )
+        fixture, meta, data = require_fixture("mfsk64-text-printable")
 
         manifest = run_reference_pipeline(
             meta_path=meta,
@@ -71,11 +55,12 @@ class MFSK64TextVerticalSliceTests(unittest.TestCase):
         self.assertEqual(tones["symbol_samples"], 768)
         self.assertEqual(manifest["diagnostics"]["persistent_intermediate_files"], 0)
 
+    @data_test("received")
     def test_untouched_received_interval_decodes_mfsk64_without_hints(self) -> None:
         meta = RECEIVED.with_suffix(".sigmf-meta")
         data = RECEIVED.with_suffix(".sigmf-data")
         if not meta.is_file() or not data.is_file():
-            self.skipTest(
+            self.fail(
                 "received WRMI fixture unavailable; set GRAMPY_TEST_SAMPLES"
             )
 

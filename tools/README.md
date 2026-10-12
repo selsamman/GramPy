@@ -62,8 +62,16 @@ for its full interface.
 
 ## Fixtures
 
+`tools/test-suite --suite unit|controlled|received|all` selects an explicit
+validation tier using the repository virtualenv. CI uses `unit`; `controlled`
+and `all` perform a strict maintained-fixture preflight. Selected missing or
+skipped data tests fail the run. See [test suite instructions](../tests/README.md)
+for the versioned sidecar package and required inputs. Invoke through the
+managed Mac wrapper, for example with `.venv/bin/python tools/test-suite --suite all`
+in the local batch.
+
 `tools/mfsk-fixture-inventory` reports the availability and hashes of optional
-controlled fldigi-derived fixtures. Its default fixture root is
+historical wire-spec fldigi-derived fixtures. Its default fixture root is
 `.local/fldigi-fixtures`; set `GRAM_PY_MFSK_FIXTURES` or pass
 `--fixture-root` to use another location. Missing optional artifacts are
 reported but fail only with `--require-all`; hash mismatches always fail.

@@ -10,6 +10,8 @@ from grampy.pipeline import DecodeConfig, run_reference_pipeline
 from grampy.sigmf import SigmfRecording
 from tests.rsid_support import SAMPLE_RATE, synthetic_rsid_sigmf
 
+from tests.suites import data_test
+
 
 ROOT = Path(__file__).resolve().parents[1]
 SAMPLES = Path(
@@ -67,6 +69,7 @@ class RemediationR1Test(unittest.TestCase):
             {warning["code"] for warning in manifest["warnings"]},
         )
 
+    @data_test("received")
     def test_weak_full_broadcasts_recover_established_mode_events(self) -> None:
         cases = (
             (
@@ -93,7 +96,7 @@ class RemediationR1Test(unittest.TestCase):
             for capture_id, _, _ in cases
         )
         if not all(path.is_file() for path in required):
-            self.skipTest(
+            self.fail(
                 "weak received corpus unavailable; set GRAMPY_TEST_SAMPLES"
             )
 

@@ -11,6 +11,9 @@ import unittest
 
 from grampy.fixtures import FixtureEvidenceError, inventory, load_evidence
 
+from tests.suites import data_test
+from tests.controlled_fixtures import preflight
+
 
 ROOT = Path(__file__).resolve().parents[1]
 EVIDENCE = ROOT / "docs" / "decoder" / "data" / "mfsk_fixture_evidence.json"
@@ -112,25 +115,9 @@ class MfskFixtureInventoryTests(unittest.TestCase):
 
 
 class MfskControlledCorpusTests(unittest.TestCase):
+    @data_test("controlled")
     def test_available_pinned_artifacts_match_all_hashes(self) -> None:
-        fixture_root = Path(
-            os.environ.get(
-                "GRAM_PY_MFSK_FIXTURES",
-                ROOT / ".local" / "fldigi-fixtures",
-            )
-        )
-        checks = inventory(load_evidence(EVIDENCE), fixture_root)
-        mismatches = [
-            check.fixture_id
-            for check in checks
-            if check.status == "hash-mismatch"
-        ]
-        self.assertEqual(mismatches, [])
-        if any(check.status == "missing" for check in checks):
-            self.skipTest(
-                "controlled MFSK corpus unavailable; set GRAM_PY_MFSK_FIXTURES"
-            )
-        self.assertTrue(all(check.status == "verified" for check in checks))
+        preflight()
 
 
 def sample_evidence(wav: bytes, data: bytes, meta: bytes) -> dict:

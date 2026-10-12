@@ -17,6 +17,8 @@ from grampy.wire import (
     soft_viterbi_decode,
 )
 
+from tests.suites import data_test
+
 
 class RemediationR3StateTests(unittest.TestCase):
     def test_deinterleaver_checkpoint_restore_and_fill_validity(self) -> None:
@@ -119,11 +121,12 @@ class RemediationR3ReceivedTest(unittest.TestCase):
         os.environ.get("GRAMPY_TEST_SAMPLES", ROOT / "tests" / "samples")
     ) / "received-corpus" / "sources" / "wrmi-20260715T133007Z-15770000"
 
+    @data_test("received")
     def test_received_cut_without_nearby_rsid_records_independent_epoch(self) -> None:
         meta = self.SOURCE / "capture.sigmf-meta"
         data = self.SOURCE / "capture.sigmf-data"
         if not meta.is_file() or not data.is_file():
-            self.skipTest(
+            self.fail(
                 "held-out received corpus unavailable; set GRAMPY_TEST_SAMPLES"
             )
         manifest = run_reference_pipeline(

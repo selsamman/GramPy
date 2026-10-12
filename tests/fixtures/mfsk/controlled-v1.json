@@ -1,0 +1,230 @@
+{
+  "schema": "grampy-fixture-evidence.v1",
+  "fixture_version": "controlled-mfsk-v1-20261012",
+  "purpose": "Required controlled regression inputs; original wire-spec evidence remains historical.",
+  "generator": {
+    "fldigi_tag": "v4.2.12",
+    "fldigi_commit": "b0032cabb70dc670064ed7561b9a626010a5e4ae",
+    "binary_sha256": "de63a235e959e01e31ab05045fd703d59d3ee74017b64d9b254e8f48cb0d6e9c"
+  },
+  "independent_receiver": {
+    "version": "fldigi 4.2.13",
+    "binary_sha256": "dd30f86caae1edb5d2998acedb47a3a7b348b727bf6303af1e2f822f549966f3",
+    "adapter_sha256": "130fe71cef0bbc5585f9cdf74c423cd94999ee34720b277a09814c06d046a211",
+    "rxid": "off",
+    "afc": "off",
+    "audio_frequency_hz": 1500,
+    "validation_date": "2026-10-12"
+  },
+  "fixtures": [
+    {
+      "id": "mfsk32-text-printable",
+      "mode": "MFSK32",
+      "kind": "text",
+      "capability": "controlled MFSK32 text IQ-to-octet vertical slice",
+      "artifacts": {
+        "wav": "transmission.wav",
+        "sigmf_data": "transmission.sigmf-data",
+        "sigmf_meta": "transmission.sigmf-meta"
+      },
+      "decoded_text": "RG-MFSK32 AaZz 09 .,!?/+-=: END",
+      "artifact_directory": "mfsk32-text-printable",
+      "wav_sha256": "379310c43590b78373b9cfe809706147272156e214b9cc6b449fc59c6641271e",
+      "sigmf_data_sha256": "b1d34f3acb43ded70351a63296ad31be77fa0bc12b9ddc8077114c0d7812c12d",
+      "sigmf_meta_sha256": "bc090b6b4013bfe7ed56fce36be1bb7de93271e031cb1143c8ecb7aa24c2bc13",
+      "frames": 1200192,
+      "trim_guard_samples": 0,
+      "conversion": "int16 -> float32 / 32768 -> scipy.signal.hilbert -> complex64 little endian",
+      "independent_validation": {
+        "fldigi_text": "RG-MFSK32 AaZz 09 .,!?/+-=: END",
+        "fldigi_images": [],
+        "receiver_archive_sha256": "2731bd1314673a400d6a8fce10de4e81c59cbbfc61daa3307fbbe415249cb053",
+        "iq_exactly_recreated_from_float32_wav": true
+      },
+      "input_text": "RG-MFSK32 AaZz 09 .,!?/+-=: END"
+    },
+    {
+      "id": "mfsk64-text-printable",
+      "mode": "MFSK64",
+      "kind": "text",
+      "capability": "controlled MFSK64 text IQ-to-octet vertical slice",
+      "artifacts": {
+        "wav": "transmission.wav",
+        "sigmf_data": "transmission.sigmf-data",
+        "sigmf_meta": "transmission.sigmf-meta"
+      },
+      "decoded_text": "RG-MFSK64 AaZz 09 .,!?/+-=: END",
+      "artifact_directory": "mfsk64-text-printable",
+      "wav_sha256": "0f9fa76b9c0afbb0d9dd9126562b0b81ebd0425fb225d87673ca176e353d8c8a",
+      "sigmf_data_sha256": "64bd981cebd89b866cb51180696380f565078549b64e6512c11f1142b7033167",
+      "sigmf_meta_sha256": "528950b064a07867f29a0ce1cffb78d41a87e45f740ccc2093489b017fb09068",
+      "frames": 1044288,
+      "trim_guard_samples": 0,
+      "conversion": "int16 -> float32 / 32768 -> scipy.signal.hilbert -> complex64 little endian",
+      "independent_validation": {
+        "fldigi_text": "RG-MFSK64 AaZz 09 .,!?/+-=: END",
+        "fldigi_images": [],
+        "receiver_archive_sha256": "96decc4553be62fe30de641be4a43b2e18f5a4cd8c13d65b598bc2948ca76857",
+        "iq_exactly_recreated_from_float32_wav": true
+      },
+      "input_text": "RG-MFSK64 AaZz 09 .,!?/+-=: END"
+    },
+    {
+      "id": "mfsk64-gray-8x4-p8",
+      "mode": "MFSK64",
+      "kind": "grayscale_picture",
+      "capability": "MFSK64 grayscale picture transition, p8 raster, and completion",
+      "artifacts": {
+        "wav": "transmission.wav",
+        "sigmf_data": "transmission.sigmf-data",
+        "sigmf_meta": "transmission.sigmf-meta"
+      },
+      "decoded_text": "RG-MFSK64-GRAY-8X4-P8\nSending Pic:8x4;",
+      "artifact_directory": "mfsk64-gray-8x4-p8",
+      "wav_sha256": "eb74b7dad6e70cf7fc46aa76253e7b5dca0ce921db6ea5f6d08a58dd6f9a69d2",
+      "sigmf_data_sha256": "24541017a252d27bf5c0c18967b0253ae4c401c573faf0842cc5c512b3ce0768",
+      "sigmf_meta_sha256": "7c3df5b6fe2f7591cd82f9a5cbc931806d2727807ce3995eaf06578a202dcc16",
+      "frames": 984192,
+      "trim_guard_samples": 0,
+      "conversion": "int16 -> float32 / 32768 -> scipy.signal.hilbert -> complex64 little endian",
+      "independent_validation": {
+        "fldigi_text": "RG-MFSK64-GRAY-8X4-P8\nSending Pic:8x4;",
+        "fldigi_images": [
+          {
+            "sha256": "cf9087d9f4fe6229c9ea74c1bce903f6d86547177f38bf7a2339893ff161bf40",
+            "size": [
+              8,
+              4
+            ],
+            "mode": "RGB"
+          }
+        ],
+        "receiver_archive_sha256": "bf9bca681752dab7e501ff5e47b19090cd4a1c79f5cf37eaa2f6f0326b70c51e",
+        "iq_exactly_recreated_from_float32_wav": true
+      },
+      "receiver_produced_image": true,
+      "raster_start_iq_sample": 797149,
+      "prologue_start_iq_sample": 795037,
+      "raster_start_tolerance_samples": 48,
+      "max_pixel_error_255": 8,
+      "source_image": "tests/fixtures/mfsk/primary-color-8x4.ppm",
+      "source_image_sha256": "21d5e19be8566a266d8c01f214e4049b59b9fdbba96ab1069178e88a548dc104",
+      "signal_analysis": {
+        "parameters": {
+          "bandwidth_hz": 937.5,
+          "carrier_hz": 1500.0,
+          "grayscale": true,
+          "modem_rate_hz": 8000,
+          "prologue_modem_samples": 352,
+          "reverse": false,
+          "samples_per_component": 8,
+          "wav_samples_per_component": 48
+        },
+        "picture_prologue": {
+          "duration_sec": 0.044,
+          "expected_frequency_hz": 1031.25,
+          "frequency_error_hz": -2.5059244461133403,
+          "measured_median_frequency_hz": 1028.7440755538867,
+          "sample_count": 2112,
+          "sample_end_exclusive": 797149,
+          "sample_start": 795037
+        },
+        "raster": {
+          "component_count": 32,
+          "duration_sec": 0.032,
+          "frequency_max_absolute_error_hz": 18.823710157644655,
+          "frequency_rmse_hz": 7.268080668509486,
+          "sample_count": 1536,
+          "sample_end_exclusive": 798685,
+          "sample_start": 797149,
+          "start_sec": 16.607270833333335
+        },
+        "ordering_rmse_hz": {
+          "grayscale_row_major": 7.268080668509486
+        }
+      }
+    },
+    {
+      "id": "mfsk64-primary-color-8x4-p8",
+      "mode": "MFSK64",
+      "kind": "color_picture",
+      "capability": "MFSK64 color picture transition, RGB row-plane order, p8 raster, and completion",
+      "artifacts": {
+        "wav": "transmission.wav",
+        "sigmf_data": "transmission.sigmf-data",
+        "sigmf_meta": "transmission.sigmf-meta"
+      },
+      "decoded_text": "RG-PRIMARY-MFSK64-COLOR-8X4\nSending Pic:8x4C;",
+      "artifact_directory": "mfsk64-primary-color-8x4-4.2.12",
+      "wav_sha256": "d7dae1d9dcc558b53ae55eca824b7c2a4caac3010631116b16e342e81fd88895",
+      "sigmf_data_sha256": "bd2a697b6660e21e692b976ae09faa6e6d6ff4a96d50838307d810e581d02641",
+      "sigmf_meta_sha256": "bc26c7b3dab664b1a219d056e9bde431d9d2ef71343fc27d03ec4210b06798d5",
+      "frames": 1056192,
+      "trim_guard_samples": 0,
+      "conversion": "int16 -> float32 / 32768 -> scipy.signal.hilbert -> complex64 little endian",
+      "independent_validation": {
+        "fldigi_text": "RG-PRIMARY-MFSK64-COLOR-8X4\nSending Pic:8x4C;",
+        "fldigi_images": [
+          {
+            "sha256": "2a73297bcb63447946a8bdb3d621ba356ded967444f395f49e996d6afa01d76d",
+            "size": [
+              8,
+              4
+            ],
+            "mode": "RGB"
+          }
+        ],
+        "receiver_archive_sha256": "91e79ea2f04e3eb07320e7f78fa90b3b961393ab024649f072fe9a94af64a822",
+        "iq_exactly_recreated_from_float32_wav": true
+      },
+      "receiver_produced_image": true,
+      "raster_start_iq_sample": 862072,
+      "prologue_start_iq_sample": 859960,
+      "raster_start_tolerance_samples": 48,
+      "max_pixel_error_255": 8,
+      "source_image": "tests/fixtures/mfsk/primary-color-8x4.ppm",
+      "source_image_sha256": "21d5e19be8566a266d8c01f214e4049b59b9fdbba96ab1069178e88a548dc104",
+      "signal_analysis": {
+        "parameters": {
+          "bandwidth_hz": 937.5,
+          "carrier_hz": 1500.0,
+          "grayscale": false,
+          "modem_rate_hz": 8000,
+          "prologue_modem_samples": 352,
+          "reverse": false,
+          "samples_per_component": 8,
+          "wav_samples_per_component": 48
+        },
+        "picture_prologue": {
+          "duration_sec": 0.044,
+          "expected_frequency_hz": 1031.25,
+          "frequency_error_hz": -2.5449914328150953,
+          "measured_median_frequency_hz": 1028.705008567185,
+          "sample_count": 2112,
+          "sample_end_exclusive": 862072,
+          "sample_start": 859960
+        },
+        "raster": {
+          "component_count": 96,
+          "duration_sec": 0.096,
+          "frequency_max_absolute_error_hz": 39.619666521987256,
+          "frequency_rmse_hz": 11.327041705399546,
+          "sample_count": 4608,
+          "sample_end_exclusive": 866680,
+          "sample_start": 862072,
+          "start_sec": 17.959833333333332
+        },
+        "ordering_rmse_hz": {
+          "image_rgb_planes": 468.992381713184,
+          "pixel_rgb_interleaved": 463.07643561032364,
+          "row_rgb_planes": 11.327041705399546
+        }
+      }
+    }
+  ],
+  "distribution": {
+    "archive_name": "controlled-mfsk-v1-20261012.tar.gz",
+    "archive_sha256": "f0cebf1b048b398c8e743216e2594d0e1e2683be871c594530c2ff62ffc0eadb",
+    "installed_directory": "controlled-mfsk-v1"
+  }
+}

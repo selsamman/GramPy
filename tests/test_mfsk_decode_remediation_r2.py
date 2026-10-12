@@ -16,6 +16,8 @@ from grampy.text_decode import (
 from grampy.pipeline import DecodeConfig, run_reference_pipeline
 from grampy.tracking import ClockTrack, FrequencyAnchor, FrequencyTrack
 
+from tests.suites import data_test
+
 
 class RemediationR2Test(unittest.TestCase):
     @staticmethod
@@ -273,11 +275,12 @@ class RemediationR2ReceivedTest(unittest.TestCase):
         os.environ.get("GRAMPY_TEST_SAMPLES", ROOT / "tests" / "samples")
     ) / "received-corpus" / "sources" / "wrmi-20260715T133007Z-15770000"
 
+    @data_test("received")
     def test_held_out_text_segments_decode_without_center_hint(self) -> None:
         meta = self.SOURCE / "capture.sigmf-meta"
         data = self.SOURCE / "capture.sigmf-data"
         if not meta.is_file() or not data.is_file():
-            self.skipTest(
+            self.fail(
                 "held-out received corpus unavailable; set GRAMPY_TEST_SAMPLES"
             )
         cases = (

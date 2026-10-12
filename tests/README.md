@@ -1,11 +1,63 @@
 # Tests
 
-Run the test suite from the repository root with:
+Run from the repository root with the repository virtualenv and managed wrapper
+required by [AGENTS.md](../AGENTS.md). Put the selected command in a local batch:
 
 ```sh
 PYTHONPATH="$PWD/src" PATH="$PWD/.venv/bin:$PATH" \
-  .venv/bin/python -m unittest discover -s tests
+  .venv/bin/python tools/test-suite --suite all
 ```
+
+Choose the validation tier explicitly:
+
+| Tier | Inputs | Missing data |
+| --- | --- | --- |
+| `--suite unit` | Checkout, dependencies and generated temporary inputs | No external corpus required; CI and generic package release use this tier. |
+| `--suite controlled` | The versioned controlled fixture sidecar described below | Strict preflight fails before decoding if any required input is missing or changed. |
+| `--suite received` | The received-IQ sidecar and saved-manifest compatibility case | Missing required inputs fail; unavailable independent image truth is handled separately by scoring policy. |
+| `--suite all` | Both sidecars | Runs every selected check, with no accepted skips. |
+
+The runner prints selected and explicitly excluded counts. Other-tier tests are
+not reported as passes or skips. A selected test that skips makes the run fail.
+Raw `unittest discover -s tests` is also a full-data run; its required-data tests
+fail when inputs are absent. Unit CI is not a decoder-quality acceptance gate.
+
+## Controlled fixtures
+
+The required four cases are installed under `tests/samples/controlled-mfsk-v1/`:
+MFSK32 text, MFSK64 text, and MFSK64 8x4 grayscale/colour p8 pictures. Override
+the samples parent with `GRAMPY_TEST_SAMPLES`, or the controlled directory itself
+with `GRAM_PY_MFSK_FIXTURES`.
+
+Their current identities and independently measured timing are in
+[`controlled-v1.json`](fixtures/mfsk/controlled-v1.json). The original
+`docs/decoder/data/mfsk_fixture_evidence.json` and packaged copy remain historical
+wire-spec evidence; they are not silently repinned as new recordings.
+
+The portable archive `controlled-mfsk-v1-20261012.tar.gz` accompanies the
+`tests/samples` sidecar handoff. Its SHA-256 is:
+
+```text
+f0cebf1b048b398c8e743216e2594d0e1e2683be871c594530c2ff62ffc0eadb
+```
+
+To install into an absent directory, obtain that archive with the sidecar,
+verify the SHA-256 above (also recorded in the committed manifest), create
+`tests/samples` if needed, and unpack the archive there. Its top-level directory
+is `controlled-mfsk-v1`. Do not overwrite a different fixture version. Then run
+the strict controlled suite through the managed wrapper. The repository does
+not invent or automatically select a remote download location.
+
+The archive contains WAV/IQ/portable metadata plus compact independent receiver
+results and its manifest. The committed manifest additionally binds the archive
+checksum; that field is omitted inside the archive to avoid a circular hash.
+
+Generation produces candidates, not accepted fixture identities. Follow the
+[phase 2 validation record](../docs/operations/test-rationalization-phase2.md)
+for the generator/receiver identities, float32 analytic-IQ recipe and independent
+source-image timing measurement. Validate known content and provenance before
+publishing a new immutable bundle, updating the manifest deliberately, and
+running the fixture suite. Do not change hashes merely to obtain a pass.
 
 ## Received-IQ corpus
 
@@ -15,8 +67,9 @@ The received-IQ regression corpus is too large for Git and is installed at:
 tests/samples/received-corpus/
 ```
 
-Corpus-dependent tests use the corpus when it is present and skip when it is
-absent. The repository does not select or automatically fetch a corpus.
+The received tier requires its selected corpus inputs and fails when they are
+absent. The unit tier explicitly excludes those methods. The repository does
+not select or automatically fetch a corpus.
 
 The optional 2026-09-23 full-broadcast case is
 `wrmi-20260923-15770000-full-broadcast`. Its canonical CF32 IQ and appliance
