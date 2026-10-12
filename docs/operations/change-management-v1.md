@@ -21,7 +21,9 @@ forward.
 
 1. **Request.** Product management states the desired outcome, constraints,
    urgency, and known risks.
-2. **Define.** Write a proportionate change note or specification. Non-trivial
+2. **Define.** Create `.local/wip/<change-id>/WORK.md` to record ownership,
+   status, baseline, artifacts and their intended disposition. Write a
+   proportionate change note or specification. Non-trivial
    work identifies scope, exclusions, baseline, acceptance evidence, and any
    notional session boundaries. Commit this definition as a restore point.
 3. **Investigate.** When uncertainty warrants it, run focused experiments or
@@ -34,13 +36,20 @@ forward.
    further investigation cycle. A score improvement alone is not acceptance.
 7. **Integrate.** Make the accepted candidate the in-place production change;
    run final regressions. Commit this production checkpoint.
-8. **Close.** Update the production baseline, durable documentation and tools;
-   add a concise closeout to the change record; and remove or preserve only
-   evidence that remains useful. Commit this closure checkpoint.
+8. **Close.** Update the production baseline, durable documentation and tools.
+   Promote required inputs and selected historical findings, verify their
+   identities and validation with scratch unavailable, and record disposition
+   in the change closeout. Delete the exact owned work directory after confirming
+   no active run or dependent change remains. Commit this closure checkpoint.
 
 The requester may combine the integration and closure commits for a genuinely
 small change. Keeping them separate is preferred when the cleanup, artifacts,
 or baseline update are material.
+
+Commit steps describe review checkpoints; agents still require explicit user
+authorization to create commits under AGENTS.md. Ending a session does not
+close a change. Deferred work and work awaiting review keep their recorded
+WIP state until their disposition is resolved.
 
 ## Work modes
 
@@ -128,20 +137,37 @@ evidence, not proof of correctness.
 
 ## Durable and historical material
 
-- `docs/` holds current supported behavior, operating process, baseline entry
-  points, and concise closed change records.
+- Current domain docs hold supported behavior, operating process and baseline
+  entry points; concise change records hold decisions and closeouts.
+- `docs/provenance/changes/<change-id>/` holds selected native historical
+  findings and compact evidence, with source revisions and a retention purpose.
+  These are for targeted investigation, not routine agent reading.
 - `experiments/<change-request>/` holds active, checked-in experiments that
   materially inform a pending decision.
 - `tools/` holds reusable, stable commands and review/scoring infrastructure.
 - `src/` holds product behavior and supported runtime configuration.
-- `.local/` holds scratch work, generated, and machine-local artifacts. A
-  scratch probe may remain there, but evidence that materially informs a
-  decision must be checked in under the active change request or promoted to a
-  durable tool.
+- `tests/samples/` holds the external sidecar: maintained large test inputs and
+  qualified reference outputs. Selected large historical artifacts may go in
+  its `provenance/<change-id>/` area with a committed artifact manifest; current
+  tests must not depend on that history area.
+- `.local/wip/<change-id>/` holds owned temporary commands, notes, logs and
+  generated outputs while a change is open. Required evidence is promoted
+  before closeout; the owned directory is then deleted.
+- Machine-private configuration, target files and secrets remain elsewhere in
+  `.local/` with their own lifecycle. Managed runner state follows AGENTS.md.
 
-GramPy intentionally has no copied project-history tree. Preserve only the
-decision records and evidence needed to maintain this repository; rewrite them
-as current documentation rather than adding an external history dependency.
+Do not copy an external project's entire history or preserve every intermediate
+output. Retain the decision records and selected findings needed to maintain
+GramPy or understand a costly investigation. Distill supported behavior into
+current documentation; label historical material separately and keep it out
+of bootstrap and normal test dependencies. Git preserves previous committed
+versions. Existing imported provenance and historical records need not move
+when adopting this forward-looking policy.
+
+The [test-maintenance and closeout policy](test-maintenance.md) defines the
+artifact dispositions, promotion checks, test-retirement process and exact
+work-directory cleanup procedure. Legacy `.local` directories require their
+own inventory/disposition review rather than deletion by name or age.
 
 ## Version 2 boundary
 

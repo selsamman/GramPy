@@ -1,7 +1,7 @@
 # Test rationalization: phase 2
 
-Date: 2026-10-12. Status: validated and prepared for user review; no phase 2
-commit has been created. Baseline: `12b4e92`.
+Date: 2026-10-12. Status: committed as `634a563`; original validation records
+below are preserved. Baseline: `12b4e92`.
 
 ## Result and scope
 

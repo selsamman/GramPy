@@ -15,6 +15,15 @@ start a persistent fldigi RPC service or a Mac RPC tunnel for this workflow.
 | `/opt/radiogram/reference/session10d/qualification/fldigi-4.2.13-pi3-aarch64-q2/run-smoke.sh` and `/opt/radiogram/reference/session10d/corpus/*/run-corpus.sh` on the Pi | Historical, qualified invocation examples, including RxID and mapped-mode runs. They write into archived state; inspect them for flags and assertions, but do not rerun or edit them as a new candidate test. |
 | `tools/fldigi-generate-wav` and `tools/pi-generate-*.sh` in this repository | Transmitter/fixture generation, **not** the receive adapter. |
 
+For an explicit interactive RPC session, the reusable remote command files are
+`tools/pi-start-temporary-fldigi-rpc.sh` and
+`tools/pi-stop-temporary-fldigi-rpc.sh`. Pass either to `tools/pi-remote.sh`.
+The start command retains the original Pi installation defaults (user `pi`,
+fldigi 4.2.12 under `/opt/radiogram/reference`, localhost port 7362); it refuses
+an occupied port. The stop command stops only `grampy-fldigi-rpc.service`.
+These helpers are separate from the receive adapter workflow above. This
+checkout's `.local/pi-command.sh` is a compatibility symlink to the start helper.
+
 The adapter is supplied by the Radiogram installation on the Pi, not by this
 GramPy checkout. Verify the receiver binary identity on each qualification
 run; a system `fldigi` can be an older version. The `current` adapter may also
@@ -24,7 +33,7 @@ qualification evidence.
 ## Run a known RxID decode
 
 Create a run-specific command file such as
-`.local/pi-fldigi-decode-command.sh` with the following contents. This example
+`.local/wip/CHANGE-ID/pi-fldigi-decode-command.sh` with the following contents. This example
 replays an existing Pi-side mode-change recording; replace the input and
 expected text for another test. Keep new output separate from the archived
 reference directories.
@@ -57,7 +66,7 @@ printf 'decode_archive=%s\n' "$work/decode.tar"
 ```
 
 From the repository on the Mac, run
-`tools/pi-remote.sh .local/pi-fldigi-decode-command.sh` on a network-capable
+`tools/pi-remote.sh .local/wip/CHANGE-ID/pi-fldigi-decode-command.sh` on a network-capable
 execution surface. Pi commands, tests, and experiments must use the managed
 wrapper; do not call SSH directly. One managed command may be active per
 session. Its `.local/agent-runs/<session-id>/result.md` is the authoritative
@@ -73,6 +82,10 @@ mode-change failures; exit status alone is not a reception pass. Record input,
 adapter, binary, archive hashes, configuration, decoded text/images, and any
 discrepancy. `/tmp` output is temporary: move or regenerate evidence into an
 approved durable location before relying on it for qualification.
+Record the returned remote temporary directory in the change's `WORK.md`,
+and delete that exact owned scratch after promotion and closeout under the
+[maintenance policy](test-maintenance.md). Do not delete the pinned receiver
+installation or shared reference store as part of run cleanup.
 
 ## Encoder-candidate qualification
 

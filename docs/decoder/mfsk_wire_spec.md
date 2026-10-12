@@ -83,8 +83,9 @@ Relevant source paths currently include:
 - `src/rsid/rsid.cxx`
 - `src/rsid/rsid_defs.cxx`
 
-The local GPL source checkout is an untracked research reference under
-`.local/reference/fldigi/`. No fldigi source text is incorporated into the
+The GPL source checkout used for this research was untracked scratch under
+`.local/reference/fldigi/` and is not a maintained project input. Future source
+inspection belongs under `.local/wip/<change-id>/`. No fldigi source text is incorporated into the
 Radiogram implementation.
 
 Repository history places MFSK64 mode parameters in fldigi by July 2008

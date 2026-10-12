@@ -1,5 +1,11 @@
 # Post-project cleanup and retention
 
+Historical October 3 record. The [October 12 closeout](../../../operations/test-rationalization-phase5.md)
+supersedes its `.local` retention and restoration instructions: the broad
+backup scheme has been retired after selected evidence was promoted to the
+[historical manifest](../../../provenance/changes/20261012-local-cleanup/artifacts.json).
+The execution-time facts and hashes below remain historical evidence.
+
 **Completed, 2026-10-03**, following the PM's clarification that cleanup means
 retiring working intermediates as well as closing the implementation sessions.
 The earlier closeout deliberately kept evidence in place; this pass preserves

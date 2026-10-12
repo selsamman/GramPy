@@ -7,16 +7,22 @@ repository virtual environment. The wrapper scripts select `.venv` and the
 environment shown in the root [README](../README.md).
 
 For long-running work, use the managed Mac wrapper described in
-[AGENTS.md](../AGENTS.md). Put a changing local batch in
-`.local/mac-command.sh`, then run:
+[AGENTS.md](../AGENTS.md). Put a changing local batch under the change's
+`.local/wip/<change-id>/` directory, then run:
 
 ```sh
-tools/mac-local.sh
+tools/mac-local.sh .local/wip/CHANGE-ID/mac-command.sh
 ```
 
 The wrapper records status and output under `.local/agent-runs/`. Consume
 `result.md` after completion and remove only that completed run directory; do
 not poll an active run.
+
+Keep generated outputs in the same owned work directory and machine-private
+configuration outside it. Follow the
+[maintenance and closeout policy](../docs/operations/test-maintenance.md)
+before promoting durable material and deleting owned scratch. The wrapper's
+existing default batch path remains supported.
 
 ## Decode and analysis
 
@@ -59,6 +65,14 @@ tools/mfsk-accuracy picture \
 `tools/analyze-mfsk-color-fixture` and `tools/mfsk-image-review` support
 controlled fixture and image-review work. See each command’s `--help` output
 for its full interface.
+
+`tools/broadcast-regression` is the maintained full-broadcast quality gate.
+Run it with the repository virtualenv through the managed wrapper and give
+`--output` a new directory. It decodes the whole selected broadcasts, scores
+GramPy and retained qualified fldigi output, rejects regression or incomplete
+evidence and produces a portable HTML comparison page. The versioned policy
+and baseline live under `tests/fixtures/`; see the
+[broadcast workflow](../docs/operations/broadcast-regression.md).
 
 ## Fixtures
 

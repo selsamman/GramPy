@@ -1,0 +1,322 @@
+{
+  "records": [
+    {
+      "bytes": 230400000,
+      "location": "sidecar",
+      "origin": ".local/regression/capture.sigmf-data",
+      "path": "tests/samples/provenance/20261012-local-cleanup/received-sept19/capture.sigmf-data",
+      "purpose": "Unique complete received RF capture; cannot regenerate a live reception",
+      "sha256": "bd738273859d7f22dadd47bee3e336cc6dcb6edaacdae27c220ce1756156040a"
+    },
+    {
+      "bytes": 1792,
+      "location": "sidecar",
+      "origin": ".local/regression/capture.sigmf-meta",
+      "path": "tests/samples/provenance/20261012-local-cleanup/received-sept19/capture.sigmf-meta",
+      "purpose": "Original source coordinates, datatype and capture provenance",
+      "sha256": "80368684009a967e6abfc55c811d031d10b27d3fef6cbf9e722dc85941ea6f1a"
+    },
+    {
+      "bytes": 15070491,
+      "location": "sidecar",
+      "origin": ".local/regression/auto.decode.manifest.json",
+      "path": "tests/samples/provenance/20261012-local-cleanup/received-sept19/accepted-baseline.json",
+      "purpose": "Exact historical baseline bound by the accepted automatic-picture comparison record",
+      "sha256": "127d2760ad2ddfbc3c6135db27546e7e6e16bce7475be20074901dfdd500067e"
+    },
+    {
+      "bytes": 67143320,
+      "location": "sidecar",
+      "origin": ".local/session8/evidence/receiver-binary",
+      "path": "tests/samples/provenance/20261012-local-cleanup/reference/fldigi-4.2.13-pi-aarch64",
+      "purpose": "Pinned qualified receiver binary; exact build identity",
+      "sha256": "dd30f86caae1edb5d2998acedb47a3a7b348b727bf6303af1e2f822f549966f3"
+    },
+    {
+      "bytes": 166368,
+      "location": "sidecar",
+      "origin": ".local/session10/final/distribution/radiogrampy-0.1.3-py3-none-any.whl",
+      "path": "tests/samples/provenance/20261012-local-cleanup/reference/radiogrampy-0.1.3-py3-none-any.whl",
+      "purpose": "Exact accepted historical package, inexpensive and useful for reproduction",
+      "sha256": "e549e3d7cc635f678e04a43b2cd79407f2c7622d56293e98fc50eca67b543ab7"
+    },
+    {
+      "bytes": 7872428,
+      "location": "sidecar",
+      "origin": ".local/session9/mac-control/fldigi-mfsk64-rgb-p8.wav",
+      "path": "tests/samples/provenance/20261012-local-cleanup/manual-controls/fldigi-original.wav",
+      "purpose": "Original external transmitter capture supporting the clock-scale diagnosis",
+      "sha256": "ced694687e6f81d5b80cfc003a594e22974665f377b4cc7cd62e32cea308b6e7"
+    },
+    {
+      "bytes": 6996500,
+      "location": "sidecar",
+      "origin": ".local/session9/mac-control/grampy-mfsk64-rgb-p8.wav",
+      "path": "tests/samples/provenance/20261012-local-cleanup/manual-controls/grampy-original.wav",
+      "purpose": "Unchanged paired native transmission tied to retained manual/Pi reviews",
+      "sha256": "0a7fb22253f2bcae6c7408880c723652378b840eb352797cea7fc7d0532b53e6"
+    },
+    {
+      "bytes": 7857778,
+      "location": "sidecar",
+      "origin": ".local/session9/mac-control/clock-corrected/fldigi-clock-corrected-diagnostic.wav",
+      "path": "tests/samples/provenance/20261012-local-cleanup/manual-controls/fldigi-clock-corrected-diagnostic.wav",
+      "purpose": "Clearly labeled offline diagnostic supporting the confirmed clock-scale finding",
+      "sha256": "eb407f20f7277891991e962f83425c2488231895945fd8449ec149928c759e9a"
+    },
+    {
+      "bytes": 16687,
+      "location": "sidecar",
+      "origin": ".local/session9/practical/prepared.json",
+      "path": "tests/samples/provenance/20261012-local-cleanup/practical/prepared.json",
+      "purpose": "Historical generated-input identities and recipe coordinates",
+      "sha256": "1239e9efc6425976313f51937caf6231fa4ce87c69e28c9e716b0f9b4a520c41"
+    },
+    {
+      "bytes": 3976,
+      "location": "repo",
+      "origin": ".local/session9/practical/matrix.json",
+      "path": "docs/encoder/data/mfsk_encoder_pi_matrix_v3.json",
+      "purpose": "Byte-identical frozen practical matrix; historical paths are not active dependencies",
+      "sha256": "055c9ddeddab966bd41df2ebc7353664236eb7e08dd3a119ff82451310a98b75"
+    },
+    {
+      "bytes": 4088672,
+      "location": "sidecar",
+      "origin": ".local/session9/practical/cases/gray32-p4-photo/generated.wav",
+      "path": "tests/samples/provenance/20261012-local-cleanup/practical/cases/gray32-p4-photo/generated.wav",
+      "purpose": "Unchanged transmitted input tied to accepted pinned-fldigi practical qualification",
+      "sha256": "9d7ef79fa1def81e082d1b120f50e21071e7c1f1c86bba665669d5304704f9ec"
+    },
+    {
+      "bytes": 19987,
+      "location": "repo",
+      "origin": ".local/session9/practical/cases/gray32-p4-photo/truth.png",
+      "path": "docs/decoder/data/auto-mfsk32-pictures/gray32-p4-photo-truth.png",
+      "purpose": "Picture source for historical qualification",
+      "sha256": "457d5428a7ff449c352de059809b55701b917f2c0290c709998d27e33b665115"
+    },
+    {
+      "bytes": 1992212,
+      "location": "sidecar",
+      "origin": ".local/session9/practical/cases/gray64-p2-chart/generated.wav",
+      "path": "tests/samples/provenance/20261012-local-cleanup/practical/cases/gray64-p2-chart/generated.wav",
+      "purpose": "Unchanged transmitted input tied to accepted pinned-fldigi practical qualification",
+      "sha256": "5d65aa0a6cc6942280d08996bf999f0c6206a4b6bfaf960260c0c0f2d71772a8"
+    },
+    {
+      "bytes": 1465,
+      "location": "repo",
+      "origin": ".local/session9/practical/cases/gray64-p2-chart/truth.png",
+      "path": "docs/decoder/data/auto-mfsk32-pictures/gray32-p2-chart-truth.png",
+      "purpose": "Picture source for historical qualification",
+      "sha256": "ef5b254666f554eb2e02641fad50b2a06c78f9e90c1ae3d7f3f1f606bd9e4770"
+    },
+    {
+      "bytes": 7732244,
+      "location": "sidecar",
+      "origin": ".local/session9/practical/cases/rgb64-p4-card/generated.wav",
+      "path": "tests/samples/provenance/20261012-local-cleanup/practical/cases/rgb64-p4-card/generated.wav",
+      "purpose": "Unchanged transmitted input tied to accepted pinned-fldigi practical qualification",
+      "sha256": "a1adfd84f6d45cc12e2cc1b8ffeea11e16b4c7cc13cb2b95d534ea172a0e3d05"
+    },
+    {
+      "bytes": 66779,
+      "location": "repo",
+      "origin": ".local/session9/practical/cases/rgb64-p4-card/truth.png",
+      "path": "docs/encoder/data/session9/practical-review/rgb64-p4-card-truth.png",
+      "purpose": "Picture source for historical qualification",
+      "sha256": "f54c55ee0eda798a3fa9d4bcc32ba45cebc08eaa5ddb41808ac3fc7b44aaddc7"
+    },
+    {
+      "bytes": 5652500,
+      "location": "sidecar",
+      "origin": ".local/session9/practical/cases/gray64-p8-card/generated.wav",
+      "path": "tests/samples/provenance/20261012-local-cleanup/practical/cases/gray64-p8-card/generated.wav",
+      "purpose": "Unchanged transmitted input tied to accepted pinned-fldigi practical qualification",
+      "sha256": "4d2d0f2148d36d6be288d4515167df9bace98d334a89bedd0e85d7dcdf16dbf3"
+    },
+    {
+      "bytes": 23641,
+      "location": "repo",
+      "origin": ".local/session9/practical/cases/gray64-p8-card/truth.png",
+      "path": "docs/decoder/data/auto-mfsk32-pictures/gray32-p8-card-truth.png",
+      "purpose": "Picture source for historical qualification",
+      "sha256": "313ed61c44caaee44823e304b1ccc2332858710c3fd7d1ee67b57043b2cb998f"
+    },
+    {
+      "bytes": 2907668,
+      "location": "sidecar",
+      "origin": ".local/session9/practical/cases/rgb64-p2-chart/generated.wav",
+      "path": "tests/samples/provenance/20261012-local-cleanup/practical/cases/rgb64-p2-chart/generated.wav",
+      "purpose": "Unchanged transmitted input tied to accepted pinned-fldigi practical qualification",
+      "sha256": "25fc90bd2590415b84d1f93a01ea61059b77035c2f58e0745e5490f31fb6180b"
+    },
+    {
+      "bytes": 2859,
+      "location": "repo",
+      "origin": ".local/session9/practical/cases/rgb64-p2-chart/truth.png",
+      "path": "docs/encoder/data/session9/decoder-comparison/source.png",
+      "purpose": "Picture source for historical qualification",
+      "sha256": "89a6447653925769b728b44b7d97168b792827e6eac2bfffdc28abaa605b3f77"
+    },
+    {
+      "bytes": 9571784,
+      "location": "sidecar",
+      "origin": ".local/session9/practical/cases/mixed-broadcast-photo/generated.wav",
+      "path": "tests/samples/provenance/20261012-local-cleanup/practical/cases/mixed-broadcast-photo/generated.wav",
+      "purpose": "Unchanged transmitted input tied to accepted pinned-fldigi practical qualification",
+      "sha256": "ecf6819b916abd6d444fd9ac229d2264772664b234f543ff43ad63ce8d8f5925"
+    },
+    {
+      "bytes": 60016,
+      "location": "repo",
+      "origin": ".local/session9/practical/cases/mixed-broadcast-photo/truth.png",
+      "path": "docs/encoder/data/session9/practical-review/mixed-broadcast-photo-truth.png",
+      "purpose": "Picture source for historical qualification",
+      "sha256": "1d316ddfc96078f19a20d83769d36b1efcd23cdc03d0047832e65024fcd026d0"
+    },
+    {
+      "bytes": 3605012,
+      "location": "sidecar",
+      "origin": ".local/session9/practical/cases/gray64-p4-photo/generated.wav",
+      "path": "tests/samples/provenance/20261012-local-cleanup/practical/cases/gray64-p4-photo/generated.wav",
+      "purpose": "Unchanged transmitted input tied to accepted pinned-fldigi practical qualification",
+      "sha256": "78248ba1d602137847c55b1ce875f941b204a9be589fbd36595238a06f7a7e89"
+    },
+    {
+      "bytes": 19987,
+      "location": "repo",
+      "origin": ".local/session9/practical/cases/gray64-p4-photo/truth.png",
+      "path": "docs/decoder/data/auto-mfsk32-pictures/gray32-p4-photo-truth.png",
+      "purpose": "Picture source for historical qualification",
+      "sha256": "457d5428a7ff449c352de059809b55701b917f2c0290c709998d27e33b665115"
+    },
+    {
+      "bytes": 2475872,
+      "location": "sidecar",
+      "origin": ".local/session9/practical/cases/gray32-p2-chart/generated.wav",
+      "path": "tests/samples/provenance/20261012-local-cleanup/practical/cases/gray32-p2-chart/generated.wav",
+      "purpose": "Unchanged transmitted input tied to accepted pinned-fldigi practical qualification",
+      "sha256": "c7e80cfceef19e014542d41fc7e224631bbe2c04288b4188a1a4d1f73e721d1e"
+    },
+    {
+      "bytes": 1465,
+      "location": "repo",
+      "origin": ".local/session9/practical/cases/gray32-p2-chart/truth.png",
+      "path": "docs/decoder/data/auto-mfsk32-pictures/gray32-p2-chart-truth.png",
+      "purpose": "Picture source for historical qualification",
+      "sha256": "ef5b254666f554eb2e02641fad50b2a06c78f9e90c1ae3d7f3f1f606bd9e4770"
+    },
+    {
+      "bytes": 6113120,
+      "location": "sidecar",
+      "origin": ".local/session9/practical/cases/gray32-p8-card/generated.wav",
+      "path": "tests/samples/provenance/20261012-local-cleanup/practical/cases/gray32-p8-card/generated.wav",
+      "purpose": "Unchanged transmitted input tied to accepted pinned-fldigi practical qualification",
+      "sha256": "f7291065b072e0fad8e201b434ac99a5e73f8833dad2d7f7fc4e56468cce901b"
+    },
+    {
+      "bytes": 23641,
+      "location": "repo",
+      "origin": ".local/session9/practical/cases/gray32-p8-card/truth.png",
+      "path": "docs/decoder/data/auto-mfsk32-pictures/gray32-p8-card-truth.png",
+      "purpose": "Picture source for historical qualification",
+      "sha256": "313ed61c44caaee44823e304b1ccc2332858710c3fd7d1ee67b57043b2cb998f"
+    },
+    {
+      "bytes": 13954580,
+      "location": "sidecar",
+      "origin": ".local/session9/practical/cases/rgb64-p8-photo/generated.wav",
+      "path": "tests/samples/provenance/20261012-local-cleanup/practical/cases/rgb64-p8-photo/generated.wav",
+      "purpose": "Unchanged transmitted input tied to accepted pinned-fldigi practical qualification",
+      "sha256": "6b7aa722eac0a4e4b47196a93e98085279d530185e4d45a834995ccf6af37eca"
+    },
+    {
+      "bytes": 60016,
+      "location": "repo",
+      "origin": ".local/session9/practical/cases/rgb64-p8-photo/truth.png",
+      "path": "docs/encoder/data/session9/practical-review/mixed-broadcast-photo-truth.png",
+      "purpose": "Picture source for historical qualification",
+      "sha256": "1d316ddfc96078f19a20d83769d36b1efcd23cdc03d0047832e65024fcd026d0"
+    },
+    {
+      "bytes": 88459,
+      "location": "sidecar",
+      "origin": ".local/decoder-auto-mfsk32/received-broadcast/artifacts/raster-0007.png",
+      "path": "tests/samples/provenance/20261012-local-cleanup/received-sept19/reference-images/raster-0007.png",
+      "purpose": "Accepted historical received raster",
+      "sha256": "fb92c31aac55e02098d89c46fd4567518c41b150a0b96df31882f9fb42058b37"
+    },
+    {
+      "bytes": 90126,
+      "location": "sidecar",
+      "origin": ".local/decoder-auto-mfsk32/received-broadcast/artifacts/raster-0006.png",
+      "path": "tests/samples/provenance/20261012-local-cleanup/received-sept19/reference-images/raster-0006.png",
+      "purpose": "Accepted historical received raster",
+      "sha256": "01f71bbbd934e81abcb0099ca9fc66351981a5545209e5ddf42c3750e04449d1"
+    },
+    {
+      "bytes": 96109,
+      "location": "sidecar",
+      "origin": ".local/decoder-auto-mfsk32/received-broadcast/artifacts/raster-0004.png",
+      "path": "tests/samples/provenance/20261012-local-cleanup/received-sept19/reference-images/raster-0004.png",
+      "purpose": "Accepted historical received raster",
+      "sha256": "f28de59725bd412866523d600c752cf8f2861a71f9a7d04b0fb9c4e7ca58d675"
+    },
+    {
+      "bytes": 77053,
+      "location": "sidecar",
+      "origin": ".local/decoder-auto-mfsk32/received-broadcast/artifacts/raster-0005.png",
+      "path": "tests/samples/provenance/20261012-local-cleanup/received-sept19/reference-images/raster-0005.png",
+      "purpose": "Accepted historical received raster",
+      "sha256": "f61a5fe27ff7608a8ef56a98000e11bd5ad5be834a1b530a22781115c2cb946d"
+    },
+    {
+      "bytes": 98260,
+      "location": "sidecar",
+      "origin": ".local/decoder-auto-mfsk32/received-broadcast/artifacts/raster-0001.png",
+      "path": "tests/samples/provenance/20261012-local-cleanup/received-sept19/reference-images/raster-0001.png",
+      "purpose": "Accepted historical received raster",
+      "sha256": "ee2ee8b25d7caaa9e3e666e1300091567a67d2be9ec736f2882f092e1a37a852"
+    },
+    {
+      "bytes": 69445,
+      "location": "sidecar",
+      "origin": ".local/decoder-auto-mfsk32/received-broadcast/artifacts/raster-0002.png",
+      "path": "tests/samples/provenance/20261012-local-cleanup/received-sept19/reference-images/raster-0002.png",
+      "purpose": "Accepted historical received raster",
+      "sha256": "9d1b1b21551342afdd79e350729930089931432171fe620697d6fffdc6b9be41"
+    },
+    {
+      "bytes": 85148,
+      "location": "sidecar",
+      "origin": ".local/decoder-auto-mfsk32/received-broadcast/artifacts/raster-0003.png",
+      "path": "tests/samples/provenance/20261012-local-cleanup/received-sept19/reference-images/raster-0003.png",
+      "purpose": "Accepted historical received raster",
+      "sha256": "0c495195e7a2cc1dcf45b0400252aed8964f7420bfb361ce2cd33d323974a398"
+    },
+    {
+      "bytes": 87939,
+      "location": "sidecar",
+      "origin": ".local/decoder-auto-mfsk32/received-broadcast/artifacts/raster-0008.png",
+      "path": "tests/samples/provenance/20261012-local-cleanup/received-sept19/reference-images/raster-0008.png",
+      "purpose": "Accepted historical received raster",
+      "sha256": "9d0b3ac8ebc03fb2610a4a9d0a760a134a1bcb02ee51e7bddbb36d95d53d8b6a"
+    },
+    {
+      "bytes": 90447,
+      "location": "sidecar",
+      "origin": ".local/decoder-auto-mfsk32/received-broadcast/artifacts/raster-0009.png",
+      "path": "tests/samples/provenance/20261012-local-cleanup/received-sept19/reference-images/raster-0009.png",
+      "purpose": "Accepted historical received raster",
+      "sha256": "908061b0afea6e54ab55a8a2400a920078e79382f8e7ff8ac15105b2b27cad6c"
+    }
+  ],
+  "recreation": "Received RF and external capture artifacts cannot be regenerated exactly. Native generated WAVs and accepted package can be investigated with the frozen matrices, historical wheel and source revisions; the original identities are retained here.",
+  "retrieval": "Include this directory in the existing tests/samples sidecar handoff. There is no assumed download location. Verify every record against this manifest.",
+  "schema": "grampy-selected-history.v1",
+  "sidecar_root": "tests/samples/provenance/20261012-local-cleanup",
+  "source_revision": "b99b886835ac1ad0b7adef6ba95af6134351f131",
+  "status": "historical; not required by ordinary tests"
+}

@@ -219,7 +219,7 @@ class AccuracyCliTests(unittest.TestCase):
                                 "version": "test",
                                 "configuration": {"mode": mode},
                             },
-                            "input": {"sample_rate_hz": 10.0},
+                            "input": {"sample_rate_hz": 10.0, "requested_interval": {"start": 0, "stop": 120}},
                             "timing": {
                                 "wall_seconds": 2.0,
                                 "cpu_seconds": 1.5,
@@ -308,6 +308,28 @@ class AccuracyCliTests(unittest.TestCase):
                 result["execution_composition"]["status"], "two_pass_diagnostic"
             )
             self.assertTrue(result["text"]["exact"])
+            automatic = write_manifest(
+                "auto",
+                [(1, 2), (2, ord("o")), (3, ord("n")), (4, ord("e")),
+                 (5, ord(" ")), (6, ord("t")), (7, ord("w")), (7, ord("o")), (8, 4)],
+                picture_color=(10, 20, 30),
+            )
+            self.assertEqual(main([
+                "program-direct", "--corpus", str(corpus), "--program", "1",
+                "--transmission", "test", "--manifest", str(automatic), "--expected-input-samples", "120", "--output", str(output),
+            ]), 0)
+            automatic_score = json.loads(output.read_text())
+            self.assertEqual(automatic_score["execution_composition"]["status"], "single_pass_automatic")
+            self.assertTrue(automatic_score["text"]["exact"])
+            self.assertEqual(automatic_score["picture_summary"]["detected"], 1)
+            self.assertEqual(automatic_score["pictures"][0]["pixel_score"]["aligned_mean_absolute_error_255"], 0)
+            self.assertEqual(automatic_score["operations"]["combined"]["wall_seconds_serial"], 2.0)
+            self.assertTrue(automatic_score["acquisition"]["exact"])
+            self.assertEqual(main([
+                "program-direct", "--corpus", str(corpus), "--program", "1",
+                "--transmission", "test", "--manifest", str(automatic),
+                "--expected-input-samples", "200", "--output", str(output),
+            ]), 1)
             self.assertTrue(result["acquisition"]["exact"])
             self.assertEqual(result["damage"]["clipped_count"], 0)
             self.assertEqual(result["transitions"]["return_to_text_acquired"], 1)

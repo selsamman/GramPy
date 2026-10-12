@@ -7,6 +7,13 @@ accepted on 2026-10-03. Current encoder usage and maintenance are in the
 timing are in [Session 10](../../docs/encoder/session10-closeout.md).
 These investigation scripts are not runtime dependencies.
 
+The [October 12 cleanup](../../docs/operations/test-rationalization-phase5.md)
+retired their legacy `.local` inputs and output trees after preserving selected
+original inputs in the [historical sidecar manifest](../../docs/provenance/changes/20261012-local-cleanup/artifacts.json).
+The commands below use historical layouts and source guards. Reconstruct only
+the needed layout in an isolated workspace when intentionally investigating
+that history; normal product tests do not depend on it.
+
 Historical v1/v2 matrix and schema checks live in `test_historical_contracts.py`,
 beside the reproduction workflow. Run its contracts, scorer integrity checks
 and practical gate sensitivity checks explicitly through the managed Mac

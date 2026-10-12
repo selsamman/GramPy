@@ -18,6 +18,7 @@ def arguments() -> argparse.Namespace:
     parser.add_argument("--output", required=True, type=Path)
     parser.add_argument("--summary", type=Path)
     parser.add_argument("--gate", type=Path)
+    parser.add_argument("--regression-report", type=Path, help="full-broadcast regression result with paired scores")
     parser.add_argument("--title", default="MFSK image review")
     parser.add_argument("--direct-label", default="Direct decoder")
     parser.add_argument("--fldigi-label", default="Qualified recent fldigi")
@@ -303,6 +304,35 @@ def main() -> int:
     args.output.mkdir(parents=True, exist_ok=True)
     assets = args.output / "assets"
     rows = []
+    if args.regression_report:
+        regression = json.loads(args.regression_report.read_text())
+        verdict = ("PASS" if regression["passed"] else
+                   "CALIBRATION — baseline review required" if regression["status"] == "calibration_requires_review" else
+                   "HUMAN REVIEW REQUIRED" if regression["automated_passed"] else "FAIL")
+        comparison_rows = []
+        for transmission, pair in regression["scores"].items():
+            for name in sorted(set(pair["grampy"]) | set(pair["fldigi"])):
+                # Per-picture errors appear with each image comparison below.
+                if name.startswith("picture_"):
+                    continue
+                label = {"text_cer": "Text character error rate", "text_coverage": "Text reference coverage"}.get(
+                    name, name.replace("_", " ").replace("mae", "mean absolute error (0–255)").capitalize()
+                )
+                values = []
+                for decoder in ("grampy", "fldigi"):
+                    value = pair[decoder].get(name, "—")
+                    if isinstance(value, float):
+                        value = f"{value:.3%}" if name in {"text_cer", "text_coverage"} else f"{value:.4f}"
+                    values.append(html.escape(str(value)))
+                comparison_rows.append(
+                    f'<tr><td>{html.escape(transmission)}</td><td>{html.escape(label)}</td>'
+                    f'<td>{values[0]}</td><td>{values[1]}</td></tr>'
+                )
+        failures = ''.join(f'<li>{html.escape(message)}</li>' for message in regression.get("failures", []))
+        rows.append(f'<section><h2>{verdict}</h2><ul>{failures}</ul><p>Each decoder is scored against the retained reviewed truth. '
+                    'The regression limits preserve the accepted GramPy baseline; fldigi is a comparison reference.</p>'
+                    '<table><tr><th>Broadcast</th><th>Metric</th><th>GramPy</th><th>fldigi</th></tr>'
+                    + ''.join(comparison_rows) + '</table></section>')
     scorecard = final_scorecard(args)
     manifest = {
         "schema": "grampy-image-review.v1",

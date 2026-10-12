@@ -67,13 +67,15 @@ def parser() -> argparse.ArgumentParser:
 
     direct = commands.add_parser(
         "program-direct",
-        help="produce a draft scorecard from fixed MFSK32/MFSK64 manifests",
+        help="produce a scorecard from automatic or fixed MFSK32/MFSK64 manifests",
     )
     direct.add_argument("--corpus", required=True, type=Path)
     direct.add_argument("--program", required=True)
     direct.add_argument("--transmission", required=True)
-    direct.add_argument("--mfsk32-manifest", required=True, type=Path)
-    direct.add_argument("--mfsk64-manifest", required=True, type=Path)
+    direct.add_argument("--manifest", type=Path, help="single production automatic-mode manifest")
+    direct.add_argument("--expected-input-samples", type=int, help="require a complete input interval starting at zero")
+    direct.add_argument("--mfsk32-manifest", type=Path)
+    direct.add_argument("--mfsk64-manifest", type=Path)
     direct.add_argument("--output", required=True, type=Path)
     direct.add_argument("--max-offset-components", type=int, default=24)
     direct.add_argument("--change-penalty", type=float, default=25.0)
@@ -308,13 +310,27 @@ def _score_fldigi_program(args: argparse.Namespace) -> dict[str, object]:
 
 
 def _score_direct_program(args: argparse.Namespace) -> dict[str, object]:
-    manifests = [
-        json.loads(args.mfsk32_manifest.read_text()),
-        json.loads(args.mfsk64_manifest.read_text()),
-    ]
-    expected_modes = ("MFSK32", "MFSK64")
+    automatic = getattr(args, "manifest", None) is not None
+    if automatic:
+        if args.mfsk32_manifest or args.mfsk64_manifest:
+            raise ValueError("use --manifest or the two fixed-mode manifests, not both")
+        paths = (args.manifest,)
+        expected_modes = ("auto",)
+    else:
+        if not args.mfsk32_manifest or not args.mfsk64_manifest:
+            raise ValueError("provide --manifest or both fixed-mode manifests")
+        paths = (args.mfsk32_manifest, args.mfsk64_manifest)
+        expected_modes = ("MFSK32", "MFSK64")
+    composition = "single_pass_automatic" if automatic else "two_pass_diagnostic"
+    manifests = [json.loads(path.read_text()) for path in paths]
+    expected_samples = getattr(args, "expected_input_samples", None)
+    if expected_samples is not None and any(
+        manifest["input"].get("requested_interval") != {"start": 0, "stop": expected_samples}
+        for manifest in manifests
+    ):
+        raise ValueError("decode did not cover the complete required broadcast interval")
     for path, manifest, expected_mode in zip(
-        (args.mfsk32_manifest, args.mfsk64_manifest),
+        paths,
         manifests,
         expected_modes,
         strict=True,
@@ -354,7 +370,7 @@ def _score_direct_program(args: argparse.Namespace) -> dict[str, object]:
         ]
         for view in acquisition_views
     ]
-    if acquisition_signatures[0] != acquisition_signatures[1]:
+    if not automatic and acquisition_signatures[0] != acquisition_signatures[1]:
         raise ValueError("fixed-mode manifests disagree on automatic acquisition")
     detected_modes = [
         {
@@ -425,8 +441,8 @@ def _score_direct_program(args: argparse.Namespace) -> dict[str, object]:
     text_result["framing_diagnostics"] = framed.diagnostics()
     text_result["truth_status"] = "reviewed_truth"
     text_result["composition"] = {
-        "policy": "chronological_fixed_mode_event_merge",
-        "status": "two_pass_diagnostic",
+        "policy": "chronological_automatic_events" if automatic else "chronological_fixed_mode_event_merge",
+        "status": composition,
         "event_count": len(text_events),
         "picture_payload_events_excluded": (
             len(candidate_text_events) - len(text_events)
@@ -435,7 +451,7 @@ def _score_direct_program(args: argparse.Namespace) -> dict[str, object]:
 
     decoded_pictures: list[tuple[Path, dict[str, object]]] = []
     for manifest_path, manifest in zip(
-        (args.mfsk32_manifest, args.mfsk64_manifest), manifests, strict=True
+        paths, manifests, strict=True
     ):
         artifact_by_id = {
             artifact["id"]: manifest_path.parent / artifact["path"]
@@ -541,10 +557,9 @@ def _score_direct_program(args: argparse.Namespace) -> dict[str, object]:
             "receiver_family": _receiver_family(args.corpus, args.transmission),
         },
         "execution_composition": {
-            "status": "two_pass_diagnostic",
+            "status": composition,
             "payload_manifests": {
-                "MFSK32": str(args.mfsk32_manifest),
-                "MFSK64": str(args.mfsk64_manifest),
+                mode: str(path) for mode, path in zip(expected_modes, paths, strict=True)
             },
         },
         "acquisition": acquisition_result,
@@ -552,7 +567,7 @@ def _score_direct_program(args: argparse.Namespace) -> dict[str, object]:
         "transitions": transition_summary,
         "operations": _direct_operations(
             manifests,
-            (args.mfsk32_manifest, args.mfsk64_manifest),
+            paths,
         ),
         "text": text_result,
         "pictures": pictures,
@@ -815,7 +830,7 @@ def _aggregate_transitions(pictures: list[dict[str, object]]) -> dict[str, objec
 
 
 def _direct_operations(
-    manifests: list[dict[str, object]], paths: tuple[Path, Path]
+    manifests: list[dict[str, object]], paths: tuple[Path, ...]
 ) -> dict[str, object]:
     passes = {}
     for path, manifest in zip(paths, manifests, strict=True):
@@ -839,7 +854,7 @@ def _direct_operations(
         }
     return {
         "status": "measured",
-        "composition": "two_pass_diagnostic",
+        "composition": "single_pass_automatic" if len(manifests) == 1 else "two_pass_diagnostic",
         "passes": passes,
         "combined": {
             "wall_seconds_serial": sum(

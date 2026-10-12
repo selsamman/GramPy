@@ -1,0 +1,754 @@
+{
+  "completed_utc": "2026-10-12T18:33:22.725056+00:00",
+  "deleted": [
+    {
+      "bytes": 52593799,
+      "files": 157,
+      "path": ".local/decoder-auto-mfsk32"
+    },
+    {
+      "bytes": 36092,
+      "files": 4,
+      "path": ".local/fixture-candidate-probe"
+    },
+    {
+      "bytes": 8099,
+      "files": 1,
+      "path": ".local/fixture-candidate-probe.py"
+    },
+    {
+      "bytes": 69,
+      "files": 1,
+      "path": ".local/fixture-candidate-probe.sh"
+    },
+    {
+      "bytes": 126,
+      "files": 1,
+      "path": ".local/mac-command-corpus-encryption-tests.sh"
+    },
+    {
+      "bytes": 129,
+      "files": 1,
+      "path": ".local/mac-command-corpus-na-tests.sh"
+    },
+    {
+      "bytes": 407,
+      "files": 1,
+      "path": ".local/mac-command-corpus-password-test.sh"
+    },
+    {
+      "bytes": 120,
+      "files": 1,
+      "path": ".local/mac-command-encoder-session1-full.sh"
+    },
+    {
+      "bytes": 158,
+      "files": 1,
+      "path": ".local/mac-command-encoder-session1.sh"
+    },
+    {
+      "bytes": 120,
+      "files": 1,
+      "path": ".local/mac-command-encoder-session2-full.sh"
+    },
+    {
+      "bytes": 294,
+      "files": 1,
+      "path": ".local/mac-command-encoder-session2.sh"
+    },
+    {
+      "bytes": 340,
+      "files": 1,
+      "path": ".local/mac-command-license-build-test.sh"
+    },
+    {
+      "bytes": 93,
+      "files": 1,
+      "path": ".local/mac-command-rsid-oracle-tests.sh"
+    },
+    {
+      "bytes": 485,
+      "files": 1,
+      "path": ".local/mac-command-rsid-source.sh"
+    },
+    {
+      "bytes": 58,
+      "files": 1,
+      "path": ".local/mac-command-rsid-vectors.sh"
+    },
+    {
+      "bytes": 304,
+      "files": 1,
+      "path": ".local/mac-command-session5.sh"
+    },
+    {
+      "bytes": 120,
+      "files": 1,
+      "path": ".local/mac-command-session6-full.sh"
+    },
+    {
+      "bytes": 342,
+      "files": 1,
+      "path": ".local/mac-command-session6.sh"
+    },
+    {
+      "bytes": 147,
+      "files": 1,
+      "path": ".local/mac-command-session6r1-regression.sh"
+    },
+    {
+      "bytes": 109,
+      "files": 1,
+      "path": ".local/mac-command-session6r1-tests.sh"
+    },
+    {
+      "bytes": 549,
+      "files": 1,
+      "path": ".local/mac-fldigi-rpc-check.sh"
+    },
+    {
+      "bytes": 101,
+      "files": 1,
+      "path": ".local/mac-session8-build.sh"
+    },
+    {
+      "bytes": 1170,
+      "files": 1,
+      "path": ".local/mac-session8-close-verify.sh"
+    },
+    {
+      "bytes": 230,
+      "files": 1,
+      "path": ".local/mac-session8-extract-score.sh"
+    },
+    {
+      "bytes": 544,
+      "files": 1,
+      "path": ".local/mac-session8-final-score.sh"
+    },
+    {
+      "bytes": 978,
+      "files": 1,
+      "path": ".local/mac-session8-html-final.sh"
+    },
+    {
+      "bytes": 153,
+      "files": 1,
+      "path": ".local/mac-session8-html.sh"
+    },
+    {
+      "bytes": 63,
+      "files": 1,
+      "path": ".local/mac-session8-preserve.sh"
+    },
+    {
+      "bytes": 73,
+      "files": 1,
+      "path": ".local/mac-session8-restage.sh"
+    },
+    {
+      "bytes": 61,
+      "files": 1,
+      "path": ".local/mac-session8-review.sh"
+    },
+    {
+      "bytes": 186,
+      "files": 1,
+      "path": ".local/mac-session8-score.sh"
+    },
+    {
+      "bytes": 60,
+      "files": 1,
+      "path": ".local/mac-session8-stage.sh"
+    },
+    {
+      "bytes": 81,
+      "files": 1,
+      "path": ".local/mac-session9-accepted-scorecard.sh"
+    },
+    {
+      "bytes": 74,
+      "files": 1,
+      "path": ".local/mac-session9-analyze-mac-results.sh"
+    },
+    {
+      "bytes": 83,
+      "files": 1,
+      "path": ".local/mac-session9-connect-manual.sh"
+    },
+    {
+      "bytes": 201,
+      "files": 1,
+      "path": ".local/mac-session9-deliver-manual.sh"
+    },
+    {
+      "bytes": 214,
+      "files": 1,
+      "path": ".local/mac-session9-extract-control-receive.sh"
+    },
+    {
+      "bytes": 144,
+      "files": 1,
+      "path": ".local/mac-session9-extract-display-attempt.sh"
+    },
+    {
+      "bytes": 326,
+      "files": 1,
+      "path": ".local/mac-session9-extract-wholewav.sh"
+    },
+    {
+      "bytes": 126,
+      "files": 1,
+      "path": ".local/mac-session9-extract.sh"
+    },
+    {
+      "bytes": 196,
+      "files": 1,
+      "path": ".local/mac-session9-filter-model.sh"
+    },
+    {
+      "bytes": 129,
+      "files": 1,
+      "path": ".local/mac-session9-local.sh"
+    },
+    {
+      "bytes": 78,
+      "files": 1,
+      "path": ".local/mac-session9-pixel-difference-detail.sh"
+    },
+    {
+      "bytes": 446,
+      "files": 1,
+      "path": ".local/mac-session9-prepare-clock-corrected.sh"
+    },
+    {
+      "bytes": 124,
+      "files": 1,
+      "path": ".local/mac-session9-prepare-manual.sh"
+    },
+    {
+      "bytes": 77,
+      "files": 1,
+      "path": ".local/mac-session9-prepare-speed-controls.sh"
+    },
+    {
+      "bytes": 469,
+      "files": 1,
+      "path": ".local/mac-session9-record-mac.sh"
+    },
+    {
+      "bytes": 246,
+      "files": 1,
+      "path": ".local/mac-session9-review-clock-corrected.sh"
+    },
+    {
+      "bytes": 219,
+      "files": 1,
+      "path": ".local/mac-session9-review-direct-rx.sh"
+    },
+    {
+      "bytes": 650,
+      "files": 1,
+      "path": ".local/mac-session9-review-dual.sh"
+    },
+    {
+      "bytes": 70,
+      "files": 1,
+      "path": ".local/mac-session9-review-mac-tiny.sh"
+    },
+    {
+      "bytes": 219,
+      "files": 1,
+      "path": ".local/mac-session9-review-native.sh"
+    },
+    {
+      "bytes": 71,
+      "files": 1,
+      "path": ".local/mac-session9-review-own-large.sh"
+    },
+    {
+      "bytes": 221,
+      "files": 1,
+      "path": ".local/mac-session9-review-rate-rx.sh"
+    },
+    {
+      "bytes": 428,
+      "files": 1,
+      "path": ".local/mac-session9-review-rate.sh"
+    },
+    {
+      "bytes": 131,
+      "files": 1,
+      "path": ".local/mac-session9-review.sh"
+    },
+    {
+      "bytes": 129,
+      "files": 1,
+      "path": ".local/mac-session9-stage-control-receive.sh"
+    },
+    {
+      "bytes": 67,
+      "files": 1,
+      "path": ".local/mac-session9-stage-resume.sh"
+    },
+    {
+      "bytes": 69,
+      "files": 1,
+      "path": ".local/mac-session9-stage-wholewav.sh"
+    },
+    {
+      "bytes": 60,
+      "files": 1,
+      "path": ".local/mac-session9-stage.sh"
+    },
+    {
+      "bytes": 80,
+      "files": 1,
+      "path": ".local/mac-session9-summarize-decoder.sh"
+    },
+    {
+      "bytes": 143,
+      "files": 1,
+      "path": ".local/mac-session9-timing.sh"
+    },
+    {
+      "bytes": 79,
+      "files": 1,
+      "path": ".local/mac-session9-tiny-hypotheses.sh"
+    },
+    {
+      "bytes": 164,
+      "files": 1,
+      "path": ".local/mac-session9-verify.sh"
+    },
+    {
+      "bytes": 73,
+      "files": 1,
+      "path": ".local/mac-session9-wave-clock.sh"
+    },
+    {
+      "bytes": 215,
+      "files": 1,
+      "path": ".local/mac-session9-whole-review.sh"
+    },
+    {
+      "bytes": 4209,
+      "files": 1,
+      "path": ".local/phase2-adopt.py"
+    },
+    {
+      "bytes": 121,
+      "files": 1,
+      "path": ".local/phase2-adopt.sh"
+    },
+    {
+      "bytes": 5147,
+      "files": 1,
+      "path": ".local/phase2-analyze.py"
+    },
+    {
+      "bytes": 60,
+      "files": 1,
+      "path": ".local/phase2-analyze.sh"
+    },
+    {
+      "bytes": 128,
+      "files": 1,
+      "path": ".local/phase2-check.sh"
+    },
+    {
+      "bytes": 2327,
+      "files": 1,
+      "path": ".local/phase2-final-check.py"
+    },
+    {
+      "bytes": 64,
+      "files": 1,
+      "path": ".local/phase2-final-check.sh"
+    },
+    {
+      "bytes": 1004999,
+      "files": 24,
+      "path": ".local/phase2-validation"
+    },
+    {
+      "bytes": 113391861,
+      "files": 170,
+      "path": ".local/phase3-acceptance"
+    },
+    {
+      "bytes": 152,
+      "files": 1,
+      "path": ".local/phase3-calibrate.sh"
+    },
+    {
+      "bytes": 113398439,
+      "files": 170,
+      "path": ".local/phase3-calibration"
+    },
+    {
+      "bytes": 2082,
+      "files": 1,
+      "path": ".local/phase3-closeout.py"
+    },
+    {
+      "bytes": 140,
+      "files": 1,
+      "path": ".local/phase3-closeout.sh"
+    },
+    {
+      "bytes": 2397,
+      "files": 1,
+      "path": ".local/phase3-freeze.py"
+    },
+    {
+      "bytes": 59,
+      "files": 1,
+      "path": ".local/phase3-freeze.sh"
+    },
+    {
+      "bytes": 28582,
+      "files": 1,
+      "path": ".local/phase3-proposed-baseline.json"
+    },
+    {
+      "bytes": 98000,
+      "files": 7,
+      "path": ".local/phase3-validation"
+    },
+    {
+      "bytes": 231,
+      "files": 1,
+      "path": ".local/phase3-verify.sh"
+    },
+    {
+      "bytes": 179,
+      "files": 1,
+      "path": ".local/pi-fixture-backup-inspect-result.md"
+    },
+    {
+      "bytes": 10826,
+      "files": 1,
+      "path": ".local/pi-fixture-backup-inspect.log"
+    },
+    {
+      "bytes": 729,
+      "files": 1,
+      "path": ".local/pi-fixture-backup-inspect.sh"
+    },
+    {
+      "bytes": 179,
+      "files": 1,
+      "path": ".local/pi-fixture-inspect-result.md"
+    },
+    {
+      "bytes": 2944,
+      "files": 1,
+      "path": ".local/pi-fixture-inspect.log"
+    },
+    {
+      "bytes": 631,
+      "files": 1,
+      "path": ".local/pi-fixture-inspect.sh"
+    },
+    {
+      "bytes": 379,
+      "files": 1,
+      "path": ".local/pi-fldigi-adapter-inspect.sh"
+    },
+    {
+      "bytes": 303,
+      "files": 1,
+      "path": ".local/pi-fldigi-rsid-source-inspect.sh"
+    },
+    {
+      "bytes": 1794,
+      "files": 1,
+      "path": ".local/pi-fldigi-rsid-verify.sh"
+    },
+    {
+      "bytes": 340,
+      "files": 1,
+      "path": ".local/pi-fldigi-script-inspect.sh"
+    },
+    {
+      "bytes": 1047,
+      "files": 1,
+      "path": ".local/pi-fldigi-script-inventory.sh"
+    },
+    {
+      "bytes": 497,
+      "files": 1,
+      "path": ".local/pi-fldigi-source-identity.sh"
+    },
+    {
+      "bytes": 180,
+      "files": 1,
+      "path": ".local/pi-phase2-inspect-result.md"
+    },
+    {
+      "bytes": 1515,
+      "files": 1,
+      "path": ".local/pi-phase2-inspect.log"
+    },
+    {
+      "bytes": 389,
+      "files": 1,
+      "path": ".local/pi-phase2-inspect.sh"
+    },
+    {
+      "bytes": 1485,
+      "files": 1,
+      "path": ".local/pi-phase2-validate.sh"
+    },
+    {
+      "bytes": 1501,
+      "files": 1,
+      "path": ".local/pi-qualified-rsid-decode-smoke.sh"
+    },
+    {
+      "bytes": 433,
+      "files": 1,
+      "path": ".local/pi-session8-harness-history.sh"
+    },
+    {
+      "bytes": 1390,
+      "files": 1,
+      "path": ".local/pi-session8-historical-pixels.sh"
+    },
+    {
+      "bytes": 69,
+      "files": 1,
+      "path": ".local/pi-session8-inspect.sh"
+    },
+    {
+      "bytes": 250,
+      "files": 1,
+      "path": ".local/pi-session8-picture-source.sh"
+    },
+    {
+      "bytes": 184,
+      "files": 1,
+      "path": ".local/pi-session8-raster-source.sh"
+    },
+    {
+      "bytes": 233488,
+      "files": 1,
+      "path": ".local/pi-session8-run.sh"
+    },
+    {
+      "bytes": 279,
+      "files": 1,
+      "path": ".local/pi-session8-settings.sh"
+    },
+    {
+      "bytes": 226,
+      "files": 1,
+      "path": ".local/pi-session8-source.sh"
+    },
+    {
+      "bytes": 564,
+      "files": 1,
+      "path": ".local/pi-session9-audio-methods.sh"
+    },
+    {
+      "bytes": 482,
+      "files": 1,
+      "path": ".local/pi-session9-direct-macro.sh"
+    },
+    {
+      "bytes": 2988,
+      "files": 1,
+      "path": ".local/pi-session9-dual-capture.sh"
+    },
+    {
+      "bytes": 2248,
+      "files": 1,
+      "path": ".local/pi-session9-explicit-rate.sh"
+    },
+    {
+      "bytes": 501,
+      "files": 1,
+      "path": ".local/pi-session9-fetch-dual-failure.sh"
+    },
+    {
+      "bytes": 181,
+      "files": 1,
+      "path": ".local/pi-session9-fetch-wholewav.sh"
+    },
+    {
+      "bytes": 301,
+      "files": 1,
+      "path": ".local/pi-session9-filter-source.sh"
+    },
+    {
+      "bytes": 421,
+      "files": 1,
+      "path": ".local/pi-session9-gdb.sh"
+    },
+    {
+      "bytes": 836,
+      "files": 1,
+      "path": ".local/pi-session9-inspect-generation.sh"
+    },
+    {
+      "bytes": 1182,
+      "files": 1,
+      "path": ".local/pi-session9-inspect.sh"
+    },
+    {
+      "bytes": 870,
+      "files": 1,
+      "path": ".local/pi-session9-inspect2.sh"
+    },
+    {
+      "bytes": 906,
+      "files": 1,
+      "path": ".local/pi-session9-inspect3.sh"
+    },
+    {
+      "bytes": 11102,
+      "files": 1,
+      "path": ".local/pi-session9-manual-control.sh"
+    },
+    {
+      "bytes": 338,
+      "files": 1,
+      "path": ".local/pi-session9-port-rate.sh"
+    },
+    {
+      "bytes": 59714708,
+      "files": 1,
+      "path": ".local/pi-session9-practical.sh"
+    },
+    {
+      "bytes": 223730,
+      "files": 1,
+      "path": ".local/pi-session9-probe.sh"
+    },
+    {
+      "bytes": 7596992,
+      "files": 1,
+      "path": ".local/pi-session9-receive-clock-corrected.sh"
+    },
+    {
+      "bytes": 2276,
+      "files": 1,
+      "path": ".local/pi-session9-receive-control.sh"
+    },
+    {
+      "bytes": 6400850,
+      "files": 1,
+      "path": ".local/pi-session9-receive-native.sh"
+    },
+    {
+      "bytes": 1098,
+      "files": 1,
+      "path": ".local/pi-session9-recover-rate.sh"
+    },
+    {
+      "bytes": 13800,
+      "files": 1,
+      "path": ".local/pi-session9-resume.sh"
+    },
+    {
+      "bytes": 316,
+      "files": 1,
+      "path": ".local/pi-session9-sound-code.sh"
+    },
+    {
+      "bytes": 9718,
+      "files": 1,
+      "path": ".local/pi-session9-wholewav.sh"
+    },
+    {
+      "bytes": 180847524,
+      "files": 59,
+      "path": ".local/project-cleanup"
+    },
+    {
+      "bytes": 321295665,
+      "files": 24,
+      "path": ".local/regression"
+    },
+    {
+      "bytes": 989,
+      "files": 1,
+      "path": ".local/rsid_vectors.py"
+    },
+    {
+      "bytes": 35065278,
+      "files": 162,
+      "path": ".local/session10"
+    },
+    {
+      "bytes": 310,
+      "files": 1,
+      "path": ".local/session3-command.sh"
+    },
+    {
+      "bytes": 123,
+      "files": 1,
+      "path": ".local/session3-full-command.sh"
+    },
+    {
+      "bytes": 65,
+      "files": 1,
+      "path": ".local/session6r2-regression.sh"
+    },
+    {
+      "bytes": 175,
+      "files": 1,
+      "path": ".local/session6r2-tests.sh"
+    },
+    {
+      "bytes": 83038003,
+      "files": 545,
+      "path": ".local/session8"
+    },
+    {
+      "bytes": 228683214,
+      "files": 1637,
+      "path": ".local/session9"
+    }
+  ],
+  "external_links_followed": false,
+  "net_file_content_reduction_bytes": 809367656,
+  "open_legacy_files": 0,
+  "persistent_files_verified": [
+    "pi-target.env",
+    "mac-command.sh",
+    "pi-command.sh",
+    "pi-stop-temporary-fldigi-rpc.sh"
+  ],
+  "preserved_new_sidecar_bytes": 394402014,
+  "remaining_local_regular_file_bytes": 30461,
+  "remaining_local_top_level": [
+    ".DS_Store",
+    "agent-runs",
+    "mac-command.sh",
+    "pi-command.sh",
+    "pi-stop-temporary-fldigi-rpc.sh",
+    "pi-target.env",
+    "reference",
+    "wip"
+  ],
+  "remote_systems_changed": false,
+  "removed_legacy_file_bytes": 1203769670,
+  "removed_legacy_files": 3090,
+  "schema": "grampy-local-cleanup-result.v1",
+  "status": "complete",
+  "validation": {
+    "broadcast_input_identities_verified": 88,
+    "numeric_limits_unchanged": true,
+    "preserved_artifact_identities_verified": 39,
+    "production_source_unchanged": true,
+    "regular_tests_passed": 254,
+    "seconds": 152.176,
+    "skipped": 0
+  },
+  "wip_closed": [
+    "20261012-test-rationalization-phase4",
+    "20261012-local-cleanup"
+  ]
+}

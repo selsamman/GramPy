@@ -342,6 +342,13 @@ Session 9 remains open; it has not reached its qualify/reject/defer closeout.
 
 ## Reproduction and retained evidence
 
+The [October 12 closeout](../../../operations/test-rationalization-phase5.md)
+retired the remaining `.local` trees and the earlier broad restoration scheme.
+Use its [selected artifact manifest](../../../provenance/changes/20261012-local-cleanup/artifacts.json)
+for original practical/manual inputs. The commands below describe historical
+execution-time layouts and matching source revisions, not current scratch
+that must be present in an ordinary checkout.
+
 Run the local scripts through `tools/mac-local.sh` with the repository virtualenv:
 
 ```sh

@@ -6,7 +6,9 @@ dispatch and the separately verified L-to-color row-plane correction.
 No publication, appliance replacement or commit was performed.
 
 Wheel SHA-256: `e549e3d7cc635f678e04a43b2cd79407f2c7622d56293e98fc50eca67b543ab7` (166,368 bytes).
-The local artifact is retained at `.local/session10/final/distribution/radiogrampy-0.1.3-py3-none-any.whl`;
+The artifact was originally retained at `.local/session10/final/distribution/radiogrampy-0.1.3-py3-none-any.whl`;
+the [October 12 historical manifest](../../../provenance/changes/20261012-local-cleanup/artifacts.json)
+now identifies its verified sidecar location after that working directory was retired.
 [package identity](package.json) contains every module hash and metadata.
 The isolated installed-wheel suite ran **248 tests with six expected skips**,
 zero failures/errors, in 145.172 seconds.

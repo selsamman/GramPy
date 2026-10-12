@@ -1,0 +1,1359 @@
+{
+  "before_file_bytes": 1203795179,
+  "preservation_manifest": "docs/provenance/changes/20261012-local-cleanup/artifacts.json",
+  "schema": "grampy-local-disposition.v1",
+  "scope": "GramPy/.local only; do not follow symlinks; external corpus, sibling projects and remote systems are outside deletion scope",
+  "source_revision": "b99b886835ac1ad0b7adef6ba95af6134351f131",
+  "top_level": [
+    {
+      "action": "keep",
+      "allocated_bytes": 12288,
+      "bytes": 10244,
+      "files": 1,
+      "path": ".local/.DS_Store",
+      "reason": "Unrelated Finder metadata; excluded from project cleanup",
+      "symlinks": 0
+    },
+    {
+      "action": "keep",
+      "allocated_bytes": 0,
+      "bytes": 0,
+      "files": 0,
+      "path": ".local/agent-runs",
+      "reason": "Managed execution infrastructure; never delete active state",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 52965376,
+      "bytes": 52593799,
+      "files": 157,
+      "path": ".local/decoder-auto-mfsk32",
+      "reason": "Accepted review/qualification already in Git; historical received input/baseline/rasters promoted; repeat decodes, temporary rates and baseline source copies are reproducible",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 40960,
+      "bytes": 36092,
+      "files": 4,
+      "path": ".local/fixture-candidate-probe",
+      "reason": "Candidate probe results in Git and accepted fixtures in sidecar; temporary layout links and raw diagnostic logs no longer required",
+      "symlinks": 4
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 8192,
+      "bytes": 8099,
+      "files": 1,
+      "path": ".local/fixture-candidate-probe.py",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 69,
+      "files": 1,
+      "path": ".local/fixture-candidate-probe.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 126,
+      "files": 1,
+      "path": ".local/mac-command-corpus-encryption-tests.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 129,
+      "files": 1,
+      "path": ".local/mac-command-corpus-na-tests.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 407,
+      "files": 1,
+      "path": ".local/mac-command-corpus-password-test.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 120,
+      "files": 1,
+      "path": ".local/mac-command-encoder-session1-full.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 158,
+      "files": 1,
+      "path": ".local/mac-command-encoder-session1.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 120,
+      "files": 1,
+      "path": ".local/mac-command-encoder-session2-full.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 294,
+      "files": 1,
+      "path": ".local/mac-command-encoder-session2.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 340,
+      "files": 1,
+      "path": ".local/mac-command-license-build-test.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 93,
+      "files": 1,
+      "path": ".local/mac-command-rsid-oracle-tests.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 485,
+      "files": 1,
+      "path": ".local/mac-command-rsid-source.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 58,
+      "files": 1,
+      "path": ".local/mac-command-rsid-vectors.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 304,
+      "files": 1,
+      "path": ".local/mac-command-session5.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 120,
+      "files": 1,
+      "path": ".local/mac-command-session6-full.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 342,
+      "files": 1,
+      "path": ".local/mac-command-session6.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 147,
+      "files": 1,
+      "path": ".local/mac-command-session6r1-regression.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 109,
+      "files": 1,
+      "path": ".local/mac-command-session6r1-tests.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "keep",
+      "allocated_bytes": 4096,
+      "bytes": 65,
+      "files": 1,
+      "path": ".local/mac-command.sh",
+      "reason": "Supported default Mac command file, retained byte-identically",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 549,
+      "files": 1,
+      "path": ".local/mac-fldigi-rpc-check.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 101,
+      "files": 1,
+      "path": ".local/mac-session8-build.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 1170,
+      "files": 1,
+      "path": ".local/mac-session8-close-verify.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 230,
+      "files": 1,
+      "path": ".local/mac-session8-extract-score.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 544,
+      "files": 1,
+      "path": ".local/mac-session8-final-score.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 978,
+      "files": 1,
+      "path": ".local/mac-session8-html-final.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 153,
+      "files": 1,
+      "path": ".local/mac-session8-html.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 63,
+      "files": 1,
+      "path": ".local/mac-session8-preserve.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 73,
+      "files": 1,
+      "path": ".local/mac-session8-restage.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 61,
+      "files": 1,
+      "path": ".local/mac-session8-review.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 186,
+      "files": 1,
+      "path": ".local/mac-session8-score.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 60,
+      "files": 1,
+      "path": ".local/mac-session8-stage.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 81,
+      "files": 1,
+      "path": ".local/mac-session9-accepted-scorecard.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 74,
+      "files": 1,
+      "path": ".local/mac-session9-analyze-mac-results.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 83,
+      "files": 1,
+      "path": ".local/mac-session9-connect-manual.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 201,
+      "files": 1,
+      "path": ".local/mac-session9-deliver-manual.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 214,
+      "files": 1,
+      "path": ".local/mac-session9-extract-control-receive.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 144,
+      "files": 1,
+      "path": ".local/mac-session9-extract-display-attempt.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 326,
+      "files": 1,
+      "path": ".local/mac-session9-extract-wholewav.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 126,
+      "files": 1,
+      "path": ".local/mac-session9-extract.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 196,
+      "files": 1,
+      "path": ".local/mac-session9-filter-model.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 129,
+      "files": 1,
+      "path": ".local/mac-session9-local.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 78,
+      "files": 1,
+      "path": ".local/mac-session9-pixel-difference-detail.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 446,
+      "files": 1,
+      "path": ".local/mac-session9-prepare-clock-corrected.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 124,
+      "files": 1,
+      "path": ".local/mac-session9-prepare-manual.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 77,
+      "files": 1,
+      "path": ".local/mac-session9-prepare-speed-controls.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 469,
+      "files": 1,
+      "path": ".local/mac-session9-record-mac.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 246,
+      "files": 1,
+      "path": ".local/mac-session9-review-clock-corrected.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 219,
+      "files": 1,
+      "path": ".local/mac-session9-review-direct-rx.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 650,
+      "files": 1,
+      "path": ".local/mac-session9-review-dual.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 70,
+      "files": 1,
+      "path": ".local/mac-session9-review-mac-tiny.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 219,
+      "files": 1,
+      "path": ".local/mac-session9-review-native.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 71,
+      "files": 1,
+      "path": ".local/mac-session9-review-own-large.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 221,
+      "files": 1,
+      "path": ".local/mac-session9-review-rate-rx.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 428,
+      "files": 1,
+      "path": ".local/mac-session9-review-rate.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 131,
+      "files": 1,
+      "path": ".local/mac-session9-review.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 129,
+      "files": 1,
+      "path": ".local/mac-session9-stage-control-receive.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 67,
+      "files": 1,
+      "path": ".local/mac-session9-stage-resume.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 69,
+      "files": 1,
+      "path": ".local/mac-session9-stage-wholewav.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 60,
+      "files": 1,
+      "path": ".local/mac-session9-stage.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 80,
+      "files": 1,
+      "path": ".local/mac-session9-summarize-decoder.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 143,
+      "files": 1,
+      "path": ".local/mac-session9-timing.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 79,
+      "files": 1,
+      "path": ".local/mac-session9-tiny-hypotheses.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 164,
+      "files": 1,
+      "path": ".local/mac-session9-verify.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 73,
+      "files": 1,
+      "path": ".local/mac-session9-wave-clock.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 215,
+      "files": 1,
+      "path": ".local/mac-session9-whole-review.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 8192,
+      "bytes": 4209,
+      "files": 1,
+      "path": ".local/phase2-adopt.py",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 121,
+      "files": 1,
+      "path": ".local/phase2-adopt.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 8192,
+      "bytes": 5147,
+      "files": 1,
+      "path": ".local/phase2-analyze.py",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 60,
+      "files": 1,
+      "path": ".local/phase2-analyze.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 128,
+      "files": 1,
+      "path": ".local/phase2-check.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 2327,
+      "files": 1,
+      "path": ".local/phase2-final-check.py",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 64,
+      "files": 1,
+      "path": ".local/phase2-final-check.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 1060864,
+      "bytes": 1004999,
+      "files": 24,
+      "path": ".local/phase2-validation",
+      "reason": "Controlled fixtures and receiver results promoted to maintained sidecar; independent validation and recipe in Git",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 113758208,
+      "bytes": 113391861,
+      "files": 170,
+      "path": ".local/phase3-acceptance",
+      "reason": "Current accepted policy, baseline and validation in Git; fresh full decodes and copied review assets are reproducible outputs",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 152,
+      "files": 1,
+      "path": ".local/phase3-calibrate.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 113766400,
+      "bytes": 113398439,
+      "files": 170,
+      "path": ".local/phase3-calibration",
+      "reason": "Current accepted policy, baseline and validation in Git; fresh full decodes and copied review assets are reproducible outputs",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 2082,
+      "files": 1,
+      "path": ".local/phase3-closeout.py",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 140,
+      "files": 1,
+      "path": ".local/phase3-closeout.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 2397,
+      "files": 1,
+      "path": ".local/phase3-freeze.py",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 59,
+      "files": 1,
+      "path": ".local/phase3-freeze.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 28672,
+      "bytes": 28582,
+      "files": 1,
+      "path": ".local/phase3-proposed-baseline.json",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 118784,
+      "bytes": 98000,
+      "files": 7,
+      "path": ".local/phase3-validation",
+      "reason": "Authoritative successful records and compact results retained in Git; raw logs and test-setup failures are superseded",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 231,
+      "files": 1,
+      "path": ".local/phase3-verify.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "keep",
+      "allocated_bytes": 4096,
+      "bytes": 1389,
+      "files": 1,
+      "path": ".local/pi-command.sh",
+      "reason": "Supported default Pi command file/RPC setup, retained byte-identically",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 179,
+      "files": 1,
+      "path": ".local/pi-fixture-backup-inspect-result.md",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 12288,
+      "bytes": 10826,
+      "files": 1,
+      "path": ".local/pi-fixture-backup-inspect.log",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 729,
+      "files": 1,
+      "path": ".local/pi-fixture-backup-inspect.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 179,
+      "files": 1,
+      "path": ".local/pi-fixture-inspect-result.md",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 2944,
+      "files": 1,
+      "path": ".local/pi-fixture-inspect.log",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 631,
+      "files": 1,
+      "path": ".local/pi-fixture-inspect.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 379,
+      "files": 1,
+      "path": ".local/pi-fldigi-adapter-inspect.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 303,
+      "files": 1,
+      "path": ".local/pi-fldigi-rsid-source-inspect.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 1794,
+      "files": 1,
+      "path": ".local/pi-fldigi-rsid-verify.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 340,
+      "files": 1,
+      "path": ".local/pi-fldigi-script-inspect.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 1047,
+      "files": 1,
+      "path": ".local/pi-fldigi-script-inventory.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 497,
+      "files": 1,
+      "path": ".local/pi-fldigi-source-identity.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 180,
+      "files": 1,
+      "path": ".local/pi-phase2-inspect-result.md",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 1515,
+      "files": 1,
+      "path": ".local/pi-phase2-inspect.log",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 389,
+      "files": 1,
+      "path": ".local/pi-phase2-inspect.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 1485,
+      "files": 1,
+      "path": ".local/pi-phase2-validate.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 1501,
+      "files": 1,
+      "path": ".local/pi-qualified-rsid-decode-smoke.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 433,
+      "files": 1,
+      "path": ".local/pi-session8-harness-history.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 1390,
+      "files": 1,
+      "path": ".local/pi-session8-historical-pixels.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 69,
+      "files": 1,
+      "path": ".local/pi-session8-inspect.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 250,
+      "files": 1,
+      "path": ".local/pi-session8-picture-source.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 184,
+      "files": 1,
+      "path": ".local/pi-session8-raster-source.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 237568,
+      "bytes": 233488,
+      "files": 1,
+      "path": ".local/pi-session8-run.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 279,
+      "files": 1,
+      "path": ".local/pi-session8-settings.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 226,
+      "files": 1,
+      "path": ".local/pi-session8-source.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 564,
+      "files": 1,
+      "path": ".local/pi-session9-audio-methods.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 482,
+      "files": 1,
+      "path": ".local/pi-session9-direct-macro.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 2988,
+      "files": 1,
+      "path": ".local/pi-session9-dual-capture.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 2248,
+      "files": 1,
+      "path": ".local/pi-session9-explicit-rate.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 501,
+      "files": 1,
+      "path": ".local/pi-session9-fetch-dual-failure.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 181,
+      "files": 1,
+      "path": ".local/pi-session9-fetch-wholewav.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 301,
+      "files": 1,
+      "path": ".local/pi-session9-filter-source.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 421,
+      "files": 1,
+      "path": ".local/pi-session9-gdb.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 836,
+      "files": 1,
+      "path": ".local/pi-session9-inspect-generation.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 1182,
+      "files": 1,
+      "path": ".local/pi-session9-inspect.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 870,
+      "files": 1,
+      "path": ".local/pi-session9-inspect2.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 906,
+      "files": 1,
+      "path": ".local/pi-session9-inspect3.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 12288,
+      "bytes": 11102,
+      "files": 1,
+      "path": ".local/pi-session9-manual-control.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 338,
+      "files": 1,
+      "path": ".local/pi-session9-port-rate.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 59715584,
+      "bytes": 59714708,
+      "files": 1,
+      "path": ".local/pi-session9-practical.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 225280,
+      "bytes": 223730,
+      "files": 1,
+      "path": ".local/pi-session9-probe.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 7598080,
+      "bytes": 7596992,
+      "files": 1,
+      "path": ".local/pi-session9-receive-clock-corrected.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 2276,
+      "files": 1,
+      "path": ".local/pi-session9-receive-control.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 6402048,
+      "bytes": 6400850,
+      "files": 1,
+      "path": ".local/pi-session9-receive-native.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 1098,
+      "files": 1,
+      "path": ".local/pi-session9-recover-rate.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 16384,
+      "bytes": 13800,
+      "files": 1,
+      "path": ".local/pi-session9-resume.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 316,
+      "files": 1,
+      "path": ".local/pi-session9-sound-code.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 12288,
+      "bytes": 9718,
+      "files": 1,
+      "path": ".local/pi-session9-wholewav.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "keep",
+      "allocated_bytes": 4096,
+      "bytes": 286,
+      "files": 1,
+      "path": ".local/pi-stop-temporary-fldigi-rpc.sh",
+      "reason": "Machine-specific companion to the retained default Pi RPC setup; retain byte-identically",
+      "symlinks": 0
+    },
+    {
+      "action": "keep",
+      "allocated_bytes": 4096,
+      "bytes": 33,
+      "files": 1,
+      "path": ".local/pi-target.env",
+      "reason": "Private Pi target configuration, retained byte-identically",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 181006336,
+      "bytes": 180847524,
+      "files": 59,
+      "path": ".local/project-cleanup",
+      "reason": "Retired lossless backup scheme: duplicate bundles, virtualenv/cache contents and obsolete restore scaffolding; selected sources now have explicit durable identities",
+      "symlinks": 0
+    },
+    {
+      "action": "keep",
+      "allocated_bytes": 8192,
+      "bytes": 6148,
+      "files": 1,
+      "path": ".local/reference",
+      "reason": "Documented source-checkout location; currently contains only Finder metadata",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 321339392,
+      "bytes": 321295665,
+      "files": 24,
+      "path": ".local/regression",
+      "reason": "Historical received source/baseline promoted; unrelated saved manifest already in durable corpus; diagnostic WAV/components are derivable",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 989,
+      "files": 1,
+      "path": ".local/rsid_vectors.py",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 35500032,
+      "bytes": 35065278,
+      "files": 162,
+      "path": ".local/session10",
+      "reason": "Accepted wheel promoted; benchmark inputs, source copies, installations and bytecode are reproducible; benchmark results remain in Git",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 310,
+      "files": 1,
+      "path": ".local/session3-command.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 123,
+      "files": 1,
+      "path": ".local/session3-full-command.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 65,
+      "files": 1,
+      "path": ".local/session6r2-regression.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 4096,
+      "bytes": 175,
+      "files": 1,
+      "path": ".local/session6r2-tests.sh",
+      "reason": "Reviewed completed one-off command, embedded transfer bundle or investigation receipt; durable workflow/recipe/findings are recorded in repo and selected material is promoted",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 84783104,
+      "bytes": 83038003,
+      "files": 545,
+      "path": ".local/session8",
+      "reason": "Accepted compact measurements/source recipes retained in Git; pinned receiver promoted; generated tiny inputs and intermediate viewer/debug state are reproducible historical work",
+      "symlinks": 0
+    },
+    {
+      "action": "delete",
+      "allocated_bytes": 233574400,
+      "bytes": 228683214,
+      "files": 1637,
+      "path": ".local/session9",
+      "reason": "Accepted scores/reviews/failure diagnoses retained in Git; original manual controls and practical transmitter inputs promoted; remaining decodes, experiments, captures from unsuccessful attempts and transfer bundles are superseded",
+      "symlinks": 0
+    },
+    {
+      "action": "keep",
+      "allocated_bytes": 12288,
+      "bytes": 7344,
+      "files": 2,
+      "path": ".local/wip",
+      "reason": "Owned work infrastructure; phase 5 current work handled at closeout",
+      "symlinks": 0
+    }
+  ]
+}

@@ -28,6 +28,12 @@ measure quality and resource effects, and retain a regression test or durable
 evidence record before adoption. Historical scorecards and session gates are
 intentionally not a repository dependency or current acceptance threshold.
 
+The maintained [full-broadcast regression workflow](../operations/broadcast-regression.md)
+freshly decodes the selected received captures, produces paired GramPy/fldigi
+scorecards and enforces the versioned per-capture/per-picture baseline. It
+also produces an HTML review page and flags changed images for human review.
+This explicit long-running gate complements the shorter received-data suite.
+
 For compact-output changes, use short deterministic tests for text framing,
 picture links, one-second grid boundaries, missing values, and API/CLI
 compatibility. A single full received-broadcast acceptance should verify

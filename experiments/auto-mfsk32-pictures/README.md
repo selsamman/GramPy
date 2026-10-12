@@ -7,6 +7,14 @@ normal maintenance uses the permanent regression and the
 Local/remote cache retirement and evidence restoration are recorded in the
 [cleanup record](../../docs/encoder/data/session10/cleanup.md).
 
+The [October 12 closeout](../../docs/operations/test-rationalization-phase5.md)
+retires the remaining legacy scratch and broad restoration scheme. Its
+[selected historical manifest](../../docs/provenance/changes/20261012-local-cleanup/artifacts.json)
+locates the actual September 19 received source, baseline and rasters, plus
+original practical inputs. Earlier `.local` command paths describe historical
+execution and are not required setup for current regression. Recreate only a
+needed historical layout in an isolated owned workspace.
+
 The [change record](../../docs/decoder/auto-mfsk32-pictures-change.md) defines
 the October 3 automatic-dispatch fix and its retained baseline. This directory
 contains supplemental evidence workflows; the original encoder qualification
