@@ -1,0 +1,14 @@
+{
+  "schema": "grampy-broadcast-policy.v1",
+  "purpose": "No deterioration from the reviewed current production baseline, per capture and per scored picture. fldigi is a pinned comparison, not perfect truth.",
+  "reference_id": "fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178",
+  "reference_binary_sha256": "dd30f86caae1edb5d2998acedb47a3a7b348b727bf6303af1e2f822f549966f3",
+  "score_arguments": ["--max-offset-components", "24", "--change-penalty", "25.0", "--offset-penalty", "0.0005"],
+  "decode_arguments": ["--mode", "auto", "--orientation", "unknown", "--pipeline-organization", "supported_hybrid", "--picture-component-estimator", "bounded_correlation", "--picture-component-window", "full_hann", "--picture-filter-profile", "response_matched", "--picture-boundary-estimator", "unified_grid", "--persistent-tone-policy", "measure"],
+  "cases": [
+    {"program": "456", "transmission": "wrmi-20260708T133006Z-15770000"},
+    {"program": "458", "transmission": "winb-20260718T023007Z-9265000"},
+    {"program": "458", "transmission": "wrmi-20260722T133008Z-15770000"},
+    {"program": "459", "transmission": "wrmi-20260729T133010Z-15770000"}
+  ]
+}

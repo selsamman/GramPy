@@ -265,6 +265,11 @@ claiming equivalence to the historical acceptance.
 
 ## Suggested implementation order
 
+Phase 3 implements the maintained full-broadcast gate and proposes explicit
+current-production regression limits. See the
+[phase 3 record](test-rationalization-phase3.md) for validation and provenance.
+The historical findings above remain an audit of the original state.
+
 1. Decide the current decoder quality regression cases and approved policy;
    make one documented, strict sidecar acceptance entry point using existing
    scoring tools. Keep unit CI fast and label corpus validation separately.

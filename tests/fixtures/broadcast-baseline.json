@@ -1,0 +1,610 @@
+{
+  "acceptance_status": "proposed_phase3_review",
+  "images": {
+    "winb-20260718T023007Z-9265000": {
+      "2": "11ee438fdf7800bdaee6a609b5dcca06306ab6536daec904680e0a8fdf39d267",
+      "3": "42b75b1d752e1e21b5324fb03975563a9e3546d2d062debe335ab7a3a17774a0",
+      "7": "ba5935c84936af3ff5b9b13db06a45de9e57a8c6e6bfe18dc640f729174cfd5e"
+    },
+    "wrmi-20260708T133006Z-15770000": {
+      "1": "4c334110a29b0aa03793f57815624f7706976f58f3a4422d5f8ad98c092fc1b2",
+      "2": "f11002c6b6c49d3d7bfa5a9fa3f4b45d6e597f37e288a4b8b571b6673fc9458c",
+      "3": "4679012170c380f685ab8340cc4ec1c279a5298f5acc0ed1c6675a21be7f9092",
+      "4": "c3f8fbc31b4b0a56a97b2df18dcdabba0d1e84f8481762c414f69c3693c5d6e2",
+      "5": "cd3b1c770c8e3ddfea5daf93b51f17f6b151b419959a47435385a01bb316cf4c",
+      "6": "db35a82d45f5a4ffb1ed2950dd88f95f9ac1c4e46ee8b61e804f60cc574c3c1e",
+      "7": "c9ae6e9202450153130cb53a00d4e1d50093a8ab1b267cb0536f31f814c6c8c5",
+      "8": "5ca8f2c5804cacb32e6e8414ad65c6a0b847f80d6f7460ca7a91bb9977ac461e"
+    },
+    "wrmi-20260722T133008Z-15770000": {
+      "1": "70e285a382d117893429d9ab4eff0513556ac2aa6fa93b6e4869492edb492cad",
+      "2": "ddc2202ca98999c9c2ded057e84eba77c3ac21c7221666d5a35ee9241f643486",
+      "3": "795d1c5c5a9b17127941c4edbbcc239f8a22b25bdb660db06939e0925709d38d",
+      "4": "d5dbc1724e51d697d18a66784ce83ebbfcdb71b2bac7e9463a96455c1621c2f6",
+      "5": "c814a91a3696a04e24499139019e728b3cbdeeea33c2b7d0bba118a620ea4e0d",
+      "6": "b57027c8ef29885b21d6f4e276c706d775a7fd14d8db56a1aba181b72cc68c04",
+      "7": "08a92238ccf9e30809504d25fc1e53ddef53d12d9e2ee4a7f094cd5c0defe08c",
+      "8": "ddf7d6a73b7b1c55e6525fccf2ac204505bbbf0c0c9be88c56dea8d938cedff1"
+    },
+    "wrmi-20260729T133010Z-15770000": {
+      "1": "b199218c912f959888f60a4bb3c148082b5f6f16a8ff72c1c673a3ba5a8d9563",
+      "10": "414cd08d358573f2168e99a53cbd202c194b67a3ba8fc3a7ad4505d1f91e0ed2",
+      "11": "75fcd68ec81558330dd5d7ddace1f2abfdd31243f409ba40c716e2e9de5e13eb",
+      "2": "ef592d5fab7661ed4229dd10010c7752e6620b612f4efcd464ba9dbbfbbef65a",
+      "3": "2e8da2a3c8075c0ab8a4f6419428356174c733390c0a23b50d79fadaae3358d9",
+      "4": "ea0a05af6440eb2a7be274d42c4acfdf1ab5a712bced688a971c7003ae8636f8",
+      "5": "6e7e7f497b77736e2a684e59cebcb674768f7162fb647dc8e9ec14b1823dbbf9",
+      "6": "3c2edaec131f5928869567d802d14d91f99e2cc1ad22616951c4c4026eb9ad2b",
+      "7": "282f3705bd7c27c3e68c8025a017882cc18488d56ffca257ffb0e6489285808d",
+      "8": "4182f52c45e7036ea0c6dbd134e11d76c0662e50e693563cdf75d7fc6e3e2acd",
+      "9": "5a17ac7f9f60de1d0ab7830d3aa7c0ed61f8e6ef729470485deb99e3b7439459"
+    }
+  },
+  "inputs": {
+    "programs/456/program.json": "46d20e0fd8f6e92e9986d70c18b6a8f7ef8e682e33724c7e3638156697af1a4f",
+    "programs/456/transmissions/wrmi-20260708T133006Z-15770000.json": "f60b47b07496ddf2cdeb3a76d10f8a242bdb624c3fc165b4a6a5707bc2e2e106",
+    "programs/456/truth/images/001-180p-Bates-Ward-Ver2.png": "dba54c8a89148c45f2b18ee8294284906a3b2396fb88b439d65b9494a06351f7",
+    "programs/456/truth/images/002-220p-Wheat-field-Kansas.png": "ae94a41632ce1c5c49896bb5ae8f8c5123de65e2426fe3d5d8c340a0cbf6442e",
+    "programs/456/truth/images/003-222p-PurpleMountainsPikesPeak.png": "273e1053465b51cd9ae32d729b8f5e51ae0e91d62d41270fb3f5df541cbf51b8",
+    "programs/456/truth/images/004-218-The-Statue-of-Liberty-at-Sunset.png": "95ea65788dd177ce1b76250fd7188fecaad9191b5914367137444e4397deee6f",
+    "programs/456/truth/images/005-240p-ScottsBluffNatMon.png": "2ba18db57448c133d37757aaec0380ae86314ebddd879cceef3da60f66a6c178",
+    "programs/456/truth/images/006-240p-Sunset-VicksburyCemetery.png": "622760ef83622d73a06bc7bf76028d7885d782da0507dc30138de287224c46eb",
+    "programs/456/truth/images/007-240p-ChicagoColumbiaExpo-Rooftop.png": "05e2fb75fd0e1394ffe42ee602c704bba6b01acc8bd16969c8a04becbb7c464f",
+    "programs/456/truth/images/008-206p-fireworks-on-the-farm--criswell.png": "22e1a6f399aa2b8c52e21abe6788d58eabc94198029fb1c9c7e417582179a6f7",
+    "programs/456/truth/text-review.json": "97637b35ac2057a92e563634990525bdf9d198ac5f7a118b99ba686c4f7066da",
+    "programs/456/truth/text.txt": "afba5f44605ae125c6d680072ecb3d6a7c62510e1b6e886696639c5aa83e4688",
+    "programs/458/program.json": "e64c2346e87138a8e534ab1c41978401849fb6ded5be43771d114c9ceb055d29",
+    "programs/458/transmissions/winb-20260718T023007Z-9265000.json": "47f46cc3a75bba0daf112100dfd1cd6d93271f1620a13b1ed2b4b8004093c597",
+    "programs/458/transmissions/wrmi-20260722T133008Z-15770000.json": "09de3b29707fc090104da40f349bccaf63a4cf413749da75a549e5c395b03195",
+    "programs/458/truth/images/001-SWRG458_Manhattanhenge.png": "ff533b779aab4915d0278157bbc8ca0997681d55a4f8c710bd07cfda566fd950",
+    "programs/458/truth/images/002-SWRG458_SpaceX.png": "8e276639b66cbda7adeebb63d27f1069fb5684fee4e52d29e94b3e082fe6f012",
+    "programs/458/truth/images/003-SWRG458_Pollen.png": "3ce3690e0def21c4edd8ebfa14142451e79299bd2c561562f9eef7c4b5266af2",
+    "programs/458/truth/images/004-SWRG458_Echinacea.png": "7b1d134e9bacfbedbfd76ab6c76ef2cbde6adba7ba08482279b08943dd233b70",
+    "programs/458/truth/images/005-SWRFG458_Masonic-sunset2.png": "fa560a3ae36ad7b5b12207e18f03e06045c7bb9093e499442f2755a95c26dbba",
+    "programs/458/truth/images/006-SWRG458_Wheatear.png": "1397c349beebdd277673904bdf7258ffa4aea2835bd2ff6e6c67aa669191efd4",
+    "programs/458/truth/images/007-SWRG458_Neon.png": "77a6812f429e2b3d468806c65d679cbb119a9c5150bdf9b689821a82b76b6f36",
+    "programs/458/truth/images/008-SWRG458_painting.png": "8d548d3076759b621e6b9346161c139d1a0403f20b820fa5a1796c3e1d87c302",
+    "programs/458/truth/text-review.json": "95858b21c92285d8abed9371c24b005ac5fe9f27ba876c23286bb3fd64ec4fab",
+    "programs/458/truth/text.txt": "f6e86539b7ba7cb9dc2712987fb50234cfd1d766cdf548631c6c7f3d4977e9db",
+    "programs/459/program.json": "a99dfb773b30ef2e480d8034c9c88a571069017fe06853b76e6f92d4d91388b0",
+    "programs/459/transmissions/wrmi-20260729T133010Z-15770000.json": "0eccaafdbd5beb1fc46be6bbad84c14bd281aa4c135d7a9632e9354a48c1611a",
+    "programs/459/truth/images/001-SWRG459_Rti_KANHAM.png": "32b5600e30b9a81472497b4bcffb652ca95b52ded7c89eac438a5336a1b0415e",
+    "programs/459/truth/images/002-SWRG459_Fireplane.png": "42044bfaa86d9492526b5e8242a6200e4d0d7956e6f5da7cca312c1136fe912a",
+    "programs/459/truth/images/003-SWRG459_Comet.png": "ce812ee5007365fd66d0b89be17f90878bd6e5de9ff7469a46cceb1dde126883",
+    "programs/459/truth/images/004-SWRG459_Scotland_sunset.png": "17e4a583692e1ec8b63caf4b4446668a1e5db88d864ef150aacfeca108cc91fa",
+    "programs/459/truth/images/005-SWRG459_Waxing-moon.png": "3ffa5cba4d502526d9988b3b4e40d463f4ba693fa9bf7d039e66f15438cedc28",
+    "programs/459/truth/images/006-SWRG459_Water-Lilies.png": "e1b09d9f819f6759c0d7e5f1f5ee54d9f9f5a96d417a7e3e48f695cd34805bbc",
+    "programs/459/truth/images/007-SWRG459_Ekalala-Falls2.png": "1d6c61782477bcba367a16d3f3cf9c19bdc6b8e41669a39288038ee244d66a34",
+    "programs/459/truth/images/009-SWRG459_Garbage-bins2.png": "b902b1238c107127fbad6347aea186ae04cec449f65034e3b036fe6405056091",
+    "programs/459/truth/images/010-SWRG459_Siciliy3BW.png": "b50733ed026b6d747ef38c57f3dc94686e54b6d8e692c2ff0068f0a9b58361b7",
+    "programs/459/truth/images/011-SWRG459_painting.png": "ca466682d288560484868ddcbf2fa72be47f10012284c6ac758e701ce018a154",
+    "programs/459/truth/text-review.json": "a4f19aa39dcd2f4c53a4f313519780d943269c784d8fd2bc2ad2e6e7b41223ad",
+    "programs/459/truth/text.txt": "829edf39a5daeebe49542ac4fd2d9b360a1c87fa30bde0a657e551013d827d35",
+    "references/winb-20260718T023007Z-9265000/fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178/decoded.txt": "aa9db68a08c8a02e3aecdcbde1762ca0f6e86d9212fe7f2fcc57444791776063",
+    "references/winb-20260718T023007Z-9265000/fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178/images/001-pic_2026-07-31_220655z.png": "01556a6c3690c335506bbf6495ea4c622d485e427de090e1479c64a27ab76480",
+    "references/winb-20260718T023007Z-9265000/fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178/images/002-pic_2026-07-31_220841z.png": "91bb4d137a3fed9c4014eed61b644dbed5070ae35709f7cdd89da877b6804978",
+    "references/winb-20260718T023007Z-9265000/fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178/metadata.json": "b8025f1c0f36b28613d7658a79ffaf825aa56675a4904238bd5191d598c70ec8",
+    "references/winb-20260718T023007Z-9265000/fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178/reference-manifest.json": "d29632792988bca603a7fda13c2efd45583e819d2dfe4825cb9b351a76d0a017",
+    "references/wrmi-20260708T133006Z-15770000/fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178/decoded.txt": "d87711d3685f9e9d5ec470e0f6c0c4bf3a6bf44e869c7c12ca28f9a7b8c98985",
+    "references/wrmi-20260708T133006Z-15770000/fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178/images/001-pic_2026-07-31_210014z.png": "db2793b7c92f4bee19a5872d6935dbc1e8ccf6141c3137964f35ba47ba90632c",
+    "references/wrmi-20260708T133006Z-15770000/fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178/images/002-pic_2026-07-31_210612z.png": "f9a430942aaaba71bbc8ccd40626ff8e0a3141cf0fdfb681864bbd08c0e9863a",
+    "references/wrmi-20260708T133006Z-15770000/fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178/images/003-pic_2026-07-31_210801z.png": "1c24af8628d3572aab77d4e10d7ed4a35f3767c5ed820f3aa6e71a12cd03f55a",
+    "references/wrmi-20260708T133006Z-15770000/fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178/images/004-pic_2026-07-31_211000z.png": "2129d8747e669949effa1926bbfa45019326cc27c19a890fce6a32b2e4fdad04",
+    "references/wrmi-20260708T133006Z-15770000/fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178/images/005-pic_2026-07-31_211232z.png": "7c9317489a11c440e54606bdb557209421ff31d91fb9f14a00ffef005b70e1b2",
+    "references/wrmi-20260708T133006Z-15770000/fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178/images/006-pic_2026-07-31_211510z.png": "c88a3335e290470dba063ee9c1e86cfbeba7e6c88cb70b98a000563e15a5e88e",
+    "references/wrmi-20260708T133006Z-15770000/fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178/images/007-pic_2026-07-31_211645z.png": "08ced54149aef0c4133f3030effe40fd3bef21b8a944b43ec8d600840fab527b",
+    "references/wrmi-20260708T133006Z-15770000/fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178/images/008-pic_2026-07-31_211842z.png": "9808bd7e521c8e5c28417df34e651b61de7a17ccedf6072abdc227ecbab03a1f",
+    "references/wrmi-20260708T133006Z-15770000/fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178/metadata.json": "18d887a636357d9c654a03cdf056ce4001175e6e5cb8d215c00c563d85c91bbf",
+    "references/wrmi-20260708T133006Z-15770000/fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178/reference-manifest.json": "d29632792988bca603a7fda13c2efd45583e819d2dfe4825cb9b351a76d0a017",
+    "references/wrmi-20260722T133008Z-15770000/fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178/decoded.txt": "895cdb1cd0917f14e98a521203570f6cb956772f7be5fbf28acae42ed19df767",
+    "references/wrmi-20260722T133008Z-15770000/fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178/images/001-pic_2026-07-31_222536z.png": "9f96375669645192ff978f1e45ea007fe404d88edc5a2e44c76111b90886c840",
+    "references/wrmi-20260722T133008Z-15770000/fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178/images/002-pic_2026-07-31_222724z.png": "b74102873c10965c659b087fdb27125a9f0b3f876a2440661792b0cfdd36bceb",
+    "references/wrmi-20260722T133008Z-15770000/fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178/images/003-pic_2026-07-31_222909z.png": "36866050027ff1c1c09da32670759558970309e01fb6e7cf3078995cf79f5e4d",
+    "references/wrmi-20260722T133008Z-15770000/fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178/images/004-pic_2026-07-31_223056z.png": "882433612351317105ff5137afbaac0f71609f162bfc5dbf340647819d80afc3",
+    "references/wrmi-20260722T133008Z-15770000/fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178/images/005-pic_2026-07-31_223243z.png": "d47a276e672dad6de0d01cd3a082afec67b783fa072d7c2818de283b2695b297",
+    "references/wrmi-20260722T133008Z-15770000/fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178/images/006-pic_2026-07-31_223427z.png": "ee7748949ed152f2360bf3a151de8640c9bf39204eefa1ccb7b9664cfa7d770b",
+    "references/wrmi-20260722T133008Z-15770000/fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178/images/007-pic_2026-07-31_223602z.png": "284de8b66f4e2f4bb92d1e1fb04c9c98a6b7fa8a10081147340844d1694949a6",
+    "references/wrmi-20260722T133008Z-15770000/fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178/images/008-pic_2026-07-31_223746z.png": "31f09644df00608d43d32e3b80b226977b398972f3a82ee2a5ab5313bd78ff38",
+    "references/wrmi-20260722T133008Z-15770000/fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178/metadata.json": "cfbceef84e3eea2a98b03d1f52384946652f2a20be10f61b1b0a3558bc6810e5",
+    "references/wrmi-20260722T133008Z-15770000/fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178/reference-manifest.json": "d29632792988bca603a7fda13c2efd45583e819d2dfe4825cb9b351a76d0a017",
+    "references/wrmi-20260729T133010Z-15770000/fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178/decoded.txt": "d040eed6babbc33911eee2fd1614f67559f883bca65f76f0e3e8bfafdfd91b96",
+    "references/wrmi-20260729T133010Z-15770000/fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178/images/001-pic_2026-07-31_224936z.png": "4b2e16e98e53094c18ccb0e42dcb0a85604f0d32fa12eb0e095bd59132c422a3",
+    "references/wrmi-20260729T133010Z-15770000/fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178/images/002-pic_2026-07-31_225125z.png": "232e517df7d124c94ba748ba9b4a7a64a4997551ffa5b0daae0aa24c0489a9ce",
+    "references/wrmi-20260729T133010Z-15770000/fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178/images/003-pic_2026-07-31_225302z.png": "58651a47f361a7f8d09fc6136833c54472ced15b2ae2e8452f34ba5a7da15c34",
+    "references/wrmi-20260729T133010Z-15770000/fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178/images/004-pic_2026-07-31_225442z.png": "f46081bb8169f779ee6f1b0d9b4f4133dcbfe830733a4e9990820f377f424145",
+    "references/wrmi-20260729T133010Z-15770000/fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178/images/005-pic_2026-07-31_225629z.png": "e271b9a1f3339b175b471d5b18eb522cbd0d70a7d2ca87736ff4153a5894bb7c",
+    "references/wrmi-20260729T133010Z-15770000/fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178/images/006-pic_2026-07-31_225815z.png": "851b7a0a7d231cb64cd63a2a732372fbd2c23dab70913d8c7718ba563cfa7f14",
+    "references/wrmi-20260729T133010Z-15770000/fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178/images/007-pic_2026-07-31_230002z.png": "ea552c7acd003b9fde6885916255432634f25a1b8fff3e4552028cdf0dced572",
+    "references/wrmi-20260729T133010Z-15770000/fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178/images/008-pic_2026-07-31_230143z.png": "75df9ecb6370cf66240678eba5a8f4dc3a2fec0bfe7f903dac1bea98dd285418",
+    "references/wrmi-20260729T133010Z-15770000/fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178/images/009-pic_2026-07-31_230323z.png": "920b9474a523fdd29cb9d93ae4d3352787af2b7723dde3860a5209f959fbf5ba",
+    "references/wrmi-20260729T133010Z-15770000/fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178/images/010-pic_2026-07-31_230445z.png": "ff9c51710cf22c3fdac79f81cba70827448c4c53d734b2fbd85236f9134a93dc",
+    "references/wrmi-20260729T133010Z-15770000/fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178/images/011-pic_2026-07-31_230655z.png": "fe5f39369570704904994fcdd622fb1cee2c29dcfea724e4f6850d776005f43d",
+    "references/wrmi-20260729T133010Z-15770000/fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178/metadata.json": "1a80ff5454ab79b479d9b53620d5d3eeaa16b2543f2a8c699a19f0ed7525eeec",
+    "references/wrmi-20260729T133010Z-15770000/fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178/reference-manifest.json": "d29632792988bca603a7fda13c2efd45583e819d2dfe4825cb9b351a76d0a017",
+    "sources/winb-20260718T023007Z-9265000/capture.sigmf-data": "d356d6d177aa63d26bd82113fa0e2e54f7a90bdd37ff39e56bc4cc1a94907adc",
+    "sources/winb-20260718T023007Z-9265000/capture.sigmf-meta": "3ec4d27faa1a3c7b9edb05c6d5a4d3777a89726427da11fd92e991579f4959fd",
+    "sources/wrmi-20260708T133006Z-15770000/capture.sigmf-data": "1c1e443e64e47835bb38bd1996b935ada432e9db7b46a9fc3a01d7a8f5bb1cc6",
+    "sources/wrmi-20260708T133006Z-15770000/capture.sigmf-meta": "6552211dc9c4ffa6c4830c362ef02ff04d00ce9b54de9777576c8538c560fbea",
+    "sources/wrmi-20260722T133008Z-15770000/capture.sigmf-data": "2c15aa3d51bd2a483be7270a8abea7ba59c4218d12ef3b64bc4cd1d001aaf326",
+    "sources/wrmi-20260722T133008Z-15770000/capture.sigmf-meta": "9e870bd893aca49aac6e3d09a0a7e5685a47e3c68c69dfa7859316edf750fcd3",
+    "sources/wrmi-20260729T133010Z-15770000/capture.sigmf-data": "0b3cb907746b6a404e2e3e93169c53952831c749ddb9b2a0067fb8829ca3319f",
+    "sources/wrmi-20260729T133010Z-15770000/capture.sigmf-meta": "2f8ea551f26c9cd092b219febff6c4c2f0860d457dbff07ef8a963f95be2e074"
+  },
+  "policy": {
+    "cases": [
+      {
+        "program": "456",
+        "transmission": "wrmi-20260708T133006Z-15770000"
+      },
+      {
+        "program": "458",
+        "transmission": "winb-20260718T023007Z-9265000"
+      },
+      {
+        "program": "458",
+        "transmission": "wrmi-20260722T133008Z-15770000"
+      },
+      {
+        "program": "459",
+        "transmission": "wrmi-20260729T133010Z-15770000"
+      }
+    ],
+    "decode_arguments": [
+      "--mode",
+      "auto",
+      "--orientation",
+      "unknown",
+      "--pipeline-organization",
+      "supported_hybrid",
+      "--picture-component-estimator",
+      "bounded_correlation",
+      "--picture-component-window",
+      "full_hann",
+      "--picture-filter-profile",
+      "response_matched",
+      "--picture-boundary-estimator",
+      "unified_grid",
+      "--persistent-tone-policy",
+      "measure"
+    ],
+    "purpose": "No deterioration from the reviewed current production baseline, per capture and per scored picture. fldigi is a pinned comparison, not perfect truth.",
+    "reference_binary_sha256": "dd30f86caae1edb5d2998acedb47a3a7b348b727bf6303af1e2f822f549966f3",
+    "reference_id": "fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178",
+    "schema": "grampy-broadcast-policy.v1",
+    "score_arguments": [
+      "--max-offset-components",
+      "24",
+      "--change-penalty",
+      "25.0",
+      "--offset-penalty",
+      "0.0005"
+    ]
+  },
+  "runtime": {
+    "dependencies": {
+      "Pillow": "12.3.0",
+      "numpy": "2.5.2",
+      "scipy": "1.18.0"
+    },
+    "platform": "macOS-15.7.7-arm64-arm-64bit-Mach-O",
+    "python": "3.14.3"
+  },
+  "schema": "grampy-broadcast-baseline.v1",
+  "score_contracts": {
+    "winb-20260718T023007Z-9265000": {
+      "fldigi": {
+        "alignment_parameters": {
+          "change_penalty": 25.0,
+          "max_offset_components": 24,
+          "offset_penalty": 0.0005
+        },
+        "pixel_algorithms": [
+          "bounded-regularized-offset-viterbi-v1"
+        ],
+        "text_algorithm": "python-difflib-sequence-matcher-v1"
+      },
+      "grampy": {
+        "alignment_parameters": {
+          "change_penalty": 25.0,
+          "max_offset_components": 24,
+          "offset_penalty": 0.0005
+        },
+        "pixel_algorithms": [
+          "bounded-regularized-offset-viterbi-v1"
+        ],
+        "text_algorithm": "python-difflib-sequence-matcher-v1"
+      }
+    },
+    "wrmi-20260708T133006Z-15770000": {
+      "fldigi": {
+        "alignment_parameters": {
+          "change_penalty": 25.0,
+          "max_offset_components": 24,
+          "offset_penalty": 0.0005
+        },
+        "pixel_algorithms": [
+          "bounded-regularized-offset-viterbi-v1"
+        ],
+        "text_algorithm": "python-difflib-sequence-matcher-v1"
+      },
+      "grampy": {
+        "alignment_parameters": {
+          "change_penalty": 25.0,
+          "max_offset_components": 24,
+          "offset_penalty": 0.0005
+        },
+        "pixel_algorithms": [
+          "bounded-regularized-offset-viterbi-v1"
+        ],
+        "text_algorithm": "python-difflib-sequence-matcher-v1"
+      }
+    },
+    "wrmi-20260722T133008Z-15770000": {
+      "fldigi": {
+        "alignment_parameters": {
+          "change_penalty": 25.0,
+          "max_offset_components": 24,
+          "offset_penalty": 0.0005
+        },
+        "pixel_algorithms": [
+          "bounded-regularized-offset-viterbi-v1"
+        ],
+        "text_algorithm": "python-difflib-sequence-matcher-v1"
+      },
+      "grampy": {
+        "alignment_parameters": {
+          "change_penalty": 25.0,
+          "max_offset_components": 24,
+          "offset_penalty": 0.0005
+        },
+        "pixel_algorithms": [
+          "bounded-regularized-offset-viterbi-v1"
+        ],
+        "text_algorithm": "python-difflib-sequence-matcher-v1"
+      }
+    },
+    "wrmi-20260729T133010Z-15770000": {
+      "fldigi": {
+        "alignment_parameters": {
+          "change_penalty": 25.0,
+          "max_offset_components": 24,
+          "offset_penalty": 0.0005
+        },
+        "pixel_algorithms": [
+          "bounded-regularized-offset-viterbi-v1"
+        ],
+        "text_algorithm": "python-difflib-sequence-matcher-v1"
+      },
+      "grampy": {
+        "alignment_parameters": {
+          "change_penalty": 25.0,
+          "max_offset_components": 24,
+          "offset_penalty": 0.0005
+        },
+        "pixel_algorithms": [
+          "bounded-regularized-offset-viterbi-v1"
+        ],
+        "text_algorithm": "python-difflib-sequence-matcher-v1"
+      }
+    }
+  },
+  "scores": {
+    "winb-20260718T023007Z-9265000": {
+      "fldigi": {
+        "picture_1_detected": 0,
+        "picture_2_aligned_mae": 55.262550354003906,
+        "picture_2_detected": 1,
+        "picture_2_raw_mae": 55.612404921700225,
+        "picture_3_aligned_mae": 58.62533950805664,
+        "picture_3_detected": 1,
+        "picture_3_raw_mae": 60.47244916485113,
+        "picture_4_detected": 0,
+        "picture_5_detected": 0,
+        "picture_6_detected": 0,
+        "picture_7_detected": 0,
+        "picture_8_detected": 0,
+        "pictures_detected": 2,
+        "pictures_scored": 2,
+        "text_cer": 0.22023362251519912,
+        "text_coverage": 0.8421340255481932
+      },
+      "grampy": {
+        "acquisition_exact": 1,
+        "acquisition_false_count": 0,
+        "acquisition_missed_count": 0,
+        "picture_1_detected": 0,
+        "picture_2_aligned_mae": 55.23522186279297,
+        "picture_2_complete": 1,
+        "picture_2_detected": 1,
+        "picture_2_raw_mae": 55.23522371364653,
+        "picture_3_aligned_mae": 64.75051879882812,
+        "picture_3_complete": 1,
+        "picture_3_detected": 1,
+        "picture_3_raw_mae": 64.75052196804648,
+        "picture_4_detected": 0,
+        "picture_5_detected": 0,
+        "picture_6_detected": 0,
+        "picture_7_aligned_mae": 66.63819885253906,
+        "picture_7_complete": 1,
+        "picture_7_detected": 1,
+        "picture_7_raw_mae": 66.63820052896125,
+        "picture_8_detected": 0,
+        "pictures_detected": 3,
+        "pictures_scored": 3,
+        "text_cer": 0.3583578113259102,
+        "text_coverage": 0.8723273447639867
+      }
+    },
+    "wrmi-20260708T133006Z-15770000": {
+      "fldigi": {
+        "picture_1_aligned_mae": 27.174102783203125,
+        "picture_1_detected": 1,
+        "picture_1_raw_mae": 27.595216049382717,
+        "picture_2_aligned_mae": 37.41557312011719,
+        "picture_2_detected": 1,
+        "picture_2_raw_mae": 44.25625644197073,
+        "picture_3_aligned_mae": 25.517986297607422,
+        "picture_3_detected": 1,
+        "picture_3_raw_mae": 34.42966042966043,
+        "picture_4_aligned_mae": 33.49574661254883,
+        "picture_4_detected": 1,
+        "picture_4_raw_mae": 34.13210449765048,
+        "picture_5_aligned_mae": 16.245981216430664,
+        "picture_5_detected": 1,
+        "picture_5_raw_mae": 25.79513888888889,
+        "picture_6_aligned_mae": 42.36567306518555,
+        "picture_6_detected": 1,
+        "picture_6_raw_mae": 51.7598225308642,
+        "picture_7_aligned_mae": 49.02125930786133,
+        "picture_7_detected": 1,
+        "picture_7_raw_mae": 56.63458867521368,
+        "picture_8_aligned_mae": 44.52097702026367,
+        "picture_8_detected": 1,
+        "picture_8_raw_mae": 52.03558877836679,
+        "pictures_detected": 8,
+        "pictures_scored": 8,
+        "text_cer": 0.059120859283328824,
+        "text_coverage": 0.9567650509973824
+      },
+      "grampy": {
+        "acquisition_exact": 1,
+        "acquisition_false_count": 0,
+        "acquisition_missed_count": 0,
+        "picture_1_aligned_mae": 30.53512954711914,
+        "picture_1_complete": 1,
+        "picture_1_detected": 1,
+        "picture_1_raw_mae": 30.535129068462403,
+        "picture_2_aligned_mae": 41.656028747558594,
+        "picture_2_complete": 1,
+        "picture_2_detected": 1,
+        "picture_2_raw_mae": 43.52213976499691,
+        "picture_3_aligned_mae": 29.160491943359375,
+        "picture_3_complete": 1,
+        "picture_3_detected": 1,
+        "picture_3_raw_mae": 33.15626115626116,
+        "picture_4_aligned_mae": 39.26236343383789,
+        "picture_4_complete": 1,
+        "picture_4_detected": 1,
+        "picture_4_raw_mae": 39.9035951368688,
+        "picture_5_aligned_mae": 20.157960891723633,
+        "picture_5_complete": 1,
+        "picture_5_detected": 1,
+        "picture_5_raw_mae": 22.58301917989418,
+        "picture_6_aligned_mae": 46.968929290771484,
+        "picture_6_complete": 1,
+        "picture_6_detected": 1,
+        "picture_6_raw_mae": 48.061597222222225,
+        "picture_7_aligned_mae": 49.01914978027344,
+        "picture_7_complete": 1,
+        "picture_7_detected": 1,
+        "picture_7_raw_mae": 49.01915064102564,
+        "picture_8_aligned_mae": 47.43988037109375,
+        "picture_8_complete": 1,
+        "picture_8_detected": 1,
+        "picture_8_raw_mae": 53.570601782913414,
+        "pictures_detected": 8,
+        "pictures_scored": 8,
+        "text_cer": 0.07347233504828955,
+        "text_coverage": 0.9469266179258056
+      }
+    },
+    "wrmi-20260722T133008Z-15770000": {
+      "fldigi": {
+        "picture_1_aligned_mae": 6.436237335205078,
+        "picture_1_detected": 1,
+        "picture_1_raw_mae": 20.723175542406313,
+        "picture_2_aligned_mae": 6.497539043426514,
+        "picture_2_detected": 1,
+        "picture_2_raw_mae": 7.540794183445191,
+        "picture_3_aligned_mae": 5.982048988342285,
+        "picture_3_detected": 1,
+        "picture_3_raw_mae": 6.590561456063907,
+        "picture_4_aligned_mae": 6.296414852142334,
+        "picture_4_detected": 1,
+        "picture_4_raw_mae": 28.34287019215085,
+        "picture_5_aligned_mae": 6.850799083709717,
+        "picture_5_detected": 1,
+        "picture_5_raw_mae": 10.12865296803653,
+        "picture_6_aligned_mae": 7.63985538482666,
+        "picture_6_detected": 1,
+        "picture_6_raw_mae": 12.117988888888888,
+        "picture_7_aligned_mae": 7.750711441040039,
+        "picture_7_detected": 1,
+        "picture_7_raw_mae": 32.775931009413505,
+        "picture_8_aligned_mae": 7.421561241149902,
+        "picture_8_detected": 1,
+        "picture_8_raw_mae": 17.903963976414225,
+        "pictures_detected": 8,
+        "pictures_scored": 8,
+        "text_cer": 0.0086754559737687,
+        "text_coverage": 0.9948083885511305
+      },
+      "grampy": {
+        "acquisition_exact": 1,
+        "acquisition_false_count": 0,
+        "acquisition_missed_count": 0,
+        "picture_1_aligned_mae": 10.649737358093262,
+        "picture_1_complete": 1,
+        "picture_1_detected": 1,
+        "picture_1_raw_mae": 22.177810650887572,
+        "picture_2_aligned_mae": 9.430961608886719,
+        "picture_2_complete": 1,
+        "picture_2_detected": 1,
+        "picture_2_raw_mae": 9.847080536912753,
+        "picture_3_aligned_mae": 10.621493339538574,
+        "picture_3_complete": 1,
+        "picture_3_detected": 1,
+        "picture_3_raw_mae": 10.982843137254902,
+        "picture_4_aligned_mae": 9.245609283447266,
+        "picture_4_complete": 1,
+        "picture_4_detected": 1,
+        "picture_4_raw_mae": 21.64621189878098,
+        "picture_5_aligned_mae": 11.123127937316895,
+        "picture_5_complete": 1,
+        "picture_5_detected": 1,
+        "picture_5_raw_mae": 12.414657534246576,
+        "picture_6_aligned_mae": 10.839166641235352,
+        "picture_6_complete": 1,
+        "picture_6_detected": 1,
+        "picture_6_raw_mae": 10.839166666666667,
+        "picture_7_aligned_mae": 10.678800582885742,
+        "picture_7_complete": 1,
+        "picture_7_detected": 1,
+        "picture_7_raw_mae": 34.67007608518532,
+        "picture_8_aligned_mae": 10.97393798828125,
+        "picture_8_complete": 1,
+        "picture_8_detected": 1,
+        "picture_8_raw_mae": 12.691749585406301,
+        "pictures_detected": 8,
+        "pictures_scored": 8,
+        "text_cer": 0.016121319762278843,
+        "text_coverage": 0.9894118450713847
+      }
+    },
+    "wrmi-20260729T133010Z-15770000": {
+      "fldigi": {
+        "picture_10_aligned_mae": 6.130846977233887,
+        "picture_10_detected": 1,
+        "picture_10_raw_mae": 18.62352350578786,
+        "picture_11_aligned_mae": 7.499819755554199,
+        "picture_11_detected": 1,
+        "picture_11_raw_mae": 11.719500532308414,
+        "picture_1_aligned_mae": 5.640121936798096,
+        "picture_1_detected": 1,
+        "picture_1_raw_mae": 17.284868266508415,
+        "picture_2_aligned_mae": 3.0431594848632812,
+        "picture_2_detected": 1,
+        "picture_2_raw_mae": 10.26594570734937,
+        "picture_3_aligned_mae": 5.371841907501221,
+        "picture_3_detected": 1,
+        "picture_3_raw_mae": 7.884287317620651,
+        "picture_4_aligned_mae": 4.448498249053955,
+        "picture_4_detected": 1,
+        "picture_4_raw_mae": 6.880158394435044,
+        "picture_5_aligned_mae": 4.680800437927246,
+        "picture_5_detected": 1,
+        "picture_5_raw_mae": 5.6598570193013,
+        "picture_6_aligned_mae": 13.499393463134766,
+        "picture_6_detected": 1,
+        "picture_6_raw_mae": 17.970359147025814,
+        "picture_7_aligned_mae": 9.750320434570312,
+        "picture_7_detected": 1,
+        "picture_7_raw_mae": 28.076592110881204,
+        "picture_8_detected": 1,
+        "picture_9_aligned_mae": 9.125972747802734,
+        "picture_9_detected": 1,
+        "picture_9_raw_mae": 16.14885473709003,
+        "pictures_detected": 11,
+        "pictures_scored": 10,
+        "text_cer": 0.006717478361968738,
+        "text_coverage": 0.9958661671618654
+      },
+      "grampy": {
+        "acquisition_exact": 1,
+        "acquisition_false_count": 0,
+        "acquisition_missed_count": 0,
+        "picture_10_aligned_mae": 8.932819366455078,
+        "picture_10_complete": 1,
+        "picture_10_detected": 1,
+        "picture_10_raw_mae": 20.345322466335933,
+        "picture_11_aligned_mae": 11.924674034118652,
+        "picture_11_complete": 1,
+        "picture_11_detected": 1,
+        "picture_11_raw_mae": 12.404779949114925,
+        "picture_1_aligned_mae": 9.41859245300293,
+        "picture_1_complete": 1,
+        "picture_1_detected": 1,
+        "picture_1_raw_mae": 9.840906000024727,
+        "picture_2_aligned_mae": 8.203315734863281,
+        "picture_2_complete": 1,
+        "picture_2_detected": 1,
+        "picture_2_raw_mae": 13.35813776698791,
+        "picture_3_aligned_mae": 12.208791732788086,
+        "picture_3_complete": 1,
+        "picture_3_detected": 1,
+        "picture_3_raw_mae": 12.208791619902732,
+        "picture_4_aligned_mae": 8.580266952514648,
+        "picture_4_complete": 1,
+        "picture_4_detected": 1,
+        "picture_4_raw_mae": 8.58026649746193,
+        "picture_5_aligned_mae": 11.66246223449707,
+        "picture_5_complete": 1,
+        "picture_5_detected": 1,
+        "picture_5_raw_mae": 11.662462639997372,
+        "picture_6_aligned_mae": 17.33922576904297,
+        "picture_6_complete": 1,
+        "picture_6_detected": 1,
+        "picture_6_raw_mae": 17.434309764309763,
+        "picture_7_aligned_mae": 13.642974853515625,
+        "picture_7_complete": 1,
+        "picture_7_detected": 1,
+        "picture_7_raw_mae": 26.3222758673542,
+        "picture_8_complete": 1,
+        "picture_8_detected": 1,
+        "picture_9_aligned_mae": 12.214438438415527,
+        "picture_9_complete": 1,
+        "picture_9_detected": 1,
+        "picture_9_raw_mae": 12.214437967379144,
+        "pictures_detected": 11,
+        "pictures_scored": 10,
+        "text_cer": 0.04392197390518021,
+        "text_coverage": 0.966541790466348
+      }
+    }
+  },
+  "source_hashes": {
+    "src/grampy/__init__.py": "3317d8d65f5b86022abac06adc5ff5048d0b1fba83ab4481738b216c3eb45a89",
+    "src/grampy/accuracy.py": "d932f0a3f3e5bccb31849756e37dc0b447915914aa02fb15cdd3470711c1de41",
+    "src/grampy/accuracy_cli.py": "39a4e5a09b1242ca7a737c0a24fe9d00ac46803e9351e129c98e3c6d757bc85e",
+    "src/grampy/acquisition.py": "17aa672b424f9b4ac858cf772cb02a97c562d2803b8bfcf6921ac4adf422f9f4",
+    "src/grampy/api.py": "00d59716e58a78aa2ca1d3b00d7a101f168c7fd71f602bebdf5104b66c9a9928",
+    "src/grampy/cli.py": "f1e24a1eb11019b7504f7ee594c95b34a4f8210f59f3eb05cbc79ae3848a2fc3",
+    "src/grampy/coordinates.py": "70cfb36c0f40682c34eaa622ac0a277c36d4429a5780f1e7cb3cb8411c2a1d28",
+    "src/grampy/corpus.py": "ea69026cf2df6ae470e54e7a07d943db785547fd141a6d43dd0bbd441b5f054c",
+    "src/grampy/corpus_cli.py": "d96ad8c205df7486a6c13e6807178cff101bdd694dd901d9036e459c9a6651f9",
+    "src/grampy/corpus_package.py": "bedbc36f21afe31881e7d31435887823cd87e238ffd74c25ee8d494dbdc32da3",
+    "src/grampy/corpus_setup.py": "4fb09941b8323278514da01d0645f56728270e530a7046df692de7aedc1e2454",
+    "src/grampy/decode_quality.py": "75cf5e540e75aab8ccd45b8bb134b76c3b0695743c702f9a3675c19df9eaa7c8",
+    "src/grampy/fixture_cli.py": "2606eb33b19837ef2633e85a89f76e1dcc827c8904b800a93d3a5245f321a70d",
+    "src/grampy/fixtures.py": "5bd9ad6b5b9e682d35b284cd7dd3c053a004d36f6ef24b2f4e492d9fa5bbb310",
+    "src/grampy/mfsk_compose.py": "3c38b8de330baad01dad071e6484f649132b8d11aa413ddf521c6e4dd199869c",
+    "src/grampy/mfsk_encode.py": "18c52be08415c998db0f561d1a5b26c8ca51665c71d82dadcc5a819c46b77d07",
+    "src/grampy/mfsk_segment_encode.py": "1a7cbe6584236ff1e0dcb71659d804ed18a8c82654930c04ffa10dc284537a28",
+    "src/grampy/picture_decode.py": "2bca8c22dcd0d2f735ec3a8c4b910ba32b3f19b8b550f35b44ef1c33370d8b29",
+    "src/grampy/picture_encode.py": "3e5c1a761d54052db3045a5fcf31b46fb275ca7af6f57c7f2571a2aa6b0947c6",
+    "src/grampy/pipeline.py": "6256a56d5273f98ba02e071ee8582c6a6cafbc7c4302e9825887c3ecebcd6fba",
+    "src/grampy/reception_quality.py": "33e8b1b5ff70b449c29270e96b996f1b4e3a966d3cea105d7f4cd100a3afb576",
+    "src/grampy/resources.py": "474882ec0ae2340c9a125a3c9ff128c5ad59ab585c9bccd7003ac0612736112e",
+    "src/grampy/rsid.py": "7f6457ec6f095b8625b2128f6c7f9c1dff2bbf5099c1146635907807d5ab5c73",
+    "src/grampy/rsid_encode.py": "c13414837fda148fd3ba29b3578f6c9dbe693a028c084554abc4223953616b08",
+    "src/grampy/sigmf.py": "093e159575ccc42dc81c572bf4cb173d9657159d020614fb94d510cb8fde9aaf",
+    "src/grampy/stateful_pipeline.py": "ea99d7519782aa20dbadaa7c1dde0437571f32e506044c1f92f4096356a5e5c5",
+    "src/grampy/stateful_text.py": "5a76d1dcec81295ed42171f3691383685ca820469d4ceea4a299ca598f950fc4",
+    "src/grampy/text_decode.py": "4326ac7f73d6ed30b33810db1845eefb10a7b9bf64bce774757ad5c2ad64a6ff",
+    "src/grampy/text_encode.py": "a815c65ea303b789a3a058caa957da6d2b2f7ae84545dfe1640777704af6bed2",
+    "src/grampy/text_manifest.py": "54f0b0fef596a3260e017df286042b153b7e32cd09eafea9a6feb285f8e1f699",
+    "src/grampy/tracking.py": "aabf8b6c9ca8c4a8d0a671d609b4f0027242c96b4174f361c843f188a62047f9",
+    "src/grampy/wire.py": "9ddb2819ea1c3b22fc6aa537ea37da9efe00f76dad30b93f6b04abb5d20e26ff"
+  },
+  "source_revision": "634a5637a962f3dae3b610466fcac19ac198da02"
+}

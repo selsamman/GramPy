@@ -24,7 +24,7 @@ qualification evidence.
 ## Run a known RxID decode
 
 Create a run-specific command file such as
-`.local/pi-fldigi-decode-command.sh` with the following contents. This example
+`.local/wip/CHANGE-ID/pi-fldigi-decode-command.sh` with the following contents. This example
 replays an existing Pi-side mode-change recording; replace the input and
 expected text for another test. Keep new output separate from the archived
 reference directories.
@@ -57,7 +57,7 @@ printf 'decode_archive=%s\n' "$work/decode.tar"
 ```
 
 From the repository on the Mac, run
-`tools/pi-remote.sh .local/pi-fldigi-decode-command.sh` on a network-capable
+`tools/pi-remote.sh .local/wip/CHANGE-ID/pi-fldigi-decode-command.sh` on a network-capable
 execution surface. Pi commands, tests, and experiments must use the managed
 wrapper; do not call SSH directly. One managed command may be active per
 session. Its `.local/agent-runs/<session-id>/result.md` is the authoritative
@@ -73,6 +73,10 @@ mode-change failures; exit status alone is not a reception pass. Record input,
 adapter, binary, archive hashes, configuration, decoded text/images, and any
 discrepancy. `/tmp` output is temporary: move or regenerate evidence into an
 approved durable location before relying on it for qualification.
+Record the returned remote temporary directory in the change's `WORK.md`,
+and delete that exact owned scratch after promotion and closeout under the
+[maintenance policy](test-maintenance.md). Do not delete the pinned receiver
+installation or shared reference store as part of run cleanup.
 
 ## Encoder-candidate qualification
 

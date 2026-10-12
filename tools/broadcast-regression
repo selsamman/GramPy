@@ -1,0 +1,228 @@
+#!/usr/bin/env python3
+"""Fresh full-broadcast quality regression, paired fldigi scores and visual review."""
+import argparse
+import hashlib
+import importlib.metadata
+import json
+import math
+import platform
+from pathlib import Path
+import subprocess
+import sys
+
+ROOT = Path(__file__).resolve().parents[1]
+
+
+def read(path):
+    return json.loads(path.read_text())
+
+
+def write(path, value):
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(value, indent=2, sort_keys=True, allow_nan=False) + "\n")
+
+
+def digest(path):
+    with path.open("rb") as stream:
+        return hashlib.file_digest(stream, "sha256").hexdigest()
+
+
+def preflight(corpus, policy):
+    """Verify every selected input before starting any expensive decode."""
+    identities = {}
+    sources = {s["id"]: s for s in read(corpus / "corpus.json")["sources"]}
+    for case in policy["cases"]:
+        transmission = case["transmission"]
+        source = sources[transmission]
+        for kind in ("data", "metadata"):
+            item = source["artifacts"][kind]
+            relative = f"sources/{transmission}/{item['path']}"
+            path = corpus / relative
+            if path.stat().st_size != item["bytes"] or digest(path) != item["sha256"]:
+                raise ValueError(f"changed corpus source: {relative}")
+            identities[relative] = item["sha256"]
+        program_root = corpus / "programs" / case["program"]
+        program = read(program_root / "program.json")
+        review = read(program_root / program["text_truth"]["review"])
+        if review["status"] != "approved":
+            raise ValueError(f"unapproved truth: {case['program']}")
+        inputs = [program_root / "program.json", program_root / program["text_truth"]["review"],
+                  program_root / review["truth_path"], program_root / "transmissions" / f"{transmission}.json"]
+        for picture in program["pictures"]:
+            if picture.get("artifact"):
+                item = picture["artifact"]
+                path = program_root / item["path"]
+                if digest(path) != item["sha256"]:
+                    raise ValueError(f"changed picture truth: {path.name}")
+                inputs.append(path)
+        reference = corpus / "references" / transmission / policy["reference_id"]
+        identity = read(reference / "reference-manifest.json")["identity"]
+        if identity["binary_sha256"] != policy["reference_binary_sha256"]:
+            raise ValueError(f"wrong fldigi build: {transmission}")
+        inputs.extend([reference / "decoded.txt", reference / "reference-manifest.json",
+                       reference / "metadata.json", *sorted((reference / "images").glob("*.png"))])
+        for path in inputs:
+            identities[str(path.relative_to(corpus))] = digest(path)
+    return identities
+
+
+def metrics(score):
+    values = {
+        "text_cer": score["text"]["character_error_rate"],
+        "text_coverage": score["text"]["reference_coverage"],
+        "pictures_detected": score["picture_summary"]["detected"],
+        "pictures_scored": score["picture_summary"]["pixel_scored"],
+    }
+    acquisition = score.get("acquisition")
+    if acquisition:
+        for key in ("missed_count", "false_count"):
+            values[f"acquisition_{key}"] = acquisition[key]
+        values["acquisition_exact"] = int(acquisition["exact"])
+    for picture in score["pictures"]:
+        prefix = f"picture_{picture['order']}_"
+        values[prefix + "detected"] = int(picture["event_status"] == "detected")
+        if picture["event_status"] == "detected" and score["decoder"] == "radiogram-direct-iq":
+            values[prefix + "complete"] = int(picture["completion_status"] == "complete")
+        pixel = picture["pixel_score"]
+        if pixel["status"] not in {"scored", "not_scored_picture_missing", "not_scored_missing_truth"}:
+            raise ValueError(f"uncomputable picture score: {pixel['status']}")
+        if pixel["status"] == "scored":
+            values[prefix + "aligned_mae"] = pixel["aligned_mean_absolute_error_255"]
+            values[prefix + "raw_mae"] = pixel["raw_raster"]["whole_raster"]["mean_absolute_error_255"]
+    for key, value in values.items():
+        if not isinstance(value, (int, float)) or not math.isfinite(value):
+            raise ValueError(f"uncomputable score: {key}")
+    return values
+
+
+def score_contract(score):
+    return {"text_algorithm": score["text"].get("alignment_algorithm"),
+            "alignment_parameters": score.get("alignment_parameters"),
+            "pixel_algorithms": sorted({p["pixel_score"]["algorithm"] for p in score["pictures"]
+                                        if p["pixel_score"]["status"] == "scored"})}
+
+
+def compare(current, baseline, epsilon=1e-9):
+    failures = []
+    # Lost measurements cannot pass. Newly recovered pictures may add metrics;
+    # their changed raster identities still require human review.
+    if not baseline.keys() <= current.keys():
+        failures.append("metric coverage lost")
+    for key, bound in baseline.items():
+        value = current.get(key)
+        if (not isinstance(value, (int, float)) or not math.isfinite(value)
+                or not isinstance(bound, (int, float)) or not math.isfinite(bound)):
+            failures.append(f"{key}: missing or invalid baseline/current metric")
+            continue
+        higher_is_better = key.endswith(("coverage", "detected", "scored", "complete", "exact"))
+        if (value < bound - epsilon if higher_is_better else value > bound + epsilon):
+            failures.append(f"{key}: {value} exceeds regression bound {bound}")
+    return failures
+
+
+def run(*arguments):
+    subprocess.run([sys.executable, *map(str, arguments)], check=True, cwd=ROOT)
+
+
+def source_revision():
+    return subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip()
+
+
+def main(argv=None):
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--corpus", type=Path, default=ROOT / "tests/samples/received-corpus")
+    parser.add_argument("--policy", type=Path, default=ROOT / "tests/fixtures/broadcast-regression.json")
+    parser.add_argument("--baseline", type=Path, default=ROOT / "tests/fixtures/broadcast-baseline.json")
+    parser.add_argument("--output", required=True, type=Path, help="new empty output directory")
+    parser.add_argument("--record-baseline", type=Path, help="explicit calibration; never reports a passing regression")
+    args = parser.parse_args(argv)
+    output = args.output.resolve()
+    if output.exists():
+        parser.error("output directory must not already exist; every run decodes afresh")
+    output.mkdir(parents=True)
+    try:
+        policy = read(args.policy)
+        if policy.get("schema") != "grampy-broadcast-policy.v1" or not policy.get("cases"):
+            raise ValueError("a versioned nonempty broadcast policy is required")
+        identities = preflight(args.corpus, policy)
+        baseline = None if args.record_baseline else read(args.baseline)
+        if not args.record_baseline and (not isinstance(baseline, dict)
+                                       or baseline.get("schema") != "grampy-broadcast-baseline.v1"):
+            raise ValueError("unsupported broadcast baseline schema")
+        if baseline and (baseline["inputs"] != identities or baseline["policy"] != policy):
+            raise ValueError("inputs or policy changed; review and explicitly requalify the baseline")
+        if args.record_baseline and args.record_baseline.exists():
+            raise ValueError("refusing to overwrite a baseline")
+        revision = source_revision()
+        scores, failures, images, contracts = {}, [], {}, {}
+        for case in policy["cases"]:
+            transmission = case["transmission"]
+            print(f"Full broadcast: {transmission}", flush=True)
+            source = args.corpus / "sources" / transmission
+            datatype = read(source / "capture.sigmf-meta")["global"]["core:datatype"]
+            sample_bytes = {"ci16_le": 4, "cf32_le": 8}[datatype]
+            expected_samples = (source / "capture.sigmf-data").stat().st_size // sample_bytes
+            manifest = output / "decodes" / transmission / "decode.json"
+            run("-m", "grampy.cli", "--in-meta", source / "capture.sigmf-meta",
+                "--in-data", source / "capture.sigmf-data", "--out-manifest", manifest,
+                *policy["decode_arguments"])
+            direct_path = output / "grampy" / f"{transmission}-score.json"
+            reference_path = output / "fldigi" / f"{transmission}-score.json"
+            common = ["--corpus", args.corpus, "--program", case["program"], "--transmission", transmission,
+                      *policy["score_arguments"]]
+            run("-m", "grampy.accuracy_cli", "program-direct", *common, "--manifest", manifest,
+                "--expected-input-samples", expected_samples, "--output", direct_path)
+            run("-m", "grampy.accuracy_cli", "program-fldigi", *common,
+                "--reference-id", policy["reference_id"], "--decoder-version", "4.2.13", "--output", reference_path)
+            direct = read(direct_path)
+            reference = read(reference_path)
+            scores[transmission] = {"grampy": metrics(direct), "fldigi": metrics(reference)}
+            contracts[transmission] = {"grampy": score_contract(direct), "fldigi": score_contract(reference)}
+            images[transmission] = {str(p["order"]): digest(Path(p["decoded_artifact"]))
+                                    for p in direct["pictures"] if p.get("decoded_artifact")}
+            if baseline:
+                if contracts[transmission] != baseline["score_contracts"][transmission]:
+                    raise ValueError(f"scoring contract changed: {transmission}; requalification required")
+                if transmission not in baseline["scores"]:
+                    raise ValueError(f"missing baseline transmission: {transmission}")
+                for decoder in ("grampy", "fldigi"):
+                    failures.extend(f"{transmission}/{decoder}: {message}" for message in
+                                    compare(scores[transmission][decoder], baseline["scores"][transmission][decoder]))
+        evidence = {"schema": "grampy-broadcast-baseline.v1", "source_revision": revision,
+                    "runtime": {"python": platform.python_version(), "platform": platform.platform(),
+                                "dependencies": {name: importlib.metadata.version(name) for name in ("numpy", "scipy", "Pillow")}},
+                    "source_hashes": {str(path.relative_to(ROOT)): digest(path) for path in sorted((ROOT / "src/grampy").glob("*.py"))},
+                    "policy": policy, "inputs": identities, "scores": scores, "images": images, "score_contracts": contracts}
+        if preflight(args.corpus, policy) != identities:
+            raise ValueError("corpus inputs changed during the broadcast run")
+        review_required = bool(baseline and images != baseline["images"])
+        automatic_passed = bool(baseline and not failures)
+        report = {"schema": "grampy-broadcast-regression.v1", "source_revision": revision,
+                  "source_hashes": evidence["source_hashes"], "runtime": evidence["runtime"],
+                  "baseline_sha256": digest(args.baseline) if baseline else None,
+                  "status": "calibration_requires_review" if args.record_baseline else "regression",
+                  "computable": True, "automated_passed": automatic_passed,
+                  "passed": automatic_passed and not review_required,
+                  "failures": failures, "scores": scores, "inputs": identities,
+                  "score_contracts": contracts,
+                  "human_review_required": review_required, "html_review": "review/index.html"}
+        write(output / "result.json", report)
+        run(ROOT / "tools/mfsk-image-review", "--corpus", args.corpus,
+            "--direct-root", output / "grampy", "--fldigi-root", output / "fldigi",
+            "--output", output / "review", "--direct-label", "Current GramPy automatic decoder",
+            "--fldigi-label", "Pinned fldigi 4.2.13", "--title", "Full-broadcast regression review",
+            "--regression-report", output / "result.json")
+        if args.record_baseline:
+            write(args.record_baseline, evidence)
+        print(f"Report: {output / 'result.json'}; HTML: {output / 'review/index.html'}", flush=True)
+        if args.record_baseline or report["passed"]:
+            return 0
+        return 3 if automatic_passed and review_required else 1
+    except (OSError, ValueError, KeyError, subprocess.CalledProcessError) as error:
+        write(output / "result.json", {"computable": False, "passed": False, "error": str(error)})
+        print(f"broadcast-regression: {error}", file=sys.stderr)
+        return 1
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

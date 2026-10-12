@@ -91,16 +91,21 @@ PYTHONPATH="$PWD/src" PATH="$PWD/.venv/bin:$PATH" \
 
 For full-suite runs, experiments, corpus jobs, or other potentially long work,
 follow the managed-execution contract in [AGENTS.md](https://github.com/selsamman/GramPy/blob/master/AGENTS.md). The normal Mac
-entry point is `tools/mac-local.sh`; place a temporary command batch in the
-ignored `.local/mac-command.sh` when needed.
+entry point is `tools/mac-local.sh`; place a temporary command batch under
+`.local/wip/<change-id>/` and pass its path to the wrapper. The
+[test-maintenance and closeout policy](docs/operations/test-maintenance.md)
+defines ownership, durable promotion and cleanup.
 
 ## Tests and corpus
 
-The normal regression suite runs without large external artifacts. Tests that
-need received IQ or controlled generated fixtures skip cleanly when those
-optional inputs are absent.
+CI uses the corpus-independent `unit` tier. Controlled and received-data tiers
+require their documented sidecars; selected tests fail when required inputs
+are missing or changed. The regular `all` tier runs all three tiers. A separate
+long-running broadcast gate freshly decodes four selected complete recordings,
+scores GramPy and pinned fldigi results, enforces quality limits and produces
+an HTML comparison page.
 
-See [tests/README.md](https://github.com/selsamman/GramPy/blob/master/tests/README.md) to install an optional received-IQ
+See [tests/README.md](https://github.com/selsamman/GramPy/blob/master/tests/README.md) to select validation, install the received-IQ
 corpus, point tests at an existing corpus, or package one for controlled
 distribution. Large samples are never committed to this repository.
 
@@ -136,3 +141,8 @@ validation guidance, and the accepted baseline are indexed in
 [docs/decoder/README.md](https://github.com/selsamman/GramPy/blob/master/docs/decoder/README.md).
 
 Reusable command-line tools are documented in [tools/README.md](https://github.com/selsamman/GramPy/blob/master/tools/README.md).
+
+The [test-maintenance policy](docs/operations/test-maintenance.md) covers test
+creation and retirement, validation scope and work-directory closeout.
+Selected historical findings are indexed in
+[historical provenance](docs/provenance/README.md) for targeted lookup.

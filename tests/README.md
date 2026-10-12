@@ -1,7 +1,11 @@
 # Tests
 
 Run from the repository root with the repository virtualenv and managed wrapper
-required by [AGENTS.md](../AGENTS.md). Put the selected command in a local batch:
+required by [AGENTS.md](../AGENTS.md). Use the change's
+`.local/wip/<change-id>/` directory for command files and temporary outputs.
+The [maintenance policy](../docs/operations/test-maintenance.md) defines test
+creation, replacement/retirement, validation selection and promotion of
+required inputs before closeout cleanup. Put the selected command in a batch:
 
 ```sh
 PYTHONPATH="$PWD/src" PATH="$PWD/.venv/bin:$PATH" \
@@ -21,6 +25,18 @@ The runner prints selected and explicitly excluded counts. Other-tier tests are
 not reported as passes or skips. A selected test that skips makes the run fail.
 Raw `unittest discover -s tests` is also a full-data run; its required-data tests
 fail when inputs are absent. Unit CI is not a decoder-quality acceptance gate.
+
+For the separate long-running quality acceptance, put this in a managed Mac batch:
+
+```sh
+.venv/bin/python tools/broadcast-regression --output .local/wip/CHANGE-ID/broadcast-01
+```
+
+This freshly decodes four entire broadcasts, produces paired GramPy/fldigi
+scorecards, enforces per-capture/per-picture regression limits and writes
+`review/index.html` for comparison. Missing inputs fail; changed images require
+human review. See the [broadcast workflow](../docs/operations/broadcast-regression.md)
+for baseline provenance, exit statuses and deliberate requalification.
 
 ## Controlled fixtures
 
@@ -71,7 +87,7 @@ The received tier requires its selected corpus inputs and fails when they are
 absent. The unit tier explicitly excludes those methods. The repository does
 not select or automatically fetch a corpus.
 
-The optional 2026-09-23 full-broadcast case is
+The 2026-09-23 stored-manifest compatibility case required by the received tier is
 `wrmi-20260923-15770000-full-broadcast`. Its canonical CF32 IQ and appliance
 capture records live under `received-corpus/sources/wrmi-20260923T133007Z-15770000/`.
 The saved GramPy decode manifest, text, nine PNGs, and component evidence are
