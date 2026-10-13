@@ -19,9 +19,9 @@ These additional controls leave the frozen 8×4 cases and acceptance rules intac
 
 | File | Transmitter | Duration |
 | --- | --- | ---: |
-| [fldigi control WAV](/Users/sam/vcs/GramPy/.local/session9/mac-control/fldigi-mfsk64-rgb-p8.wav) | Pinned fldigi 4.2.13 | 82.004 seconds |
-| [GramPy comparison WAV](/Users/sam/vcs/GramPy/.local/session9/mac-control/grampy-mfsk64-rgb-p8.wav) | Current unchanged native encoder | 72.87975 seconds |
-| [Known source image](/Users/sam/vcs/GramPy/.local/session9/mac-control/source-160x120.png) | Independently drawn RGB chart | 160×120 pixels |
+| [fldigi control WAV](../../../../tests/samples/archive/20261012-local-cleanup/manual-controls/fldigi-original.wav) | Pinned fldigi 4.2.13 | 82.004 seconds |
+| [GramPy comparison WAV](../../../../tests/samples/archive/20261012-local-cleanup/manual-controls/grampy-original.wav) | Current unchanged native encoder | 72.87975 seconds |
+| [Known source image](decoder-comparison/source.png) | Independently drawn RGB chart | 160×120 pixels |
 
 Use the Mac playback method already known to work with fldigi. Select MFSK64,
 1500 Hz, AFC off and RxID off, then play each complete WAV from the beginning.

@@ -1,0 +1,502 @@
+{
+  "schema": "grampy-received-case-definitions.v1",
+  "provenance": "Project-authored intervals, capabilities, numerical observations and case policy. Broadcast header strings deliberately omitted; external installed case records retain them.",
+  "cases": [
+    {
+      "annotation_basis": "truth/winb-20260718T023007Z-9265000/expected-rsid-events.json",
+      "capabilities": [
+        "C3",
+        "C17"
+      ],
+      "context": {
+        "checkpoint": null,
+        "lead_samples": 480000,
+        "trail_samples": 480000
+      },
+      "expected": {
+        "capture_sec": 1680.897,
+        "code_distance": 2,
+        "mode": "MFSK32",
+        "rsid_code": 147,
+        "truth_strength": "strong_reference"
+      },
+      "id": "winb-20260718-closing-rsid",
+      "impairments": [
+        "damaged RSID"
+      ],
+      "interval": {
+        "start_sample": 79920000,
+        "stop_sample": 81600000
+      },
+      "partition": "regression",
+      "schema_version": 1,
+      "source_capture_id": "winb-20260718T023007Z-9265000",
+      "why_long_enough": "Brackets the damaged closing mode-change RSID and recovery."
+    },
+    {
+      "annotation_basis": "truth/winb-20260718T023007Z-9265000/expected-rsid-events.json",
+      "capabilities": [
+        "C1-C19"
+      ],
+      "case_kind": "full_broadcast",
+      "context": {
+        "checkpoint": null,
+        "lead_samples": 0,
+        "trail_samples": 0
+      },
+      "expected": {
+        "review_status": "RSID events established; full payload pending Session 9",
+        "truth_strength": "strong_reference"
+      },
+      "id": "winb-20260718-full-broadcast",
+      "impairments": [
+        "weak RSIDs",
+        "tuner offset",
+        "fldigi missed MFSK64 transition"
+      ],
+      "interval": {
+        "start_sample": 0,
+        "stop_sample": 86400000
+      },
+      "partition": "regression",
+      "schema_version": 1,
+      "source_capture_id": "winb-20260718T023007Z-9265000",
+      "why_long_enough": "Complete untouched 30-minute reception retaining opening, both mode changes, pictures, and closing."
+    },
+    {
+      "annotation_basis": "truth/winb-20260718T023007Z-9265000/expected-rsid-events.json",
+      "capabilities": [
+        "C3",
+        "C17"
+      ],
+      "context": {
+        "checkpoint": null,
+        "lead_samples": 480000,
+        "trail_samples": 480000
+      },
+      "expected": {
+        "capture_sec": 358.591,
+        "mode": "MFSK64",
+        "rsid_code": 620,
+        "truth_strength": "strong_reference"
+      },
+      "id": "winb-20260718-mfsk64-transition",
+      "impairments": [
+        "weak reception",
+        "fldigi missed mode transition"
+      ],
+      "interval": {
+        "start_sample": 16560000,
+        "stop_sample": 18000000
+      },
+      "partition": "regression",
+      "schema_version": 1,
+      "source_capture_id": "winb-20260718T023007Z-9265000",
+      "why_long_enough": "Includes established MFSK32 state, the detected RSID, and post-change MFSK64 acquisition."
+    },
+    {
+      "annotation_basis": "truth/winb-20260718T023007Z-9265000/expected-rsid-events.json",
+      "capabilities": [
+        "C2",
+        "C3",
+        "C4"
+      ],
+      "context": {
+        "checkpoint": null,
+        "lead_samples": 480000,
+        "trail_samples": 480000
+      },
+      "expected": {
+        "capture_sec": 75.682,
+        "center_hz": 1547.699,
+        "mode": "MFSK32",
+        "rsid_code": 147,
+        "truth_strength": "strong_reference"
+      },
+      "id": "winb-20260718-opening-rsid",
+      "impairments": [
+        "weak RSID",
+        "tuner offset"
+      ],
+      "interval": {
+        "start_sample": 2880000,
+        "stop_sample": 4800000
+      },
+      "partition": "regression",
+      "schema_version": 1,
+      "source_capture_id": "winb-20260718T023007Z-9265000",
+      "why_long_enough": "Brackets the independently calibrated opening RSID and acquisition on both sides."
+    },
+    {
+      "annotation_basis": "docs/mfsk_iq_decode_session4.md, docs/mfsk_iq_decode_session5.md, and docs/mfsk_iq_decode_session7.md",
+      "capabilities": [
+        "C1-C19"
+      ],
+      "case_kind": "full_broadcast",
+      "context": {
+        "checkpoint": null,
+        "lead_samples": 0,
+        "trail_samples": 0
+      },
+      "expected": {
+        "review_status": "partial vertical slices independently established",
+        "truth_strength": "strong_reference"
+      },
+      "id": "wrmi-20260708-full-broadcast",
+      "impairments": [
+        "ordinary received RF",
+        "variable signal level"
+      ],
+      "interval": {
+        "start_sample": 0,
+        "stop_sample": 86400000
+      },
+      "partition": "development",
+      "schema_version": 1,
+      "source_capture_id": "wrmi-20260708T133006Z-15770000",
+      "why_long_enough": "Complete untouched 30-minute recording with independently established text and picture checkpoints."
+    },
+    {
+      "annotation_basis": "truth/wrmi-20260708T133006Z-15770000/mfsk32-84-151-expected.txt and docs/mfsk_iq_decode_session4.md",
+      "capabilities": [
+        "C4",
+        "C6",
+        "C7",
+        "C10",
+        "C11"
+      ],
+      "context": {
+        "checkpoint": null,
+        "lead_samples": 96000,
+        "trail_samples": 48000
+      },
+      "expected": {
+        "character_agreement_minimum": 0.85,
+        "measured_center_hz": 1592.375,
+        "selected_orientation": "normal",
+        "truth_strength": "strong_reference"
+      },
+      "id": "wrmi-20260708-mfsk32-acquisition",
+      "impairments": [
+        "weak initial acquisition",
+        "received RF damage",
+        "carrier drift"
+      ],
+      "interval": {
+        "start_sample": 4032000,
+        "stop_sample": 7248000
+      },
+      "partition": "development",
+      "schema_version": 1,
+      "source_capture_id": "wrmi-20260708T133006Z-15770000",
+      "why_long_enough": "Contains the weak searching interval, acquisition, and enough coherent MFSK32 body text to score."
+    },
+    {
+      "annotation_basis": "docs/mfsk_iq_decode_session5.md",
+      "capabilities": [
+        "C4",
+        "C6",
+        "C7",
+        "C10",
+        "C11"
+      ],
+      "context": {
+        "checkpoint": null,
+        "lead_samples": 96000,
+        "trail_samples": 48000
+      },
+      "expected": {
+        "character_agreement_observed": 0.9059,
+        "measured_center_hz": 1586.25,
+        "selected_orientation": "normal",
+        "truth_strength": "strong_reference"
+      },
+      "id": "wrmi-20260708-mfsk64-text",
+      "impairments": [
+        "mid-stream acquisition",
+        "received RF damage"
+      ],
+      "interval": {
+        "start_sample": 27360000,
+        "stop_sample": 30240000
+      },
+      "partition": "development",
+      "schema_version": 1,
+      "source_capture_id": "wrmi-20260708T133006Z-15770000",
+      "why_long_enough": "Contains multiple independently recognizable MFSK64 passages and stable carrier/clock evidence."
+    },
+    {
+      "annotation_basis": "docs/mfsk_iq_decode_session7.md",
+      "capabilities": [
+        "C12",
+        "C13",
+        "C14",
+        "C15",
+        "C16"
+      ],
+      "context": {
+        "checkpoint": null,
+        "lead_samples": 96000,
+        "trail_samples": 0
+      },
+      "expected": {
+        "first_picture_complete": true,
+        "first_picture_components": 97020,
+        "first_raster_sample": 37239133,
+        "first_resumed_text_sample": 41976104,
+        "second_picture_intentionally_truncated": true,
+        "truth_strength": "strong_reference"
+      },
+      "id": "wrmi-20260708-picture-return",
+      "impairments": [
+        "received raster noise",
+        "image-biased carrier ambiguity"
+      ],
+      "interval": {
+        "start_sample": 36000000,
+        "stop_sample": 43200000
+      },
+      "partition": "development",
+      "schema_version": 1,
+      "source_capture_id": "wrmi-20260708T133006Z-15770000",
+      "why_long_enough": "Contains a complete color picture, evidence-based return to text, the next complete header, and an intentional mid-raster stop.",
+      "external_content_expectations": {
+        "path": "cases/wrmi-20260708-picture-return/case.json",
+        "fields": [
+          "first_picture_header",
+          "second_picture_header"
+        ]
+      }
+    },
+    {
+      "annotation_basis": "intake metadata and Session 8 IQ measurements only",
+      "capabilities": [
+        "C1-C19"
+      ],
+      "case_kind": "full_broadcast",
+      "context": {
+        "checkpoint": null,
+        "lead_samples": 0,
+        "trail_samples": 0
+      },
+      "expected": {
+        "review_status": "held-out for Session 9",
+        "truth_strength": "unreviewed"
+      },
+      "id": "wrmi-20260715-held-out-full-broadcast",
+      "impairments": [],
+      "interval": {
+        "start_sample": 0,
+        "stop_sample": 86400000
+      },
+      "partition": "acceptance",
+      "schema_version": 1,
+      "source_capture_id": "wrmi-20260715T133007Z-15770000",
+      "why_long_enough": "Complete untouched 30-minute recording reserved for end-to-end accuracy, recovery, runtime, memory, and I/O."
+    },
+    {
+      "annotation_basis": "truth/wrmi-20260720T080010Z-5850000/expected-rsid-events.json",
+      "capabilities": [
+        "C3",
+        "C17"
+      ],
+      "context": {
+        "checkpoint": null,
+        "lead_samples": 480000,
+        "trail_samples": 480000
+      },
+      "expected": {
+        "capture_sec": 1692.233,
+        "center_hz": 1499.249,
+        "code_distance": 1,
+        "mode": "MFSK32",
+        "rsid_code": 147,
+        "truth_strength": "strong_reference"
+      },
+      "id": "wrmi-20260720-closing-rsid",
+      "impairments": [
+        "weak signal",
+        "damaged RSID"
+      ],
+      "interval": {
+        "start_sample": 80640000,
+        "stop_sample": 82080000
+      },
+      "partition": "regression",
+      "schema_version": 1,
+      "source_capture_id": "wrmi-20260720T080010Z-5850000",
+      "why_long_enough": "Brackets the closing mode change and recovery under weak reception."
+    },
+    {
+      "annotation_basis": "truth/wrmi-20260720T080010Z-5850000/expected-rsid-events.json",
+      "capabilities": [
+        "C1-C19"
+      ],
+      "case_kind": "full_broadcast",
+      "context": {
+        "checkpoint": null,
+        "lead_samples": 0,
+        "trail_samples": 0
+      },
+      "expected": {
+        "review_status": "RSID events established; full payload pending Session 9",
+        "truth_strength": "strong_reference"
+      },
+      "id": "wrmi-20260720-full-broadcast",
+      "impairments": [
+        "weak lower-band reception",
+        "center calibration",
+        "damaged RSIDs"
+      ],
+      "interval": {
+        "start_sample": 0,
+        "stop_sample": 86400000
+      },
+      "partition": "regression",
+      "schema_version": 1,
+      "source_capture_id": "wrmi-20260720T080010Z-5850000",
+      "why_long_enough": "Complete untouched 30-minute reception retaining all validated mode changes and recovery behavior."
+    },
+    {
+      "annotation_basis": "truth/wrmi-20260720T080010Z-5850000/expected-rsid-events.json",
+      "capabilities": [
+        "C3",
+        "C17"
+      ],
+      "context": {
+        "checkpoint": null,
+        "lead_samples": 480000,
+        "trail_samples": 480000
+      },
+      "expected": {
+        "capture_sec": 369.555,
+        "center_hz": 1499.249,
+        "mode": "MFSK64",
+        "rsid_code": 620,
+        "truth_strength": "strong_reference"
+      },
+      "id": "wrmi-20260720-mfsk64-transition",
+      "impairments": [
+        "weak signal",
+        "mode reacquisition"
+      ],
+      "interval": {
+        "start_sample": 17040000,
+        "stop_sample": 18480000
+      },
+      "partition": "regression",
+      "schema_version": 1,
+      "source_capture_id": "wrmi-20260720T080010Z-5850000",
+      "why_long_enough": "Includes pre-change state, the validated RSID, and post-change acquisition."
+    },
+    {
+      "annotation_basis": "truth/wrmi-20260720T080010Z-5850000/expected-rsid-events.json",
+      "capabilities": [
+        "C2",
+        "C3",
+        "C4"
+      ],
+      "context": {
+        "checkpoint": null,
+        "lead_samples": 480000,
+        "trail_samples": 480000
+      },
+      "expected": {
+        "capture_sec": 86.67,
+        "center_hz": 1499.249,
+        "mode": "MFSK32",
+        "rsid_code": 147,
+        "truth_strength": "strong_reference"
+      },
+      "id": "wrmi-20260720-opening-rsid",
+      "impairments": [
+        "weak signal",
+        "center calibration"
+      ],
+      "interval": {
+        "start_sample": 3360000,
+        "stop_sample": 5280000
+      },
+      "partition": "regression",
+      "schema_version": 1,
+      "source_capture_id": "wrmi-20260720T080010Z-5850000",
+      "why_long_enough": "Brackets the independently calibrated opening RSID and acquisition."
+    },
+    {
+      "capabilities": [
+        "C1-C19"
+      ],
+      "case_kind": "full_broadcast",
+      "context": {
+        "checkpoint": null,
+        "lead_samples": 0,
+        "trail_samples": 0
+      },
+      "expected": {
+        "review_status": "program truth pending PM text review",
+        "truth_strength": "strong_image_reference"
+      },
+      "id": "wrmi-20260722-15770000-full-broadcast",
+      "interval": {
+        "start_sample": 0,
+        "stop_sample": 86400000
+      },
+      "partition": "development",
+      "program_id": "458",
+      "schema_version": 1,
+      "source_capture_id": "wrmi-20260722T133008Z-15770000",
+      "why_long_enough": "Complete untouched 30-minute reception selected for the Session 9A accuracy corpus."
+    },
+    {
+      "capabilities": [
+        "C1-C19"
+      ],
+      "case_kind": "full_broadcast",
+      "context": {
+        "checkpoint": null,
+        "lead_samples": 0,
+        "trail_samples": 0
+      },
+      "expected": {
+        "review_status": "program truth pending PM text review",
+        "truth_strength": "strong_image_reference"
+      },
+      "id": "wrmi-20260729-15770000-full-broadcast",
+      "interval": {
+        "start_sample": 0,
+        "stop_sample": 86400000
+      },
+      "partition": "regression",
+      "program_id": "459",
+      "schema_version": 1,
+      "source_capture_id": "wrmi-20260729T133010Z-15770000",
+      "why_long_enough": "Complete untouched 30-minute reception selected for the Session 9A accuracy corpus."
+    },
+    {
+      "capabilities": [
+        "mixed_mfsk32_mfsk64",
+        "text_image_association",
+        "one_second_reception_and_decode_quality"
+      ],
+      "case_kind": "full_broadcast",
+      "context": {
+        "checkpoint": null,
+        "lead_samples": 0,
+        "trail_samples": 0
+      },
+      "expected": {
+        "review_status": "independent program truth not supplied",
+        "truth_strength": "appliance_decoder_reference_only"
+      },
+      "id": "wrmi-20260923-15770000-full-broadcast",
+      "interval": {
+        "start_sample": 0,
+        "stop_sample": 28800000
+      },
+      "partition": "regression",
+      "schema_version": 1,
+      "source_capture_id": "wrmi-20260923T133007Z-15770000",
+      "why_long_enough": "Complete 30-minute AGC capture with three MFSK mode segments and nine decoded image artifacts."
+    }
+  ]
+}

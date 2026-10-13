@@ -52,7 +52,7 @@ The accompanying [method inventory](data/test-coverage-audit/inventory.md)
 lists every standard discovered method with observed status, elapsed time,
 input tier, proposed disposition, reason and any specific consolidation target.
 [Run evidence](data/test-coverage-audit/run.json) records the actual suite run.
-[Detailed inventory](data/test-coverage-audit/inventory.json) also records direct
+[Detailed inventory](../../tests/samples/archive/repo-evidence/docs/operations/data/test-coverage-audit/inventory.json) also records direct
 calls and assertion expressions to make the recommendations reviewable.
 
 The inventory covers **248 methods in 42 test modules**, plus identifies six

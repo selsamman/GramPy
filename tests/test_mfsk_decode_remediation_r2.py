@@ -17,6 +17,7 @@ from grampy.pipeline import DecodeConfig, run_reference_pipeline
 from grampy.tracking import ClockTrack, FrequencyAnchor, FrequencyTrack
 
 from tests.suites import data_test
+from tests.received_expectations import heldout_text
 
 
 class RemediationR2Test(unittest.TestCase):
@@ -283,18 +284,19 @@ class RemediationR2ReceivedTest(unittest.TestCase):
             self.fail(
                 "held-out received corpus unavailable; set GRAMPY_TEST_SAMPLES"
             )
+        expectations = heldout_text()
         cases = (
             (
                 "MFSK32",
                 90 * 48_000,
                 150 * 48_000,
-                "Welcome to program 457 of Shortwave Radiogram.",
+                expectations["r2_mfsk32"],
             ),
             (
                 "MFSK64",
                 350 * 48_000,
                 410 * 48_000,
-                "This is Shortwave Radiogram in MFSK64",
+                expectations["r2_mfsk64"],
             ),
         )
         for mode, start, stop, expected in cases:

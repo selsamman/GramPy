@@ -1,0 +1,19 @@
+{
+  "status": "complete",
+  "date": "2026-10-13",
+  "checkout_only_tests": 240,
+  "full_regular_tests": 254,
+  "skips": 0,
+  "accepted_broadcast_input_identities_unchanged": 88,
+  "final_sidecar_files": 303,
+  "required_files": 246,
+  "optional_archive_files": 57,
+  "net_logical_sidecar_reduction_bytes": 355198699,
+  "promotions_verified": 59,
+  "discarded_development_or_duplicate_files": 107,
+  "decoder_code_or_acceptance_limits_changed": false,
+  "s3_published": false,
+  "git_history_rewritten": false,
+  "commits_created": false,
+  "current_links_checked": 27
+}

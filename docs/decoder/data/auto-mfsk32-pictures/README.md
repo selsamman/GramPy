@@ -1,6 +1,6 @@
 # Automatic MFSK32 picture correction evidence
 
-The [visual review](index.html) shows the same three MFSK32 whole-WAV cases
+The [visual review](../../../../tests/samples/archive/repo-evidence/docs/decoder/data/auto-mfsk32-pictures/index.html) shows the same three MFSK32 whole-WAV cases
 previously skipped by GramPy automatic mode: source, absent prior output,
 corrected GramPy and the original pinned Pi fldigi reception. The page embeds
 its nine PNGs; the adjacent PNG files preserve their original hashes.

@@ -9,7 +9,7 @@ follow a historical link when the task needs the earlier evidence.
 | --- | --- |
 | [`archive/`](archive/README.md) | Selected imported decoder planning and implementation records, preserved verbatim. |
 | `changes/<change-id>/` | Selected native investigation findings and compact evidence after a change closes. Create entries only when there is material historical value. |
-| `tests/samples/provenance/<change-id>/` | Optional large, irreplaceable historical artifacts, indexed by a committed manifest in the corresponding change entry. |
+| `tests/samples/archive/<change-id>/` | Optional broadcast/uncertain-origin content and large historical artifacts, indexed by a committed manifest in the corresponding change entry. |
 
 For each new historical entry, label its status and source revisions, explain
 why it is retained, and link the concise change closeout and any artifact
@@ -24,6 +24,9 @@ adding this policy does not move or duplicate them.
 
 Selected native entries:
 
+- [2026-10-13 sidecar audit](changes/20261013-sidecar-audit/README.md): provenance
+  classifications, corrections to embedded broadcast evidence, canonical-input
+  preservation, verified retirement and required/optional S3 handoff.
 - [2026-10-12 local cleanup](changes/20261012-local-cleanup/README.md): unique
   received RF, practical/manual original inputs and pinned reproduction anchors,
   with an explicit legacy disposition ledger and verified artifact manifest.

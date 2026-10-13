@@ -160,12 +160,12 @@
       "context": {"lead_samples": 96000, "trail_samples": 0, "checkpoint": null},
       "expected": {
         "truth_strength": "strong_reference",
-        "first_picture_header": "Pic:220x147C;",
+        "first_picture_geometry": {"width": 220, "height": 147, "color": true},
         "first_raster_sample": 37239133,
         "first_picture_components": 97020,
         "first_picture_complete": true,
         "first_resumed_text_sample": 41976104,
-        "second_picture_header": "Pic:222x143C;",
+        "second_picture_geometry": {"width": 222, "height": 143, "color": true},
         "second_picture_intentionally_truncated": true
       },
       "impairments": ["received raster noise", "image-biased carrier ambiguity"],

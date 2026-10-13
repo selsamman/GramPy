@@ -1,5 +1,13 @@
 # Selected historical evidence after .local cleanup
 
+The [October 13 sidecar audit](../../../operations/sidecar-audit-20261013.md)
+supersedes the sidecar paths and retention descriptions below. Selected history
+now lives under `tests/samples/archive/20261012-local-cleanup/`; the native
+preparation record is in Git, the historical wheel was retired, and previously
+committed broadcast imagery is external. The current installed inventory is
+`tests/fixtures/sidecar-v1.json`. Original receipts remain historical snapshots.
+
+
 Historical, non-normative evidence retained on 2026-10-12 from source checkpoint
 `b99b886`. Normal tests and future development do not require this history area.
 Current validation instructions are in [test maintenance](../../../operations/test-maintenance.md)

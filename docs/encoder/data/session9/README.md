@@ -14,8 +14,8 @@ viewed and accepted all images. The original ten-case numerical run is retained;
 the separate D-028 decoder correction recovers the three previously skipped
 MFSK32 pictures, so all ten cases now pass in both decoders. The encoder remains
 unchanged. [Acceptance and scope](practical-acceptance.json),
-[original review](practical-review/index.html) and
-[MFSK32 correction review](../../../decoder/data/auto-mfsk32-pictures/index.html)
+[original review](../../../../tests/samples/archive/repo-evidence/docs/encoder/data/session9/practical-review/index.html) and
+[MFSK32 correction review](../../../../tests/samples/archive/repo-evidence/docs/decoder/data/auto-mfsk32-pictures/index.html)
 retain the evidence. Visible blur and other reviewed limits are accepted for
 this practical scope.
 

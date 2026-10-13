@@ -187,14 +187,17 @@ Keep only notes and compact evidence that explain a decision or prevent an
 expensive repeated investigation. Git history already preserves earlier
 versions of committed code and documentation.
 
-If an irreplaceable large historical artifact merits preservation, put it in
-`tests/samples/provenance/<change-id>/` and describe it in a committed
+If selected historical broadcast/uncertain content or a large artifact merits preservation, put it in
+`tests/samples/archive/<change-id>/` and describe it in a committed
 `artifacts.json` alongside the historical note: sidecar-relative path, SHA-256,
 bytes, provenance, retention purpose and retrieval/recreation instructions.
 That history area is not an active fixture store; promote an artifact to a
 maintained corpus if a current test starts requiring it. Do not retain raw
 logs, diagnostic dumps, rendered review copies or repeated decodes by default
 when the inputs, recipe and compact decision evidence suffice.
+
+Use the [sidecar policy](sidecar-maintenance.md) for provenance review, native
+fixture size budgets, required/optional inventory and the versioned S3 handoff.
 
 The existing `docs/provenance/archive/` holds selected imported records and
 remains unchanged. The [provenance index](../provenance/README.md) supports

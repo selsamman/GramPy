@@ -1,0 +1,3046 @@
+{
+  "schema": "grampy-sidecar-inventory.v1",
+  "version": "20261013-audit-v1",
+  "source_revision": "8d9b9576e7e59737dd431598a4c1e0412e75705e",
+  "policy": "docs/operations/sidecar-maintenance.md",
+  "required_directories": [
+    "controlled-mfsk-v1",
+    "received-corpus",
+    "regression-expectations"
+  ],
+  "optional_directories": [
+    "archive"
+  ],
+  "files": [
+    {
+      "path": "archive/20261012-local-cleanup/manual-controls/fldigi-clock-corrected-diagnostic.wav",
+      "bytes": 7857778,
+      "sha256": "eb407f20f7277891991e962f83425c2488231895945fd8449ec149928c759e9a",
+      "group": "archive",
+      "required": false,
+      "category": "large-native-diagnostic",
+      "provenance": "Controlled transmissions of independently drawn diagnostic chart; paired original and corrected diagnostic waveform identities preserved",
+      "purpose": "Optional clock-scale investigation evidence"
+    },
+    {
+      "path": "archive/20261012-local-cleanup/manual-controls/fldigi-original.wav",
+      "bytes": 7872428,
+      "sha256": "ced694687e6f81d5b80cfc003a594e22974665f377b4cc7cd62e32cea308b6e7",
+      "group": "archive",
+      "required": false,
+      "category": "large-native-diagnostic",
+      "provenance": "Controlled transmissions of independently drawn diagnostic chart; paired original and corrected diagnostic waveform identities preserved",
+      "purpose": "Optional clock-scale investigation evidence"
+    },
+    {
+      "path": "archive/20261012-local-cleanup/manual-controls/grampy-original.wav",
+      "bytes": 6996500,
+      "sha256": "0a7fb22253f2bcae6c7408880c723652378b840eb352797cea7fc7d0532b53e6",
+      "group": "archive",
+      "required": false,
+      "category": "large-native-diagnostic",
+      "provenance": "Controlled transmissions of independently drawn diagnostic chart; paired original and corrected diagnostic waveform identities preserved",
+      "purpose": "Optional clock-scale investigation evidence"
+    },
+    {
+      "path": "archive/20261012-local-cleanup/practical/cases/gray32-p2-chart/generated.wav",
+      "bytes": 2475872,
+      "sha256": "c7e80cfceef19e014542d41fc7e224631bbe2c04288b4188a1a4d1f73e721d1e",
+      "group": "archive",
+      "required": false,
+      "category": "large-native-diagnostic",
+      "provenance": "Historical native transmissions from broadcast image inputs or independently drawn diagnostic chart",
+      "purpose": "Optional reproduction of accepted practical qualification"
+    },
+    {
+      "path": "archive/20261012-local-cleanup/practical/cases/gray32-p4-photo/generated.wav",
+      "bytes": 4088672,
+      "sha256": "9d7ef79fa1def81e082d1b120f50e21071e7c1f1c86bba665669d5304704f9ec",
+      "group": "archive",
+      "required": false,
+      "category": "broadcast-derived",
+      "provenance": "Historical native transmissions from broadcast image inputs or independently drawn diagnostic chart",
+      "purpose": "Optional reproduction of accepted practical qualification"
+    },
+    {
+      "path": "archive/20261012-local-cleanup/practical/cases/gray32-p8-card/generated.wav",
+      "bytes": 6113120,
+      "sha256": "f7291065b072e0fad8e201b434ac99a5e73f8833dad2d7f7fc4e56468cce901b",
+      "group": "archive",
+      "required": false,
+      "category": "broadcast-derived",
+      "provenance": "Historical native transmissions from broadcast image inputs or independently drawn diagnostic chart",
+      "purpose": "Optional reproduction of accepted practical qualification"
+    },
+    {
+      "path": "archive/20261012-local-cleanup/practical/cases/gray64-p2-chart/generated.wav",
+      "bytes": 1992212,
+      "sha256": "5d65aa0a6cc6942280d08996bf999f0c6206a4b6bfaf960260c0c0f2d71772a8",
+      "group": "archive",
+      "required": false,
+      "category": "large-native-diagnostic",
+      "provenance": "Historical native transmissions from broadcast image inputs or independently drawn diagnostic chart",
+      "purpose": "Optional reproduction of accepted practical qualification"
+    },
+    {
+      "path": "archive/20261012-local-cleanup/practical/cases/gray64-p4-photo/generated.wav",
+      "bytes": 3605012,
+      "sha256": "78248ba1d602137847c55b1ce875f941b204a9be589fbd36595238a06f7a7e89",
+      "group": "archive",
+      "required": false,
+      "category": "broadcast-derived",
+      "provenance": "Historical native transmissions from broadcast image inputs or independently drawn diagnostic chart",
+      "purpose": "Optional reproduction of accepted practical qualification"
+    },
+    {
+      "path": "archive/20261012-local-cleanup/practical/cases/gray64-p8-card/generated.wav",
+      "bytes": 5652500,
+      "sha256": "4d2d0f2148d36d6be288d4515167df9bace98d334a89bedd0e85d7dcdf16dbf3",
+      "group": "archive",
+      "required": false,
+      "category": "broadcast-derived",
+      "provenance": "Historical native transmissions from broadcast image inputs or independently drawn diagnostic chart",
+      "purpose": "Optional reproduction of accepted practical qualification"
+    },
+    {
+      "path": "archive/20261012-local-cleanup/practical/cases/mixed-broadcast-photo/generated.wav",
+      "bytes": 9571784,
+      "sha256": "ecf6819b916abd6d444fd9ac229d2264772664b234f543ff43ad63ce8d8f5925",
+      "group": "archive",
+      "required": false,
+      "category": "broadcast-derived",
+      "provenance": "Historical native transmissions from broadcast image inputs or independently drawn diagnostic chart",
+      "purpose": "Optional reproduction of accepted practical qualification"
+    },
+    {
+      "path": "archive/20261012-local-cleanup/practical/cases/rgb64-p2-chart/generated.wav",
+      "bytes": 2907668,
+      "sha256": "25fc90bd2590415b84d1f93a01ea61059b77035c2f58e0745e5490f31fb6180b",
+      "group": "archive",
+      "required": false,
+      "category": "large-native-diagnostic",
+      "provenance": "Historical native transmissions from broadcast image inputs or independently drawn diagnostic chart",
+      "purpose": "Optional reproduction of accepted practical qualification"
+    },
+    {
+      "path": "archive/20261012-local-cleanup/practical/cases/rgb64-p4-card/generated.wav",
+      "bytes": 7732244,
+      "sha256": "a1adfd84f6d45cc12e2cc1b8ffeea11e16b4c7cc13cb2b95d534ea172a0e3d05",
+      "group": "archive",
+      "required": false,
+      "category": "broadcast-derived",
+      "provenance": "Historical native transmissions from broadcast image inputs or independently drawn diagnostic chart",
+      "purpose": "Optional reproduction of accepted practical qualification"
+    },
+    {
+      "path": "archive/20261012-local-cleanup/practical/cases/rgb64-p8-photo/generated.wav",
+      "bytes": 13954580,
+      "sha256": "6b7aa722eac0a4e4b47196a93e98085279d530185e4d45a834995ccf6af37eca",
+      "group": "archive",
+      "required": false,
+      "category": "broadcast-derived",
+      "provenance": "Historical native transmissions from broadcast image inputs or independently drawn diagnostic chart",
+      "purpose": "Optional reproduction of accepted practical qualification"
+    },
+    {
+      "path": "archive/20261012-local-cleanup/received-sept19/accepted-baseline.json",
+      "bytes": 15070491,
+      "sha256": "127d2760ad2ddfbc3c6135db27546e7e6e16bce7475be20074901dfdd500067e",
+      "group": "archive",
+      "required": false,
+      "category": "broadcast-or-uncertain-derived",
+      "provenance": "Broadcast input, derivative, or content-bearing historical evidence conservatively retained externally",
+      "purpose": "Optional targeted historical investigation, excluded from normal test dependencies"
+    },
+    {
+      "path": "archive/20261012-local-cleanup/received-sept19/capture.sigmf-data",
+      "bytes": 230400000,
+      "sha256": "bd738273859d7f22dadd47bee3e336cc6dcb6edaacdae27c220ce1756156040a",
+      "group": "archive",
+      "required": false,
+      "category": "broadcast-or-uncertain-derived",
+      "provenance": "Broadcast input, derivative, or content-bearing historical evidence conservatively retained externally",
+      "purpose": "Optional targeted historical investigation, excluded from normal test dependencies"
+    },
+    {
+      "path": "archive/20261012-local-cleanup/received-sept19/capture.sigmf-meta",
+      "bytes": 1792,
+      "sha256": "80368684009a967e6abfc55c811d031d10b27d3fef6cbf9e722dc85941ea6f1a",
+      "group": "archive",
+      "required": false,
+      "category": "broadcast-or-uncertain-derived",
+      "provenance": "Broadcast input, derivative, or content-bearing historical evidence conservatively retained externally",
+      "purpose": "Optional targeted historical investigation, excluded from normal test dependencies"
+    },
+    {
+      "path": "archive/20261012-local-cleanup/received-sept19/reference-images/raster-0001.png",
+      "bytes": 98260,
+      "sha256": "ee2ee8b25d7caaa9e3e666e1300091567a67d2be9ec736f2882f092e1a37a852",
+      "group": "archive",
+      "required": false,
+      "category": "broadcast-or-uncertain-derived",
+      "provenance": "Broadcast input, derivative, or content-bearing historical evidence conservatively retained externally",
+      "purpose": "Optional targeted historical investigation, excluded from normal test dependencies"
+    },
+    {
+      "path": "archive/20261012-local-cleanup/received-sept19/reference-images/raster-0002.png",
+      "bytes": 69445,
+      "sha256": "9d1b1b21551342afdd79e350729930089931432171fe620697d6fffdc6b9be41",
+      "group": "archive",
+      "required": false,
+      "category": "broadcast-or-uncertain-derived",
+      "provenance": "Broadcast input, derivative, or content-bearing historical evidence conservatively retained externally",
+      "purpose": "Optional targeted historical investigation, excluded from normal test dependencies"
+    },
+    {
+      "path": "archive/20261012-local-cleanup/received-sept19/reference-images/raster-0003.png",
+      "bytes": 85148,
+      "sha256": "0c495195e7a2cc1dcf45b0400252aed8964f7420bfb361ce2cd33d323974a398",
+      "group": "archive",
+      "required": false,
+      "category": "broadcast-or-uncertain-derived",
+      "provenance": "Broadcast input, derivative, or content-bearing historical evidence conservatively retained externally",
+      "purpose": "Optional targeted historical investigation, excluded from normal test dependencies"
+    },
+    {
+      "path": "archive/20261012-local-cleanup/received-sept19/reference-images/raster-0004.png",
+      "bytes": 96109,
+      "sha256": "f28de59725bd412866523d600c752cf8f2861a71f9a7d04b0fb9c4e7ca58d675",
+      "group": "archive",
+      "required": false,
+      "category": "broadcast-or-uncertain-derived",
+      "provenance": "Broadcast input, derivative, or content-bearing historical evidence conservatively retained externally",
+      "purpose": "Optional targeted historical investigation, excluded from normal test dependencies"
+    },
+    {
+      "path": "archive/20261012-local-cleanup/received-sept19/reference-images/raster-0005.png",
+      "bytes": 77053,
+      "sha256": "f61a5fe27ff7608a8ef56a98000e11bd5ad5be834a1b530a22781115c2cb946d",
+      "group": "archive",
+      "required": false,
+      "category": "broadcast-or-uncertain-derived",
+      "provenance": "Broadcast input, derivative, or content-bearing historical evidence conservatively retained externally",
+      "purpose": "Optional targeted historical investigation, excluded from normal test dependencies"
+    },
+    {
+      "path": "archive/20261012-local-cleanup/received-sept19/reference-images/raster-0006.png",
+      "bytes": 90126,
+      "sha256": "01f71bbbd934e81abcb0099ca9fc66351981a5545209e5ddf42c3750e04449d1",
+      "group": "archive",
+      "required": false,
+      "category": "broadcast-or-uncertain-derived",
+      "provenance": "Broadcast input, derivative, or content-bearing historical evidence conservatively retained externally",
+      "purpose": "Optional targeted historical investigation, excluded from normal test dependencies"
+    },
+    {
+      "path": "archive/20261012-local-cleanup/received-sept19/reference-images/raster-0007.png",
+      "bytes": 88459,
+      "sha256": "fb92c31aac55e02098d89c46fd4567518c41b150a0b96df31882f9fb42058b37",
+      "group": "archive",
+      "required": false,
+      "category": "broadcast-or-uncertain-derived",
+      "provenance": "Broadcast input, derivative, or content-bearing historical evidence conservatively retained externally",
+      "purpose": "Optional targeted historical investigation, excluded from normal test dependencies"
+    },
+    {
+      "path": "archive/20261012-local-cleanup/received-sept19/reference-images/raster-0008.png",
+      "bytes": 87939,
+      "sha256": "9d0b3ac8ebc03fb2610a4a9d0a760a134a1bcb02ee51e7bddbb36d95d53d8b6a",
+      "group": "archive",
+      "required": false,
+      "category": "broadcast-or-uncertain-derived",
+      "provenance": "Broadcast input, derivative, or content-bearing historical evidence conservatively retained externally",
+      "purpose": "Optional targeted historical investigation, excluded from normal test dependencies"
+    },
+    {
+      "path": "archive/20261012-local-cleanup/received-sept19/reference-images/raster-0009.png",
+      "bytes": 90447,
+      "sha256": "908061b0afea6e54ab55a8a2400a920078e79382f8e7ff8ac15105b2b27cad6c",
+      "group": "archive",
+      "required": false,
+      "category": "broadcast-or-uncertain-derived",
+      "provenance": "Broadcast input, derivative, or content-bearing historical evidence conservatively retained externally",
+      "purpose": "Optional targeted historical investigation, excluded from normal test dependencies"
+    },
+    {
+      "path": "archive/20261012-local-cleanup/reference/fldigi-4.2.13-pi-aarch64",
+      "bytes": 67143320,
+      "sha256": "dd30f86caae1edb5d2998acedb47a3a7b348b727bf6303af1e2f822f549966f3",
+      "group": "archive",
+      "required": false,
+      "category": "large-reference-software",
+      "provenance": "Pinned third-party receiver executable; hash identified in qualification evidence",
+      "purpose": "Optional investigation of accepted historical build; normal regressions use saved references, not this executable"
+    },
+    {
+      "path": "archive/distribution/controlled-mfsk-v1-20261012.tar.gz",
+      "bytes": 25794337,
+      "sha256": "f0cebf1b048b398c8e743216e2594d0e1e2683be871c594530c2ff62ffc0eadb",
+      "group": "archive",
+      "required": false,
+      "category": "large-distribution-bundle",
+      "provenance": "Immutable accepted controlled-v1 archive",
+      "purpose": "Optional original delivery artifact; extracted fixture directory is the runtime input"
+    },
+    {
+      "path": "archive/intake-products/sampleFullRun-20260923/text.manifest.json",
+      "bytes": 29571,
+      "sha256": "949d34c462270653c8f35733fe91ef61b85d42c7e3ebb527b03b0c82ba9df2e6",
+      "group": "archive",
+      "required": false,
+      "category": "broadcast-or-uncertain-derived",
+      "provenance": "Broadcast input, derivative, or content-bearing historical evidence conservatively retained externally",
+      "purpose": "Optional targeted historical investigation, excluded from normal test dependencies"
+    },
+    {
+      "path": "archive/repo-evidence/docs/decoder/data/auto-mfsk32-pictures/gray32-p4-photo-candidate.png",
+      "bytes": 21944,
+      "sha256": "4da48d9cf56322aa2585bb9949e13360648abedc8809455b6f179ff63a602a2d",
+      "group": "archive",
+      "required": false,
+      "category": "broadcast-or-uncertain-derived",
+      "provenance": "Broadcast input, derivative, or content-bearing historical evidence conservatively retained externally",
+      "purpose": "Optional targeted historical investigation, excluded from normal test dependencies"
+    },
+    {
+      "path": "archive/repo-evidence/docs/decoder/data/auto-mfsk32-pictures/gray32-p4-photo-fldigi.png",
+      "bytes": 15881,
+      "sha256": "d643365e28c614e14c57bd39e8104f173d5a24c01f8519a7ee2db54fbfa9407a",
+      "group": "archive",
+      "required": false,
+      "category": "broadcast-or-uncertain-derived",
+      "provenance": "Broadcast input, derivative, or content-bearing historical evidence conservatively retained externally",
+      "purpose": "Optional targeted historical investigation, excluded from normal test dependencies"
+    },
+    {
+      "path": "archive/repo-evidence/docs/decoder/data/auto-mfsk32-pictures/gray32-p4-photo-truth.png",
+      "bytes": 19987,
+      "sha256": "457d5428a7ff449c352de059809b55701b917f2c0290c709998d27e33b665115",
+      "group": "archive",
+      "required": false,
+      "category": "broadcast-or-uncertain-derived",
+      "provenance": "Broadcast input, derivative, or content-bearing historical evidence conservatively retained externally",
+      "purpose": "Optional targeted historical investigation, excluded from normal test dependencies"
+    },
+    {
+      "path": "archive/repo-evidence/docs/decoder/data/auto-mfsk32-pictures/gray32-p8-card-candidate.png",
+      "bytes": 30930,
+      "sha256": "25e9948b66c60cc18959dcd42c46027ff76c8685c38614366d1a41cb93d38fe2",
+      "group": "archive",
+      "required": false,
+      "category": "broadcast-or-uncertain-derived",
+      "provenance": "Broadcast input, derivative, or content-bearing historical evidence conservatively retained externally",
+      "purpose": "Optional targeted historical investigation, excluded from normal test dependencies"
+    },
+    {
+      "path": "archive/repo-evidence/docs/decoder/data/auto-mfsk32-pictures/gray32-p8-card-fldigi.png",
+      "bytes": 22002,
+      "sha256": "f3ebcc91264b49ee8dd8c59a35728674135a67b55f544dfa605ddc094b3645dc",
+      "group": "archive",
+      "required": false,
+      "category": "broadcast-or-uncertain-derived",
+      "provenance": "Broadcast input, derivative, or content-bearing historical evidence conservatively retained externally",
+      "purpose": "Optional targeted historical investigation, excluded from normal test dependencies"
+    },
+    {
+      "path": "archive/repo-evidence/docs/decoder/data/auto-mfsk32-pictures/gray32-p8-card-truth.png",
+      "bytes": 23641,
+      "sha256": "313ed61c44caaee44823e304b1ccc2332858710c3fd7d1ee67b57043b2cb998f",
+      "group": "archive",
+      "required": false,
+      "category": "broadcast-or-uncertain-derived",
+      "provenance": "Broadcast input, derivative, or content-bearing historical evidence conservatively retained externally",
+      "purpose": "Optional targeted historical investigation, excluded from normal test dependencies"
+    },
+    {
+      "path": "archive/repo-evidence/docs/decoder/data/auto-mfsk32-pictures/index.html",
+      "bytes": 193204,
+      "sha256": "51f6a480f9a824f7f76b6a0600c72c5401d0f6340e53814051a897488bf4c82e",
+      "group": "archive",
+      "required": false,
+      "category": "broadcast-or-uncertain-derived",
+      "provenance": "Broadcast input, derivative, or content-bearing historical evidence conservatively retained externally",
+      "purpose": "Optional targeted historical investigation, excluded from normal test dependencies"
+    },
+    {
+      "path": "archive/repo-evidence/docs/encoder/data/session9/practical-review/comparison.png",
+      "bytes": 971843,
+      "sha256": "8dc9ddf1167563a3f100fea6478e5609f7d2a43f95bb7556032b5d157c98e98b",
+      "group": "archive",
+      "required": false,
+      "category": "broadcast-or-uncertain-derived",
+      "provenance": "Broadcast input, derivative, or content-bearing historical evidence conservatively retained externally",
+      "purpose": "Optional targeted historical investigation, excluded from normal test dependencies"
+    },
+    {
+      "path": "archive/repo-evidence/docs/encoder/data/session9/practical-review/gray32-p4-photo-fldigi.png",
+      "bytes": 15881,
+      "sha256": "d643365e28c614e14c57bd39e8104f173d5a24c01f8519a7ee2db54fbfa9407a",
+      "group": "archive",
+      "required": false,
+      "category": "broadcast-or-uncertain-derived",
+      "provenance": "Broadcast input, derivative, or content-bearing historical evidence conservatively retained externally",
+      "purpose": "Optional targeted historical investigation, excluded from normal test dependencies"
+    },
+    {
+      "path": "archive/repo-evidence/docs/encoder/data/session9/practical-review/gray32-p4-photo-truth.png",
+      "bytes": 19987,
+      "sha256": "457d5428a7ff449c352de059809b55701b917f2c0290c709998d27e33b665115",
+      "group": "archive",
+      "required": false,
+      "category": "broadcast-or-uncertain-derived",
+      "provenance": "Broadcast input, derivative, or content-bearing historical evidence conservatively retained externally",
+      "purpose": "Optional targeted historical investigation, excluded from normal test dependencies"
+    },
+    {
+      "path": "archive/repo-evidence/docs/encoder/data/session9/practical-review/gray32-p8-card-fldigi.png",
+      "bytes": 22002,
+      "sha256": "f3ebcc91264b49ee8dd8c59a35728674135a67b55f544dfa605ddc094b3645dc",
+      "group": "archive",
+      "required": false,
+      "category": "broadcast-or-uncertain-derived",
+      "provenance": "Broadcast input, derivative, or content-bearing historical evidence conservatively retained externally",
+      "purpose": "Optional targeted historical investigation, excluded from normal test dependencies"
+    },
+    {
+      "path": "archive/repo-evidence/docs/encoder/data/session9/practical-review/gray32-p8-card-truth.png",
+      "bytes": 23641,
+      "sha256": "313ed61c44caaee44823e304b1ccc2332858710c3fd7d1ee67b57043b2cb998f",
+      "group": "archive",
+      "required": false,
+      "category": "broadcast-or-uncertain-derived",
+      "provenance": "Broadcast input, derivative, or content-bearing historical evidence conservatively retained externally",
+      "purpose": "Optional targeted historical investigation, excluded from normal test dependencies"
+    },
+    {
+      "path": "archive/repo-evidence/docs/encoder/data/session9/practical-review/gray64-p4-photo-fldigi.png",
+      "bytes": 18704,
+      "sha256": "8fa23e9fe3108e473e22718003b0d5a7ec855ad4842a7c662ffb2cd91699d111",
+      "group": "archive",
+      "required": false,
+      "category": "broadcast-or-uncertain-derived",
+      "provenance": "Broadcast input, derivative, or content-bearing historical evidence conservatively retained externally",
+      "purpose": "Optional targeted historical investigation, excluded from normal test dependencies"
+    },
+    {
+      "path": "archive/repo-evidence/docs/encoder/data/session9/practical-review/gray64-p4-photo-grampy.png",
+      "bytes": 18494,
+      "sha256": "c2efb1aeed8fe56960f7af86a4576b7bfba84f0663e955c0741f5cb96107d652",
+      "group": "archive",
+      "required": false,
+      "category": "broadcast-or-uncertain-derived",
+      "provenance": "Broadcast input, derivative, or content-bearing historical evidence conservatively retained externally",
+      "purpose": "Optional targeted historical investigation, excluded from normal test dependencies"
+    },
+    {
+      "path": "archive/repo-evidence/docs/encoder/data/session9/practical-review/gray64-p4-photo-truth.png",
+      "bytes": 19987,
+      "sha256": "457d5428a7ff449c352de059809b55701b917f2c0290c709998d27e33b665115",
+      "group": "archive",
+      "required": false,
+      "category": "broadcast-or-uncertain-derived",
+      "provenance": "Broadcast input, derivative, or content-bearing historical evidence conservatively retained externally",
+      "purpose": "Optional targeted historical investigation, excluded from normal test dependencies"
+    },
+    {
+      "path": "archive/repo-evidence/docs/encoder/data/session9/practical-review/gray64-p8-card-fldigi.png",
+      "bytes": 22866,
+      "sha256": "259481eb2bfa137687acb17daea566325735e06eabcd64323217098fd372a859",
+      "group": "archive",
+      "required": false,
+      "category": "broadcast-or-uncertain-derived",
+      "provenance": "Broadcast input, derivative, or content-bearing historical evidence conservatively retained externally",
+      "purpose": "Optional targeted historical investigation, excluded from normal test dependencies"
+    },
+    {
+      "path": "archive/repo-evidence/docs/encoder/data/session9/practical-review/gray64-p8-card-grampy.png",
+      "bytes": 23262,
+      "sha256": "d8c00c5999475ec3cf630e7518a4dc2eaf512af795df9c29a79809ceeac07a31",
+      "group": "archive",
+      "required": false,
+      "category": "broadcast-or-uncertain-derived",
+      "provenance": "Broadcast input, derivative, or content-bearing historical evidence conservatively retained externally",
+      "purpose": "Optional targeted historical investigation, excluded from normal test dependencies"
+    },
+    {
+      "path": "archive/repo-evidence/docs/encoder/data/session9/practical-review/gray64-p8-card-truth.png",
+      "bytes": 23641,
+      "sha256": "313ed61c44caaee44823e304b1ccc2332858710c3fd7d1ee67b57043b2cb998f",
+      "group": "archive",
+      "required": false,
+      "category": "broadcast-or-uncertain-derived",
+      "provenance": "Broadcast input, derivative, or content-bearing historical evidence conservatively retained externally",
+      "purpose": "Optional targeted historical investigation, excluded from normal test dependencies"
+    },
+    {
+      "path": "archive/repo-evidence/docs/encoder/data/session9/practical-review/index.html",
+      "bytes": 1120347,
+      "sha256": "1db5d66d362663c638007f597f39be49451c517de153d40956b22b578cce6c78",
+      "group": "archive",
+      "required": false,
+      "category": "broadcast-or-uncertain-derived",
+      "provenance": "Broadcast input, derivative, or content-bearing historical evidence conservatively retained externally",
+      "purpose": "Optional targeted historical investigation, excluded from normal test dependencies"
+    },
+    {
+      "path": "archive/repo-evidence/docs/encoder/data/session9/practical-review/mixed-broadcast-photo-fldigi.png",
+      "bytes": 56268,
+      "sha256": "1d972c45fc0be5bd38e16e0c2bb38345d60ffe56a65179afe363e5c8d3e1a9b7",
+      "group": "archive",
+      "required": false,
+      "category": "broadcast-or-uncertain-derived",
+      "provenance": "Broadcast input, derivative, or content-bearing historical evidence conservatively retained externally",
+      "purpose": "Optional targeted historical investigation, excluded from normal test dependencies"
+    },
+    {
+      "path": "archive/repo-evidence/docs/encoder/data/session9/practical-review/mixed-broadcast-photo-grampy.png",
+      "bytes": 56640,
+      "sha256": "32c3be1ea7d0bd9a517932c5244c5b3c35b8508f419c45a1697ec898541fc458",
+      "group": "archive",
+      "required": false,
+      "category": "broadcast-or-uncertain-derived",
+      "provenance": "Broadcast input, derivative, or content-bearing historical evidence conservatively retained externally",
+      "purpose": "Optional targeted historical investigation, excluded from normal test dependencies"
+    },
+    {
+      "path": "archive/repo-evidence/docs/encoder/data/session9/practical-review/mixed-broadcast-photo-truth.png",
+      "bytes": 60016,
+      "sha256": "1d316ddfc96078f19a20d83769d36b1efcd23cdc03d0047832e65024fcd026d0",
+      "group": "archive",
+      "required": false,
+      "category": "broadcast-or-uncertain-derived",
+      "provenance": "Broadcast input, derivative, or content-bearing historical evidence conservatively retained externally",
+      "purpose": "Optional targeted historical investigation, excluded from normal test dependencies"
+    },
+    {
+      "path": "archive/repo-evidence/docs/encoder/data/session9/practical-review/rgb64-p4-card-fldigi.png",
+      "bytes": 64084,
+      "sha256": "eebe7b349049f0be2b7126e547cc5bf589239dbd9b5789b11165014ce28380ee",
+      "group": "archive",
+      "required": false,
+      "category": "broadcast-or-uncertain-derived",
+      "provenance": "Broadcast input, derivative, or content-bearing historical evidence conservatively retained externally",
+      "purpose": "Optional targeted historical investigation, excluded from normal test dependencies"
+    },
+    {
+      "path": "archive/repo-evidence/docs/encoder/data/session9/practical-review/rgb64-p4-card-grampy.png",
+      "bytes": 64700,
+      "sha256": "b40f21017a5841fe61946609a9108dee69c22f3fcfdc448bf08e0f0cf2f03bc9",
+      "group": "archive",
+      "required": false,
+      "category": "broadcast-or-uncertain-derived",
+      "provenance": "Broadcast input, derivative, or content-bearing historical evidence conservatively retained externally",
+      "purpose": "Optional targeted historical investigation, excluded from normal test dependencies"
+    },
+    {
+      "path": "archive/repo-evidence/docs/encoder/data/session9/practical-review/rgb64-p4-card-truth.png",
+      "bytes": 66779,
+      "sha256": "f54c55ee0eda798a3fa9d4bcc32ba45cebc08eaa5ddb41808ac3fc7b44aaddc7",
+      "group": "archive",
+      "required": false,
+      "category": "broadcast-or-uncertain-derived",
+      "provenance": "Broadcast input, derivative, or content-bearing historical evidence conservatively retained externally",
+      "purpose": "Optional targeted historical investigation, excluded from normal test dependencies"
+    },
+    {
+      "path": "archive/repo-evidence/docs/encoder/data/session9/practical-review/rgb64-p8-photo-fldigi.png",
+      "bytes": 57722,
+      "sha256": "6705cfe517d98003fd2e4c226e1cecba6a055327abca8457f0194f9790eec08f",
+      "group": "archive",
+      "required": false,
+      "category": "broadcast-or-uncertain-derived",
+      "provenance": "Broadcast input, derivative, or content-bearing historical evidence conservatively retained externally",
+      "purpose": "Optional targeted historical investigation, excluded from normal test dependencies"
+    },
+    {
+      "path": "archive/repo-evidence/docs/encoder/data/session9/practical-review/rgb64-p8-photo-grampy.png",
+      "bytes": 58842,
+      "sha256": "754730fc593515b5795ce375f0f01d42583dfa0036966047969806414f2008f9",
+      "group": "archive",
+      "required": false,
+      "category": "broadcast-or-uncertain-derived",
+      "provenance": "Broadcast input, derivative, or content-bearing historical evidence conservatively retained externally",
+      "purpose": "Optional targeted historical investigation, excluded from normal test dependencies"
+    },
+    {
+      "path": "archive/repo-evidence/docs/encoder/data/session9/practical-review/rgb64-p8-photo-truth.png",
+      "bytes": 60016,
+      "sha256": "1d316ddfc96078f19a20d83769d36b1efcd23cdc03d0047832e65024fcd026d0",
+      "group": "archive",
+      "required": false,
+      "category": "broadcast-or-uncertain-derived",
+      "provenance": "Broadcast input, derivative, or content-bearing historical evidence conservatively retained externally",
+      "purpose": "Optional targeted historical investigation, excluded from normal test dependencies"
+    },
+    {
+      "path": "archive/repo-evidence/docs/operations/data/test-coverage-audit/inventory.json",
+      "bytes": 384703,
+      "sha256": "89572ea668d3469ec090983235e90b427885b83acb2911f5e62528afb657eb3d",
+      "group": "archive",
+      "required": false,
+      "category": "broadcast-or-uncertain-derived",
+      "provenance": "Broadcast input, derivative, or content-bearing historical evidence conservatively retained externally",
+      "purpose": "Optional targeted historical investigation, excluded from normal test dependencies"
+    },
+    {
+      "path": "controlled-mfsk-v1/manifest.json",
+      "bytes": 9183,
+      "sha256": "41e5f4252e827aa20155d85502cd68bd8fa75ed46e3ce2db9d2ac90ec134e980",
+      "group": "required",
+      "required": true,
+      "category": "large-native-controlled",
+      "provenance": "Project-authored payload and primary-colour vectors; independent fldigi generation and receive validation; accepted waveform version",
+      "purpose": "Controlled IQ decoding and interoperability coverage; portable artifact metadata accompanies large recordings"
+    },
+    {
+      "path": "controlled-mfsk-v1/mfsk32-text-printable/receiver-text.txt",
+      "bytes": 32,
+      "sha256": "8338af7bf4b862af79354fe7355ecf6d12995889bc8583938bbe24a4a9da6b9c",
+      "group": "required",
+      "required": true,
+      "category": "large-native-controlled",
+      "provenance": "Project-authored payload and primary-colour vectors; independent fldigi generation and receive validation; accepted waveform version",
+      "purpose": "Controlled IQ decoding and interoperability coverage; portable artifact metadata accompanies large recordings"
+    },
+    {
+      "path": "controlled-mfsk-v1/mfsk32-text-printable/transmission.sigmf-data",
+      "bytes": 9601536,
+      "sha256": "b1d34f3acb43ded70351a63296ad31be77fa0bc12b9ddc8077114c0d7812c12d",
+      "group": "required",
+      "required": true,
+      "category": "large-native-controlled",
+      "provenance": "Project-authored payload and primary-colour vectors; independent fldigi generation and receive validation; accepted waveform version",
+      "purpose": "Controlled IQ decoding and interoperability coverage; portable artifact metadata accompanies large recordings"
+    },
+    {
+      "path": "controlled-mfsk-v1/mfsk32-text-printable/transmission.sigmf-meta",
+      "bytes": 1025,
+      "sha256": "bc090b6b4013bfe7ed56fce36be1bb7de93271e031cb1143c8ecb7aa24c2bc13",
+      "group": "required",
+      "required": true,
+      "category": "large-native-controlled",
+      "provenance": "Project-authored payload and primary-colour vectors; independent fldigi generation and receive validation; accepted waveform version",
+      "purpose": "Controlled IQ decoding and interoperability coverage; portable artifact metadata accompanies large recordings"
+    },
+    {
+      "path": "controlled-mfsk-v1/mfsk32-text-printable/transmission.wav",
+      "bytes": 2400428,
+      "sha256": "379310c43590b78373b9cfe809706147272156e214b9cc6b449fc59c6641271e",
+      "group": "required",
+      "required": true,
+      "category": "large-native-controlled",
+      "provenance": "Project-authored payload and primary-colour vectors; independent fldigi generation and receive validation; accepted waveform version",
+      "purpose": "Controlled IQ decoding and interoperability coverage; portable artifact metadata accompanies large recordings"
+    },
+    {
+      "path": "controlled-mfsk-v1/mfsk64-gray-8x4-p8/receiver-text.txt",
+      "bytes": 39,
+      "sha256": "05576168989a78b78496dab6d57640ab2684c7fb9b7a5a02af75cb0ec0595ecb",
+      "group": "required",
+      "required": true,
+      "category": "large-native-controlled",
+      "provenance": "Project-authored payload and primary-colour vectors; independent fldigi generation and receive validation; accepted waveform version",
+      "purpose": "Controlled IQ decoding and interoperability coverage; portable artifact metadata accompanies large recordings"
+    },
+    {
+      "path": "controlled-mfsk-v1/mfsk64-gray-8x4-p8/receiver.png",
+      "bytes": 268,
+      "sha256": "cf9087d9f4fe6229c9ea74c1bce903f6d86547177f38bf7a2339893ff161bf40",
+      "group": "required",
+      "required": true,
+      "category": "large-native-controlled",
+      "provenance": "Project-authored payload and primary-colour vectors; independent fldigi generation and receive validation; accepted waveform version",
+      "purpose": "Controlled IQ decoding and interoperability coverage; portable artifact metadata accompanies large recordings"
+    },
+    {
+      "path": "controlled-mfsk-v1/mfsk64-gray-8x4-p8/transmission.sigmf-data",
+      "bytes": 7873536,
+      "sha256": "24541017a252d27bf5c0c18967b0253ae4c401c573faf0842cc5c512b3ce0768",
+      "group": "required",
+      "required": true,
+      "category": "large-native-controlled",
+      "provenance": "Project-authored payload and primary-colour vectors; independent fldigi generation and receive validation; accepted waveform version",
+      "purpose": "Controlled IQ decoding and interoperability coverage; portable artifact metadata accompanies large recordings"
+    },
+    {
+      "path": "controlled-mfsk-v1/mfsk64-gray-8x4-p8/transmission.sigmf-meta",
+      "bytes": 1022,
+      "sha256": "7c3df5b6fe2f7591cd82f9a5cbc931806d2727807ce3995eaf06578a202dcc16",
+      "group": "required",
+      "required": true,
+      "category": "large-native-controlled",
+      "provenance": "Project-authored payload and primary-colour vectors; independent fldigi generation and receive validation; accepted waveform version",
+      "purpose": "Controlled IQ decoding and interoperability coverage; portable artifact metadata accompanies large recordings"
+    },
+    {
+      "path": "controlled-mfsk-v1/mfsk64-gray-8x4-p8/transmission.wav",
+      "bytes": 1968428,
+      "sha256": "eb74b7dad6e70cf7fc46aa76253e7b5dca0ce921db6ea5f6d08a58dd6f9a69d2",
+      "group": "required",
+      "required": true,
+      "category": "large-native-controlled",
+      "provenance": "Project-authored payload and primary-colour vectors; independent fldigi generation and receive validation; accepted waveform version",
+      "purpose": "Controlled IQ decoding and interoperability coverage; portable artifact metadata accompanies large recordings"
+    },
+    {
+      "path": "controlled-mfsk-v1/mfsk64-primary-color-8x4-4.2.12/receiver-text.txt",
+      "bytes": 46,
+      "sha256": "e8424e4994aeaf0d189164878781279290afe4ce942949e6164f08e6e3f2c345",
+      "group": "required",
+      "required": true,
+      "category": "large-native-controlled",
+      "provenance": "Project-authored payload and primary-colour vectors; independent fldigi generation and receive validation; accepted waveform version",
+      "purpose": "Controlled IQ decoding and interoperability coverage; portable artifact metadata accompanies large recordings"
+    },
+    {
+      "path": "controlled-mfsk-v1/mfsk64-primary-color-8x4-4.2.12/receiver.png",
+      "bytes": 278,
+      "sha256": "2a73297bcb63447946a8bdb3d621ba356ded967444f395f49e996d6afa01d76d",
+      "group": "required",
+      "required": true,
+      "category": "large-native-controlled",
+      "provenance": "Project-authored payload and primary-colour vectors; independent fldigi generation and receive validation; accepted waveform version",
+      "purpose": "Controlled IQ decoding and interoperability coverage; portable artifact metadata accompanies large recordings"
+    },
+    {
+      "path": "controlled-mfsk-v1/mfsk64-primary-color-8x4-4.2.12/transmission.sigmf-data",
+      "bytes": 8449536,
+      "sha256": "bd2a697b6660e21e692b976ae09faa6e6d6ff4a96d50838307d810e581d02641",
+      "group": "required",
+      "required": true,
+      "category": "large-native-controlled",
+      "provenance": "Project-authored payload and primary-colour vectors; independent fldigi generation and receive validation; accepted waveform version",
+      "purpose": "Controlled IQ decoding and interoperability coverage; portable artifact metadata accompanies large recordings"
+    },
+    {
+      "path": "controlled-mfsk-v1/mfsk64-primary-color-8x4-4.2.12/transmission.sigmf-meta",
+      "bytes": 1025,
+      "sha256": "bc26c7b3dab664b1a219d056e9bde431d9d2ef71343fc27d03ec4210b06798d5",
+      "group": "required",
+      "required": true,
+      "category": "large-native-controlled",
+      "provenance": "Project-authored payload and primary-colour vectors; independent fldigi generation and receive validation; accepted waveform version",
+      "purpose": "Controlled IQ decoding and interoperability coverage; portable artifact metadata accompanies large recordings"
+    },
+    {
+      "path": "controlled-mfsk-v1/mfsk64-primary-color-8x4-4.2.12/transmission.wav",
+      "bytes": 2112428,
+      "sha256": "d7dae1d9dcc558b53ae55eca824b7c2a4caac3010631116b16e342e81fd88895",
+      "group": "required",
+      "required": true,
+      "category": "large-native-controlled",
+      "provenance": "Project-authored payload and primary-colour vectors; independent fldigi generation and receive validation; accepted waveform version",
+      "purpose": "Controlled IQ decoding and interoperability coverage; portable artifact metadata accompanies large recordings"
+    },
+    {
+      "path": "controlled-mfsk-v1/mfsk64-text-printable/receiver-text.txt",
+      "bytes": 32,
+      "sha256": "4a25ac665f914fee0dc74c0167d8c4088bd464fc75879e6885fcc262603a6673",
+      "group": "required",
+      "required": true,
+      "category": "large-native-controlled",
+      "provenance": "Project-authored payload and primary-colour vectors; independent fldigi generation and receive validation; accepted waveform version",
+      "purpose": "Controlled IQ decoding and interoperability coverage; portable artifact metadata accompanies large recordings"
+    },
+    {
+      "path": "controlled-mfsk-v1/mfsk64-text-printable/transmission.sigmf-data",
+      "bytes": 8354304,
+      "sha256": "64bd981cebd89b866cb51180696380f565078549b64e6512c11f1142b7033167",
+      "group": "required",
+      "required": true,
+      "category": "large-native-controlled",
+      "provenance": "Project-authored payload and primary-colour vectors; independent fldigi generation and receive validation; accepted waveform version",
+      "purpose": "Controlled IQ decoding and interoperability coverage; portable artifact metadata accompanies large recordings"
+    },
+    {
+      "path": "controlled-mfsk-v1/mfsk64-text-printable/transmission.sigmf-meta",
+      "bytes": 1025,
+      "sha256": "528950b064a07867f29a0ce1cffb78d41a87e45f740ccc2093489b017fb09068",
+      "group": "required",
+      "required": true,
+      "category": "large-native-controlled",
+      "provenance": "Project-authored payload and primary-colour vectors; independent fldigi generation and receive validation; accepted waveform version",
+      "purpose": "Controlled IQ decoding and interoperability coverage; portable artifact metadata accompanies large recordings"
+    },
+    {
+      "path": "controlled-mfsk-v1/mfsk64-text-printable/transmission.wav",
+      "bytes": 2088620,
+      "sha256": "0f9fa76b9c0afbb0d9dd9126562b0b81ebd0425fb225d87673ca176e353d8c8a",
+      "group": "required",
+      "required": true,
+      "category": "large-native-controlled",
+      "provenance": "Project-authored payload and primary-colour vectors; independent fldigi generation and receive validation; accepted waveform version",
+      "purpose": "Controlled IQ decoding and interoperability coverage; portable artifact metadata accompanies large recordings"
+    },
+    {
+      "path": "received-corpus/README.md",
+      "bytes": 1614,
+      "sha256": "4efec3ba5bb2f9f4b9dbb4022c4459edb76989976981ea1f91e029922926254d",
+      "group": "required",
+      "required": true,
+      "category": "portable-companion-metadata",
+      "provenance": "Project-authored corpus engineering metadata; original header expectations in installed cases remain external",
+      "purpose": "Self-contained installed corpus representation; policy and reviewed case definitions are committed separately"
+    },
+    {
+      "path": "received-corpus/cases/winb-20260718-closing-rsid/case.json",
+      "bytes": 746,
+      "sha256": "44ac5fabb072bd30fcd3dfc27e1939959da7b42a3f6050f7741cd7d14267e20a",
+      "group": "required",
+      "required": true,
+      "category": "portable-companion-metadata",
+      "provenance": "Project-authored corpus engineering metadata; original header expectations in installed cases remain external",
+      "purpose": "Self-contained installed corpus representation; policy and reviewed case definitions are committed separately"
+    },
+    {
+      "path": "received-corpus/cases/winb-20260718-full-broadcast/case.json",
+      "bytes": 837,
+      "sha256": "c36970bd94c77187c8c1647a4f4ba581bf8b63ad9e9298c556e7770dcfab548d",
+      "group": "required",
+      "required": true,
+      "category": "portable-companion-metadata",
+      "provenance": "Project-authored corpus engineering metadata; original header expectations in installed cases remain external",
+      "purpose": "Self-contained installed corpus representation; policy and reviewed case definitions are committed separately"
+    },
+    {
+      "path": "received-corpus/cases/winb-20260718-mfsk64-transition/case.json",
+      "bytes": 795,
+      "sha256": "0b28735fd075b2b2727a431a18152af9457ae188be0dcfde8b8120e79a57b069",
+      "group": "required",
+      "required": true,
+      "category": "portable-companion-metadata",
+      "provenance": "Project-authored corpus engineering metadata; original header expectations in installed cases remain external",
+      "purpose": "Self-contained installed corpus representation; policy and reviewed case definitions are committed separately"
+    },
+    {
+      "path": "received-corpus/cases/winb-20260718-opening-rsid/case.json",
+      "bytes": 793,
+      "sha256": "0bb4005710f293ab699d5ff2c2ffe89ae300a7c6c86af98c884a3bd4000149ff",
+      "group": "required",
+      "required": true,
+      "category": "portable-companion-metadata",
+      "provenance": "Project-authored corpus engineering metadata; original header expectations in installed cases remain external",
+      "purpose": "Self-contained installed corpus representation; policy and reviewed case definitions are committed separately"
+    },
+    {
+      "path": "received-corpus/cases/wrmi-20260708-full-broadcast/case.json",
+      "bytes": 853,
+      "sha256": "9c6733a69cbfea030abf66004ffad2dbdc0242f059d29cfc994dbbdbdccbd152",
+      "group": "required",
+      "required": true,
+      "category": "portable-companion-metadata",
+      "provenance": "Project-authored corpus engineering metadata; original header expectations in installed cases remain external",
+      "purpose": "Self-contained installed corpus representation; policy and reviewed case definitions are committed separately"
+    },
+    {
+      "path": "received-corpus/cases/wrmi-20260708-mfsk32-acquisition/case.json",
+      "bytes": 934,
+      "sha256": "fc81c7bdcdee0063d7c97e48fb3685ce54830085ef5fee819a23c6595b7c18d0",
+      "group": "required",
+      "required": true,
+      "category": "portable-companion-metadata",
+      "provenance": "Project-authored corpus engineering metadata; original header expectations in installed cases remain external",
+      "purpose": "Self-contained installed corpus representation; policy and reviewed case definitions are committed separately"
+    },
+    {
+      "path": "received-corpus/cases/wrmi-20260708-mfsk64-text/case.json",
+      "bytes": 838,
+      "sha256": "556f3573b18e96786696ee13dbeefe9d188845e4e0f473f8d90f2dc2992dfbb8",
+      "group": "required",
+      "required": true,
+      "category": "portable-companion-metadata",
+      "provenance": "Project-authored corpus engineering metadata; original header expectations in installed cases remain external",
+      "purpose": "Self-contained installed corpus representation; policy and reviewed case definitions are committed separately"
+    },
+    {
+      "path": "received-corpus/cases/wrmi-20260708-picture-return/case.json",
+      "bytes": 1064,
+      "sha256": "818bc0de8577d30e54696d49774f81f064f28ac6cfa2a8bcee165fa7418a57d9",
+      "group": "required",
+      "required": true,
+      "category": "portable-companion-metadata",
+      "provenance": "Project-authored corpus engineering metadata; original header expectations in installed cases remain external",
+      "purpose": "Self-contained installed corpus representation; policy and reviewed case definitions are committed separately"
+    },
+    {
+      "path": "received-corpus/cases/wrmi-20260715-held-out-full-broadcast/case.json",
+      "bytes": 727,
+      "sha256": "4f886c479a6643f9c1fafd4e0cd44953a090fbbb9f49d44bbc5f811daacc7ec1",
+      "group": "required",
+      "required": true,
+      "category": "portable-companion-metadata",
+      "provenance": "Project-authored corpus engineering metadata; original header expectations in installed cases remain external",
+      "purpose": "Self-contained installed corpus representation; policy and reviewed case definitions are committed separately"
+    },
+    {
+      "path": "received-corpus/cases/wrmi-20260720-closing-rsid/case.json",
+      "bytes": 800,
+      "sha256": "7b9cd10416072232650109f46fc562adaea3c1e1c0ed6a112c79a820923b2788",
+      "group": "required",
+      "required": true,
+      "category": "portable-companion-metadata",
+      "provenance": "Project-authored corpus engineering metadata; original header expectations in installed cases remain external",
+      "purpose": "Self-contained installed corpus representation; policy and reviewed case definitions are committed separately"
+    },
+    {
+      "path": "received-corpus/cases/wrmi-20260720-full-broadcast/case.json",
+      "bytes": 839,
+      "sha256": "3675ae62225d723490fbd93a747e5fb2941089bea17f3fbed756a67413dfb4ce",
+      "group": "required",
+      "required": true,
+      "category": "portable-companion-metadata",
+      "provenance": "Project-authored corpus engineering metadata; original header expectations in installed cases remain external",
+      "purpose": "Self-contained installed corpus representation; policy and reviewed case definitions are committed separately"
+    },
+    {
+      "path": "received-corpus/cases/wrmi-20260720-mfsk64-transition/case.json",
+      "bytes": 794,
+      "sha256": "e46596299b0dd6753d2042c2fe10bf0003207ccb43afaec6e1d3f8402fa201a1",
+      "group": "required",
+      "required": true,
+      "category": "portable-companion-metadata",
+      "provenance": "Project-authored corpus engineering metadata; original header expectations in installed cases remain external",
+      "purpose": "Self-contained installed corpus representation; policy and reviewed case definitions are committed separately"
+    },
+    {
+      "path": "received-corpus/cases/wrmi-20260720-opening-rsid/case.json",
+      "bytes": 786,
+      "sha256": "73f8b9715b7fdf6550c64c9fb4bfc7d36318ddb6ce775989a599270e0572b879",
+      "group": "required",
+      "required": true,
+      "category": "portable-companion-metadata",
+      "provenance": "Project-authored corpus engineering metadata; original header expectations in installed cases remain external",
+      "purpose": "Self-contained installed corpus representation; policy and reviewed case definitions are committed separately"
+    },
+    {
+      "path": "received-corpus/cases/wrmi-20260722-15770000-full-broadcast/case.json",
+      "bytes": 655,
+      "sha256": "324b6067ee03dd8dbae6580f4590952d0f225e9122592b9e12d2f9b8fcbb22d2",
+      "group": "required",
+      "required": true,
+      "category": "portable-companion-metadata",
+      "provenance": "Project-authored corpus engineering metadata; original header expectations in installed cases remain external",
+      "purpose": "Self-contained installed corpus representation; policy and reviewed case definitions are committed separately"
+    },
+    {
+      "path": "received-corpus/cases/wrmi-20260729-15770000-full-broadcast/case.json",
+      "bytes": 654,
+      "sha256": "70328984c4fe9a09f13407de01ff51c6867f4a430caff4dc3c5282fd10491100",
+      "group": "required",
+      "required": true,
+      "category": "portable-companion-metadata",
+      "provenance": "Project-authored corpus engineering metadata; original header expectations in installed cases remain external",
+      "purpose": "Self-contained installed corpus representation; policy and reviewed case definitions are committed separately"
+    },
+    {
+      "path": "received-corpus/cases/wrmi-20260923-15770000-full-broadcast/case.json",
+      "bytes": 744,
+      "sha256": "f2017f0b1fbae31dc072ed8bb8b77fe4005646a769de60b1aa420dcdcd9d535b",
+      "group": "required",
+      "required": true,
+      "category": "portable-companion-metadata",
+      "provenance": "Project-authored corpus engineering metadata; original header expectations in installed cases remain external",
+      "purpose": "Self-contained installed corpus representation; policy and reviewed case definitions are committed separately"
+    },
+    {
+      "path": "received-corpus/corpus.json",
+      "bytes": 24070,
+      "sha256": "33179dcbc02a21748bd3f3fc1bd86b517f90f1e77bdd852fc03970a68a37e9ef",
+      "group": "required",
+      "required": true,
+      "category": "portable-companion-metadata",
+      "provenance": "Project-authored corpus engineering metadata; original header expectations in installed cases remain external",
+      "purpose": "Self-contained installed corpus representation; policy and reviewed case definitions are committed separately"
+    },
+    {
+      "path": "received-corpus/programs/456/program.json",
+      "bytes": 5978,
+      "sha256": "46d20e0fd8f6e92e9986d70c18b6a8f7ef8e682e33724c7e3638156697af1a4f",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/programs/456/transmissions/wrmi-20260708T133006Z-15770000.json",
+      "bytes": 3171,
+      "sha256": "f60b47b07496ddf2cdeb3a76d10f8a242bdb624c3fc165b4a6a5707bc2e2e106",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/programs/456/truth/images/001-180p-Bates-Ward-Ver2.png",
+      "bytes": 48531,
+      "sha256": "dba54c8a89148c45f2b18ee8294284906a3b2396fb88b439d65b9494a06351f7",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/programs/456/truth/images/002-220p-Wheat-field-Kansas.png",
+      "bytes": 75464,
+      "sha256": "ae94a41632ce1c5c49896bb5ae8f8c5123de65e2426fe3d5d8c340a0cbf6442e",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/programs/456/truth/images/003-222p-PurpleMountainsPikesPeak.png",
+      "bytes": 80209,
+      "sha256": "273e1053465b51cd9ae32d729b8f5e51ae0e91d62d41270fb3f5df541cbf51b8",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/programs/456/truth/images/004-218-The-Statue-of-Liberty-at-Sunset.png",
+      "bytes": 44576,
+      "sha256": "95ea65788dd177ce1b76250fd7188fecaad9191b5914367137444e4397deee6f",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/programs/456/truth/images/005-240p-ScottsBluffNatMon.png",
+      "bytes": 82319,
+      "sha256": "2ba18db57448c133d37757aaec0380ae86314ebddd879cceef3da60f66a6c178",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/programs/456/truth/images/006-240p-Sunset-VicksburyCemetery.png",
+      "bytes": 103376,
+      "sha256": "622760ef83622d73a06bc7bf76028d7885d782da0507dc30138de287224c46eb",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/programs/456/truth/images/007-240p-ChicagoColumbiaExpo-Rooftop.png",
+      "bytes": 58383,
+      "sha256": "05e2fb75fd0e1394ffe42ee602c704bba6b01acc8bd16969c8a04becbb7c464f",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/programs/456/truth/images/008-206p-fireworks-on-the-farm--criswell.png",
+      "bytes": 86253,
+      "sha256": "22e1a6f399aa2b8c52e21abe6788d58eabc94198029fb1c9c7e417582179a6f7",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/programs/456/truth/text-drafts/published-fldigi.normalized.txt",
+      "bytes": 11102,
+      "sha256": "3fcca25cd9316c39a04431e7e49b12471b27e78b3c88e0aa7aa73068b2cee0e9",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/programs/456/truth/text-drafts/published-fldigi.review.txt",
+      "bytes": 11422,
+      "sha256": "afba5f44605ae125c6d680072ecb3d6a7c62510e1b6e886696639c5aa83e4688",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/programs/456/truth/text-drafts/published-fldigi.txt",
+      "bytes": 11422,
+      "sha256": "afba5f44605ae125c6d680072ecb3d6a7c62510e1b6e886696639c5aa83e4688",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/programs/456/truth/text-drafts/text.review-candidate.txt",
+      "bytes": 11422,
+      "sha256": "afba5f44605ae125c6d680072ecb3d6a7c62510e1b6e886696639c5aa83e4688",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/programs/456/truth/text-drafts/wrmi-20260708T133006Z-15770000-fldigi-payload.normalized.txt",
+      "bytes": 10958,
+      "sha256": "558aad0317bcd8a72cc123c4a7575d397d12c9c2805777f83a3ce96a557cd6c4",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/programs/456/truth/text-drafts/wrmi-20260708T133006Z-15770000-fldigi-payload.review.txt",
+      "bytes": 11369,
+      "sha256": "85cbde58144eca26bc1316923c60a110c1fb3d8b201873a958da23e84e4f0ce6",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/programs/456/truth/text-review.json",
+      "bytes": 2416,
+      "sha256": "97637b35ac2057a92e563634990525bdf9d198ac5f7a118b99ba686c4f7066da",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/programs/456/truth/text.txt",
+      "bytes": 11422,
+      "sha256": "afba5f44605ae125c6d680072ecb3d6a7c62510e1b6e886696639c5aa83e4688",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/programs/458/program.json",
+      "bytes": 5962,
+      "sha256": "e64c2346e87138a8e534ab1c41978401849fb6ded5be43771d114c9ceb055d29",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/programs/458/transmissions/winb-20260718T023007Z-9265000.json",
+      "bytes": 1731,
+      "sha256": "47f46cc3a75bba0daf112100dfd1cd6d93271f1620a13b1ed2b4b8004093c597",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/programs/458/transmissions/wrmi-20260722T133008Z-15770000.json",
+      "bytes": 3188,
+      "sha256": "09de3b29707fc090104da40f349bccaf63a4cf413749da75a549e5c395b03195",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/programs/458/truth/images/001-SWRG458_Manhattanhenge.png",
+      "bytes": 86017,
+      "sha256": "ff533b779aab4915d0278157bbc8ca0997681d55a4f8c710bd07cfda566fd950",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/programs/458/truth/images/002-SWRG458_SpaceX.png",
+      "bytes": 37301,
+      "sha256": "8e276639b66cbda7adeebb63d27f1069fb5684fee4e52d29e94b3e082fe6f012",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/programs/458/truth/images/003-SWRG458_Pollen.png",
+      "bytes": 77433,
+      "sha256": "3ce3690e0def21c4edd8ebfa14142451e79299bd2c561562f9eef7c4b5266af2",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/programs/458/truth/images/004-SWRG458_Echinacea.png",
+      "bytes": 100074,
+      "sha256": "7b1d134e9bacfbedbfd76ab6c76ef2cbde6adba7ba08482279b08943dd233b70",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/programs/458/truth/images/005-SWRFG458_Masonic-sunset2.png",
+      "bytes": 45984,
+      "sha256": "fa560a3ae36ad7b5b12207e18f03e06045c7bb9093e499442f2755a95c26dbba",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/programs/458/truth/images/006-SWRG458_Wheatear.png",
+      "bytes": 74227,
+      "sha256": "1397c349beebdd277673904bdf7258ffa4aea2835bd2ff6e6c67aa669191efd4",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/programs/458/truth/images/007-SWRG458_Neon.png",
+      "bytes": 72961,
+      "sha256": "77a6812f429e2b3d468806c65d679cbb119a9c5150bdf9b689821a82b76b6f36",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/programs/458/truth/images/008-SWRG458_painting.png",
+      "bytes": 94562,
+      "sha256": "8d548d3076759b621e6b9346161c139d1a0403f20b820fa5a1796c3e1d87c302",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/programs/458/truth/text-drafts/published-fldigi.normalized.txt",
+      "bytes": 14668,
+      "sha256": "aa3c319b9e7b96b044e8330b1f746ea24eccc74ed7b08ad63782af846eb0c4ff",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/programs/458/truth/text-drafts/published-fldigi.review.txt",
+      "bytes": 14829,
+      "sha256": "f6e86539b7ba7cb9dc2712987fb50234cfd1d766cdf548631c6c7f3d4977e9db",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/programs/458/truth/text-drafts/published-fldigi.txt",
+      "bytes": 14829,
+      "sha256": "f6e86539b7ba7cb9dc2712987fb50234cfd1d766cdf548631c6c7f3d4977e9db",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/programs/458/truth/text-drafts/text.review-candidate.txt",
+      "bytes": 14829,
+      "sha256": "f6e86539b7ba7cb9dc2712987fb50234cfd1d766cdf548631c6c7f3d4977e9db",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/programs/458/truth/text-drafts/wrmi-20260722T133008Z-15770000-fldigi-payload.normalized.txt",
+      "bytes": 14692,
+      "sha256": "4671f413c14f827447fa3f4815b3d96cb1ee79ed1bb742d528c9dc42cb329724",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/programs/458/truth/text-drafts/wrmi-20260722T133008Z-15770000-fldigi-payload.review.txt",
+      "bytes": 14873,
+      "sha256": "e1f73642d3cea4bd485745103f59cfa66262be53650df0e38c003397657a2478",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/programs/458/truth/text-review.json",
+      "bytes": 2354,
+      "sha256": "95858b21c92285d8abed9371c24b005ac5fe9f27ba876c23286bb3fd64ec4fab",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/programs/458/truth/text.txt",
+      "bytes": 14829,
+      "sha256": "f6e86539b7ba7cb9dc2712987fb50234cfd1d766cdf548631c6c7f3d4977e9db",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/programs/459/program.json",
+      "bytes": 7477,
+      "sha256": "a99dfb773b30ef2e480d8034c9c88a571069017fe06853b76e6f92d4d91388b0",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/programs/459/transmissions/wrmi-20260729T133010Z-15770000.json",
+      "bytes": 3892,
+      "sha256": "0eccaafdbd5beb1fc46be6bbad84c14bd281aa4c135d7a9632e9354a48c1611a",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/programs/459/truth/images/001-SWRG459_Rti_KANHAM.png",
+      "bytes": 76910,
+      "sha256": "32b5600e30b9a81472497b4bcffb652ca95b52ded7c89eac438a5336a1b0415e",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/programs/459/truth/images/002-SWRG459_Fireplane.png",
+      "bytes": 66590,
+      "sha256": "42044bfaa86d9492526b5e8242a6200e4d0d7956e6f5da7cca312c1136fe912a",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/programs/459/truth/images/003-SWRG459_Comet.png",
+      "bytes": 50059,
+      "sha256": "ce812ee5007365fd66d0b89be17f90878bd6e5de9ff7469a46cceb1dde126883",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/programs/459/truth/images/004-SWRG459_Scotland_sunset.png",
+      "bytes": 78452,
+      "sha256": "17e4a583692e1ec8b63caf4b4446668a1e5db88d864ef150aacfeca108cc91fa",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/programs/459/truth/images/005-SWRG459_Waxing-moon.png",
+      "bytes": 14598,
+      "sha256": "3ffa5cba4d502526d9988b3b4e40d463f4ba693fa9bf7d039e66f15438cedc28",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/programs/459/truth/images/006-SWRG459_Water-Lilies.png",
+      "bytes": 94415,
+      "sha256": "e1b09d9f819f6759c0d7e5f1f5ee54d9f9f5a96d417a7e3e48f695cd34805bbc",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/programs/459/truth/images/007-SWRG459_Ekalala-Falls2.png",
+      "bytes": 74808,
+      "sha256": "1d6c61782477bcba367a16d3f3cf9c19bdc6b8e41669a39288038ee244d66a34",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/programs/459/truth/images/009-SWRG459_Garbage-bins2.png",
+      "bytes": 70362,
+      "sha256": "b902b1238c107127fbad6347aea186ae04cec449f65034e3b036fe6405056091",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/programs/459/truth/images/010-SWRG459_Siciliy3BW.png",
+      "bytes": 103157,
+      "sha256": "b50733ed026b6d747ef38c57f3dc94686e54b6d8e692c2ff0068f0a9b58361b7",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/programs/459/truth/images/011-SWRG459_painting.png",
+      "bytes": 115554,
+      "sha256": "ca466682d288560484868ddcbf2fa72be47f10012284c6ac758e701ce018a154",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/programs/459/truth/text-drafts/published-fldigi.normalized.txt",
+      "bytes": 7753,
+      "sha256": "71c0fb82c19a03d49846f164e6a7b6038e7f67c3efde9e1a60ff028546108942",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/programs/459/truth/text-drafts/published-fldigi.review.txt",
+      "bytes": 7890,
+      "sha256": "66964187ce228495a201e1c237107d2d4becdc249d17db9952f3e2f1ca060ca8",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/programs/459/truth/text-drafts/published-fldigi.txt",
+      "bytes": 7890,
+      "sha256": "66964187ce228495a201e1c237107d2d4becdc249d17db9952f3e2f1ca060ca8",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/programs/459/truth/text-drafts/text.review-candidate.txt",
+      "bytes": 7895,
+      "sha256": "829edf39a5daeebe49542ac4fd2d9b360a1c87fa30bde0a657e551013d827d35",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/programs/459/truth/text-drafts/wrmi-20260729T133010Z-15770000-fldigi-payload.normalized.txt",
+      "bytes": 7760,
+      "sha256": "3c0f6185f1b6c956d0e95bbefb0d4c8b4cddc920868d5ab92faa22cfffc74b15",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/programs/459/truth/text-drafts/wrmi-20260729T133010Z-15770000-fldigi-payload.review.txt",
+      "bytes": 7918,
+      "sha256": "777ace0a7f94abd9826816e08c6a9f212d9acdb6db1589da9f0672f2d4fc7fcc",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/programs/459/truth/text-review.json",
+      "bytes": 2422,
+      "sha256": "a4f19aa39dcd2f4c53a4f313519780d943269c784d8fd2bc2ad2e6e7b41223ad",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/programs/459/truth/text.txt",
+      "bytes": 7895,
+      "sha256": "829edf39a5daeebe49542ac4fd2d9b360a1c87fa30bde0a657e551013d827d35",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/winb-20260718T023007Z-9265000/fldigi-4.2.06/content.txt",
+      "bytes": 15402,
+      "sha256": "4d345dcf68c5a7265c8f6f86c3a46dee5a6bb31ea188fb4bf52890e802bc93b4",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/winb-20260718T023007Z-9265000/fldigi-4.2.06/decode-pipeline.json",
+      "bytes": 4464,
+      "sha256": "22fb53f33fc50cd78d2cb9deb495ae11f60497a794e7a67eac6cb62f801f620b",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/winb-20260718T023007Z-9265000/fldigi-4.2.06/decoded.txt",
+      "bytes": 16882,
+      "sha256": "88a95a2878746407526a5b25faff7c0ed9ca0e7e78328233364649c911757554",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/winb-20260718T023007Z-9265000/fldigi-4.2.06/images/001-pic_2026-07-21_121011z.png",
+      "bytes": 89156,
+      "sha256": "f984dc25c4d07185e62a6ef5d65d749ac880552e16bca1435c5d3bdf62ee1fe8",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/winb-20260718T023007Z-9265000/fldigi-4.2.06/images/002-pic_2026-07-21_121156z.png",
+      "bytes": 82214,
+      "sha256": "8f611a00fc033839d25f831b9ddc68a81135c02edcc1d07ca7ab0dac66222d3e",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/winb-20260718T023007Z-9265000/fldigi-4.2.06/metadata.json",
+      "bytes": 1661,
+      "sha256": "a4304ec8668005b3f7cd69c1d4d4fcf36b0c201684ebcff62a756c196849d0d5",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/winb-20260718T023007Z-9265000/fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178/content.txt",
+      "bytes": 15375,
+      "sha256": "5d51b97f378ffc1b1dcf9f7a87883fc05061479def6c374b56ca5a781fea018c",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/winb-20260718T023007Z-9265000/fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178/decoded.txt",
+      "bytes": 16801,
+      "sha256": "aa9db68a08c8a02e3aecdcbde1762ca0f6e86d9212fe7f2fcc57444791776063",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/winb-20260718T023007Z-9265000/fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178/images/001-pic_2026-07-31_220655z.png",
+      "bytes": 89156,
+      "sha256": "01556a6c3690c335506bbf6495ea4c622d485e427de090e1479c64a27ab76480",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/winb-20260718T023007Z-9265000/fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178/images/002-pic_2026-07-31_220841z.png",
+      "bytes": 82214,
+      "sha256": "91bb4d137a3fed9c4014eed61b644dbed5070ae35709f7cdd89da877b6804978",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/winb-20260718T023007Z-9265000/fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178/metadata.json",
+      "bytes": 1671,
+      "sha256": "b8025f1c0f36b28613d7658a79ffaf825aa56675a4904238bd5191d598c70ec8",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/winb-20260718T023007Z-9265000/fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178/reference-manifest.json",
+      "bytes": 5718,
+      "sha256": "d29632792988bca603a7fda13c2efd45583e819d2dfe4825cb9b351a76d0a017",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/winb-20260718T023007Z-9265000/fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178/reference-provenance.json",
+      "bytes": 890,
+      "sha256": "54c460c56ea67f58f3e66239708151cdfa8e6a53d9bc8e9bc6f98236045ccf50",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260708T133006Z-15770000/fldigi-4.2.06/content.txt",
+      "bytes": 11665,
+      "sha256": "b043b9992372af5dc5850f4671560df94adbfc62142dee49db49c4851b8e204b",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260708T133006Z-15770000/fldigi-4.2.06/decode-pipeline.json",
+      "bytes": 4004,
+      "sha256": "4b88e4350867666b7c907ae4d9018e4aaa4121852e19784cccf3cc653127c4fb",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260708T133006Z-15770000/fldigi-4.2.06/decoded.txt",
+      "bytes": 12124,
+      "sha256": "a05796034e2e21582302564639fa91a7d0625129ba19d989ba6855a3df6e152b",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260708T133006Z-15770000/fldigi-4.2.06/images/001-pic_2026-07-13_165526z.png",
+      "bytes": 65145,
+      "sha256": "d63b54ed69abae6b5713f3d135580cbe28bf54ddd0ad41fb5e7aacaeb7fa6943",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260708T133006Z-15770000/fldigi-4.2.06/images/002-pic_2026-07-13_170123z.png",
+      "bytes": 92429,
+      "sha256": "1ad0617816b5e92d1fb9ab44e3b1e2a02157e42cda435a3e6063fa6b1741ad2d",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260708T133006Z-15770000/fldigi-4.2.06/images/003-pic_2026-07-13_170312z.png",
+      "bytes": 87629,
+      "sha256": "729e802e208254a4339dbcd0d4199e54b0f4948fc96f46d5709c6b756ee6b7a1",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260708T133006Z-15770000/fldigi-4.2.06/images/004-pic_2026-07-13_170512z.png",
+      "bytes": 99838,
+      "sha256": "fc3883ebec93bd5e9aff2ffcbb0a25296eb8c45415fbc27b97582f434d0b1c24",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260708T133006Z-15770000/fldigi-4.2.06/images/005-pic_2026-07-13_170743z.png",
+      "bytes": 106941,
+      "sha256": "0b4d275695b848cab671237ada22e194adfbfb5fca7a935fda4227e5c01a2d12",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260708T133006Z-15770000/fldigi-4.2.06/images/006-pic_2026-07-13_171022z.png",
+      "bytes": 125492,
+      "sha256": "386eeffb2beeb15daf0a434df81a441939a21cf2605c7a91708a7c2a7fa0d39d",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260708T133006Z-15770000/fldigi-4.2.06/images/007-pic_2026-07-13_171156z.png",
+      "bytes": 89130,
+      "sha256": "697f1f4eb740d05d3d89e99519315737e02e03a10944a010ca5cc3d8ebf8f7c3",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260708T133006Z-15770000/fldigi-4.2.06/images/008-pic_2026-07-13_171354z.png",
+      "bytes": 98584,
+      "sha256": "79755268e84fa3c3a1ad64d94fdec101dd5f79fc526213df1d228994c12824c6",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260708T133006Z-15770000/fldigi-4.2.06/metadata.json",
+      "bytes": 1493,
+      "sha256": "a9f4a22d6295e392ea0ce1005e81be87bde255bddbe2d2092d7a2de0b7782cc3",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260708T133006Z-15770000/fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178/content.txt",
+      "bytes": 11661,
+      "sha256": "826ea6c6ba9ee6e5400bce466ae7a6dc3a3d63a1a4c255346ada1f055b9993fe",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260708T133006Z-15770000/fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178/decoded.txt",
+      "bytes": 12127,
+      "sha256": "d87711d3685f9e9d5ec470e0f6c0c4bf3a6bf44e869c7c12ca28f9a7b8c98985",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260708T133006Z-15770000/fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178/images/001-pic_2026-07-31_210014z.png",
+      "bytes": 65145,
+      "sha256": "db2793b7c92f4bee19a5872d6935dbc1e8ccf6141c3137964f35ba47ba90632c",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260708T133006Z-15770000/fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178/images/002-pic_2026-07-31_210612z.png",
+      "bytes": 92434,
+      "sha256": "f9a430942aaaba71bbc8ccd40626ff8e0a3141cf0fdfb681864bbd08c0e9863a",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260708T133006Z-15770000/fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178/images/003-pic_2026-07-31_210801z.png",
+      "bytes": 87629,
+      "sha256": "1c24af8628d3572aab77d4e10d7ed4a35f3767c5ed820f3aa6e71a12cd03f55a",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260708T133006Z-15770000/fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178/images/004-pic_2026-07-31_211000z.png",
+      "bytes": 99838,
+      "sha256": "2129d8747e669949effa1926bbfa45019326cc27c19a890fce6a32b2e4fdad04",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260708T133006Z-15770000/fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178/images/005-pic_2026-07-31_211232z.png",
+      "bytes": 106938,
+      "sha256": "7c9317489a11c440e54606bdb557209421ff31d91fb9f14a00ffef005b70e1b2",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260708T133006Z-15770000/fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178/images/006-pic_2026-07-31_211510z.png",
+      "bytes": 125492,
+      "sha256": "c88a3335e290470dba063ee9c1e86cfbeba7e6c88cb70b98a000563e15a5e88e",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260708T133006Z-15770000/fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178/images/007-pic_2026-07-31_211645z.png",
+      "bytes": 89137,
+      "sha256": "08ced54149aef0c4133f3030effe40fd3bef21b8a944b43ec8d600840fab527b",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260708T133006Z-15770000/fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178/images/008-pic_2026-07-31_211842z.png",
+      "bytes": 98588,
+      "sha256": "9808bd7e521c8e5c28417df34e651b61de7a17ccedf6072abdc227ecbab03a1f",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260708T133006Z-15770000/fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178/metadata.json",
+      "bytes": 1539,
+      "sha256": "18d887a636357d9c654a03cdf056ce4001175e6e5cb8d215c00c563d85c91bbf",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260708T133006Z-15770000/fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178/reference-manifest.json",
+      "bytes": 5718,
+      "sha256": "d29632792988bca603a7fda13c2efd45583e819d2dfe4825cb9b351a76d0a017",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260708T133006Z-15770000/fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178/reference-provenance.json",
+      "bytes": 915,
+      "sha256": "5bf4001acfc41ac67b9808df106ba4b744ca2400772922070bfea527aad64909",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260722T133008Z-15770000/fldigi-4.2.06/content.txt",
+      "bytes": 15214,
+      "sha256": "e6394fba4025d9e64f3fbe18c536ad4bdbbd6b57ada8486835910cd6d166a93e",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260722T133008Z-15770000/fldigi-4.2.06/decode-pipeline.json",
+      "bytes": 4556,
+      "sha256": "183e37b892d3dc259138e1330cc0e3becc3c0c2b09f94baabbc46e2a71649503",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260722T133008Z-15770000/fldigi-4.2.06/decoded.txt",
+      "bytes": 16204,
+      "sha256": "f734baf6dd624bcd6aac229c1e3d4b3a8e543c077861e343dacaee3808abae97",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260722T133008Z-15770000/fldigi-4.2.06/images/001-pic_2026-07-22_144643z.png",
+      "bytes": 68661,
+      "sha256": "e0c2010c9c7bb4c04aad1ce5ab8d67b8f6bae555aad00c0babdd8aad8f28510f",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260722T133008Z-15770000/fldigi-4.2.06/images/002-pic_2026-07-22_144831z.png",
+      "bytes": 62896,
+      "sha256": "20125b4dcc471d8b1895e9408ae1b876d464a81236264092c75080d77faae1b3",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260722T133008Z-15770000/fldigi-4.2.06/images/003-pic_2026-07-22_145016z.png",
+      "bytes": 62587,
+      "sha256": "61630d2a6e66453690f39a56e260dea33c0f551505804b3e10c656b9e4fc5ee0",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260722T133008Z-15770000/fldigi-4.2.06/images/004-pic_2026-07-22_145203z.png",
+      "bytes": 70651,
+      "sha256": "c2567791b8c38886d9dd7276b7235f3c43d9cfe073bf4aa1fc5aca7795e2a9ea",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260722T133008Z-15770000/fldigi-4.2.06/images/005-pic_2026-07-22_145350z.png",
+      "bytes": 63655,
+      "sha256": "b9038a9ee5b0673c6a9ddc7c1f55e25470186ead31f1c8fff245454350233e8a",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260722T133008Z-15770000/fldigi-4.2.06/images/006-pic_2026-07-22_145534z.png",
+      "bytes": 66964,
+      "sha256": "a7b6ec19da8ae59b5dd8df3aca852120a8633c71b6fc61ccf4f0c41e68db47ae",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260722T133008Z-15770000/fldigi-4.2.06/images/007-pic_2026-07-22_145709z.png",
+      "bytes": 62176,
+      "sha256": "b84421b82c1a4c6c991fa4c57a9dd08f8e905b7cc4d37578c2506dc98577be98",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260722T133008Z-15770000/fldigi-4.2.06/images/008-pic_2026-07-22_145853z.png",
+      "bytes": 70899,
+      "sha256": "83b7a3c9f0d672a815e7dfb97de068a94d4764e818555072274d002b0d0f8a63",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260722T133008Z-15770000/fldigi-4.2.06/metadata.json",
+      "bytes": 1664,
+      "sha256": "e74c3933620511012ab148a1d27a8ef5a6659d79bbed8ace72dc5c6071979d28",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260722T133008Z-15770000/fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178/content.txt",
+      "bytes": 15198,
+      "sha256": "cc48af97bc42020ca0c12211efc4be5790a4c05213b0a34acbdd090c5d7e1193",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260722T133008Z-15770000/fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178/decoded.txt",
+      "bytes": 16178,
+      "sha256": "895cdb1cd0917f14e98a521203570f6cb956772f7be5fbf28acae42ed19df767",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260722T133008Z-15770000/fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178/images/001-pic_2026-07-31_222536z.png",
+      "bytes": 68661,
+      "sha256": "9f96375669645192ff978f1e45ea007fe404d88edc5a2e44c76111b90886c840",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260722T133008Z-15770000/fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178/images/002-pic_2026-07-31_222724z.png",
+      "bytes": 62896,
+      "sha256": "b74102873c10965c659b087fdb27125a9f0b3f876a2440661792b0cfdd36bceb",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260722T133008Z-15770000/fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178/images/003-pic_2026-07-31_222909z.png",
+      "bytes": 62587,
+      "sha256": "36866050027ff1c1c09da32670759558970309e01fb6e7cf3078995cf79f5e4d",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260722T133008Z-15770000/fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178/images/004-pic_2026-07-31_223056z.png",
+      "bytes": 70651,
+      "sha256": "882433612351317105ff5137afbaac0f71609f162bfc5dbf340647819d80afc3",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260722T133008Z-15770000/fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178/images/005-pic_2026-07-31_223243z.png",
+      "bytes": 63655,
+      "sha256": "d47a276e672dad6de0d01cd3a082afec67b783fa072d7c2818de283b2695b297",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260722T133008Z-15770000/fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178/images/006-pic_2026-07-31_223427z.png",
+      "bytes": 66964,
+      "sha256": "ee7748949ed152f2360bf3a151de8640c9bf39204eefa1ccb7b9664cfa7d770b",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260722T133008Z-15770000/fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178/images/007-pic_2026-07-31_223602z.png",
+      "bytes": 62176,
+      "sha256": "284de8b66f4e2f4bb92d1e1fb04c9c98a6b7fa8a10081147340844d1694949a6",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260722T133008Z-15770000/fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178/images/008-pic_2026-07-31_223746z.png",
+      "bytes": 70899,
+      "sha256": "31f09644df00608d43d32e3b80b226977b398972f3a82ee2a5ab5313bd78ff38",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260722T133008Z-15770000/fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178/metadata.json",
+      "bytes": 1676,
+      "sha256": "cfbceef84e3eea2a98b03d1f52384946652f2a20be10f61b1b0a3558bc6810e5",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260722T133008Z-15770000/fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178/reference-manifest.json",
+      "bytes": 5718,
+      "sha256": "d29632792988bca603a7fda13c2efd45583e819d2dfe4825cb9b351a76d0a017",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260722T133008Z-15770000/fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178/reference-provenance.json",
+      "bytes": 1125,
+      "sha256": "b643c5936cf2a3365d00d6de46e3b1b8f48d44c5941f3b05e66c666ca9a6c303",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260729T133010Z-15770000/fldigi-4.2.06/content.txt",
+      "bytes": 8331,
+      "sha256": "c6dd51a9dc3b44f5478cfecb3055625b21658a7ff0c94e052b696aee87d239b6",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260729T133010Z-15770000/fldigi-4.2.06/decode-pipeline.json",
+      "bytes": 4559,
+      "sha256": "33705c7a1870f192e1da1b8ed89f43728e37cbd3775188c82b2fd8758c30379c",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260729T133010Z-15770000/fldigi-4.2.06/decoded.txt",
+      "bytes": 9299,
+      "sha256": "d2c29c879e26a0745e2ad4ed5273cbcb6464a5cf574b236556a16883285eb23e",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260729T133010Z-15770000/fldigi-4.2.06/images/001-pic_2026-07-29_171542z.png",
+      "bytes": 58799,
+      "sha256": "c6a6c59e03a67ec51e4a64fa46ad8b69b934b6031485cde7a14f12b963d6bbe0",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260729T133010Z-15770000/fldigi-4.2.06/images/002-pic_2026-07-29_171731z.png",
+      "bytes": 47106,
+      "sha256": "59409f868c7509edc07d1ceddc3948b666027281a882ba5e58de4b9380e69bcb",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260729T133010Z-15770000/fldigi-4.2.06/images/003-pic_2026-07-29_171908z.png",
+      "bytes": 55186,
+      "sha256": "077ff75a612628d27ca6762df81bcf46d6f3723b2945bb64efe8e7753c405204",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260729T133010Z-15770000/fldigi-4.2.06/images/004-pic_2026-07-29_172047z.png",
+      "bytes": 55444,
+      "sha256": "ec187aed3b43f6f8029e3408327e524633526eba08903457b6747a2125a3e243",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260729T133010Z-15770000/fldigi-4.2.06/images/005-pic_2026-07-29_172235z.png",
+      "bytes": 49212,
+      "sha256": "b5c24e08b11f457c973dda811160bf3ea52c68f4fc2d95867e52ce3cf280d52a",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260729T133010Z-15770000/fldigi-4.2.06/images/006-pic_2026-07-29_172421z.png",
+      "bytes": 75209,
+      "sha256": "4c2df590493a81a0f79551464ca907e730b419e8b47ecac9b0ad4401ff1ab96e",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260729T133010Z-15770000/fldigi-4.2.06/images/007-pic_2026-07-29_172608z.png",
+      "bytes": 73912,
+      "sha256": "aeac7be50bc6e1e2b4f479987df164b2e4aecb6d8fd611b2314aae9530aa7cfe",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260729T133010Z-15770000/fldigi-4.2.06/images/008-pic_2026-07-29_172749z.png",
+      "bytes": 65549,
+      "sha256": "4fcf74467c44855f730b2d264cf4815fec476c30194e788bd5221124c455a90a",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260729T133010Z-15770000/fldigi-4.2.06/images/009-pic_2026-07-29_172929z.png",
+      "bytes": 67226,
+      "sha256": "f6ffd5ead5b8e48aec306870835ac738ea218807393be41f82d7aa7ca29bf155",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260729T133010Z-15770000/fldigi-4.2.06/images/010-pic_2026-07-29_173051z.png",
+      "bytes": 71330,
+      "sha256": "7f160d1a24f97c640449df332860149c4d736ab70d277f392318377a3cceb56c",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260729T133010Z-15770000/fldigi-4.2.06/images/011-pic_2026-07-29_173301z.png",
+      "bytes": 83910,
+      "sha256": "86aeb626e5ab08d9110dc67af11e803bd50aa5f299acfbf19afebc5f0b7671b9",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260729T133010Z-15770000/fldigi-4.2.06/metadata.json",
+      "bytes": 1667,
+      "sha256": "4f3c82b079f0628523f89441087970432f6c4710dd1ae3b743e6d75a4043ded2",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260729T133010Z-15770000/fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178/content.txt",
+      "bytes": 8334,
+      "sha256": "2cd8aae838886e0e87dbbfb622a81cba5b77823bdcf660d25ca198d408ee3739",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260729T133010Z-15770000/fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178/decoded.txt",
+      "bytes": 9167,
+      "sha256": "d040eed6babbc33911eee2fd1614f67559f883bca65f76f0e3e8bfafdfd91b96",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260729T133010Z-15770000/fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178/images/001-pic_2026-07-31_224936z.png",
+      "bytes": 58799,
+      "sha256": "4b2e16e98e53094c18ccb0e42dcb0a85604f0d32fa12eb0e095bd59132c422a3",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260729T133010Z-15770000/fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178/images/002-pic_2026-07-31_225125z.png",
+      "bytes": 47106,
+      "sha256": "232e517df7d124c94ba748ba9b4a7a64a4997551ffa5b0daae0aa24c0489a9ce",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260729T133010Z-15770000/fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178/images/003-pic_2026-07-31_225302z.png",
+      "bytes": 55186,
+      "sha256": "58651a47f361a7f8d09fc6136833c54472ced15b2ae2e8452f34ba5a7da15c34",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260729T133010Z-15770000/fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178/images/004-pic_2026-07-31_225442z.png",
+      "bytes": 55444,
+      "sha256": "f46081bb8169f779ee6f1b0d9b4f4133dcbfe830733a4e9990820f377f424145",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260729T133010Z-15770000/fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178/images/005-pic_2026-07-31_225629z.png",
+      "bytes": 49212,
+      "sha256": "e271b9a1f3339b175b471d5b18eb522cbd0d70a7d2ca87736ff4153a5894bb7c",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260729T133010Z-15770000/fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178/images/006-pic_2026-07-31_225815z.png",
+      "bytes": 75209,
+      "sha256": "851b7a0a7d231cb64cd63a2a732372fbd2c23dab70913d8c7718ba563cfa7f14",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260729T133010Z-15770000/fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178/images/007-pic_2026-07-31_230002z.png",
+      "bytes": 73912,
+      "sha256": "ea552c7acd003b9fde6885916255432634f25a1b8fff3e4552028cdf0dced572",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260729T133010Z-15770000/fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178/images/008-pic_2026-07-31_230143z.png",
+      "bytes": 65549,
+      "sha256": "75df9ecb6370cf66240678eba5a8f4dc3a2fec0bfe7f903dac1bea98dd285418",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260729T133010Z-15770000/fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178/images/009-pic_2026-07-31_230323z.png",
+      "bytes": 67226,
+      "sha256": "920b9474a523fdd29cb9d93ae4d3352787af2b7723dde3860a5209f959fbf5ba",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260729T133010Z-15770000/fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178/images/010-pic_2026-07-31_230445z.png",
+      "bytes": 71330,
+      "sha256": "ff9c51710cf22c3fdac79f81cba70827448c4c53d734b2fbd85236f9134a93dc",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260729T133010Z-15770000/fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178/images/011-pic_2026-07-31_230655z.png",
+      "bytes": 83910,
+      "sha256": "fe5f39369570704904994fcdd622fb1cee2c29dcfea724e4f6850d776005f43d",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260729T133010Z-15770000/fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178/metadata.json",
+      "bytes": 1677,
+      "sha256": "1a80ff5454ab79b479d9b53620d5d3eeaa16b2543f2a8c699a19f0ed7525eeec",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260729T133010Z-15770000/fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178/reference-manifest.json",
+      "bytes": 5718,
+      "sha256": "d29632792988bca603a7fda13c2efd45583e819d2dfe4825cb9b351a76d0a017",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260729T133010Z-15770000/fldigi-4.2.13-pi3-aarch64-7fa6ee2e4178/reference-provenance.json",
+      "bytes": 1240,
+      "sha256": "22ee60b68b82d7c34ba96831f8849bf2b0efc888d21ee6333570f875093eb60a",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260923T133007Z-15770000/grampy-0.2.0-reference/component-evidence-0001.npz",
+      "bytes": 798479,
+      "sha256": "0cebe5fcd61cb0d0c9b2811e9e326390e41441093f01f71d2606095d8ac8b92a",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260923T133007Z-15770000/grampy-0.2.0-reference/component-evidence-0002.npz",
+      "bytes": 556837,
+      "sha256": "f71b908cd32103a5603f28da58733506c7af05c5b91fd3206edc56f998cd8d1a",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260923T133007Z-15770000/grampy-0.2.0-reference/component-evidence-0003.npz",
+      "bytes": 722041,
+      "sha256": "bed48eafd11b67cf4e3a2a2f2fd3bf00195d203ca9f7a1aca9f87d340ba4c4c2",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260923T133007Z-15770000/grampy-0.2.0-reference/component-evidence-0004.npz",
+      "bytes": 678752,
+      "sha256": "8cfb71ffcf588e69a0599e39c1785d5ccde01c0f5cd3711d989b644c69a5b400",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260923T133007Z-15770000/grampy-0.2.0-reference/component-evidence-0005.npz",
+      "bytes": 633173,
+      "sha256": "5f65ae6fee5fd8ec9e31f671d19da29b46b092ec2bc89d7795089eea2e4f3ec4",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260923T133007Z-15770000/grampy-0.2.0-reference/component-evidence-0006.npz",
+      "bytes": 705874,
+      "sha256": "c885e6302919c852b4299f0a232313d1a84d12f13e60f03998d3e689d8f35d30",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260923T133007Z-15770000/grampy-0.2.0-reference/component-evidence-0007.npz",
+      "bytes": 726614,
+      "sha256": "7e2b2137c9304c8f66e74174038fa6341e5beeb5ee6772f6d150276d69f8aaa4",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260923T133007Z-15770000/grampy-0.2.0-reference/component-evidence-0008.npz",
+      "bytes": 655990,
+      "sha256": "43352afd3faab405f093413f81a36d583c21cd8a6b11d45a6a771379ea3c578f",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260923T133007Z-15770000/grampy-0.2.0-reference/component-evidence-0009.npz",
+      "bytes": 738455,
+      "sha256": "5184e4e131e648f0f842dd4a5be1c9c6f5e071a7e0667dcb3525bc047a85e5da",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260923T133007Z-15770000/grampy-0.2.0-reference/decode.manifest.json",
+      "bytes": 11259679,
+      "sha256": "e25f97bad6cb3d73b4990b7cfc2c7abf8d80ab053116db995e47c13b51922edf",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260923T133007Z-15770000/grampy-0.2.0-reference/decoded.txt",
+      "bytes": 10050,
+      "sha256": "84af3d00ef451782aa67632a2a020eb8a596beb399b036e7fa51904affd30a78",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260923T133007Z-15770000/grampy-0.2.0-reference/raster-0001.png",
+      "bytes": 96905,
+      "sha256": "867764c8a055af684181649e5fe9aeffa1fbd0b17a43210c9bd14d6551fbcafb",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260923T133007Z-15770000/grampy-0.2.0-reference/raster-0002.png",
+      "bytes": 70642,
+      "sha256": "592da9293a253eb835142073b9f8ceada9fc07486c064eadc3a5e325eeaaf7c2",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260923T133007Z-15770000/grampy-0.2.0-reference/raster-0003.png",
+      "bytes": 89493,
+      "sha256": "4141ce4fc5c9aa98c4057fe8d9374f946bcaff4cdb238939d98ef7ea95dcaa52",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260923T133007Z-15770000/grampy-0.2.0-reference/raster-0004.png",
+      "bytes": 84772,
+      "sha256": "c236d9bf3d17a70e7012153ae85493e3fcd6db27e444f46a37f86fbe4f4a9bd1",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260923T133007Z-15770000/grampy-0.2.0-reference/raster-0005.png",
+      "bytes": 75165,
+      "sha256": "a365588645b6b613f4067ab4ceddd3f6af01a543fe75d7cff405670254bf9e9d",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260923T133007Z-15770000/grampy-0.2.0-reference/raster-0006.png",
+      "bytes": 86541,
+      "sha256": "cf02bc3a9d1cf85de866198356951ce0c418edce4826d47d3a544230d3b9daa0",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260923T133007Z-15770000/grampy-0.2.0-reference/raster-0007.png",
+      "bytes": 86849,
+      "sha256": "f64c92495421ab84355225b57f4769981cb370f555e47e24e99bbb485e70bf1b",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260923T133007Z-15770000/grampy-0.2.0-reference/raster-0008.png",
+      "bytes": 81018,
+      "sha256": "f407a073c4d9bfef6a082f64a8cc3909c84ad0317088b677e4f244ae4f146c91",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/references/wrmi-20260923T133007Z-15770000/grampy-0.2.0-reference/raster-0009.png",
+      "bytes": 89308,
+      "sha256": "79ba66183f6639fdec3a6e14444ae02edd2a298594f96f2ae9704ff38c613a09",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/scores/session9a-draft-v1/winb-20260718T023007Z-9265000/fldigi-4.2.06.json",
+      "bytes": 804996,
+      "sha256": "e94b4236c0731ad8213623e734a7f6bd25c6bdd9255da356c39a6908fa71174e",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/scores/session9a-draft-v1/wrmi-20260708T133006Z-15770000/fldigi-4.2.06.json",
+      "bytes": 5750132,
+      "sha256": "5db229e18f4a0247b1cffc93cdc2c40a764a1b5547f58240891f85c57b803233",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/scores/session9a-draft-v1/wrmi-20260722T133008Z-15770000/fldigi-4.2.06.json",
+      "bytes": 94748,
+      "sha256": "a349699614a86d4edbe75a8633b05d37b9c9c0eb5e0e329d1258f7cdccc7a0d6",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/scores/session9a-draft-v1/wrmi-20260729T133010Z-15770000/fldigi-4.2.06.json",
+      "bytes": 278034,
+      "sha256": "ad9c4ecdd16f62b8f2d9a86d220292dcce5a52438fe0ad8a561ce849b8649009",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/sources/winb-20260718T023007Z-9265000/capture.capture.json",
+      "bytes": 1799,
+      "sha256": "2702f12c0b84bf3fbeeca7c253455f087b05afed5046762ca1c26382dcd0ace2",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/sources/winb-20260718T023007Z-9265000/capture.log",
+      "bytes": 766,
+      "sha256": "8e72b58284d8f885ed369d4f598e3f68bae026f47f5c83c82faebc683dd6ed16",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/sources/winb-20260718T023007Z-9265000/capture.sigmf-data",
+      "bytes": 345600000,
+      "sha256": "d356d6d177aa63d26bd82113fa0e2e54f7a90bdd37ff39e56bc4cc1a94907adc",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/sources/winb-20260718T023007Z-9265000/capture.sigmf-meta",
+      "bytes": 314,
+      "sha256": "3ec4d27faa1a3c7b9edb05c6d5a4d3777a89726427da11fd92e991579f4959fd",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/sources/wrmi-20260708T133006Z-15770000/capture.capture.json",
+      "bytes": 1651,
+      "sha256": "58ebce459de046e9e5ce09af8d3d570fbea3ca4ab7eae3f01686dd7034dd5c29",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/sources/wrmi-20260708T133006Z-15770000/capture.log",
+      "bytes": 774,
+      "sha256": "c7fbae7fa3018501470cf980b5a7aa94484ad38a5a167aa260bda485647d171e",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/sources/wrmi-20260708T133006Z-15770000/capture.sigmf-data",
+      "bytes": 345600000,
+      "sha256": "1c1e443e64e47835bb38bd1996b935ada432e9db7b46a9fc3a01d7a8f5bb1cc6",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/sources/wrmi-20260708T133006Z-15770000/capture.sigmf-meta",
+      "bytes": 315,
+      "sha256": "6552211dc9c4ffa6c4830c362ef02ff04d00ce9b54de9777576c8538c560fbea",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/sources/wrmi-20260715T133007Z-15770000/capture.capture.json",
+      "bytes": 1806,
+      "sha256": "8d6981732b6150dc3bed57e100050b0dded53a72ccc2b82d417a4e91dd9ed5bd",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/sources/wrmi-20260715T133007Z-15770000/capture.log",
+      "bytes": 774,
+      "sha256": "10cbbb34425339421c0de130f260f78245ae94f44f9b243e4b96c391469aef58",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/sources/wrmi-20260715T133007Z-15770000/capture.sigmf-data",
+      "bytes": 345600000,
+      "sha256": "ea076f3ebe1c26797c7c47750be02035a882915d3c596f7c4f347fda53d5352f",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/sources/wrmi-20260715T133007Z-15770000/capture.sigmf-meta",
+      "bytes": 315,
+      "sha256": "f62b47da87748c464ef52f7491471b6dc2b0a37c09e041f6005c1c42142ef758",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/sources/wrmi-20260720T080010Z-5850000/capture.capture.json",
+      "bytes": 2588,
+      "sha256": "08445a5df965d0e503eed9c8a57975d0671fd02e00301f91a02bd924b7401a0e",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/sources/wrmi-20260720T080010Z-5850000/capture.log",
+      "bytes": 2815,
+      "sha256": "77ebd130dfdf533371ae941cf950d21b549e509d7ee5d030b9326daa5ffa7707",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/sources/wrmi-20260720T080010Z-5850000/capture.sigmf-data",
+      "bytes": 345600000,
+      "sha256": "8a3af499ee3448e7c629cb5c17455e1f1244adafb3f81acafda2fbf95b589f09",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/sources/wrmi-20260720T080010Z-5850000/capture.sigmf-meta",
+      "bytes": 1214,
+      "sha256": "207091ac04fb4936cd7b2833c96e24442298ec74f3638158793665b18be219fa",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/sources/wrmi-20260722T133008Z-15770000/capture.capture.json",
+      "bytes": 2591,
+      "sha256": "7df09f1f8ce1d5677b97b83cf54f6d2e62513f809728e2f823fb373b16040c0c",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/sources/wrmi-20260722T133008Z-15770000/capture.log",
+      "bytes": 2809,
+      "sha256": "d6dd76ae887c5c4f3d1e3c84eaaaeeb2a93d25cd46dfba647ef50600c95bf239",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/sources/wrmi-20260722T133008Z-15770000/capture.sigmf-data",
+      "bytes": 345600000,
+      "sha256": "2c15aa3d51bd2a483be7270a8abea7ba59c4218d12ef3b64bc4cd1d001aaf326",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/sources/wrmi-20260722T133008Z-15770000/capture.sigmf-meta",
+      "bytes": 1216,
+      "sha256": "9e870bd893aca49aac6e3d09a0a7e5685a47e3c68c69dfa7859316edf750fcd3",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/sources/wrmi-20260729T133010Z-15770000/capture.capture.json",
+      "bytes": 2591,
+      "sha256": "b34fbfc7bb8678d939787ba235aa48805121aadfb3d98e47ab0ab9d07e62d3ed",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/sources/wrmi-20260729T133010Z-15770000/capture.log",
+      "bytes": 2809,
+      "sha256": "73d64a905c606089ec136dd38c78daac23ac6d18ae18e3b428904c1c00191991",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/sources/wrmi-20260729T133010Z-15770000/capture.sigmf-data",
+      "bytes": 345600000,
+      "sha256": "0b3cb907746b6a404e2e3e93169c53952831c749ddb9b2a0067fb8829ca3319f",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/sources/wrmi-20260729T133010Z-15770000/capture.sigmf-meta",
+      "bytes": 1216,
+      "sha256": "2f8ea551f26c9cd092b219febff6c4c2f0860d457dbff07ef8a963f95be2e074",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/sources/wrmi-20260923T133007Z-15770000/capture.capture.json",
+      "bytes": 9129,
+      "sha256": "dec328d3a829d41b827787abd4fa63ae4e86186d8adc7fdec2998323b81d64fa",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/sources/wrmi-20260923T133007Z-15770000/capture.complete.json",
+      "bytes": 192,
+      "sha256": "5c99f10292d6f986007a70dfe3833aafb7809458df9fbf5afd758b2ab794a1b8",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/sources/wrmi-20260923T133007Z-15770000/capture.sigmf-data",
+      "bytes": 230400000,
+      "sha256": "29fded4ea390d8b8483898904847122e1fbca6a903b24244493512b5cf950951",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/sources/wrmi-20260923T133007Z-15770000/capture.sigmf-meta",
+      "bytes": 1796,
+      "sha256": "9c08daa27d07c5f695017e85e0308cd2c76b33d2206d2da0f386a618c3ea64df",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/sources/wrmi-20260923T133007Z-15770000/occurrence.json",
+      "bytes": 462,
+      "sha256": "16649344c612a793a5e2477aebb7d80e582f6cd1168444f9cc67cb5a12714b34",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/truth/winb-20260718T023007Z-9265000/expected-rsid-events.json",
+      "bytes": 1343,
+      "sha256": "11c1ef464d71a2e30396643fa3c5876bbb4b49828dc62c5d1019b5982b040851",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/truth/wrmi-20260708T133006Z-15770000/mfsk32-84-151-expected.txt",
+      "bytes": 622,
+      "sha256": "6b90235f6e03b422b8b77884c6ea25c94a1bc1df5b73225b3db6f753be0d30fe",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/truth/wrmi-20260720T080010Z-5850000/expected-rsid-events.json",
+      "bytes": 1545,
+      "sha256": "9cae59aa467ada8bc0503886a9638d8bcafaea8a08cca37cf5323fc503bf24a2",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-or-derived",
+      "provenance": "Received RF, broadcaster truth, qualified receiver output or broadcast-derived scores",
+      "purpose": "Canonical received corpus and independent broadcast comparisons"
+    },
+    {
+      "path": "received-corpus/version.json",
+      "bytes": 50,
+      "sha256": "3557910fe184101d6f9fb8a1f07f49e08d72ee8f3467102e04bb2c3f96f04610",
+      "group": "required",
+      "required": true,
+      "category": "portable-companion-metadata",
+      "provenance": "Project-authored corpus engineering metadata; original header expectations in installed cases remain external",
+      "purpose": "Self-contained installed corpus representation; policy and reviewed case definitions are committed separately"
+    },
+    {
+      "path": "regression-expectations/heldout-text.json",
+      "bytes": 162,
+      "sha256": "bd5093539fd172d3c673534d018049775269091ab2b506b815b15c726511d999",
+      "group": "required",
+      "required": true,
+      "category": "broadcast-derived",
+      "provenance": "Exact original received-test content assertions; externalized from test code",
+      "purpose": "Unchanged held-out received assertions with committed identity binding"
+    }
+  ]
+}

@@ -46,6 +46,16 @@ scorecards, enforces per-capture/per-picture regression limits and writes
 human review. See the [broadcast workflow](../docs/operations/broadcast-regression.md)
 for baseline provenance, exit statuses and deliberate requalification.
 
+## External data inventory
+
+See the [sidecar maintenance guide](../docs/operations/sidecar-maintenance.md)
+for provenance rules, the Git size budget and a versioned S3 handoff. The
+committed [inventory](fixtures/sidecar-v1.json) identifies required data and
+optional history. Run `tools/verify-sidecar` through the managed Mac wrapper
+to verify required inputs, or add `--include-history` for the full archive.
+The received text expectations are external, with their identity binding in
+[received-expectations.json](fixtures/received-expectations.json).
+
 ## Controlled fixtures
 
 The required four cases are installed under `tests/samples/controlled-mfsk-v1/`:
@@ -58,8 +68,9 @@ Their current identities and independently measured timing are in
 `docs/decoder/data/mfsk_fixture_evidence.json` and packaged copy remain historical
 wire-spec evidence; they are not silently repinned as new recordings.
 
-The portable archive `controlled-mfsk-v1-20261012.tar.gz` accompanies the
-`tests/samples` sidecar handoff. Its SHA-256 is:
+The portable archive `archive/distribution/controlled-mfsk-v1-20261012.tar.gz`
+is an optional immutable distribution copy. A normal sidecar installation
+supplies the extracted `controlled-mfsk-v1/` directory. Its SHA-256 is:
 
 ```text
 f0cebf1b048b398c8e743216e2594d0e1e2683be871c594530c2ff62ffc0eadb
@@ -91,8 +102,9 @@ The received-IQ regression corpus is too large for Git and is installed at:
 tests/samples/received-corpus/
 ```
 
-The received tier requires its selected corpus inputs and fails when they are
-absent. The unit tier explicitly excludes those methods. The repository does
+The received tier requires its selected corpus inputs and the
+`regression-expectations/` directory, and fails when they are absent or changed.
+The unit tier explicitly excludes those methods. The repository does
 not select or automatically fetch a corpus.
 
 The 2026-09-23 stored-manifest compatibility case required by the received tier is
@@ -101,9 +113,10 @@ capture records live under `received-corpus/sources/wrmi-20260923T133007Z-157700
 The saved GramPy decode manifest, text, nine PNGs, and component evidence are
 under the corresponding `received-corpus/references/` directory. These are
 decoder reference outputs, not independent truth. The original intake folder,
-including diagnostic WAV files, is under
-`tests/samples/reference-captures/sampleFullRun-20260923/`; tests must refer
-to the canonical source and must not depend on that intake copy. The accepted
+including diagnostic WAV files, was retired after canonical promotion and
+identity checks. The unique content-bearing text manifest remains under
+`tests/samples/archive/intake-products/sampleFullRun-20260923/`. Tests refer
+to the canonical source and do not depend on intake or optional history. The accepted
 compact outputs and quality measurements are documented in the
 [`API guide`](../docs/decoder/api.md); the implementation plan and acceptance
 record are [archived](../docs/provenance/archive/output-manifests-plan.md).

@@ -1,0 +1,354 @@
+[
+  {
+    "retired_output": "tests/samples/quality-calibration/mfsk32-picture-1/decode.manifest.json",
+    "source_data_sha256": "1c1e443e64e47835bb38bd1996b935ada432e9db7b46a9fc3a01d7a8f5bb1cc6",
+    "source_metadata_sha256": "6552211dc9c4ffa6c4830c362ef02ff04d00ce9b54de9777576c8538c560fbea",
+    "requested_interval": {
+      "start": 19200000,
+      "stop": 26400000
+    },
+    "sample_rate_hz": 48000.0,
+    "configuration": {},
+    "pipeline_fields": {
+      "schema": "grampy-decode-manifest.v1",
+      "decoder": {
+        "version": "0.2.0-reference",
+        "configuration": {
+          "block_samples": 262144,
+          "orientation": "normal",
+          "trace_level": "events",
+          "mode": "MFSK32",
+          "center_hz": 1586.25,
+          "picture_component_estimator": "bounded_correlation",
+          "picture_component_window": "full_hann",
+          "picture_filter_profile": "response_matched",
+          "picture_boundary_estimator": "unified_grid",
+          "persistent_tone_policy": "measure",
+          "pipeline_organization": "supported_hybrid",
+          "picture_range_workers": 1,
+          "picture_range_components": 16384,
+          "picture_max_in_flight_ranges": 1,
+          "persistent_intermediates": false
+        },
+        "dependencies": {
+          "numpy": "2.5.2",
+          "jsonschema": "4.26.0",
+          "scipy": "1.18.0"
+        },
+        "platform": {
+          "python": "3.14.3",
+          "machine": "arm64",
+          "system": "Darwin"
+        }
+      }
+    }
+  },
+  {
+    "retired_output": "tests/samples/quality-calibration/mfsk32-text/decode.manifest.json",
+    "source_data_sha256": "1c1e443e64e47835bb38bd1996b935ada432e9db7b46a9fc3a01d7a8f5bb1cc6",
+    "source_metadata_sha256": "6552211dc9c4ffa6c4830c362ef02ff04d00ce9b54de9777576c8538c560fbea",
+    "requested_interval": {
+      "start": 4032000,
+      "stop": 7248000
+    },
+    "sample_rate_hz": 48000.0,
+    "configuration": {},
+    "pipeline_fields": {
+      "schema": "grampy-decode-manifest.v1",
+      "decoder": {
+        "version": "0.2.0-reference",
+        "configuration": {
+          "block_samples": 262144,
+          "orientation": "unknown",
+          "trace_level": "events",
+          "mode": "MFSK32",
+          "center_hz": null,
+          "picture_component_estimator": "bounded_correlation",
+          "picture_component_window": "full_hann",
+          "picture_filter_profile": "response_matched",
+          "picture_boundary_estimator": "unified_grid",
+          "persistent_tone_policy": "measure",
+          "pipeline_organization": "supported_hybrid",
+          "picture_range_workers": 1,
+          "picture_range_components": 16384,
+          "picture_max_in_flight_ranges": 1,
+          "persistent_intermediates": false
+        },
+        "dependencies": {
+          "numpy": "2.5.2",
+          "jsonschema": "4.26.0",
+          "scipy": "1.18.0"
+        },
+        "platform": {
+          "python": "3.14.3",
+          "machine": "arm64",
+          "system": "Darwin"
+        }
+      }
+    }
+  },
+  {
+    "retired_output": "tests/samples/quality-calibration/mfsk64-picture/decode.manifest.json",
+    "source_data_sha256": "1c1e443e64e47835bb38bd1996b935ada432e9db7b46a9fc3a01d7a8f5bb1cc6",
+    "source_metadata_sha256": "6552211dc9c4ffa6c4830c362ef02ff04d00ce9b54de9777576c8538c560fbea",
+    "requested_interval": {
+      "start": 36000000,
+      "stop": 43200000
+    },
+    "sample_rate_hz": 48000.0,
+    "configuration": {},
+    "pipeline_fields": {
+      "schema": "grampy-decode-manifest.v1",
+      "decoder": {
+        "version": "0.2.0-reference",
+        "configuration": {
+          "block_samples": 262144,
+          "orientation": "normal",
+          "trace_level": "events",
+          "mode": "MFSK64",
+          "center_hz": 1586.25,
+          "picture_component_estimator": "bounded_correlation",
+          "picture_component_window": "full_hann",
+          "picture_filter_profile": "response_matched",
+          "picture_boundary_estimator": "unified_grid",
+          "persistent_tone_policy": "measure",
+          "pipeline_organization": "supported_hybrid",
+          "picture_range_workers": 1,
+          "picture_range_components": 16384,
+          "picture_max_in_flight_ranges": 1,
+          "persistent_intermediates": false
+        },
+        "dependencies": {
+          "numpy": "2.5.2",
+          "jsonschema": "4.26.0",
+          "scipy": "1.18.0"
+        },
+        "platform": {
+          "python": "3.14.3",
+          "machine": "arm64",
+          "system": "Darwin"
+        }
+      }
+    }
+  },
+  {
+    "retired_output": "tests/samples/quality-calibration/mfsk64-picture-3/decode.manifest.json",
+    "source_data_sha256": "1c1e443e64e47835bb38bd1996b935ada432e9db7b46a9fc3a01d7a8f5bb1cc6",
+    "source_metadata_sha256": "6552211dc9c4ffa6c4830c362ef02ff04d00ce9b54de9777576c8538c560fbea",
+    "requested_interval": {
+      "start": 41760000,
+      "stop": 48960000
+    },
+    "sample_rate_hz": 48000.0,
+    "configuration": {},
+    "pipeline_fields": {
+      "schema": "grampy-decode-manifest.v1",
+      "decoder": {
+        "version": "0.2.0-reference",
+        "configuration": {
+          "block_samples": 262144,
+          "orientation": "normal",
+          "trace_level": "events",
+          "mode": "MFSK64",
+          "center_hz": 1586.25,
+          "picture_component_estimator": "bounded_correlation",
+          "picture_component_window": "full_hann",
+          "picture_filter_profile": "response_matched",
+          "picture_boundary_estimator": "unified_grid",
+          "persistent_tone_policy": "measure",
+          "pipeline_organization": "supported_hybrid",
+          "picture_range_workers": 1,
+          "picture_range_components": 16384,
+          "picture_max_in_flight_ranges": 1,
+          "persistent_intermediates": false
+        },
+        "dependencies": {
+          "numpy": "2.5.2",
+          "jsonschema": "4.26.0",
+          "scipy": "1.18.0"
+        },
+        "platform": {
+          "python": "3.14.3",
+          "machine": "arm64",
+          "system": "Darwin"
+        }
+      }
+    }
+  },
+  {
+    "retired_output": "tests/samples/quality-calibration/mfsk64-picture-4/decode.manifest.json",
+    "source_data_sha256": "1c1e443e64e47835bb38bd1996b935ada432e9db7b46a9fc3a01d7a8f5bb1cc6",
+    "source_metadata_sha256": "6552211dc9c4ffa6c4830c362ef02ff04d00ce9b54de9777576c8538c560fbea",
+    "requested_interval": {
+      "start": 47520000,
+      "stop": 54720000
+    },
+    "sample_rate_hz": 48000.0,
+    "configuration": {},
+    "pipeline_fields": {
+      "schema": "grampy-decode-manifest.v1",
+      "decoder": {
+        "version": "0.2.0-reference",
+        "configuration": {
+          "block_samples": 262144,
+          "orientation": "normal",
+          "trace_level": "events",
+          "mode": "MFSK64",
+          "center_hz": 1586.25,
+          "picture_component_estimator": "bounded_correlation",
+          "picture_component_window": "full_hann",
+          "picture_filter_profile": "response_matched",
+          "picture_boundary_estimator": "unified_grid",
+          "persistent_tone_policy": "measure",
+          "pipeline_organization": "supported_hybrid",
+          "picture_range_workers": 1,
+          "picture_range_components": 16384,
+          "picture_max_in_flight_ranges": 1,
+          "persistent_intermediates": false
+        },
+        "dependencies": {
+          "numpy": "2.5.2",
+          "jsonschema": "4.26.0",
+          "scipy": "1.18.0"
+        },
+        "platform": {
+          "python": "3.14.3",
+          "machine": "arm64",
+          "system": "Darwin"
+        }
+      }
+    }
+  },
+  {
+    "retired_output": "tests/samples/quality-calibration/mfsk64-text/decode.manifest.json",
+    "source_data_sha256": "1c1e443e64e47835bb38bd1996b935ada432e9db7b46a9fc3a01d7a8f5bb1cc6",
+    "source_metadata_sha256": "6552211dc9c4ffa6c4830c362ef02ff04d00ce9b54de9777576c8538c560fbea",
+    "requested_interval": {
+      "start": 27360000,
+      "stop": 30240000
+    },
+    "sample_rate_hz": 48000.0,
+    "configuration": {},
+    "pipeline_fields": {
+      "schema": "grampy-decode-manifest.v1",
+      "decoder": {
+        "version": "0.2.0-reference",
+        "configuration": {
+          "block_samples": 262144,
+          "orientation": "unknown",
+          "trace_level": "events",
+          "mode": "MFSK64",
+          "center_hz": null,
+          "picture_component_estimator": "bounded_correlation",
+          "picture_component_window": "full_hann",
+          "picture_filter_profile": "response_matched",
+          "picture_boundary_estimator": "unified_grid",
+          "persistent_tone_policy": "measure",
+          "pipeline_organization": "supported_hybrid",
+          "picture_range_workers": 1,
+          "picture_range_components": 16384,
+          "picture_max_in_flight_ranges": 1,
+          "persistent_intermediates": false
+        },
+        "dependencies": {
+          "numpy": "2.5.2",
+          "jsonschema": "4.26.0",
+          "scipy": "1.18.0"
+        },
+        "platform": {
+          "python": "3.14.3",
+          "machine": "arm64",
+          "system": "Darwin"
+        }
+      }
+    }
+  },
+  {
+    "retired_output": "tests/samples/stage5-performance/all-three-short/decode.manifest.json",
+    "source_data_sha256": "29fded4ea390d8b8483898904847122e1fbca6a903b24244493512b5cf950951",
+    "source_metadata_sha256": "9c08daa27d07c5f695017e85e0308cd2c76b33d2206d2da0f386a618c3ea64df",
+    "requested_interval": {
+      "start": 1800000,
+      "stop": 2120000
+    },
+    "sample_rate_hz": 16000.0,
+    "configuration": {},
+    "pipeline_fields": {
+      "schema": "grampy-decode-manifest.v1",
+      "decoder": {
+        "configuration": {
+          "block_samples": 262144,
+          "center_hz": null,
+          "mode": "auto",
+          "orientation": "unknown",
+          "persistent_intermediates": false,
+          "persistent_tone_policy": "measure",
+          "picture_boundary_estimator": "unified_grid",
+          "picture_component_estimator": "bounded_correlation",
+          "picture_component_window": "full_hann",
+          "picture_filter_profile": "response_matched",
+          "picture_max_in_flight_ranges": 1,
+          "picture_range_components": 16384,
+          "picture_range_workers": 1,
+          "pipeline_organization": "supported_hybrid",
+          "trace_level": "none"
+        },
+        "dependencies": {
+          "jsonschema": "4.26.0",
+          "numpy": "2.5.2",
+          "scipy": "1.18.0"
+        },
+        "platform": {
+          "machine": "arm64",
+          "python": "3.14.3",
+          "system": "Darwin"
+        },
+        "version": "0.2.0-reference"
+      }
+    }
+  },
+  {
+    "retired_output": "tests/samples/stage5-performance/legacy/decode.manifest.json",
+    "source_data_sha256": "29fded4ea390d8b8483898904847122e1fbca6a903b24244493512b5cf950951",
+    "source_metadata_sha256": "9c08daa27d07c5f695017e85e0308cd2c76b33d2206d2da0f386a618c3ea64df",
+    "requested_interval": {
+      "start": 0,
+      "stop": 28800000
+    },
+    "sample_rate_hz": 16000.0,
+    "configuration": {},
+    "pipeline_fields": {
+      "schema": "grampy-decode-manifest.v1",
+      "decoder": {
+        "configuration": {
+          "block_samples": 262144,
+          "center_hz": null,
+          "mode": "auto",
+          "orientation": "unknown",
+          "persistent_intermediates": false,
+          "persistent_tone_policy": "measure",
+          "picture_boundary_estimator": "unified_grid",
+          "picture_component_estimator": "bounded_correlation",
+          "picture_component_window": "full_hann",
+          "picture_filter_profile": "response_matched",
+          "picture_max_in_flight_ranges": 1,
+          "picture_range_components": 16384,
+          "picture_range_workers": 1,
+          "pipeline_organization": "supported_hybrid",
+          "trace_level": "none"
+        },
+        "dependencies": {
+          "jsonschema": "4.26.0",
+          "numpy": "2.5.2",
+          "scipy": "1.18.0"
+        },
+        "platform": {
+          "machine": "arm64",
+          "python": "3.14.3",
+          "system": "Darwin"
+        },
+        "version": "0.2.0-reference"
+      }
+    }
+  }
+]

@@ -1,0 +1,8 @@
+{
+  "schema": "grampy-received-expectations.v1",
+  "path": "regression-expectations/heldout-text.json",
+  "sha256": "bd5093539fd172d3c673534d018049775269091ab2b506b815b15c726511d999",
+  "bytes": 162,
+  "origin": "Original received-data assertions externalized without changing expected content; July 15 received capture",
+  "source_sha256": "ea076f3ebe1c26797c7c47750be02035a882915d3c596f7c4f347fda53d5352f"
+}

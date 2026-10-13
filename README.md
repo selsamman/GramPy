@@ -144,5 +144,7 @@ Reusable command-line tools are documented in [tools/README.md](https://github.c
 
 The [test-maintenance policy](docs/operations/test-maintenance.md) covers test
 creation and retirement, validation scope and work-directory closeout.
+The [sidecar guide](docs/operations/sidecar-maintenance.md) defines external-data
+provenance, installation verification and the versioned S3 handoff.
 Selected historical findings are indexed in
 [historical provenance](docs/provenance/README.md) for targeted lookup.

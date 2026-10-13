@@ -85,7 +85,7 @@ mode intervals, complete text summary and nine PNG hashes, and has unique
 recovery epoch IDs. Its candidate execution took 99.26 seconds on the Mac;
 this single run is compatibility evidence, not a paired speed comparison.
 
-The [candidate-set visual review](data/auto-mfsk32-pictures/index.html) compares
+The [candidate-set visual review](../../tests/samples/archive/repo-evidence/docs/decoder/data/auto-mfsk32-pictures/index.html) compares
 source, the previous absent automatic output, corrected GramPy, and the original
 pinned Pi fldigi outputs. All three new GramPy images are visibly recognizable;
 the p2 chart retains visible blur. Numerical passing is not a claim of exact

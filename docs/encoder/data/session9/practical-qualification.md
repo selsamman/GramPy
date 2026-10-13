@@ -72,7 +72,7 @@ Accordingly, the three MFSK32 rows establish fldigi picture recovery and
 GramPy text recovery only. The human review labels are clarified; the frozen
 matrix, raw evidence and numerical records remain unchanged.
 
-[The portable visual review](practical-review/index.html) shows source, GramPy
+[The portable visual review](../../../../tests/samples/archive/repo-evidence/docs/encoder/data/session9/practical-review/index.html) shows source, GramPy
 and pinned Pi fldigi at native size with optional enlargement. The
 [score table](practical-review/scores.md), [full qualification record](practical-review/qualification.json)
 and [independent evidence/visual inspection](practical-review/inspection.json)
@@ -114,7 +114,7 @@ corruption appears in this set.
 the visible limits described above and the subsequently recovered MFSK32
 pictures. Practical qualification under D-027 is accepted. The separate D-028
 decoder correction now recovers all three MFSK32 pictures and passes the same
-gate; see its [review](../../../decoder/data/auto-mfsk32-pictures/index.html).
+gate; see its [review](../../../../tests/samples/archive/repo-evidence/docs/decoder/data/auto-mfsk32-pictures/index.html).
 The [acceptance record](practical-acceptance.json) binds that subsequent
 decision to both frozen qualification records. Their numerical measurements,
 execution-time visual status and source identities remain unchanged.

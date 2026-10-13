@@ -1,0 +1,73 @@
+#!/usr/bin/env python3
+"""Verify the installed external-data release against its committed inventory."""
+import argparse
+import hashlib
+import json
+import os
+from pathlib import Path
+import sys
+
+
+ROOT = Path(__file__).resolve().parents[1]
+
+
+def verify(root, manifest, *, include_history=False):
+    root = Path(root).resolve()
+    failures = []
+    checked = 0
+    records = manifest["files"]
+    known = set()
+    for record in records:
+        relative = Path(record["path"])
+        if relative.is_absolute() or ".." in relative.parts or not relative.parts:
+            raise ValueError(f"Unsafe inventory path: {relative}")
+        if relative.as_posix() in known:
+            raise ValueError(f"Duplicate inventory path: {relative}")
+        known.add(relative.as_posix())
+        if record["group"] == "archive" and not include_history:
+            continue
+        path = root / relative
+        if any(p.is_symlink() for p in (path, *path.parents) if p != root and p.is_relative_to(root)):
+            failures.append(f"unsupported symlink: {relative}")
+            continue
+        try:
+            size = path.stat().st_size
+            with path.open("rb") as stream:
+                actual = hashlib.file_digest(stream, "sha256").hexdigest()
+        except OSError:
+            failures.append(f"missing or unreadable: {relative}")
+            continue
+        checked += 1
+        if size != record["bytes"] or actual != record["sha256"]:
+            failures.append(f"changed: {relative}")
+    if root.exists():
+        for path in root.rglob("*"):
+            if path.is_file() and path.name != ".DS_Store":
+                relative = path.relative_to(root).as_posix()
+                if relative not in known:
+                    failures.append(f"unclassified installed file: {relative}")
+    return checked, failures
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--root", type=Path, default=Path(os.environ.get("GRAMPY_TEST_SAMPLES", ROOT / "tests/samples")))
+    parser.add_argument("--manifest", type=Path, default=ROOT / "tests/fixtures/sidecar-v1.json")
+    parser.add_argument("--include-history", action="store_true", help="also require and verify the optional archive")
+    args = parser.parse_args()
+    try:
+        manifest = json.loads(args.manifest.read_text())
+        if manifest["schema"] != "grampy-sidecar-inventory.v1":
+            raise ValueError("Unsupported inventory schema")
+        checked, failures = verify(args.root, manifest, include_history=args.include_history)
+    except (OSError, ValueError, KeyError, TypeError) as error:
+        print(f"Sidecar inventory error: {error}", file=sys.stderr)
+        return 2
+    for failure in failures:
+        print(failure, file=sys.stderr)
+    print(f"Verified {checked} files; {len(failures)} failures; optional archive {'included' if args.include_history else 'excluded'}.")
+    return 1 if failures else 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

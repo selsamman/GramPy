@@ -18,6 +18,7 @@ from grampy.wire import (
 )
 
 from tests.suites import data_test
+from tests.received_expectations import heldout_text
 
 
 class RemediationR3StateTests(unittest.TestCase):
@@ -137,7 +138,7 @@ class RemediationR3ReceivedTest(unittest.TestCase):
             config=DecodeConfig(mode="MFSK32", trace_level="summary"),
         )
 
-        self.assertIn("Shortwave Radiogram", manifest["text_summary"]["text"])
+        self.assertIn(heldout_text()["r3_mfsk32"], manifest["text_summary"]["text"])
         self.assertFalse(
             any(
                 item.get("source") == "rsid"

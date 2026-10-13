@@ -76,6 +76,13 @@ and baseline live under `tests/fixtures/`; see the
 
 ## Fixtures
 
+`tools/verify-sidecar` verifies required installed external data against the
+committed inventory and rejects changed, missing or unclassified files. Add
+`--include-history` to require and verify the optional archive. Run it with the
+repository virtualenv through the managed wrapper. The
+[sidecar guide](../docs/operations/sidecar-maintenance.md) covers provenance,
+native fixture size budgets and the versioned S3 handoff.
+
 `tools/test-suite --suite unit|controlled|received|all` selects an explicit
 validation tier using the repository virtualenv. CI uses `unit`; `controlled`
 and `all` perform a strict maintained-fixture preflight. Selected missing or

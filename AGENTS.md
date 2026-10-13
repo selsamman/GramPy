@@ -89,6 +89,14 @@ sizes and non-content quality metadata may be committed. Apply this rule to
 historical evidence and generated reports as well as tests; see the maintenance
 policy for the full boundary.
 
+Use `docs/operations/sidecar-maintenance.md` for sidecar changes. Native fixture
+artifacts normally have a Git budget of 1 MiB per file and 10 MiB per family;
+broadcast/uncertain provenance remains external regardless of size. Required
+external data and optional `tests/samples/archive/` history are indexed by the
+committed sidecar manifest. New intake and decode/review outputs belong in WIP,
+not permanent sidecar development directories. S3 publication is a separate
+maintainer action; keep existing releases until a replacement is verified.
+
 Create `.local/wip/<change-id>/WORK.md` before generating new change artifacts.
 Record ownership, status, source baseline, outputs (including remote scratch)
 and intended promotion/discard destinations. Keep one-off commands, notes,

@@ -76,8 +76,8 @@ one while `running.md` exists.
 
 The archive contains `decoded.txt`, `metadata.json`, and, with
 `--debug-bundle full`, `fldigi/control.log` and other diagnostics. For the
-known example, require `control_exit_status: 0`, `rxid: "on"`, and the text
-“This is Shortwave Radiogram in MFSK64”. Inspect the control log for RPC or
+known example, require `control_exit_status: 0` and `rxid: "on"`; compare the
+decoded text with independently supplied external expected content. Inspect the control log for RPC or
 mode-change failures; exit status alone is not a reception pass. Record input,
 adapter, binary, archive hashes, configuration, decoded text/images, and any
 discrepancy. `/tmp` output is temporary: move or regenerate evidence into an

@@ -1,0 +1,22 @@
+[
+  {
+    "path": "docs/operations/fldigi-pi-decodes.md",
+    "matches": [
+      {
+        "sha256": "64f6d8400a897dd1cde79badf77c45665ee6016f77de9e612812bdc0dfc0084a",
+        "origin": "tests/samples/received-corpus/programs/459/truth/text.txt",
+        "characters": 37
+      }
+    ]
+  },
+  {
+    "path": "tests/test_mfsk_decode_remediation_r2.py",
+    "matches": [
+      {
+        "sha256": "64f6d8400a897dd1cde79badf77c45665ee6016f77de9e612812bdc0dfc0084a",
+        "origin": "tests/samples/received-corpus/programs/459/truth/text.txt",
+        "characters": 37
+      }
+    ]
+  }
+]

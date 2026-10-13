@@ -1,0 +1,551 @@
+{
+  "matrix": {
+    "path": "matrix.json",
+    "bytes": 3976,
+    "sha256": "055c9ddeddab966bd41df2ebc7353664236eb7e08dd3a119ff82451310a98b75"
+  },
+  "sources": {
+    "photo": {
+      "original": {
+        "path": "tests/samples/received-corpus/programs/459/truth/images/004-SWRG459_Scotland_sunset.png",
+        "bytes": 78452,
+        "sha256": "17e4a583692e1ec8b63caf4b4446668a1e5db88d864ef150aacfeca108cc91fa"
+      },
+      "original_size": [
+        197,
+        144
+      ],
+      "prepared": {
+        "path": "inputs/photo.png",
+        "bytes": 60016,
+        "sha256": "1d316ddfc96078f19a20d83769d36b1efcd23cdc03d0047832e65024fcd026d0"
+      },
+      "path": "tests/samples/received-corpus/programs/459/truth/images/004-SWRG459_Scotland_sunset.png",
+      "output_size": [
+        240,
+        180
+      ],
+      "preprocessing": "Caller-owned RGB conversion and aspect-preserving Lanczos fit"
+    },
+    "card": {
+      "original": {
+        "path": "tests/samples/received-corpus/programs/459/truth/images/001-SWRG459_Rti_KANHAM.png",
+        "bytes": 76910,
+        "sha256": "32b5600e30b9a81472497b4bcffb652ca95b52ded7c89eac438a5336a1b0415e"
+      },
+      "original_size": [
+        209,
+        129
+      ],
+      "prepared": {
+        "path": "inputs/card.png",
+        "bytes": 66779,
+        "sha256": "f54c55ee0eda798a3fa9d4bcc32ba45cebc08eaa5ddb41808ac3fc7b44aaddc7"
+      },
+      "path": "tests/samples/received-corpus/programs/459/truth/images/001-SWRG459_Rti_KANHAM.png",
+      "output_size": [
+        240,
+        180
+      ],
+      "preprocessing": "Caller-owned RGB conversion and aspect-preserving Lanczos fit"
+    },
+    "chart": {
+      "original": {
+        "path": ".local/session9/mac-control/source-160x120.png",
+        "bytes": 2859,
+        "sha256": "89a6447653925769b728b44b7d97168b792827e6eac2bfffdc28abaa605b3f77"
+      },
+      "original_size": [
+        160,
+        120
+      ],
+      "prepared": {
+        "path": "inputs/chart.png",
+        "bytes": 2859,
+        "sha256": "89a6447653925769b728b44b7d97168b792827e6eac2bfffdc28abaa605b3f77"
+      },
+      "path": ".local/session9/mac-control/source-160x120.png",
+      "output_size": [
+        160,
+        120
+      ],
+      "preprocessing": "Unchanged previously reviewed diagnostic chart; encoder performs its specified integer grayscale conversion"
+    }
+  },
+  "cases": [
+    {
+      "id": "gray64-p8-card",
+      "mode": "MFSK64",
+      "color": "grayscale",
+      "speed": 8,
+      "source": "card",
+      "grampy_picture_required": true,
+      "expected_text_in_order": [
+        "\u0002\nGRAM PY PRACTICAL BROADCAST GRAY64 P8 CARD\n",
+        "Pic:240x180;",
+        "\nGRAM PY GRAY64 P8 CARD END\n\u0004"
+      ],
+      "expected_modes": [
+        "MFSK64"
+      ],
+      "expected_carriers_hz": [
+        1500.0
+      ],
+      "width": 240,
+      "height": 180,
+      "frame_count": 2826228,
+      "duration_seconds": 58.87975,
+      "encode_seconds": 0.6383974999771453,
+      "wav": {
+        "path": "cases/gray64-p8-card/generated.wav",
+        "bytes": 5652500,
+        "sha256": "4d2d0f2148d36d6be288d4515167df9bace98d334a89bedd0e85d7dcdf16dbf3"
+      },
+      "truth": {
+        "path": "cases/gray64-p8-card/truth.png",
+        "bytes": 23641,
+        "sha256": "313ed61c44caaee44823e304b1ccc2332858710c3fd7d1ee67b57043b2cb998f"
+      },
+      "independent_waveform": {
+        "nominal": {
+          "rms_pcm_lsb": 0.28673205519030753,
+          "max_pcm_lsb": 0.5231598983980348
+        },
+        "frequency_mutation": {
+          "rms_pcm_lsb": 16382.96677889051,
+          "max_pcm_lsb": 32767.99933486926
+        },
+        "raster_start_frame": 518388,
+        "component_count": 43200
+      },
+      "exact_rsid_audio_silence_frame_checks": "pass"
+    },
+    {
+      "id": "gray64-p4-photo",
+      "mode": "MFSK64",
+      "color": "grayscale",
+      "speed": 4,
+      "source": "photo",
+      "grampy_picture_required": true,
+      "expected_text_in_order": [
+        "\u0002\nGRAM PY PRACTICAL BROADCAST GRAY64 P4 PHOTO\n",
+        "Pic:240x180p4;",
+        "\nGRAM PY GRAY64 P4 PHOTO END\n\u0004"
+      ],
+      "expected_modes": [
+        "MFSK64"
+      ],
+      "expected_carriers_hz": [
+        1500.0
+      ],
+      "width": 240,
+      "height": 180,
+      "frame_count": 1802484,
+      "duration_seconds": 37.55175,
+      "encode_seconds": 0.4185687080025673,
+      "wav": {
+        "path": "cases/gray64-p4-photo/generated.wav",
+        "bytes": 3605012,
+        "sha256": "78248ba1d602137847c55b1ce875f941b204a9be589fbd36595238a06f7a7e89"
+      },
+      "truth": {
+        "path": "cases/gray64-p4-photo/truth.png",
+        "bytes": 19987,
+        "sha256": "457d5428a7ff449c352de059809b55701b917f2c0290c709998d27e33b665115"
+      },
+      "independent_waveform": {
+        "nominal": {
+          "rms_pcm_lsb": 0.286221534896331,
+          "max_pcm_lsb": 0.5019067788812208
+        },
+        "frequency_mutation": {
+          "rms_pcm_lsb": 16381.798287447147,
+          "max_pcm_lsb": 32767.980181662773
+        },
+        "raster_start_frame": 527604,
+        "component_count": 43200
+      },
+      "exact_rsid_audio_silence_frame_checks": "pass"
+    },
+    {
+      "id": "gray64-p2-chart",
+      "mode": "MFSK64",
+      "color": "grayscale",
+      "speed": 2,
+      "source": "chart",
+      "grampy_picture_required": true,
+      "expected_text_in_order": [
+        "\u0002\nGRAM PY PRACTICAL BROADCAST GRAY64 P2 CHART\n",
+        "Pic:160x120p2;",
+        "\nGRAM PY GRAY64 P2 CHART END\n\u0004"
+      ],
+      "expected_modes": [
+        "MFSK64"
+      ],
+      "expected_carriers_hz": [
+        1500.0
+      ],
+      "width": 160,
+      "height": 120,
+      "frame_count": 996084,
+      "duration_seconds": 20.75175,
+      "encode_seconds": 0.21782124997116625,
+      "wav": {
+        "path": "cases/gray64-p2-chart/generated.wav",
+        "bytes": 1992212,
+        "sha256": "5d65aa0a6cc6942280d08996bf999f0c6206a4b6bfaf960260c0c0f2d71772a8"
+      },
+      "truth": {
+        "path": "cases/gray64-p2-chart/truth.png",
+        "bytes": 1465,
+        "sha256": "ef5b254666f554eb2e02641fad50b2a06c78f9e90c1ae3d7f3f1f606bd9e4770"
+      },
+      "independent_waveform": {
+        "nominal": {
+          "rms_pcm_lsb": 0.2870765287259899,
+          "max_pcm_lsb": 0.5003430491497056
+        },
+        "frequency_mutation": {
+          "rms_pcm_lsb": 16373.870810023807,
+          "max_pcm_lsb": 32767.979688020234
+        },
+        "raster_start_frame": 527604,
+        "component_count": 19200
+      },
+      "exact_rsid_audio_silence_frame_checks": "pass"
+    },
+    {
+      "id": "rgb64-p8-photo",
+      "mode": "MFSK64",
+      "color": "color",
+      "speed": 8,
+      "source": "photo",
+      "grampy_picture_required": true,
+      "expected_text_in_order": [
+        "\u0002\nGRAM PY PRACTICAL BROADCAST RGB64 P8 PHOTO\n",
+        "Pic:240x180C;",
+        "\nGRAM PY RGB64 P8 PHOTO END\n\u0004"
+      ],
+      "expected_modes": [
+        "MFSK64"
+      ],
+      "expected_carriers_hz": [
+        1500.0
+      ],
+      "width": 240,
+      "height": 180,
+      "frame_count": 6977268,
+      "duration_seconds": 145.35975,
+      "encode_seconds": 1.574636625009589,
+      "wav": {
+        "path": "cases/rgb64-p8-photo/generated.wav",
+        "bytes": 13954580,
+        "sha256": "6b7aa722eac0a4e4b47196a93e98085279d530185e4d45a834995ccf6af37eca"
+      },
+      "truth": {
+        "path": "cases/rgb64-p8-photo/truth.png",
+        "bytes": 60016,
+        "sha256": "1d316ddfc96078f19a20d83769d36b1efcd23cdc03d0047832e65024fcd026d0"
+      },
+      "independent_waveform": {
+        "nominal": {
+          "rms_pcm_lsb": 0.28673591157793166,
+          "max_pcm_lsb": 0.5320847043858521
+        },
+        "frequency_mutation": {
+          "rms_pcm_lsb": 16383.604554841713,
+          "max_pcm_lsb": 32767.999890398532
+        },
+        "raster_start_frame": 521460,
+        "component_count": 129600
+      },
+      "exact_rsid_audio_silence_frame_checks": "pass"
+    },
+    {
+      "id": "rgb64-p4-card",
+      "mode": "MFSK64",
+      "color": "color",
+      "speed": 4,
+      "source": "card",
+      "grampy_picture_required": true,
+      "expected_text_in_order": [
+        "\u0002\nGRAM PY PRACTICAL BROADCAST RGB64 P4 CARD\n",
+        "Pic:240x180Cp4;",
+        "\nGRAM PY RGB64 P4 CARD END\n\u0004"
+      ],
+      "expected_modes": [
+        "MFSK64"
+      ],
+      "expected_carriers_hz": [
+        1500.0
+      ],
+      "width": 240,
+      "height": 180,
+      "frame_count": 3866100,
+      "duration_seconds": 80.54375,
+      "encode_seconds": 0.9942016659770161,
+      "wav": {
+        "path": "cases/rgb64-p4-card/generated.wav",
+        "bytes": 7732244,
+        "sha256": "a1adfd84f6d45cc12e2cc1b8ffeea11e16b4c7cc13cb2b95d534ea172a0e3d05"
+      },
+      "truth": {
+        "path": "cases/rgb64-p4-card/truth.png",
+        "bytes": 66779,
+        "sha256": "f54c55ee0eda798a3fa9d4bcc32ba45cebc08eaa5ddb41808ac3fc7b44aaddc7"
+      },
+      "independent_waveform": {
+        "nominal": {
+          "rms_pcm_lsb": 0.2866680741844266,
+          "max_pcm_lsb": 0.5316889088312564
+        },
+        "frequency_mutation": {
+          "rms_pcm_lsb": 16383.328869452269,
+          "max_pcm_lsb": 32767.998285255926
+        },
+        "raster_start_frame": 524532,
+        "component_count": 129600
+      },
+      "exact_rsid_audio_silence_frame_checks": "pass"
+    },
+    {
+      "id": "rgb64-p2-chart",
+      "mode": "MFSK64",
+      "color": "color",
+      "speed": 2,
+      "source": "chart",
+      "grampy_picture_required": true,
+      "expected_text_in_order": [
+        "\u0002\nGRAM PY PRACTICAL BROADCAST RGB64 P2 CHART\n",
+        "Pic:160x120Cp2;",
+        "\nGRAM PY RGB64 P2 CHART END\n\u0004"
+      ],
+      "expected_modes": [
+        "MFSK64"
+      ],
+      "expected_carriers_hz": [
+        1500.0
+      ],
+      "width": 160,
+      "height": 120,
+      "frame_count": 1453812,
+      "duration_seconds": 30.28775,
+      "encode_seconds": 0.36679658299544826,
+      "wav": {
+        "path": "cases/rgb64-p2-chart/generated.wav",
+        "bytes": 2907668,
+        "sha256": "25fc90bd2590415b84d1f93a01ea61059b77035c2f58e0745e5490f31fb6180b"
+      },
+      "truth": {
+        "path": "cases/rgb64-p2-chart/truth.png",
+        "bytes": 2859,
+        "sha256": "89a6447653925769b728b44b7d97168b792827e6eac2bfffdc28abaa605b3f77"
+      },
+      "independent_waveform": {
+        "nominal": {
+          "rms_pcm_lsb": 0.28591589818588137,
+          "max_pcm_lsb": 0.5112382917227478
+        },
+        "frequency_mutation": {
+          "rms_pcm_lsb": 16381.140370095603,
+          "max_pcm_lsb": 32767.99937857091
+        },
+        "raster_start_frame": 527604,
+        "component_count": 57600
+      },
+      "exact_rsid_audio_silence_frame_checks": "pass"
+    },
+    {
+      "id": "gray32-p8-card",
+      "mode": "MFSK32",
+      "color": "grayscale",
+      "speed": 8,
+      "source": "card",
+      "grampy_picture_required": false,
+      "expected_text_in_order": [
+        "\u0002\nGRAM PY PRACTICAL BROADCAST GRAY32 P8 CARD\n",
+        "Pic:240x180;",
+        "\nGRAM PY GRAY32 P8 CARD END\n\u0004"
+      ],
+      "expected_modes": [
+        "MFSK32"
+      ],
+      "expected_carriers_hz": [
+        1500.0
+      ],
+      "width": 240,
+      "height": 180,
+      "frame_count": 3056538,
+      "duration_seconds": 63.677875,
+      "encode_seconds": 0.8533322910079733,
+      "wav": {
+        "path": "cases/gray32-p8-card/generated.wav",
+        "bytes": 6113120,
+        "sha256": "f7291065b072e0fad8e201b434ac99a5e73f8833dad2d7f7fc4e56468cce901b"
+      },
+      "truth": {
+        "path": "cases/gray32-p8-card/truth.png",
+        "bytes": 23641,
+        "sha256": "313ed61c44caaee44823e304b1ccc2332858710c3fd7d1ee67b57043b2cb998f"
+      },
+      "independent_waveform": {
+        "nominal": {
+          "rms_pcm_lsb": 0.28767766206967366,
+          "max_pcm_lsb": 0.5272291720375506
+        },
+        "frequency_mutation": {
+          "rms_pcm_lsb": 16382.902233205921,
+          "max_pcm_lsb": 32767.999624914995
+        },
+        "raster_start_frame": 625050,
+        "component_count": 43200
+      },
+      "exact_rsid_audio_silence_frame_checks": "pass"
+    },
+    {
+      "id": "gray32-p4-photo",
+      "mode": "MFSK32",
+      "color": "grayscale",
+      "speed": 4,
+      "source": "photo",
+      "grampy_picture_required": false,
+      "expected_text_in_order": [
+        "\u0002\nGRAM PY PRACTICAL BROADCAST GRAY32 P4 PHOTO\n",
+        "Pic:240x180p4;",
+        "\nGRAM PY GRAY32 P4 PHOTO END\n\u0004"
+      ],
+      "expected_modes": [
+        "MFSK32"
+      ],
+      "expected_carriers_hz": [
+        1500.0
+      ],
+      "width": 240,
+      "height": 180,
+      "frame_count": 2044314,
+      "duration_seconds": 42.589875,
+      "encode_seconds": 0.49219666700810194,
+      "wav": {
+        "path": "cases/gray32-p4-photo/generated.wav",
+        "bytes": 4088672,
+        "sha256": "9d7ef79fa1def81e082d1b120f50e21071e7c1f1c86bba665669d5304704f9ec"
+      },
+      "truth": {
+        "path": "cases/gray32-p4-photo/truth.png",
+        "bytes": 19987,
+        "sha256": "457d5428a7ff449c352de059809b55701b917f2c0290c709998d27e33b665115"
+      },
+      "independent_waveform": {
+        "nominal": {
+          "rms_pcm_lsb": 0.28739740339910447,
+          "max_pcm_lsb": 0.5018028798031082
+        },
+        "frequency_mutation": {
+          "rms_pcm_lsb": 16381.747025888759,
+          "max_pcm_lsb": 32767.99559028012
+        },
+        "raster_start_frame": 643482,
+        "component_count": 43200
+      },
+      "exact_rsid_audio_silence_frame_checks": "pass"
+    },
+    {
+      "id": "gray32-p2-chart",
+      "mode": "MFSK32",
+      "color": "grayscale",
+      "speed": 2,
+      "source": "chart",
+      "grampy_picture_required": false,
+      "expected_text_in_order": [
+        "\u0002\nGRAM PY PRACTICAL BROADCAST GRAY32 P2 CHART\n",
+        "Pic:160x120p2;",
+        "\nGRAM PY GRAY32 P2 CHART END\n\u0004"
+      ],
+      "expected_modes": [
+        "MFSK32"
+      ],
+      "expected_carriers_hz": [
+        1500.0
+      ],
+      "width": 160,
+      "height": 120,
+      "frame_count": 1237914,
+      "duration_seconds": 25.789875,
+      "encode_seconds": 0.28422441601287574,
+      "wav": {
+        "path": "cases/gray32-p2-chart/generated.wav",
+        "bytes": 2475872,
+        "sha256": "c7e80cfceef19e014542d41fc7e224631bbe2c04288b4188a1a4d1f73e721d1e"
+      },
+      "truth": {
+        "path": "cases/gray32-p2-chart/truth.png",
+        "bytes": 1465,
+        "sha256": "ef5b254666f554eb2e02641fad50b2a06c78f9e90c1ae3d7f3f1f606bd9e4770"
+      },
+      "independent_waveform": {
+        "nominal": {
+          "rms_pcm_lsb": 0.28778515533221183,
+          "max_pcm_lsb": 0.5010163411579924
+        },
+        "frequency_mutation": {
+          "rms_pcm_lsb": 16374.44449176742,
+          "max_pcm_lsb": 32767.98136338559
+        },
+        "raster_start_frame": 643482,
+        "component_count": 19200
+      },
+      "exact_rsid_audio_silence_frame_checks": "pass"
+    },
+    {
+      "id": "mixed-broadcast-photo",
+      "mode": "MFSK64",
+      "color": "color",
+      "speed": 4,
+      "source": "photo",
+      "mixed": true,
+      "grampy_picture_required": true,
+      "expected_text_in_order": [
+        "\u0002\nGRAM PY BROADCAST MFSK32 NEWS BEGIN\nTODAY WE TEST TEXT AUDIO SILENCE AND A PICTURE.\nNEWS END\n\u0004",
+        "\u0002\nGRAM PY PRACTICAL BROADCAST MIXED BROADCAST PHOTO\n",
+        "Pic:240x180Cp4;",
+        "\nGRAM PY MIXED BROADCAST PHOTO END\n\u0004"
+      ],
+      "expected_modes": [
+        "MFSK32",
+        "MFSK64"
+      ],
+      "expected_carriers_hz": [
+        1400,
+        1600.0
+      ],
+      "width": 240,
+      "height": 180,
+      "frame_count": 4785870,
+      "duration_seconds": 99.705625,
+      "encode_seconds": 1.1714265830232762,
+      "wav": {
+        "path": "cases/mixed-broadcast-photo/generated.wav",
+        "bytes": 9571784,
+        "sha256": "ecf6819b916abd6d444fd9ac229d2264772664b234f543ff43ad63ce8d8f5925"
+      },
+      "truth": {
+        "path": "cases/mixed-broadcast-photo/truth.png",
+        "bytes": 60016,
+        "sha256": "1d316ddfc96078f19a20d83769d36b1efcd23cdc03d0047832e65024fcd026d0"
+      },
+      "independent_waveform": {
+        "nominal": {
+          "rms_pcm_lsb": 0.28839869929117723,
+          "max_pcm_lsb": 0.5117572712206311
+        },
+        "frequency_mutation": {
+          "rms_pcm_lsb": 16383.345238560398,
+          "max_pcm_lsb": 32767.99938799197
+        },
+        "raster_start_frame": 1420494,
+        "component_count": 129600
+      },
+      "exact_rsid_audio_silence_frame_checks": "pass"
+    }
+  ]
+}
