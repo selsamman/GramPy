@@ -121,31 +121,48 @@ compact outputs and quality measurements are documented in the
 [`API guide`](../docs/decoder/api.md); the implementation plan and acceptance
 record are [archived](../docs/provenance/archive/output-manifests-plan.md).
 
-To create an archive, supply a version and output path:
+To archive the complete `tests/samples` sidecar, run `tools/package-corpus`.
+No arguments are required: it labels the snapshot with a UTC timestamp and
+writes `.local/samples-<timestamp>.tar.zst` under this checkout (`.enc` is added
+with `--encrypt`). This label is independent of the GramPy software version;
+hashes identify exact contents. Override the label or output path if needed:
 
 ```sh
 tools/package-corpus \
   --version 1.0 \
-  --output /path/to/received-corpus-1.0.tar.zst
+  --output /path/to/samples-1.0.tar.zst
 ```
 
-The command updates `version.json` in the corpus, creates the archive, and
-prints its SHA-256. Add `--encrypt` to prompt for a password and produce an
-encrypted archive. No password is retained.
+Existing output files are never overwritten. Remove the exact local export
+after it is published and verified if it is no longer needed.
+
+The archive includes controlled fixtures, received data, external expectations
+and any installed optional history. Packaging verifies the committed inventory
+and adds `samples/sidecar-release.json` with the supplied release version and
+inventory identity. It does not change source files or the received corpus
+version. It prints the archive SHA-256. Add `--encrypt` to prompt for a
+password; no password is retained.
 
 Fetch and install an archive by supplying its URL and SHA-256 explicitly:
 
 ```sh
 tools/fetch-corpus \
-  --url 'https://example.invalid/received-corpus-1.0.tar.zst' \
+  --url 'https://example.invalid/samples-1.0.tar.zst' \
   --sha256 SHA256_FROM_PACKAGE_COMMAND
 ```
 
 Add `--encrypted` to prompt for the archive password. The fetch command
 verifies the downloaded bytes, validates the archive before extraction, and
-atomically replaces an existing corpus only after validation succeeds. It
-does not retain the URL, SHA-256, or password and does not compare corpus
-versions.
+replaces the entire installed `tests/samples` using atomic renames only after
+release metadata and every included inventory file validate. Failure preserves
+the old installation; successful replacement removes local-only files. The URL,
+checksum and password are not retained.
+
+Use `--samples-root PATH` to select a different sidecar root; the existing
+`--corpus-root` spelling remains an alias. Both commands accept `--manifest PATH`
+for the matching inventory of another release. Older archives containing only
+`received-corpus/` require `--received-only`, which uses the previous received-only
+format and installation scope. They are never installed over the whole sidecar.
 
 Fetching requires `curl`, and packaging or fetching `.tar.zst` archives
 requires `zstd`. Optional encryption also requires `openssl`.

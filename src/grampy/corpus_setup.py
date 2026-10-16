@@ -1,4 +1,4 @@
-"""Fetch and install a received-IQ test corpus safely."""
+"""Fetch and install the complete test sidecar safely."""
 
 from __future__ import annotations
 
@@ -12,6 +12,8 @@ import subprocess
 import sys
 import tarfile
 import tempfile
+
+from grampy.sidecar import read_inventory, read_release, verify
 
 
 class CorpusSetupError(RuntimeError):
@@ -175,7 +177,7 @@ def extract_archive(archive: Path, destination: Path, expected_root: str) -> Pat
 def replace_corpus(staging: Path, corpus_root: Path) -> None:
     """Replace the installed corpus using same-filesystem atomic renames."""
     backup = Path(
-        tempfile.mkdtemp(dir=corpus_root.parent, prefix=".received-corpus-old-")
+        tempfile.mkdtemp(dir=corpus_root.parent, prefix=".sidecar-old-")
     )
     backup.rmdir()
     moved_old = False
@@ -198,9 +200,10 @@ def replace_corpus(staging: Path, corpus_root: Path) -> None:
 
 
 def fetch_corpus(
-    url: str, expected_sha256: str, corpus_root: Path, password: str | None = None
+    url: str, expected_sha256: str, corpus_root: Path, password: str | None = None,
+    *, sidecar_inventory: dict | None = None,
 ) -> None:
-    """Fetch, verify, and install the explicitly requested corpus archive."""
+    """Install a whole sidecar with an inventory, or the legacy format without one."""
     expected_sha256 = expected_sha256.lower()
     if len(expected_sha256) != 64 or any(
         character not in "0123456789abcdef" for character in expected_sha256
@@ -210,7 +213,7 @@ def fetch_corpus(
         raise CorpusSetupError(f"refusing to use symlinked corpus root: {corpus_root}")
     corpus_root.parent.mkdir(parents=True, exist_ok=True)
     with tempfile.TemporaryDirectory(dir=corpus_root.parent, prefix=".corpus-download-") as name:
-        archive = Path(name) / "received-corpus.archive"
+        archive = Path(name) / "samples.archive"
         download(url, archive)
         actual = sha256_file(archive)
         if actual != expected_sha256:
@@ -219,19 +222,31 @@ def fetch_corpus(
             )
         install_archive = archive
         if password is not None:
-            install_archive = Path(name) / "received-corpus.tar.zst"
+            install_archive = Path(name) / "samples.tar.zst"
             decrypt_archive(archive, install_archive, password)
-        staging = extract_archive(install_archive, corpus_root, corpus_root.name)
-        if corpus_version(staging) is None:
-            shutil.rmtree(staging)
-            raise CorpusSetupError("extracted corpus has no valid version.json")
-        replace_corpus(staging, corpus_root)
+        expected_root = "samples" if sidecar_inventory is not None else corpus_root.name
+        staging = extract_archive(install_archive, corpus_root, expected_root)
+        try:
+            if sidecar_inventory is None:
+                if corpus_version(staging) is None:
+                    raise CorpusSetupError("extracted corpus has no valid version.json")
+            else:
+                release = read_release(staging, sidecar_inventory)
+                _, failures = verify(staging, sidecar_inventory, include_history=release["include_history"])
+                if failures:
+                    raise CorpusSetupError("sidecar inventory failed: " + "; ".join(failures))
+            replace_corpus(staging, corpus_root)
+        except (OSError, ValueError, KeyError, TypeError) as error:
+            raise CorpusSetupError(f"invalid sidecar release: {error}") from error
+        finally:
+            if staging.exists():
+                shutil.rmtree(staging)
 
 
 def main(argv: list[str] | None = None) -> int:
     root = Path(__file__).resolve().parents[2]
     parser = argparse.ArgumentParser(
-        prog="tools/fetch-corpus", description="fetch and install a received-IQ test corpus"
+        prog="tools/fetch-corpus", description=__doc__
     )
     parser.add_argument("--url", required=True)
     parser.add_argument("--sha256", required=True)
@@ -239,17 +254,27 @@ def main(argv: list[str] | None = None) -> int:
         "--encrypted", action="store_true", help="prompt for the archive password"
     )
     parser.add_argument(
-        "--corpus-root", type=Path, default=root / "tests" / "samples" / "received-corpus"
+        "--samples-root", "--corpus-root", dest="corpus_root", type=Path,
+        help="installation directory (default tests/samples; --corpus-root is an alias)",
     )
+    parser.add_argument("--manifest", type=Path, default=root / "tests/fixtures/sidecar-v1.json")
+    parser.add_argument("--received-only", action="store_true", help="install an older received-corpus-only archive")
     args = parser.parse_args(argv)
+    if args.corpus_root is None:
+        args.corpus_root = root / "tests/samples"
+        if args.received_only:
+            args.corpus_root /= "received-corpus"
     try:
         password = getpass.getpass("Corpus password: ") if args.encrypted else None
         # Do not resolve corpus_root: resolving a symlink would hide precisely
         # the Dropbox-style installation this tool must reject.
-        fetch_corpus(args.url, args.sha256, args.corpus_root.absolute(), password)
-    except (CorpusSetupError, EOFError) as error:
+        fetch_corpus(
+            args.url, args.sha256, args.corpus_root.absolute(), password,
+            sidecar_inventory=None if args.received_only else read_inventory(args.manifest),
+        )
+    except (CorpusSetupError, EOFError, OSError, ValueError, KeyError, TypeError) as error:
         parser.exit(1, f"fetch-corpus: {error}\n")
-    print("installed corpus")
+    print("installed corpus" if args.received_only else "installed samples sidecar")
     return 0
 
 

@@ -24,6 +24,10 @@ adding this policy does not move or duplicate them.
 
 Selected native entries:
 
+- [2026-10-16 package defaults](changes/20261016-package-defaults/README.md):
+  automatic snapshot labels, `.local` output defaults and overwrite protection.
+- [2026-10-14 whole-sidecar transport](changes/20261014-whole-sidecar/README.md):
+  complete package/fetch support, inventory checks and synthetic transfer validation.
 - [2026-10-13 sidecar audit](changes/20261013-sidecar-audit/README.md): provenance
   classifications, corrections to embedded broadcast evidence, canonical-input
   preservation, verified retirement and required/optional S3 handoff.

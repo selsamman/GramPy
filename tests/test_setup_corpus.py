@@ -220,6 +220,7 @@ class CorpusTransferTests(unittest.TestCase):
             result = subprocess.run(
                 [
                     project / "tools" / "fetch-corpus",
+                    "--received-only",
                     "--url", archive.as_uri(),
                     "--sha256", self.digest(archive),
                     "--corpus-root", root,

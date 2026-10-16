@@ -89,9 +89,9 @@ audit because the decoder, selected input bytes and quality limits are unchanged
 
 The local sidecar is ready for a **new versioned S3 handoff**. S3 was not modified.
 Maintain the previous release until the new required directories and optional
-archive are installed and verified elsewhere. The legacy corpus-only packaging
-tools do not cover the whole sidecar. Include the new external expectation file
-when distributing the received tier.
+archive are installed and verified elsewhere. At audit time the legacy packaging tools covered only the received corpus.
+The October 14 extension now saves/restores the entire sidecar, including the
+external expectation file; see the current maintenance guide.
 
 Previously committed externalized material still exists in older Git commits.
 Removing historical objects would require a separately authorized history

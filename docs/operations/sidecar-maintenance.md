@@ -75,11 +75,53 @@ privately; this repository does not invent a bucket or download URL.
    parent with `GRAMPY_TEST_SAMPLES`. Verify with `tools/verify-sidecar` and run
    the required tests. Use `--include-history` when installing the archive too.
 
-The existing `tools/package-corpus` and `tools/fetch-corpus` transport only
-`received-corpus`. They do not carry controlled fixtures, received expectations
-or history. A full S3 handoff must include those separately. The original
-controlled `.tar.gz` is retained under `archive/distribution/` as an optional
-immutable delivery artifact; tests read its extracted directory, not the gzip.
+`tools/package-corpus` and `tools/fetch-corpus` now transport the complete
+installed `tests/samples` directory. They include controlled fixtures, received
+RF/references, external expectations and optional archive history when present.
+Packaging verifies the committed inventory before and after reading inputs and
+adds `samples/sidecar-release.json` with the release version, inventory identity
+and history-inclusion flag. It leaves source files and the received corpus's
+version untouched. The installed transport metadata is validated separately by
+`tools/verify-sidecar`; it is not an unclassified fixture or a new corpus input.
+
+Put these commands in managed batches, using your private download URL:
+
+```sh
+tools/package-corpus
+
+tools/fetch-corpus --url 'HTTPS_DOWNLOAD_URL' --sha256 'ARCHIVE_SHA256'
+```
+
+With no arguments, packaging labels the snapshot with the current UTC time
+(`YYYYMMDDTHHMMSSZ`) and writes `.local/samples-<label>.tar.zst` under this
+checkout. This identifies an export snapshot, not the GramPy software version.
+The inventory and archive hashes identify its exact data. `--version LABEL`
+provides your own label; `--output PATH` overrides the destination. Default
+filenames sanitize path separators in labels, and an existing archive is never
+overwritten. Remove the exact local export after publication and verification
+when it is no longer needed; these are temporary delivery artifacts, not
+permanent local configuration. Agents still record owned exports in their
+change's work record, and may use `--output` to put them under that WIP directory.
+
+Add `--encrypt` when packaging and `--encrypted` when fetching to prompt for a
+password. URL, checksum and password remain explicit; they are not saved in the
+repository or release metadata. No S3 upload is performed by either command.
+
+Fetch checks the supplied archive checksum, rejects unsafe archive entries,
+extracts to staging, verifies the release against the matching committed
+inventory, and then replaces the entire installed sidecar. Failures preserve
+the old installation; successful replacement removes local-only files. Keep
+irreplaceable additions outside the installation or publish them as a reviewed
+release before replacing it.
+
+`--samples-root PATH` changes the source/install directory; `--corpus-root`
+remains an alias. `--manifest PATH` supplies the matching inventory for an older
+release. Use `--received-only` explicitly to package or fetch the old
+received-corpus-only format; its default source/destination remains
+`tests/samples/received-corpus`. Older bundles cannot replace an entire sidecar.
+
+The original controlled `.tar.gz` remains under `archive/distribution/` as an
+optional immutable delivery artifact; tests read its extracted fixture directory.
 
 ## Close a phase without accumulating outputs
 

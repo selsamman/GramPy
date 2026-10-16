@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """Verify the installed external-data release against its committed inventory."""
 import argparse
-import hashlib
 import json
 import os
 from pathlib import Path
@@ -9,44 +8,9 @@ import sys
 
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "src"))
 
-
-def verify(root, manifest, *, include_history=False):
-    root = Path(root).resolve()
-    failures = []
-    checked = 0
-    records = manifest["files"]
-    known = set()
-    for record in records:
-        relative = Path(record["path"])
-        if relative.is_absolute() or ".." in relative.parts or not relative.parts:
-            raise ValueError(f"Unsafe inventory path: {relative}")
-        if relative.as_posix() in known:
-            raise ValueError(f"Duplicate inventory path: {relative}")
-        known.add(relative.as_posix())
-        if record["group"] == "archive" and not include_history:
-            continue
-        path = root / relative
-        if any(p.is_symlink() for p in (path, *path.parents) if p != root and p.is_relative_to(root)):
-            failures.append(f"unsupported symlink: {relative}")
-            continue
-        try:
-            size = path.stat().st_size
-            with path.open("rb") as stream:
-                actual = hashlib.file_digest(stream, "sha256").hexdigest()
-        except OSError:
-            failures.append(f"missing or unreadable: {relative}")
-            continue
-        checked += 1
-        if size != record["bytes"] or actual != record["sha256"]:
-            failures.append(f"changed: {relative}")
-    if root.exists():
-        for path in root.rglob("*"):
-            if path.is_file() and path.name != ".DS_Store":
-                relative = path.relative_to(root).as_posix()
-                if relative not in known:
-                    failures.append(f"unclassified installed file: {relative}")
-    return checked, failures
+from grampy.sidecar import verify
 
 
 def main():
